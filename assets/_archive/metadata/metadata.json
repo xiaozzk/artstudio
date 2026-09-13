@@ -1,0 +1,29 @@
+{
+  "jobId": "job_b41cf411957c4c79b88a9f0520cb5866",
+  "images": [
+    {
+      "index": "01",
+      "fileName": "01_image-1786891552998-yvaer35c8v.png",
+      "name": "image-1786891552998-yvaer35c8v",
+      "jobId": "job_b41cf411957c4c79b88a9f0520cb5866"
+    },
+    {
+      "index": "02",
+      "fileName": "02_image-1786891707684-pjnycl89p9.png",
+      "name": "image-1786891707684-pjnycl89p9",
+      "jobId": "job_f27401c621414a91abc8902f4fc9a7bd"
+    },
+    {
+      "index": "03",
+      "fileName": "03_image-1786891812660-gasonjbl3ow.png",
+      "name": "image-1786891812660-gasonjbl3ow",
+      "jobId": "job_e4efdd880834470ebb57cd9bcfbcbf55"
+    },
+    {
+      "index": "04",
+      "fileName": "04_image-1786891893835-2b0d48g1zps.png",
+      "name": "image-1786891893835-2b0d48g1zps",
+      "jobId": "job_c5721d9b71aa473f896666911832c479"
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "templates": [
+    {
+      "template_name": "16_9",
+      "display_name": "Large Pixel Canvas — 16:9 / 64-128",
+      "description": "A 16:9 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "16:9",
+        "64-128"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 256,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "16:9",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "3_4",
+      "display_name": "Large Pixel Canvas — 3:4 / 128-256",
+      "description": "A 3:4 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "3:4",
+        "128-256"
+      ],
+      "output_size": "128-256",
+      "output_size_px": 256,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "3:4",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "4_3",
+      "display_name": "Large Pixel Canvas — 4:3 / 128-256",
+      "description": "A 4:3 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "4:3",
+        "128-256"
+      ],
+      "output_size": "128-256",
+      "output_size_px": 256,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "4:3",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "9_16",
+      "display_name": "Large Pixel Canvas — 9:16 / 128-256",
+      "description": "A 9:16 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "9:16",
+        "128-256"
+      ],
+      "output_size": "128-256",
+      "output_size_px": 256,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "9:16",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "large_16_9",
+      "display_name": "Large Pixel Canvas — 16:9 / 256+",
+      "description": "A 16:9 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "16:9",
+        "256+"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "16:9",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "large_3_4",
+      "display_name": "Large Pixel Canvas — 3:4 / 256+",
+      "description": "A 3:4 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "3:4",
+        "256+"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "3:4",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "large_4_3",
+      "display_name": "Large Pixel Canvas — 4:3 / 256+",
+      "description": "A 4:3 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "4:3",
+        "256+"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "4:3",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "large_9_16",
+      "display_name": "Large Pixel Canvas — 9:16 / 256+",
+      "description": "A 9:16 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "9:16",
+        "256+"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "9:16",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "xlarge_1_2",
+      "display_name": "Large Pixel Canvas — 1:2 / 256+",
+      "description": "A 1:2 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "1:2",
+        "256+"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "1:2",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "xlarge_2_1",
+      "display_name": "Large Pixel Canvas — 2:1 / 256+",
+      "description": "A 2:1 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "2:1",
+        "256+"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "2:1",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "xlarge_2_3",
+      "display_name": "Large Pixel Canvas — 2:3 / 256+",
+      "description": "A 2:3 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "2:3",
+        "256+"
+      ],
+      "output_size": "256+",
+      "output_size_px": 2048,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "2:3",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "xlarge_3_2",
+      "display_name": "Large Pixel Canvas — 3:2 / 256+",
+      "description": "A 3:2 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "3:2",
+        "256+"
+      ],
+      "output_size": "256+",
+      "output_size_px": 2048,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "3:2",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "xlarge_3_4",
+      "display_name": "Large Pixel Canvas — 3:4 / 256+",
+      "description": "A 3:4 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "3:4",
+        "256+"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "3:4",
+      "default_background_removal": "none"
+    },
+    {
+      "template_name": "xlarge_4_3",
+      "display_name": "Large Pixel Canvas — 4:3 / 256+",
+      "description": "A 4:3 large-pixel canvas for scenes, illustrations, characters, buildings, and other game assets.",
+      "labels": [
+        "pixel",
+        "large",
+        "4:3",
+        "256+"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "4:3",
+      "default_background_removal": "none",
+      "directions": [
+        "top-down",
+        "isometric"
+      ]
+    }
+  ]
+}
