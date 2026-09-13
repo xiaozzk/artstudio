@@ -1,0 +1,1070 @@
+{
+  "templates": [
+    {
+      "template_name": "16_9",
+      "display_name": "大型横版像素",
+      "description": "Middle 16:9 2K pixel reference grid using two style references and two generation slots.",
+      "labels": [
+        "pixel",
+        "general",
+        "16:9",
+        "middle",
+        "2K"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 256,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "16:9",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "24px_icon",
+      "display_name": "简约像素图标",
+      "description": "5x5 24px pixel icon sprite-pack template.",
+      "labels": [
+        "pixel",
+        "icon",
+        "sprite-pack",
+        "beta"
+      ],
+      "output_size": "24",
+      "output_size_px": 24,
+      "default_count": 15,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "is_beta": true
+    },
+    {
+      "template_name": "32x64_object",
+      "display_name": "精致像素道具",
+      "description": "3x6 sprite-pack template for fixed 32x64 pixel objects.",
+      "labels": [
+        "pixel",
+        "object",
+        "sprite-pack",
+        "beta"
+      ],
+      "output_size": "32x64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "is_beta": true
+    },
+    {
+      "template_name": "3_4",
+      "display_name": "大型竖版像素",
+      "description": "Middle 3:4 2K pixel reference grid using two portrait references and two generation slots.",
+      "labels": [
+        "pixel",
+        "general",
+        "3:4",
+        "portrait",
+        "middle",
+        "2K"
+      ],
+      "output_size": "128-256",
+      "output_size_px": 256,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "3:4",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "48px characters",
+      "display_name": "中等像素角色",
+      "description": "4x4 48px pixel character sprite-pack template.",
+      "labels": [
+        "pixel",
+        "character",
+        "sprite-pack",
+        "beta"
+      ],
+      "output_size": "48",
+      "output_size_px": 48,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "is_beta": true
+    },
+    {
+      "template_name": "4_3",
+      "display_name": "大型横版像素",
+      "description": "Middle 4:3 2K pixel reference grid using two wide references and two generation slots.",
+      "labels": [
+        "pixel",
+        "general",
+        "4:3",
+        "landscape",
+        "middle",
+        "2K"
+      ],
+      "output_size": "128-256",
+      "output_size_px": 256,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "4:3",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "9_16",
+      "display_name": "大型竖版像素",
+      "description": "Middle 9:16 2K pixel reference grid using two portrait references and two generation slots.",
+      "labels": [
+        "pixel",
+        "general",
+        "9:16",
+        "portrait",
+        "middle",
+        "2K"
+      ],
+      "output_size": "128-256",
+      "output_size_px": 256,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "9:16",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "Career_Pixel_Characters",
+      "display_name": "简约等身角色",
+      "description": "Directional 5x5 career pixel character reference template.",
+      "labels": [
+        "pixel",
+        "character",
+        "sprite-pack",
+        "career",
+        "directional",
+        "beta"
+      ],
+      "output_size": "32",
+      "output_size_px": 32,
+      "default_count": 15,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "directions": [
+        "front",
+        "left",
+        "right",
+        "back"
+      ],
+      "default_direction": "front",
+      "is_beta": true
+    },
+    {
+      "template_name": "animal",
+      "display_name": "精致像素动物",
+      "description": "采用紧凑的像素点阵和清晰的深色轮廓，结合精致的Q版比例和温柔的像素技法，生动地描绘出各种动物可爱、萌趣的神态",
+      "labels": [
+        "pixel",
+        "animal"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "animal5x5",
+      "display_name": "简约像素动物",
+      "description": "同风格的像素动物,用于5x5生成",
+      "labels": [
+        "pixel",
+        "animal",
+        "sprite-pack",
+        "beta"
+      ],
+      "output_size": "32",
+      "output_size_px": 32,
+      "default_count": 15,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "is_beta": true
+    },
+    {
+      "template_name": "animal_2",
+      "display_name": "精致像素简约动物",
+      "description": "采用低分辨率的像素美术，以可爱的Q版形象呈现各种动物伙伴，有清晰的轮廓和鲜明的有限调色板。",
+      "labels": [
+        "pixel",
+        "animal"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "cat",
+      "display_name": "精致像素小猫",
+      "description": "以低分辨率像素为基础，采用柔和的暖色调和奶油色，可以生成一系列呆萌的像素小猫。",
+      "labels": [
+        "pixel",
+        "animal",
+        "cat"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "cat_3",
+      "display_name": "精致像素极简小猫",
+      "description": "以最精简的像素点勾勒猫咪的主体轮廓与核心特征，展现出极简并且自带呆萌感的视觉风格。",
+      "labels": [
+        "pixel",
+        "animal",
+        "cat"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "cat_4",
+      "display_name": "精致像素简约小猫",
+      "description": "有简约的色块和清晰的轮廓，相较于极简像素猫咪更多的保留猫咪多样化的角色特征，可以生动的呈现各类可爱、具有辨识度的猫咪角色形象。",
+      "labels": [
+        "pixel",
+        "animal",
+        "cat"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "dog",
+      "display_name": "精致像素小狗",
+      "description": "采用受限的调色板、清晰的硬边描边，展现了一系列表情生动、特征鲜明、形态软萌的可爱小狗形象。",
+      "labels": [
+        "pixel",
+        "animal",
+        "dog"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "dog_2",
+      "display_name": "精致像素简约小狗",
+      "description": "通过清晰的轮廓与明快的色块，可以生成一系列极简但有辨识度的可爱小狗。",
+      "labels": [
+        "pixel",
+        "animal",
+        "dog"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "food",
+      "display_name": "精致像素食物",
+      "description": "通过巧妙的像素放置和色块组合，用简约的方式模拟复杂的食材质感，色块鲜艳明快，构图简洁有力，充满童趣和生机。",
+      "labels": [
+        "pixel",
+        "food"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "general_character_64px",
+      "display_name": "精致像素角色",
+      "description": "64px 通用像素角色素材包，基于 4x4 模板生成 8 个同风格角色。",
+      "labels": [
+        "pixel",
+        "character",
+        "sprite-pack"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "large_16_9",
+      "display_name": "超大横版像素",
+      "description": "Large 16:9 2K pixel reference grid using two wide references and two generation slots.",
+      "labels": [
+        "pixel",
+        "general",
+        "16:9",
+        "large",
+        "2K"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "16:9",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "large_3_4",
+      "display_name": "超大竖版像素",
+      "description": "Large 3:4 2K pixel reference grid using two portrait references and two generation slots.",
+      "labels": [
+        "pixel",
+        "general",
+        "3:4",
+        "portrait",
+        "large",
+        "2K"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "3:4",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "large_4_3",
+      "display_name": "超大横版像素",
+      "description": "Large 4:3 2K pixel reference grid using two wide references and two generation slots.",
+      "labels": [
+        "pixel",
+        "general",
+        "4:3",
+        "landscape",
+        "large",
+        "2K"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "4:3",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "large_9_16",
+      "display_name": "超大竖版像素",
+      "description": "Large 9:16 2K pixel reference grid using two portrait references and two generation slots.",
+      "labels": [
+        "pixel",
+        "general",
+        "9:16",
+        "portrait",
+        "large",
+        "2K"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "9:16",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "large_portrait",
+      "display_name": "超大像素角色",
+      "description": "2K large portrait pixel template for polished fantasy characters and full-body character portraits, with crisp silhouettes, ornate costume detail, rich colors, and refined pixel-art rendering.",
+      "labels": [
+        "pixel",
+        "character",
+        "portrait",
+        "large"
+      ],
+      "output_size": "128-256",
+      "output_size_px": 256,
+      "default_count": 2,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "monster",
+      "display_name": "大型复古怪物",
+      "description": "暗黑奇幻风格，色彩对比强烈，营造出一种厚重并且具有史诗感的视觉氛围。",
+      "labels": [
+        "pixel",
+        "character",
+        "monster"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 128,
+      "default_count": 2,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "directions": [
+        "front",
+        "left",
+        "right",
+        "back"
+      ],
+      "default_direction": "front"
+    },
+    {
+      "template_name": "object",
+      "display_name": "精致像素道具",
+      "description": "采用经典的低分辨率像素网格，每个物品外部都带有清晰的深色硬边描边，通过干净的纯色块拼接和极简的明暗交界线，可以精准地刻画出物体特征。",
+      "labels": [
+        "pixel",
+        "object"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "object_1",
+      "display_name": "简约像素道具",
+      "description": "5x5 object reference template.",
+      "labels": [
+        "pixel",
+        "object",
+        "sprite-pack",
+        "beta"
+      ],
+      "output_size": "32",
+      "output_size_px": 32,
+      "default_count": 15,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "is_beta": true
+    },
+    {
+      "template_name": "object_2",
+      "display_name": "精致像素简约道具",
+      "description": "采用极简尺寸的像素画布，摒弃复杂细节，仅保留物品最具代表性的物理形态和色彩符号。",
+      "labels": [
+        "pixel",
+        "object"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "ore",
+      "display_name": "简约像素矿石",
+      "description": "5x5 ore reference template.",
+      "labels": [
+        "pixel",
+        "resource",
+        "ore",
+        "sprite-pack",
+        "beta"
+      ],
+      "output_size": "32",
+      "output_size_px": 32,
+      "default_count": 15,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "is_beta": true
+    },
+    {
+      "template_name": "pixel_char_1",
+      "display_name": "大型通用角色",
+      "description": "角色拥有干净、锐利的深色边缘轮廓，调色板丰富且鲜艳，不再受限于早期的硬件色彩限制。可以生成经典奇幻主题的高分辨率像素人物。",
+      "labels": [
+        "pixel",
+        "character"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 128,
+      "default_count": 2,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "directions": [
+        "front",
+        "left",
+        "right",
+        "back"
+      ],
+      "default_direction": "front"
+    },
+    {
+      "template_name": "pixel_char_10",
+      "display_name": "大型童话角色",
+      "description": "相比基础的像素画，该风格采用了更高的像素密度，在角色面部加入更细腻的五官表达和丰富的细节，整体色调偏向自然、温润的低饱和度色彩，具有独特的艺术气息。",
+      "labels": [
+        "pixel",
+        "character"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 128,
+      "default_count": 2,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "directions": [
+        "front",
+        "left",
+        "right",
+        "back"
+      ],
+      "default_direction": "front"
+    },
+    {
+      "template_name": "pixel_char_2",
+      "display_name": "大型奇幻Q版角色",
+      "description": "采用精致复古的点阵艺术，专为奇幻角色而设计，拥有清晰的像素定义，足够精致，能够捕捉复杂的人物特征。人物设计比例可爱，易于识别。",
+      "labels": [
+        "pixel",
+        "character"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 128,
+      "default_count": 2,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "directions": [
+        "front",
+        "left",
+        "right",
+        "back"
+      ],
+      "default_direction": "front"
+    },
+    {
+      "template_name": "pixel_char_3",
+      "display_name": "大型国风角色",
+      "description": "人物的轮廓清晰，使用了干净、精确的像素线条，拥有丰富且饱和的调色板，符合中国古代的色彩美学。融入传统装饰图案，使整组作品散发着浓厚的历史沉淀感和东方古典韵味。",
+      "labels": [
+        "pixel",
+        "character"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 128,
+      "default_count": 2,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "directions": [
+        "front",
+        "left",
+        "right",
+        "back"
+      ],
+      "default_direction": "front"
+    },
+    {
+      "template_name": "pixel_char_4",
+      "display_name": "大型Q版国风角色",
+      "description": "物设计采用二头身的Q版比例，突出人物的可爱与稚气，极具亲和力。",
+      "labels": [
+        "pixel",
+        "character"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 128,
+      "default_count": 2,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "directions": [
+        "front",
+        "left",
+        "right",
+        "back"
+      ],
+      "default_direction": "front"
+    },
+    {
+      "template_name": "pixel_char_5",
+      "display_name": "大型绘本角色",
+      "description": "角色由清晰可见的方形像素块构成，呈现出独特的颗粒感。色彩饱和度适中，不过于刺眼，给人以温暖、舒适的感觉。可以通过简单的线条和表情，传达出纯真、快乐和宁静的情感。",
+      "labels": [
+        "pixel",
+        "character"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 128,
+      "default_count": 2,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "directions": [
+        "front",
+        "left",
+        "right",
+        "back"
+      ],
+      "default_direction": "front"
+    },
+    {
+      "template_name": "pixel_char_6",
+      "display_name": "大型治愈角色",
+      "description": "采用适中的像素密度，在保持清晰像素颗粒感的同时，能够细腻地刻画角色。色彩整体偏向高明度、低饱和度的粉嫩色系，营造出一种如棉花糖般轻盈、梦幻且毫无攻击性的视觉体验。",
+      "labels": [
+        "pixel",
+        "character"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 128,
+      "default_count": 2,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "directions": [
+        "front",
+        "left",
+        "right",
+        "back"
+      ],
+      "default_direction": "front"
+    },
+    {
+      "template_name": "pixel_char_8",
+      "display_name": "低分辨率中世纪像素人物",
+      "description": "每个角色都拥有非常厚实且闭合的黑色像素外轮廓。色彩应用遵循古典幻想游戏的逻辑，使用高对比度的原色组合赋予了画面干净、利落的视觉质感。",
+      "labels": [
+        "pixel",
+        "character"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 64,
+      "default_count": 2,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "directions": [
+        "front",
+        "left",
+        "right",
+        "back"
+      ],
+      "default_direction": "front"
+    },
+    {
+      "template_name": "pixel_char_9",
+      "display_name": "大型极简童话角色",
+      "description": "采用较低的像素分辨率，角色结构被简化为最基础的几何形状，赋予角色一种现代插画的洗练感。",
+      "labels": [
+        "pixel",
+        "character"
+      ],
+      "output_size": "64-128",
+      "output_size_px": 128,
+      "default_count": 2,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "directions": [
+        "front",
+        "left",
+        "right",
+        "back"
+      ],
+      "default_direction": "front"
+    },
+    {
+      "template_name": "template5x5",
+      "display_name": "简约Q版角色",
+      "description": "通用的 5x5 像素参考模板",
+      "labels": [
+        "pixel",
+        "template",
+        "sprite-pack",
+        "beta"
+      ],
+      "output_size": "32",
+      "output_size_px": 32,
+      "default_count": 15,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "is_beta": true
+    },
+    {
+      "template_name": "template8x8",
+      "display_name": "极简像素图标",
+      "description": "16px icon sprite pack template using the 8x8 reference workflow.",
+      "labels": [
+        "pixel",
+        "template",
+        "sprite-pack",
+        "beta"
+      ],
+      "output_size": "16",
+      "output_size_px": 16,
+      "default_count": 36,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "is_beta": true
+    },
+    {
+      "template_name": "weapon",
+      "display_name": "精致像素武器",
+      "description": "通过清晰、准确的像素点呈现出干净、分块、没有平滑过渡的质感。每个像素都各司其职，共同勾勒出兵器的复杂结构、蚀刻铭文和魔法能量光影，赋予图像一种独特的数字手工艺感。",
+      "labels": [
+        "pixel",
+        "weapon"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "weapon_2",
+      "display_name": "精致像素简约武器",
+      "description": "较低的分辨率和有限的调色板，能够精确地放置每一个像素，从而创造出清晰且极具辨识度的武器和道具图标。",
+      "labels": [
+        "pixel",
+        "weapon"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "weapon_5x5",
+      "display_name": "简约像素武器",
+      "description": "5x5 weapon reference template.",
+      "labels": [
+        "pixel",
+        "weapon",
+        "sprite-pack",
+        "beta"
+      ],
+      "output_size": "32",
+      "output_size_px": 32,
+      "default_count": 15,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "is_beta": true
+    },
+    {
+      "template_name": "wuxia_character_5x5",
+      "display_name": "简约像素角色",
+      "description": "32px 武侠风格像素小人素材包,基于 5x5 模板生成 15 个同风格角色。",
+      "labels": [
+        "pixel",
+        "character",
+        "sprite-pack",
+        "wuxia",
+        "beta"
+      ],
+      "output_size": "32",
+      "output_size_px": 32,
+      "default_count": 15,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced",
+      "is_beta": true
+    },
+    {
+      "template_name": "xlarge_1_2",
+      "display_name": "极大竖版像素",
+      "description": "Xlarge 1:2 output from a 1:1 2K fusion canvas with one merged side reference image.",
+      "labels": [
+        "pixel",
+        "general",
+        "1:2",
+        "portrait",
+        "xlarge",
+        "2K",
+        "grid-fusion"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "xlarge_2_1",
+      "display_name": "极大横版像素",
+      "description": "Xlarge 2:1 output from a 1:1 2K fusion canvas with one merged bottom reference image.",
+      "labels": [
+        "pixel",
+        "general",
+        "2:1",
+        "landscape",
+        "xlarge",
+        "2K",
+        "grid-fusion"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "xlarge_2_3",
+      "display_name": "极大竖版像素",
+      "description": "Xlarge 2:3 output from a 4:3 2K fusion canvas with one merged side reference image.",
+      "labels": [
+        "pixel",
+        "general",
+        "2:3",
+        "portrait",
+        "xlarge",
+        "2K",
+        "grid-fusion"
+      ],
+      "output_size": "256+",
+      "output_size_px": 2048,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "4:3",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "xlarge_3_2",
+      "display_name": "极大横版像素",
+      "description": "Xlarge 3:2 output from a 3:4 2K fusion canvas with one merged bottom reference image.",
+      "labels": [
+        "pixel",
+        "general",
+        "3:2",
+        "landscape",
+        "xlarge",
+        "2K",
+        "grid-fusion"
+      ],
+      "output_size": "256+",
+      "output_size_px": 2048,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "3:4",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "xlarge_3_4",
+      "display_name": "极大竖版像素",
+      "description": "Xlarge 3:4 output from a 1:1 2K fusion canvas with one merged side reference image.",
+      "labels": [
+        "pixel",
+        "general",
+        "3:4",
+        "portrait",
+        "xlarge",
+        "2K",
+        "grid-fusion"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "standard"
+    },
+    {
+      "template_name": "xlarge_4_3",
+      "display_name": "极大横版像素",
+      "description": "Xlarge 4:3 output from a 1:1 2K fusion canvas with one merged bottom reference image.",
+      "labels": [
+        "pixel",
+        "general",
+        "4:3",
+        "landscape",
+        "xlarge",
+        "2K",
+        "grid-fusion"
+      ],
+      "output_size": "256+",
+      "output_size_px": 512,
+      "default_count": 1,
+      "default_resolution": "2K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "standard",
+      "directions": [
+        "top-down",
+        "isometric"
+      ]
+    },
+    {
+      "template_name": "无描边人物",
+      "display_name": "精致像素无描边角色",
+      "description": "采用大头小身体比例，最大程度的简化面部特征，仅保留基础的像素点作为眼睛和粉色的晕染作为腮红，呈现纯真、软萌的视觉感受。",
+      "labels": [
+        "pixel",
+        "character",
+        "single"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "树木",
+      "display_name": "精致像素树木",
+      "description": "聚焦于自然界的各类树木，通过复杂的纹理构建、丰富的色彩层次和细腻的光影过渡，捕捉了每种树木的独特特征。",
+      "labels": [
+        "pixel",
+        "nature",
+        "tree"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "树木_2",
+      "display_name": "精致像素简约树木",
+      "description": "采用清晰的像素网格和有限但表现力丰富的调色板，通过清晰的轮廓和团簇叶片的处理，捕捉了每种树木的独特形状和颜色。",
+      "labels": [
+        "pixel",
+        "nature",
+        "tree"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "植物",
+      "display_name": "精致像素植物",
+      "description": "采用高度精致且具有强烈怀旧感的像素艺术风格，呈现出一种干净、分块、没有平滑过渡的质感。每个像素都各司其职，共同勾勒出植物特征，赋予图像一种独特的数字手工艺感。",
+      "labels": [
+        "pixel",
+        "nature",
+        "plant"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "植物_2",
+      "display_name": "精致像素简约植物",
+      "description": "采用极简主义的低分辨率设计，每一个像素块都清晰可见，赋予了植物以块状、干净的视觉结构，避开复杂的细节，通过简单的形式捕捉植物的神韵。",
+      "labels": [
+        "pixel",
+        "nature",
+        "plant"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "盆栽",
+      "display_name": "精致像素盆栽",
+      "description": "一系列精细复古的像素盆栽，有温馨、低饱和度色调和清晰的轮廓，可以生动的呈现各种精致的居家绿植。",
+      "labels": [
+        "pixel",
+        "nature",
+        "bonsai"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "盆栽_2",
+      "display_name": "精致像素简约盆栽",
+      "description": "采用低分辨率像素美术，以柔和、温馨的低饱和度调色板，可爱的呈现各种微型盆栽。",
+      "labels": [
+        "pixel",
+        "nature",
+        "bonsai"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "矿石",
+      "display_name": "精致像素矿石",
+      "description": "由明显的像素方块拼接而成，可以展现出强烈的怀旧感，契合复古沙盒建造或经典RPG游戏中的物品栏图标设计。",
+      "labels": [
+        "pixel",
+        "resource",
+        "ore"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    },
+    {
+      "template_name": "矿石_2",
+      "display_name": "精致像素简约矿石",
+      "description": "采用清晰的像素描边，在有限的低分辨率下生动的体现不同材质的质感，可以用于呈现游戏世界中各种宝石和矿物等。",
+      "labels": [
+        "pixel",
+        "resource",
+        "ore"
+      ],
+      "output_size": "64",
+      "output_size_px": 64,
+      "default_count": 8,
+      "default_resolution": "1K",
+      "default_aspect_ratio": "1:1",
+      "default_background_removal": "advanced"
+    }
+  ]
+}

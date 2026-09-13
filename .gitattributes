@@ -1,0 +1,40 @@
+# ============================================================================
+# Git LFS —— 静态 / 二进制资源托管
+#   文本类（.json / .atlas / .md / 代码）**不进 LFS**，保持可 diff
+#   规则用 `git lfs track` 维护；本文件同时被 git 与 lfs 读取
+
+# --- 位图 -------------------------------------------------------------------
+*.png   filter=lfs diff=lfs merge=lfs -text
+*.jpg   filter=lfs diff=lfs merge=lfs -text
+*.jpeg  filter=lfs diff=lfs merge=lfs -text
+*.webp  filter=lfs diff=lfs merge=lfs -text
+*.gif   filter=lfs diff=lfs merge=lfs -text
+*.bmp   filter=lfs diff=lfs merge=lfs -text
+*.tga   filter=lfs diff=lfs merge=lfs -text
+*.tif   filter=lfs diff=lfs merge=lfs -text
+*.tiff  filter=lfs diff=lfs merge=lfs -text
+# --- 分层源文件 -------------------------------------------------------------
+*.psd   filter=lfs diff=lfs merge=lfs -text
+*.psb   filter=lfs diff=lfs merge=lfs -text
+*.ase   filter=lfs diff=lfs merge=lfs -text
+*.aseprite filter=lfs diff=lfs merge=lfs -text
+# --- Spine 资源（.spine / .skel 是二进制；.json / .atlas 保持文本）---------
+*.spine filter=lfs diff=lfs merge=lfs -text
+*.skel  filter=lfs diff=lfs merge=lfs -text
+# --- 字体 -------------------------------------------------------------------
+*.ttf   filter=lfs diff=lfs merge=lfs -text
+*.otf   filter=lfs diff=lfs merge=lfs -text
+*.woff  filter=lfs diff=lfs merge=lfs -text
+*.woff2 filter=lfs diff=lfs merge=lfs -text
+# --- 音视频 -----------------------------------------------------------------
+*.wav   filter=lfs diff=lfs merge=lfs -text
+*.mp3   filter=lfs diff=lfs merge=lfs -text
+*.ogg   filter=lfs diff=lfs merge=lfs -text
+*.mp4   filter=lfs diff=lfs merge=lfs -text
+*.webm  filter=lfs diff=lfs merge=lfs -text
+*.mov   filter=lfs diff=lfs merge=lfs -text
+# --- 归档 -------------------------------------------------------------------
+*.zip   filter=lfs diff=lfs merge=lfs -text
+*.7z    filter=lfs diff=lfs merge=lfs -text
+*.rar   filter=lfs diff=lfs merge=lfs -text
+assets/_archive/source/** filter=lfs diff=lfs merge=lfs -text
