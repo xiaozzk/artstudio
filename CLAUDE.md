@@ -12,10 +12,10 @@
 
 | 项目 | 约束 |
 |------|------|
-| 运行时 | `spine-godot` 官方运行时（4.x，对应 Spine 编辑器 4.2+） |
+| 运行时 | `spine-godot` 官方运行时（4.3，对应 Spine 编辑器 4.3.x） |
 | 导出格式 | **JSON 格式**（`.json` + `.atlas`），不要用二进制 `.skel`，便于 Godot 导入与版本 diff |
 | 节点 | Godot 中通过 `SpineSprite` 节点加载，GDScript 或 C# 调用 API |
-| 版本兼容 | Spine 编辑器 ≥ 4.2；spine-godot ≥ 4.2；Godot ≥ 4.3 |
+| 版本兼容 | Spine 编辑器 4.3.x ↔ spine-godot 4.3（官方适配 Spine 4.3.xx 导出的数据）↔ Godot ≥ 4.3 |
 | 资源组织 | Godot 项目的 `res://spine/` 目录下；纹理走 `.import` 管线 |
 | 动画状态 | 使用 `AnimationState` 的 `TrackEntry` 做混合/过渡 |
 | 皮肤切换 | `Skeleton.set_skin(name)` / `add_skin()` |
@@ -26,7 +26,8 @@
 ## 目录结构
 
 - `reference/` — Spine 参考资料（**不入库**；用脚本按 pinned commit 稀疏拉取）
-  - `spine-runtimes-4.3/` — 官方 `EsotericSoftware/spine-runtimes`（branch 4.3）。完整克隆 286 MB，本项目只用 `spine-godot` + `spine-cpp`；`pwsh tools/fetch-spine-runtimes.ps1` 拉到约 38 MB（含 .git），内容与完整克隆等价
+  - `spine-runtimes-4.3/` — 官方 `EsotericSoftware/spine-runtimes`（branch 4.3，pin `f182572b` / 2026-09-14，即当前最新已发布版本）。完整克隆 286 MB，本项目只用 `spine-godot` + `spine-cpp`；`pwsh tools/fetch-spine-runtimes.ps1` 拉到约 41 MB（含 .git），内容与完整克隆等价。
+    ⚠️ 本机直连 `github.com` 的 git 传输不稳（HTTP/2 与 blob 按需拉取常被 Connection reset）→ 脚本强制 `http.version=HTTP/1.1`，失败时自动回退镜像（`ghfast.top` / `ghproxy.net`；git 以 SHA-1 校验对象，镜像无法篡改内容）
 - `docs/` — 设计文档与实测记录
   - `character_proportions.md` — 角色比例与部件尺寸（直接读 `assembled.psd` 图层 `bounds` 实测，非目测）
   - `head_split_spec.md` — 头部拆件 Spec（捏脸系统的可替换组件：`pivot` / `mirror` / `z` 序）
@@ -41,9 +42,9 @@
   - 约定：生成一律 2K、**输入须合成纯灰底 205 保证不透明**、输出透明 RGBA、垂直锚点偏差 ≤ 2px
 - `tools/` — **本地脚本工具**（纯本地，不消耗 AI 额度）
   - `spine_joint_tool.py` — 关节边缘精修一体化工具（见下）
-  - `dressup-lab/` — **换装定位台**（浏览器版，零 npm 依赖）：部位锚点 + 部件装配 + 导出 Spine 图集/锚点；自带 87 + 28 项自检。跑法：`node tools/dressup-lab/server.mjs`
+  - `dressup-lab/` — **换装定位台**（浏览器版，零 npm 依赖）：部位锚点 + 部件装配 + 导出 Spine 图集/锚点；单入口自检 `scripts/verify.mjs`（13 组 / 104 项子检查，基准项目 `human_female`）。跑法：`node tools/dressup-lab/server.mjs`
   - `ps_cut/fill_from_layer1.jsx` — PS 内一键补缺口（文件 > 脚本 > 浏览）
-  - `fetch-spine-runtimes.ps1` — 按 pinned commit 稀疏拉取官方 Spine 运行时（只取 spine-godot + spine-cpp）
+  - `fetch-spine-runtimes.ps1` — 按 pinned commit 稀疏拉取官方 Spine 运行时（只取 spine-godot + spine-cpp）；直连失败自动回退镜像
 - `tmp/` — **临时目录**：所有 deep research（深度研究）、全网搜索、爬取产生的临时文件与下载产物均放此目录。**不纳入版本控制，可随时清理**。
 
 ## 工具 — `tools/spine_joint_tool.py`
