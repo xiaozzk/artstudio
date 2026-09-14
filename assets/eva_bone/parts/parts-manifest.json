@@ -1,0 +1,598 @@
+{
+  "format": "spine-dressup-lab-sheet-parts",
+  "version": 2,
+  "sheet": "assets/eva_bone/merged_sheet_FINAL.png",
+  "canvas": [
+    1292,
+    2764
+  ],
+  "alphaFloor": 8,
+  "minArea": 64,
+  "cleanAlpha": 1,
+  "junkAlpha": 8,
+  "bleed": 0,
+  "parts": {
+    "hair": {
+      "file": "hair.png",
+      "bbox": [
+        446,
+        0,
+        790,
+        432
+      ],
+      "w": 344,
+      "h": 432,
+      "centerCanvas": [
+        618.0,
+        216.0
+      ],
+      "cleanedPixels": 66459,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 345,
+        "faint": 0,
+        "pinholes": 4,
+        "edge_solid": 18,
+        "size": [
+          344,
+          432
+        ]
+      },
+      "centerRoot": [
+        -28.0,
+        2548.0
+      ]
+    },
+    "head_base": {
+      "file": "head_base.png",
+      "bbox": [
+        545,
+        484,
+        767,
+        782
+      ],
+      "w": 222,
+      "h": 298,
+      "centerCanvas": [
+        656.0,
+        633.0
+      ],
+      "cleanedPixels": 16101,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 179,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          222,
+          298
+        ]
+      },
+      "centerRoot": [
+        10.0,
+        2131.0
+      ]
+    },
+    "ear": {
+      "file": "ear.png",
+      "bbox": [
+        380,
+        581,
+        439,
+        671
+      ],
+      "w": 59,
+      "h": 90,
+      "centerCanvas": [
+        409.5,
+        626.0
+      ],
+      "cleanedPixels": 1508,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 56,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          59,
+          90
+        ]
+      },
+      "centerRoot": [
+        -236.5,
+        2138.0
+      ]
+    },
+    "torso": {
+      "file": "torso.png",
+      "bbox": [
+        482,
+        857,
+        810,
+        1571
+      ],
+      "w": 328,
+      "h": 714,
+      "centerCanvas": [
+        646.0,
+        1214.0
+      ],
+      "cleanedPixels": 76014,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 306,
+        "faint": 0,
+        "pinholes": 1,
+        "edge_solid": 0,
+        "size": [
+          328,
+          714
+        ]
+      },
+      "centerRoot": [
+        0.0,
+        1550.0
+      ]
+    },
+    "left_arm": {
+      "file": "left_arm.png",
+      "bbox": [
+        969,
+        950,
+        1225,
+        1528
+      ],
+      "w": 256,
+      "h": 578,
+      "centerCanvas": [
+        1097.0,
+        1239.0
+      ],
+      "cleanedPixels": 107501,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 221,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          256,
+          578
+        ]
+      },
+      "centerRoot": [
+        451.0,
+        1525.0
+      ]
+    },
+    "right_arm": {
+      "file": "right_arm.png",
+      "bbox": [
+        85,
+        951,
+        352,
+        1528
+      ],
+      "w": 267,
+      "h": 577,
+      "centerCanvas": [
+        218.5,
+        1239.5
+      ],
+      "cleanedPixels": 112993,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 222,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          267,
+          577
+        ]
+      },
+      "centerRoot": [
+        -427.5,
+        1524.5
+      ]
+    },
+    "left_arm_wrist": {
+      "file": "left_arm_wrist.png",
+      "bbox": [
+        1204,
+        1565,
+        1289,
+        1774
+      ],
+      "w": 85,
+      "h": 209,
+      "centerCanvas": [
+        1246.5,
+        1669.5
+      ],
+      "cleanedPixels": 6945,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 75,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          85,
+          209
+        ]
+      },
+      "centerRoot": [
+        600.5,
+        1094.5
+      ]
+    },
+    "right_arm_wrist": {
+      "file": "right_arm_wrist.png",
+      "bbox": [
+        2,
+        1563,
+        90,
+        1771
+      ],
+      "w": 88,
+      "h": 208,
+      "centerCanvas": [
+        46.0,
+        1667.0
+      ],
+      "cleanedPixels": 7091,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 117,
+        "faint": 0,
+        "pinholes": 7,
+        "edge_solid": 0,
+        "size": [
+          88,
+          208
+        ]
+      },
+      "centerRoot": [
+        -600.0,
+        1097.0
+      ]
+    },
+    "left_leg": {
+      "file": "left_leg.png",
+      "bbox": [
+        724,
+        1558,
+        922,
+        2482
+      ],
+      "w": 198,
+      "h": 924,
+      "centerCanvas": [
+        823.0,
+        2020.0
+      ],
+      "cleanedPixels": 90142,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 296,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          198,
+          924
+        ]
+      },
+      "centerRoot": [
+        177.0,
+        744.0
+      ]
+    },
+    "right_leg": {
+      "file": "right_leg.png",
+      "bbox": [
+        355,
+        1562,
+        581,
+        2494
+      ],
+      "w": 226,
+      "h": 932,
+      "centerCanvas": [
+        468.0,
+        2028.0
+      ],
+      "cleanedPixels": 111258,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 282,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          226,
+          932
+        ]
+      },
+      "centerRoot": [
+        -178.0,
+        736.0
+      ]
+    },
+    "left_leg_foot": {
+      "file": "left_leg_foot.png",
+      "bbox": [
+        852,
+        2531,
+        1028,
+        2747
+      ],
+      "w": 176,
+      "h": 216,
+      "centerCanvas": [
+        940.0,
+        2639.0
+      ],
+      "cleanedPixels": 18822,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 130,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          176,
+          216
+        ]
+      },
+      "centerRoot": [
+        294.0,
+        125.0
+      ]
+    },
+    "right_leg_foot": {
+      "file": "right_leg_foot.png",
+      "bbox": [
+        345,
+        2528,
+        494,
+        2759
+      ],
+      "w": 149,
+      "h": 231,
+      "centerCanvas": [
+        419.5,
+        2643.5
+      ],
+      "cleanedPixels": 15372,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 125,
+        "faint": 0,
+        "pinholes": 2,
+        "edge_solid": 0,
+        "size": [
+          149,
+          231
+        ]
+      },
+      "centerRoot": [
+        -226.5,
+        120.5
+      ]
+    }
+  },
+  "face": {
+    "eye_left": {
+      "file": "face_eye_left.png",
+      "bbox": [
+        895,
+        588,
+        964,
+        641
+      ],
+      "w": 69,
+      "h": 53,
+      "centerCanvas": [
+        929.5,
+        614.5
+      ],
+      "cleanedPixels": 1742,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 84,
+        "faint": 0,
+        "pinholes": 2,
+        "edge_solid": 0,
+        "size": [
+          69,
+          53
+        ]
+      },
+      "centerRoot": [
+        283.5,
+        2149.5
+      ]
+    },
+    "eye_right": {
+      "file": "face_eye_right.png",
+      "bbox": [
+        1046,
+        589,
+        1108,
+        641
+      ],
+      "w": 62,
+      "h": 52,
+      "centerCanvas": [
+        1077.0,
+        615.0
+      ],
+      "cleanedPixels": 1513,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 76,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          62,
+          52
+        ]
+      },
+      "centerRoot": [
+        431.0,
+        2149.0
+      ]
+    },
+    "mouth": {
+      "file": "face_mouth.png",
+      "bbox": [
+        989,
+        703,
+        1029,
+        731
+      ],
+      "w": 40,
+      "h": 28,
+      "centerCanvas": [
+        1009.0,
+        717.0
+      ],
+      "cleanedPixels": 239,
+      "faintKilledPixels": 0,
+      "audit": {
+        "invisible": 33,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          40,
+          28
+        ]
+      },
+      "centerRoot": [
+        363.0,
+        2047.0
+      ]
+    },
+    "nose": {
+      "file": "face_nose.png",
+      "bbox": [
+        1009,
+        651,
+        1019,
+        681
+      ],
+      "w": 10,
+      "h": 30,
+      "centerCanvas": [
+        1014.0,
+        666.0
+      ],
+      "cleanedPixels": 103,
+      "faintKilledPixels": 40,
+      "audit": {
+        "invisible": 22,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          10,
+          30
+        ]
+      },
+      "centerRoot": [
+        368.0,
+        2098.0
+      ]
+    },
+    "eyebrow_left": {
+      "file": "face_eyebrow_left.png",
+      "bbox": [
+        901,
+        537,
+        939,
+        546
+      ],
+      "w": 38,
+      "h": 9,
+      "centerCanvas": [
+        920.0,
+        541.5
+      ],
+      "cleanedPixels": 91,
+      "faintKilledPixels": 74,
+      "audit": {
+        "invisible": 55,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          38,
+          9
+        ]
+      },
+      "centerRoot": [
+        274.0,
+        2222.5
+      ]
+    },
+    "eyebrow_right": {
+      "file": "face_eyebrow_right.png",
+      "bbox": [
+        1068,
+        537,
+        1097,
+        545
+      ],
+      "w": 29,
+      "h": 8,
+      "centerCanvas": [
+        1082.5,
+        541.0
+      ],
+      "cleanedPixels": 41,
+      "faintKilledPixels": 35,
+      "audit": {
+        "invisible": 35,
+        "faint": 0,
+        "pinholes": 0,
+        "edge_solid": 0,
+        "size": [
+          29,
+          8
+        ]
+      },
+      "centerRoot": [
+        436.5,
+        2223.0
+      ]
+    }
+  },
+  "audit": {},
+  "notes": [],
+  "written": [
+    "hair.png",
+    "head_base.png",
+    "ear.png",
+    "torso.png",
+    "left_arm.png",
+    "right_arm.png",
+    "left_arm_wrist.png",
+    "right_arm_wrist.png",
+    "left_leg.png",
+    "right_leg.png",
+    "left_leg_foot.png",
+    "right_leg_foot.png",
+    "face_eye_left.png",
+    "face_eye_right.png",
+    "face_mouth.png",
+    "face_nose.png",
+    "face_eyebrow_left.png",
+    "face_eyebrow_right.png"
+  ]
+}
