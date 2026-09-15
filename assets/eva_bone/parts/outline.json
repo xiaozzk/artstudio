@@ -1,0 +1,10 @@
+{
+  "format": "spine-part-outline",
+  "version": 1,
+  "note": "切件描边配置。slice-sheet.py 每次重切后跑一遍 `python tools/outline-part.py --config assets/eva_bone/parts/outline.json --project human_female` 即可复现；参数写在各部件里，缺省值见 default。",
+  "why": "拼图切出来的皮肤件在原画里没有线稿，同色叠在一起边界会消失。实测该美术线色核心 = rgb(24,14,12)。",
+  "default": { "width": 2, "color": "#241a17", "soft": 1 },
+  "parts": {
+    "head_base": {}
+  }
+}

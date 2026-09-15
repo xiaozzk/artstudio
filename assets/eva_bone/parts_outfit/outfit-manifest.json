@@ -1,0 +1,149 @@
+{
+  "format": "spine-outfit-split",
+  "version": 1,
+  "sheet": "edited.png",
+  "sheetSize": [
+    2048,
+    2048
+  ],
+  "bgColor": [
+    202.5,
+    202.5,
+    201.0
+  ],
+  "knockout": {
+    "tol": 18.0,
+    "ramp": 70.0,
+    "alphaFloor": 8,
+    "minArea": 800,
+    "cleanAlpha": 1,
+    "junkAlpha": 8
+  },
+  "audit": {
+    "invisible": 137,
+    "faint": 0
+  },
+  "parts": {
+    "dress_bodice": {
+      "file": "dress_bodice.png",
+      "kind": "bodice",
+      "sheetBBox": [
+        491,
+        111,
+        785,
+        545
+      ],
+      "w": 294,
+      "h": 434,
+      "pixels": 88575,
+      "whiteFrac": 0.728,
+      "rustFrac": 0.0,
+      "darkFrac": 0.052
+    },
+    "dress_skirt": {
+      "file": "dress_skirt.png",
+      "kind": "skirt",
+      "sheetBBox": [
+        1116,
+        128,
+        1630,
+        580
+      ],
+      "w": 514,
+      "h": 452,
+      "pixels": 176825,
+      "whiteFrac": 0.575,
+      "rustFrac": 0.258,
+      "darkFrac": 0.279
+    },
+    "stocking_left": {
+      "file": "stocking_left.png",
+      "kind": "stocking",
+      "sheetBBox": [
+        563,
+        676,
+        721,
+        1535
+      ],
+      "w": 158,
+      "h": 859,
+      "pixels": 83539,
+      "whiteFrac": 0.0,
+      "rustFrac": 0.0,
+      "darkFrac": 0.987
+    },
+    "stocking_right": {
+      "file": "stocking_right.png",
+      "kind": "stocking",
+      "sheetBBox": [
+        1330,
+        691,
+        1509,
+        1529
+      ],
+      "w": 179,
+      "h": 838,
+      "pixels": 84373,
+      "whiteFrac": 0.0,
+      "rustFrac": 0.0,
+      "darkFrac": 0.988
+    },
+    "boot_left": {
+      "file": "boot_left.png",
+      "kind": "boot",
+      "sheetBBox": [
+        584,
+        1646,
+        791,
+        1891
+      ],
+      "w": 207,
+      "h": 245,
+      "pixels": 33103,
+      "whiteFrac": 0.0,
+      "rustFrac": 0.0,
+      "darkFrac": 0.984
+    },
+    "boot_right": {
+      "file": "boot_right.png",
+      "kind": "boot",
+      "sheetBBox": [
+        1316,
+        1649,
+        1552,
+        1875
+      ],
+      "w": 236,
+      "h": 226,
+      "pixels": 32705,
+      "whiteFrac": 0.0,
+      "rustFrac": 0.0,
+      "darkFrac": 0.987
+    }
+  },
+  "written": [
+    "dress_bodice.png",
+    "dress_skirt.png",
+    "stocking_left.png",
+    "stocking_right.png",
+    "boot_left.png",
+    "boot_right.png"
+  ],
+  "notes": [
+    "left / right = 拼图画面里的左 / 右；同款左右为一对镜像，按需指派到角色左右肢。",
+    "dress_bodice / dress_skirt 在腰部断开，便于裙摆单独做摆动骨。"
+  ],
+  "source": {
+    "command": "image-edit-run (万能编辑, --mode hd --generation-model image-2 = gpt-image-2)",
+    "job_id": "job_f38d29348a0740138337cb3036aa710b",
+    "candidate": "run1a (候选 A / 保真优先)",
+    "input": "meowa/outfit_split/in/outfit_edit_in.png (assembled.png 1.5x, 灰底 205, 2600x2800)",
+    "output": "2048x2048",
+    "prompt": "meowa/outfit_split/prompt_outfit_parts.txt",
+    "alt_candidate": {
+      "name": "run1b (候选 B / 分辨率更高，B/D 尺寸约 1.33x)",
+      "job_id": "job_c3410dec5ba44d8894777fd312b15b65",
+      "parts": "meowa/outfit_split/parts_1b/"
+    }
+  }
+}

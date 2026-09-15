@@ -42,7 +42,9 @@
   - 约定：生成一律 2K、**输入须合成纯灰底 205 保证不透明**、输出透明 RGBA、垂直锚点偏差 ≤ 2px
 - `tools/` — **本地脚本工具**（纯本地，不消耗 AI 额度）
   - `spine_joint_tool.py` — 关节边缘精修一体化工具（见下）
-  - `dressup-lab/` — **换装定位台**（浏览器版，零 npm 依赖）：部位锚点 + 部件装配 + 导出 Spine 图集/锚点；单入口自检 `scripts/verify.mjs`（13 组 / 104 项子检查，基准项目 `human_female`）。跑法：`node tools/dressup-lab/server.mjs`
+  - `dressup-lab/` — **换装定位台**（浏览器版，零 npm 依赖）：部位锚点 + 部件装配 + 导出 Spine 图集/锚点；单入口自检 `scripts/verify.mjs`（14 组，基准项目 `human_female`）。跑法：`node tools/dressup-lab/server.mjs`
+  - `slice-sheet.py` / `outline-part.py` — 部件拼图切片（清隐形脏像素 + 体检）/ 给皮肤件补内描边（脸型没有下颚线时用，只改 RGB 不动 alpha）
+  - `import-parts-to-dressup-lab.mjs` / `lab-sync-project.mjs` — 切件导进实验室（走 API）/ 让锚点库与导出交付物跟上项目。链路详见 `tools/slice-sheet.md`
   - `ps_cut/fill_from_layer1.jsx` — PS 内一键补缺口（文件 > 脚本 > 浏览）
   - `fetch-spine-runtimes.ps1` — 按 pinned commit 稀疏拉取官方 Spine 运行时（只取 spine-godot + spine-cpp）；直连失败自动回退镜像
 - `tmp/` — **临时目录**：所有 deep research（深度研究）、全网搜索、爬取产生的临时文件与下载产物均放此目录。**不纳入版本控制，可随时清理**。
