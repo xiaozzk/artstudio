@@ -7,6 +7,10 @@
 | `bbox_ref.py` | 由 bbox 规格生成「身体比例参考图」，并把比例换算到任意目标分辨率 | Python |
 | `alpha_split.py` | 按 alpha（透明背景）连通域把一张整图拆成多个部件 | Python |
 | `fit_parts.py` | 把 AI 拆出的部件按 spec 比例缩放、拼回原画布，并给出客观质量分 | Python |
+| `slice-sheet.py` | 把生图产出的**整张部件拼图**切成部位贴图（含隐形脏像素清理 + 同口径体检） | Python |
+| `outline-part.py` | 给皮肤件补**内描边**（只改 RGB）—— 脸型没有下颚线时用它（见 [`slice-sheet.md`](slice-sheet.md)） | Python |
+| `import-parts-to-dressup-lab.mjs` | 把切件按 manifest 走 API 导进实验室项目（部位锚点 + 12 个分组） | Node ≥18 |
+| `lab-sync-project.mjs` | 让锚点库与导出交付物跟上项目（`--check` 只体检） | Node ≥18 |
 | [`dressup-lab/`](dressup-lab/README.md) | **换装实验室**：共享骨架 + 部位锚点（中心 + bbox）定位 + 换装预览 + 图集/部位资产导出 | Node ≥18，零 npm 依赖 |
 
 ## 依赖
@@ -26,7 +30,7 @@ python -m pip install numpy pillow opencv-python
 ```bash
 node tools/dressup-lab/scripts/import-rig.mjs   #（可选）骨架 → 部位锚点库 + 示例项目（--rig 可指向项目里导入的骨架）
 node tools/dressup-lab/server.mjs               # 启动（默认自动开浏览器 127.0.0.1:8791）
-node tools/dressup-lab/scripts/verify.mjs       # 13 组 / 17 条断言 / 104 项子检查（含导出交付物交叉校验；基准项目 human_female，换 fixture 可加项目名）
+node tools/dressup-lab/scripts/verify.mjs       # 14 组（含导出交付物交叉校验 + 贴图描边同步；基准项目 human_female，换 fixture 可加项目名）
 ```
 
 - **参考骨架可选、手动导入**：默认只做部位 + 部件（绑定 / 缩放 / 图片处理），不导入骨架也能全程完成，**画布上没有任何骨骼参考点**；需要看映射时在属性页「＋ 导入骨架…」，文件会存进 `projects/<项目>/rig/`，随项目走、只读；

@@ -144,7 +144,7 @@ async function main() {
   // ---- 3) 组装 project.json
   const rootSlot = {
     id: 'slot_root', name: 'root', bone: null,
-    x: W / 2, y: H, w: 0, h: 0, clip: false,
+    x: W / 2, y: H, w: 0, h: 0, clip: true,
     color: '#ffd479', visible: true, locked: true, virtual: true, order: -1,
   };
   const slots = [rootSlot];
@@ -160,7 +160,10 @@ async function main() {
       id: `slot_${name}`, name,
       bone: boneOf[name] ?? null,
       x: cx, y: cy, w: info.w, h: info.h,
-      clip: false,                       // 新图里各部件本就不重叠，先不裁，便于看清
+      // 裁剪**默认开**：这是"部件不能跑出部位"的保护性约束，
+      // 拖动部件时超出部位的部分会立刻被切掉，一眼就能看出没和部位对齐。
+      // （2026-09-15 教训：这里写过 clip:false，结果拖动部件超出部位也不显形，部位与部件就此错位）
+      clip: true,
       color: COLORS[i % COLORS.length],
       visible: true, locked: false, virtual: false,
       order: i,
