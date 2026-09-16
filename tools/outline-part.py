@@ -36,10 +36,10 @@
 ## 用法
 
     # 按配置批量（切件后跑一遍即可复现）
-    python tools/outline-part.py --config assets/eva_bone/parts/outline.json --project human_female
+    python tools/outline-part.py --config assets/eva_bone/parts/outline.json
 
     # 单件、临时改参数
-    python tools/outline-part.py head_base --width 2.5 --color "#241a17" --project human_female
+    python tools/outline-part.py head_base --width 2.5 --color "#241a17"
 
     # 只出对照图（原图 | 描边），不落盘
     python tools/outline-part.py head_base --preview tmp/head_base_outline.png --width 1.5,2,2.5
@@ -61,7 +61,6 @@ from scipy import ndimage
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PARTS_DIR = ROOT / 'assets' / 'eva_bone' / 'parts'
-LAB_PROJECTS = ROOT / 'tools' / 'dressup-lab' / 'projects'
 MARKER = 'SpineOutline'
 
 DEFAULTS = {'width': 2.0, 'color': '#241a17', 'soft': 1.0}
@@ -225,7 +224,6 @@ def main() -> int:
     ap.add_argument('--width', help='描边宽度 px（预览时可写 1.5,2,2.5 出多档对照）')
     ap.add_argument('--color', help='线色 #RRGGBB（默认取该美术线稿色 #241a17）')
     ap.add_argument('--soft', type=float, help='内侧抗锯齿淡出宽度 px（默认 1）')
-    ap.add_argument('--project', help='同时覆盖到该项目 images/ 下的同名贴图（默认只写切件目录）')
     ap.add_argument('--preview', help='只出对照图到该路径，不落盘')
     ap.add_argument('--check', action='store_true', help='只报告不写')
     ap.add_argument('--force', action='store_true', help='已有标记且参数不同时，仍然重描')
@@ -276,13 +274,6 @@ def main() -> int:
             continue
         save_png(src, after, params)
         print(f'  → 写回 {src.relative_to(ROOT)}')
-        if args.project:
-            dst = LAB_PROJECTS / args.project / 'images' / f'{name}.png'
-            if dst.exists():
-                dst.write_bytes(src.read_bytes())
-                print(f'  → 覆盖 {dst.relative_to(ROOT)}')
-            else:
-                print(f'  · 项目里没有同名贴图，跳过：{dst.relative_to(ROOT)}')
         rc = rc or 0
     return rc
 

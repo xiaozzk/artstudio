@@ -25,7 +25,7 @@ alpha_split.py — 按 alpha(透明背景) 连通域把一张整图拆成多个�
 
 输出:
   out_dir/parts/part_00_<name>.png      裁剪到 bbox 的部件
-  out_dir/parts_full/part_00_<name>.png 与原画布同尺寸(Spine 导入自动对齐)
+  out_dir/parts_full/part_00_<name>.png 与原画布同尺寸(保留统一画布坐标, 对齐用)
   out_dir/label_map.png                 彩色索引图(哪块是哪个部件)
   out_dir/preview.png                   标注了序号/名字的预览图
   out_dir/manifest.json                 每个部件的 bbox / 尺寸 / 面积 / 质心

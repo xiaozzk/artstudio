@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""spine_joint_tool.py — 关节边缘精修：一体化工具（持续迭代都在这个文件里）
+"""image_parts_tool.py — 部件边缘精修：一体化工具（持续迭代都在这个文件里）
 
 把原先散落的 20+ 个一次性脚本合并成一条流水线：
 
@@ -602,7 +602,7 @@ def cmd_overview(a):
 
 # --------------------------------------------------------------------------- CLI
 def main():
-    ap = argparse.ArgumentParser(description="Spine joint-edge refinement tool (one-stop)")
+    ap = argparse.ArgumentParser(description="Image part-edge refinement tool (one-stop)")
     ap.add_argument("--sheet", default=SHEET)
     sub = ap.add_subparsers(dest="cmd", required=True)
 
