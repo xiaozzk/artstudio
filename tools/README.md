@@ -22,6 +22,12 @@ python -m pip install numpy pillow opencv-python
 | `cel_step_preview.py` | 赛璐璐分阶预览（平涂 / 1 阶 / 2 阶暗部对照） |
 | `ps_cut/fill_from_layer1.jsx` | PS 内一键补缺口（文件 > 脚本 > 浏览） |
 
+## 子目录
+
+| 目录 | 用途 |
+|------|------|
+| `browser/` | **浏览器登录态复用（CDP 副本）** —— 借日常浏览器的登录态做自动化，用完销毁。与图片管线无关，见 [`browser/README.md`](browser/README.md) |
+
 ## 通用约定
 
 - **优先让 AI 直接输出透明背景**。把图压到纯色底再抠色会不可逆地丢掉最淡的抗锯齿像素

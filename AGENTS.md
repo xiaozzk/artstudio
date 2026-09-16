@@ -87,6 +87,42 @@ L3 扩展   变体角色（共用骨架派生）、多层服装、更多部件
 - skill 明确规定**不要要求用户把 key 贴进对话** —— 引导其写入 `.env` 即可。
 - 用户已授予最大权限，按此前提协作。
 
+## 浏览器登录态复用（CDP 副本）
+
+**场景**：用户已在日常浏览器（**非 CDP**）里人工登录某站点，agent 需要**借用**这个登录态做自动化，
+但不得污染真实 profile、也不该让用户重新登录。
+
+做法**不是**让 MCP 接管用户浏览器，而是：**复制出一份可丢弃的 profile 副本 → 用同一个 exe 带 CDP 端口启动 → 用完销毁。**
+
+- 工具：`tools/browser/borrow-login.ps1`（复制 + 启动）、`tools/browser/cdp-eval.mjs`（在页面上下文跑 JS）
+- 完整说明与排查表：`tools/browser/README.md`
+
+**三个硬前提（每个都推翻了一个想当然的假设，实测踩过）**：
+
+1. **必须用与源 profile 相同的 exe** —— App-Bound Encryption 把 cookie 密钥绑定到 exe **路径 + 签名**。
+   Edge ↔ Chrome 之间搬 cookie **解不开**，换程序直接读也解不开。
+2. **cookie 与 Local Storage 都要复制** —— 登录态未必在 cookie 里。
+   实测 Mixamo 的 session 是**纯 `localStorage.access_token`**，只复制 `Cookies` 会白干。
+   （leveldb 不加密、不受 ABE 影响 —— 真正能搬的恰恰是它。）
+3. **复制前必须关闭源浏览器** —— 运行中 `Cookies` 是独占锁，`FileShare.ReadWrite|Delete` 都打不开，
+   `robocopy /b` 备份模式同样失败。管理员可用 **VSS 卷影快照**绕过（只读快照不受锁约束）。
+
+**流程**：
+
+```
+1. 用户在 Edge/Chrome 里人工登录
+2. 关闭该浏览器
+3. tools/browser/borrow-login.ps1 -Exe <同一浏览器 exe> -SourceUserData <User Data> -Url <站点>
+4. tools/browser/cdp-eval.mjs <port> @script.js      # 在已登录页面里调站点自己的 API
+5. 用完销毁副本目录（-CloneDir，默认 tmp/borrowed-profile）
+```
+
+**验证登录态用键名，不要看页面长得像不像登录**：出现 `access_token` / `session` 一类键才算借到；
+只有 `Optanon*` / `AMCV_*` / `s_nr` 这类统计项 = 没借到，漏了 `Local Storage`。
+
+**不需要**给 `cordis.patch.yml` 的 chrome-devtools MCP 加 `--browserUrl` ——
+那会把 MCP 绑死在副本上、还要重载 Host。直接用 CDP 更轻（Node ≥ 22 自带 WebSocket，零依赖）。
+
 ## 删除规则（强约束，2026-09-14 事故后新增）
 
 **只有用户明确通知删除的产物才能删。**
