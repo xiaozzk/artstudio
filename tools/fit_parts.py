@@ -19,7 +19,7 @@ fit_parts.py — 把 AI 拆出来的部件按 spec 的原始比例缩放, 并拼
   python tools/fit_parts.py out_demo_a --spec spec_head_plan.json -o fitted --per-part
 
 输出:
-  <out>/parts_scaled/<name>.png   缩放后的部件(与输出画布同尺寸, 可直接进 Spine)
+  <out>/parts_scaled/<name>.png   缩放后的部件(与输出画布同尺寸, 保留统一坐标)
   <out>/composite.png             拼回原画布的结果
   <out>/compare.png               左=原图 / 右=拼合结果 对比图
   <out>/fit_report.json           每个部件的比例偏差报告

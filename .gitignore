@@ -61,10 +61,10 @@ tmp/
 meowa/runs/
 meowa/qa/
 
-# --- Nested reference repos (kept locally only) -----------------------------
-reference/spine-runtimes-4.3/
-# 本地安全备份：bundle 内嵌整段历史，绝不能入库
-reference/_backup/
+# --- 2D 归档（7z 包，本地保留，不入库）-------------------------------------
+# 原 reference/ 已打包为 archive-2d/reference-2d.7z（40173 文件 / 3277 目录 / 约 640 MiB）
+# 大二进制不入库；需要时本地解压，或按原方式稀疏重新拉取
+archive-2d/
 
 # --- Blender 自动备份（.blend1/.blend2… 是上一次的保存副本，不入库）-----------
 *.blend[0-9]*
