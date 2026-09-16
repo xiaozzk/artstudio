@@ -65,3 +65,6 @@ meowa/qa/
 reference/spine-runtimes-4.3/
 # 本地安全备份：bundle 内嵌整段历史，绝不能入库
 reference/_backup/
+
+# --- Blender 自动备份（.blend1/.blend2… 是上一次的保存副本，不入库）-----------
+*.blend[0-9]*
