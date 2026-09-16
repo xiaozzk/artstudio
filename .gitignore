@@ -56,6 +56,12 @@ test-output/
 out/
 tmp/
 
+# --- Agent / CLI 工具产物（本机配置 + 中间产物，不入库）---------------------
+# .claude/ 是本机 AI 编码工具的本地设置（settings.local.json 等）。原先只靠本机全局
+# ~/.config/git/ignore 忽略 —— clone 到别的机器就不再生效，故写进仓库规则。
+# 中间产物（提交信息草稿 / 报告 / 预览图 / 浏览器 profile 副本…）一律写 tmp/（已忽略）。
+.claude/
+
 # --- meowa/ 生图工作区（静态素材走 Git LFS 托管，见 .gitattributes）---------
 # 只排除可再生的批量产物；其余素材 / 参考图 / 存档全部入库（由 LFS 存大文件）
 meowa/runs/
