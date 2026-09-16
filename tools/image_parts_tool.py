@@ -40,7 +40,7 @@ from PIL import Image, ImageDraw, ImageFile, ImageFilter
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 # --------------------------------------------------------------------------- 路径与常量
-BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # D:\spine
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # 工作区根
 SHEET = os.path.join(BASE, "meowa", "split_base_skin", "refs", "merged_sheet.png")
 WORK = os.path.join(BASE, "meowa", "split_base_skin", "joints")
 MEOWA = os.path.join(os.path.expanduser("~"), ".agents", "skills", "game-assets", "meowart_api.py")

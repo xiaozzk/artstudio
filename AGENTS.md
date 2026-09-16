@@ -1,6 +1,7 @@
-# 3D 角色换装工作区（`D:\spine`）
+# 3D 角色换装工作区
 
-> **目录名 `spine` 是历史遗留。本工作区已从 Spine 2D 骨骼方案转向 3D 模块化换装。**
+> 本文所有路径均为**相对路径**，基准是**工作区根**（= 本文件所在目录）；分隔符统一写 `/`，Windows / macOS 通用。
+> **本工作区现名 `artstudio`（原名 `spine`，2D 时代遗留）。已从 Spine 2D 骨骼方案转向 3D 模块化换装。**
 > 2D 那套（拆件 + 换皮）成本过高：关节接缝要逐像素精修、遮挡只能靠图层序声明、每加一套外观都要重跑整条链路。
 > 2D 资产与文档已归档到 `archive-2d/`（7z），不再参与主线。
 
@@ -43,7 +44,7 @@
 
 - `archive-2d/` — **2D 方案归档**（7z，不参与主线）
   `reference-2d.7z`（原 `reference/`）、`docs-2d.7z`（原 `docs/`）、`dressup-lab.7z`、`meowa-2d-docs.7z`
-  解压：`& "C:\Program Files\7-Zip\7z.exe" x archive-2d\<包>.7z -o<目标>`
+  解压：`7z x archive-2d/<包>.7z -o<目标>`
 - `docs/` — **3D 设计文档**（`3d_dressup_spec.md` 是方案依据：引擎边界、做法对比、坑清单）
 - `assets/` — Eva 原型资源
 - `godot/` — **Godot 工程**（[待建] `res://` 根）
@@ -69,7 +70,7 @@ L3 扩展   变体角色（共用骨架派生）、多层服装、更多部件
 - **用途**：为 3D 建模生成**原画** —— 角色设定图 / 三视图、服装设计稿、配色与材质设定。
   2D 时代的「拆件拼图」用途**已废弃**；`meowa/split_base_skin/`、`outfit_split/` 里的图保留仅作美术参考。
   三视图 prompt 必须显式要求**同一角色的致外观**，否则正/侧/背之间比例会变，无法建模对齐。
-- **凭据**：key 在工作区根 **`.env`**；runner 从**执行命令的当前目录**读取 → 命令一律在 `D:\spine` 下执行；
+- **凭据**：key 在工作区根 **`.env`**；runner 从**执行命令的当前目录**读取 → 命令一律在**工作区根**下执行；
   `.env` 用 latin-1 解析，**禁止中文注释**。校验：`python ~/.agents/skills/game-assets/meowart_api.py credits-balance`。
 - **CLI**：`~/.agents/skills/game-assets/meowart_api.py`；更新走 **codeload tar.gz**（`git clone` 常被重置），
   整目录覆盖 `.agents/skills/game-assets` 与 `.claude/skills/game-assets` 两个安装点。
