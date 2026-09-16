@@ -26,10 +26,19 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from scipy import ndimage
 
-DEFAULT_SRC = r"D:\spine\meowa\split_base_skin\base_ref\base_parts_sheet_fix2.png"
-DEFAULT_OUTDIR = r"D:\spine\meowa\refs\cel_style"
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # 工作区根
+DEFAULT_SRC = os.path.join(BASE, "meowa", "split_base_skin", "base_ref", "base_parts_sheet_fix2.png")
+DEFAULT_OUTDIR = os.path.join(BASE, "meowa", "refs", "cel_style")
 BG = (205, 205, 205, 255)          # 工作区约定：纯灰底 205
-FONT = "C:/Windows/Fonts/msyh.ttc"
+
+# 中文字体按平台探测，避免写死 Windows 字体路径
+_FONT_CANDIDATES = [
+    "C:/Windows/Fonts/msyh.ttc",                                # Windows 微软雅黑
+    "/System/Library/Fonts/PingFang.ttc",                       # macOS
+    "/System/Library/Fonts/STHeiti Medium.ttc",                 # macOS 备选
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",   # Linux
+]
+FONT = next((p for p in _FONT_CANDIDATES if os.path.exists(p)), _FONT_CANDIDATES[0])
 
 # Eva 拼图实测 bbox（python tools/cel_step_preview.py --bbox-report 可重新导出）
 PART_BBOX = {

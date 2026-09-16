@@ -22,7 +22,7 @@ bbox_ref.py — 画「身体比例 bbox 参考图」, 并把比例换算到任�
 spec.json 结构:
 {
   "canvas": [385, 1672],
-  "base_image": "D:/spine/tmp/head_split/_composite_full.png",   // 可为 null
+  "base_image": "tmp/head_split/_composite_full.png",   // 相对工作区根；可为 null
   "parts": [
     {"name": "head", "bbox": [4, 1, 359, 484], "color": "#e6553d"}
   ],

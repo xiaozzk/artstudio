@@ -22,7 +22,7 @@ Eva 角色的生成素材、参考图与生成记录。**纯素材区**，生成
 ## 凭据与跑法
 
 key 在工作区根的 `.env`（`MEOWART_API_KEY`，已被 `.gitignore` 忽略）。
-runner 从**执行命令的当前目录**读取 → 命令一律在 `D:\spine` 下执行。
+runner 从**执行命令的当前目录**读取 → 命令一律在**工作区根**下执行。
 
 ```bash
 python ~/.agents/skills/game-assets/meowart_api.py credits-balance   # 校验
