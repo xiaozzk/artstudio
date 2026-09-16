@@ -37,4 +37,10 @@
 *.zip   filter=lfs diff=lfs merge=lfs -text
 *.7z    filter=lfs diff=lfs merge=lfs -text
 *.rar   filter=lfs diff=lfs merge=lfs -text
+# --- 3D 模型（blend 工程 / glTF·FBX·OBJ 导出，均为二进制）--------------------
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.glb   filter=lfs diff=lfs merge=lfs -text
+*.gltf  filter=lfs diff=lfs merge=lfs -text
+*.fbx   filter=lfs diff=lfs merge=lfs -text
+*.obj   filter=lfs diff=lfs merge=lfs -text
 assets/_archive/source/** filter=lfs diff=lfs merge=lfs -text
