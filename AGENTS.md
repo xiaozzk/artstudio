@@ -53,6 +53,8 @@
 - `tools/` — 本地图片与部件处理工具（清单见 `tools/README.md`）
 - `.claude/`、`.git/`
 - `tmp/` — **临时目录**：deep research、全网搜索、下载产物。**不入库，可随时清理**
+  **agent / CLI 的中间产物一律写这里**（提交信息草稿、报告、预览图、浏览器 profile 副本…）；
+  **不要落在 `docs/` / `tools/` / `meowa/` 等入库目录** —— 否则会跟着代码一起被提交。
 
 ## Workflow — 渐进迭代
 
