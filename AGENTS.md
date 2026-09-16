@@ -51,7 +51,7 @@
 - `blender/` — **Blender 源文件**（[待建] 单一 armature 的 `.blend` 与导出预设）
 - `meowa/` — **AI 原画生成**：角色设定图 / 三视图 / 服装设计稿 / 配色参考（见下）
 - `tools/` — 本地图片与部件处理工具（清单见 `tools/README.md`）
-- `.Codex/`、`.git/`
+- `.claude/`、`.git/`
 - `tmp/` — **临时目录**：deep research、全网搜索、下载产物。**不入库，可随时清理**
 
 ## Workflow — 渐进迭代
