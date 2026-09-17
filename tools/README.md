@@ -1,6 +1,6 @@
 # tools/ — 本地图片与部件处理工具
 
-**纯本地、确定性、不消耗 AI 额度。** 与具体引擎无关，服务于「生图 → 切件 → 贴图处理 → 交给 3D 资产管线」这一段。
+**纯本地、确定性、不消耗 AI 额度。** 与具体引擎无关，服务于「生图 → 切件 → 贴图处理」这一段。
 
 ## 依赖
 
@@ -19,7 +19,6 @@ python -m pip install numpy pillow opencv-python
 | `outline-part.py` | 给皮肤件补**内描边**（只改 RGB，不动 alpha）；幂等，写 PNG `tEXt` 标记 `SpineOutline` |
 | `outfit-split.py` | 把服装拆件拼图切成可换装件（输入为纯灰底 205） |
 | `image_parts_tool.py` | 部件边缘精修一体化：`analyze` / `cut` / `prep` / `prompt` / `gen` / `verify` / `apply` / `report` / `diff` / `overview` |
-| `cel_step_preview.py` | 赛璐璐分阶预览（平涂 / 1 阶 / 2 阶暗部对照） |
 | `ps_cut/fill_from_layer1.jsx` | PS 内一键补缺口（文件 > 脚本 > 浏览） |
 
 ## 子目录

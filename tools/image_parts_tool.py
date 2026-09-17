@@ -41,8 +41,10 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 # --------------------------------------------------------------------------- 路径与常量
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # 工作区根
-SHEET = os.path.join(BASE, "meowa", "split_base_skin", "refs", "merged_sheet.png")
-WORK = os.path.join(BASE, "meowa", "split_base_skin", "joints")
+# 默认拼图取仓库里现存的资产；中间产物一律落 tmp/（见 AGENTS.md）
+# 注：下面的 REGIONS / X_CROTCH 是照着早期拼图调的，换 --sheet 后要重新核对
+SHEET = os.path.join(BASE, "assets", "eva_bone", "merged_sheet_FINAL.png")
+WORK = os.path.join(BASE, "tmp", "image_parts_work")
 MEOWA = os.path.join(os.path.expanduser("~"), ".agents", "skills", "game-assets", "meowart_api.py")
 GREY = 205
 SS = 4                      # 切件栅格化超采样倍数
