@@ -1,0 +1,166 @@
+112058.png
+filter:Linear,Linear
+pma:true
+size:2048,820
+EyewhiteL
+bounds:1988,655,41,37
+offsets:0,1,41,39
+EyewhiteR
+bounds:2,781,49,37
+offsets:1,0,51,37
+Fozhu front
+bounds:1494,2,307,292
+Lingzi back
+bounds:1116,655,197,89
+MeimaoL
+bounds:470,781,45,21
+MeimaoR
+bounds:409,781,57,22
+offsets:0,1,57,24
+ShangjiemaoL
+bounds:279,781,44,28
+offsets:1,1,46,30
+ShangjiemaoR
+bounds:218,781,57,29
+offsets:1,2,60,32
+TongkongL
+bounds:95,781,32,35
+offsets:2,1,35,36
+TongkongR
+bounds:55,781,36,37
+offsets:1,1,38,39
+XiajiemaoL
+bounds:597,781,35,19
+offsets:0,2,35,23
+XiajiemaoR
+bounds:519,781,43,21
+offsets:1,1,45,23
+armL
+bounds:75,655,92,120
+armL2
+bounds:518,655,102,102
+armR
+bounds:1151,409,85,166
+offsets:0,0,85,167
+armR2
+bounds:188,409,221,231
+belt bag
+bounds:1871,409,117,135
+belt clothL
+bounds:913,409,172,190
+belt mid
+bounds:1676,655,135,54
+offsets:0,0,136,54
+beltL
+bounds:1382,655,120,77
+offsets:0,1,120,78
+beltR
+bounds:624,655,122,101
+offsets:0,1,122,102
+beltR2
+bounds:1948,2,40,242
+offsets:2,0,42,242
+book
+bounds:413,409,172,227
+bookpage
+bounds:1806,409,61,145
+offsets:1,0,62,145
+clothL
+bounds:1805,2,139,249
+clothR
+bounds:1242,2,248,299
+offsets:0,1,248,300
+clothR belt
+bounds:786,409,42,211
+offsets:0,1,42,212
+clothR lingzi
+bounds:1393,409,150,155
+offsets:0,0,151,155
+fozhu back1
+bounds:943,655,68,92
+offsets:0,0,69,93
+fozhu back2
+bounds:1614,655,58,56
+offsets:0,0,58,57
+handR
+bounds:2,655,69,122
+handR finger1
+bounds:1506,655,63,67
+handR finger2
+bounds:1815,655,28,49
+head
+bounds:589,409,193,225
+highlightL
+bounds:730,781,14,13
+offsets:0,0,15,13
+highlightR
+bounds:691,781,17,15
+offsets:0,1,17,16
+legL
+bounds:1013,2,225,319
+legR
+bounds:303,2,155,394
+lingzi front
+bounds:325,655,189,107
+meimaoshadowL
+bounds:173,781,41,31
+offsets:1,0,42,31
+meimaoshadowR
+bounds:131,781,38,34
+mouse
+bounds:636,781,51,17
+offsets:1,0,55,17
+mouse shadow
+bounds:566,781,27,21
+offsets:0,0,28,21
+muyu
+bounds:644,2,365,343
+muyu belt1
+bounds:2,409,182,242
+muyu belt2
+bounds:832,409,77,208
+muyu dec
+bounds:1317,655,61,86
+muyu dec rope
+bounds:1926,655,21,46
+offsets:0,2,21,49
+neck
+bounds:1015,655,97,90
+nose
+bounds:1573,655,37,58
+offsets:0,1,37,60
+page
+bounds:1547,409,118,152
+offsets:0,0,119,152
+pantsL
+bounds:462,2,178,351
+pantsR
+bounds:2,2,297,403
+offsets:0,0,297,404
+shoesL belt
+bounds:1847,655,38,47
+offsets:0,1,38,48
+shoesR belt1
+bounds:1951,655,33,41
+offsets:1,0,35,41
+shoesR belt2
+bounds:1889,655,33,47
+offsets:1,0,34,47
+shuangyanpiL
+bounds:379,781,26,23
+shuangyanpiR
+bounds:327,781,48,28
+sleevesL
+bounds:1669,409,133,148
+sleevesR back
+bounds:171,655,150,110
+sleevesR belt
+bounds:1089,409,58,182
+offsets:0,0,58,183
+sleevesR front
+bounds:1240,409,149,162
+offsets:0,0,150,162
+waist
+bounds:750,655,189,101
+zhi
+bounds:712,781,14,15

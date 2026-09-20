@@ -1,0 +1,50 @@
+Cam12Boss1.png
+filter:Linear,Linear
+pma:true
+size:2048,464
+Dam (1)
+bounds:772,2,248,198
+offsets:2,0,259,207
+Dam (2)
+bounds:1024,2,228,192
+offsets:22,0,259,207
+Dam (3)
+bounds:1256,2,234,187
+offsets:25,20,259,207
+Dam (4)
+bounds:1619,2,248,184
+offsets:2,22,259,207
+Dam (5)
+bounds:2,285,222,176
+offsets:18,31,259,207
+Dam (6)
+bounds:532,2,236,204
+offsets:22,0,259,207
+arm
+bounds:382,2,146,206
+armB
+bounds:1494,2,121,187
+body
+bounds:228,285,117,149
+body2
+bounds:349,285,117,149
+calf
+bounds:470,285,64,143
+foot
+bounds:1054,285,75,42
+forearm
+bounds:914,285,81,127
+forearmB
+bounds:812,285,98,133
+head
+bounds:182,2,196,270
+head2
+bounds:2,2,176,279
+neck
+bounds:999,285,51,58
+thight
+bounds:538,285,64,143
+thightB
+bounds:606,285,61,143
+weapon
+bounds:671,285,137,138
