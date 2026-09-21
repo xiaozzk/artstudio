@@ -93,25 +93,40 @@ def rewrite_page_names(path, mapping):
 
 
 def set_page_size(path, page_name, w, h):
-    """改某页的 `size:`。"""
+    """改某页的 `size:` —— **只改页头那一条**。
+
+    ⚠️ 老式（3.8）atlas 里**每个区域也有 `size:`**（该区域的打包尺寸），格式是
+    缩进的 `  size: 88, 121`。原实现用 `cur`/`in_page` 追踪"当前页"，但老式 atlas
+    的结构是「页名 → 页属性 → 区域名 → 区域属性 → 区域名 …」且**区域之间没有空行**，
+    于是 `in_page` 永远不回 False、`cur` 也永远停在页名 —— 结果**每个区域的
+    `size:` 都被改成了页尺寸**（实测 axe：29 条 size 行改了 28 条区域行），
+    区域矩形随之全部越界/重叠，去污染与网格体检全盘失效。
+
+    修法：状态机改成"页名字段之后、第一个区域名之前的属性行才属于页头"。
+    """
     lines = open(path, encoding='utf-8').read().split('\n')
-    i, n, cur, in_page = 0, len(lines), None, False
+    n = len(lines)
+    i = 0
     while i < n:                            # 跳过文件头属性行
         s = lines[i].strip()
         if s and ':' not in s:
             break
         i += 1
+    cur = None                              # 当前页名
+    in_page_props = False                   # 正处在"页头属性"段
     while i < n:
         s = lines[i].strip()
         if s == '':
-            in_page = False
+            cur, in_page_props = None, False
         elif ':' in s:
-            if cur == page_name and s.split(':', 1)[0].strip() == 'size':
-                lines[i] = 'size:%d,%d' % (w, h)
+            if in_page_props and cur == page_name:
+                if s.split(':', 1)[0].strip() == 'size':
+                    lines[i] = 'size:%d,%d' % (w, h)
         else:
-            if not in_page:
-                cur = s
-            in_page = True
+            if cur is None:
+                cur, in_page_props = s, True    # 页名 -> 其后是页头属性
+            else:
+                in_page_props = False           # 区域名 -> 其后是区域属性
         i += 1
     open(path, 'w', encoding='utf-8').write('\n'.join(lines))
 
@@ -181,7 +196,6 @@ def footprint(r):
 
 def crop_trimmed(page_img, r):
     """从页图裁出**裁白后**的区域图（已把逆时针旋转还原成顺时针），尺寸 (w, h)。"""
-    from PIL import Image
     x, y, w, h = footprint(r)
     c = page_img.crop((x, y, x + w, y + h))
     if r['deg'] == 90:
@@ -195,7 +209,6 @@ def crop_trimmed(page_img, r):
 
 def unpack_region(page_img, r):
     """裁白图按 offsets 贴回**未裁白原画布** (ow, oh)。编辑器用的单图就是它。"""
-    from PIL import Image
     t = crop_trimmed(page_img, r)
     canvas = Image.new('RGBA', (r['ow'], r['oh']), (0, 0, 0, 0))
     canvas.paste(t, (r['ox'], r['oh'] - r['oy'] - t.size[1]))   # oy 从下边缘量
@@ -242,21 +255,19 @@ Image.MAX_IMAGE_PIXELS = None
 
 class Bone:
     __slots__ = ('name', 'parent', 'children', 'x', 'y', 'rotation', 'scaleX', 'scaleY',
-                 'shearX', 'shearY', 'inherit', 'a', 'b', 'c', 'd', 'wx', 'wy',
-                 'dx', 'dy', 'drot', 'dsx', 'dsy', 'dshx', 'dshy', 'length')
+                 'shearX', 'shearY', 'inherit', 'a', 'b', 'c', 'd', 'wx', 'wy', 'length')
 
     def __init__(self, bd):
         self.name = bd['name']
         self.parent = None
         self.children = []
-        # 应用变换（IK 会改这几个）；`d*` 是 setup 原值，只读
-        self.x = self.dx = bd.get('x', 0.0)
-        self.y = self.dy = bd.get('y', 0.0)
-        self.rotation = self.drot = bd.get('rotation', 0.0)
-        self.scaleX = self.dsx = bd.get('scaleX', 1.0)
-        self.scaleY = self.dsy = bd.get('scaleY', 1.0)
-        self.shearX = self.dshx = bd.get('shearX', 0.0)
-        self.shearY = self.dshy = bd.get('shearY', 0.0)
+        self.x = bd.get('x', 0.0)
+        self.y = bd.get('y', 0.0)
+        self.rotation = bd.get('rotation', 0.0)
+        self.scaleX = bd.get('scaleX', 1.0)
+        self.scaleY = bd.get('scaleY', 1.0)
+        self.shearX = bd.get('shearX', 0.0)
+        self.shearY = bd.get('shearY', 0.0)
         self.length = bd.get('length', 0.0)
         # Spine 3.8 叫 `transform`，4.x 改名为 `inherit`；取值字符串相同
         self.inherit = bd.get('inherit', bd.get('transform', 'normal'))
@@ -346,7 +357,7 @@ def update_world(b, sk_scale_x=1.0, sk_scale_y=1.0, sk_x=0.0, sk_y=0.0):
         zc *= s
         s = math.sqrt(za * za + zc * zc)
         if b.inherit == 'noScale' and ((pa * pd - pb * pc < 0) !=
-                                       (sk_scale_x < 0 != sk_scale_y < 0)):
+                                       ((sk_scale_x < 0) != (sk_scale_y < 0))):
             s = -s
         r2 = math.pi / 2 + math.atan2(zc, za)
         zb = math.cos(r2) * s
@@ -580,8 +591,17 @@ def solve_constraints(data, bones, sk_scale_x=1.0, sk_scale_y=1.0,
 
     这一步不能省：**Spine 的 setup pose 本身就解 IK**。实测 Nomad 有 6 个 IK，
     不解的话四肢会散在画布各处（看着像素材坏了，其实几何全对）。
+
+    ⚠️ **两套键名都要认**（2026-09 修）：3.8 写 `ik:[...]`，**4.3 搬到了
+    `constraints:[{type:"ik",...}]`**。只读旧键的后果是 37/56 个已交付 4.x 包的 IK
+    **被静默跳过**（实测金发双剑的 calf 位移 123.6px），交付的 `复原预览图` 与编辑器
+    见到的不是同一个姿势，`apply` 的渲染比对也因此左（3.8 已解 IK）右（4.3 未解）
+    地比，差的是工具自己的 bug。
     """
-    iks = sorted(data.get('ik') or [], key=lambda c: c.get('order', 0))
+    legacy = list(data.get('ik') or [])
+    modern = [c for c in (data.get('constraints') or [])
+              if str(c.get('type', '')).lower() == 'ik']
+    iks = sorted(legacy + modern, key=lambda c: c.get('order', 0))
     sk = (sk_scale_x, sk_scale_y, sk_x, sk_y)
     n = 0
     for c in iks:
@@ -1002,8 +1022,18 @@ def size_scale_report(atlas_path, json_path):
     * 一旦转到 4.x，导出会用**图集尺寸重写附件尺寸**，于是精灵各自缩水、彼此错位。
       实测 NPC2：15/19 个附件是 0.5 倍，转 4.3.26 后头变大、四肢脱落。
 
-    返回 {checked, mismatch, ratio, ratio_min, ratio_max, sample}，
-    `ratio` = 声明/图集 的**中位倍率**（2.0 表示图集只有声明尺寸的一半）。
+    ⚠️ **倍率只能由「非网格」附件推**（2026-09 修，见 `mesh_explained`）：
+    网格附件的 `width/height` 可能是**占位值**（实测 S041 的 5 个网格全写 `32x32`），
+    它混进候选集会污染投票 —— 打平时 `if hit > best_hit` 保留"先遇到的"（候选升序），
+    占位网格那个更小的因子就会赢（合成用例：真值 0.5 被算成 0.25 → 单图按 ×4 放大再裁切）。
+
+    返回字段：
+      * `checked` / `mismatch` / `sample`：全部附件（含网格）的对账
+      * `scale` / `scale_fit` / `ratio`：**只由非网格附件**推出的倍率（推不出则 `scale=None`）
+      * `mesh_mismatch`：声明尺寸与图集不符的网格名
+      * `mesh_explained`：**与包内倍率自洽**的网格名（声明值是真尺寸 -> 应跟着放大）
+      * `mesh_placeholder`：对不上倍率的网格名（占位值 -> 保持图集 orig 尺寸，不放大）
+      * `placeholder_suspect`：有网格属于占位值
     """
     d = json.load(open(json_path, encoding='utf-8'))
     page = parse_atlas(atlas_path)[0]
@@ -1026,42 +1056,56 @@ def size_scale_report(atlas_path, json_path):
                 if r is None or not w or not h or not r['ow']:
                     continue
                 if (r['ow'], r['oh']) != (w, h):
-                    bad.append((key, [w, h], [r['ow'], r['oh']], round(w / float(r['ow']), 4)))
+                    bad.append((key, [w, h], [r['ow'], r['oh']], round(w / float(r['ow']), 4),
+                                is_mesh))
                     if is_mesh:
                         mesh_bad.append(key)
     out = {'checked': n, 'mismatch': len(bad), 'ratio': None, 'scale': None,
-           'scale_fit': None, 'sample': bad[:6],
-           'mesh_total': mesh_seen, 'mesh_mismatch': mesh_bad}
+           'scale_fit': None, 'sample': [b[:4] for b in bad[:6]],
+           'mesh_total': mesh_seen, 'mesh_mismatch': mesh_bad,
+           'mesh_explained': [], 'mesh_placeholder': [], 'region_mismatch': 0}
 
-    # **「网格占位尺寸」检测**：网格附件的 `width/height` 可能是占位值，
-    # 真实形状由 `vertices` 决定、图尺寸由图集 `orig` 决定。
-    # 诊断特征：**不符的那批恰好全是网格附件，且数量等于网格总数**
-    #   （实测 S041_skin6：5 个网格全写 32x32 -> 5/67 不符）
-    # 命中就说明"按声明尺寸对齐"会把网格图毁掉（缩成 32x32 再被拉伸成大矩形残影）。
-    # 单看个别网格声明值异常（与图集 orig 差 2 倍以上）也算嫌疑。
-    wild = [b for b in bad
-            if b[0] in mesh_bad and b[1][0] and (b[3] > 2.0 or b[3] < 0.5)]
-    out['placeholder_suspect'] = bool(mesh_bad) and (
-        (len(bad) == mesh_seen and mesh_seen >= 2) or len(wild) >= 1)
-    if bad:
-        rs = sorted(b[3] for b in bad)
+    # ---- 倍率只用**非网格**附件推：网格不参与对账（它们不跟着放大）
+    region_bad = [b for b in bad if not b[4]]
+    out['region_mismatch'] = len(region_bad)
+    if region_bad:
+        rs = sorted(b[3] for b in region_bad)
         out['ratio'] = rs[len(rs) // 2]
         # 各附件倍率会有取整抖动（91/77 vs 93/79）—— 搜一个最优缩放因子 s，
         # 看 `round(声明 * s) == 图集` 能解释多少项，从而判定是不是**一次干净的等比缩放**
-        cand = sorted({b[2][0] / float(b[1][0]) for b in bad if b[1][0]})
+        cand = sorted({b[2][0] / float(b[1][0]) for b in region_bad if b[1][0]})
         best_s, best_hit = None, -1
         for s in cand:
-            hit = sum(1 for _, (w, h), (ow, oh), _r in bad
+            hit = sum(1 for _, (w, h), (ow, oh), _r, _m in region_bad
                       if abs(round(w * s) - ow) <= 1 and abs(round(h * s) - oh) <= 1)
             if hit > best_hit:
                 best_s, best_hit = s, hit
+
         out['scale'] = round(best_s, 6) if best_s else None
-        out['scale_fit'] = '%d/%d' % (best_hit, len(bad))
+        out['scale_fit'] = '%d/%d' % (best_hit, len(region_bad))
+
+    # 网格：声明尺寸能不能被**包内倍率**解释？
+    #   解释得了 -> 声明值是真尺寸，跟着放大（否则真 0.5 倍包会白白丢掉一半分辨率）
+    #   解释不了（或根本没有非网格缓冲）-> 判为占位值，保持图集 orig 尺寸
+    if mesh_bad and out['scale']:
+        s = out['scale']
+        for key, (w, h), (ow, oh), _r, _m in bad:
+            if key not in mesh_bad:
+                continue
+            if abs(round(w * s) - ow) <= 1 and abs(round(h * s) - oh) <= 1:
+                out['mesh_explained'].append(key)
+            else:
+                out['mesh_placeholder'].append(key)
+    else:
+        out['mesh_placeholder'] = list(mesh_bad)
+    out['placeholder_suspect'] = bool(out['mesh_placeholder'])
     return out
 
 
-def fit_singles_to_declared(img_dir, atlas_path, json_path, factor):
-    """把解包出来的单图放大到 **JSON 声明的尺寸**。返回 (放大张数, 放大后仍不符张数)。
+def fit_singles_to_declared(img_dir, atlas_path, json_path, factor, mesh_ok=()):
+    """把解包出来的单图放大到 **JSON 声明的尺寸**。
+
+    返回 `(放大张数, 裁切张数, 裁切明细)`。
 
     起因：源图集被按 s 倍打包（实测 NPC2/qiaofeng 的 s=0.500、Kimchul 的 s=0.847）。
     Spine 3.8 按 JSON 声明的 `width/height` 画四边形、纹理拉伸填充，所以 3.8 里只是糊、
@@ -1071,25 +1115,31 @@ def fit_singles_to_declared(img_dir, atlas_path, json_path, factor):
     （`body` / `qz` / `qz2` / `wq2`）—— 整页 ×2 会把那 4 个弄坏、且让它们的打包矩形成
     未裁白画布的两倍。所以必须**逐图**按声明尺寸对齐。
     改 JSON 也不行：那 4 个本来就是对的，改了就轮到它们错。
+
+    ⚠️ **网格附件的声明尺寸默认不可信**（`S041_skin6` 的 5 个网格全写 `32x32`，真实形状由
+    `vertices` 决定、图尺寸由图集 `orig` 决定）—— 拿 32x32 当目标尺寸会把这 5 张缩成
+    32x32、再被网格拉伸成大块矩形残影。
+    但**也不能一律跳过**：真 0.5 倍包里网格的声明值是真的（实测 `兽人双刀剑客` 64/64、
+    `光头打手` 29/29、`火把女战士` 14/14 都与包内倍率自洽），一律跳过会让它们白白丢掉一半
+    分辨率。所以只对 `mesh_ok`（= `size_scale_report()['mesh_explained']`）里的网格做对齐。
+
+    第三个返回值专治"静默裁切"：`paste` 到**更小**的 `want` 画布时就是裁切（丢美术），
+    以前这种情况也报"仍不符 0 张"，等于把"图被切了"伪装成"没问题"。
     """
     d = json.load(open(json_path, encoding='utf-8'))
     declared = {}
     for s in d.get('skins', []):
         for slot, atts in (s.get('attachments') or {}).items():
             for nm, a in atts.items():
-                # ⚠️ **网格附件必须跳过**：它们的 `width/height` 常常是占位值
-                # （实测 `S041_skin6` 的 5 个网格全写 `32x32`，真实形状由 `vertices`
-                # 决定、图尺寸由图集 `orig` 决定）。拿 32x32 当目标尺寸会把这 5 张
-                # 网格图缩成 32x32，再被网格拉伸到 343x434 -> 画面里出现大块矩形残影。
-                if 'mesh' in str(a.get('type')):
+                if 'mesh' in str(a.get('type')) and resolve_image_name(nm, a) not in set(mesh_ok):
                     continue
                 if a.get('width') and a.get('height'):
                     declared[resolve_image_name(nm, a)] = (int(a['width']),
                                                           int(a['height']))
-    fixed = bad = 0
+    fixed, cropped = 0, []
     for r in parse_atlas(atlas_path)[0]['regions']:
         want = declared.get(r['name'])
-        f = os.path.join(img_dir, r['name'] + '.png')
+        f = os.path.join(img_dir, r['name'].replace('/', os.sep) + '.png')
         if not want or not os.path.exists(f):
             continue
         im = Image.open(f).convert('RGBA')
@@ -1097,13 +1147,17 @@ def fit_singles_to_declared(img_dir, atlas_path, json_path, factor):
             big = im.resize((max(1, int(round(im.width * factor))),
                              max(1, int(round(im.height * factor)))), Image.LANCZOS)
             out = Image.new('RGBA', want, (0, 0, 0, 0))
-            out.paste(big, (0, 0))                # 多出的裁掉、少的留透明（取整误差 ≤1px）
+            out.paste(big, (0, 0))
+            # `paste` 到**更小**的画布就是裁切（丢美术）。但取整误差（≤2px）是正常的
+            # （实测 `兽人双刀剑客` 44 张、`火把女战士` 20 张全是 1px），所以给 2px 容差，
+            # 只报真正会丢内容的那种。以前这里既不算裁切、也不报，等于把"图被切了"
+            # 伪装成"没问题"（第二个返回值恒为 0）。
+            over = max(big.width - want[0], big.height - want[1])
+            if over > 2:
+                cropped.append((r['name'], im.size, (big.width, big.height), want, over))
             out.save(f)
             fixed += 1
-            im = out
-        if im.size != want:
-            bad += 1
-    return fixed, bad
+    return fixed, cropped
 
 
 def _collect_needed(data):
@@ -1127,6 +1181,33 @@ def _collect_needed(data):
     return need
 
 
+def _single_image_path(json_path, name):
+    """单图在哪 —— **必须覆盖 `images_original/`**，否则这项检查永远是"没测"。
+
+    实测踩过（2026-09 审查）：原来只在 JSON **同级目录**找 `<name>.png`，
+    而交付件/工程里的单图在 `images_original/`（`prepare` 写 `images:'./images_original/'`）。
+    结果 `declared_size_mismatch` 恒为空，`cmd_diagnose` 却把它当成"通过"的必要条件 ——
+    又一次"没测伪装成通过"（§9.1）。这里按 顺序 试：skeleton.images 指的相对目录 ->
+    JSON 同级 -> `images_original/`。
+    """
+    base = os.path.dirname(os.path.abspath(json_path))
+    rel = name.replace('/', os.sep) + '.png'
+    cands = []
+    try:
+        d = json.load(open(json_path, encoding='utf-8'))
+        img_field = ((d.get('skeleton') or {}).get('images') or '').strip()
+        if img_field:
+            cands.append(os.path.normpath(os.path.join(base, img_field, rel)))
+    except Exception:
+        pass
+    cands.append(os.path.join(base, rel))
+    cands.append(os.path.join(base, 'images_original', rel))
+    for c in cands:
+        if os.path.isfile(c):
+            return c
+    return None
+
+
 def _cross_check(json_path, page):
     d = json.load(open(json_path, encoding='utf-8'))
     need = _collect_needed(d)
@@ -1134,23 +1215,30 @@ def _cross_check(json_path, page):
     out = {'json_images': len(need),
            'json_not_in_atlas': sorted(set(need) - atlas_names),
            'atlas_not_in_json': sorted(atlas_names - set(need))}
-    # 声明尺寸 vs 图集/磁盘
-    bad = []
+    # 声明尺寸 vs 磁盘单图（找不到就计入 unchecked，**不装作通过**）
+    bad, checked, unchecked = [], 0, []
     for name, a in need.items():
         w, h = a.get('width'), a.get('height')
         if not w or not h:
             continue
-        f = os.path.join(os.path.dirname(json_path), name + '.png')
-        if os.path.exists(f):
-            im = Image.open(f)
-            if (im.width, im.height) != (w, h):
-                bad.append((name, im.size, (w, h)))
+        f = _single_image_path(json_path, name)
+        if not f:
+            unchecked.append(name)
+            continue
+        checked += 1
+        im = Image.open(f)
+        if (im.width, im.height) != (w, h):
+            bad.append((name, im.size, (w, h)))
     out['declared_size_mismatch'] = bad
-    # 网格附件 width/height 是否等于图集未裁白尺寸
+    out['declared_size_checked'] = checked
+    out['declared_size_unchecked'] = unchecked
+    # 网格附件 width/height 是否等于图集未裁白尺寸（`'mesh' in type` 才能覆盖 linkedmesh）
     byname = {r['name']: r for r in page['regions']}
     mesh_bad = []
     for name, a in need.items():
-        if a.get('type') != 'mesh' or name not in byname:
+        if 'mesh' not in str(a.get('type')) or name not in byname:
+            continue
+        if not a.get('width') or not a.get('height'):
             continue
         r = byname[name]
         if (a.get('width'), a.get('height')) != (r['ow'], r['oh']):
@@ -1175,7 +1263,7 @@ def page_coverage(page, alpha):
     return 100.0 * float((alpha & cover).sum()) / tot if tot else 0.0
 
 
-def fix_page(atlas_path, margin=2.0):
+def fix_page(atlas_path, margin=2.0, size_tol=2, rel_tol=0.005):
     """就地修复「页名后缀不符」与「页图尺寸不符」，返回报告。
 
     尺寸不符有两种成因，用**可复算的**指标二选一（谁的不透明覆盖率更高取谁）：
@@ -1185,9 +1273,19 @@ def fix_page(atlas_path, margin=2.0):
       缩回后 `blade1` 恰好 294x50，与 atlas 的 `size:` 完全一致；覆盖率 93.26% -> 99.90%。
     * H2 只是 `size:` 行过期、区域坐标本来就对 -> 只改 `size:` 行，不动页图。
 
-    两者都说不通时**报错而不是猜**。
+    **H3（新增，覆盖率的"说不清"档）**：两边覆盖率差距在 `margin` 之内、**且尺寸只差
+    几像素**（绝对值 <= `size_tol` 或相对 <= `rel_tol`）时，判定为"`size:` 行过期"，
+    只改 `size:` 行、**不重采样页图**，并记进 `ambiguous` 供交付说明提示。
+
+    为什么是"不重采样"而不是"报错"：这两种解释在视觉上不可分，但代价**极不对称** ——
+    改 `size:` 行不动像素，最多多/少一圈空白；缩图会让**全部**像素重采样一次，
+    且不可逆。实测 `30501_sanjiaotou`（声明 1462、实际 1463，差 1px，覆盖率 99.93/99.94）
+    与 `nanzhu_manianchunjie`（984 / 985）就是被原来的直接报错挡住整条流水线的。
+
+    尺寸差得**大**且两边都说不通时，仍然**报错而不是猜**。
     """
-    out = {'renamed': [], 'resized': [], 'size_line_fixed': [], 'checked': []}
+    out = {'renamed': [], 'resized': [], 'size_line_fixed': [],
+           'ambiguous': [], 'checked': []}
 
     mapping = {}
     for p in parse_atlas(atlas_path):
@@ -1220,9 +1318,33 @@ def fix_page(atlas_path, margin=2.0):
             set_page_size(atlas_path, p['name'], img.width, img.height)
             out['size_line_fixed'].append((p['name'], list(want), list(img.size), round(c0, 2)))
         else:
-            raise RuntimeError(
-                '页 %s 尺寸不符（声明 %s，实际 %s）但两种假设都说不通（覆盖率 %.2f / %.2f），'
-                '需人工判断' % (p['name'], want, img.size, c0, c1))
+            # H3：覆盖率说不清、但尺寸只差几像素 -> 按"声明过期"处理，不改像素。
+            # 选它的理由见 docstring：改 size 行无损，缩图会全图重采样。
+            #
+            # ⚠️ 唯一的拒绝条件：**原本放得下、改完反而放不下**。
+            #    H3 把声明改成"实际图尺寸"，若页图比声明**小**，原本按大画布打包的
+            #    区域就会越界 —— 这才是这步可能造成的真实损害，必须挡住。
+            #    反过来，源图集本来就有区域越界（实测 30501 的 `yanchen` 超出 2px），
+            #    那是源缺陷，不该因此拒绝修复。
+            #    （首版守卫写成"改完必须全部放得下"，把 30501 挡回去了 —— 全量回归抓到的。）
+            dw, dh = abs(img.width - want[0]), abs(img.height - want[1])
+            rel = max(dw / max(img.width, 1), dh / max(img.height, 1))
+
+            def _fits(pw_, ph_):
+                return all(footprint(r)[0] + footprint(r)[2] <= pw_
+                           and footprint(r)[1] + footprint(r)[3] <= ph_
+                           for r in p['regions'])
+
+            fits_new = _fits(img.width, img.height)
+            fits_old = _fits(want[0], want[1])
+            if (max(dw, dh) <= size_tol or rel <= rel_tol) and (fits_new or not fits_old):
+                set_page_size(atlas_path, p['name'], img.width, img.height)
+                out['ambiguous'].append(
+                    (p['name'], list(want), list(img.size), round(c0, 2)))
+            else:
+                raise RuntimeError(
+                    '页 %s 尺寸不符（声明 %s，实际 %s）但两种假设都说不通（覆盖率 %.2f / %.2f），'
+                    '需人工判断' % (p['name'], want, img.size, c0, c1))
     return out
 
 
@@ -1356,11 +1478,15 @@ def tight_pack(proj_dir, json_path=None, page_w=2048, spacing=2, pad_px=2):
     atlas 的 `offsets = (l, oh - b, ow, oh)`（y 从下边缘量）已把"从哪儿裁的"讲清楚。
     `images_original/` 保持未裁白原样不动，只重写顶层 atlas + 页图。
     """
-    import glob as _glob
     proj_dir = os.path.abspath(proj_dir)
-    js = json_path or sorted(_glob.glob(os.path.join(proj_dir, '*.json')),
+    # ⚠️ 取候选文件必须**排除 `_` 开头**（`_replaced_*` 备份等）。
+    # 实测踩过：`sorted(glob('*.atlas'))[0]` 会把 `_replaced_leega.atlas` 排在
+    # `leega.atlas` 前面（`_` = 0x5F < `l` = 0x6C），于是**把收紧后的 atlas 写进了备份**，
+    # 而真正的 atlas 还留着旧尺寸、页图却已换成新的 -> 交付件自相矛盾
+    # （`分区=False`、反解回环 0/125）。2026-09 修。
+    js = json_path or sorted(_triplet_files(proj_dir, 'json'),
                              key=os.path.getsize, reverse=True)[0]
-    at = sorted(_glob.glob(os.path.join(proj_dir, '*.atlas')))[0]
+    at = sorted(_triplet_files(proj_dir, 'atlas'))[0]
     img_dir = os.path.join(proj_dir, 'images_original')
     pages = parse_atlas(at)
     if len(pages) != 1:
@@ -1386,6 +1512,12 @@ def tight_pack(proj_dir, json_path=None, page_w=2048, spacing=2, pad_px=2):
         items.append((r, img, (left, top, right, bot)))
 
     # 货架式摆放（按高度降序），页宽固定、页高自动
+    # ⚠️ 页宽必须先容纳**最宽的区域**，否则 `page.paste` 越界被 PIL 静默裁掉，
+    #    而 atlas 仍声明完整宽度 -> 交付件静默缺内容（2026-09 修）
+    widest = max(((right - left) + spacing * 2) for (_, _, (left, top, right, bot)) in items) \
+        if items else page_w
+    if widest > page_w:
+        page_w = int(widest)
     order = sorted(range(len(items)), key=lambda i: -(items[i][2][3] - items[i][2][1]))
     place, x, y, shelf = {}, 0, 0, 0
     for i in order:
@@ -1462,7 +1594,7 @@ def decontaminate(atlas_path, out_dir, json_path=None, verbose=True,
     os.makedirs(out_dir, exist_ok=True)
     report = {'regions': 0, 'cleaned_pixels': 0, 'affected': [],
               'multi_covered': 0, 'alias_groups': 0,
-              'fallback': [], 'mesh_kept': 0, 'mesh_cut': 0}
+              'fallback': [], 'mesh_kept': 0, 'mesh_cut': 0, 'out_of_bounds': []}
     for p in pages:
         img = Image.open(resolve_page_image(atlas_path, p)).convert('RGBA')
         P = np.asarray(img)
@@ -1516,6 +1648,22 @@ def decontaminate(atlas_path, out_dir, json_path=None, verbose=True,
 
         for r, g in zip(p['regions'], gid):
             x, y, w, h = footprint(r)
+            # ⚠️ 区域越出页图时，numpy 的负索引会**静默绕回**（或让 keep/sub 形状对不上，
+            # 抛一句看不懂的 broadcast ValueError）。这里显式走 PIL 的越界裁切
+            # （越界部分补透明），并且**不做去污染**（保留原样 = 保守），记进报告。
+            if x < 0 or y < 0 or x + w > W or y + h > H:
+                t0 = Image.fromarray(P).crop((x, y, x + w, y + h))
+                t0 = t0.transpose(Image.ROTATE_270) if r['deg'] == 90 else \
+                    t0.transpose(Image.ROTATE_90) if r['deg'] == 270 else \
+                    t0.transpose(Image.ROTATE_180) if r['deg'] == 180 else t0
+                canvas = Image.new('RGBA', (r['ow'], r['oh']), (0, 0, 0, 0))
+                canvas.paste(t0, (r['ox'], r['oh'] - r['oy'] - t0.size[1]))
+                dst = os.path.join(out_dir, r['name'] + '.png')
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                canvas.save(dst)
+                report['regions'] += 1
+                report.setdefault('out_of_bounds', []).append((r['name'], x, y, w, h))
+                continue
             cv = cover[y:y + h, x:x + w]
             opaque = P[y:y + h, x:x + w, 3] > 0
             mesh_keep = None
@@ -1581,6 +1729,10 @@ def decontaminate(atlas_path, out_dir, json_path=None, verbose=True,
                   % len(report['fallback']))
             for nm, pv, b0, b1 in report['fallback']:
                 print('      %-28s private %.2f%%  %d -> %d' % (nm, 100 * pv, b0, b1))
+        if report['out_of_bounds']:
+            print('  ⚠ %d 个区域越出页图，已按 PIL 越界裁切（**未做去污染**）：%s'
+                  % (len(report['out_of_bounds']),
+                     [o[0] for o in report['out_of_bounds'][:4]]))
     return report
 
 
@@ -1614,6 +1766,10 @@ def repack(atlas_path, clean_dir, out_dir, page_w=1024, pad=2):
             top = r['oh'] - r['oy'] - r['h']
             imgs[r['name']] = full.crop((r['ox'], top, r['ox'] + r['w'], top + r['h']))
         # 摆放按高度降序（shelf 更省），但**写出时用原始区域顺序**
+        # ⚠️ 页宽要先容纳最宽的区域，否则 paste 越界被静默裁（2026-09 修）
+        widest = max((r['w'] + pad * 2) for r in regions) if regions else page_w
+        if widest > page_w:
+            page_w = int(widest)
         order = sorted(regions, key=lambda r: -r['h'])
         x = y = shelf = 0
         place = {}
@@ -1696,33 +1852,62 @@ def verify_roundtrip(atlas_path, images_dir, rgb_tol=None, alpha_tol=0):
     return total, bad, w_rgb, w_alpha
 
 
-def mesh_fit_score(json_path, images_dir):
+def mesh_fit_score(json_path, images_dir, return_skips=False):
     """网格三角形按 UV<->顶点 仿射投影回图像空间，与实际画面求 IoU。
-    分数越高说明「图」和「JSON 的网格」越吻合 —— 可用来判断该用哪套图。"""
-    import sys
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    分数越高说明「图」和「JSON 的网格」越吻合 —— 可用来判断该用哪套图。
 
+    返回 `[(图片名, sqrt|det|, IoU), ...]`；`return_skips=True` 时返回
+    `(结果, 跳过明细)`，明细形如 `(名字, 原因)`。
+
+    ⚠️ 2026-09 修的四个缺陷（原先它**直接崩**或**一个都不评估**，还报"检查 --images"）：
+    1. `W,H` 原来取 JSON 的 `width/height` —— 4.x 里是 **float**，`np.zeros((h,w))`
+       直接 `TypeError`；而且网格的声明值可能是**占位值**（S041 全写 32x32）。
+       改成**用单图自己的尺寸**（单图就是未裁白画布，UV 也归一化在它上面）。
+    2. 原来只读 `skins[0]`（§9.5 明令禁止）—— 多皮肤资源里 `default` 常是空壳，
+       于是"没有可评估的网格"。改成遍历**所有皮肤**、按图片名并集。
+    3. 原来判 `type != 'mesh'`，漏掉 `linkedmesh`；改成 `'mesh' in type` + `deref_linkedmesh`。
+    4. 原来 `key = path or 附件键名`，**忽略 `name`**（§9.5 的解析顺序是 path > name > 键名），
+       于是 `skin6/body` 去找 `body.png`。改用 `resolve_image_name`。
+    另外统一用 `_raster_uv_tris`（与 `mesh_coverage` 同一个光栅化器），
+    不再留第二套像素约定的实现。
+    """
     d = json.load(open(json_path, encoding='utf-8'))
     bones, order = build_skeleton(d)
     sk = d['skeleton']
     for b in order:
-        update_world(b, sk.get('scaleX', 1.0), sk.get('scaleY', 1.0), sk.get('x', 0.0), sk.get('y', 0.0))
-    skin = d['skins'][0]['attachments']
+        update_world(b, sk.get('scaleX', 1.0), sk.get('scaleY', 1.0),
+                     sk.get('x', 0.0), sk.get('y', 0.0))
     slotbone = {s['name']: s['bone'] for s in d['slots']}
-    res = []
-    for slot, atts in skin.items():
-        for nm, a in atts.items():
-            if a.get('type') != 'mesh':
+    # 所有皮肤里"会引用图片"的附件，按图片名归并（同一张图可能被多个附件/皮肤引用）
+    refs = {}
+    for s in d.get('skins', []):
+        for slot, atts in (s.get('attachments') or {}).items():
+            if slot not in slotbone:
                 continue
-            key = a.get('path', nm)
-            f = os.path.join(images_dir, key + '.png')
-            if not os.path.exists(f):
+            for nm, a in atts.items():
+                refs.setdefault(resolve_image_name(nm, a), []).append((slot, a))
+
+    res, skips = [], []
+    for key, items in sorted(refs.items()):
+        f = os.path.join(images_dir, key.replace('/', os.sep) + '.png')
+        if not os.path.exists(f):
+            skips.append((key, '单图不存在: %s' % os.path.basename(f)))
+            continue
+        art = np.asarray(Image.open(f).convert('RGBA'))[:, :, 3] > 0
+        H, W = art.shape
+        mask = None
+        dets = []
+        for slot, a in items:
+            geo = deref_linkedmesh(d, a)
+            if geo is None or 'mesh' not in str(geo.get('type')) or not geo.get('uvs'):
                 continue
-            W, H = a.get('width', 0), a.get('height', 0)
-            pts, uvl, tris = mesh_geometry(a, bones[slotbone[slot]], order)
+            bone = bones.get(slotbone[slot])
+            if bone is None:
+                continue
+            pts, uvl, tris = mesh_geometry(geo, bone, order)
+            if len(uvl) != len(pts) or not tris:
+                continue
             Q = np.array([[u[0] * W, u[1] * H] for u in uvl], float)
-            if len(Q) != len(pts):
-                continue
             A = np.hstack([Q, np.ones((len(Q), 1))])
             sol, *_ = np.linalg.lstsq(A, np.array(pts, float), rcond=None)
             det = abs(np.linalg.det(sol[:2, :].T))
@@ -1732,23 +1917,35 @@ def mesh_fit_score(json_path, images_dir):
                 Mi = np.linalg.inv(M)
             except np.linalg.LinAlgError:
                 continue
-            P = (Mi @ np.hstack([np.array(pts, float), np.ones((len(pts), 1))]).T).T[:, :2]
-            mask = _raster_tris(P, tris, W, H)
-            art = np.asarray(Image.open(f).convert('RGBA'))[:, :, 3] > 0
-            if art.shape != mask.shape:
+            # 顶点 -> 图像空间（未裁白画布 = 单图尺寸），在画布上光栅化
+            Pi = (Mi @ np.hstack([np.array(pts, float),
+                                  np.ones((len(pts), 1))]).T).T[:, :2]
+            mm = _raster_canvas_tris(Pi, tris, W, H)
+            if mm is None:
                 continue
-            inter = int((mask & art).sum())
-            union = int((mask | art).sum())
-            res.append((key, det ** 0.5 if det > 0 else float('nan'),
-                        inter / union if union else 0.0))
-    return res
+            mask = mm if mask is None else (mask | mm)
+            dets.append(det)
+        if mask is None:
+            skips.append((key, '没有可用的网格附件（region 类型 / 未解引用成功）'))
+            continue
+        inter = int((mask & art).sum())
+        union = int((mask | art).sum())
+        # 同一张图被多个网格引用时取均值（与原实现一致的口径）
+        sq = (sum(d ** 0.5 for d in dets) / len(dets)) if dets else float('nan')
+        res.append((key, sq, inter / union if union else 0.0))
+    return (res, skips) if return_skips else res
 
 
-def _raster_tris(P, tri, w, h):
-    """tri 为 (i,j,k) 三元组列表（与 spine_render.mesh_geometry 一致）。"""
-    import math
+def _raster_canvas_tris(P, tri, w, h):
+    """在 (h, w) 画布上光栅化三角形，P 是各顶点的画布坐标。
+
+    与 `_raster_uv_tris`（PIL polygon）**语义一致**，只是用重心坐标实现、
+    便于处理"顶点已经投影回画布空间"的情形。像素判定用 ±0.002 容差补抗锯齿边。
+    """
     m = np.zeros((h, w), bool)
     for (i, j, k) in tri:
+        if max(i, j, k) >= len(P):
+            continue
         p0, p1, p2 = P[i], P[j], P[k]
         x0 = max(0, int(math.floor(min(p0[0], p1[0], p2[0]))))
         x1 = min(w, int(math.ceil(max(p0[0], p1[0], p2[0]))) + 1)
@@ -1766,6 +1963,7 @@ def _raster_tris(P, tri, w, h):
         v = (v0[0] * py - px * v0[1]) / den
         m[y0:y1, x0:x1] |= (u >= -0.002) & (v >= -0.002) & (u + v <= 1.002)
     return m
+
 
 # ==========================================================================
 # 来源: spine_pipeline.py
@@ -1829,11 +2027,26 @@ def pick_version(want, avail):
     return None
 
 
+def _triplet_files(folder, ext):
+    """目录下的 `<ext>` 候选文件，**排除 `_` 开头的**。
+
+    `_replaced_*`（`apply --backup` 的备份）、`_prepare_report.json` 这类文件
+    **不是交付件**。不排除的话 `find_triplet` 会按大小把**备份**当成当前三件套
+    （实测合成用例：第二次 `apply --backup` 把 atlas 命名成
+    `_replaced__replaced_x.atlas`；真项目里则可能拿 3.8 的备份去对账/归档）。
+    """
+    return [f for f in glob.glob(os.path.join(folder, '*.' + ext))
+            if not os.path.basename(f).startswith('_')]
+
+
 def find_triplet(folder):
     """找 json + atlas + 页图。**页图后缀不限** —— 可能是 .webp/.jpg 等，
-    也可能后缀与 atlas 的页名不一致（实测 `.webp` 页名配 `.png` 文件）。"""
-    js = [f for f in glob.glob(os.path.join(folder, '*.json'))]
-    at = [f for f in glob.glob(os.path.join(folder, '*.atlas'))]
+    也可能后缀与 atlas 的页名不一致（实测 `.webp` 页名配 `.png` 文件）。
+
+    ⚠️ `_` 开头的文件一律不算（见 `_triplet_files`）。
+    """
+    js = _triplet_files(folder, 'json')
+    at = _triplet_files(folder, 'atlas')
     if not js or not at:
         raise FileNotFoundError('目录里找不到 json + atlas: %s' % folder)
     js.sort(key=lambda p: os.path.getsize(p), reverse=True)   # 骨架 JSON 通常最大
@@ -1850,11 +2063,20 @@ def find_triplet(folder):
 
 
 def _run(cmd, log):
+    """跑一条 Spine CLI，返回 (退出码, **本步**的输出)。
+
+    ⚠️ 日志是追加的（两步写同一个文件），所以返回的是**本次新增的那一段** ——
+    否则步骤 B 的告警统计会把步骤 A 的同一批告警再算一遍（实测翻倍），
+    "步骤B失败"的摘录也会带出步骤 A 的内容（2026-09 修）。
+    """
+    before = os.path.getsize(log) if os.path.exists(log) else 0
     with open(log, 'a', encoding='utf-8', errors='replace') as f:
         f.write('\n$ ' + ' '.join(cmd) + '\n')
         f.flush()
         p = subprocess.run(cmd, stdout=f, stderr=subprocess.STDOUT)
-    txt = open(log, encoding='utf-8', errors='replace').read()
+    with open(log, encoding='utf-8', errors='replace') as f:
+        f.seek(before)
+        txt = f.read()
     return p.returncode, txt
 
 
@@ -1869,7 +2091,16 @@ def prepare(src, proj_dir, render_preview=True, check=False, overlap='mesh'):
       传 `'keep'` 则重叠区一律保留（逃生开关）。
     """
     proj_dir = os.path.abspath(proj_dir)
+    # `prepare/` 是**中间态**：源一变就必须重做。
+    # 原实现靠 `if not os.path.exists(dst)` 保护已生成的文件，于是"改了源 zip 再跑
+    # build"会**静默沿用旧 atlas**（实测 30501_sanjiaotou：修好源后再跑，报错里
+    # 仍是旧的 `声明 (1462, 1462)`，必须手工删掉整个工程目录才能重跑）。
+    # 与 `convert` 的口径统一（`convert` 总是清空 convert/ 重做）。
+    # ⚠️ 只清 `prepare/`；`原始资源_*.zip` 在工程根，属于"源归档"，**永不动**。
     out = stage_dir(proj_dir, STAGE_PREPARE)
+    if os.path.isdir(out):
+        shutil.rmtree(out)
+    os.makedirs(out, exist_ok=True)
     rep = {'project': proj_dir, 'stage_dir': out, 'fixed': []}
 
     # 1) 取到三件套（zip 就地解压；目录直接用）
@@ -1883,19 +2114,30 @@ def prepare(src, proj_dir, render_preview=True, check=False, overlap='mesh'):
         src_json, src_atlas, src_png = find_triplet(work)
     base = os.path.basename(src_atlas)[:-6]
 
+    # **多页图集**：atlas 可以引用多张页图，必须**全部**搬过来。
+    # 原实现只复制 `find_triplet()` 返回的第一页，于是 `fix_page()` 遍历到第二页时
+    # `FileNotFoundError`（实测 zhizunnvwu222：`31801_zhizunnvwu_2.png`）。
+    # `find_triplet` 保留"第一页可解析"这句守卫，这里补齐其余页。
+    src_pages = []
+    for pg in parse_atlas(src_atlas):
+        f = resolve_page_image(src_atlas, pg)
+        if f and f not in src_pages:
+            src_pages.append(f)
+    if not src_pages:                      # 理论上到不了（find_triplet 已保证第一页）
+        src_pages = [src_png]
+
     atlas = os.path.join(out, base + '.atlas')
     jsonp = os.path.join(out, base + '.json')
-    for p, dst in ((src_atlas, atlas), (src_png, os.path.join(out,
-                                                              os.path.basename(src_png)))):
-        if not os.path.exists(dst):        # 已生成的图集/页图不动
-            shutil.copy2(p, dst)
+    for p in [src_atlas] + src_pages:
+        shutil.copy2(p, os.path.join(out, os.path.basename(p)))
     shutil.copy2(src_json, jsonp)          # JSON 必须用源覆盖（下面要改 images 字段）
 
-    # 归档原始三件套（apply 交付前要用它兜底）—— 放工程根，不属于任何阶段
+    # 归档原始三件套（apply 交付前要用它兜底）—— 放工程根，不属于任何阶段。
+    # ⚠️ **多页图集要全部收进归档**，否则回退重建时同样会缺页。
     arch = os.path.join(proj_dir, '原始资源_%s.zip' % base)
     if not os.path.exists(arch):
         with zipfile.ZipFile(arch, 'w', zipfile.ZIP_DEFLATED) as z:
-            for p in (src_json, src_atlas, src_png):
+            for p in [src_json, src_atlas] + src_pages:
                 z.write(p, os.path.basename(p))
 
     # 页图规范化：页名后缀、页图尺寸（不做这步后面全盘错位）
@@ -1906,6 +2148,11 @@ def prepare(src, proj_dir, render_preview=True, check=False, overlap='mesh'):
         rep['fixed'].append('页图缩回声明尺寸 %s -> %s' % (old, new))
     for pg, old, new, cov in fx['size_line_fixed']:
         rep['fixed'].append('size 行 %s -> %s' % (old, new))
+    for pg, old, new, cov in fx['ambiguous']:
+        rep['fixed'].append(
+            '⚠ 页 `size:` 行过期（声明 %s 实际 %s 只差几像素、覆盖率 %.2f 无法区分）'
+            '—— 已按**实际图**改 `size:` 行、**不重采样**（改声明无损，缩图会让全图重采样）'
+            % (old, new, cov))
 
     # 打包倍率自检（先看一眼，下面解包后按声明尺寸对齐）
     sc = size_scale_report(atlas, jsonp)
@@ -1926,11 +2173,11 @@ def prepare(src, proj_dir, render_preview=True, check=False, overlap='mesh'):
 
     if sc.get('placeholder_suspect'):
         rep['fixed'].append(
-            '⚠ 网格附件的声明尺寸疑为**占位值**（%d 个网格中 %d 个与图集不符，如 %s）'
-            '—— 已跳过它们不做尺寸对齐；若不跳过会把网格图缩成声明值，'
-            '再被网格拉伸成大块矩形残影'
-            % (sc['mesh_total'], len(sc['mesh_mismatch']),
-               sc['mesh_mismatch'][0] if sc['mesh_mismatch'] else '?'))
+            '⚠ 网格附件的声明尺寸疑为**占位值**（%d 个网格中 %d 个与图集不符、且对不上'
+            '包内倍率，如 %s）—— 这些不做尺寸对齐；若按声明值缩会把网格图缩成占位尺寸'
+            '（实测 32x32），再被网格拉伸成大块矩形残影'
+            % (sc['mesh_total'], len(sc['mesh_placeholder']),
+               sc['mesh_placeholder'][0] if sc['mesh_placeholder'] else '?'))
 
     # 解包图集（去污染）。把 JSON 传进去 —— 网格几何是判定"重叠区归谁"的首选判据
     img_dir = os.path.join(out, 'images_original')
@@ -1944,12 +2191,19 @@ def prepare(src, proj_dir, render_preview=True, check=False, overlap='mesh'):
     # 图集被打包成小尺寸时，把单图放大回声明尺寸（不做这步转 4.x 必散架）
     if sc['mismatch'] and sc['scale']:
         f = 1.0 / sc['scale']
-        n, still = fit_singles_to_declared(img_dir, atlas, jsonp, f)
+        n, cropped = fit_singles_to_declared(img_dir, atlas, jsonp, f,
+                                             mesh_ok=sc['mesh_explained'])
         rep['upscaled'] = round(f, 6)
-        rep['fixed'].append('单图按声明尺寸放大 ×%.4f：%d 张（源图集只有声明尺寸的 %.3f 倍）'
+        rep['upscaled_n'] = n
+        rep['fixed'].append('单图按声明尺寸放大 ×%.4f：%d 张（源图集 = 声明尺寸 × %.3f）'
                             % (f, n, sc['scale']))
-        if still:
-            rep['fixed'].append('⚠ 放大后仍有 %d 张与声明尺寸不符' % still)
+        if sc['mesh_explained']:
+            rep['fixed'].append('网格附件里 %d 个的声明尺寸与包内倍率自洽，一并还原'
+                                % len(sc['mesh_explained']))
+        if cropped:
+            rep['fixed'].append(
+                '⚠ **%d 张放大后超量裁切**（>2px，会丢美术）：%s'
+                % (len(cropped), ['%s(+%dpx)' % (c[0], c[4]) for c in cropped[:5]]))
 
     j = json.load(open(jsonp, encoding='utf-8'))
     j['skeleton']['images'] = './images_original/'      # 编辑器/引擎用相对路径
@@ -1966,7 +2220,28 @@ def prepare(src, proj_dir, render_preview=True, check=False, overlap='mesh'):
 
     if work:
         shutil.rmtree(work, ignore_errors=True)
+
+    # 动作清单**落盘**：`apply` 是唯一动顶层的阶段，`prepare`/`convert`/`apply` 分开跑时
+    # 它手里没有本函数的返回值，而 `apply` 收尾还会把 `prepare/` 删掉 —— 结果
+    # `交付说明.md` 的「处理动作」只剩一条从归档反推的倍率行（实测 S041_skin6：
+    # "单图放大 0 张"和"网格声明尺寸是占位值"这两条关键事实全丢了）。
+    try:
+        with open(os.path.join(out, PREPARE_REPORT), 'w', encoding='utf-8') as fh:
+            json.dump(rep, fh, ensure_ascii=False, indent=1, default=str)
+    except Exception:                       # 报告落盘失败不该挡住主流程
+        pass
     return rep
+
+
+def read_prepare_fixes(proj_dir):
+    """取回步骤 1 落盘的动作清单（`prepare/_prepare_report.json`），没有就返回空。"""
+    p = os.path.join(os.path.abspath(proj_dir), STAGE_PREPARE, PREPARE_REPORT)
+    if not os.path.exists(p):
+        return []
+    try:
+        return list(json.load(open(p, encoding='utf-8')).get('fixed') or [])
+    except Exception:
+        return []
 
 
 # ------------------------------------------------------------------ 交付说明
@@ -1990,9 +2265,8 @@ def _archive_scale(proj_dir):
     try:
         with zipfile.ZipFile(zs[0]) as z:
             z.extractall(work)
-        js = sorted(glob.glob(os.path.join(work, '*.json')),
-                    key=os.path.getsize, reverse=True)
-        at = glob.glob(os.path.join(work, '*.atlas'))
+        js = sorted(_triplet_files(work, 'json'), key=os.path.getsize, reverse=True)
+        at = _triplet_files(work, 'atlas')
         if not js or not at:
             return None
         fix_page(at[0])              # 页名可能写成 .webp，先规范化再对账
@@ -2028,22 +2302,42 @@ def write_delivery_doc(proj_dir, fixes=(), notes=()):
          '| 动画 | %d 个：%s |' % (len(j.get('animations', {})),
                                    ', '.join(list(j.get('animations', {}))[:8]) or '无'),
          '', '## 交付物', '']
+    replaced = []
     for p in sorted(os.listdir(proj_dir)):
         fp = os.path.join(proj_dir, p)
+        if p.startswith('_replaced_'):
+            replaced.append(p)          # 被替换掉的旧三件套（备份），不是交付物
+            continue
+        if p.lower() == 'desktop.ini':  # Windows 目录残留
+            continue
         if os.path.isfile(fp):
             L.append('* `%s`  (%d 字节)' % (p, os.path.getsize(fp)))
         elif p == 'images_original':
             n_img = sum(len(fs) for _, _, fs in os.walk(fp))   # 区域名可带 `/`，要递归数
             L.append('* `images_original/`  (%d 张单图)' % n_img)
+    if replaced:
+        L.append('* 备份（**非交付物**）：%s —— 本次被替换掉的旧三件套，'
+                 '确认新版无误后可自行清理' % ', '.join('`%s`' % x for x in replaced))
     L += ['', '## 处理动作', '']
-    fixes = list(fixes)
+    # 分开跑 prepare/convert/apply 时，apply 手里没有步骤 1 的动作清单 ->
+    # 回读 `prepare/_prepare_report.json`（build 一条龙则直接用传进来的）
+    fixes = list(fixes) or read_prepare_fixes(proj_dir)
     sc = _archive_scale(proj_dir)
-    if sc and sc['mismatch']:
-        fixes.append('**打包倍率还原**：源图集按声明尺寸的 %.3f 倍打包'
-                     '（%d/%d 个附件不符，一次等比缩放可解释 %s），'
-                     '已逐图放大 ×%.4f 还原到 JSON 声明的尺寸'
-                     % (sc['scale'], sc['mismatch'], sc['checked'], sc['scale_fit'],
-                        1.0 / sc['scale']))
+    if sc and sc['mismatch'] and sc.get('placeholder_suspect'):
+        # 网格的 width/height 是占位值，**没有**按它缩放任何单图 —— 这行必须
+        # 如实说，否则交付说明会记下一次根本没发生的"还原"（实测 S041_skin6）。
+        fixes.append('**源图集尺寸自检**：%d/%d 个附件的声明尺寸与图集 `orig` 不符，'
+                     '其中 %d 个是网格附件**占位值**（共 %d 个网格）—— 真实形状由 '
+                     '`vertices` 决定，**未按它缩放这些单图**'
+                     % (sc['mismatch'], sc['checked'],
+                        len(sc['mesh_placeholder']), sc['mesh_total']))
+    elif sc and sc['mismatch'] and sc.get('scale'):
+        fixes.append('**源图集尺寸自检**：源图集 = 声明尺寸 × %.3f'
+                     '（%d/%d 个附件不符，一次等比缩放可解释 %s）'
+                     % (sc['scale'], sc['mismatch'], sc['checked'], sc['scale_fit']))
+    elif sc and sc['mismatch']:
+        fixes.append('**源图集尺寸自检**：%d/%d 个附件不符，但**推不出包内倍率**，'
+                     '未做尺寸对齐（需人工看）' % (sc['mismatch'], sc['checked']))
     if fixes:
         for f in fixes:
             L.append('* %s' % f)
@@ -2075,7 +2369,7 @@ def write_delivery_doc(proj_dir, fixes=(), notes=()):
 
 # ------------------------------------------------------------------ 一条命令
 def build(src, proj_dir, dst_ver=DEFAULT_DST, spine_com=None, name=None, doc=True,
-          tight=True, min_iou=0.70, max_diff_ratio=0.40):
+          tight=True, min_iou=0.70, max_diff_ratio=0.40, overlap='mesh'):
     """**一条命令走完全流程**：prepare -> convert -> apply（含渲染一致性判定）。
 
     产物按阶段分开落盘，互不覆盖：
@@ -2091,7 +2385,7 @@ def build(src, proj_dir, dst_ver=DEFAULT_DST, spine_com=None, name=None, doc=Tru
     `原始资源_<项目>.zip`，随时可回退。
     """
     rep = {'project': os.path.abspath(proj_dir)}
-    rep['prepare'] = prepare(src, proj_dir, check=False)
+    rep['prepare'] = prepare(src, proj_dir, check=False, overlap=overlap)
     rep['convert'] = convert(proj_dir, spine_com=spine_com, dst_ver=dst_ver, name=name)
     rep['apply'] = apply_converted(proj_dir, min_iou=min_iou,
                                    max_diff_ratio=max_diff_ratio)
@@ -2121,6 +2415,7 @@ def build(src, proj_dir, dst_ver=DEFAULT_DST, spine_com=None, name=None, doc=Tru
 #
 STAGE_PREPARE = 'prepare'
 STAGE_CONVERT = 'convert'
+PREPARE_REPORT = '_prepare_report.json'      # 步骤 1 的动作清单（apply 生成交付说明时回读）
 
 
 def stage_dir(proj_dir, stage, create=True):
@@ -2141,8 +2436,12 @@ def images_dir(proj_dir):
 
 
 def find_triplet_or_json(folder):
-    """有些项目目录顶层没有 atlas/png（只在归档 zip 里），只要 JSON 就够导入。"""
-    js = glob.glob(os.path.join(folder, '*.json'))
+    """有些项目目录顶层没有 atlas/png（只在归档 zip 里），只要 JSON 就够导入。
+
+    ⚠️ 排除 `_` 开头（`_replaced_*` 备份、`prepare/_prepare_report.json`）——
+    否则"按大小取最大"可能挑到备份或报告，把源 JSON 认错。
+    """
+    js = _triplet_files(folder, 'json')
     if not js:
         raise FileNotFoundError('目录里找不到 JSON: %s' % folder)
     js.sort(key=lambda p: os.path.getsize(p), reverse=True)
@@ -2234,7 +2533,7 @@ def diff_images(src_json, dst_json, img_dir, out_dir, tol_rgb=24, panel_w=700):
     配色：**红**=只有源有（目标丢了）；**绿**=只有目标有；**蓝**=两边都有但 RGB 差 >
     `tol_rgb`；**灰白**=两边一致。人工复核时直接看图，不用猜。
 
-    返回 {皮肤: 文件路径}。
+    返回 {皮肤: 文件路径}。⚠️ 对"空壳皮肤"**没有守卫**，调用方用 `_safe_diff_images`。
     """
     d = json.load(open(src_json, encoding='utf-8'))
     off = (d['skeleton'].get('x', 0.0), d['skeleton'].get('y', 0.0))
@@ -2273,6 +2572,23 @@ def diff_images(src_json, dst_json, img_dir, out_dir, tol_rgb=24, panel_w=700):
         sh.save(fp)
         out[sn] = fp
     return out
+
+
+def _safe_diff_images(src_json, dst_json, img_dir, out_dir):
+    """`diff_images` 的容错调用：**失败路径本身不能再抛异常**。
+
+    判定"不一致"时会调它出对比图。但 `diff_images` 对"空壳皮肤"没有守卫
+    （`render_compare` 有），会把同样的 `ValueError` 重新抛出来 ——
+    本该写 `失败_需人工复核.md` 并返回 ok=False 的分支变成 traceback，
+    文档承诺的退出码 2 也不会出现（2026-09 修）。这里兜住，只报告。
+    """
+    if not src_json:
+        return {}
+    try:
+        return diff_images(src_json, dst_json, img_dir, out_dir)
+    except (ValueError, OSError) as e:            # 空壳皮肤 / 缺图等
+        print('  ! 对比图生成不完整：%s' % e)
+        return {}
 
 
 def render_compare(src_json, dst_json, img_dir, skins=None, ss=2, tol_px=1):
@@ -2330,7 +2646,12 @@ def judge_render(per, min_iou=0.70, max_diff_ratio=0.40):
     判定只看**带容差的硬差异占比**（默认容差 1px，见 `render_compare.tol_px`）：
     剪影整体平移 1px 属于"网格重建的正常后果"，肉眼无差别，不该判失败。
     原始 XOR 占比与 IoU 一起返回，供打印参考。
+
+    ⚠️ **空比对 = 不一致**（2026-09 修）：全皮肤都被跳过时以前返回 `(True, [])`，
+    于是"一次都没比"被判成"一致"并替换顶层。
     """
+    if not per:
+        return False, []
     rows, ok = [], True
     for sn, m in per.items():
         # 主判据 = **带容差的硬差异占比**；`min_iou` 只当"剪影大体重叠"的兜底下限
@@ -2372,6 +2693,17 @@ def file_delivery(proj_dir, category, as_name=None, assets_root=ASSETS_2D,
     ver = json.load(open(top_json, encoding='utf-8'))['skeleton'].get('spine')
     if not ver:
         raise RuntimeError('顶层 JSON 读不到 skeleton.spine，不像是交付件')
+    # ⚠️ 两道闸：**不能把"转换失败"的工程当交付件搬走**（2026-09 修）。
+    # `apply` 判定不一致时顶层仍是**源版本**（3.8.x），而且会留一份
+    # `失败_需人工复核.md`；原先只检查"skeleton.spine 读得到"，于是会把
+    # 未转换的源版本连同失败说明一起归档进 assets/2d/。
+    if os.path.exists(os.path.join(proj_dir, '失败_需人工复核.md')):
+        raise RuntimeError('工程里有 `失败_需人工复核.md` —— 这是"转换未通过"的状态，'
+                           '不能当交付件归档。先看对比图解决它，或删掉说明重跑 '
+                           'prepare/convert/apply')
+    if str(ver).split('.')[0].isdigit() and int(str(ver).split('.')[0]) < 4:
+        raise RuntimeError('顶层是 Spine %s（< 4.x）= 还没转版本（`apply` 没成功过），'
+                           '不能当交付件归档；先跑 prepare/convert/apply' % ver)
     name = as_name or os.path.splitext(os.path.basename(top_json))[0]
     dest = os.path.join(assets_root, *category.split('/'), name)
     items = [os.path.basename(p) for p in (top_json, top_atlas, top_png)]
@@ -2386,7 +2718,8 @@ def file_delivery(proj_dir, category, as_name=None, assets_root=ASSETS_2D,
         items.append('images_original')
     items += [x for x in sorted(os.listdir(proj_dir))
               if x.startswith('复原预览图') and x.endswith('.png')]
-    for extra in ('交付说明.md', '失败_需人工复核.md'):
+    # `失败_需人工复核.md` **不进交付件**（上面已闸住它的存在）；只搬交付说明。
+    for extra in ('交付说明.md',):
         if os.path.exists(os.path.join(proj_dir, extra)):
             items.append(extra)
     items += [x for x in sorted(os.listdir(proj_dir)) if x.startswith('原始资源_')]
@@ -2400,7 +2733,8 @@ def file_delivery(proj_dir, category, as_name=None, assets_root=ASSETS_2D,
     if os.path.isdir(dest):
         replaced = sorted(os.listdir(dest))
         if not overwrite:
-            raise FileExistsError('目标已存在：%s（加 --force 覆盖）' % dest)
+            raise FileExistsError('目标已存在：%s（默认会覆盖；是 `--no-overwrite` 让它报错的）'
+                                  % dest)
         shutil.rmtree(dest)
     os.makedirs(dest, exist_ok=True)
     for it in items:
@@ -2446,11 +2780,19 @@ def convert(proj_dir, spine_com=None, dst_ver=DEFAULT_DST, src_ver=None, force=F
     if base.endswith('_fullsize'):
         base = base[:-len('_fullsize')]
     out_dir = stage_dir(proj_dir, STAGE_CONVERT)
-    if os.path.exists(out_dir) and not force:
+    # `convert` 的定义就是"产出一份**新鲜**的目标版本转换" —— 所以总是清干净重做。
+    # （原条件写成 `and not force`，于是**不传 --force 才清**、传了反而保留旧产物
+    #   再叠加新产物：convert/ 里新旧两套并存，`find_triplet` 按大小取 JSON
+    #   可能挑到**旧**的那套交付出去。2026-09 修）
+    if os.path.exists(out_dir):
         shutil.rmtree(out_dir)
     os.makedirs(out_dir, exist_ok=True)
 
-    rep = {'from': cur, 'src_ver': src, 'dst_ver': dst, 'name': base, 'steps': [], 'spine': spine}
+    rep = {'from': cur, 'src_ver': src, 'dst_ver': dst, 'name': base, 'steps': [],
+           'spine': spine, 'force_ignored': bool(force)}
+    if force:
+        rep.setdefault('notes', []).append(
+            '`--force` 已无意义（现在总是重新转换），留着只为兼容旧命令行')
     work = tempfile.mkdtemp(prefix='spine_conv_')
     log = os.path.join(work, 'spine.log')
 
@@ -2460,21 +2802,26 @@ def convert(proj_dir, spine_com=None, dst_ver=DEFAULT_DST, src_ver=None, force=F
     jj['skeleton'] = dict(j['skeleton'])
     jj['skeleton']['images'] = img_dir.replace('\\', '/') + '/'
     json.dump(jj, open(work_json, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-    rep['work_images_path'] = jj['skeleton']['images']
 
     # 步骤 A：匹配版本导入成工程
     proj = os.path.join(work, base + '.spine')
     rc, txt = _run([spine, '-u', src, '-i', work_json, '-o', proj, '-r'], log)
+    rep['steps'].append('A. Spine %s 导入 JSON -> %s（退出码 %d）' % (src, base + '.spine', rc))
     if not os.path.exists(proj):
-        raise RuntimeError('步骤A失败（Spine %s 导入 JSON）：\n%s' % (src, txt[-1500:]))
-    rep['steps'].append('A. Spine %s 导入 JSON -> %s' % (src, base + '.spine'))
+        raise RuntimeError('步骤A失败（Spine %s 导入 JSON，退出码 %d）：\n%s'
+                           % (src, rc, txt[-1500:]))
+    if rc != 0:                     # 退出码非 0 但产物在 -> 记账，不静默
+        rep.setdefault('notes', []).append('步骤A 退出码 %d（产物已生成，按成功继续）' % rc)
 
     # 步骤 B：目标版本打开工程（自动升级）导出 + 重打包图集
     rc, txt = _run([spine, '-u', dst, '-i', proj, '-o', work + os.sep + 'out', '-e', 'json+pack'], log)
     got = glob.glob(os.path.join(work, 'out', '*.json'))
     if not got:
-        raise RuntimeError('步骤B失败（Spine %s 导出）：\n%s' % (dst, txt[-1500:]))
-    rep['steps'].append('B. Spine %s 打开工程并导出 json+pack' % dst)
+        raise RuntimeError('步骤B失败（Spine %s 导出，退出码 %d）：\n%s'
+                           % (dst, rc, txt[-1500:]))
+    rep['steps'].append('B. Spine %s 打开工程并导出 json+pack（退出码 %d）' % (dst, rc))
+    if rc != 0:
+        rep.setdefault('notes', []).append('步骤B 退出码 %d（产物已生成，按成功继续）' % rc)
     rep['spine_log_warnings'] = {
         'slash_renamed': len(re.findall(r'Slot forward slash disallowed', txt)),
         'reset_edges': len(re.findall(r'Reset invalid edges', txt)),
@@ -2508,18 +2855,17 @@ def convert(proj_dir, spine_com=None, dst_ver=DEFAULT_DST, src_ver=None, force=F
     # 那是「裁剪舍入」不是「真错」（见 README 验收纪律）
     n, bad, w_rgb, w_alpha = verify_roundtrip(nat, img_dir, alpha_tol=4)
     rep['roundtrip_alpha'] = '%d/%d' % (n - len(bad), n)
-    rep['roundtrip_rgb_note'] = 'RGB 差异为预乘 alpha（pma:true），非缺陷'
+    rep['roundtrip_rgb_tol_note'] = 'RGB 在预乘域比，容差 1（pma:true）'
 
     # 渲染逐像素比对：**每套皮肤都比一遍**（多皮肤资源只比一套会漏掉皮肤专属部件）
     per, sk_off = render_compare(src_json, nj, img_dir, ss=2)
     rep['render_sk_offset'] = sk_off
     rep['render_per_skin'] = per
-    worst = max(per, key=lambda k: per[k]['alpha_diff_px'])
-    rep['worst_skin'] = worst
-    rep['render_bbox'] = per[worst]['bbox']
-    rep['render_origin_shift'] = per[worst]['origin_shift']
-    rep['render_alpha_diff_px'] = per[worst]['alpha_diff_px']
-    rep['render_rgb_max_diff'] = per[worst]['rgb_max_diff']
+    if per:                       # 全空时不要在这里崩（apply 的判定才是裁决者）
+        rep['worst_skin'] = max(per, key=lambda k: per[k]['alpha_diff_px'])
+    else:
+        rep.setdefault('notes', []).append(
+            '⚠ 一套皮肤都没比成（全部无可渲染附件）—— 渲染校验实际**没做**')
 
     # 预览（每套皮肤一张）
     prevs = render_previews(nj, img_dir, out_dir)
@@ -2576,7 +2922,7 @@ def apply_converted(proj_dir, keep_version_dir=False, backup=False,
     # ---- ① 校验：prepare 预览（prepare/ JSON）vs convert 预览（convert/ JSON）
     if not src_json:
         rep['ok'] = True
-        rep['verdict'] = '没有可比的源 JSON，跳过渲染比对'
+        rep['verdict'] = '没有可比的源 JSON，跳过渲染比对（**这次比对没做**）'
         rep['render_rows'] = []
     else:
         per, sk_off = render_compare(src_json, f[0], img_dir, ss=2)
@@ -2586,14 +2932,18 @@ def apply_converted(proj_dir, keep_version_dir=False, backup=False,
         rep['ok'] = ok
         rep['render_rows'] = rows
         rep['threshold'] = {'min_iou': min_iou, 'max_diff_ratio': max_diff_ratio}
-        rep['verdict'] = ('一致（逐皮肤 IoU >= %.2f 且差异像素 <= %.0f%%）'
-                          % (min_iou, 100 * max_diff_ratio) if ok else
-                          '不一致：转换后的渲染与源不一致，需人工复核')
+        if not per:
+            rep['verdict'] = ('**一套皮肤都没比成**（全部无可渲染附件）—— '
+                              '不能当作"一致"，需人工确认')
+        else:
+            rep['verdict'] = ('一致（逐皮肤 IoU >= %.2f 且差异像素 <= %.0f%%）'
+                              % (min_iou, 100 * max_diff_ratio) if ok else
+                              '不一致：转换后的渲染与源不一致，需人工复核')
 
     # ---- ② 不一致 -> 顶层不动，两份都留，写失败说明
     if not rep['ok']:
         rep['kept'] = ['convert/', 'prepare/']
-        rep['diff_images'] = diff_images(src_json, f[0], img_dir, proj_dir)
+        rep['diff_images'] = _safe_diff_images(src_json, f[0], img_dir, proj_dir)
         rep['doc'] = _write_fail_doc(proj_dir, rep)
         return rep
 
@@ -2601,9 +2951,24 @@ def apply_converted(proj_dir, keep_version_dir=False, backup=False,
     if old:
         rep['old_version'] = json.load(open(old[0], encoding='utf-8'))['skeleton'].get('spine')
         if backup:
+            # ⚠️ **绝不能覆盖已有的 `_replaced_*`**（2026-09 修）：第二次 `apply --backup`
+            # （正是 §14.5 的复诊工作流）会把"真·原始备份"换成上一次运行的产物，
+            # 而交付说明仍称它"本次被替换掉的旧三件套"。已存在就换编号，把老的留住。
+            numbered = False
             for p in old:
-                shutil.copy2(p, os.path.join(proj_dir, '_replaced_' + os.path.basename(p)))
-                rep.setdefault('backup', []).append('_replaced_' + os.path.basename(p))
+                bn = os.path.basename(p)
+                dst = os.path.join(proj_dir, '_replaced_' + bn)
+                if os.path.exists(dst):
+                    n = 2
+                    while os.path.exists(os.path.join(proj_dir, '_replaced_%d_%s' % (n, bn))):
+                        n += 1
+                    dst = os.path.join(proj_dir, '_replaced_%d_%s' % (n, bn))
+                    numbered = True
+                shutil.copy2(p, dst)
+                rep.setdefault('backup', []).append(os.path.basename(dst))
+            if numbered:
+                rep.setdefault('notes', []).append(
+                    '_replaced_* 已存在，本次另存为编号副本（老的备份没有被覆盖）')
 
     for src in f:
         shutil.copy2(src, os.path.join(proj_dir, os.path.basename(src)))
@@ -2641,6 +3006,8 @@ def apply_converted(proj_dir, keep_version_dir=False, backup=False,
             rep['replaced'].append(f2)
 
     if not keep_version_dir:
+        # 交付说明要自带完整履历 —— `prepare/` 下面马上就删了，先把它的动作清单取出来
+        rep['prepare_fixes'] = read_prepare_fixes(proj_dir)
         shutil.rmtree(sub)
         rep['removed'] = ['convert/']
         # 交付件里不需要 prepare/ —— 源三件套已在 原始资源_*.zip，
@@ -2684,8 +3051,9 @@ def _write_fail_doc(proj_dir, rep):
               '（已补偿源骨架 skeleton.x/y = %s）' % rep.get('render_sk_offset'), '',
               '## 怎么办', '',
               '1. 看两边的 `复原预览图_*.png`，肉眼确认差在哪',
-              '2. 若差异可接受（如网格重算导致的细节变化），放宽阈值重跑：',
-              '   `apply <dir> --min-iou 0.75 --max-diff 0.25`',
+              '2. 若差异可接受（如网格重算导致的细节变化），**放宽阈值**重跑：',
+              '   `apply <dir> --min-iou 0.60 --max-diff 0.55`'
+              '（默认 0.70 / 0.40，**数值要比默认宽松**才放得进来）',
               '3. 若确实失真，回退源版本重做 `prepare`/`convert`', '',
               '## 对比图（人工复核直接看这个）', '']
     for sn, fp in (rep.get('diff_images') or {}).items():
@@ -2736,7 +3104,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 
 def find(d, ext):
-    fs = sorted(glob.glob(os.path.join(d, '*.' + ext)))
+    """目录下第一个 `*.<ext>`，**排除 `_` 开头的**（备份/报告不是交付件）。"""
+    fs = sorted(_triplet_files(d, ext))
     if not fs:
         sys.exit('目录 %s 下找不到 *.%s' % (d, ext))
     return fs[0]
@@ -2744,16 +3113,30 @@ def find(d, ext):
 
 def cmd_diagnose(a):
     atlas = a.atlas or find(a.dir, 'atlas')
-    js = a.json or (glob.glob(os.path.join(a.dir, '*.json')) or [None])[0]
+    js = a.json or (sorted(_triplet_files(a.dir, 'json'))
+                    or [None])[0]
     rep = diagnose(atlas, js)
     print(json.dumps(rep, ensure_ascii=False, indent=2))
-    ok = all(p.get('rects_partition_page') and p.get('page_name_matches_file')
-             and not p.get('page_size_mismatch')
-             and not p.get('json_not_in_atlas') and not p.get('declared_size_mismatch')
-             and not p.get('mesh_size_mismatch')
-             for p in rep['pages'] if 'ERROR' not in p)
+    # ⚠️ ERROR 页**不能**被过滤掉：全页皆 ERROR 时生成器为空 -> all() 为真 ->
+    # 打印"体检结论: 通过"。那正是 §9.1 禁止的"把没测伪装成通过"（2026-09 修）。
+    err = [p.get('page') for p in rep['pages'] if 'ERROR' in p]
+    pages = [p for p in rep['pages'] if 'ERROR' not in p]
+    checked = sum(p.get('declared_size_checked', 0) for p in pages)
+    ok = bool(pages) and not err and all(
+        p.get('rects_partition_page') and p.get('page_name_matches_file')
+        and not p.get('page_size_mismatch')
+        and not p.get('json_not_in_atlas') and not p.get('declared_size_mismatch')
+        and not p.get('mesh_size_mismatch')
+        and not p.get('declared_size_unchecked')
+        for p in pages)
+    if err:
+        print('\n!! 有 %d 页读不到页图（这些页**完全没测**）：%s'
+              % (len(err), ', '.join(str(x) for x in err)))
+    if pages and not checked:
+        print('\n!! 单图目录里一张图都没找到，**"声明尺寸 vs 磁盘"这项没测**')
     print('\n>>> 体检结论: %s' % ('通过（矩形构成页图精确分区，三方对账无误）' if ok
-                                 else '发现问题，见上面 multi_covered / overlapping_rect_pairs / *_mismatch'))
+                                 else '发现问题，见上面 ERROR / multi_covered / '
+                                      'overlapping_rect_pairs / *_mismatch / unchecked'))
 
 
 def cmd_pagefix(a):
@@ -2764,19 +3147,26 @@ def cmd_pagefix(a):
         print('页图缩回声明尺寸 %s  %s -> %s   覆盖率 %.2f%%' % (pg, old, new, cov))
     for pg, old, new, cov in info['size_line_fixed']:
         print('size 行修正     %s  %s -> %s   覆盖率 %.2f%%' % (pg, old, new, cov))
+    for pg, old, new, cov in info['ambiguous']:
+        print('size 行修正*    %s  %s -> %s   覆盖率 %.2f%%'
+              '（两假设覆盖率差 < margin，按"声明过期"处理；**未重采样**）'
+              % (pg, old, new, cov))
     for pg, tag, size, c0, c1 in info['checked']:
         print('  %-28s %-8s %-12s %s' % (pg, tag, size,
                                          '' if c0 is None else 'H2 %.2f%% / H1 %.2f%%' % (c0, c1)))
-    if not any(info[k] for k in ('renamed', 'resized', 'size_line_fixed')):
+    if not any(info[k] for k in ('renamed', 'resized', 'size_line_fixed', 'ambiguous')):
         print('无需修复。')
 
 
 def cmd_unpack(a):
     atlas = a.atlas or find(a.dir, 'atlas')
-    js = a.json or (glob.glob(os.path.join(a.dir, '*.json')) or [None])[0]
+    js = a.json or (sorted(_triplet_files(a.dir, 'json')) or [None])[0]
     out = a.out or os.path.join(a.dir, 'images_original')
-    decontaminate(atlas, out, json_path=js)
+    rep = decontaminate(atlas, out, json_path=js, overlap=a.overlap,
+                        min_private=a.min_private, min_keep=a.min_keep)
     print('-> %s' % out)
+    if rep.get('out_of_bounds'):
+        print('⚠ %d 个区域越界（未做去污染）' % len(rep['out_of_bounds']))
 
 
 def cmd_repack(a):
@@ -2823,14 +3213,12 @@ def cmd_render(a):
               % (bb[0], bb[1]))
     if a.bones:
         # 把骨骼叠到渲染图上：与 render() 内部同一套 world->画布 映射
-        from PIL import ImageDraw
         minx, maxy = bb[0], bb[3]
         d0 = ImageDraw.Draw(img)
         Renderer(js, images).render_bones(
             lambda p: ((p[0] - minx) + pad, (maxy - p[1]) + pad), d0)
         print('已叠加骨骼')
     if a.background:
-        from PIL import Image
         c = img.convert('RGBA')
         canvas = Image.new('RGBA', c.size, tuple(a.background))
         canvas.alpha_composite(c)
@@ -2860,13 +3248,21 @@ def cmd_verify(a):
 
 def cmd_meshfit(a):
     js = a.json or find(a.dir, 'json')
-    res = mesh_fit_score(js, a.images)
+    res, skips = mesh_fit_score(js, a.images, return_skips=True)
     if not res:
-        sys.exit('没有可评估的网格（检查 --images）')
-    import numpy as np
+        print('没有可评估的网格。跳过明细：')
+        for k, why in skips[:20]:
+            print('   %-28s %s' % (k, why))
+        if not skips:
+            print('   （这份 JSON 里没有任何网格附件）')
+        sys.exit(1)
     print('%-14s %-10s %s' % ('mesh', 'sqrt|det|', 'IoU(网格 vs 图)'))
     for key, sc, iou in sorted(res):
         print('%-14s %-10.4f %.4f' % (key, sc, iou))
+    if skips:
+        print('\n未参与评估的 %d 项：' % len(skips))
+        for k, why in skips[:10]:
+            print('   %-28s %s' % (k, why))
     print('\n平均 IoU = %.4f ；平均 sqrt|det| = %.4f'
           % (np.mean([r[2] for r in res]), np.mean([r[1] for r in res])))
     print('提示：sqrt|det| 应≈骨骼的 scale（本例 all=0.95）；明显偏离说明图集被降采样过。')
@@ -2899,10 +3295,16 @@ def cmd_prepare(a):
     _print_previews(rep)
     sc = rep.get('scale') or {}
     if sc.get('mismatch'):
-        print('打包倍率  源图集 = 声明 × %.3f   %d/%d 个附件不符%s'
-              % (sc['scale'], sc['mismatch'], sc['checked'],
-                 '' if not rep.get('upscaled')
-                 else '，已按声明尺寸放大单图 ×%.4f' % rep['upscaled']))
+        if sc.get('scale'):
+            print('打包倍率  源图集 = 声明 × %.3f   %d/%d 个附件不符%s'
+                  % (sc['scale'], sc['mismatch'], sc['checked'],
+                     '' if not rep.get('upscaled_n')
+                     else '，已放大单图 %d 张（×%.4f）'
+                          % (rep['upscaled_n'], rep['upscaled'])))
+        else:
+            print('打包倍率  源图集不符 %d/%d 个附件，但**全在网格上、推不出包内倍率**'
+                  '（网格声明尺寸疑为占位值），未做尺寸对齐'
+                  % (sc['mismatch'], sc['checked']))
     for f in rep['fixed']:
         print('修复      %s' % f)
     if a.check:
@@ -2954,6 +3356,9 @@ def cmd_apply(a):
         print('            %-10s 硬差异 %7d px (%.2f%%)  原始XOR %.2f%%  IoU %.4f  %s'
               % (sn, diff, 100 * ratio, 100 * raw, iou,
                  '通过' if good else '**不通过**'))
+    if not rep.get('render_rows'):
+        print('            （**一套皮肤都没比成** —— 不能当作"一致"）')
+    print('判定      %s' % rep.get('verdict', ''))
     if not rep['ok']:
         print('\n✗ 判定      不一致 —— 顶层保持源版本未动，两份都保留')
         print('  保留      %s' % ', '.join(rep.get('kept', [])))
@@ -2975,7 +3380,7 @@ def cmd_apply(a):
              f['overlapping_rect_pairs'], f['rects_partition_page']))
     print('反解回环  %s 一致' % rep['final_roundtrip_alpha'])
     if not a.no_doc:
-        doc = write_delivery_doc(a.dir)
+        doc = write_delivery_doc(a.dir, fixes=rep.get('prepare_fixes') or ())
         print('说明      %s' % os.path.basename(doc))
     print('\n★ 判定通过，顶层已是交付件；'
           '原始三件套在 原始资源_*.zip 里可回退')
@@ -3004,7 +3409,7 @@ def cmd_file(a):
 def cmd_build(a):
     rep = build(a.src, a.out, dst_ver=a.to, spine_com=a.spine, name=a.name,
                   doc=not a.no_doc, tight=not a.no_tight,
-                  min_iou=a.min_iou, max_diff_ratio=a.max_diff)
+                  min_iou=a.min_iou, max_diff_ratio=a.max_diff, overlap=a.overlap)
     pr, cv = rep['prepare'], rep['convert']
     print('工程      %s' % rep['project'])
     print('阶段目录  prepare/  convert/%s' % ('（已搬走）' if rep['ok'] else '（保留）'))
@@ -3092,6 +3497,9 @@ def main():
                    help='剪影重叠的兜底下限（默认 0.70；主判据是带 1px 容差的硬差异占比）')
     p.add_argument('--max-diff', type=float, default=0.40,
                    help='apply 判定用的逐皮肤硬差异占比上限（默认 0.40）')
+    p.add_argument('--overlap', choices=('mesh', 'keep'), default='mesh',
+                   help='透传给 prepare：mesh=按网格裁剪（默认）；'
+                        'keep=重叠区一律保留（逃生开关，绝不削本体但会带邻居碎片）')
     p.set_defaults(func=cmd_build)
 
     p = sub.add_parser('prepare', help='步骤1：解压 → 解包图集成单图 → 出预览图')
@@ -3111,7 +3519,8 @@ def main():
     p.add_argument('--to', default='4.3.26', help='目标版本')
     p.add_argument('--src', default=None, help='源版本（默认取 JSON 里 skeleton.spine）')
     p.add_argument('--name', default=None, help='骨架/工程名（决定导出文件名），默认取 JSON 名去掉 _fullsize')
-    p.add_argument('--force', action='store_true')
+    p.add_argument('--force', action='store_true',
+                   help='已废弃：现在总是重新转换（留着只为兼容旧命令行）')
     p.set_defaults(func=cmd_convert)
 
     p = sub.add_parser('apply', help='步骤3：校验 prepare 与 convert 的渲染是否一致，据此落盘')
@@ -3139,6 +3548,12 @@ def main():
 
     common(p)
     p.add_argument('-o', '--out', default=None, help='输出单图目录（默认 <dir>/images_original）')
+    p.add_argument('--overlap', choices=('mesh', 'keep'), default='mesh',
+                   help='重叠区怎么处理：mesh=按网格裁剪（默认）；keep=一律保留（逃生开关）')
+    p.add_argument('--min-private', type=float, default=0.01,
+                   help='私有区占比低于它才考虑回退原始裁切（默认 0.01）')
+    p.add_argument('--min-keep', type=float, default=0.5,
+                   help='仲裁拿走一半以上才回退（默认 0.5）')
     p.set_defaults(func=cmd_unpack)
 
     p = sub.add_parser('repack')
