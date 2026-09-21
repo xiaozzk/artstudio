@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2D 预览图浏览器 · assets/2d</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --surface: #161a22;
+    --surface-2: #1f2530;
+    --text: #e8ecf1;
+    --text-dim: #93a0b3;
+    --border: #2a3140;
+    --accent: #6ea8fe;
+    --hover: #232a36;
+    --shadow: 0 4px 24px rgba(0,0,0,.5);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Top bar */
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(15,17,21,.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px 12px;
+  }
+  h1 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+  h1 .path {
+    color: var(--text-dim);
+    font-weight: 400;
+    font-size: 13px;
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    margin-left: 8px;
+  }
+  .stats {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+  .stats b { color: var(--text); }
+  .filters {
+    display: flex; flex-wrap: wrap; gap: 10px 14px;
+    align-items: center;
+  }
+  .filter-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-right: 2px;
+    letter-spacing: .04em;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    padding: 4px 11px;
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s, border-color .15s, color .15s;
+  }
+  .chip:hover { background: var(--hover); }
+  .chip.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0b1220;
+    font-weight: 600;
+  }
+  .search {
+    flex: 1; min-width: 200px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 13px;
+    outline: none;
+  }
+  .search:focus { border-color: var(--accent); }
+  .search::placeholder { color: var(--text-dim); }
+  .reload {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .reload:hover { border-color: var(--accent); }
+
+  /* Gallery */
+  main { padding: 24px; max-width: 1680px; margin: 0 auto; }
+  .category { margin-bottom: 36px; }
+  .category-header {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  .category-header .count {
+    color: var(--text-dim);
+    font-weight: 400;
+    font-size: 12px;
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+  .gender-block { margin-bottom: 18px; margin-left: 6px; }
+  .gender-header {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .character-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color .15s, transform .15s;
+  }
+  .character-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  .character-thumbs {
+    display: grid;
+    background: var(--bg);
+  }
+  .character-thumbs.count-1 { grid-template-columns: 1fr; }
+  .character-thumbs.count-2 { grid-template-columns: 1fr 1fr; }
+  .character-thumbs.count-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .character-thumbs.count-4,
+  .character-thumbs.count-5,
+  .character-thumbs.count-6 { grid-template-columns: repeat(3, 1fr); }
+
+  .thumb {
+    aspect-ratio: 1;
+    background: var(--surface-2);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: opacity .15s;
+  }
+  .thumb:hover { opacity: .82; }
+  .thumb img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .variant-badge {
+    position: absolute;
+    bottom: 4px; right: 4px;
+    background: rgba(0,0,0,.72);
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+
+  .character-info { padding: 10px 12px 11px; }
+  .character-name {
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0;
+  }
+  .character-name .more {
+    color: var(--text-dim);
+    font-weight: 400;
+    font-size: 11px;
+    margin-left: 6px;
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+  .character-path {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin: 5px 0 0;
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    direction: rtl;
+    text-align: left;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 80px 0;
+    font-size: 14px;
+  }
+
+  /* Lightbox */
+  #lightbox {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.93);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100;
+    padding: 60px;
+  }
+  #lightbox[hidden] { display: none; }
+  #lb-img {
+    max-width: calc(100% - 120px);
+    max-height: calc(100% - 80px);
+    object-fit: contain;
+    box-shadow: var(--shadow);
+    border-radius: 6px;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .lb-btn {
+    position: absolute;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.18);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 6px;
+    user-select: none;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .15s;
+  }
+  .lb-btn:hover { background: rgba(255,255,255,.18); }
+  #lb-prev, #lb-next {
+    top: 50%; transform: translateY(-50%);
+    width: 48px; height: 64px;
+    font-size: 28px;
+  }
+  #lb-prev { left: 16px; }
+  #lb-next { right: 16px; }
+  #lb-close {
+    top: 16px; right: 16px;
+    width: 40px; height: 40px;
+    font-size: 22px;
+  }
+  .lb-info {
+    position: absolute;
+    bottom: 16px; left: 50%; transform: translateX(-50%);
+    background: rgba(0,0,0,.6);
+    padding: 10px 16px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 12px;
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    pointer-events: none;
+    line-height: 1.6;
+    max-width: calc(100% - 60px);
+    text-align: center;
+  }
+  .lb-info .lb-name { font-weight: 600; margin-right: 10px; }
+  .lb-info .lb-pos { color: #b7c1cf; }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>2D 预览图浏览器 <span class="path">assets/2d</span></h1>
+    <div class="stats" id="stats">加载中…</div>
+    <div class="filters">
+      <span class="filter-label">分类</span>
+      <div class="chips" id="cat-chips"></div>
+      <span class="filter-label">性别</span>
+      <div class="chips" id="gender-chips"></div>
+      <input type="search" class="search" id="search" placeholder="搜索角色名 / 路径片段…" autocomplete="off" spellcheck="false">
+      <button class="reload" id="reload" title="重新加载清单">↻</button>
+    </div>
+  </header>
+
+  <main id="gallery"></main>
+
+  <div id="lightbox" hidden>
+    <button class="lb-btn" id="lb-prev" aria-label="上一张">‹</button>
+    <img id="lb-img" alt="">
+    <button class="lb-btn" id="lb-next" aria-label="下一张">›</button>
+    <button class="lb-btn" id="lb-close" aria-label="关闭">✕</button>
+    <div class="lb-info">
+      <span class="lb-name" id="lb-name"></span>
+      <span class="lb-pos" id="lb-pos"></span>
+    </div>
+  </div>
+
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+
+// HTML lives at  /tools/preview-2d/preview.html
+// Server's CWD is the workspace root, so:
+const IMG_BASE = "/assets/2d/";                            // absolute image URL prefix
+const MANIFEST_URL = "preview-manifest.json";              // same dir as HTML
+const CATEGORY_ORDER = ["恶魔", "哥布林", "精灵", "人形", "兽人"];
+const GENDER_ORDER = ["男", "女", ""];
+
+const state = {
+  raw: [],
+  grouped: {},
+  flat: [],
+  activeCat: "__all__",
+  activeGender: "__all__",
+  search: "",
+  lbIndex: -1,
+};
+
+function sortedKeys(obj, order) {
+  return Object.keys(obj).sort((a, b) => {
+    const ia = order.indexOf(a), ib = order.indexOf(b);
+    return (ia === -1 ? order.length : ia) - (ib === -1 ? order.length : ib);
+  });
+}
+
+function applyFilter() {
+  const { activeCat: cat, activeGender: g, search: q } = state;
+  const lc = q.trim().toLowerCase();
+  const out = {};
+  for (const c of Object.keys(state.grouped)) {
+    if (cat !== "__all__" && c !== cat) continue;
+    for (const gk of Object.keys(state.grouped[c])) {
+      if (g !== "__all__" && gk !== g) continue;
+      for (const char of Object.keys(state.grouped[c][gk])) {
+        const items = state.grouped[c][gk][char];
+        const matched = lc
+          ? items.filter(it =>
+              it.character.toLowerCase().includes(lc) ||
+              it.rel_path.toLowerCase().includes(lc) ||
+              it.category.toLowerCase().includes(lc) ||
+              it.gender.toLowerCase().includes(lc))
+          : items;
+        if (matched.length === 0) continue;
+        (out[c] ??= {})[gk] ??= {};
+        out[c][gk][char] = matched;
+      }
+    }
+  }
+  state.filtered = out;
+  state.flat = [];
+  for (const c of Object.keys(out))
+    for (const gk of Object.keys(out[c]))
+      for (const ch of Object.keys(out[c][gk]))
+        for (const it of out[c][gk][ch])
+          state.flat.push(it);
+}
+
+function renderChips() {
+  const buildChips = (elId, values, current, onPick, labelAll) => {
+    const el = $(elId);
+    el.innerHTML = "";
+    for (const v of values) {
+      const span = document.createElement("span");
+      span.className = "chip";
+      span.textContent = v === "__all__" ? labelAll : v || "其他";
+      span.dataset.value = v;
+      if (v === current) span.classList.add("active");
+      span.addEventListener("click", () => onPick(v));
+      el.appendChild(span);
+    }
+  };
+  buildChips(
+    "#cat-chips",
+    ["__all__", ...sortedKeys(state.grouped, CATEGORY_ORDER)],
+    state.activeCat,
+    v => { state.activeCat = v; renderChips(); renderGallery(); },
+    "全部"
+  );
+  buildChips(
+    "#gender-chips",
+    ["__all__", "男", "女", ""],
+    state.activeGender,
+    v => { state.activeGender = v; renderChips(); renderGallery(); },
+    "全部"
+  );
+}
+
+function renderStats() {
+  const nImg = state.raw.length;
+  let nChar = 0;
+  for (const c of Object.keys(state.grouped))
+    for (const g of Object.keys(state.grouped[c]))
+      nChar += Object.keys(state.grouped[c][g]).length;
+  const cats = Object.keys(state.grouped).join(" / ") || "—";
+  $("#stats").innerHTML =
+    `共 <b>${nImg}</b> 张预览图 · <b>${nChar}</b> 个角色 · 分类：${cats}`;
+}
+
+function makeThumb(item, flatIdx) {
+  const div = document.createElement("div");
+  div.className = "thumb";
+  const img = document.createElement("img");
+  img.src = IMG_BASE + item.rel_path;   // e.g.  /assets/2d/恶魔/男/红面钟馗/复原预览图.png
+  img.alt = item.filename;
+  img.loading = "lazy";
+  img.decoding = "async";
+  img.dataset.flatIdx = flatIdx;
+  img.addEventListener("click", () => openLightbox(parseInt(img.dataset.flatIdx, 10)));
+  div.appendChild(img);
+  if (item.variant && item.variant !== "__default__") {
+    const b = document.createElement("span");
+    b.className = "variant-badge";
+    b.textContent = item.variant;
+    div.appendChild(b);
+  }
+  return div;
+}
+
+function renderGallery() {
+  applyFilter();
+  const main = $("#gallery");
+  main.innerHTML = "";
+
+  if (state.flat.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = "没有匹配的预览图。试试清除筛选或调整搜索关键词。";
+    main.appendChild(empty);
+    return;
+  }
+
+  const cats = sortedKeys(state.filtered, CATEGORY_ORDER);
+  let idxBase = 0;
+
+  for (const c of cats) {
+    const sec = document.createElement("section");
+    sec.className = "category";
+    const h = document.createElement("div");
+    h.className = "category-header";
+    let charCount = 0, imgCount = 0;
+    for (const g of Object.keys(state.filtered[c])) {
+      charCount += Object.keys(state.filtered[c][g]).length;
+      for (const ch of Object.keys(state.filtered[c][g])) imgCount += state.filtered[c][g][ch].length;
+    }
+    h.innerHTML = `${c} <span class="count">${charCount} 角色 · ${imgCount} 张</span>`;
+    sec.appendChild(h);
+
+    const genders = sortedKeys(state.filtered[c], GENDER_ORDER);
+    for (const gk of genders) {
+      const gb = document.createElement("div");
+      gb.className = "gender-block";
+      const gh = document.createElement("div");
+      gh.className = "gender-header";
+      gh.textContent = gk || "其他";
+      gb.appendChild(gh);
+
+      const chars = Object.keys(state.filtered[c][gk]);
+      const grid = document.createElement("div");
+      grid.className = "character-grid";
+
+      for (const char of chars) {
+        const items = state.filtered[c][gk][char];
+        const card = document.createElement("article");
+        card.className = "character-card";
+
+        const thumbsBox = document.createElement("div");
+        const n = Math.min(items.length, 6);
+        thumbsBox.className = "character-thumbs count-" + n;
+        for (let i = 0; i < n; i++) {
+          thumbsBox.appendChild(makeThumb(items[i], idxBase + i));
+        }
+        card.appendChild(thumbsBox);
+
+        const info = document.createElement("div");
+        info.className = "character-info";
+        const nm = document.createElement("div");
+        nm.className = "character-name";
+        nm.textContent = char;
+        if (items.length > 1) {
+          const more = document.createElement("span");
+          more.className = "more";
+          more.textContent = `(共 ${items.length} 张)`;
+          nm.appendChild(more);
+        }
+        const ph = document.createElement("div");
+        ph.className = "character-path";
+        ph.textContent = `assets/2d/${c}/${gk}/${char}/`;
+        info.appendChild(nm);
+        info.appendChild(ph);
+        card.appendChild(info);
+        grid.appendChild(card);
+
+        idxBase += n;
+      }
+      gb.appendChild(grid);
+      sec.appendChild(gb);
+    }
+    main.appendChild(sec);
+  }
+}
+
+function openLightbox(flatIdx) {
+  if (flatIdx < 0 || flatIdx >= state.flat.length) return;
+  state.lbIndex = flatIdx;
+  const it = state.flat[flatIdx];
+  $("#lb-img").src = IMG_BASE + it.rel_path;
+  $("#lb-img").alt = it.filename;
+  $("#lb-name").textContent = it.filename;
+  $("#lb-pos").textContent =
+    `${flatIdx + 1} / ${state.flat.length}  ·  assets/2d/${it.rel_path}`;
+  $("#lightbox").hidden = false;
+  document.body.style.overflow = "hidden";
+}
+function closeLightbox() {
+  $("#lightbox").hidden = true;
+  document.body.style.overflow = "";
+  $("#lb-img").src = "";
+}
+function navLightbox(delta) {
+  if (state.flat.length === 0) return;
+  const n = state.flat.length;
+  state.lbIndex = ((state.lbIndex + delta) % n + n) % n;
+  openLightbox(state.lbIndex);
+}
+
+async function load() {
+  try {
+    const r = await fetch(MANIFEST_URL + "?t=" + Date.now());
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const data = await r.json();
+    state.raw = data.items || [];
+    state.grouped = data.grouped || {};
+    applyFilter();
+    renderStats();
+    renderChips();
+    renderGallery();
+  } catch (e) {
+    $("#stats").textContent =
+      `清单加载失败：${e.message}。请运行 ` +
+      `python tools/preview-2d/serve.py 扫描并启动服务。`;
+  }
+}
+
+$("#search").addEventListener("input", e => {
+  state.search = e.target.value;
+  renderGallery();
+});
+$("#reload").addEventListener("click", load);
+$("#lb-prev").addEventListener("click", () => navLightbox(-1));
+$("#lb-next").addEventListener("click", () => navLightbox(1));
+$("#lb-close").addEventListener("click", closeLightbox);
+$("#lightbox").addEventListener("click", e => {
+  if (e.target.id === "lightbox") closeLightbox();
+  else if (e.target.id === "lb-img") navLightbox(1);
+});
+document.addEventListener("keydown", e => {
+  if ($("#lightbox").hidden) {
+    if (e.key === "/" && document.activeElement !== $("#search")) {
+      $("#search").focus(); $("#search").select(); e.preventDefault();
+    }
+    return;
+  }
+  if (e.key === "Escape") closeLightbox();
+  else if (e.key === "ArrowLeft") navLightbox(-1);
+  else if (e.key === "ArrowRight") navLightbox(1);
+});
+
+load();
+</script>
+</body>
+</html>

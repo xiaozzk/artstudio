@@ -1,0 +1,222 @@
+Pest.png
+size:2045,2047
+filter:Linear,Linear
+pma:true
+4
+bounds:2,1786,1274,259
+Body1111
+bounds:1278,1367,663,678
+arm 1
+bounds:2,232,357,328
+rotate:90
+arrow 2
+bounds:1212,13,804,78
+arrow 3
+bounds:1278,1262,765,103
+arrow 4
+bounds:1943,1367,678,70
+rotate:90
+arrow 5
+bounds:1977,535,603,59
+rotate:90
+cloak 3
+bounds:1681,146,992,294
+offsets:15,0,1007,294
+rotate:90
+cloak 4
+bounds:2,591,1193,338
+rotate:90
+cloak red
+bounds:753,893,891,328
+rotate:90
+cloak red2
+bounds:342,496,962,383
+cloth2
+bounds:1278,1140,120,756
+rotate:90
+hand 2b
+bounds:237,70,160,64
+rotate:90
+knee1
+bounds:2,14,216,233
+rotate:90
+leg 1
+bounds:332,292,202,930
+offsets:78,0,280,930
+rotate:90
+leg 12
+bounds:1278,883,255,401
+rotate:90
+leg 2
+bounds:1083,960,193,824
+leg1
+bounds:1083,888,70,127
+rotate:90
+lower body
+bounds:1264,93,280,408
+rotate:90
+mane1
+bounds:332,3,646,287
+smoke 2
+bounds:342,881,903,409
+rotate:90
+thigh 1 Copy
+bounds:1306,375,506,364
+rotate:90
+wing22
+bounds:980,2,230,288
+
+Pest_2.png
+size:2048,2048
+filter:Linear,Linear
+pma:true
+1
+bounds:1205,545,782,419
+rotate:90
+3
+bounds:980,353,217,675
+5
+bounds:638,1030,183,563
+rotate:90
+arm 1b
+bounds:1626,553,385,260
+arm 2b
+bounds:1767,8,230,354
+arrow 1
+bounds:233,1215,970,106
+bell
+bounds:2,2,417,149
+bell body
+bounds:421,6,216,145
+body1
+bounds:1758,1440,288,171
+offsets:83,0,371,191
+body2
+bounds:233,1009,403,204
+offsets:52,0,455,274
+body222
+bounds:2,388,672,612
+offsets:11,0,683,612
+bow
+bounds:2,1002,229,1044
+cloth1
+bounds:233,1323,275,861
+rotate:90
+cloth4
+bounds:1914,815,125,518
+offsets:6,0,131,518
+cpllar
+bounds:1450,1331,270,306
+rotate:90
+crown 2
+bounds:1618,1613,433,180
+rotate:90
+ear
+bounds:233,1600,446,574
+rotate:90
+face
+bounds:1096,1329,272,352
+rotate:90
+hat bh 2
+bounds:1758,1335,103,159
+rotate:90
+leg 1 Copy
+bounds:1626,927,402,286
+rotate:90
+leg2
+bounds:1800,1658,96,174
+rotate:90
+mask1
+bounds:1441,364,179,539
+rotate:90
+mask111
+bounds:976,2,506,108
+mask2
+bounds:1199,353,190,240
+offsets:0,0,190,264
+rotate:90
+smoke 1
+bounds:809,1603,807,443
+tail111
+bounds:1484,40,280,70
+thigh 1
+bounds:2,153,639,233
+thigh 12
+bounds:676,486,542,302
+rotate:90
+thigh 2
+bounds:976,112,239,789
+offsets:15,28,254,817
+rotate:90
+wing111
+bounds:1800,1756,290,243
+rotate:90
+wing222
+bounds:676,59,298,425
+
+Pest_3.png
+size:1968,941
+filter:Linear,Linear
+pma:true
+2
+bounds:966,425,215,514
+Layer 114 Copy
+bounds:468,2,262,330
+offsets:0,1,262,331
+arm 2
+bounds:1454,454,251,258
+arm armor
+bounds:1707,479,233,259
+offsets:18,0,251,259
+rotate:90
+cloth3
+bounds:885,18,112,401
+offsets:10,0,122,401
+crown
+bounds:797,421,518,167
+rotate:90
+hair
+bounds:2,309,244,630
+hand 1
+bounds:2,3,304,212
+rotate:90
+hand 2
+bounds:1789,52,231,150
+rotate:90
+hat 1
+bounds:216,20,287,250
+offsets:0,16,289,266
+rotate:90
+hat behind Copy
+bounds:999,27,396,119
+rotate:90
+head
+bounds:248,334,605,264
+rotate:90
+knee1 Copy
+bounds:1707,285,192,251
+rotate:90
+mane2
+bounds:1183,454,485,269
+rotate:90
+mane3
+bounds:1454,714,476,225
+mane4
+bounds:514,377,562,281
+rotate:90
+mask222
+bounds:1324,179,273,230
+rotate:90
+potion pipes
+bounds:732,4,151,371
+offsets:0,0,151,383
+tail222
+bounds:1324,19,227,158
+offsets:0,0,227,159
+upper body
+bounds:1556,12,271,231
+offsets:0,15,271,246
+rotate:90
+wing2
+bounds:1120,74,202,349
+offsets:35,0,237,349
