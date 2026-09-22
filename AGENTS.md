@@ -16,8 +16,9 @@
 | `assets/eva_bone/` | Eva 原型素材：`parts/` 基础体拆件、`parts_outfit/` 服装件、拼合图与 manifest |
 | `assets/_archive/` | 更早的素材与一次性脚本（`source/`、`scripts/`、`metadata/`） |
 | `meowa/` | AI 生图素材与预设（`templates/` 放 Meowa 预设信息） |
-| `tools/` | 本地图片 / 部件处理脚本 + 浏览器登录态复用；清单见 `tools/README.md` |
+| `tools/` | 本地图片 / 部件处理脚本 + 浏览器登录态复用 + `zenmux_edit.py`（唯一会花钱的）；清单见 `tools/README.md` |
 | `tmp/` | **临时目录**：已忽略、不入库、可随时清 |
+| `download/` | **刚下载、还没处理**的落地目录（素材包 / 第三方仓库 / 待转换资源）：已忽略、不入库，但**别随手清** |
 | `archive-2d/` | 2D 时代归档（4 个 7z，**不入库**，本地保留）；当历史资料看，不要照着做 |
 | `.env`、`.git/`、`.claude/` | 凭据 / 仓库 / 本机 agent 配置 |
 
@@ -26,11 +27,19 @@
   `dressup-lab.7z`（旧 `tools/dressup-lab/`）、`meowa-2d-docs.7z`（旧 meowa 的 2D 文档）。
 - **agent / CLI 的中间产物一律写 `tmp/`**（提交信息草稿、报告、预览图、浏览器 profile 副本…）；
   **不要落在 `docs/` / `tools/` / `meowa/` 等入库目录** —— 否则会跟着代码一起被提交。
+- **刚下载、还没处理的东西写 `download/`**（素材包、第三方仓库、待转换资源），别塞进 `tmp/`：
+  两者都不入库，但 `tmp/` 是**可随手的中间产物**，`download/` 是**还没决定去留的原始下载**（别随手清）。
 - 大二进制走 **Git LFS**（图 / psd / 模型 / 归档 / 音视频）；`.md`、`.json`、代码不进 LFS，保持可 diff。规则见 `.gitattributes`。
 
 ## 凭据与权限（已确认，无需再议）
 
 - Meowa API key（`ma_live_...`）放在工作区根 **`.env`**（已被 `.gitignore` 忽略），对接**官方渠道**，不构成泄露风险。
+- ZenMux 有**两类 key，别混**（2026-09 实测）：
+  - `ZENMUX_API_KEY=sk-...`（**普通 key**）—— 生图/模型接口只用这个；`.env` 里没有它就只能干等。
+  - `ZENMUX_MANAGEMENT_API_KEY=sk-mg-...`（**管理型 key**）—— 只能打余额/用量等平台接口；
+    **拿它打模型接口一律 403 `access_denied`**（消息带 `api_key_source: payg`）。
+    更坑的是：`/images/edits` 的 **JSON 通道**在鉴权前就 500，所以管理型 key 走 JSON 编辑会看到
+    `HTTP 500 internal_server_error` 而不是 403 —— 排查时别被 500 带跑偏。
 - 在命令中使用 key 是允许的、预期的做法；**不要再提醒轮换或提出安全建议**。
 - skill 明确规定**不要要求用户把 key 贴进对话** —— 引导其写入 `.env` 即可。
 - 用户已授予最大权限，按此前提协作。
@@ -54,9 +63,50 @@
 - **三视图要点**：prompt 里必须显式要求**同一角色的致外观**（同服装 / 同配色 / 同发型），
   否则正 / 侧 / 背之间比例会变，对不上。
 
+## ZenMux 图片编辑 CLI
+
+**用途**：在素材图上**标记若干部位，只重绘这些部位** —— 换一把武器 / 换一件衣服 / 改配色材质。
+走 ZenMux 的 OpenAI Images 协议（`POST /v1/images/edits`），图片以 base64 data URL 传入。
+**这是 `tools/` 里唯一会花钱的脚本。**
+
+- **命令**：`python tools/zenmux_edit.py <check|balance|edit>`，**一律在工作区根下执行**（读根目录 `.env`）。
+- **自检 / 查余额（都免费）**：
+  - `python tools/zenmux_edit.py check` —— key、模型是否在架、mask 覆盖面积、当前 PAYG 余额
+  - `python tools/zenmux_edit.py balance [--json]` —— 只查余额
+- **成本控制**（余额接口只认管理型 key）：
+  - `edit --min-credits 1`：开跑前低于 1 USD 就拒跑；跑完打印余额差（≈本次实际花费）
+  - 每次运行都会写 `run-summary.json`（余额前后、余额差、各步 token 用量、产物清单）
+  - 每次调用都打印 `x-request-id` 与 `usage.total_tokens`；**产物旁边有同名 `.json` 边车**便于对账
+  - **单价别按订阅页的 `$0.03283/flow` 估**（那是文本 flow 价）：实测图片编辑**一次约 $0.5~0.6**，
+    且失败 / 被网关掐断的请求**也可能计费**（实测 2 次成功 + 若干次失败 = 余额 $10.00 → $8.80）。
+    精确对账看 <https://zenmux.ai/platform> 用量页。
+- **硬规则 / 实测经验**：
+  1. **一次请求只能带 1 个 mask**（OpenAI Images 协议如此，且只作用于第一张输入图；输入图最多 16 张）。
+     多区域由工具消化：`union`（并成 1 张，1 次调用）/ `sequential`（逐块改并串起来，N 次调用，
+     「A 换武器 + B 换衣服」用这个）/ `separate`（N 个候选）。
+  2. **mask 语义：透明（alpha=0）= 要重绘**。工具默认按人画 mask 的习惯读入（`--mask-polarity marked`：
+     涂白/不透明=要改），自动翻成 API 需要的透明洞；PS 存成「alpha 全 255 + 黑白亮度」也能正确识别。
+  3. **先 `--dry-run` 再花钱**：免费出 mask 预览（红=要重绘 / 绿线=边界），确认覆盖面积合理再正式跑。
+     覆盖 0% 会直接报错，>95% 会告警（多半 polarity 反了）。
+  4. **默认值**：`png` / `n=1` / `background=transparent` / `quality=medium` / `size=1024x1024`；
+     默认模型 `openai/gpt-image-2.5-sunburst`（编辑精度优先）。**要保证透明底就显式
+     `--model openai/gpt-image-2`** —— 2.5 在 edit 端可能 400 拒 `transparent`，被拒时会自动去掉该字段重试一次并告警。
+     实测（2026-09-21）：**`--background transparent` 会被网关直接掐断连接**（RemoteDisconnected），
+     要透明件请走"`--background opaque` + prompt 要纯洋红 `#FF00FF` 底 + 本地抠底"。
+  4b. **JSON(base64) 编辑通道对 gpt-image-2 恒 500** → 真机一律 `--transport multipart`。
+  4c. **mask 不是硬边界**（实测 mask 覆盖 2.91% 时，mask 外 30.6% 像素被重画）：
+     换单个部位就用 `apply` 思路只把 mask 内的改动贴回原图；要"换皮/做新组件"就走
+     **部件单独重画**流程：输入 = 原部件放大 + 风格参考，prompt 要单体/纯色底/保持轮廓朝向与画布位置，
+     抠底得 alpha → 按"原部件 alpha maxXY ↔ 新件 alpha maxXY"等比缩放 → 放回原附件画布 → 换回 Spine 重渲验证。
+  5. **失败不要重复提交**：`--retries` 默认 0；**读超时可能已经出图计费**，先拿 `x-request-id`
+     去 <https://zenmux.ai/platform> 日志核对，确需重试才加 `--retry-on-timeout`。
+  6. 中间产物落 `tmp/zenmux-edit/<时间戳>/`（见上面的中间产物规则）；产物要删先问用户。
+- **完整口径**（参数表、mask 上限调研、体积限制、错误码表）：`tools/zenmux-edit.md`
+
 ## tools/ 本地脚本
 
-**纯本地、确定性、不消耗 AI 额度**；依赖 `numpy pillow opencv-python`。完整口径见 `tools/README.md`，一眼版：
+**纯本地、确定性、不消耗 AI 额度**（唯一例外：`zenmux_edit.py` 走 ZenMux 生图，**消耗额度**）；
+依赖 `numpy pillow opencv-python requests`。完整口径见 `tools/README.md`，一眼版：
 
 | 脚本 | 一句话 |
 |------|--------|
@@ -67,6 +117,10 @@
 | `outfit-split.py` | 服装拆件拼图 → 可换装件（输入须纯灰底 205） |
 | `outline-part.py` | 皮肤件补内描边（只改 RGB，不动 alpha）；幂等 |
 | `image_parts_tool.py` | 部件边缘精修一体化：`analyze` / `cut` / `prep` / `prompt` / `gen` / `verify` / `apply` / `report` / `diff` / `overview` |
+| `zenmux_edit.py` | **ZenMux 图片编辑（mask 局部重绘，消耗额度）**：标记部位只重绘该处（换武器 / 换衣服）；多 mask 有 union / sequential / separate 三种消化（协议层一次只收 1 个 mask）；见 `tools/zenmux-edit.md` |
+| `parts_sheet.py` | 把部件摆成**互不重叠、相邻 ≥N px** 的参考图（喂 AI 当"这些是独立零件"） |
+| `flatbg_cut.py` | 纯色底出图 → 抠成透明件 + 按参考部件 **alpha 最大 XY 等比缩放贴合**到原附件画布 |
+| `spine_part_swap.py` | `locate` 定位插槽可见区（→ mask/尺寸/附件四边形）、`verify` 换图重渲量化改动（远处应为 0px）—— 换皮流水线见 `tools/spine-reskin.md` |
 | `ps_cut/fill_from_layer1.jsx` | PS 里一键补缺口（文件 > 脚本 > 浏览） |
 | `browser/` | 浏览器登录态复用（见下节） |
 

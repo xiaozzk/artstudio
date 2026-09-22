@@ -1,0 +1,33 @@
+{
+  "source": "D:\\artstudio\\tmp\\monk_mvp\\run2\\ref_part_weapon11_x4-edit.png",
+  "part_canvas": [
+    106,
+    115
+  ],
+  "orig_max_xy": [
+    104,
+    113
+  ],
+  "orig_box": [
+    1,
+    1,
+    104,
+    113
+  ],
+  "new_max_xy": [
+    630,
+    698
+  ],
+  "new_box": [
+    72,
+    46,
+    701,
+    743
+  ],
+  "scale_x": 0.1651,
+  "scale_y": 0.1619,
+  "scale_used": 0.1619,
+  "output": "D:\\artstudio\\tmp\\monk_mvp\\out\\weapon_11_new.png",
+  "swap_render": "D:\\artstudio\\tmp\\monk_mvp\\out\\swap_render_compare.png",
+  "far_region_changed_px": 0
+}

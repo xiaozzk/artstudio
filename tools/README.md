@@ -1,11 +1,14 @@
 # tools/ — 本地图片与部件处理工具
 
-**纯本地、确定性、不消耗 AI 额度。** 与具体引擎无关，服务于「生图 → 切件 → 贴图处理」这一段。
+**除 `zenmux_edit.py` 外，都是纯本地、确定性、不消耗 AI 额度。** 与具体引擎无关，服务于「生图 → 切件 → 贴图处理」这一段。
+
+> `zenmux_edit.py` 是本目录**唯一要联网、会花钱**的脚本（调 ZenMux 做 mask 局部重绘），
+> 用法、mask 语义与「一次几个 mask」的调研结论见 [`zenmux-edit.md`](zenmux-edit.md)。
 
 ## 依赖
 
 ```
-python -m pip install numpy pillow opencv-python
+python -m pip install numpy pillow opencv-python requests
 ```
 
 ## 工具一览
@@ -19,6 +22,10 @@ python -m pip install numpy pillow opencv-python
 | `outline-part.py` | 给皮肤件补**内描边**（只改 RGB，不动 alpha）；幂等，写 PNG `tEXt` 标记 `SpineOutline` |
 | `outfit-split.py` | 把服装拆件拼图切成可换装件（输入为纯灰底 205） |
 | `image_parts_tool.py` | 部件边缘精修一体化：`analyze` / `cut` / `prep` / `prompt` / `gen` / `verify` / `apply` / `report` / `diff` / `overview` |
+| `zenmux_edit.py` | **ZenMux 图片编辑（mask 局部重绘，消耗额度）**：base64 传图、多 mask 三种消化方式（union / sequential / separate）、SSE 流式、dry-run 预览、PAYG 余额查询与 `--min-credits` 守卫 → 见 [`zenmux-edit.md`](zenmux-edit.md) |
+| `parts_sheet.py` | 把一组部件摆成**互不重叠、相邻 ≥N px** 的参考图（shelf packing + 逐对间距自检），喂 AI 当"这些是独立零件" |
+| `flatbg_cut.py` | 纯色底出图 → **抠成透明件**（自动估底 + 反混合去边）+ 按参考部件 **alpha 最大 XY 等比缩放贴合**到原附件画布 |
+| `spine_part_swap.py` | Spine 部件两件事：`locate`（哨兵色重渲定位插槽可见区 → mask / 尺寸 / 附件四边形）、`verify`（换图重渲量化改动范围，远处应为 0px）—— 换皮整条流水线见 [`spine-reskin.md`](spine-reskin.md) |
 | `ps_cut/fill_from_layer1.jsx` | PS 内一键补缺口（文件 > 脚本 > 浏览） |
 
 ## 子目录

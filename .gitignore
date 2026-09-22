@@ -55,6 +55,10 @@ node_modules/
 test-output/
 out/
 tmp/
+# download/ 是"刚下载、还没处理"的落地目录（素材包 / 第三方仓库 / 待转换资源…）。
+# 与 tmp/ 的区别：tmp/ 放**可再生的中间产物**，download/ 放**还没决定去留的原始下载**；
+# 两者都不入库，但 download/ 里的东西通常比 tmp/ 更值得留（别随手清）。
+download/
 
 # --- Agent / CLI 工具产物（本机配置 + 中间产物，不入库）---------------------
 # .claude/ 是本机 AI 编码工具的本地设置（settings.local.json 等）。原先只靠本机全局
