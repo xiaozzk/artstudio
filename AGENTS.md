@@ -69,17 +69,21 @@
 走 ZenMux 的 OpenAI Images 协议（`POST /v1/images/edits`），图片以 base64 data URL 传入。
 **这是 `tools/` 里唯一会花钱的脚本。**
 
-- **命令**：`python tools/zenmux_edit.py <check|balance|edit>`，**一律在工作区根下执行**（读根目录 `.env`）。
-- **自检 / 查余额（都免费）**：
+- **命令**：`python tools/zenmux_edit.py <check|balance|cost|edit>`，**一律在工作区根下执行**（读根目录 `.env`）。
+- **自检 / 查余额 / 查账单（都免费）**：
   - `python tools/zenmux_edit.py check` —— key、模型是否在架、mask 覆盖面积、当前 PAYG 余额
   - `python tools/zenmux_edit.py balance [--json]` —— 只查余额
+  - `python tools/zenmux_edit.py cost [--models M] [--dimension BIZ_MTH|BIZ_DT|BIZ_HOUR] [--time T]` —— 查账单
 - **成本控制**（余额接口只认管理型 key）：
   - `edit --min-credits 1`：开跑前低于 1 USD 就拒跑；跑完打印余额差（≈本次实际花费）
   - 每次运行都会写 `run-summary.json`（余额前后、余额差、各步 token 用量、产物清单）
   - 每次调用都打印 `x-request-id` 与 `usage.total_tokens`；**产物旁边有同名 `.json` 边车**便于对账
-  - **单价别按订阅页的 `$0.03283/flow` 估**（那是文本 flow 价）：实测图片编辑**一次约 $0.5~0.6**，
-    且失败 / 被网关掐断的请求**也可能计费**（实测 2 次成功 + 若干次失败 = 余额 $10.00 → $8.80）。
-    精确对账看 <https://zenmux.ai/platform> 用量页。
+  - **单价别按订阅页的 `$0.03283/flow` 估**（那是文本 flow 价）：图片编辑实测**一次 $0.15~0.18**
+    （`image_output` 占 94%）。精确对账：`python tools/zenmux_edit.py cost --models openai/gpt-image-2`
+    （按天看小时桶加 `--dimension BIZ_DT --time YYYYMMDD`）。
+  - ⚠ **被网关掐断的请求照样计费**（实测一轮 7 次全计费 $1.2009，只有 2 次拿到图，白烧 72%）：
+    所以透明件不要用 `--background transparent`（实测该参数会被断连、且 4 次全扣款）；
+    **被掐断默认不自动重试**（要重试得显式 `--retry-on-drop`，先 `cost` 核账再决定）。
 - **硬规则 / 实测经验**：
   1. **一次请求只能带 1 个 mask**（OpenAI Images 协议如此，且只作用于第一张输入图；输入图最多 16 张）。
      多区域由工具消化：`union`（并成 1 张，1 次调用）/ `sequential`（逐块改并串起来，N 次调用，
