@@ -213,6 +213,68 @@ def format_balance(data: dict) -> str:
     return "".join(parts)
 
 
+def fetch_cost(base_url: str, key: str, dimension: str, query_time: str, models: list, timeout: int = 30) -> dict:
+    """GET /management/cost —— 官方账单口径（Analysis > Cost）。Management API Key only。"""
+    params = {"type": "cost", "query_dimension": dimension, "query_time": query_time}
+    if models:
+        params["model_slugs"] = ",".join(models)
+    r = requests.get(base_url.rstrip("/") + "/management/cost", headers={"Authorization": f"Bearer {key}"},
+                     params=params, timeout=(10, timeout))
+    if r.status_code >= 400:
+        msg, etype, code = parse_error_body(r)
+        raise ApiError(r.status_code, msg or r.reason,
+                       r.headers.get("x-request-id") or r.headers.get("x-zenmux-request-id") or "", etype, code)
+    body = r.json()
+    if not isinstance(body, dict) or not body.get("success", True):
+        raise ApiError(200, f"cost 响应结构不认识：{json.dumps(body, ensure_ascii=False)[:200]}")
+    return body.get("data") or {}
+
+
+def default_cost_time(dimension: str, now=None) -> str:
+    now = now or datetime.now()
+    return {"BIZ_MTH": now.strftime("%Y%m"), "BIZ_DT": now.strftime("%Y%m%d"),
+            "BIZ_HOUR": now.strftime("%Y%m%d%H")}.get(dimension, now.strftime("%Y%m"))
+
+
+def cmd_cost(args) -> int:
+    """查账单（免费）。用来回答"刚那次被掐断的请求到底计费没有"。"""
+    key, source = resolve_management_key(args)
+    if not key:
+        die("没有 Management API Key。在**工作区根** .env 里加一行：\n"
+            "    ZENMUX_MANAGEMENT_API_KEY=sk-mg-...\n"
+            "在 https://zenmux.ai/platform/management 创建")
+    warn_if_plain_key(key, source)
+    qt = args.time or default_cost_time(args.dimension)
+    models = [m for spec in (args.models or []) for m in spec.split(",") if m]
+    if not models and getattr(args, "model", None) and args.model != DEFAULT_MODEL:
+        warn(f"cost 按 --models 过滤；你给的 --model {args.model} 在这里被忽略（现在查全部模型）")
+    try:
+        data = fetch_cost(args.base_url, key, args.dimension, qt, models, args.timeout)
+    except ApiError as e:
+        hint = ""
+        if e.status == 429:
+            hint = "\n       账单接口与 Usage 共享 60 次/分钟限流，等一分钟再试"
+        elif e.status == 403 or e.etype == "access_denied":
+            hint = "\n       只认个人账号的 sk-mg- 管理型 key（组织 key / 普通 key 会被拒）"
+        die(f"查账单失败：{e}" + hint, 2)
+
+    if args.json:
+        log(json.dumps(data, ensure_ascii=False, indent=2))
+    s = data.get("summary") or {}
+    log(f"账单 {args.dimension}={qt}" + (f"  模型={','.join(models)}" if models else "（全部模型）"))
+    if not s.get("totalCost") and not s.get("requestCounts"):
+        log("  （该时间段没有数据；账单有 3~5 分钟延迟，刚跑完的请求可能还没入库）")
+    else:
+        log(f"  合计 ${s.get('totalCost')}   请求 {s.get('requestCounts')} 次   均价 ${s.get('requestAvgCost')}")
+        log(f"  输入 ${s.get('inputCost')} / 输出 ${s.get('outputCost')} / 其它 ${s.get('otherCost')}"
+            f"   共 {s.get('totalTokens')} tokens")
+    for row in (data.get("analysis") or {}).get("costByModel") or []:
+        log(f"  · {row.get('bizTime')}  {row.get('modelSlug')}  ${row.get('billAmount')}  {row.get('requestCounts')} 次")
+    for row in (data.get("analysis") or {}).get("costByTokenType") or []:
+        log(f"  · 计费项 {row.get('tokenType')}: ${row.get('billAmount')}")
+    return 0
+
+
 def cmd_balance(args) -> int:
     key, source = resolve_management_key(args)
     if not key:
@@ -1026,18 +1088,26 @@ def cmd_edit(args) -> int:
                     f"拿 x-request-id 去 https://zenmux.ai/platform 日志核对；"
                     f"确需自动重试用 --retry-on-timeout", 2)
             except requests.RequestException as e:
-                # 连接阶段失败 = 请求没送达，重试安全；读超时单独处理（见上）
+                # ⚠ 实测（2026-09-22）：**被网关掐断的请求也会计费** —— 账单显示 7 次计费 / $1.20，
+                # 而当时只有 2 次调用拿到了图。所以连接失败**默认不自动重试**，
+                # 必须显式 --retry-on-drop，并且先查账单/余额确认前一次到底算不算。
+                drop = "RemoteDisconnected" in str(e) or "Connection aborted" in str(e)
                 extra = ""
-                if "RemoteDisconnected" in str(e) or "Connection aborted" in str(e):
-                    extra = ("\n       ↳ 实测：edit 端点上 **background=transparent** 会被网关直接掐断连接"
-                             "（不是 4xx）。组件/透明需求建议改 --background opaque，"
-                             "并在 prompt 里要\"纯色底\"（如纯洋红 #FF00FF），本地抠底得到透明件；"
-                             "多图 multipart 偶发同症状，加 --retries 2 可过")
-                if attempt < args.retries:
+                if drop:
+                    extra = ("\n       ↳ 被掐断的多半是 `--background transparent`（实测该参数在 edit 端点会被网关断连）；"
+                             "要透明件就 `--background opaque` + prompt 要纯色底（如 #FF00FF）再本地抠底。"
+                             "\n       ↳ ⚠ 这次请求**可能已经计费**（实测被掐断的请求也进账单）："
+                             "先用 `python tools/zenmux_edit.py cost` / `balance` 核对，再决定要不要重试。")
+                allowed = (attempt < args.retries) and (not drop or args.retry_on_drop)
+                if allowed:
                     attempt += 1
-                    warn(f"连接失败（{e}），5s 后重试 {attempt}/{args.retries}（请求未送达，不会重复计费）")
+                    warn(f"连接失败（{e}），5s 后重试 {attempt}/{args.retries}"
+                         f"{'（⚠ 被掐断的请求可能已计费，重试=可能再花一次）' if drop else ''}")
                     time.sleep(5)
                     continue
+                if drop and attempt < args.retries and not args.retry_on_drop:
+                    die(f"网络错误：{e}\n       （被掐断的请求默认不重试：实测它**也会计费**；"
+                        f"确认过账单后要重试就加 --retry-on-drop）" + extra, 2)
                 die(f"网络错误：{e}（默认不重试，避免重复计费；确实要重试用 --retries N）" + extra, 2)
 
         meta.update({"model": args.model, "params": {"n": args.n, "size": args.size_resolved,
@@ -1124,7 +1194,9 @@ def add_common(p: argparse.ArgumentParser) -> None:
                    help=f"默认 {DEFAULT_MODEL}（编辑精度优先）。同价可选 openai/gpt-image-2.5-flare（速度优先）、"
                         f"openai/gpt-image-2.5-sunburst-2026-09-08（钉版本）、openai/gpt-image-2"
                         f"（上一代；文档明确支持 background=transparent）、openai/gpt-image-1.5")
-    p.add_argument("--timeout", type=int, default=300, help="单次请求超时秒数，默认 300")
+    p.add_argument("--timeout", type=int, default=600,
+                   help="单次请求超时秒数，默认 600。图片编辑实测 100~365s：读超时=客户端主动放弃，"
+                        "但服务端可能仍在跑并**照常计费**（实测有一次 364s 跑完、我们提前放弃，钱照扣）")
 
 
 def add_edit_args(p: argparse.ArgumentParser) -> None:
@@ -1178,6 +1250,9 @@ def add_edit_args(p: argparse.ArgumentParser) -> None:
                     help="可重试错误（429/500/502/503/504/520/524 + 连接失败）的重试次数，默认 0")
     g2.add_argument("--retry-on-timeout", action="store_true",
                     help="读超时也重试（默认不重试：请求可能已送达并计费）")
+    g2.add_argument("--retry-on-drop", action="store_true",
+                    help="连接被掐断（RemoteDisconnected）也重试。**默认不重试**：实测被掐断的请求"
+                         "同样计费，先 `cost`/`balance` 核对再决定")
     g2.add_argument("--min-credits", type=float, default=0.0,
                     help="成本控制：开跑前查余额（Management API Key），低于该美元数直接拒跑；跑完打印余额差")
     g2.add_argument("--bg-fallback", dest="bg_fallback", action="store_true", default=True,
@@ -1187,8 +1262,8 @@ def add_edit_args(p: argparse.ArgumentParser) -> None:
 
 def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
-    if argv and not argv[0].startswith("-") and argv[0] not in ("check", "edit", "balance"):
-        die(f"未知子命令 {argv[0]}（只有 check / balance / edit）")
+    if argv and not argv[0].startswith("-") and argv[0] not in ("check", "edit", "balance", "cost"):
+        die(f"未知子命令 {argv[0]}（只有 check / balance / cost / edit）")
     if argv and argv[0].startswith("-"):
         argv = ["edit"] + argv                                   # 省略子命令时默认 edit
 
@@ -1213,6 +1288,15 @@ def main(argv=None) -> int:
     add_common(pb)
     pb.add_argument("--json", action="store_true", help="输出原始 JSON")
 
+    pcost = sub.add_parser("cost", help="查账单（不花额度）：按模型/时间看花了多少、几次请求")
+    add_common(pcost)
+    pcost.add_argument("--dimension", default="BIZ_MTH", choices=("BIZ_MTH", "BIZ_DT", "BIZ_HOUR"),
+                       help="BIZ_MTH=按月(按天出桶) / BIZ_DT=按天(按小时出桶) / BIZ_HOUR=按小时(按分钟出桶)")
+    pcost.add_argument("--time", default=None, help="YYYYMM / YYYYMMDD / YYYYMMDDHH，默认当前（BIZ_HOUR 用 UTC）")
+    pcost.add_argument("--models", action="append", default=[],
+                       help="模型 slug（可逗号分隔、可重复），默认全部。注意不是 --model（那个只给 edit 用）")
+    pcost.add_argument("--json", action="store_true", help="输出原始 JSON")
+
     pe = sub.add_parser("edit", help="图片编辑（消耗额度）")
     add_common(pe)
     add_edit_args(pe)
@@ -1225,6 +1309,8 @@ def main(argv=None) -> int:
         return cmd_check(args)
     if args.cmd == "balance":
         return cmd_balance(args)
+    if args.cmd == "cost":
+        return cmd_cost(args)
     return cmd_edit(args)
 
 
