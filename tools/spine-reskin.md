@@ -90,7 +90,7 @@ python tools/spine_part_swap.py verify --json assets/武僧/monk.json `
 | 抠底结果 | alpha 632×699 → 等比 **×0.1617** → 106×115 新附件 |
 | 换皮回验 | 改动 14,500 px，单簇集中在武器位；**主簇外 0 px** ✅ |
 | 整图 mask 编辑（对照） | 6,566 tokens / 103s；mask 外漂移 30.6%（需 apply 回贴） |
-| 单次成本 | **别按订阅详情里的 `base_usd_per_flow = $0.03283` 估图片编辑** —— 那是文本 flow 的价。实测一次编辑 **$0.15~0.18**（`image_output` 占 94%）。要精确对账：`python tools/zenmux_edit.py cost --models openai/gpt-image-2`（免费） |
+| 单次成本 | **别按订阅详情里的 `base_usd_per_flow = $0.03283` 估图片编辑** —— 那是文本 flow 的价。<br>按 **quality=low（当前默认）≈ $0.01~0.02/张**（估）、`medium` ≈ $0.04~0.05（估）、**`high` = $0.15~0.18/张（账单实测）**。<br>计费大头是出图 token（≈$30/1M）；对账：`python tools/zenmux_edit.py cost --models openai/gpt-image-2` |
 | **被掐断的请求照样计费** | 实测那一轮 **7 次请求全计费 = $1.2009**，但只有 2 次拿到了图：<br>· 02:58 latency 364.7s / $0.151170 ← 客户端被掐断，**服务端跑完照扣**<br>· 03:12/03:14/03:16/03:18 latency 186~194s / 各 $0.179710 ← `background=transparent` 的 4 次（1 次原始 + 3 次重试）**全部计费**<br>· 03:01 / 03:20 是真正拿到图的 2 次<br>→ **白烧 $0.87（占 72%）**。所以：① 别用 transparent；② 被掐断**不要自动重试**（工具已默认不重试，要重试得 `--retry-on-drop`）；③ 想确认就把 `cost` 按小时桶拉出来看 |
 
 ## 六、坑与对策
