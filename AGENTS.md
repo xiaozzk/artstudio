@@ -79,8 +79,10 @@
   - `edit --min-credits 1`：开跑前低于 1 USD 就拒跑；跑完打印余额差（≈本次实际花费）
   - 每次运行都会写 `run-summary.json`（余额前后、余额差、各步 token 用量、产物清单）
   - 每次调用都打印 `x-request-id` 与 `usage.total_tokens`；**产物旁边有同名 `.json` 边车**便于对账
-  - **单价别按订阅页的 `$0.03283/flow` 估**（那是文本 flow 价）：图片编辑实测**一次 $0.15~0.18**
-    （`image_output` 占 94%）。精确对账：`python tools/zenmux_edit.py cost --models openai/gpt-image-2`
+  - **单价（2026-09 实测反推）**：`image_output` ≈ **$30/1M tokens**、`image_input` ≈ $8/1M、文字 $5/1M。
+    换算成单张：**quality=low（当前默认）≈ $0.01~0.02**（估）、`medium` ≈ $0.04~0.05（估）、
+    **`high` = $0.15~0.18（账单实测）**。别按订阅页的 `$0.03283/flow` 估（那是文本 flow 价）。
+    精确对账：`python tools/zenmux_edit.py cost --models openai/gpt-image-2`
     （按天看小时桶加 `--dimension BIZ_DT --time YYYYMMDD`）。
   - ⚠ **被网关掐断的请求照样计费**（实测一轮 7 次全计费 $1.2009，只有 2 次拿到图，白烧 72%）：
     所以透明件不要用 `--background transparent`（实测该参数会被断连、且 4 次全扣款）；
@@ -93,10 +95,10 @@
      涂白/不透明=要改），自动翻成 API 需要的透明洞；PS 存成「alpha 全 255 + 黑白亮度」也能正确识别。
   3. **先 `--dry-run` 再花钱**：免费出 mask 预览（红=要重绘 / 绿线=边界），确认覆盖面积合理再正式跑。
      覆盖 0% 会直接报错，>95% 会告警（多半 polarity 反了）。
-  4. **默认值**：`png` / `n=1` / `background=transparent` / `quality=medium` / `size=1024x1024`；
-     默认模型 `openai/gpt-image-2.5-sunburst`（编辑精度优先）。**要保证透明底就显式
-     `--model openai/gpt-image-2`** —— 2.5 在 edit 端可能 400 拒 `transparent`；工具**不会**自动回退，
-     按报错改 `--background opaque` 再跑。
+  4. **默认值**：`png` / `n=1` / `background=transparent` / **`quality=low`（成本优先，≈$0.01~0.02/张）** / `size=1024x1024`；
+     默认模型 `openai/gpt-image-2.5-sunburst`（编辑精度优先）。要出高质量图显式 `--quality high`（$0.15~0.18/张）。
+     **要保证透明底就显式 `--model openai/gpt-image-2`** —— 2.5 在 edit 端可能 400 拒 `transparent`；
+     工具**不会**自动回退，按报错改 `--background opaque` 再跑。
      实测（2026-09-21）：**`--background transparent` 会被网关直接掐断连接**（RemoteDisconnected），
      要透明件请走"`--background opaque` + prompt 要纯洋红 `#FF00FF` 底 + 本地抠底"。
   4b. **JSON(base64) 编辑通道对 gpt-image-2 恒 500** → 真机一律 `--transport multipart`。

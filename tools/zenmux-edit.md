@@ -56,6 +56,38 @@ python tools/zenmux_edit.py edit ... --min-credits 1
   （响应体，b64 已折叠）—— 这是跟后台 Logs 页对账的唯一凭据，**失败也会记**。
 - `generation --id` 目前只能查"用量/账单"这类元信息；图片本体拿不回来（Images 协议没有取图接口）。
 
+## 单张图成本（怎么算出来的）
+
+图片编辑按 token 计费，**大头是输出图 token（`image_output`）**。从实测 7 次请求的账单反推单价：
+
+| 计费项 | 单价 | 依据 |
+|--------|------|------|
+| `image_output`（出图） | **≈ $30 / 1M tokens** | 37,457 tokens → $1.12371 |
+| `image_input`（输入图） | ≈ $8 / 1M tokens | 9,100 tokens → $0.0728 |
+| `prompt`（文字） | $5 / 1M tokens | 与模型目录一致 |
+
+即 `成本 ≈ 出图 token × $30/1M + 输入图 token × $8/1M + 文字 token × $5/1M`。
+
+**实测样本（quality=high）**：
+
+| 输入 | 输出尺寸 | 出图 token | 账单 |
+|------|----------|------------|------|
+| 3 张图 + mask | 704x960 | 4,496 | **$0.151155** |
+| 2 张图 | 784x848 | 5,693 | **$0.179710** |
+
+**各档估算**（`low` / `medium` 按 OpenAI 官方 quality 分档的出图 token 比例 272 : 1056 : 4160
+从 high 折算，**尚未打真机验证**）：
+
+| quality | 单张成本 | 说明 |
+|---------|----------|------|
+| `low`（**当前默认**） | **≈ $0.01~0.02** | 估；此时输入图 token 占比会明显上升 |
+| `medium` | ≈ $0.04~0.05 | 估 |
+| `high` | **$0.15~0.18** | 账单实测 |
+
+> 省钱的两条路：**降 quality**（high → low 约省 **90%**）、**少放输入图**
+> （每张 ≈ +1,000 image_input token ≈ +$0.008）。出图 token 才是大头。
+> 真机验证一次 `low` 只要 ≈$0.02，跑完 3~5 分钟用 `cost` 看实际值。
+
 ## 快速开始
 
 ```powershell
@@ -79,7 +111,7 @@ python tools/zenmux_edit.py edit --image tmp/hero.png `
 |------|------|------|
 | `--output-format` | `png` | 需要透明就只能是 png / webp |
 | `--n` | `1` | 一次调用出图张数 |
-| `--background` | `transparent` | 只有你显式说要不透明时才改 `opaque`；`none`=完全不传该字段 || `--quality` | `medium` | `low` / `medium` / `high` / `auto`（`xhigh` / `max` 只有 2.5 系列认） |
+| `--background` | `transparent` | 只有你显式说要不透明时才改 `opaque`；`none`=完全不传该字段 || `--quality` | `low` | `low`≈**$0.01~0.02/张**（估）· `medium`≈$0.04~0.05（估）· `high`≈**$0.15~0.18/张**（账单实测）。`xhigh`/`max` 只有 2.5 系列认 |
 | `--size` | `1024x1024` | 也有 `1536x1024` / `1024x1536` / `auto` / **`match`**（跟随输入图，取 16 的倍数） |
 | `--model` | `openai/gpt-image-2.5-sunburst` | 编辑精度优先。同价可选：`...-sunburst-2026-09-08`（钉版本）、`openai/gpt-image-2.5-flare`（速度优先）、`openai/gpt-image-2`（上一代，**文档明确支持 `background=transparent`**）、`openai/gpt-image-1.5` |
 | `--transport` | `json` | base64 data URL；`multipart` 是给服务端 JSON 路由出问题时的备用通道 |

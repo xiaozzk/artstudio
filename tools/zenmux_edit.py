@@ -95,6 +95,13 @@ CUSTOM_SIZE_MAX_SIDE = 3840
 PRESET_SIZES = ("1024x1024", "1536x1024", "1024x1536", "auto")
 MASK_MODES = ("union", "sequential", "separate")
 
+# 单张编辑的成本（USD/张）。high 是**账单实测**（7 次请求 $1.2009，见 tools/zenmux-edit.md）；
+# low / medium 按 OpenAI 官方 quality 分档的 output token 比例（272:1056:4160）从 high 折算，
+# 标"估"的部分还没打真机验证。计费大头是 image_output（≈$30/MTok），input 图 ≈$8/MTok。
+COST_PER_IMAGE = {"low": "约 $0.01（出图）+ 每张输入图约 $0.008（估）", "medium": "约 $0.04~0.05（估）",
+                  "high": "$0.15~0.18（实测）", "xhigh": "更高（未估）", "max": "更高（未估）",
+                  "auto": "未知（由服务端定档）"}
+
 _USAGE_LOG: list = []                                   # 每个 step 的用量，收尾写进 run-summary.json
 
 # --------------------------------------------------------------------------- 日志
@@ -1075,7 +1082,8 @@ def cmd_edit(args) -> int:
     if size_note:
         log(f"  尺寸     {size_note}")
     log(f"  产物     {out_dir}/")
-    log(f"  费用     约 {len(steps)} 次图片编辑调用（**无自动重试**：被掐断也计费，失败就停下核账）")
+    log(f"  成本     单张 {COST_PER_IMAGE.get(args.quality, '未知')}；本次约 {len(steps)} 次调用"
+        f"（quality={args.quality}）（**无自动重试**：被掐断也计费，失败就停下核账）")
     log("─────────────────────────────────────────────────────")
 
     if ("2.5" in args.model) and args.background == "transparent":
@@ -1346,8 +1354,9 @@ def add_edit_args(p: argparse.ArgumentParser) -> None:
     g2.add_argument("--n", type=int, default=1, help="每次调用出图张数，默认 1；ZenMux 对 n>1 可能直接 400")
     g2.add_argument("--size", default="1024x1024",
                     help="默认 1024x1024；也可 1536x1024 / 1024x1536 / auto / match（跟随输入图，16 倍数）")
-    g2.add_argument("--quality", default="medium", choices=("low", "medium", "high", "xhigh", "max", "auto"),
-                    help="默认 medium；xhigh/max 只有 2.5 系列认（ZenMux 文档只列 low/medium/high/auto）")
+    g2.add_argument("--quality", default="low", choices=("low", "medium", "high", "xhigh", "max", "auto"),
+                    help="默认 low（约 $0.01~0.02/张，估）。medium≈$0.04~0.05、high≈$0.15~0.18（实测）；"
+                         "xhigh/max 只有 2.5 系列认")
     g2.add_argument("--background", default="transparent", choices=("transparent", "opaque", "auto", "none"),
                     help="默认 transparent（除非强调不透明）；none=完全不传该字段。transparent 只能配 png/webp")
     g2.add_argument("--output-format", default="png", choices=("png", "jpeg", "webp"), help="默认 png")
