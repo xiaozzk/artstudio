@@ -32,24 +32,29 @@ key 在 <https://zenmux.ai/platform> 创建（普通 key）；管理型 key 在
 runner 从**执行命令的当前目录**和**工作区根**读 `.env`，工作区根执行就对了。
 `--api-key` / 环境变量优先级高于 `.env`。
 
-## 成本控制（PAYG 余额）
+## 成本控制（PAYG 余额 / 账单）
 
-对应 ZenMux 的 [Get PAYG Balance](https://zenmux.ai/docs/api/platform/payg-balance.html)：
-`GET https://zenmux.ai/api/v1/management/payg/balance`，**免费**，但**只接受 Management API Key**。
+对应 ZenMux 的三个平台接口（都**免费**，都只认 Management API Key）：
+
+| 命令 | 接口 | 用途 |
+|------|------|------|
+| `balance [--json]` | `GET /management/payg/balance` | 看还剩多少钱 |
+| `cost [--models M] [--dimension …] [--time …]` | `GET /management/cost` | 看花了多少、几次请求（`BIZ_MTH` 按月看天桶 / `BIZ_DT` 按天看小时桶 / `BIZ_HOUR` 按小时看分钟桶） |
+| `generation --id <generationId>` | `GET /management/generation?id=` | 单次调用明细（用量/账单）。id 从控制台 **Logs 页的 Request 搜索框**里拿（形如 `2534CCEDTKJR00217635`） |
 
 ```powershell
-python tools/zenmux_edit.py balance            # 余额 10 USD（充值 10 + 赠送 0）    [来源 ZENMUX_API_KEY]
-python tools/zenmux_edit.py balance --json     # 原始结构，便于脚本对账
-python tools/zenmux_edit.py check              # 自检时顺带报余额
+python tools/zenmux_edit.py balance
+python tools/zenmux_edit.py cost --models openai/gpt-image-2
+python tools/zenmux_edit.py cost --dimension BIZ_DT --time 20260922   # 看那天是几点烧的
 python tools/zenmux_edit.py edit ... --min-credits 1
 ```
 
 - `--min-credits 1`：**开跑前**查一次余额，低于 1 USD 直接拒跑（一个请求都不发）；
-  **跑完再查一次**，打印 `余额 10 → 9.8，本次消耗 ≈ 0.2 USD`（余额差，同账号其它会话也会算进去）。
-- 每次运行都在产物目录写 `run-summary.json`：余额前后、余额差、各步 `total_tokens` / 耗时 /
-  `x-request-id` / 产物清单 —— 对账、复现、报障都用它。
-- 没有管理型 key 时，`--min-credits` 只是警告后跳过（不阻塞干活）；`balance` 会直接告诉你缺哪把 key。
-- 余额接口有独立限流（文档：超出返回 422），脚本会提示"等一分钟再试"。
+  **跑完再查一次**，打印 `余额 10 → 9.8，本次消耗 ≈ 0.2 USD`。
+- 每次 `edit` 都会写 `run-summary.json` + **`requests.jsonl`**（每次调用一行：时间、模型、prompt、
+  `created`、`request_id`、响应头、usage、输入图 sha256、产物路径）+ `_responses/response*.json`
+  （响应体，b64 已折叠）—— 这是跟后台 Logs 页对账的唯一凭据，**失败也会记**。
+- `generation --id` 目前只能查"用量/账单"这类元信息；图片本体拿不回来（Images 协议没有取图接口）。
 
 ## 快速开始
 
@@ -78,10 +83,13 @@ python tools/zenmux_edit.py edit --image tmp/hero.png `
 | `--size` | `1024x1024` | 也有 `1536x1024` / `1024x1536` / `auto` / **`match`**（跟随输入图，取 16 的倍数） |
 | `--model` | `openai/gpt-image-2.5-sunburst` | 编辑精度优先。同价可选：`...-sunburst-2026-09-08`（钉版本）、`openai/gpt-image-2.5-flare`（速度优先）、`openai/gpt-image-2`（上一代，**文档明确支持 `background=transparent`**）、`openai/gpt-image-1.5` |
 | `--transport` | `json` | base64 data URL；`multipart` 是给服务端 JSON 路由出问题时的备用通道 |
+| `--stream` | **开** | SSE 流式（默认）：服务端每 10s 发 `: ZENMUX PROCESSING` 保活，连接不空闲、最不容易被网关掐断；`--no-stream` 退回一次性 JSON |
+| `--partials` | `0` | 流式中间图数量（0=只要最终图，不额外产生中间图；1~3 才有过程图） |
+| `--image-url` / `--mask-url` | 无 | 用外链/`file:<FILE_ID>` 代替本地上传（仅 JSON 通道）。**实测 ZenMux 没有 Files API**（`/files` 404、上传 500），所以 `file_id` 只能来自别处；外链需要图片公网可访问 |
 | `--multipart-field` | `image[]` | multipart 的图片字段名：ZenMux **正文写 `image`、curl 示例写 `image[]`**（文档自相矛盾），默认 `image[]`，被 400 拒了会自动退回 `image` |
 | `--out-dir` | `tmp/zenmux-edit/<时间戳>/` | 生成产物请显式指到目标目录；重名不覆盖，自动加 `-2` |
-| `--retries` | `0` | **不自动重试**：5xx / 超时下自动重试有重复计费风险，要重试请显式给次数 |
-| `--retry-on-timeout` | 关 | 读超时默认**不重试**（请求已发出，上游可能已计费）；只有连接失败才在 `--retries` 内安全重试 |
+| `--retries` | — | **已经彻底移除**：实测被掐断/超时的请求照样计费，自动重试=重复烧钱。失败就停下，用 `cost` 核账后人工决定 |
+| `--retry-on-timeout` | — | 同上，已移除 |
 
 > **默认模型 × 默认透明背景的已知张力**：默认模型是 `openai/gpt-image-2.5-sunburst`，
 > 而 ZenMux 的 OpenAI 协议文档把 `transparent` 列为 `background` 合法取值（流式事件里也会回 `background: transparent`），

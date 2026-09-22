@@ -40,7 +40,7 @@ python tools/parts_sheet.py --from-dir assets/武僧/images_original --out tmp/r
     --gutter 20 --json-out tmp/reskin/parts_layout.json
 
 # 2) 参考图2：风格参考（新风格长什么样）
-# 3) 出图（两条路线，选一条）
+# 3) 出图（两条路线，选一条）—— 默认就走 SSE 流式，连接不容易被网关掐断
 #   3a. 只换一个部位（整图 mask 编辑）
 python tools/zenmux_edit.py edit --image assets/武僧/复原预览图_1.png --image tmp/reskin/parts_sheet.png `
     --image tmp/reskin/style_ref.png --mask tmp/reskin/mask_weapon_1_visible.png --mask-grow 2 `

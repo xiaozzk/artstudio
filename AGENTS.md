@@ -69,11 +69,12 @@
 走 ZenMux 的 OpenAI Images 协议（`POST /v1/images/edits`），图片以 base64 data URL 传入。
 **这是 `tools/` 里唯一会花钱的脚本。**
 
-- **命令**：`python tools/zenmux_edit.py <check|balance|cost|edit>`，**一律在工作区根下执行**（读根目录 `.env`）。
+- **命令**：`python tools/zenmux_edit.py <check|balance|cost|generation|edit>`，**一律在工作区根下执行**（读根目录 `.env`）。
 - **自检 / 查余额 / 查账单（都免费）**：
   - `python tools/zenmux_edit.py check` —— key、模型是否在架、mask 覆盖面积、当前 PAYG 余额
   - `python tools/zenmux_edit.py balance [--json]` —— 只查余额
   - `python tools/zenmux_edit.py cost [--models M] [--dimension BIZ_MTH|BIZ_DT|BIZ_HOUR] [--time T]` —— 查账单
+  - `python tools/zenmux_edit.py generation --id <generationId>` —— 单次调用明细（id 从 Logs 页 Request 搜索框拿）
 - **成本控制**（余额接口只认管理型 key）：
   - `edit --min-credits 1`：开跑前低于 1 USD 就拒跑；跑完打印余额差（≈本次实际花费）
   - 每次运行都会写 `run-summary.json`（余额前后、余额差、各步 token 用量、产物清单）
@@ -83,7 +84,7 @@
     （按天看小时桶加 `--dimension BIZ_DT --time YYYYMMDD`）。
   - ⚠ **被网关掐断的请求照样计费**（实测一轮 7 次全计费 $1.2009，只有 2 次拿到图，白烧 72%）：
     所以透明件不要用 `--background transparent`（实测该参数会被断连、且 4 次全扣款）；
-    **被掐断默认不自动重试**（要重试得显式 `--retry-on-drop`，先 `cost` 核账再决定）。
+    **工具没有任何自动重试**，失败就停下用 `cost` 核账，人工决定要不要重跑。
 - **硬规则 / 实测经验**：
   1. **一次请求只能带 1 个 mask**（OpenAI Images 协议如此，且只作用于第一张输入图；输入图最多 16 张）。
      多区域由工具消化：`union`（并成 1 张，1 次调用）/ `sequential`（逐块改并串起来，N 次调用，
@@ -94,7 +95,8 @@
      覆盖 0% 会直接报错，>95% 会告警（多半 polarity 反了）。
   4. **默认值**：`png` / `n=1` / `background=transparent` / `quality=medium` / `size=1024x1024`；
      默认模型 `openai/gpt-image-2.5-sunburst`（编辑精度优先）。**要保证透明底就显式
-     `--model openai/gpt-image-2`** —— 2.5 在 edit 端可能 400 拒 `transparent`，被拒时会自动去掉该字段重试一次并告警。
+     `--model openai/gpt-image-2`** —— 2.5 在 edit 端可能 400 拒 `transparent`；工具**不会**自动回退，
+     按报错改 `--background opaque` 再跑。
      实测（2026-09-21）：**`--background transparent` 会被网关直接掐断连接**（RemoteDisconnected），
      要透明件请走"`--background opaque` + prompt 要纯洋红 `#FF00FF` 底 + 本地抠底"。
   4b. **JSON(base64) 编辑通道对 gpt-image-2 恒 500** → 真机一律 `--transport multipart`。
@@ -102,8 +104,15 @@
      换单个部位就用 `apply` 思路只把 mask 内的改动贴回原图；要"换皮/做新组件"就走
      **部件单独重画**流程：输入 = 原部件放大 + 风格参考，prompt 要单体/纯色底/保持轮廓朝向与画布位置，
      抠底得 alpha → 按"原部件 alpha maxXY ↔ 新件 alpha maxXY"等比缩放 → 放回原附件画布 → 换回 Spine 重渲验证。
-  5. **失败不要重复提交**：`--retries` 默认 0；**读超时可能已经出图计费**，先拿 `x-request-id`
-     去 <https://zenmux.ai/platform> 日志核对，确需重试才加 `--retry-on-timeout`。
+  5. **没有任何自动重试**（`--retries` / `--retry-on-drop` / `--retry-on-timeout` 已全部移除）：
+     实测被掐断 / 超时 / 5xx 的请求**照样计费**，所以失败就停下 —— 用 `cost` 核账后人工决定。
+     **默认走 SSE 流式**（`--stream`，`--partials 0`）：服务端每 10s 发 `: ZENMUX PROCESSING` 保活，
+     连接不空闲、最不容易被掐断；`--no-stream` 可退回一次性 JSON。
+     每次调用都会记 `requests.jsonl`（`created` / `request_id` / 响应头 / usage / 输入 sha256 / 产物）
+     与 `_responses/response*.json`（响应体，b64 折叠），跟后台 Logs 页对账用得上；
+     `generation --id <generationId>` 可按 id 查单次明细（id 在 Logs 页的 Request 搜索框里拿）。
+  5b. **图片没有 Files API**（`/files` 404、上传 500），所以做不到"上传一次、按 id 反复引用"；
+     要少传字节只能 `--image-url`（外链）或 `--mask-url file:<id>`（id 得来自别处）。
   6. 中间产物落 `tmp/zenmux-edit/<时间戳>/`（见上面的中间产物规则）；产物要删先问用户。
 - **完整口径**（参数表、mask 上限调研、体积限制、错误码表）：`tools/zenmux-edit.md`
 

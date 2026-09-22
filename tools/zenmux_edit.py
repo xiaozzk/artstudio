@@ -6,25 +6,34 @@
 其余像素尽量不动。
 
 子命令
-    check   自检：是否读到 ZENMUX_API_KEY、模型是否在架、输入图与 mask 计划是否合法、PAYG 余额（不花额度）
-    balance 查 PAYG 余额（Management API Key，**不花额度**）—— 跑批前后做成本控制用
-    edit    图片编辑（**消耗 ZenMux 额度**）
+    check       自检：key、模型是否在架、mask 覆盖面积、PAYG 余额（不花额度）
+    balance     查 PAYG 余额（Management API Key，免费）
+    cost        查账单（Management API Key，免费）：按模型/时间看花了多少、几次请求
+    generation  按 generationId 查单次调用明细（Management API Key，免费）
+    edit        图片编辑（**消耗 ZenMux 额度**）
 
 用法示例
     python tools/zenmux_edit.py check
     python tools/zenmux_edit.py balance
+    python tools/zenmux_edit.py cost --models openai/gpt-image-2 --dimension BIZ_DT
     python tools/zenmux_edit.py edit --image assets/eva_bone/parts/hero.png \\
         --mask tmp/m_weapon.png --mask-prompt "把手里那把剑换成一把发光的短杖" \\
         --mask tmp/m_coat.png   --mask-prompt "把这件外套换成深红色皮甲" \\
         --mask-mode sequential --min-credits 1 --out-dir tmp/zenmux-edit/run1
 
+联网行为（2026-09 实测口径）
+    * **默认走 SSE 流式**（`--stream`，`--partials 0`）：服务端每 10 秒发一次 `: ZENMUX PROCESSING`
+      保活注释，连接不空闲，最不容易被网关掐断；`--no-stream` 可退回一次性 JSON。
+    * **不自动重试**（没有任何 retry 开关）：实测被掐断 / 超时的请求**照样计费**，
+      自动重试=可能重复烧钱。失败就停下来，用 `cost` / `balance` 核账后人工决定。
+    * **每次调用都记录标识**：完整响应头 + `created` + token 用量 + 请求指纹写进
+      `<out-dir>/requests.jsonl` 与 `_responses/`，方便跟后台 Logs 页的 Request ID 对账。
+    * 图片**没有 Files API**（`/files` 404、上传 500），所以图没法"上传一次、按 id 反复引用"；
+      要少传字节只能用 `--image-url`（外部可访问 URL）。
+
 成本控制
-    * `balance`：查余额（Management API Key，免费）。key 写 .env 的 ZENMUX_MANAGEMENT_API_KEY。
-      **注意 key 分两类**：`sk-mg-` 开头的是**管理型** key，只能打余额/用量这类平台接口，
-      打模型接口一律 403 access_denied（实测）—— 生图必须另配普通 API Key 到 ZENMUX_API_KEY。
-    * `edit --min-credits X`：开跑前查一次余额，低于 X 美元直接拒跑；跑完再查一次，
-      打印本次余额差（≈本次实际花费）并写 run-summary.json。
-    * 每次调用仍然打印 token usage；默认 --retries 0，不自动重试（避免重复计费）。
+    * `balance` / `cost` / `edit --min-credits X` 三条路；图片编辑**一次 $0.15~0.18**，
+      别按订阅页的 flow 单价估。
 
 关于 mask 的硬事实（2026-09 核对官方文档，详见 tools/zenmux-edit.md）
     * OpenAI Images 协议（/v1/images/edits）**一个请求只接受 1 个 mask**，且只作用于第一张输入图；
@@ -38,8 +47,9 @@
     * 输入图与 mask 必须同尺寸：本工具自动把 mask 缩放到第一张输入图的尺寸（并告警）。
 
 产出纪律
-    * 每次调用都会打印 HTTP 状态、x-request-id、token usage，并把 params/usage 写成同名 .json 边车文件。
-    * 默认 --retries 0：不自动重试，避免 5xx / 超时下重复计费。确实要重试请显式 --retries N。
+    * 每次调用都会记录：HTTP 状态、响应头（全量）、`created`、token usage、请求指纹，
+      写成同名 `.json` 边车 + 追加进 `<out-dir>/requests.jsonl`，方便跟后台 Logs 页对账。
+    * **不自动重试**：实测被掐断/超时的请求照样计费，所以宁可失败也不替用户重复花钱。
     * 中间产物（mask 预览、每步输出）默认落 tmp/zenmux-edit/<时间戳>/；生成产物请显式 --out-dir。
 """
 from __future__ import annotations
@@ -234,6 +244,37 @@ def default_cost_time(dimension: str, now=None) -> str:
     now = now or datetime.now()
     return {"BIZ_MTH": now.strftime("%Y%m"), "BIZ_DT": now.strftime("%Y%m%d"),
             "BIZ_HOUR": now.strftime("%Y%m%d%H")}.get(dimension, now.strftime("%Y%m"))
+
+
+def fetch_generation(base_url: str, key: str, gen_id: str, timeout: int = 30) -> dict:
+    """GET /management/generation?id=<generationId> —— 单次调用明细（用量/账单）。免费。"""
+    r = requests.get(base_url.rstrip("/") + "/management/generation", params={"id": gen_id},
+                     headers={"Authorization": f"Bearer {key}"}, timeout=(10, timeout))
+    if r.status_code >= 400:
+        msg, etype, code = parse_error_body(r)
+        raise ApiError(r.status_code, msg or r.reason,
+                       r.headers.get("x-request-id") or r.headers.get("x-zenmux-request-id") or "", etype, code)
+    body = r.json()
+    return body.get("data") if isinstance(body, dict) and "data" in body else body
+
+
+def cmd_generation(args) -> int:
+    """按 generationId 查单次调用明细（免费）。id 从控制台 Logs 页的 Request 搜索框里拿。"""
+    key, source = resolve_management_key(args)
+    if not key:
+        die("没有 Management API Key（.env 的 ZENMUX_MANAGEMENT_API_KEY）")
+    warn_if_plain_key(key, source)
+    try:
+        data = fetch_generation(args.base_url, key, args.id, args.timeout)
+    except ApiError as e:
+        hint = ""
+        if e.status in (403, 404):
+            hint = ("\n       id 必须是**你账号真实产生**的 generationId（形如 2534CCEDTKJR00217635，"
+                    "在控制台 Logs 页的 Request 搜索框里查）。实测：格式不对 → 404 Not Found；"
+                    "格式对但不属于本账号 → 403。另外只认个人账号的 sk-mg- 管理型 key。")
+        die(f"查调用明细失败：{e}" + hint, 2)
+    log(json.dumps(data, ensure_ascii=False, indent=2, default=str))
+    return 0
 
 
 def cmd_cost(args) -> int:
@@ -557,8 +598,13 @@ def parse_error_body(r) -> tuple:
 
 
 def post_edit(session, args, key, prompt: str, images: list, mask_png: bytes | None,
-              stream: bool, on_partial=None):
-    """发一次 images/edits。返回 (图片字节列表, meta dict)。"""
+              stream: bool, on_partial=None, image_refs: list | None = None, mask_ref: str | None = None):
+    """发一次 images/edits。返回 (图片字节列表, meta dict)。
+
+    `image_refs` / `mask_ref`：可选的 `file:<FILE_ID>` / `<https URL>` 引用（JSON 通道专用），
+    用来跳过本地图像字节 —— 实测 ZenMux **没有 Files API**（`/files` 404、上传 500），
+    所以 file_id 只能是你从别处拿到的；URL 需要图片能被公网访问。
+    """
     url = args.base_url.rstrip("/") + "/images/edits"
     params: dict = {
         "model": args.model,
@@ -583,8 +629,13 @@ def post_edit(session, args, key, prompt: str, images: list, mask_png: bytes | N
     headers = {"Authorization": f"Bearer {key}"}
     if args.transport == "json":
         body = dict(params)
-        body["images"] = [{"image_url": data_url(b)} for b in images]
-        if mask_png:
+        if image_refs:
+            body["images"] = [ref_to_image_url(r) for r in image_refs]
+        else:
+            body["images"] = [{"image_url": data_url(b)} for b in images]
+        if mask_ref:
+            body["mask"] = ref_to_image_url(mask_ref)
+        elif mask_png:
             body["mask"] = {"image_url": data_url(mask_png)}
         payload = json.dumps(body, ensure_ascii=False)
         if args.dump_request:
@@ -611,14 +662,20 @@ def post_edit(session, args, key, prompt: str, images: list, mask_png: bytes | N
         t0 = time.time()
         r = session.post(url, headers=headers, data=data, files=files, timeout=(10, args.timeout), stream=stream)
 
-    request_id = r.headers.get("x-request-id") or r.headers.get("x-zenmux-request-id") or ""
+    response_headers = {k: v for k, v in r.headers.items()}
+    request_id = (r.headers.get("x-request-id") or r.headers.get("x-zenmux-request-id")
+                  or r.headers.get("x-generation-id") or "")
     ctype = (r.headers.get("content-type") or "").lower()
     if r.status_code >= 400:
         msg, etype, code = parse_error_body(r)
-        raise ApiError(r.status_code, msg or r.reason, request_id, etype, code)
+        err = ApiError(r.status_code, msg or r.reason, request_id, etype, code)
+        err.headers = response_headers
+        raise err
 
     meta = {"request_id": request_id, "status": r.status_code, "content_type": ctype,
-            "elapsed_s": round(time.time() - t0, 2), "endpoint": url, "transport": args.transport}
+            "elapsed_s": round(time.time() - t0, 2), "endpoint": url, "transport": args.transport,
+            "started_at": datetime.fromtimestamp(t0).isoformat(timespec="seconds"),
+            "response_headers": response_headers}
 
     if stream and "text/event-stream" in ctype:
         images_out, sse = parse_sse(r, on_partial, request_id)
@@ -629,13 +686,16 @@ def post_edit(session, args, key, prompt: str, images: list, mask_png: bytes | N
             meta["created"] = sse[-1].get("created_at")
             meta["size_returned"] = sse[-1].get("size")
             meta["background_returned"] = sse[-1].get("background")
+            meta["response_body"] = strip_b64(sse[-1])
     else:
         if stream:
             warn(f"服务端没返回 SSE（content-type={ctype or '未知'}），按一次性 JSON 解析")
         try:
             body = r.json()
         except ValueError:
-            raise ApiError(r.status_code, "响应不是 JSON：" + (r.text or "")[:300], request_id)
+            err = ApiError(r.status_code, "响应不是 JSON：" + (r.text or "")[:300], request_id)
+            err.headers = response_headers
+            raise err
         images_out = decode_images(body, request_id)
         meta["usage"] = body.get("usage")
         meta["created"] = body.get("created")
@@ -643,8 +703,70 @@ def post_edit(session, args, key, prompt: str, images: list, mask_png: bytes | N
         meta["size_returned"] = body.get("size")
         meta["background_returned"] = body.get("background")
         meta["output_format_returned"] = body.get("output_format")
+        meta["response_body"] = strip_b64(body)      # 去掉 b64，保留所有 id / usage 字段
     meta["elapsed_s"] = round(time.time() - t0, 2)
+    meta["finished_at"] = datetime.now().isoformat(timespec="seconds")
     return images_out, meta
+
+
+def strip_b64(obj):
+    """递归把 b64_json / 超长字符串换成占位符，保留响应里所有 id / usage 字段。"""
+    if isinstance(obj, dict):
+        return {k: (f"<base64 {len(v)} chars>" if k in ("b64_json", "partial_image", "image_base64")
+                    and isinstance(v, str) else strip_b64(v)) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [strip_b64(v) for v in obj]
+    if isinstance(obj, str) and len(obj) > 2000:
+        return f"<{len(obj)} chars>"
+    return obj
+
+
+def ref_to_image_url(ref: str) -> dict:
+    """`file:<id>` → {"file_id": id}；`url:<https://…>` → {"image_url": url}；其它当 URL 透传。"""
+    if ref.startswith("file:"):
+        return {"file_id": ref[5:].strip()}
+    if ref.startswith("url:"):
+        return {"image_url": ref[4:].strip()}
+    return {"image_url": ref}
+
+
+def sha256_file(path) -> str:
+    import hashlib
+    try:
+        with open(path, "rb") as fh:
+            return hashlib.sha256(fh.read()).hexdigest()
+    except OSError:
+        return ""
+
+
+def record_request(out_dir, entry: dict) -> None:
+    """把每次调用追加进 <out-dir>/requests.jsonl —— 出问题时按时间/用量跟后台 Logs 对账。"""
+    try:
+        out_dir = Path(out_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        entry = dict(entry)
+        entry.setdefault("logged_at", datetime.now().isoformat(timespec="seconds"))
+        with open(out_dir / "requests.jsonl", "a", encoding="utf-8") as fh:
+            fh.write(json.dumps(entry, ensure_ascii=False, default=str) + "\n")
+    except OSError as e:                                     # 记账失败不该拖垮主流程
+        warn(f"写 requests.jsonl 失败：{e}")
+
+
+def save_response_dump(out_dir, tag: str, meta: dict) -> None:
+    """把响应体（b64 已折叠）单独存一份：里面有服务端返回的所有 id / usage 字段。"""
+    body = meta.get("response_body")
+    if not body:
+        return
+    try:
+        d = Path(out_dir) / "_responses"
+        d.mkdir(parents=True, exist_ok=True)
+        payload = {"saved_at": datetime.now().isoformat(timespec="seconds"),
+                   "request_id": meta.get("request_id"), "created": meta.get("created"),
+                   "response_headers": meta.get("response_headers"), "body": body}
+        (d / f"response{tag or '-main'}.json").write_text(
+            json.dumps(payload, ensure_ascii=False, default=str, indent=2), encoding="utf-8")
+    except OSError as e:
+        warn(f"写响应存档失败：{e}")
 
 
 def write_dump(args, payload: dict) -> None:
@@ -953,13 +1075,23 @@ def cmd_edit(args) -> int:
     if size_note:
         log(f"  尺寸     {size_note}")
     log(f"  产物     {out_dir}/")
-    log(f"  费用     约 {len(steps)} 次图片编辑调用（--retries={args.retries}）")
+    log(f"  费用     约 {len(steps)} 次图片编辑调用（**无自动重试**：被掐断也计费，失败就停下核账）")
     log("─────────────────────────────────────────────────────")
 
     if ("2.5" in args.model) and args.background == "transparent":
         warn("gpt-image-2.5 在 edit 端可能不支持 background=transparent（ZenMux 文档列了该取值，"
-             "但第三方实测会 400）：真被拒时 --bg-fallback 会自动去掉该字段重试一次，那张图可能是不透明底。"
-             "要保证透明底，改 --model openai/gpt-image-2")
+             "但第三方实测会 400）。真被拒时工具**不会**自动回退：加 --background opaque 再跑，"
+             "透明件用「纯色底 + tools/flatbg_cut.py 本地抠底」")
+
+    image_refs = []
+    for ref in args.image_url or []:
+        image_refs.append(ref)
+    if image_refs and len(image_refs) != len(args.image):
+        die(f"--image-url 给了 {len(image_refs)} 个，--image 有 {len(args.image)} 个：两者要按下标一一对应"
+            f"（只想用外链、不传本地图的话，--image 仍要给占位路径用于取尺寸）")
+    if image_refs and args.transport != "json":
+        die("--image-url / --mask-url 只在 --transport json 下有效（multipart 必须上传字节）")
+    mask_ref = args.mask_url
 
     if args.dump_request:
         args.dump_request = out_dir            # post_edit 里按步骤写 request<tag>.json
@@ -1030,85 +1162,62 @@ def cmd_edit(args) -> int:
                  f"缩小输入图或简化 mask 更稳")
 
         log(f"[{si}/{len(steps)}] 调用中…（prompt: {step.prompt[:50]}）")
-        attempt = 0
-        bg_dropped = False
-        field_fallback = False
         args.dump_suffix = step.tag
-        while True:
-            try:
-                out, meta = post_edit(session, args, key, step.prompt, img_bytes, mask_png,
-                                      args.stream, on_partial=make_partial_printer(out_dir, name, step.tag)
-                                      if args.stream and args.save_partials else print_partial)
-                break
-            except ApiError as e:
-                rid = f" (x-request-id={e.request_id})" if e.request_id else ""
-                if (e.status == 400 and not bg_dropped and args.bg_fallback
-                        and re.search(r"background|transparent", e.message or "", re.I)):
-                    warn(f"400 与 background 有关，自动去掉 background 重试一次：{e.message}{rid}")
-                    args.background = "none"
-                    bg_dropped = True
-                    continue
-                if (e.status == 400 and not field_fallback and args.transport == "multipart"
-                        and args.multipart_field == "image[]" and re.search(r"image", e.message or "", re.I)):
-                    warn(f"multipart 字段名 image[] 被拒，换成 image 重试一次：{e.message}{rid}")
-                    args.multipart_field = "image"
-                    field_fallback = True
-                    continue
-                if e.status in (429, 500, 502, 503, 504, 520, 524) and attempt < args.retries:
-                    attempt += 1
-                    wait = min(30, 3 * attempt)
-                    warn(f"HTTP {e.status}（{e.message}）{rid}，{wait}s 后重试 {attempt}/{args.retries}")
-                    time.sleep(wait)
-                    continue
-                status_for_hint = e.status or (int(e.code) if (e.code or "").isdigit() else 0)
-                hints = {
-                    400: "参数被拒：看上面的 message；transparent 背景不被某模型支持时用 --background opaque",
-                    402: "余额不足 / 账户欠费 / 订阅额度用尽 → https://zenmux.ai/platform",
-                    403: "access_denied = key 无效或没带对（ZenMux 用 403 报鉴权，不是 401）；"
-                         "safety_check_failed = 上游安全策略拦了，改 prompt / 换模型",
-                    404: "模型不在当前套餐 / 不存在 / 不支持该接口 → check 看模型列表，或换 Pay-As-You-Go key",
-                    413: "prompt 太长",
-                    422: "平台校验过了但上游处理不了：去掉高级参数（--input-fidelity / --moderation 等）再试",
-                    429: "限流 → 降低频率，或稍后重试",
-                }.get(status_for_hint, "")
-                if e.etype == "access_denied":
-                    hints = ("key 无效或没带对（ZenMux 用 403 报鉴权）→ 检查 .env 的 ZENMUX_API_KEY；"
-                             "若 key 是 sk-mg- 开头，那是**管理型** key，模型接口一律 403，"
-                             "要用普通 API Key 生图")
-                die(f"{e}{rid}" + (f"\n       {hints}" if hints else ""), 2)
-            except requests.exceptions.ReadTimeout as e:
-                if args.retry_on_timeout and attempt < args.retries:
-                    attempt += 1
-                    warn(f"读超时（{e}），按 --retry-on-timeout 重试 {attempt}/{args.retries}"
-                         f"——注意上游可能已经出图并计费")
-                    time.sleep(5)
-                    continue
-                die(f"读超时：{e}\n"
-                    f"       ⚠ 请求已经发出去了，上游可能已出图并计费。先别重跑，"
-                    f"拿 x-request-id 去 https://zenmux.ai/platform 日志核对；"
-                    f"确需自动重试用 --retry-on-timeout", 2)
-            except requests.RequestException as e:
-                # ⚠ 实测（2026-09-22）：**被网关掐断的请求也会计费** —— 账单显示 7 次计费 / $1.20，
-                # 而当时只有 2 次调用拿到了图。所以连接失败**默认不自动重试**，
-                # 必须显式 --retry-on-drop，并且先查账单/余额确认前一次到底算不算。
-                drop = "RemoteDisconnected" in str(e) or "Connection aborted" in str(e)
-                extra = ""
-                if drop:
-                    extra = ("\n       ↳ 被掐断的多半是 `--background transparent`（实测该参数在 edit 端点会被网关断连）；"
-                             "要透明件就 `--background opaque` + prompt 要纯色底（如 #FF00FF）再本地抠底。"
-                             "\n       ↳ ⚠ 这次请求**可能已经计费**（实测被掐断的请求也进账单）："
-                             "先用 `python tools/zenmux_edit.py cost` / `balance` 核对，再决定要不要重试。")
-                allowed = (attempt < args.retries) and (not drop or args.retry_on_drop)
-                if allowed:
-                    attempt += 1
-                    warn(f"连接失败（{e}），5s 后重试 {attempt}/{args.retries}"
-                         f"{'（⚠ 被掐断的请求可能已计费，重试=可能再花一次）' if drop else ''}")
-                    time.sleep(5)
-                    continue
-                if drop and attempt < args.retries and not args.retry_on_drop:
-                    die(f"网络错误：{e}\n       （被掐断的请求默认不重试：实测它**也会计费**；"
-                        f"确认过账单后要重试就加 --retry-on-drop）" + extra, 2)
-                die(f"网络错误：{e}（默认不重试，避免重复计费；确实要重试用 --retries N）" + extra, 2)
+        try:
+            out, meta = post_edit(
+                session, args, key, step.prompt, img_bytes, mask_png, args.stream,
+                on_partial=(make_partial_printer(out_dir, name, step.tag)
+                            if args.stream and args.save_partials else print_partial),
+                image_refs=image_refs, mask_ref=mask_ref)
+        except ApiError as e:
+            rid = f" (request_id={e.request_id})" if e.request_id else ""
+            record_request(out_dir, {"tag": step.tag, "ok": False, "status": e.status,
+                                     "type": e.etype, "code": e.code, "message": e.message,
+                                     "request_id": e.request_id,
+                                     "response_headers": getattr(e, "headers", None),
+                                     "model": args.model, "prompt": step.prompt,
+                                     "inputs": [str(p) for p in args.image],
+                                     "masks": [str(m) for m in step.mask_srcs]})
+            status_for_hint = e.status or (int(e.code) if (e.code or "").isdigit() else 0)
+            hints = {
+                400: "参数被拒：看上面的 message；background 被拒就换 --background opaque（+本地抠底），"
+                     "multipart 图片字段被拒就加 --multipart-field image。**400 是校验错、不计费**，改完可直接重跑",
+                402: "余额不足 / 账户欠费 / 订阅额度用尽 → https://zenmux.ai/platform",
+                403: "access_denied = key 无效或没带对（ZenMux 用 403 报鉴权，不是 401）；"
+                     "safety_check_failed = 上游安全策略拦了，改 prompt / 换模型",
+                404: "模型不在当前套餐 / 不存在 / 不支持该接口 → check 看模型列表，或换 Pay-As-You-Go key",
+                413: "prompt 太长",
+                422: "平台校验过了但上游处理不了：去掉高级参数（--input-fidelity / --moderation 等）再试",
+                429: "限流 → 稍后再跑（脚本不会自动重试）",
+                500: "平台内部错误。**可能已经计费**：先 `cost` 核账再决定要不要重跑",
+            }.get(status_for_hint, "")
+            if e.etype == "access_denied":
+                hints = ("key 无效或没带对（ZenMux 用 403 报鉴权）→ 检查 .env 的 ZENMUX_API_KEY；"
+                         "若 key 是 sk-mg- 开头，那是**管理型** key，模型接口一律 403，"
+                         "要用普通 API Key 生图")
+            die(f"{e}{rid}" + (f"\n       {hints}" if hints else ""), 2)
+        except requests.exceptions.ReadTimeout as e:
+            record_request(out_dir, {"tag": step.tag, "ok": False, "type": "read_timeout",
+                                     "message": str(e), "model": args.model, "prompt": step.prompt})
+            die(f"读超时：{e}\n"
+                f"       ⚠ 请求已经发出去了，上游很可能已经出图并计费（实测有 364s 跑完、客户端先放弃的情况）。\n"
+                f"       先别重跑：`python tools/zenmux_edit.py cost --dimension BIZ_DT` 看这几分钟有没有扣款，"
+                f"再人工决定（工具**不会**自动重试）", 2)
+        except requests.RequestException as e:
+            # ⚠ 实测（2026-09-22）：被网关掐断的请求**照样计费**（7 次计费里 5 次没拿到图）。
+            # 因此这里绝不自动重试。
+            drop = "RemoteDisconnected" in str(e) or "Connection aborted" in str(e)
+            record_request(out_dir, {"tag": step.tag, "ok": False,
+                                     "type": "connection_dropped" if drop else "connection_error",
+                                     "message": str(e), "model": args.model, "prompt": step.prompt})
+            extra = ""
+            if drop:
+                extra = ("\n       ↳ 被掐断多半是 `--background transparent`（实测该参数在 edit 端点会被网关断连）；"
+                         "要透明件就 `--background opaque` + prompt 要纯色底（如 #FF00FF）再本地抠底。"
+                         "\n       ↳ ⚠ 这次请求**很可能已经计费**（实测被掐断的都进了账单）："
+                         "`python tools/zenmux_edit.py cost --dimension BIZ_DT` 核一下。"
+                         "\n       ↳ 工具不会自动重试（重复烧钱的代价 >> 省下的那点时间）。")
+            die(f"网络错误：{e}" + extra, 2)
 
         meta.update({"model": args.model, "params": {"n": args.n, "size": args.size_resolved,
                                                      "quality": args.quality, "background": args.background,
@@ -1122,11 +1231,25 @@ def cmd_edit(args) -> int:
         results += written
         _USAGE_LOG.append({"step": si, "tag": step.tag, "tokens": (meta.get("usage") or {}).get("total_tokens"),
                            "elapsed": meta.get("elapsed_s"), "request_id": meta.get("request_id"),
-                           "outputs": [str(p) for p in written]})
+                           "created": meta.get("created"), "outputs": [str(p) for p in written]})
+        # 请求台账：完整响应头 + created + usage + 请求指纹（跟后台 Logs 页对账用）
+        record_request(out_dir, {
+            "tag": step.tag, "ok": True, "status": meta.get("status"), "model": args.model,
+            "prompt": step.prompt, "transport": meta.get("transport"), "stream": bool(args.stream),
+            "params": meta.get("params"), "request_id": meta.get("request_id"),
+            "created": meta.get("created"), "usage": meta.get("usage"),
+            "response_headers": meta.get("response_headers"),
+            "inputs": [str(p) for p in args.image], "masks": [str(m) for m in step.mask_srcs],
+            "input_sha256": [sha256_file(p) for p in (args.image or [])],
+            "outputs": [str(p) for p in written], "elapsed_s": meta.get("elapsed_s"),
+            "started_at": meta.get("started_at"), "finished_at": meta.get("finished_at"),
+        })
+        save_response_dump(out_dir, step.tag, meta)
         shapes = "、".join(probe_image_shape(b) if isinstance(b, bytes) else "url" for b in out)
         usage = meta.get("usage") or {}
         log(f"      ✓ {len(written)} 张 {shapes}  {meta.get('elapsed_s')}s"
-            f"  request-id={meta.get('request_id') or '-'}"
+            f"  request_id={meta.get('request_id') or '-'}"
+            + (f"  created={meta.get('created')}" if meta.get("created") else "")
             + (f"  tokens={usage.get('total_tokens')}" if usage else ""))
         for w in written:
             log(f"        {w}")
@@ -1235,35 +1358,34 @@ def add_edit_args(p: argparse.ArgumentParser) -> None:
     g2.add_argument("--transport", default="json", choices=("json", "multipart"),
                     help="json=base64 data URL（默认，符合本项目要求）；multipart=OpenAI SDK 那种表单上传")
     g2.add_argument("--multipart-field", default="image[]", choices=("image[]", "image"),
-                    help="multipart 的图片字段名：ZenMux 正文写 image、curl 示例写 image[]（默认 image[]，"
-                         "被 400 拒绝时自动退回 image）")
-    g2.add_argument("--stream", action="store_true", help="走 SSE，边生成边收 partial image")
-    g2.add_argument("--partials", type=int, default=1, choices=(0, 1, 2, 3), help="流式中间图数量，默认 1")
+                    help="multipart 的图片字段名：ZenMux 正文写 image、curl 示例写 image[]；"
+                         "默认 image[]，被 400 拒绝时按报错提示改这里")
+    g2.add_argument("--stream", dest="stream", action="store_true", default=True,
+                    help="走 SSE 流式（**默认开**）：每 10s 有保活数据，连接不空闲、最不容易被网关掐断")
+    g2.add_argument("--no-stream", dest="stream", action="store_false",
+                    help="退回一次性 JSON 响应（长请求更容易被网关断连）")
+    g2.add_argument("--partials", type=int, default=0, choices=(0, 1, 2, 3),
+                    help="流式中间图数量，默认 0（只要最终图，不产生额外中间图）")
     g2.add_argument("--save-partials", action="store_true", help="把中间图落盘到 _partials/")
+    g2.add_argument("--image-url", action="append", default=[],
+                    help="用外部引用代替本地上传图（JSON 通道）：`file:<FILE_ID>` 或 `https://…`。"
+                         "实测 ZenMux 没有 Files API，file_id 只能来自别处")
+    g2.add_argument("--mask-url", default=None, help="mask 的外部引用（同上）")
     g2.add_argument("--out-dir", default=None, help="默认 tmp/zenmux-edit/<时间戳>/；重名不覆盖，自动加 -2")
     g2.add_argument("--name", default=None, help="输出文件名前缀，默认 <输入图名>-edit")
     g2.add_argument("--max-side", type=int, default=0, help="输入图最长边上限（0=不缩；超 15MB 时用它）")
     g2.add_argument("--dry-run", action="store_true", help="只做本地校验/预览/打印计划，不调 API")
     g2.add_argument("--dump-request", action="store_true",
                     help="把请求体（base64 折叠）写到 out-dir/request<步骤>.json，便于复盘参数")
-    g2.add_argument("--retries", type=int, default=0,
-                    help="可重试错误（429/500/502/503/504/520/524 + 连接失败）的重试次数，默认 0")
-    g2.add_argument("--retry-on-timeout", action="store_true",
-                    help="读超时也重试（默认不重试：请求可能已送达并计费）")
-    g2.add_argument("--retry-on-drop", action="store_true",
-                    help="连接被掐断（RemoteDisconnected）也重试。**默认不重试**：实测被掐断的请求"
-                         "同样计费，先 `cost`/`balance` 核对再决定")
     g2.add_argument("--min-credits", type=float, default=0.0,
                     help="成本控制：开跑前查余额（Management API Key），低于该美元数直接拒跑；跑完打印余额差")
-    g2.add_argument("--bg-fallback", dest="bg_fallback", action="store_true", default=True,
-                    help="background 参数被 400 拒绝时，去掉该字段重试一次（默认开）")
-    g2.add_argument("--no-bg-fallback", dest="bg_fallback", action="store_false")
+    # 说明：这里**故意没有**任何重试开关 —— 实测被掐断/超时的请求照样计费，自动重试可能重复烧钱。
 
 
 def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
-    if argv and not argv[0].startswith("-") and argv[0] not in ("check", "edit", "balance", "cost"):
-        die(f"未知子命令 {argv[0]}（只有 check / balance / cost / edit）")
+    if argv and not argv[0].startswith("-") and argv[0] not in ("check", "edit", "balance", "cost", "generation"):
+        die(f"未知子命令 {argv[0]}（只有 check / balance / cost / generation / edit）")
     if argv and argv[0].startswith("-"):
         argv = ["edit"] + argv                                   # 省略子命令时默认 edit
 
@@ -1297,6 +1419,10 @@ def main(argv=None) -> int:
                        help="模型 slug（可逗号分隔、可重复），默认全部。注意不是 --model（那个只给 edit 用）")
     pcost.add_argument("--json", action="store_true", help="输出原始 JSON")
 
+    pg = sub.add_parser("generation", help="按 generationId 查单次调用明细（不花额度；id 从控制台 Logs 页拿）")
+    add_common(pg)
+    pg.add_argument("--id", required=True, help="generationId，形如 2534CCEDTKJR00217635")
+
     pe = sub.add_parser("edit", help="图片编辑（消耗额度）")
     add_common(pe)
     add_edit_args(pe)
@@ -1311,6 +1437,8 @@ def main(argv=None) -> int:
         return cmd_balance(args)
     if args.cmd == "cost":
         return cmd_cost(args)
+    if args.cmd == "generation":
+        return cmd_generation(args)
     return cmd_edit(args)
 
 
