@@ -40,7 +40,7 @@ from PIL import Image, ImageDraw, ImageFile, ImageFilter
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 # --------------------------------------------------------------------------- 路径与常量
-BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # 工作区根
+BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # 工作区根（tools/sprite/ → 上三级）
 # 默认拼图取仓库里现存的资产；中间产物一律落 tmp/（见 AGENTS.md）
 # 注：下面的 REGIONS / X_CROTCH 是照着早期拼图调的，换 --sheet 后要重新核对
 SHEET = os.path.join(BASE, "assets", "eva_bone", "merged_sheet_FINAL.png")
@@ -148,11 +148,6 @@ def label(mask, min_area=200, cap=4000):
     return out
 
 
-def bbox(m):
-    ys, xs = np.where(m)
-    return int(xs.min()), int(ys.min()), int(xs.max()), int(ys.max())
-
-
 def hflip_region(reg, W):
     y0, y1, x0, x1 = reg
     return (y0, y1, W - x1, W - x0)
@@ -180,13 +175,6 @@ def align_candidate(orig, cand, search=2):
             if best is None or s < best[0]:
                 best = (s, dy, dx, c)
     return best[3], best[1], best[2]
-
-
-def find_candidate(tag):
-    hits = glob.glob(os.path.join(WORK, tag, "**", "remove_bg.png"), recursive=True)
-    if not hits:
-        hits = glob.glob(os.path.join(WORK, tag, "**", "*.png"), recursive=True)
-    return hits[0] if hits else None
 
 
 # --------------------------------------------------------------------------- 几何：确定性切件

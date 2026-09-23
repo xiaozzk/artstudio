@@ -9,19 +9,19 @@ alpha_split.py — 按 alpha(透明背景) 连通域把一张整图拆成多个�
 典型用法:
 
   # 1) AI 输出带透明背景 -> 直接拆
-  python tools/alpha_split.py in.png -o out_dir
+  python tools/sprite/alpha_split.py in.png -o out_dir
 
   # 2) AI 输出纯色背景(如 #cccccc) -> 先抠色再拆
-  python tools/alpha_split.py in.png -o out_dir --bg auto --bg-tol 18
+  python tools/sprite/alpha_split.py in.png -o out_dir --bg auto --bg-tol 18
 
   # 3) 拆件图里线条有可能断开(头发高光/眉毛两笔) -> 形态学闭运算 + 间隙合并
-  python tools/alpha_split.py in.png -o out_dir --close 2 --merge-gap 6
+  python tools/sprite/alpha_split.py in.png -o out_dir --close 2 --merge-gap 6
 
   # 4) 归一化到目标分辨率(整体内容高度 = 2048)
-  python tools/alpha_split.py in.png -o out_dir --fit-height 2048
+  python tools/sprite/alpha_split.py in.png -o out_dir --fit-height 2048
 
   # 5) 指定部件名(数量必须匹配, 否则报错并给出实际数量)
-  python tools/alpha_split.py in.png -o out_dir --names hair,brow,eye,mouth,ear,head
+  python tools/sprite/alpha_split.py in.png -o out_dir --names hair,brow,eye,mouth,ear,head
 
 输出:
   out_dir/parts/part_00_<name>.png      裁剪到 bbox 的部件
@@ -412,7 +412,6 @@ def main() -> int:
     if not args.no_full:
         (out_dir / "parts_full").mkdir(parents=True, exist_ok=True)
 
-    rgba_img = Image.fromarray(rgba)
     table = []
     for i, p in enumerate(parts):
         name = given.get(p["index"]) or p.get("name") or f"part_{i:02d}"

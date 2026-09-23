@@ -9,8 +9,8 @@
 本工具认的是**服装件**（白裙上身 / 白裙摆 / 长筒袜 ×2 / 短靴 ×2），判据来自颜色与长宽比。
 
 用法：
-    python tools/outfit-split.py --sheet <拼图.png> --out <目录>
-    python tools/outfit-split.py --sheet <拼图.png> --out <目录> --preview <预览.png>
+    python tools/sprite/outfit-split.py --sheet <拼图.png> --out <目录>
+    python tools/sprite/outfit-split.py --sheet <拼图.png> --out <目录> --preview <预览.png>
 
 输出去 <目录>：`<部件名>.png` × N + `outfit-manifest.json`（bbox / 尺寸 / 分类依据）。
 """

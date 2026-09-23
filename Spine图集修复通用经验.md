@@ -2,13 +2,13 @@
 
 > 面向 `xxx.json` + `xxx.atlas` + `xxx.png` 三件套（Spine 4.x，常见于游戏拆包 / 美术外包交付）。
 > 症状通常是「导入不显示 / 显示不全 / 部件尺寸对不上 / 出现幽灵图元」。
-> 工具：`tools/repair_spine/`（纯本地确定性，不消耗额度）。两个实战场次：`狂战士`、`cha_1114`。
+> 工具：`tools/spine/repair_spine/`（纯本地确定性，不消耗额度）。两个实战场次：`狂战士`、`cha_1114`。
 
 ---
 
 ## ⚠️ 硬性纪律：改 `pipelines.py` 必须先跟用户确认（2026-09 增补）
 
-**`tools/repair_spine/pipelines.py` 是 56 个已交付包共用的工具，改它一律先问、后改。**
+**`tools/spine/repair_spine/pipelines.py` 是 56 个已交付包共用的工具，改它一律先问、后改。**
 
 * **先报告，不顺手改**：发现 bug 时把「现象 / 复现证据 / 打算怎么改 / 影响哪些已交付包」
   讲清楚，**得到用户明确同意再动手** —— 哪怕只改一行、哪怕初衷就是"修好刚发现的问题"。
@@ -180,7 +180,7 @@ canvas.alpha_composite(layer)                            # 只有真正重叠的
 主流程压成**一条命令**，`prepare -> convert -> apply` 之间**不停下等确认**：
 
 ```bash
-python tools/repair_spine/pipelines.py build <原始.zip> -o <工程目录>
+python tools/spine/repair_spine/pipelines.py build <原始.zip> -o <工程目录>
 # 解压 → 页名/页尺寸修复 → 打包倍率还原 → 解包去污染 → 转目标版本
 # → 交付顶层三件套 → 复原预览图.png + 交付说明.md
 ```
@@ -328,24 +328,24 @@ assets/人形/男/<项目名>/
 
 ## 七、工具
 
-**唯一工具：`tools/repair_spine/pipelines.py`**（单文件，由原 5 个模块合并而成）。
+**唯一工具：`tools/spine/repair_spine/pipelines.py`**（单文件，由原 5 个模块合并而成）。
 子命令：`build` 一条命令跑完前三阶段；`prepare` / `convert` / `apply` 分步；
 `file` 归档到 `assets/2d/`；`diagnose` / `pagefix` / `unpack` / `repack` /
-`render` / `verify` / `meshfit` 为排查用。文档见 `tools/repair_spine/README.md`。
+`render` / `verify` / `meshfit` 为排查用。文档见 `tools/spine/repair_spine/README.md`。
 
-`tools/repair_spine/`（详见其 `README.md`）：
+`tools/spine/repair_spine/`（详见其 `README.md`）：
 
 ```bash
-python tools/repair_spine/pipelines.py build    <原始.zip> -o <工程目录>   # 一条命令跑完 1-3
-python tools/repair_spine/pipelines.py prepare  <原始.zip> -o <工程目录>   # 阶段1（排查用）
-python tools/repair_spine/pipelines.py convert  <工程目录>                 # 阶段2（排查用）
-python tools/repair_spine/pipelines.py apply    <工程目录>                 # 阶段3（排查用）
-python tools/repair_spine/pipelines.py file     <工程目录> --category "人形/女" --as "火把女战士"
-python tools/repair_spine/pipelines.py diagnose <目录>                     # 体检（含分区性检验）
-python tools/repair_spine/pipelines.py unpack   <目录> -o images_original  # 去污染导出单图
-python tools/repair_spine/pipelines.py repack   <目录> --from images_original -o repacked
-python tools/repair_spine/pipelines.py render   <目录> --images images_original -o preview.png
-python tools/repair_spine/pipelines.py verify   <目录> --images images_original
+python tools/spine/repair_spine/pipelines.py build    <原始.zip> -o <工程目录>   # 一条命令跑完 1-3
+python tools/spine/repair_spine/pipelines.py prepare  <原始.zip> -o <工程目录>   # 阶段1（排查用）
+python tools/spine/repair_spine/pipelines.py convert  <工程目录>                 # 阶段2（排查用）
+python tools/spine/repair_spine/pipelines.py apply    <工程目录>                 # 阶段3（排查用）
+python tools/spine/repair_spine/pipelines.py file     <工程目录> --category "人形/女" --as "火把女战士"
+python tools/spine/repair_spine/pipelines.py diagnose <目录>                     # 体检（含分区性检验）
+python tools/spine/repair_spine/pipelines.py unpack   <目录> -o images_original  # 去污染导出单图
+python tools/spine/repair_spine/pipelines.py repack   <目录> --from images_original -o repacked
+python tools/spine/repair_spine/pipelines.py render   <目录> --images images_original -o preview.png
+python tools/spine/repair_spine/pipelines.py verify   <目录> --images images_original
 python pipelines.py meshfit  <目录> --images images_original
 ```
 
@@ -1100,7 +1100,7 @@ fill_ratio  = covered_px / mesh_px        # 网格自己有多少落在内容上
 
 ```
 2026/9/20  8:29:51   assets/2d/人形/女/焰发女猎手/S041_skin6.png  ← 交付
-2026/9/20  8:51:43   tools/repair_spine/pipelines.py              ← 才修好
+2026/9/20  8:51:43   tools/spine/repair_spine/pipelines.py              ← 才修好
 ```
 
 **先交付、后修工具**，交付件是修复前的产物。判据一眼可见：
@@ -1162,9 +1162,9 @@ skin6/hair-front 单图 41×101  网格范围 104×47  -> 0.395, 2.127
 
 ```bash
 # prepare / convert / apply 分开跑，apply 加 --backup 把被替换的旧三件套另存 _replaced_*
-python tools/repair_spine/pipelines.py prepare <工程目录>\原始资源_S041_skin6.zip -o <工程目录>
-python tools/repair_spine/pipelines.py convert <工程目录>
-python tools/repair_spine/pipelines.py apply   <工程目录> --backup
+python tools/spine/repair_spine/pipelines.py prepare <工程目录>\原始资源_S041_skin6.zip -o <工程目录>
+python tools/spine/repair_spine/pipelines.py convert <工程目录>
+python tools/spine/repair_spine/pipelines.py apply   <工程目录> --backup
 ```
 
 | 指标 | 结果 |
@@ -1308,19 +1308,19 @@ JS/TS 没有比较链，`a<0 != b<0` 是 **XOR**；Python 链成
 
 ```bash
 # 15.1 IK：数一个包里有几个 4.3 式 IK、solve_constraints 认了几个
-python -c "import json,sys;sys.path.insert(0,'tools/repair_spine');import pipelines as P;\
+python -c "import json,sys;sys.path.insert(0,'tools/spine/repair_spine');import pipelines as P;\
 d=json.load(open(r'<包>/<名>.json',encoding='utf-8'));b,_=P.build_skeleton(d);\
 print('ik[]=',len(d.get('ik') or []),'constraints=',len([c for c in (d.get('constraints') or []) if c.get('type')=='ik']),\
 'applied=',P.solve_constraints(d,b,1,1,0,0))"
 
 # 15.3.3 页图读不到 -> 体检报"通过"
-mv <包>/<名>.png /tmp/ && python tools/repair_spine/pipelines.py diagnose <包>
+mv <包>/<名>.png /tmp/ && python tools/spine/repair_spine/pipelines.py diagnose <包>
 
 # 15.4.4 meshfit 崩溃 / 空结果
-python tools/repair_spine/pipelines.py meshfit <包> --images <包>/images_original
+python tools/spine/repair_spine/pipelines.py meshfit <包> --images <包>/images_original
 
 # 15.4.5 恒为 0 的第二返回值
-python -c "import sys;sys.path.insert(0,'tools/repair_spine');import pipelines as P;\
+python -c "import sys;sys.path.insert(0,'tools/spine/repair_spine');import pipelines as P;\
 print(P.fit_singles_to_declared('<单图目录>','<atlas>','<json>',1.0))"
 ```
 

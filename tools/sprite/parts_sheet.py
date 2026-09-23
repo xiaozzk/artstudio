@@ -14,9 +14,9 @@
        故矩形间距 ≥ N ⇒ 像素间距 ≥ N
 
 用法：
-    python tools/parts_sheet.py --parts a.png b.png c.png --out sheet.png
-    python tools/parts_sheet.py --from-dir assets/武僧/images_original --out sheet.png --gutter 20
-    python tools/parts_sheet.py --from-dir <目录> --out sheet.png --json-out layout.json
+    python tools/sprite/parts_sheet.py --parts a.png b.png c.png --out sheet.png
+    python tools/sprite/parts_sheet.py --from-dir assets/武僧/images_original --out sheet.png --gutter 20
+    python tools/sprite/parts_sheet.py --from-dir <目录> --out sheet.png --json-out layout.json
 """
 from __future__ import annotations
 
@@ -25,7 +25,6 @@ import glob
 import json
 import math
 import os
-import sys
 
 from PIL import Image
 

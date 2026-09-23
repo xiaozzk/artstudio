@@ -226,7 +226,7 @@ def cmd_serve(args) -> int:
     host = args.host
     url = f"http://{host if host != '0.0.0.0' else '127.0.0.1'}:{port}{HTML_URL_PATH}"
     print(f"[ready] 浏览器访问: {url}")
-    print(f"        （按 Ctrl+C 停止服务）")
+    print("        （按 Ctrl+C 停止服务）")
 
     ready = threading.Event()
 

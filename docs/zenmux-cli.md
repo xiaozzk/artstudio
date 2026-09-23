@@ -1,7 +1,7 @@
 # ZenMux 图片编辑 CLI 指南
 
 > 本文是 `AGENTS.md` 里「ZenMux 图片编辑 CLI」一节的展开版：**什么场景用 + 怎么跑 + 实测硬规则**。
-> 参数表、家族兼容全表、mask 上限调研、体积限制、错误码表见 `tools/zenmux-edit.md`（**完整口径**）。
+> 参数表、家族兼容全表、mask 上限调研、体积限制、错误码表见 `tools/zenmux/zenmux-edit.md`（**完整口径**）。
 > 路径相对工作区根；key 一律写进 `.env`，**不要贴进对话**。
 
 ## 场景
@@ -13,43 +13,44 @@
 
 ## 命令
 
-`python tools/zenmux_edit.py <check|balance|cost|generation|edit>`，**一律在工作区根下执行**（读根目录 `.env`）。
+`python tools/zenmux/zenmux_edit.py <check|balance|cost|generation|edit>`，**一律在工作区根下执行**（读根目录 `.env`）。
 
 ## 协议（2026-09-23 起默认 Vertex AI）
 
 - **默认 `--protocol vertex`**：`POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:predict`
-  —— 统一生图端点，**模型面最宽**（openai / 腾讯混元 / 通义 / Flux / Kling / Imagen）。
+  —— 统一生图端点，**模型面最宽**（openai / 通义 / Flux / Kling / Imagen）。
   文生图 = `instances[0].prompt`；编辑 = `instances[0].referenceImages`
   （`REFERENCE_TYPE_RAW` 原图 + 可选 `REFERENCE_TYPE_MASK`，`maskMode=MASK_MODE_USER_PROVIDED`），
   **mask 语义与 OpenAI 相同：透明 = 编辑区**。
-  响应 `predictions[]`：Google 系回 `bytesBase64Encoded`，**腾讯系回 `gcsUri`（COS 签名 URL，工具自动下载）**。
+  响应 `predictions[]`：Google 系回 `bytesBase64Encoded`，**部分 provider 回 `gcsUri`（签名 URL，工具自动下载）**。
   `--protocol openai` 回旧 `/v1/images/edits`（SSE / multipart / `background` 只有旧协议支持）。
 - **家族兼容**（请求参数按模型家族分发，源码 `FAMILIES`）：
 
   | 家族 | 尺寸 | 质量 | n 上限 | 备注 |
   |------|------|------|--------|------|
   | `openai/gpt-image-*` | 顶层 `imageSize` | 顶层 `quality` | 10 | |
-  | `tencent/hy-image-*` | `parameters.aspectRatio`（`--size` 自动折算，如 1536x1024→3:2） | 无分档（不发） | **1** | `--enhance-prompt` ✅；`--negative-prompt`/`--sample-image-size` 未证实，被 400 就去掉 |
 
-- **新模型实例**：`tencent/hy-image-v3.0`（混元图像 3.0）**已真机验证可用**（2026-09-23）——
-  但它**还没进 ZenMux 目录**（`/models` 不显示也能跑），`check` 对 vertex 的目录外模型只 warn 不拦。
-- ⚠ **vertex 不支持 `background`**（官方映射表标 ❌）：透明件走"**纯色底** + `tools/flatbg_cut.py` 本地抠底"——
-  工具已把这条路做成默认：**`--solid-bg` 默认开（`#FF00FF`）**，会自动往 prompt 追加"完全均匀纯色底"指令
-  （hy 系用中文指令），出图后 `flatbg_cut.py --bg-color '#FF00FF'` 抠掉即可；
+- ⚠ **vertex 不支持 `background`**（官方映射表标 ❌）：透明件走"**纯色底** + `tools/sprite/flatbg_cut.py` 本地抠底"——
+  工具已把这条路做成默认：**`--solid-bg` 默认开（`#FF00FF`）**，会自动往 prompt 追加"完全均匀纯色底"指令，
+  出图后 `flatbg_cut.py --bg-color '#FF00FF'` 抠掉即可；
   带 `--mask` 的原位编辑不注入（要保留原背景），整图编辑要保留原背景加 `--no-solid-bg`。
   不支持 SSE / multipart / `--image-url`，一律单次 POST + JSON 内嵌 base64。
 
-  举例：`python tools/zenmux_edit.py edit --model tencent/hy-image-v3.0 -i a.png --mask m_weapon.png --prompt "把剑换成..." --min-credits 1`
+  举例：`python tools/zenmux/zenmux_edit.py edit --model openai/gpt-image-2 -i a.png --mask m_weapon.png --prompt "把剑换成..." --min-credits 1`
+
+> 🗑 **混元（`tencent/hy-image-*`）支持已于 2026-09-24 移除**：实测成本固定 $0.0298/张（low 档比
+> `gpt-image-2` 贵 1.48×）、`--size` 不生效、且会把"只重绘这一件"的任务理解成补全整个角色，
+> 与逐件换皮的流水线前提冲突。现在只保留 `openai` 家族分发，其余 provider 走通用 `aspectRatio` 分支。
 
 ## 自检 / 查余额 / 查账单（都免费）
 
 | 命令 | 用途 |
 |------|------|
-| `python tools/zenmux_edit.py check` | key、模型是否在架、mask 覆盖面积、当前 PAYG 余额 |
-| `python tools/zenmux_edit.py balance [--json]` | 只查余额 |
-| `python tools/zenmux_edit.py cost [--models M] [--dimension BIZ_MTH\|BIZ_DT\|BIZ_HOUR] [--time T]` | 查账单 |
-| `python tools/zenmux_edit.py generation --id <generationId>` | 单次调用明细（id 从 Logs 页 Request 搜索框拿） |
-| `python tools/tests/test_zenmux_cli.py` | **改完 `zenmux_edit.py` 先跑这个**：14 条 CLI 级用例，起本地 mock 服务端，全程 127.0.0.1，约 6s、**$0** |
+| `python tools/zenmux/zenmux_edit.py check` | key、模型是否在架、mask 覆盖面积、当前 PAYG 余额 |
+| `python tools/zenmux/zenmux_edit.py balance [--json]` | 只查余额 |
+| `python tools/zenmux/zenmux_edit.py cost [--models M] [--dimension BIZ_MTH\|BIZ_DT\|BIZ_HOUR] [--time T]` | 查账单 |
+| `python tools/zenmux/zenmux_edit.py generation --id <generationId>` | 单次调用明细（id 从 Logs 页 Request 搜索框拿） |
+| `python tools/zenmux/tests/test_zenmux_cli.py` | **改完 `zenmux_edit.py` 先跑这个**：14 条 CLI 级用例，起本地 mock 服务端，全程 127.0.0.1，约 6s、**$0** |
 
 > 测试口径：**先 mock，再只验 CLI 命令**（退出码 / 输出 / 产物）。**别拿真机当测试** —— 每次调用都要钱，
 > 被网关掐断的请求也照常计费。真机验证走人工流程：`--dry-run` → `--min-credits 1` 小额一张 → `cost` 核账。
@@ -60,10 +61,11 @@
 - 每次运行都会写 `run-summary.json`（余额前后、余额差、各步 token 用量、产物清单）。
 - 每次调用都打印 `x-request-id`；**产物旁边有同名 `.json` 边车**便于对账。
 - **OpenAI 系单价（2026-09 实测反推）**：`image_output` ≈ **$30/1M tokens**、`image_input` ≈ $8/1M、文字 $5/1M。
-  单张：**quality=low（默认）≈ $0.01~0.02**（估）、`medium` ≈ $0.04~0.05（估）、**`high` = $0.15~0.18（账单实测）**。
-  **hy 系单价未实测** —— 跑完 `cost --models tencent/hy-image-v3.0` 核账。
-  （算法与实测样本见 `tools/zenmux-edit.md` 的「单张图成本」。）
-- ⚠ **被网关掐断的请求照样计费**（OpenAI 协议实测一轮 7 次全计费 $1.2009，只有 2 次拿到图）：
+  单张：**`quality=low`（默认）实测 $0.018~0.020**（按输入图大小浮动；**成本大头是 `image_input`**——
+  一张 385×1672 的风格参考图就占 68%）、`medium` ≈ $0.04~0.05（估）、**`high` = $0.15~0.18（账单实测）**。
+  （算法与实测样本见 `tools/zenmux/zenmux-edit.md` 的「单张图成本」。）
+- ⚠ **被 400 拒的请求不计费**（实测：内容安全拦截 `safety_violations` 后余额不变），
+  但**被网关掐断的请求照常计费**（OpenAI 协议实测一轮 7 次全计费 $1.2009，只有 2 次拿到图）：
   **工具没有任何自动重试**，失败就停下用 `cost` 核账，人工决定要不要重跑。
 
 ## 硬规则 / 实测经验
@@ -92,7 +94,7 @@
 
 | 文档 | 内容 |
 |------|------|
-| `tools/zenmux-edit.md` | **完整口径**：依赖与凭据、默认值全表、成本拆解、家族兼容全表、mask 调研、体积限制、排错表、真机实战记录（权威） |
-| `tools/tests/README.md` | **mock 级测试**：14 条 CLI 用例的覆盖清单、零真机零费用的保证方式、边界（不要往里加真机用例） |
+| `tools/zenmux/zenmux-edit.md` | **完整口径**：依赖与凭据、默认值全表、成本拆解、家族兼容全表、mask 调研、体积限制、排错表、真机实战记录（权威） |
+| `tools/zenmux/tests/README.md` | **mock 级测试**：14 条 CLI 用例的覆盖清单、零真机零费用的保证方式、边界（不要往里加真机用例） |
 | `tools/README.md` | 本地脚本清单与通用经验 |
 | `docs/meowa-cli.md` | 出原画（整张参考图）走 Meowa |

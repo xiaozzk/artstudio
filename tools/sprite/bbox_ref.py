@@ -11,13 +11,13 @@ bbox_ref.py — 画「身体比例 bbox 参考图」, 并把比例换算到任�
 用法:
 
   # 生成参考图(带原图做底, 半透明)
-  python tools/bbox_ref.py spec.json -o out_dir
+  python tools/sprite/bbox_ref.py spec.json -o out_dir
 
   # 纯线框比例示意图(不叠原图, 适合直接喂给 AI)
-  python tools/bbox_ref.py spec.json -o out_dir --no-base
+  python tools/sprite/bbox_ref.py spec.json -o out_dir --no-base
 
   # 换算到目标分辨率: 内容高度 2048
-  python tools/bbox_ref.py spec.json -o out_dir --target-height 2048
+  python tools/sprite/bbox_ref.py spec.json -o out_dir --target-height 2048
 
 spec.json 结构:
 {
@@ -73,13 +73,6 @@ def text_size(d, txt, f):
     return b[2] - b[0], b[3] - b[1], b[1]
 
 
-def draw_label(d, xy, txt, f, fg=(255, 255, 255), bg=(30, 30, 30)):
-    tw, th, off = text_size(d, txt, f)
-    x, y = xy
-    d.rectangle([x, y, x + tw + 6, y + th + off + 4], fill=bg)
-    d.text((x + 3, y + 1), txt, fill=fg, font=f)
-
-
 def render(canvas_w, canvas_h, parts, hlines, vlines, base_img,
            dim_base=0.45, schematic=False, title="") -> Image.Image:
     if schematic:
@@ -95,7 +88,6 @@ def render(canvas_w, canvas_h, parts, hlines, vlines, base_img,
 
     d = ImageDraw.Draw(im, "RGBA")
     fs = max(10, min(canvas_w, canvas_h) // 55)
-    f = font(fs)
     fsm = font(max(9, fs - 2))
 
     # 网格(每 10%) + 左侧百分比刻度
