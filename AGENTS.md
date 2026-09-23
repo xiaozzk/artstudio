@@ -12,7 +12,7 @@
 
 | 路径 | 内容 |
 |------|------|
-| `docs/` | 文档：`meowa-cli.md` / `zenmux-cli.md`（两个 CLI 指南）、`spine-rigging-study.md`、`spine-animation-ai/`（外部仓库，自带 `.git`） |
+| `docs/` | 文档：`meowa-cli.md` / `zenmux-cli.md`（两个 CLI 指南）、`spine-rigging-study.md`、`spine-animation-ai/`（**外部仓库，自带 `.git`，已 gitignore、不入库**） |
 | `assets/eva_bone/` | Eva 原型素材：`parts/` 基础体拆件、`parts_outfit/` 服装件、拼合图与 manifest |
 | `assets/_archive/` | 更早的素材与一次性脚本（`source/`、`scripts/`、`metadata/`） |
 | `meowa/` | AI 生图素材与预设（`templates/` 放 Meowa 预设信息） |

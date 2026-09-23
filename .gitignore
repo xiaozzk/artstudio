@@ -60,6 +60,12 @@ tmp/
 # 两者都不入库，但 download/ 里的东西通常比 tmp/ 更值得留（别随手清）。
 download/
 
+# --- 外部仓库 / 外部资料（本地参考，不入库）--------------------------------
+# docs/spine-animation-ai/ 是**自带 .git 的独立仓库**（clone 来的参考资料）：直接 add 只会记成
+# 没有 .gitmodules 的"幽灵子模块"，别人 clone 下来是个空目录 —— 所以本地留着、不入库。
+# 要正式纳入就改成 submodule（写 .gitmodules + remote）。
+docs/spine-animation-ai/
+
 # --- Agent / CLI 工具产物（本机配置 + 中间产物，不入库）---------------------
 # .claude/ 是本机 AI 编码工具的本地设置（settings.local.json 等）。原先只靠本机全局
 # ~/.config/git/ignore 忽略 —— clone 到别的机器就不再生效，故写进仓库规则。
