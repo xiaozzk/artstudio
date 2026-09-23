@@ -99,7 +99,8 @@ DEFAULT_BASE_URL = "https://zenmux.ai/api/v1"          # OpenAI 协议 + 平台�
 VERTEX_BASE_URL = "https://zenmux.ai/api/vertex-ai"    # Vertex AI 协议端点（:predict 统一生图/编辑）
 DEFAULT_PROTOCOL = "vertex"                            # 2026-09-23 起默认切到 Vertex 协议（支持的模型更多）
 PROTOCOLS = ("vertex", "openai")
-DEFAULT_MODEL = "openai/gpt-image-2.5-sunburst"
+DEFAULT_MODEL = "openai/gpt-image-2"                   # 2026-09-23 起不再对接 gpt-image-2.5-sunburst（用户指示）
+DEFAULT_SOLID_BG = "#FF00FF"                           # --solid-bg 默认纯色底：flatbg_cut.py 按"到底色距离"抠掉
 MAX_INPUT_IMAGES = 16                                   # GPT image 模型输入图上限
 # JSON(base64) 通道：OpenAI schema 对 image_url 字符串字段的 maxLength = 20971520（≈20MiB），
 # base64 会膨胀 4/3，所以原图约 15MB 就到顶。multipart 通道没有这个字段限制，走 50MB 文件上限。
@@ -1236,10 +1237,12 @@ def cmd_edit(args) -> int:
         warn(hint)
 
     # ---- 本地参数校验：能在花钱前拦下的错误，绝不发给服务端
-    # background：openai 协议默认 transparent；vertex 不支持该参数 → 解析为 none（不发也不告警）
+    # background：openai 协议默认 **opaque**（2026-09-23 起不再默认 transparent——实测该取值会被网关
+    #             掐断 / 2.5 系 400；透明件统一走「prompt 纯色底 + flatbg_cut 本地抠底」，即 --solid-bg）；
+    #             vertex 不支持该参数 → 解析为 none（不发也不告警）
     bg_explicit = args.background
     if args.background is None:
-        args.background = "transparent" if args.protocol == "openai" else "none"
+        args.background = "opaque" if args.protocol == "openai" else "none"
     if args.n < 1 or args.n > 10:
         die(f"--n {args.n} 不合法：只能 1~10")
     if args.n > 1:
@@ -1300,6 +1303,15 @@ def cmd_edit(args) -> int:
     if not (args.mask or []) and not args.prompt:
         die("没有 mask 时必须给 --prompt：--mask-prompt 只与 --mask 按下标配对，单独给会被忽略"
             "（否则会发一个空 prompt 上去，白白吃一次 400）")
+
+    # ---- 纯色底（2026-09-23 用户口径：背景一律改纯色，透明件靠 flatbg_cut 本地抠底）
+    # 整图/带 mask 的原位编辑（要在原背景里改）自动跳过注入； naprawdę 要纯底请用 --no-mask + --solid-bg。
+    args.solid_bg_applied = False
+    if args.solid_bg and not args.mask:
+        injected = inject_solid_bg(args.prompt, args.solid_bg, args.model, quiet=bool(args.dry_run))
+        if injected:
+            args.prompt = injected
+            args.solid_bg_applied = True
 
     args.size_resolved, size_note = resolve_size(args.size, base.size)
     steps = build_steps(args, edit_masks)
@@ -1602,14 +1614,40 @@ def add_common(p: argparse.ArgumentParser) -> None:
     p.add_argument("--vertex-url", default=VERTEX_BASE_URL,
                    help=f"Vertex AI 协议端点，默认 {VERTEX_BASE_URL}")
     p.add_argument("--model", default=DEFAULT_MODEL,
-                   help=f"默认 {DEFAULT_MODEL}（编辑精度优先）。Vertex 协议下可选："
+                   help=f"默认 {DEFAULT_MODEL}（文档最全：自定义尺寸 / OpenAI 协议下透明底可控；"
+                        f"**不再对接 gpt-image-2.5-sunburst**）。Vertex 协议下可选："
                         f"tencent/hy-image-v3.0（混元图像 3.0，2026-09-23 实测可用；单次只出 1 张）、"
-                        f"openai/gpt-image-2.5-flare（速度优先）、openai/gpt-image-2、"
+                        f"openai/gpt-image-2.5-flare（速度优先）、"
                         f"qwen/qwen-image-2.0 等——完整名单看 ZenMux Model Catalog（目录有滞后，"
                         f"新模型未收录也可能已能用）")
     p.add_argument("--timeout", type=int, default=600,
                    help="单次请求超时秒数，默认 600。图片编辑实测 100~365s：读超时=客户端主动放弃，"
                         "但服务端可能仍在跑并**照常计费**（实测有一次 364s 跑完、我们提前放弃，钱照扣）")
+
+
+def inject_solid_bg(prompt: str, color, model: str, quiet: bool = False) -> str | None:
+    """把"纯色底"指令追加到 prompt（用户 2026-09-23 口径：背景一律改纯色）。
+
+    * prompt 里已经写了纯色/纯 background 之类就不再追加（避免双重指令打架）
+    * 配套：出图后用 tools/flatbg_cut.py --bg-color <同色> 抠成透明件
+    """
+    color = (color or DEFAULT_SOLID_BG).strip() or DEFAULT_SOLID_BG
+    if not color.startswith("#"):
+        color = "#" + color
+    if re.search(r"纯色|solid|flat\s+background|uniform(\s+solid)?\s+background|FF00FF",
+                 prompt or "", re.I):
+        return None                                              # 用户已自带纯色底要求，不重复注入
+    cn = model_family(model) == "hy"                             # 混元系按中文指令走
+    if cn:
+        piece = (f"背景必须是完全均匀的纯色 {color}，铺满整个画面："
+                 f"无渐变、无阴影、无地面、无边框、无环境。主体周围不要留任何其他元素。")
+    else:
+        piece = (f"The result must sit on a completely flat uniform solid {color} background, "
+                 f"edge to edge: no gradient, no shadow, no ground, no border, no scene elements "
+                 f"around the subject.")
+    info(f"--solid-bg 已注入纯色底指令（{color}）；透明件用 tools/flatbg_cut.py --bg-color {color} 本地抠底；"
+         f"整图原位编辑请加 --no-solid-bg（带 --mask 时不会注入）")
+    return (prompt.rstrip() + "\n" + piece) if prompt else piece
 
 
 def add_edit_args(p: argparse.ArgumentParser) -> None:
@@ -1663,6 +1701,12 @@ def add_edit_args(p: argparse.ArgumentParser) -> None:
                     help="用外部引用代替本地上传图（JSON 通道）：`file:<FILE_ID>` 或 `https://…`。"
                          "实测 ZenMux 没有 Files API，file_id 只能来自别处")
     g2.add_argument("--mask-url", default=None, help="mask 的外部引用（同上）")
+    g2.add_argument("--solid-bg", nargs="?", const=DEFAULT_SOLID_BG, default=DEFAULT_SOLID_BG,
+                    help="**默认开**：出图背景一律纯色（自动向 prompt 追加纯色底指令；hy 系用中文）。"
+                         f"值形如 #40C040；默认 {DEFAULT_SOLID_BG} 配 flatbg_cut 最好抠。"
+                         "带 --mask 的原位编辑不会注入；整图编辑要保留原背景就加 --no-solid-bg")
+    g2.add_argument("--no-solid-bg", dest="solid_bg", action="store_false",
+                    help="关闭纯色底注入（保留原背景 / 场景类整图编辑用）")
     g2.add_argument("--out-dir", default=None, help="默认 tmp/zenmux-edit/<时间戳>/；重名不覆盖，自动加 -2")
     g2.add_argument("--name", default=None, help="输出文件名前缀，默认 <输入图名>-edit")
     g2.add_argument("--max-side", type=int, default=0, help="输入图最长边上限（0=不缩；超 15MB 时用它）")
