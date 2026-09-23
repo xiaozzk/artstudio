@@ -1305,10 +1305,10 @@ def cmd_edit(args) -> int:
             "（否则会发一个空 prompt 上去，白白吃一次 400）")
 
     # ---- 纯色底（2026-09-23 用户口径：背景一律改纯色，透明件靠 flatbg_cut 本地抠底）
-    # 整图/带 mask 的原位编辑（要在原背景里改）自动跳过注入； naprawdę 要纯底请用 --no-mask + --solid-bg。
+    # 整图/带 mask 的原位编辑（要在原背景里改）自动跳过注入；想保留原背景请加 --no-solid-bg。
     args.solid_bg_applied = False
     if args.solid_bg and not args.mask:
-        injected = inject_solid_bg(args.prompt, args.solid_bg, args.model, quiet=bool(args.dry_run))
+        injected = inject_solid_bg(args.prompt, args.solid_bg, args.model)
         if injected:
             args.prompt = injected
             args.solid_bg_applied = True
@@ -1346,7 +1346,7 @@ def cmd_edit(args) -> int:
         + (f" background={args.background}" if args.protocol == "openai" else "（vertex 不支持 background，忽略）")
         + (f" stream=on(partials={args.partials})" if (args.stream and args.protocol == "openai") else ""))
     if args.protocol == "vertex" and sent:
-        log(f"  发送     " + "；".join(sent))
+        log("  发送     " + "；".join(sent))
     log(f"  输入     {len(images)} 张：" + "、".join(f"{Path(p).name}{list(im.size)}" for p, im in zip(args.image, images)))
     log(f"  mask     {len(edit_masks)} 张，模式={args.mask_mode}")
     for s in steps:
@@ -1574,7 +1574,7 @@ def cmd_edit(args) -> int:
         except Exception as e:                                 # noqa: BLE001
             warn(f"跑完查余额失败：{e}")
     if _USAGE_LOG:
-        log(f"  用量     " + "；".join(f"step{o['step']}: {o.get('tokens') or '?'} tokens"
+        log("  用量     " + "；".join(f"step{o['step']}: {o.get('tokens') or '?'} tokens"
                                       f"（{o.get('elapsed')}s）" for o in _USAGE_LOG))
     (out_dir / "run-summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     log(f"  账单明细 {out_dir / 'run-summary.json'}")
@@ -1625,7 +1625,7 @@ def add_common(p: argparse.ArgumentParser) -> None:
                         "但服务端可能仍在跑并**照常计费**（实测有一次 364s 跑完、我们提前放弃，钱照扣）")
 
 
-def inject_solid_bg(prompt: str, color, model: str, quiet: bool = False) -> str | None:
+def inject_solid_bg(prompt: str, color, model: str) -> str | None:
     """把"纯色底"指令追加到 prompt（用户 2026-09-23 口径：背景一律改纯色）。
 
     * prompt 里已经写了纯色/纯 background 之类就不再追加（避免双重指令打架）
@@ -1678,7 +1678,7 @@ def add_edit_args(p: argparse.ArgumentParser) -> None:
                     help="默认 low（约 $0.01~0.02/张，估）。medium≈$0.04~0.05、high≈$0.15~0.18（实测）；"
                          "xhigh/max 只有 2.5 系列认")
     g2.add_argument("--background", default=None, choices=("transparent", "opaque", "auto", "none"),
-                    help="**仅 openai 协议**：默认 transparent；vertex 协议不支持该参数（不传，"
+                    help="**仅 openai 协议**：默认 opaque；vertex 协议不支持该参数（不传，"
                          "透明底走「纯色底 + flatbg_cut.py 本地抠底」）。none=完全不传该字段")
     g2.add_argument("--output-format", default="png", choices=("png", "jpeg", "webp"), help="默认 png")
     g2.add_argument("--output-compression", type=int, default=None, help="仅 jpeg/webp，0-100")
