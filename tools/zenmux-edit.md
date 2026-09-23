@@ -121,10 +121,11 @@ python tools/zenmux_edit.py edit --image tmp/hero.png `
 |------|------|------|
 | `--output-format` | `png` | 需要透明就只能是 png / webp |
 | `--n` | `1` | 一次调用出图张数 |
-| `--background` | —（按协议） | **仅 openai 协议**默认 `transparent`；vertex 不支持、不发送（显式传了才会告警）。`transparent` 只能配 png/webp |
+| `--background` | openai 协议下 `opaque` | **2026-09-23 起不再默认 `transparent`**（实测该取值会被网关掐断 / 2.5 系 400）；vertex 不支持、不发送。`transparent` 仍可显式传（只能配 png/webp）。透明件统一走 `--solid-bg` + 本地抠底 |
 | `--quality` | `low` | `low`≈**$0.01~0.02/张**（估）· `medium`≈$0.04~0.05（估）· `high`≈**$0.15~0.18/张**（账单实测）。`xhigh`/`max` 只有 2.5 系列认。hy 系无分档，不发 |
 | `--size` | `1024x1024` | 也有 `1536x1024` / `1024x1536` / `auto` / **`match`**（跟随输入图，取 16 的倍数） |
-| `--model` | `openai/gpt-image-2.5-sunburst` | 编辑精度优先。同价可选：`...-sunburst-2026-09-08`（钉版本）、`openai/gpt-image-2.5-flare`（速度优先）、`openai/gpt-image-2`（上一代，**文档明确支持 `background=transparent`**）、`openai/gpt-image-1.5` |
+| `--model` | **`openai/gpt-image-2`** | 文档最全（自定义尺寸 / OpenAI 协议下透明底可控）。**不再对接 `openai/gpt-image-2.5-sunburst`**；可选 `openai/gpt-image-2.5-flare`（速度优先）、`openai/gpt-image-1.5`、`tencent/hy-image-v3.0`（混元图像 3.0，单次 1 张）等 |
+| `--solid-bg` | **开，`#FF00FF`** | **背景一律纯色**：自动往 prompt 追加"完全均匀纯色底"指令（hy 系中文），配 `flatbg_cut.py --bg-color` 抠成透明件。带 `--mask` 的原位编辑**不注入**；prompt 已写纯色要求也不重复注入；`--no-solid-bg` 关闭 |
 | `--transport` | `json` | **openai 协议专属**（vertex 纯 JSON 内嵌，无此开关）；multipart 是给服务端 JSON 路由出问题时的备用通道 |
 | `--stream` | **开** | **openai 协议专属** SSE；vertex 是单次 POST 无流式 |
 | `--partials` | `0` | 流式中间图数量（同上，openai 专属） |
@@ -134,12 +135,11 @@ python tools/zenmux_edit.py edit --image tmp/hero.png `
 | `--retries` | — | **已经彻底移除**：实测被掐断/超时的请求照样计费，自动重试=重复烧钱。失败就停下，用 `cost` 核账后人工决定 |
 | `--retry-on-timeout` | — | 同上，已移除 |
 
-> **默认模型 × 透明背景的已知张力（仅 openai 协议）**：ZenMux 的 OpenAI 协议文档把 `transparent`
-> 列为 `background` 合法取值（流式事件里也会回 `background: transparent`），
-> 但第三方实测 **2.5 系列在 edit 端传 `transparent` 会 400 / 断连**（ZenMux 文档未明确）。
-> 工具**不会**自动回退重试（无任何重试，见"产出与纪律"）：被拒就显式 `--background opaque`，
-> 要透明底（贴图 / 换装件）统一走"prompt 纯色底 + `tools/flatbg_cut.py` 本地抠底"——
-> vertex 协议下这**是唯一路径**。
+> **背景策略（2026-09-23 起）**：**背景一律纯色**。
+> ① openai 协议 `--background` 默认 `opaque`（`transparent` 实测会被网关掐断连接、2.5 系直接 400）；
+> ② `--solid-bg`（默认开）自动把"完全均匀纯色底 #FF00FF"写进 prompt（hy 系用中文指令）；
+> ③ 出图后用 `tools/flatbg_cut.py --bg-color '#FF00FF'` 抠成透明件（反混合去边，边缘无彩边）。
+> 带 `--mask` 的原位编辑不注入纯色底（要保留原背景）；整图编辑要保留原背景就 `--no-solid-bg`。
 
 体积上限（openai 协议口径；vertex 的 `:predict` 无公开字段上限，工具按保守 50MB 拦）：
 
@@ -250,7 +250,7 @@ mask 在 vertex 协议下照常用（`--mask` / `--mask-mode` 全套），语义
 | mask 覆盖 0% / >95% | polarity 选错，换 `--mask-polarity`；或阈值 `--mask-threshold` 不合 |
 | 输入图 base64 超过 20MiB 字段 | `--max-side 2048` 缩小输入，或改用 `--transport multipart`（50MB 上限） |
 | 流式调用报 `流内错误：…` | 流一旦开始，ZenMux 不回标准 JSON 而是在流内发失败事件；本工具会把它解出来（含 `type`/`message`），不会再误报成 "HTTP 200" |
-| 连接被重置 `RemoteDisconnected` | 实测 **`--background transparent` 会被网关直接掐断连接**（不是 4xx，看日志只有 RemoteDisconnected）。要透明件就改走 **"纯色底 + 本地抠底"**：`--background opaque` + prompt 要求纯洋红 `#FF00FF` 背景，出图后按 `min(R,B)-G` 抠掉。⚠ **被掐断的请求照样计费**（实测 4 次 transparent 全部扣款），所以默认**不自动重试**：先 `cost` 核账，确认要重试再加 `--retry-on-drop` |
+| 连接被重置 `RemoteDisconnected` | 实测 **`--background transparent` 会被网关直接掐断连接**（不是 4xx，看日志只有 RemoteDisconnected）。要透明件就走 **"纯色底 + 本地抠底"**：默认的 `--solid-bg`（#FF00FF）+ `tools/flatbg_cut.py --bg-color '#FF00FF'`。⚠ **被掐断的请求照样计费**（实测 4 次 transparent 全部扣款），工具**没有任何重试开关**：先 `cost` 核账，再人工决定要不要重跑 |
 | 长请求怕被网关掐断 | 用 `--stream --partials 0`：SSE 每 10s 有保活数据，连接不空闲；图片编辑没有异步/轮询接口可退 |
 | 读超时 | **先别重跑**：请求已发出，上游可能已出图计费。拿 `x-request-id` 去 platform 日志核对；确需自动重试才加 `--retry-on-timeout` |
 
@@ -266,19 +266,19 @@ mask 在 vertex 协议下照常用（`--mask` / `--mask-mode` 全套），语义
   已本地断言测试（含 mask 的 `REFERENCE_TYPE_MASK + MASK_MODE_USER_PROVIDED`、
   hy `--n 2` 拦截、`--size`→aspectRatio 折算、gcsUri/bytesBase64 两种响应解法）。
   **未真机验证**：mask 在 vertex 协议下的实际重绘效果（要走一次小额 `--min-credits 1`）。
-- **已验证（本地 mock 服务端，92 项断言全通过，openai 协议部分）**：请求体形状（`images[].image_url` data URL、
+- **已验证（本地 mock 服务端，openai 协议部分 92 项断言全通过）**：请求体形状（`images[].image_url` data URL、
   `mask.image_url`、`n/size/quality/background/output_format` 默认值、默认模型
-  `openai/gpt-image-2.5-sunburst`）、mask 语义转换
+  `openai/gpt-image-2`）、mask 语义转换
   （标记区 → 透明洞，实测覆盖面积与几何面积吻合；`hole` 语义、**alpha 全 255 的 RGBA mask 回退按亮度读**
   都已核对）、union 并集面积、sequential 两次调用与分区 prompt、**串行时 mask 自动跟随上一步输出尺寸**、
   `--mask-grow` 膨胀、mask 尺寸不一致自动缩放、`--size match`（含下限放大）、SSE 流式解析与 usage 提取、
   **流内 error 事件被解析成真实错误**、multipart 备用通道与字段名切换、重名不覆盖、`--dump-request` 多步落盘、
-  缺 prompt / 缺 key / `n` 越界 / `jpeg + transparent` 的本地拦截、2.5 默认模型下的透明背景告警、
+  缺 prompt / 缺 key / `n` 越界 / `jpeg + transparent` 的本地拦截、（当时的）2.5 默认模型透明背景告警、
   **余额读取与成本控制**（`balance` / `balance --json` / `check` 报余额 / `--min-credits` 守卫拦截与放行 /
   `run-summary.json` 的余额差与 token 汇总）。
   （harness 在 `tmp/mock_zenmux.py` + `tmp/test_zenmux_edit.py`，属临时产物，未入库；随时可重跑，**全程不打真机、不花钱**。）
-- **已在真机验证（免费接口）**：`check`（公开 `GET /models`：199 个模型、7 个可出图、默认模型在架）与
-  `balance` / `check` 的余额行（`GET /management/payg/balance` → `余额 10 USD（充值 10 + 赠送 0）`）。
+- **已在真机验证（免费接口）**：`check`（公开 `GET /models`：**202 个模型、8 个可出图**、默认模型在架）与
+  `balance` / `check` 的余额行（`GET /management/payg/balance`）、`cost`（`/management/cost`，7 次请求 $1.200935）。
 - **真机验证（2026-09-23，本轮）**：目录里 7 个可出图模型（全是 openai 系）、
   `balance` 实测 `GET /management/payg/balance` 正常；
   **vertex 协议 2 次小额计费探针**：`tencent/hy-image-v3.0` 文生图 / 图生图均 200 出 `gcsUri`；
@@ -295,13 +295,14 @@ mask 在 vertex 协议下照常用（`--mask` / `--mask-mode` 全套），语义
 | `--background transparent` | edit 端点**直接掐断连接**（RemoteDisconnected）；透明件改走"纯色底 + 本地抠底" |
 | mask 不是硬边界 | 实测 mask 只覆盖 2.91% 画面，生成图**mask 外 30.6% 像素被重画**（另一只手的武器被抹掉）→ 要么只把 mask 内改回贴回原图，要么用"部件单独重画"流程 |
 | 单次编辑的实测开销 | 704x960 / high / 3 张输入图：103s、6566 tokens；784x848 单独画部件：113s、6871 tokens。**账单口径：一次 $0.15~0.18**（`image_output` 占 94%），按 flow 单价估会差 5 倍 |
-| **被掐断 = 照常计费（重要）** | 实测一轮 7 次请求全计费 $1.2009，只有 2 次拿到图：其中 1 次客户端被掐断但服务端跑了 364.7s 照扣 $0.1512；另外 `background=transparent` 的 4 次（1 原始 + 3 重试）各扣 $0.1797。<br>→ 对策：**① 不用 transparent**；**② 被掐断默认不重试**（工具默认如此，要重试加 `--retry-on-drop`）；**③ 事后用 `cost` 核账** |
+| **被掐断 = 照常计费（重要）** | 实测一轮 7 次请求全计费 $1.2009，只有 2 次拿到图：其中 1 次客户端被掐断但服务端跑了 364.7s 照扣 $0.1512；另外 `background=transparent` 的 4 次（1 原始 + 3 重试）各扣 $0.1797。<br>→ 对策：**① 不用 transparent（现在默认 opaque + 纯色底）**；**② 工具无任何重试开关，失败就停下**；**③ 事后用 `cost` 核账** |
 | 查询账单（免额度） | `python tools/zenmux_edit.py cost --models openai/gpt-image-2`（默认按月看天桶）<br>`... cost --dimension BIZ_DT --time 20260922`（按天看小时桶，能看出是几点烧的）<br>`... cost --json` 出原始结构；接口 `/api/v1/management/cost`，与 Usage 共享 60 次/分钟限流 |
 | 长连接怎么不被打断 | 图片编辑**没有异步/轮询接口**（Images 协议是同步的；`/management/generation` 只是账单查询，3~5 分钟后才有数据）。唯一替代通道是 **SSE 流式**：`--stream`（配 `--partials 0` 最省，只要最终图），ZenMux 每 **10 秒**发一次 `: ZENMUX PROCESSING` 保活注释，连接不会长时间空闲；出问题也能收到流内 error 事件而不是干巴巴断连 |
 | 部件"单独重画"流程（推荐给换皮） | 输入 = 原部件放大 + 风格参考，prompt 要"单体 / 居中 / 纯色底 / 保持轮廓朝向与画布位置"→ 抠底得 alpha → 按"原部件 alpha maxXY ↔ 新件 alpha maxXY"等比缩放 → 放回原附件画布 → 换回 Spine 重渲验证（远处应为 0px 变化） |
 
 ## 相关文档
 
+- [`docs/zenmux-cli.md`](../docs/zenmux-cli.md) —— **本工作区的操作要点速查**（场景、常用命令、成本控制、硬规则）；本文是它的完整口径
 - [Generate Images（Vertex AI 协议，ZenMux）](https://zenmux.ai/docs/api/vertexai/generate-images.html) —— `:predict` 端点、`instances+parameters`、透传参数表
 - [Image Generation Guide（ZenMux）](https://zenmux.ai/docs/guide/advanced/image-generation.html) —— `edit_image` / MaskReferenceImage 示例、OpenAI 参数 → Vertex 映射表
 - [Get PAYG Balance（ZenMux 平台 API）](https://zenmux.ai/docs/api/platform/payg-balance.html) —— 余额 / 成本控制
