@@ -78,6 +78,7 @@
 | `spine_part_swap.py` | `locate` 定位插槽可见区（→ mask/尺寸/附件四边形）、`verify` 换图重渲量化改动（远处应为 0px）—— 换皮流水线见 `tools/spine-reskin.md` |
 | `ps_cut/fill_from_layer1.jsx` | PS 里一键补缺口（文件 > 脚本 > 浏览） |
 | `browser/` | 浏览器登录态复用（见下节） |
+| `tests/` | **ZenMux CLI 的 mock 级测试**：`python tools/tests/test_zenmux_cli.py`（13 条命令级用例，约 5s，**全程 127.0.0.1、零真机零费用**）；口径见 `tools/tests/README.md` —— 真机验证才花钱，测试**只验 CLI 命令** |
 
 **通用经验**
 
