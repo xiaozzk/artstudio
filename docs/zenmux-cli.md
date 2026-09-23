@@ -49,6 +49,10 @@
 | `python tools/zenmux_edit.py balance [--json]` | 只查余额 |
 | `python tools/zenmux_edit.py cost [--models M] [--dimension BIZ_MTH\|BIZ_DT\|BIZ_HOUR] [--time T]` | 查账单 |
 | `python tools/zenmux_edit.py generation --id <generationId>` | 单次调用明细（id 从 Logs 页 Request 搜索框拿） |
+| `python tools/tests/test_zenmux_cli.py` | **改完 `zenmux_edit.py` 先跑这个**：14 条 CLI 级用例，起本地 mock 服务端，全程 127.0.0.1，约 6s、**$0** |
+
+> 测试口径：**先 mock，再只验 CLI 命令**（退出码 / 输出 / 产物）。**别拿真机当测试** —— 每次调用都要钱，
+> 被网关掐断的请求也照常计费。真机验证走人工流程：`--dry-run` → `--min-credits 1` 小额一张 → `cost` 核账。
 
 ## 成本控制（余额接口只认管理型 key）
 
@@ -89,5 +93,6 @@
 | 文档 | 内容 |
 |------|------|
 | `tools/zenmux-edit.md` | **完整口径**：依赖与凭据、默认值全表、成本拆解、家族兼容全表、mask 调研、体积限制、排错表、真机实战记录（权威） |
+| `tools/tests/README.md` | **mock 级测试**：14 条 CLI 用例的覆盖清单、零真机零费用的保证方式、边界（不要往里加真机用例） |
 | `tools/README.md` | 本地脚本清单与通用经验 |
 | `docs/meowa-cli.md` | 出原画（整张参考图）走 Meowa |

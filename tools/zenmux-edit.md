@@ -262,21 +262,23 @@ mask 在 vertex 协议下照常用（`--mask` / `--mask-mode` 全套），语义
   （`instances[0].referenceImages = [REFERENCE_TYPE_RAW + bytesBase64Encoded]`）→ 200 出 `gcsUri`。
   假 key → 与 OpenAI 协议同一错误信封（`403 access_denied` + `api_key_source`），
   平台接口（`balance` / `cost` / `generation`）在 Vertex 切换下**不受影响**。
-  工具侧：两种家族请求体（openai 顶层 imageSize/quality；hy 的 aspectRatio/enhancePrompt）
-  已本地断言测试（含 mask 的 `REFERENCE_TYPE_MASK + MASK_MODE_USER_PROVIDED`、
-  hy `--n 2` 拦截、`--size`→aspectRatio 折算、gcsUri/bytesBase64 两种响应解法）。
+  工具侧形状由 `tools/tests/` 的 CLI 级测试覆盖（openai 家族顶层 `imageSize`/`quality`、
+  mask 的 `REFERENCE_TYPE_MASK + MASK_MODE_USER_PROVIDED`、hy `--n 2` 拦截、`gcsUri` 下载分支）。
   **未真机验证**：mask 在 vertex 协议下的实际重绘效果（要走一次小额 `--min-credits 1`）。
-- **已验证（本地 mock 服务端，openai 协议部分 92 项断言全通过）**：请求体形状（`images[].image_url` data URL、
-  `mask.image_url`、`n/size/quality/background/output_format` 默认值、默认模型
-  `openai/gpt-image-2`）、mask 语义转换
-  （标记区 → 透明洞，实测覆盖面积与几何面积吻合；`hole` 语义、**alpha 全 255 的 RGBA mask 回退按亮度读**
-  都已核对）、union 并集面积、sequential 两次调用与分区 prompt、**串行时 mask 自动跟随上一步输出尺寸**、
-  `--mask-grow` 膨胀、mask 尺寸不一致自动缩放、`--size match`（含下限放大）、SSE 流式解析与 usage 提取、
-  **流内 error 事件被解析成真实错误**、multipart 备用通道与字段名切换、重名不覆盖、`--dump-request` 多步落盘、
-  缺 prompt / 缺 key / `n` 越界 / `jpeg + transparent` 的本地拦截、（当时的）2.5 默认模型透明背景告警、
-  **余额读取与成本控制**（`balance` / `balance --json` / `check` 报余额 / `--min-credits` 守卫拦截与放行 /
-  `run-summary.json` 的余额差与 token 汇总）。
-  （harness 在 `tmp/mock_zenmux.py` + `tmp/test_zenmux_edit.py`，属临时产物，未入库；随时可重跑，**全程不打真机、不花钱**。）
+- **本地 mock 的 CLI 级测试（零真机、零费用）**：`python tools/tests/test_zenmux_cli.py` —— 14 条，约 6s。
+  口径是「**先 mock，再只验 CLI 命令**」（用户 2026-09-23 指示：真机测试要花钱，不再逐条断内部函数）：
+  断言只有退出码 / stdout 关键词 / 落盘产物 / `--dump-request` 的请求体。覆盖
+  `check` / `balance`（含余额为 0 时退出 1）/ `cost` / `generation` /
+  `edit` 的 openai JSON、multipart、SSE 三形态 / vertex `:predict`（含 mask 引用形状、腾讯系 `gcsUri` 下载）/
+  本地拦截（`--n` 越界、透明底配 jpeg、缺 prompt、hy `--n 2`、`--aspect-ratio` 形式错、未知子命令）/
+  403 `access_denied` 提示 / `--dry-run` 一个 POST 都不发。
+  mock 服务端是 `tools/tests/mock_zenmux.py`（纯标准库，也能手工起）；测试进程另把 `HTTPS_PROXY`
+  指到死端口兜底 —— 哪天漏配 `--base-url`，请求会立刻失败，而不是悄悄打到 zenmux.ai 烧钱。
+  口径与用例清单见 [`tests/README.md`](tests/README.md)。
+- 上一版那份 **92 条内部断言**的 harness（曾放 `tmp/mock_zenmux.py` + `tmp/test_zenmux_edit.py`）
+  **已废弃**（文件也随 `tmp/` 清空）：它断的 mask 语义换算、union 并集面积、`--mask-grow`、
+  `--size match` 下限放大、`--mask-feather` 这类**内部细节**现在不再每次复验；
+  要复查就现写一次性脚本，别把它们堆回测试套件。
 - **已在真机验证（免费接口）**：`check`（公开 `GET /models`：**202 个模型、8 个可出图**、默认模型在架）与
   `balance` / `check` 的余额行（`GET /management/payg/balance`）、`cost`（`/management/cost`，7 次请求 $1.200935）。
 - **真机验证（2026-09-23，本轮）**：目录里 7 个可出图模型（全是 openai 系）、

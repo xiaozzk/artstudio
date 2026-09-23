@@ -5,7 +5,7 @@
 
 ```powershell
 # 在工作区根执行
-python tools/tests/test_zenmux_cli.py            # 全部 13 条，约 5 秒，花费 $0
+python tools/tests/test_zenmux_cli.py            # 全部 14 条，约 6 秒，花费 $0
 python tools/tests/test_zenmux_cli.py -v         # 逐条列名
 python tools/tests/test_zenmux_cli.py -k vertex  # 只跑命中名字的
 ```
@@ -15,7 +15,7 @@ python tools/tests/test_zenmux_cli.py -k vertex  # 只跑命中名字的
 | 文件 | 作用 |
 |------|------|
 | `mock_zenmux.py` | 假 ZenMux 服务端（**纯标准库**，不依赖 PIL / requests）。可被测试 import，也能手工起：`python tools/tests/mock_zenmux.py --port 8765 --scenario ok`（场景 `ok` / `deny`=403 / `low`=余额 0） |
-| `test_zenmux_cli.py` | 13 条 CLI 级用例：起 mock → 用 `subprocess` 跑 `tools/zenmux_edit.py` → 断言退出码 / 输出关键词 / 落盘产物 |
+| `test_zenmux_cli.py` | 14 条 CLI 级用例：起 mock → 用 `subprocess` 跑 `tools/zenmux_edit.py` → 断言退出码 / 输出关键词 / 落盘产物 |
 
 ## 怎么保证"零真机、零费用"
 
@@ -25,7 +25,7 @@ python tools/tests/test_zenmux_cli.py -k vertex  # 只跑命中名字的
 3. `.env` 里就算放着真 key 也没关系 —— 测试一律用 `--api-key sk-test-local-not-a-real-key`，
    而且所有出口都在 127.0.0.1。
 
-## 覆盖清单（13 条）
+## 覆盖清单（14 条）
 
 | 用例 | 验证的命令层行为 |
 |------|------------------|
@@ -42,6 +42,7 @@ python tools/tests/test_zenmux_cli.py -k vertex  # 只跑命中名字的
 | 11 | `tencent/hy-image-v3.0`：响应是 `gcsUri` 时能下载落盘 |
 | 12 | 本地拦截（花钱前）：`--n` 越界、透明底配 jpeg、缺 prompt、hy `--n 2`、`--aspect-ratio` 形式错、未知子命令 → 退出码 2，且**没打 API** |
 | 13 | 服务端 403 `access_denied` → 退出码 2 + 鉴权提示 |
+| 14 | `--solid-bg` 默认行为：默认把纯色底指令注入 prompt（`#FF00FF`）、`--no-solid-bg` 不注入、带 `--mask` 的原位编辑不注入 |
 
 ## 边界（别在这里做的事）
 

@@ -33,6 +33,7 @@ python -m pip install numpy pillow opencv-python requests
 | 目录 | 用途 |
 |------|------|
 | `browser/` | **浏览器登录态复用（CDP 副本）** —— 借日常浏览器的登录态做自动化，用完销毁。与图片管线无关，见 [`browser/README.md`](browser/README.md) |
+| `tests/` | **ZenMux CLI 的 mock 级测试**：`python tools/tests/test_zenmux_cli.py` —— 先起假服务端，再只验 CLI 命令（退出码 / 输出 / 产物），**零真机请求、零费用**。见 [`tests/README.md`](tests/README.md) |
 
 ## 通用约定
 
