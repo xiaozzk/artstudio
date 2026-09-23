@@ -12,7 +12,7 @@
 
 | 路径 | 内容 |
 |------|------|
-| `docs/` | 空目录（`.gitkeep` 占位） |
+| `docs/` | 文档：`meowa-cli.md` / `zenmux-cli.md`（两个 CLI 指南）、`spine-rigging-study.md`、`spine-animation-ai/`（外部仓库，自带 `.git`） |
 | `assets/eva_bone/` | Eva 原型素材：`parts/` 基础体拆件、`parts_outfit/` 服装件、拼合图与 manifest |
 | `assets/_archive/` | 更早的素材与一次性脚本（`source/`、`scripts/`、`metadata/`） |
 | `meowa/` | AI 生图素材与预设（`templates/` 放 Meowa 预设信息） |
@@ -33,7 +33,7 @@
 
 ## 凭据与权限（已确认，无需再议）
 
-- Meowa API key（`ma_live_...`）放在工作区根 **`.env`**（已被 `.gitignore` 忽略），对接**官方渠道**，不构成泄露风险。
+- Meowa API key（`MEOWART_API_KEY=ma_live_...`）放在工作区根 **`.env`**（已被 `.gitignore` 忽略），对接**官方渠道**，不构成泄露风险。
 - ZenMux 有**两类 key，别混**（2026-09 实测）：
   - `ZENMUX_API_KEY=sk-...`（**普通 key**）—— 生图/模型接口只用这个；`.env` 里没有它就只能干等。
   - `ZENMUX_MANAGEMENT_API_KEY=sk-mg-...`（**管理型 key**）—— 只能打余额/用量等平台接口；
@@ -44,84 +44,19 @@
 - skill 明确规定**不要要求用户把 key 贴进对话** —— 引导其写入 `.env` 即可。
 - 用户已授予最大权限，按此前提协作。
 
-## Meowa 生图 CLI
+## 生图 / 改图两个 CLI
 
-**用途**：出**原画** —— 角色设定图 / 三视图、服装设计稿、配色与材质设定。
+| CLI | 场景 | 指南 |
+|-----|------|------|
+| **Meowa 生图 CLI** | 出**原画**：角色设定图 / 三视图、服装设计稿、配色与材质设定 | `docs/meowa-cli.md` |
+| **ZenMux 图片编辑 CLI** | 在素材图上**标记若干部位，只重绘这些部位**：换一把武器 / 换一件衣服 / 改配色材质；**`tools/` 里唯一会花钱的脚本** | `docs/zenmux-cli.md`（深度口径 `tools/zenmux-edit.md`） |
 
-- **命令**：`python ~/.agents/skills/game-assets/meowart_api.py <子命令>`
+两条共同的硬约束（细节与实测经验见各自文档）：
+
 - **一律在工作区根下执行** —— runner 从**执行命令的当前目录**读 `.env`，换目录就读不到 key。
-- **`.env` 按 latin-1 解析 → 禁止中文注释**，写了会直接解码报错。
-- **校验连通 / 余额**：`... meowart_api.py credits-balance`
-- **更新 CLI 走 codeload tar.gz**（`git clone` 常被重置），整目录覆盖 `~/.agents/skills/game-assets`
-  与 `.claude/skills/game-assets` 两个安装点。
-- **prompt 硬规则**：**单行、且不含任何引号字符**（PowerShell 会把双引号当分隔符）。
-  用无引号结构化约束代替引号，例如 `Constraints: canvas = ...; edit = [...]; must_not_change = [...]`；
-  给**整图**并说明上下文；显式禁止模型"顺手改结构"。
-- **参数限制**：`--strict` 只在 `--mode pixel` 可用；HD 编辑去背只支持 `none` / `standard`。
-- **产物纪律**：每次生成先记 `job_id`；`--output-dir` 必须互不相同。失败自动全额退费，
-  **不要重复提交**；误删可用 `image-2-poll --job-id <id>` **免费**重新下载。
-- **三视图要点**：prompt 里必须显式要求**同一角色的致外观**（同服装 / 同配色 / 同发型），
-  否则正 / 侧 / 背之间比例会变，对不上。
-
-## ZenMux 图片编辑 CLI
-
-**用途**：在素材图上**标记若干部位，只重绘这些部位** —— 换一把武器 / 换一件衣服 / 改配色材质。
-**这是 `tools/` 里唯一会花钱的脚本。**
-
-- **命令**：`python tools/zenmux_edit.py <check|balance|cost|generation|edit>`，**一律在工作区根下执行**（读根目录 `.env`）。
-- **协议（2026-09-23 起默认 Vertex AI）**：
-  - **默认 `--protocol vertex`**：`POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:predict`
-    —— 统一生图端点，**模型面最宽**（openai / 腾讯混元 / 通义 / Flux / Kling / Imagen）。
-    文生图 = `instances[0].prompt`；编辑 = `instances[0].referenceImages`
-    （`REFERENCE_TYPE_RAW` 原图 + 可选 `REFERENCE_TYPE_MASK`，`maskMode=MASK_MODE_USER_PROVIDED`），
-    **mask 语义与 OpenAI 相同：透明 = 编辑区**。
-    响应 `predictions[]`：Google 系回 `bytesBase64Encoded`，**腾讯系回 `gcsUri`（COS 签名 URL，工具自动下载）**。
-    `--protocol openai` 回旧 `/v1/images/edits`（SSE / multipart / `background` 只有旧协议支持）。
-  - **家族兼容**（请求参数按模型家族分发，源码 `FAMILIES`）：
-
-    | 家族 | 尺寸 | 质量 | n 上限 | 备注 |
-    |------|------|------|--------|------|
-    | `openai/gpt-image-*` | 顶层 `imageSize` | 顶层 `quality` | 10 | |
-    | `tencent/hy-image-*` | `parameters.aspectRatio`（`--size` 自动折算，如 1536x1024→3:2） | 无分档（不发） | **1** | `--enhance-prompt` ✅；`--negative-prompt`/`--sample-image-size` 未证实，被 400 就去掉 |
-
-  - **新模型实例**：`tencent/hy-image-v3.0`（混元图像 3.0）**已真机验证可用**（2026-09-23）——
-    但它**还没进 ZenMux 目录**（`/models` 不显示也能跑），`check` 对 vertex 的目录外模型只 warn 不拦。
-  - ⚠ **vertex 不支持 `background`**（官方映射表标 ❌）：透明件走"prompt 要纯色底（#FF00FF）+
-    `tools/flatbg_cut.py` 本地抠底"；不支持 SSE / multipart / `--image-url`，一律单次 POST + JSON 内嵌 base64。
-    举例：`python tools/zenmux_edit.py edit --model tencent/hy-image-v3.0 -i a.png --mask m_weapon.png --prompt "把剑换成..." --min-credits 1`
-- **自检 / 查余额 / 查账单（都免费）**：
-  - `python tools/zenmux_edit.py check` —— key、模型是否在架、mask 覆盖面积、当前 PAYG 余额
-  - `python tools/zenmux_edit.py balance [--json]` —— 只查余额
-  - `python tools/zenmux_edit.py cost [--models M] [--dimension BIZ_MTH|BIZ_DT|BIZ_HOUR] [--time T]` —— 查账单
-  - `python tools/zenmux_edit.py generation --id <generationId>` —— 单次调用明细（id 从 Logs 页 Request 搜索框拿）
-- **成本控制**（余额接口只认管理型 key）：
-  - `edit --min-credits 1`：开跑前低于 1 USD 就拒跑；跑完打印余额差（≈本次实际花费）
-  - 每次运行都会写 `run-summary.json`（余额前后、余额差、各步 token 用量、产物清单）
-  - 每次调用都打印 `x-request-id`；**产物旁边有同名 `.json` 边车**便于对账
-  - **OpenAI 系单价（2026-09 实测反推）**：`image_output` ≈ **$30/1M tokens**、`image_input` ≈ $8/1M、文字 $5/1M。
-    单张：**quality=low（默认）≈ $0.01~0.02**（估）、`medium` ≈ $0.04~0.05（估）、**`high` = $0.15~0.18（账单实测）**。
-    **hy 系单价未实测**——跑完 `cost --models tencent/hy-image-v3.0` 核账。
-  - ⚠ **被网关掐断的请求照样计费**（OpenAI 协议实测一轮 7 次全计费 $1.2009，只有 2 次拿到图）：
-    **工具没有任何自动重试**，失败就停下用 `cost` 核账，人工决定要不要重跑。
-- **硬规则 / 实测经验**：
-  1. **一次请求只能带 1 个 mask**（两种协议都如此，且只作用于第一张输入图）。
-     多区域由工具消化：`union`（并成 1 张，1 次调用）/ `sequential`（逐块改并串起来，N 次调用，
-     「A 换武器 + B 换衣服」用这个）/ `separate`（N 个候选）。
-  2. **mask 语义：透明（alpha=0）= 要重绘**。默认 `--mask-polarity marked`（涂白=要改），
-     自动翻成协议需要的透明洞；PS 存成「alpha 全 255 + 黑白亮度」也能正确识别。
-  3. **先 `--dry-run` 再花钱**：免费出 mask 预览 + 调用计划（含家族参数分发结果）；加 `--dump-request`
-     落盘请求体。覆盖 0% 报错，>95% 告警（polarity 反了）。
-  4. **默认值**：`png` / `n=1` / `quality=low` / `size=1024x1024` / 模型 `openai/gpt-image-2.5-sunburst`。
-     透明底在 vertex 下没有直通参数——走"纯色底 + 本地抠底"。
-  4b. **mask 不是硬边界**（OpenAI 协议实测 mask 覆盖 2.91% 时，mask 外 30.6% 像素被重画）：
-     换单个部位用 `apply` 思路只把 mask 内改动贴回原图；换皮/新组件走
-     **部件单独重画**流程：输入 = 原部件放大 + 风格参考，prompt 要单体/纯色底/保持轮廓朝向与画布位置，
-     抠底得 alpha → 按"原部件 alpha maxXY ↔ 新件 alpha maxXY"等比缩放 → 放回原附件画布 → 换回 Spine 重渲验证。
-  5. **没有任何自动重试**：实测被掐断 / 超时 / 5xx 的请求**照样计费**，所以失败就停下 ——
-     用 `cost` 核账后人工决定。每次调用都记 `requests.jsonl`（含 `request_id` / usage / 输入 sha256 / 产物）
-     与 `_responses/response*.json`（b64 折叠），跟后台 Logs 页对账用得上。
-  6. 中间产物落 `tmp/zenmux-edit/<时间戳>/`（见上面的中间产物规则）；产物要删先问用户。
-- **完整口径**（参数表、家族兼容表、mask 上限调研、体积限制、错误码表）：`tools/zenmux-edit.md`
+- prompt **单行、不含任何引号字符**（PowerShell 会把双引号当分隔符）；用无引号结构化约束代替引号。
+- **先免费预演、再花钱**：Meowa 先记 `job_id`（失败自动全额退费，**不要重复提交**）；
+  ZenMux 先 `--dry-run` + `--min-credits 1`（**被网关掐断照样计费，工具无自动重试**）。
 
 ## tools/ 本地脚本
 
@@ -137,7 +72,7 @@
 | `outfit-split.py` | 服装拆件拼图 → 可换装件（输入须纯灰底 205） |
 | `outline-part.py` | 皮肤件补内描边（只改 RGB，不动 alpha）；幂等 |
 | `image_parts_tool.py` | 部件边缘精修一体化：`analyze` / `cut` / `prep` / `prompt` / `gen` / `verify` / `apply` / `report` / `diff` / `overview` |
-| `zenmux_edit.py` | **ZenMux 图片编辑（mask 局部重绘，消耗额度）**：默认 Vertex AI `:predict` 协议（模型面宽：openai / 混元 / 通义 / Flux…），`--protocol openai` 回旧路径；按模型家族分发参数（见上文）；多 mask 有 union / sequential / separate 三种消化；见 `tools/zenmux-edit.md` |
+| `zenmux_edit.py` | **ZenMux 图片编辑（mask 局部重绘，消耗额度）**：默认 Vertex AI `:predict` 协议（模型面宽：openai / 混元 / 通义 / Flux…），`--protocol openai` 回旧路径；按模型家族分发参数；多 mask 有 union / sequential / separate 三种消化；指南见 `docs/zenmux-cli.md`，完整口径见 `tools/zenmux-edit.md` |
 | `parts_sheet.py` | 把部件摆成**互不重叠、相邻 ≥N px** 的参考图（喂 AI 当"这些是独立零件"） |
 | `flatbg_cut.py` | 纯色底出图 → 抠成透明件 + 按参考部件 **alpha 最大 XY 等比缩放贴合**到原附件画布 |
 | `spine_part_swap.py` | `locate` 定位插槽可见区（→ mask/尺寸/附件四边形）、`verify` 换图重渲量化改动（远处应为 0px）—— 换皮流水线见 `tools/spine-reskin.md` |
@@ -198,4 +133,4 @@
   自动判据 ≠ 用户需求。曾因此误删用户已认可的 `leg2`（判据说"有合并"，但用户要的正是那个效果）。
 - 要清理时**先列清单**（路径 + 体积 + 理由），**等用户确认后再删**。
 - 用户说"清理临时文件"时，只清**可再生的中间态**，**不动**用户已认可或已指定的产物。
-- 生成产物**一律先记 `job_id`**；误删后可用 `image-2-poll --job-id <id>` **免费**重新下载。
+- 生成产物**一律先记 `job_id`**；误删后可用**对应的** `*-poll --job-id <id>`（`image-2.5-poll` / `image-2-poll` / `nano-banana-poll`）**免费**重新下载。

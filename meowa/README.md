@@ -24,7 +24,7 @@ runner 从**执行命令的当前目录**读取 → 命令一律在**工作区�
 python ~/.agents/skills/game-assets/meowart_api.py credits-balance   # 校验
 ```
 
-prompt 硬规则（单行、无引号、结构化约束……）见 `AGENTS.md` 的「Meowa 生图 CLI」。
+prompt 硬规则（单行、无引号、结构化约束……）与命令纪律见 `docs/meowa-cli.md`。
 
 ## 用途
 
