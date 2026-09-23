@@ -4,13 +4,13 @@
 
 ```bash
 # 默认：切 assets/eva_bone/merged_sheet_FINAL.png → assets/eva_bone/parts/
-python tools/slice-sheet.py
+python tools/sprite/slice-sheet.py
 
 # 常用变体
-python tools/slice-sheet.py --out tmp/parts_test                  # 换个输出目录做实验
-python tools/slice-sheet.py --compare <另一个切件目录>              # 拉另一批切件同口径体检对比
-python tools/slice-sheet.py --alpha-floor 16 --junk-alpha 0        # 更保守：不归零极淡像素
-python tools/slice-sheet.py --bleed 1                              # 边界颜色外扩 1px（GPU 过滤防暗缝）
+python tools/sprite/slice-sheet.py --out tmp/parts_test                  # 换个输出目录做实验
+python tools/sprite/slice-sheet.py --compare <另一个切件目录>              # 拉另一批切件同口径体检对比
+python tools/sprite/slice-sheet.py --alpha-floor 16 --junk-alpha 0        # 更保守：不归零极淡像素
+python tools/sprite/slice-sheet.py --bleed 1                              # 边界颜色外扩 1px（GPU 过滤防暗缝）
 ```
 
 ## 为什么需要它（2026-09-15 实测结论）
@@ -64,14 +64,14 @@ alpha 2–17 肤色带）产生 **203/255 的色差**，表现为一条暖色脏
 - **针孔**：实心区里 1px 的洞（形态学闭运算检出；16 个来自原图本身的描边断点）
 - **越界实心**：贴到切件最外圈的实心像素（>0 说明该边被裁断；正常只出现在拼图边界与相邻件贴合处）
 
-## 切完补描边：`tools/outline-part.py`
+## 切完补描边：`tools/sprite/outline-part.py`
 
 拼图切出来的**皮肤件**在原画里**没有线稿** —— 脸型就是一个平涂色块，下颚线一个像素都没画
 （线稿只存在于头发 / 五官上，实测该美术的线色核心 = `rgb(24,14,12)`）。同时脸压在躯干的脖子/肩上，
 两侧同色 → **边界彻底消失，成品是个没有下巴的脸**。修法是按配置补一条同色**内描边**：
 
 ```bash
-python tools/outline-part.py --config assets/eva_bone/parts/outline.json
+python tools/sprite/outline-part.py --config assets/eva_bone/parts/outline.json
 ```
 
 - **只改 RGB，alpha 一个字节不动** → 贴图尺寸、bbox、裁剪框全都不受影响；
@@ -87,7 +87,7 @@ python tools/outline-part.py --config assets/eva_bone/parts/outline.json
 | **`--width 2`（默认）** | 与原画下颚线粗细一致（原画头宽 355px 时线宽约 1.5px，本件脸宽 222px） |
 | `--width 2.5~3` | 接近眼睫毛的份量，更醒目但偏重 |
 
-想看效果不落盘：`python tools/outline-part.py head_base --preview tmp/face.png --width 1.6,2,2.5`
+想看效果不落盘：`python tools/sprite/outline-part.py head_base --preview tmp/face.png --width 1.6,2,2.5`
 
 ## 重切之后的注意点
 

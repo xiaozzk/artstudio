@@ -20,7 +20,7 @@
     GET  /api/v1/management/cost                     账单（cost）
     GET  /api/v1/management/generation               单次调用明细（generation）
     POST /api/v1/images/edits                        OpenAI 协议（JSON / multipart / SSE 三种形态）
-    POST /api/vertex-ai/v1/publishers/{p}/models/{m}:predict   Vertex 协议（openai 系回 b64，腾讯系回 gcsUri）
+    POST /api/vertex-ai/v1/publishers/{p}/models/{m}:predict   Vertex 协议（openai 系回 b64，mock 系回 gcsUri）
     GET  /files/out.png                              给 gcsUri 分支下载用的小图
 
 只用标准库：不 import PIL / requests，测试以外零依赖。
@@ -43,7 +43,7 @@ from urllib.parse import parse_qs, urlsplit
 CATALOG = [
     {"id": "openai/gpt-image-2", "output_modalities": ["image"]},
     {"id": "openai/gpt-image-2.5-flare", "output_modalities": ["image"]},
-    {"id": "tencent/hy-image-v3.0", "output_modalities": ["image"]},
+    {"id": "mock/gcs-image", "output_modalities": ["image"]},   # 合成条目：专门覆盖 gcsUri 下载分支
     {"id": "deepseek/deepseek-chat", "output_modalities": ["text"]},
 ]
 
@@ -235,7 +235,7 @@ class MockHandler(BaseHTTPRequestHandler):
         if not body.get("instances"):
             return self._error(400, "invalid_request", "instances 为空")
         img = png_bytes(64, 64, (40, 160, 220))
-        if provider == "tencent":                       # 腾讯系实测回 COS 签名 URL（gcsUri）
+        if provider == "mock":                          # 合成 provider：回签名 URL（gcsUri），覆盖下载分支
             preds = [{"gcsUri": f"{self.server.origin}/files/out.png"}]
         else:                                           # Google/OpenAI 系回内嵌字节
             preds = [{"bytesBase64Encoded": short_b64(img)}

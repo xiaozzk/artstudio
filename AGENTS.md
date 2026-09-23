@@ -16,7 +16,8 @@
 | `assets/eva_bone/` | Eva 原型素材：`parts/` 基础体拆件、`parts_outfit/` 服装件、拼合图与 manifest |
 | `assets/_archive/` | 更早的素材与一次性脚本（`source/`、`scripts/`、`metadata/`） |
 | `meowa/` | AI 生图素材与预设（`templates/` 放 Meowa 预设信息） |
-| `tools/` | 本地图片 / 部件处理脚本 + 浏览器登录态复用 + `zenmux_edit.py`（唯一会花钱的）；清单见 `tools/README.md` |
+| `tools/` | **按场景分区的工具集**：`spine/`（图集修复 / 换皮 / 抽件）、`sprite/`（整图与部件本地处理）、`zenmux/`（**唯一会花钱**的 AI 改图 + 它的 mock 测试）、`browser/`、`preview-2d/`；根下 `*.py` 是**兼容转发 shim**（别删）。清单见 `tools/README.md` |
+| `task/` | **任务档案**：**每个子任务一个文件夹** `NNN-slug/`（**入库**，口径同 `docs/`）；`TASK.md` 记目标 / 验收 / 状态 / 产出。约定见 `task/README.md` |
 | `tmp/` | **临时目录**：已忽略、不入库、可随时清 |
 | `download/` | **刚下载、还没处理**的落地目录（素材包 / 第三方仓库 / 待转换资源）：已忽略、不入库，但**别随手清** |
 | `archive-2d/` | 2D 时代归档（4 个 7z，**不入库**，本地保留）；当历史资料看，不要照着做 |
@@ -29,6 +30,9 @@
   **不要落在 `docs/` / `tools/` / `meowa/` 等入库目录** —— 否则会跟着代码一起被提交。
 - **刚下载、还没处理的东西写 `download/`**（素材包、第三方仓库、待转换资源），别塞进 `tmp/`：
   两者都不入库，但 `tmp/` 是**可随手的中间产物**，`download/` 是**还没决定去留的原始下载**（别随手清）。
+- **一个子任务 = `task/` 下一个文件夹** `NNN-slug/`（**入库**）：`TASK.md` 记目标 / 验收标准 / 状态 / 产出 / 决策，
+  任务自己的输入与产物留在该目录内（大二进制走 LFS），编号只加不改、不复用。
+  过程性的临时文件仍写 `tmp/`，**别混进任务档案**；约定与模板见 `task/README.md`、`task/_template/TASK.md`。
 - 大二进制走 **Git LFS**（图 / psd / 模型 / 归档 / 音视频）；`.md`、`.json`、代码不进 LFS，保持可 diff。规则见 `.gitattributes`。
 
 ## 凭据与权限（已确认，无需再议）
@@ -49,7 +53,7 @@
 | CLI | 场景 | 指南 |
 |-----|------|------|
 | **Meowa 生图 CLI** | 出**原画**：角色设定图 / 三视图、服装设计稿、配色与材质设定 | `docs/meowa-cli.md` |
-| **ZenMux 图片编辑 CLI** | 在素材图上**标记若干部位，只重绘这些部位**：换一把武器 / 换一件衣服 / 改配色材质；**`tools/` 里唯一会花钱的脚本** | `docs/zenmux-cli.md`（深度口径 `tools/zenmux-edit.md`） |
+| **ZenMux 图片编辑 CLI** | 在素材图上**标记若干部位，只重绘这些部位**：换一把武器 / 换一件衣服 / 改配色材质；**`tools/` 里唯一会花钱的脚本** | `docs/zenmux-cli.md`（深度口径 `tools/zenmux/zenmux-edit.md`） |
 
 两条共同的硬约束（细节与实测经验见各自文档）：
 
@@ -61,24 +65,29 @@
 ## tools/ 本地脚本
 
 **纯本地、确定性、不消耗 AI 额度**（唯一例外：`zenmux_edit.py` 走 ZenMux 生图，**消耗额度**）；
-依赖 `numpy pillow opencv-python requests`。完整口径见 `tools/README.md`，一眼版：
+依赖 `numpy pillow opencv-python requests scipy`。**按业务场景分区**（一个场景一个子目录，跨场景不互相依赖），
+完整口径见 `tools/README.md`，一眼版：
 
-| 脚本 | 一句话 |
-|------|--------|
-| `bbox_ref.py` | 由 bbox 规格生成比例参考图（喂 AI 当比例约束 / 当人工验收标尺） |
-| `alpha_split.py` | 按 alpha 连通域把整图拆成部件 |
-| `fit_parts.py` | 部件按 spec 比例缩放拼回原画布，并给出客观质量分 |
-| `slice-sheet.py` | 整张部件拼图 → 部件贴图（含脏像素清理 + 体检），见 `tools/slice-sheet.md` |
-| `outfit-split.py` | 服装拆件拼图 → 可换装件（输入须纯灰底 205） |
-| `outline-part.py` | 皮肤件补内描边（只改 RGB，不动 alpha）；幂等 |
-| `image_parts_tool.py` | 部件边缘精修一体化：`analyze` / `cut` / `prep` / `prompt` / `gen` / `verify` / `apply` / `report` / `diff` / `overview` |
-| `zenmux_edit.py` | **ZenMux 图片编辑（mask 局部重绘，消耗额度）**：默认 Vertex AI `:predict` 协议（模型面宽：openai / 混元 / 通义 / Flux…），`--protocol openai` 回旧路径；按模型家族分发参数；多 mask 有 union / sequential / separate 三种消化；指南见 `docs/zenmux-cli.md`，完整口径见 `tools/zenmux-edit.md` |
-| `parts_sheet.py` | 把部件摆成**互不重叠、相邻 ≥N px** 的参考图（喂 AI 当"这些是独立零件"） |
-| `flatbg_cut.py` | 纯色底出图 → 抠成透明件 + 按参考部件 **alpha 最大 XY 等比缩放贴合**到原附件画布 |
-| `spine_part_swap.py` | `locate` 定位插槽可见区（→ mask/尺寸/附件四边形）、`verify` 换图重渲量化改动（远处应为 0px）—— 换皮流水线见 `tools/spine-reskin.md` |
-| `ps_cut/fill_from_layer1.jsx` | PS 里一键补缺口（文件 > 脚本 > 浏览） |
-| `browser/` | 浏览器登录态复用（见下节） |
-| `tests/` | **ZenMux CLI 的 mock 级测试**：`python tools/tests/test_zenmux_cli.py`（14 条命令级用例，约 6s，**全程 127.0.0.1、零真机零费用**）；口径见 `tools/tests/README.md` —— 真机验证才花钱，测试**只验 CLI 命令** |
+| 场景 | 脚本 | 一句话 |
+|------|------|--------|
+| **`spine/`** | `repair_spine/pipelines.py` | **图集体检 / 修复 / 重打包 / 渲染验收**（`diagnose` `pagefix` `unpack` `repack` `render` `verify` `meshfit` + 一条龙 `build` `prepare` `convert` `apply` `file`）；56 个已交付包共用，⚠ **改它必须先问用户**，口径见 `tools/spine/repair_spine/README.md` 与根目录 `Spine图集修复通用经验.md` |
+| | `spine_part_swap.py` | `locate` 定位插槽可见区（→ mask/尺寸/附件四边形）、`verify` 换图重渲量化改动（远处应为 0px）—— 换皮流水线见 `tools/spine/spine-reskin.md` |
+| | `spine_part_extract.py` | 出局部重绘的提交三元组（`extract --mode pair`：摘除件 + 原图置顶件 + 黑白 mask），`paste-back` 按 z 序（含覆盖表）贴回 |
+| **`sprite/`** | `bbox_ref.py` | 由 bbox 规格生成比例参考图（喂 AI 当比例约束 / 当人工验收标尺） |
+| | `alpha_split.py` | 按 alpha 连通域把整图拆成部件 |
+| | `fit_parts.py` | 部件按 spec 比例缩放拼回原画布，并给出客观质量分 |
+| | `slice-sheet.py` | 整张部件拼图 → 部件贴图（含脏像素清理 + 体检），见 `tools/sprite/slice-sheet.md` |
+| | `outfit-split.py` | 服装拆件拼图 → 可换装件（输入须纯灰底 205） |
+| | `outline-part.py` | 皮肤件补内描边（只改 RGB，不动 alpha）；幂等 |
+| | `image_parts_tool.py` | 部件边缘精修一体化：`analyze` / `cut` / `prep` / `prompt` / `gen` / `verify` / `apply` / `report` / `diff` / `overview` |
+| | `parts_sheet.py` | 把部件摆成**互不重叠、相邻 ≥N px** 的参考图（喂 AI 当"这些是独立零件"） |
+| | `flatbg_cut.py` | 纯色底出图 → 抠成透明件 + 按参考部件 **alpha 最大 XY 等比缩放贴合**到原附件画布 |
+| | `ps_cut/fill_from_layer1.jsx` | PS 里一键补缺口（文件 > 脚本 > 浏览） |
+| **`zenmux/`** | `zenmux_edit.py` | **唯一会花钱**：mask 局部重绘（默认 Vertex AI `:predict`；**混元已于 2026-09-24 移除**），`--dry-run` / `--min-credits` 守卫；指南见 `docs/zenmux-cli.md`，完整口径见 `tools/zenmux/zenmux-edit.md` |
+| | `tests/` | **mock 级 CLI 测试**：`python tools/zenmux/tests/test_zenmux_cli.py`（14 条命令级用例，约 6s，**全程 127.0.0.1、零真机零费用**）→ 口径见 `tools/zenmux/tests/README.md` |
+| **`browser/`** | — | 浏览器登录态复用（CDP 副本，见下节） |
+| **`preview-2d/`** | — | 2D 预览服务 |
+| **根下 shim** | `repair_spine/pipelines.py` 等 4 个 | **兼容转发脚本，别删**：真正的文件已搬进场景目录，但已交付产物里写着旧路径（**105 份 `交付说明.md`**、`outline.json`…） |
 
 **通用经验**
 

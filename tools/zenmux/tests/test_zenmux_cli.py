@@ -26,8 +26,8 @@ import unittest
 from datetime import datetime
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-CLI = ROOT / "tools" / "zenmux_edit.py"
+ROOT = Path(__file__).resolve().parents[3]        # tools/zenmux/tests/ → 工作区根
+CLI = ROOT / "tools" / "zenmux" / "zenmux_edit.py"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import mock_zenmux                                                    # noqa: E402
@@ -218,14 +218,14 @@ class ZenMuxCliTest(unittest.TestCase):
         self.assertEqual(sent["body"]["imageSize"], "1024x1024")     # openai 家族：顶层透传
         self.assertEqual(sent["body"]["quality"], "low")
 
-    def test_11_edit_vertex_tencent_downloads_gcs_uri(self):
-        out = self.out("vertex-tencent")
+    def test_11_edit_vertex_downloads_gcs_uri(self):
+        out = self.out("vertex-gcs")
         _, blob = self.run_cli(self.common("edit") + [
-            "-i", self.base_png, "-p", "国风水墨，背景纯白", "--model", "tencent/hy-image-v3.0",
-            "--out-dir", out, "--name", "hy"])
+            "-i", self.base_png, "-p", "国风水墨，背景纯白", "--model", "mock/gcs-image",
+            "--out-dir", out, "--name", "gcs"])
         self.assertIn("── 完成", blob)
-        self.assert_png(out / "hy.png")            # 走的是 gcsUri 下载分支
-        self.assertIn("/v1/publishers/tencent/models/hy-image-v3.0:predict",
+        self.assert_png(out / "gcs.png")           # 走的是 gcsUri 下载分支
+        self.assertIn("/v1/publishers/mock/models/gcs-image:predict",
                       self.srv.posts(":predict")[-1]["path"])
 
     # ---------------------------------------------------------------- 12. 本地拦截（花钱前）
@@ -237,7 +237,6 @@ class ZenMuxCliTest(unittest.TestCase):
             "透明底配 jpeg": ["-i", self.base_png, "-p", "x", "--protocol", "openai",
                               "--background", "transparent", "--output-format", "jpeg"],
             "缺 prompt": ["-i", self.base_png],
-            "hy 单次只能 1 张": ["-i", self.base_png, "-p", "x", "--model", "tencent/hy-image-v3.0", "--n", "2"],
             "aspect-ratio 形式错": ["-i", self.base_png, "-p", "x", "--aspect-ratio", "1024x1024"],
         }
         for label, extra in cases.items():

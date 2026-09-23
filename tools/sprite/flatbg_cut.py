@@ -16,8 +16,8 @@
        —— 这样产出的附件可以直接顶替原附件，UV / 挂点都不用改（用户 2026-09-21 口径）
 
 用法：
-    python tools/flatbg_cut.py --in keyed.png --out part.png --fit-to assets/武僧/images_original/weapon_11.png
-    python tools/flatbg_cut.py --in keyed.png --out part.png                 # 只抠底，不缩放
+    python tools/sprite/flatbg_cut.py --in keyed.png --out part.png --fit-to assets/武僧/images_original/weapon_11.png
+    python tools/sprite/flatbg_cut.py --in keyed.png --out part.png                 # 只抠底，不缩放
 """
 from __future__ import annotations
 

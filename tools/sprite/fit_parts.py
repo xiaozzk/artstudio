@@ -7,16 +7,16 @@ fit_parts.py — 把 AI 拆出来的部件按 spec 的原始比例缩放, 并拼
 
 用法:
 
-  python tools/fit_parts.py out_demo_a --spec spec_head_plan.json -o fitted
+  python tools/sprite/fit_parts.py out_demo_a --spec spec_head_plan.json -o fitted
 
   # 同时把整张画布放大到目标分辨率(内容高度 = 2048)
-  python tools/fit_parts.py out_demo_a --spec spec_head_plan.json -o fitted --target-height 2048
+  python tools/sprite/fit_parts.py out_demo_a --spec spec_head_plan.json -o fitted --target-height 2048
 
   # 用指定的部件估计统一缩放(默认用所有匹配部件的尺寸比中位数)
-  python tools/fit_parts.py out_demo_a --spec spec_head_plan.json -o fitted --anchor head_base
+  python tools/sprite/fit_parts.py out_demo_a --spec spec_head_plan.json -o fitted --anchor head_base
 
   # 每个部件各自缩放到 spec 尺寸(会掩盖比例误差, 仅用于"只看拼合观感")
-  python tools/fit_parts.py out_demo_a --spec spec_head_plan.json -o fitted --per-part
+  python tools/sprite/fit_parts.py out_demo_a --spec spec_head_plan.json -o fitted --per-part
 
 输出:
   <out>/parts_scaled/<name>.png   缩放后的部件(与输出画布同尺寸, 保留统一坐标)

@@ -21,9 +21,9 @@
 并给出去重后的「干净度」汇总；`--compare <目录>` 可把另一批切件拉进来同口径对比。
 
 用法：
-  python tools/slice-sheet.py                                   # 默认切 assets/eva_bone/merged_sheet_FINAL.png
-  python tools/slice-sheet.py --alpha-floor 16 --bleed 1
-  python tools/slice-sheet.py --compare "C:/Users/xxx/Downloads/meowart-images-xxx"
+  python tools/sprite/slice-sheet.py                                   # 默认切 assets/eva_bone/merged_sheet_FINAL.png
+  python tools/sprite/slice-sheet.py --alpha-floor 16 --bleed 1
+  python tools/sprite/slice-sheet.py --compare "C:/Users/xxx/Downloads/meowart-images-xxx"
 """
 from __future__ import annotations
 
@@ -53,7 +53,6 @@ def components(mask: np.ndarray, min_area: int):
         area = int(m.sum())
         if area < min_area:
             continue
-        alpha = None  # 由调用方按需再取
         out.append(dict(index=i, area=area,
                         bbox=[int(xs.start), int(ys.start), int(xs.stop), int(ys.stop)],
                         w=int(xs.stop - xs.start), h=int(ys.stop - ys.start)))
@@ -177,7 +176,7 @@ def main() -> int:
     ap.add_argument('--json', default='', help='把清单额外写一份到指定路径')
     args = ap.parse_args()
 
-    root = Path(__file__).resolve().parents[1]          # 工作区根
+    root = Path(__file__).resolve().parents[2]          # 工作区根（tools/sprite/ → 上两级）
     sheet_path = Path(args.sheet) if Path(args.sheet).is_absolute() else root / args.sheet
     out_dir = Path(args.out) if Path(args.out).is_absolute() else root / args.out
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -284,7 +283,6 @@ def main() -> int:
     # 所以按"相对眼睛与脸型"的自适应区域去抠 —— 换一张拼图也不会因为坐标写死而失手。
     eyes_bbox = [min(eyes[0]['bbox'][0], eyes[1]['bbox'][0]), min(eyes[0]['bbox'][1], eyes[1]['bbox'][1]),
                  max(eyes[0]['bbox'][2], eyes[1]['bbox'][2]), max(eyes[0]['bbox'][3], eyes[1]['bbox'][3])]
-    head_c = picked['head_base']
     eye_w = eyes_bbox[2] - eyes_bbox[0]
     eye_h = eyes_bbox[3] - eyes_bbox[1]
     face_cx = (eyes_bbox[0] + eyes_bbox[2]) / 2

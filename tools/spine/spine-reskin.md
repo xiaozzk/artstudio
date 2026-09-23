@@ -30,40 +30,42 @@
 
 ```powershell
 # 0) 侦察：部件清单 + 预览复现（确认坐标可信）
-python tools/spine_part_swap.py locate --json assets/武僧/monk.json `
+python tools/spine/spine_part_swap.py locate --json assets/武僧/monk.json `
     --images assets/武僧/images_original --preview assets/武僧/复原预览图_1.png `
     --skin 1 --slot weapon_1 --out-dir tmp/reskin
 # → mask_weapon_1_visible.png（要重绘的区域）、geometry_weapon_1.json（四边形/缩放/f）
 
 # 1) 参考图1：部件分离版（相邻间隔 ≥20px，模型才知道是几个独立零件）
-python tools/parts_sheet.py --from-dir assets/武僧/images_original --out tmp/reskin/parts_sheet.png `
+python tools/sprite/parts_sheet.py --from-dir assets/武僧/images_original --out tmp/reskin/parts_sheet.png `
     --gutter 20 --json-out tmp/reskin/parts_layout.json
 
 # 2) 参考图2：风格参考（新风格长什么样）
-# 3) 出图（两条路线，选一条）—— 默认就走 SSE 流式，连接不容易被网关掐断
+# 3) 出图（两条路线，选一条）
+#    ⚠ 2026-09-23 起默认协议是 vertex（单次 POST、无 SSE，也不吃 --transport）；
+#      下面带 --background/--transport 的写法是**旧 openai 协议**，要加 --protocol openai 才生效。
 #   3a. 只换一个部位（整图 mask 编辑）
-python tools/zenmux_edit.py edit --image assets/武僧/复原预览图_1.png --image tmp/reskin/parts_sheet.png `
+python tools/zenmux/zenmux_edit.py edit --image assets/武僧/复原预览图_1.png --image tmp/reskin/parts_sheet.png `
     --image tmp/reskin/style_ref.png --mask tmp/reskin/mask_weapon_1_visible.png --mask-grow 2 `
     --prompt "..." --model openai/gpt-image-2 --size match --quality high --background opaque `
-    --transport multipart --out-dir tmp/reskin/run1
+    --protocol openai --transport multipart --out-dir tmp/reskin/run1
 #   3b. 做新组件（部件单体重画；推荐，组件天生干净）
-python tools/zenmux_edit.py edit --image tmp/reskin/part_weapon11_x4.png --image tmp/reskin/style_ref.png `
+python tools/zenmux/zenmux_edit.py edit --image tmp/reskin/part_weapon11_x4.png --image tmp/reskin/style_ref.png `
     --prompt "Redraw this single part ... flat solid magenta background FF00FF, no hand, no character" `
-    --model openai/gpt-image-2 --size match --quality high --background opaque `
-    --transport multipart --out-dir tmp/reskin/run2
+    --model openai/gpt-image-2 --size match --quality high --protocol openai --transport multipart `
+    --out-dir tmp/reskin/run2
 
 # 4) 抠底 + 缩放贴合（产出可直接顶替原附件的透明件）
-python tools/flatbg_cut.py --in tmp/reskin/run2/part-edit.png --out tmp/reskin/weapon_11_new.png `
+python tools/sprite/flatbg_cut.py --in tmp/reskin/run2/part-edit.png --out tmp/reskin/weapon_11_new.png `
     --fit-to assets/武僧/images_original/weapon_11.png --json-out tmp/reskin/component_stats.json
 
 # 5) 换回骨架回验（远处必须 0px，否则说明尺寸/挂点不对）
-python tools/spine_part_swap.py verify --json assets/武僧/monk.json `
+python tools/spine/spine_part_swap.py verify --json assets/武僧/monk.json `
     --images assets/武僧/images_original --preview assets/武僧/复原预览图_1.png --skin 1 `
     --part weapon_11=tmp/reskin/weapon_11_new.png --out-dir tmp/reskin
 ```
 
 **装配**：新附件尺寸 = 原附件画布（例：106×115），alpha 占位中心对齐原占位中心，
-所以 UV / 挂点 / 图集区域都不用改；要真正入库就用 `tools/repair_spine/pipelines.py` 重打包图集
+所以 UV / 挂点 / 图集区域都不用改；要真正入库就用 `tools/spine/repair_spine/pipelines.py` 重打包图集
 （本流程只产出新附件，**不擅自覆盖 `images_original/`**）。
 
 ## 四、缩放贴合的算法（`flatbg_cut.py --fit-to`）
@@ -90,14 +92,14 @@ python tools/spine_part_swap.py verify --json assets/武僧/monk.json `
 | 抠底结果 | alpha 632×699 → 等比 **×0.1617** → 106×115 新附件 |
 | 换皮回验 | 改动 14,500 px，单簇集中在武器位；**主簇外 0 px** ✅ |
 | 整图 mask 编辑（对照） | 6,566 tokens / 103s；mask 外漂移 30.6%（需 apply 回贴） |
-| 单次成本 | **别按订阅详情里的 `base_usd_per_flow = $0.03283` 估图片编辑** —— 那是文本 flow 的价。<br>按 **quality=low（当前默认）≈ $0.01~0.02/张**（估）、`medium` ≈ $0.04~0.05（估）、**`high` = $0.15~0.18/张（账单实测）**。<br>计费大头是出图 token（≈$30/1M）；对账：`python tools/zenmux_edit.py cost --models openai/gpt-image-2` |
-| **被掐断的请求照样计费** | 实测那一轮 **7 次请求全计费 = $1.2009**，但只有 2 次拿到了图：<br>· 02:58 latency 364.7s / $0.151170 ← 客户端被掐断，**服务端跑完照扣**<br>· 03:12/03:14/03:16/03:18 latency 186~194s / 各 $0.179710 ← `background=transparent` 的 4 次（1 次原始 + 3 次重试）**全部计费**<br>· 03:01 / 03:20 是真正拿到图的 2 次<br>→ **白烧 $0.87（占 72%）**。所以：① 别用 transparent；② 被掐断**不要自动重试**（工具已默认不重试，要重试得 `--retry-on-drop`）；③ 想确认就把 `cost` 按小时桶拉出来看 |
+| 单次成本 | **别按订阅详情里的 `base_usd_per_flow = $0.03283` 估图片编辑** —— 那是文本 flow 的价。<br>按 **`quality=low`（当前默认）实测 $0.018~0.020/张**（随输入图大小浮动）、`medium` ≈ $0.04~0.05（估）、**`high` = $0.15~0.18/张（账单实测）**。<br>计费大头是出图 token（≈$30/1M），但 `image_input` 能占到 68%（一张大风格参考图）；对账：`python tools/zenmux/zenmux_edit.py cost --models openai/gpt-image-2` |
+| **被掐断的请求照样计费** | 实测那一轮 **7 次请求全计费 = $1.2009**，但只有 2 次拿到了图：<br>· 02:58 latency 364.7s / $0.151170 ← 客户端被掐断，**服务端跑完照扣**<br>· 03:12/03:14/03:16/03:18 latency 186~194s / 各 $0.179710 ← `background=transparent` 的 4 次（1 次原始 + 3 次重试）**全部计费**<br>· 03:01 / 03:20 是真正拿到图的 2 次<br>→ **白烧 $0.87（占 72%）**。所以：① 别用 transparent；② 被掐断**不要自动重试**（工具已没有任何重试开关，重试=人工再跑一枪，先核账）；③ 想确认就把 `cost` 按小时桶拉出来看 |
 
 ## 六、坑与对策
 
 | 现象 | 对策 |
 |------|------|
-| `RemoteDisconnected` | 多半是 `--background transparent`；改 opaque + 纯色底。多图 multipart 偶发，`--retries 2` 能过 |
+| `RemoteDisconnected` | 多半是 `--background transparent`（openai 协议下）；改 opaque + 纯色底。多图 multipart 偶发 —— **工具没有自动重试**（掐断也计费），人工决定要不要重跑 |
 | mask 外被大改 | 正常现象（见结论 1）；不要指望 mask 锁边界 |
 | 组件带背景 / 有缺口 | 别从整图里抠；走"部件单体重画 + 抠底" |
 | 模型把部件画小了/画歪了 | 不用重跑：`flatbg_cut.py --fit-to` 按 maxXY 缩放 + 中心对齐就能贴合 |
