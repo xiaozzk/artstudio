@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""zenmux_edit.py — ZenMux 图片编辑（OpenAI Images 协议 + mask 局部重绘）
+"""zenmux_edit.py — ZenMux 图片编辑（Vertex AI 协议 :predict 默认；OpenAI Images 协议保留可选）
+
+协议（2026-09-23 起默认 --protocol vertex）：
+    * vertex（默认）：POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:predict
+      ZenMux 统一生图/编辑入口（OpenAI / 腾讯混元 / 通义 / Flux / Kling / Imagen 等都走这里）。
+      文生图 = instances[0].prompt；图编辑 = instances[0].referenceImages（Raw + 可选 Mask，
+      mask 语义不变：透明 alpha=0 = 要重绘）。响应 predictions[]：bytesBase64Encoded（Google 系）
+      或 gcsUri（腾讯系 COS 签名 URL，工具自动下载）。⚠ background / moderation / SSE 流式
+      该协议不支持（background 被忽略，透明件走「纯色底 + tools/flatbg_cut.py 本地抠底」）。
+      实测 2026-09-23：tencent/hy-image-v3.0 已可用（目录还没收录），文生图 / 图生图均 200。
+    * openai（旧路径，--protocol openai 启用）：/api/v1/images/edits，支持 SSE 流式保活与
+      multipart 上传；下列联网行为段落描述的是这条路径。
 
 初心：在素材图上**标记若干部位**，只让模型重绘这些部位（换一把武器 / 换一件衣服 / 改配色），
 其余像素尽量不动。
@@ -22,22 +33,25 @@
         --mask-mode sequential --min-credits 1 --out-dir tmp/zenmux-edit/run1
 
 联网行为（2026-09 实测口径）
-    * **默认走 SSE 流式**（`--stream`，`--partials 0`）：服务端每 10 秒发一次 `: ZENMUX PROCESSING`
+    * **vertex（默认）单次 POST、无 SSE**；openai 协议**默认走 SSE 流式**
+      （`--stream`，`--partials 0`）：服务端每 10 秒发一次 `: ZENMUX PROCESSING`
       保活注释，连接不空闲，最不容易被网关掐断；`--no-stream` 可退回一次性 JSON。
     * **不自动重试**（没有任何 retry 开关）：实测被掐断 / 超时的请求**照样计费**，
       自动重试=可能重复烧钱。失败就停下来，用 `cost` / `balance` 核账后人工决定。
     * **每次调用都记录标识**：完整响应头 + `created` + token 用量 + 请求指纹写进
       `<out-dir>/requests.jsonl` 与 `_responses/`，方便跟后台 Logs 页的 Request ID 对账。
     * 图片**没有 Files API**（`/files` 404、上传 500），所以图没法"上传一次、按 id 反复引用"；
-      要少传字节只能用 `--image-url`（外部可访问 URL）。
+      openai 协议要少传字节只能用 `--image-url`（外部可访问 URL）；vertex 只收 base64 内嵌。
 
 成本控制
-    * `balance` / `cost` / `edit --min-credits X` 三条路；图片编辑**一次 $0.15~0.18**，
-      别按订阅页的 flow 单价估。
+    * `balance` / `cost` / `edit --min-credits X` 三条路。openai 系
+      quality=high **一次 $0.15~0.18**（账单实测），low 估 $0.01~0.02；
+      **hy 系单价未实测**，跑完 `cost --models tencent/hy-image-v3.0` 核账。
 
 关于 mask 的硬事实（2026-09 核对官方文档，详见 tools/zenmux-edit.md）
-    * OpenAI Images 协议（/v1/images/edits）**一个请求只接受 1 个 mask**，且只作用于第一张输入图；
-      输入图最多 16 张。所以"多个 mask"必须由本工具消化：
+    * **两种协议都只接受 1 个 mask**，且只作用于第一张输入图
+      （vertex = referenceImages 里的一个 REFERENCE_TYPE_MASK；openai = 单 mask 字段；
+      输入图上限：openai 16 张、Flux 8、Kling 1）。"多个 mask"必须由本工具消化：
         - union      把 N 个 mask 并成 1 张 → 1 次调用（省钱，但模型分不清哪块该改成什么）
         - sequential 每个 mask 一次调用，上一张输出当下一张输入 → 真正的"逐块改"（准，N 倍花费）
         - separate   每个 mask 各出 1 张（都基于原图）→ N 个候选，互相不叠加
@@ -81,7 +95,10 @@ if hasattr(sys.stdout, "reconfigure"):      # Windows 控制台默认 cp936，�
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 BASE = Path(__file__).resolve().parent.parent          # 工作区根
-DEFAULT_BASE_URL = "https://zenmux.ai/api/v1"
+DEFAULT_BASE_URL = "https://zenmux.ai/api/v1"          # OpenAI 协议 + 平台管理（余额/账单）端点
+VERTEX_BASE_URL = "https://zenmux.ai/api/vertex-ai"    # Vertex AI 协议端点（:predict 统一生图/编辑）
+DEFAULT_PROTOCOL = "vertex"                            # 2026-09-23 起默认切到 Vertex 协议（支持的模型更多）
+PROTOCOLS = ("vertex", "openai")
 DEFAULT_MODEL = "openai/gpt-image-2.5-sunburst"
 MAX_INPUT_IMAGES = 16                                   # GPT image 模型输入图上限
 # JSON(base64) 通道：OpenAI schema 对 image_url 字符串字段的 maxLength = 20971520（≈20MiB），
@@ -716,10 +733,194 @@ def post_edit(session, args, key, prompt: str, images: list, mask_png: bytes | N
     return images_out, meta
 
 
+# --------------------------------------------------------------------------- Vertex AI 协议（:predict）
+
+
+def split_model(model: str) -> tuple:
+    """'tencent/hy-image-v3.0' → ('tencent', 'hy-image-v3.0')；没有 '/' 则 provider 为空。"""
+    if "/" in model:
+        return tuple(model.split("/", 1))
+    return "", model
+
+
+# Vertex 协议下按**模型家族**兼容（2026-09-23 就两族；新模型照表加一格即可）。
+# 能力都来自 ZenMux 官方文档的参数映射表 + 实测：
+#   expenditure: openai 用 imageSize/quality 透传；hy 用 aspectRatio(+sampleImageSize/enhancePrompt)
+FAMILIES = {
+    "openai": {
+        "match": lambda provider, model: provider == "openai",
+        "label": "OpenAI gpt-image 系",
+        "size_param": "imageSize",            # 顶层透传
+        "quality_param": "quality",           # 顶层透传：low/medium/high/auto
+        "n_max": 10,
+        "enhance": False,                     # 文档未列，非支持面
+        "negative": False,                    # mapping 表里没有 negativePrompt
+    },
+    "hy": {
+        "match": lambda provider, model: provider == "tencent" and model.startswith("hy"),
+        "label": "腾讯混元 hy-image 系",
+        "size_param": None,                   # 不吃 imageSize；走 parameters.aspectRatio
+        "quality_param": None,                # 没有 quality 分档
+        "n_max": 1,                           # 官方文档：Hunyuan 单次只能出 1 图
+        "enhance": True,                      # 支持 enhancePrompt（文档明确列了 Hunyuan）
+        "negative": None,                     # 文档只列 Imagen/Kling/通义，未证实——带上传，被 400 就去掉
+    },
+}
+FAMILY_DEFAULT = {                              # 未收录家族的兜底（通义/Flux/Kling 等按这个走）
+    "label": "Vertex 通用（未实测家族）",
+    "size_param": None,
+    "quality_param": None,
+    "n_max": 10,
+    "enhance": True,
+}
+
+
+def model_family(model: str) -> str:
+    """'openai/gpt-image-2' → 'openai'；'tencent/hy-image-v3.0' → 'hy'；其余 'generic'。"""
+    provider, model = split_model(model)
+    for name, fam in FAMILIES.items():
+        if fam["match"](provider, model):
+            return name
+    return "generic"
+
+
+def family_of(model: str) -> dict:
+    return FAMILIES.get(model_family(model), FAMILY_DEFAULT)
+
+
+def size_to_aspect(size_spec: str, base_size: tuple) -> str | None:
+    """把 --size 规格换成 Vertex 的 aspectRatio（非 OpenAI 模型用）；auto → None（不发）。"""
+    spec = size_spec
+    if spec == "match":
+        w, h = base_size
+    elif spec == "auto":
+        return None
+    else:
+        m = re.fullmatch(r"(\d{3,5})x(\d{3,5})", (spec or "").strip())
+        if not m:
+            return None
+        w, h = int(m.group(1)), int(m.group(2))
+    from math import gcd
+    g = gcd(w, h) or 1
+    return f"{w // g}:{h // g}"
+
+
+def post_edit_vertex(session, args, key, prompt: str, images: list, mask_png: bytes | None):
+    """ZenMux Vertex AI 协议：POST {vertex_url}/v1/publishers/{provider}/models/{model}:predict
+
+    对应官方 SDK 的 generate_images（无输入图）/ edit_image（有输入图）。返回 (图片列表, meta)。
+    请求体（Vertex AI predict 格式）：
+        instances[0] = {"prompt": ..., "referenceImages": [Raw×N, Mask?(maskMode=USER_PROVIDED)]}
+        parameters   = {"sampleCount": n, "outputOptions": {"mimeType": ...}, ...}
+    透传参数（SDK 的 http_options.extra_body → REST 请求体顶层）：
+        OpenAI 模型：imageSize / quality；非 OpenAI（如腾讯混元）：sampleImageSize（1K/2K/4K）。
+    响应 predictions[]：bytesBase64Encoded（Google 系）或 gcsUri（腾讯系 COS 签名 URL，直接 GET）。
+    """
+    provider, model = split_model(args.model)
+    if not provider:
+        die(f"Vertex 协议需要 provider/model 形式的模型名（如 tencent/hy-image-v3.0），收到：{args.model}")
+    url = args.vertex_url.rstrip("/") + f"/v1/publishers/{provider}/models/{model}:predict"
+
+    refs = []
+    for i, b in enumerate(images):
+        refs.append({"referenceType": "REFERENCE_TYPE_RAW", "referenceId": i + 1,
+                     "referenceImage": {"bytesBase64Encoded": base64.b64encode(b).decode("ascii"),
+                                        "mimeType": "image/png"}})
+    if mask_png:
+        refs.append({"referenceType": "REFERENCE_TYPE_MASK", "referenceId": len(images) + 1,
+                     "referenceImage": {"bytesBase64Encoded": base64.b64encode(mask_png).decode("ascii"),
+                                        "mimeType": "image/png"},
+                     "maskImageConfig": {"maskMode": "MASK_MODE_USER_PROVIDED"}})
+    instance: dict = {"prompt": prompt}
+    if refs:
+        instance["referenceImages"] = refs
+
+    mime = {"png": "image/png", "jpeg": "image/jpeg", "webp": "image/webp"}[args.output_format]
+    fam = family_of(args.model)                            # 家族能力表（openai / hy / 通用）
+    params: dict = {"sampleCount": args.n, "outputOptions": {"mimeType": mime}}
+    if args.output_compression is not None and args.output_format in ("jpeg", "webp"):
+        params["outputOptions"]["compressionQuality"] = args.output_compression
+    if args.negative_prompt:
+        if fam.get("negative") is False:
+            warn(f"--negative-prompt：{fam['label']} 不支持该参数，已忽略")
+        else:
+            if fam is FAMILY_DEFAULT or "negative" not in fam:
+                info(f"negativePrompt 对 {fam['label']} 未在官方文档列出（Imagen/Kling/通义 支持），已带上；被 400 就去掉")
+            params["negativePrompt"] = args.negative_prompt
+    if args.enhance_prompt:
+        if fam.get("enhance"):
+            params["enhancePrompt"] = True            # Hunyuan / Flux / 通义 支持
+        else:
+            warn(f"--enhance-prompt：{fam['label']} 不支持该参数，已忽略")
+
+    body: dict = {"instances": [instance], "parameters": params}
+    if fam["size_param"] and args.size_resolved:
+        body[fam["size_param"]] = args.size_resolved           # openai：顶层透传 imageSize
+    if fam["quality_param"] and args.quality and args.quality != "auto":
+        body[fam["quality_param"]] = args.quality              # openai：顶层透传 quality
+    if not fam["size_param"]:                                  # 非 openai 家族：aspectRatio 控比例
+        aspect = args.aspect_ratio or size_to_aspect(args.size, getattr(args, "_base_size", (1024, 1024)))
+        if aspect:
+            params["aspectRatio"] = aspect
+        if args.sample_image_size:
+            body["sampleImageSize"] = args.sample_image_size   # 1K/2K/4K 透传（火山/百度/混元系）
+
+    if args.dump_request:
+        dump = json.loads(json.dumps(body))                # 深拷贝后折叠 base64
+        for ref in dump["instances"][0].get("referenceImages", []):
+            img = ref.get("referenceImage", {})
+            if "bytesBase64Encoded" in img:
+                img["bytesBase64Encoded"] = f"<base64 {len(img['bytesBase64Encoded'])} chars>"
+        dump["_note"] = f"protocol=vertex predict，provider={provider}"
+        write_dump(args, dump)
+
+    headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
+    t0 = time.time()
+    r = session.post(url, headers=headers, data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
+                     timeout=(10, args.timeout))
+    response_headers = {k: v for k, v in r.headers.items()}
+    request_id = (r.headers.get("x-request-id") or r.headers.get("x-zenmux-request-id")
+                  or r.headers.get("x-generation-id") or "")
+    if r.status_code >= 400:
+        msg, etype, code = parse_error_body(r)
+        err = ApiError(r.status_code, msg or r.reason, request_id, etype, code)
+        err.headers = response_headers
+        raise err
+    try:
+        resp_body = r.json()
+    except ValueError:
+        err = ApiError(r.status_code, "响应不是 JSON：" + (r.text or "")[:300], request_id)
+        err.headers = response_headers
+        raise err
+
+    preds = resp_body.get("predictions") or []
+    out = []
+    for i, p in enumerate(preds):
+        if p.get("bytesBase64Encoded"):
+            out.append(base64.b64decode(p["bytesBase64Encoded"]))
+        elif p.get("gcsUri"):
+            out.append(p["gcsUri"])                        # 腾讯系：COS 签名 URL，save_outputs 会下载
+        else:
+            warn(f"predictions[{i}] 既没有 bytesBase64Encoded 也没有 gcsUri，字段：{list(p.keys())}")
+    if not out:
+        raise ApiError(200, f"响应里没有图片：{json.dumps(resp_body, ensure_ascii=False)[:300]}", request_id)
+
+    meta = {"request_id": request_id, "status": r.status_code, "protocol": "vertex",
+            "content_type": (r.headers.get("content-type") or "").lower(),
+            "elapsed_s": round(time.time() - t0, 2), "endpoint": url, "transport": "vertex-predict",
+            "started_at": datetime.fromtimestamp(t0).isoformat(timespec="seconds"),
+            "finished_at": datetime.now().isoformat(timespec="seconds"),
+            "response_headers": response_headers,
+            "usage": resp_body.get("usageMetadata") or resp_body.get("usage"),
+            "response_body": strip_b64(resp_body)}
+    return out, meta
+
+
 def strip_b64(obj):
     """递归把 b64_json / 超长字符串换成占位符，保留响应里所有 id / usage 字段。"""
     if isinstance(obj, dict):
-        return {k: (f"<base64 {len(v)} chars>" if k in ("b64_json", "partial_image", "image_base64")
+        return {k: (f"<base64 {len(v)} chars>" if k in ("b64_json", "partial_image", "image_base64",
+                                                         "bytesBase64Encoded")
                     and isinstance(v, str) else strip_b64(v)) for k, v in obj.items()}
     if isinstance(obj, list):
         return [strip_b64(v) for v in obj]
@@ -938,6 +1139,10 @@ def cmd_check(args) -> int:
             hit = [i for i in ids if i.split("/")[-1] == plain]
             if hit:
                 log(f"[warn] --model {args.model} 不在列表里，但存在同名不同前缀：{hit}")
+            elif args.protocol == "vertex":
+                # 目录有滞后：2026-09-23 实测 tencent/hy-image-v3.0 未收录但 :predict 已可用
+                log(f"[warn] --model {args.model} 不在模型目录里。Vertex 协议的目录可能滞后"
+                    f"（新模型未收录也能用），不确定就先 --dry-run 再小额试一张")
             else:
                 ok = False
                 log(f"[fail] --model {args.model} 不在模型列表里")
@@ -973,11 +1178,17 @@ def cmd_check(args) -> int:
             log("[warn] 没有 key，跳过探活")
         else:
             # 探活：故意用一个不存在的模型名，只验证鉴权（ZenMux 的 key 无效是 403 access_denied）
-            tiny = png_bytes(Image.new("RGBA", (16, 16), (0, 0, 0, 255)))
-            body = {"model": "__zenmux_key_probe__", "prompt": "probe", "n": 1,
-                    "images": [{"image_url": data_url(tiny)}]}
             try:
-                r = requests.post(args.base_url.rstrip("/") + "/images/edits",
+                if args.protocol == "vertex":
+                    url = (args.vertex_url.rstrip("/")
+                           + "/v1/publishers/openai/models/__zenmux_key_probe__:predict")
+                    body = {"instances": [{"prompt": "probe"}], "parameters": {"sampleCount": 1}}
+                else:
+                    url = args.base_url.rstrip("/") + "/images/edits"
+                    tiny = png_bytes(Image.new("RGBA", (16, 16), (0, 0, 0, 255)))
+                    body = {"model": "__zenmux_key_probe__", "prompt": "probe", "n": 1,
+                            "images": [{"image_url": data_url(tiny)}]}
+                r = requests.post(url,
                                   headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
                                   data=json.dumps(body).encode("utf-8"), timeout=(10, args.timeout))
                 msg, etype, code = parse_error_body(r) if r.status_code >= 400 else ("", "", "")
@@ -1025,12 +1236,39 @@ def cmd_edit(args) -> int:
         warn(hint)
 
     # ---- 本地参数校验：能在花钱前拦下的错误，绝不发给服务端
+    # background：openai 协议默认 transparent；vertex 不支持该参数 → 解析为 none（不发也不告警）
+    bg_explicit = args.background
+    if args.background is None:
+        args.background = "transparent" if args.protocol == "openai" else "none"
     if args.n < 1 or args.n > 10:
         die(f"--n {args.n} 不合法：只能 1~10")
     if args.n > 1:
         warn(f"--n {args.n}：ZenMux 对部分模型会直接 400（Parameter n grater than 1 is not supported）；"
              f"另外 sequential 串行只用第一张输出")
-    if args.background == "transparent" and args.output_format == "jpeg":
+    if args.protocol == "vertex":
+        fam = family_of(args.model)
+        if args.n > fam["n_max"]:
+            die(f"--n {args.n}：{args.model}（{fam['label']}）单次最多 {fam['n_max']} 张 → --n {fam['n_max']}")
+        if bg_explicit not in (None, "none"):
+            warn("Vertex 协议**不支持 background 参数**（官方映射表标 ❌），已忽略。"
+                 "要透明件：prompt 里要纯色底（如 #FF00FF）+ tools/flatbg_cut.py 本地抠底")
+        if args.transport != "json":
+            die("Vertex 协议只走 JSON（base64 内嵌 instances）——multipart 是 OpenAI 协议的上传通道")
+        if args.image_url or args.mask_url:
+            die("--image-url / --mask-url 是 OpenAI 协议的 JSON 通道特性；Vertex 协议只支持本地字节内嵌")
+        if args.stream:
+            info("Vertex :predict 走单次 POST（无 SSE）；--stream 只对 OpenAI 协议生效")
+        if args.moderation or args.input_fidelity:
+            warn("--moderation / --input-fidelity 是 OpenAI 协议参数，Vertex 协议不支持，已忽略")
+        if fam["quality_param"] is None and args.quality not in ("low", "auto"):
+            info(f"quality={args.quality} 对 {fam['label']} 无意义（无 quality 分档），不会发送")
+        if args.aspect_ratio and not re.fullmatch(r"\d{1,4}:\d{1,4}", args.aspect_ratio):
+            die(f"--aspect-ratio {args.aspect_ratio} 需要 '宽:高' 形式（如 1:1 / 16:9 / 3:2）")
+    else:
+        if args.aspect_ratio or args.sample_image_size or args.enhance_prompt or args.negative_prompt:
+            warn("--aspect-ratio / --sample-image-size / --enhance-prompt / --negative-prompt "
+                 "是 Vertex 协议参数，OpenAI 协议下会被忽略")
+    if args.protocol == "openai" and args.background == "transparent" and args.output_format == "jpeg":
         die("background=transparent 必须配 png 或 webp（jpeg 不支持透明）→ 改 --output-format png")
     if args.output_compression is not None and args.output_format == "png":
         warn("--output-compression 只对 jpeg / webp 有效，png 下会被忽略")
@@ -1042,6 +1280,7 @@ def cmd_edit(args) -> int:
         images = [shrink_longest_side(im, args.max_side) for im in images]
         info(f"输入图已缩到最长边 ≤{args.max_side}：{[f'{i.size[0]}x{i.size[1]}' for i in images]}")
     base = images[0]
+    args._base_size = base.size                             # vertex 的 size→aspectRatio 换算要用
 
     edit_masks = []
     for m in args.mask or []:
@@ -1069,11 +1308,33 @@ def cmd_edit(args) -> int:
     name = args.name or (Path(args.image[0]).stem + "-edit")
 
     log("── 计划 ─────────────────────────────────────────────")
-    log(f"  端点     {args.base_url}/images/edits    传输={args.transport}")
+    if args.protocol == "vertex":
+        vp, vm = split_model(args.model)
+        fam = family_of(args.model)
+        sent = []
+        if fam["size_param"] and args.size_resolved:
+            sent.append(f"{fam['size_param']}={args.size_resolved}")
+        if fam["quality_param"] and args.quality and args.quality != "auto":
+            sent.append(f"{fam['quality_param']}={args.quality}")
+        if not fam["size_param"]:
+            aspect = args.aspect_ratio or size_to_aspect(args.size, getattr(args, "_base_size", (1, 1)))
+            if aspect:
+                sent.append(f"aspectRatio={aspect}")
+            if args.sample_image_size:
+                sent.append(f"sampleImageSize={args.sample_image_size}")
+            if args.enhance_prompt and fam.get("enhance"):
+                sent.append("enhancePrompt=on")
+        log(f"  端点     {args.vertex_url}/v1/publishers/{vp}/models/{vm}:predict    协议=Vertex AI")
+        log(f"  家族     {fam['label']}（size/quality 分发见上）")
+    else:
+        log(f"  端点     {args.base_url}/images/edits    传输={args.transport}    协议=OpenAI Images")
     log(f"  模型     {args.model}")
     log(f"  输出     n={args.n} size={args.size_resolved} quality={args.quality} "
-        f"background={args.background or '省略'} format={args.output_format}"
-        + (f" stream=on(partials={args.partials})" if args.stream else ""))
+        f"format={args.output_format}"
+        + (f" background={args.background}" if args.protocol == "openai" else "（vertex 不支持 background，忽略）")
+        + (f" stream=on(partials={args.partials})" if (args.stream and args.protocol == "openai") else ""))
+    if args.protocol == "vertex" and sent:
+        log(f"  发送     " + "；".join(sent))
     log(f"  输入     {len(images)} 张：" + "、".join(f"{Path(p).name}{list(im.size)}" for p, im in zip(args.image, images)))
     log(f"  mask     {len(edit_masks)} 张，模式={args.mask_mode}")
     for s in steps:
@@ -1082,11 +1343,18 @@ def cmd_edit(args) -> int:
     if size_note:
         log(f"  尺寸     {size_note}")
     log(f"  产物     {out_dir}/")
-    log(f"  成本     单张 {COST_PER_IMAGE.get(args.quality, '未知')}；本次约 {len(steps)} 次调用"
-        f"（quality={args.quality}）（**无自动重试**：被掐断也计费，失败就停下核账）")
+    if args.protocol == "vertex":
+        famcost = family_of(args.model)
+        cost_note = (f"单张 {COST_PER_IMAGE.get(args.quality, '未知')}"
+                     if famcost["quality_param"] else
+                     f"{famcost['label']} 无 quality 分档，单价未实测 → 跑完 cost 核账")
+    else:
+        cost_note = f"单张 {COST_PER_IMAGE.get(args.quality, '未知')}（quality={args.quality}）"
+    log(f"  成本     {cost_note}；本次约 {len(steps)} 次调用"
+        f"（**无自动重试**：被掐断也计费，失败就停下核账）")
     log("─────────────────────────────────────────────────────")
 
-    if ("2.5" in args.model) and args.background == "transparent":
+    if args.protocol == "openai" and ("2.5" in args.model) and args.background == "transparent":
         warn("gpt-image-2.5 在 edit 端可能不支持 background=transparent（ZenMux 文档列了该取值，"
              "但第三方实测会 400）。真被拒时工具**不会**自动回退：加 --background opaque 再跑，"
              "透明件用「纯色底 + tools/flatbg_cut.py 本地抠底」")
@@ -1146,15 +1414,17 @@ def cmd_edit(args) -> int:
     session = requests.Session()
     cur_images = images
     results = []
+    # 体积上限按协议走（这两个数字都是 OpenAI 协议口径的，vertex 的 :predict 无公开字段上限）
+    raw_cap = int(DATA_URL_FIELD_LIMIT / 4 * 3) if args.protocol == "openai" else UPLOAD_LIMIT_BYTES
+    cap_note = ("JSON 通道的 image_url 字段上限（base64 ≈20MiB → 原图 ≤15MB）"
+                if args.protocol == "openai" else "保守上限 50MB（vertex 无公开字段上限）")
     for si, step in enumerate(steps, 1):
         img_bytes = [png_bytes(im) for im in cur_images]
-        limit = DATA_URL_FIELD_LIMIT if args.transport == "json" else UPLOAD_LIMIT_BYTES
         for i, b in enumerate(img_bytes):
-            raw_cap = int(limit / 4 * 3) if args.transport == "json" else limit
             if len(b) > raw_cap:
-                die(f"第 {i + 1} 张输入图 {len(b) / 1048576:.1f}MB 超过 "
-                    f"{'JSON 通道的 image_url 字段上限（base64 ≈20MiB → 原图 ≤15MB）' if args.transport == 'json' else '上传上限 50MB'}"
-                    f"，请用 --max-side 2048 之类的参数缩小输入，或改用 --transport multipart")
+                die(f"第 {i + 1} 张输入图 {len(b) / 1048576:.1f}MB 超过 {cap_note}"
+                    f"，请用 --max-side 2048 之类的参数缩小输入"
+                    + ("，或改用 --transport multipart" if args.protocol == "openai" else ""))
         step_mask = step.mask
         if step_mask is not None and step_mask.size != cur_images[0].size:
             # sequential 串行时，上一步输出尺寸可能变了，mask 必须跟着走（API 要求同尺寸）
@@ -1163,20 +1433,23 @@ def cmd_edit(args) -> int:
             step_mask = step_mask.resize(cur_images[0].size, Image.NEAREST)
         mask_png = api_mask_png(step_mask) if step_mask is not None else None
         if mask_png and len(mask_png) > UPLOAD_LIMIT_BYTES:
-            die(f"mask PNG {len(mask_png) / 1048576:.1f}MB 超过上传上限 50MB——"
+            die(f"mask PNG {len(mask_png) / 1048576:.1f}MB 超过上保守限 50MB——"
                 f"缩小输入图或简化 mask（细碎选区用 --mask-grow 之外不要叠太多层）")
-        if mask_png and len(mask_png) > MASK_PNG_WARN_BYTES:
+        if mask_png and args.protocol == "openai" and len(mask_png) > MASK_PNG_WARN_BYTES:
             warn(f"mask PNG {len(mask_png) / 1048576:.1f}MB 偏大（第三方文档称 mask 限 4MB，官方未写），"
                  f"缩小输入图或简化 mask 更稳")
 
         log(f"[{si}/{len(steps)}] 调用中…（prompt: {step.prompt[:50]}）")
         args.dump_suffix = step.tag
         try:
-            out, meta = post_edit(
-                session, args, key, step.prompt, img_bytes, mask_png, args.stream,
-                on_partial=(make_partial_printer(out_dir, name, step.tag)
-                            if args.stream and args.save_partials else print_partial),
-                image_refs=image_refs, mask_ref=mask_ref)
+            if args.protocol == "vertex":
+                out, meta = post_edit_vertex(session, args, key, step.prompt, img_bytes, mask_png)
+            else:
+                out, meta = post_edit(
+                    session, args, key, step.prompt, img_bytes, mask_png, args.stream,
+                    on_partial=(make_partial_printer(out_dir, name, step.tag)
+                                if args.stream and args.save_partials else print_partial),
+                    image_refs=image_refs, mask_ref=mask_ref)
         except ApiError as e:
             rid = f" (request_id={e.request_id})" if e.request_id else ""
             record_request(out_dir, {"tag": step.tag, "ok": False, "status": e.status,
@@ -1227,7 +1500,8 @@ def cmd_edit(args) -> int:
                          "\n       ↳ 工具不会自动重试（重复烧钱的代价 >> 省下的那点时间）。")
             die(f"网络错误：{e}" + extra, 2)
 
-        meta.update({"model": args.model, "params": {"n": args.n, "size": args.size_resolved,
+        meta.update({"model": args.model, "protocol": args.protocol,
+                     "params": {"n": args.n, "size": args.size_resolved,
                                                      "quality": args.quality, "background": args.background,
                                                      "output_format": args.output_format,
                                                      "stream": bool(args.stream)},
@@ -1320,11 +1594,19 @@ def make_partial_printer(out_dir: Path, name: str, tag: str):
 
 def add_common(p: argparse.ArgumentParser) -> None:
     p.add_argument("--api-key", help="ZENMUX_API_KEY（默认读环境变量/工作区根 .env）")
-    p.add_argument("--base-url", default=DEFAULT_BASE_URL, help=f"默认 {DEFAULT_BASE_URL}")
+    p.add_argument("--protocol", choices=PROTOCOLS, default=DEFAULT_PROTOCOL,
+                   help=f"默认 {DEFAULT_PROTOCOL}（ZenMux 统一 :predict，模型最多）；"
+                        f"openai=旧 /images/edits 路径（SSE 流式 / multipart / background 参数只在它上面有效）")
+    p.add_argument("--base-url", default=DEFAULT_BASE_URL,
+                   help=f"OpenAI 协议与平台管理端点，默认 {DEFAULT_BASE_URL}")
+    p.add_argument("--vertex-url", default=VERTEX_BASE_URL,
+                   help=f"Vertex AI 协议端点，默认 {VERTEX_BASE_URL}")
     p.add_argument("--model", default=DEFAULT_MODEL,
-                   help=f"默认 {DEFAULT_MODEL}（编辑精度优先）。同价可选 openai/gpt-image-2.5-flare（速度优先）、"
-                        f"openai/gpt-image-2.5-sunburst-2026-09-08（钉版本）、openai/gpt-image-2"
-                        f"（上一代；文档明确支持 background=transparent）、openai/gpt-image-1.5")
+                   help=f"默认 {DEFAULT_MODEL}（编辑精度优先）。Vertex 协议下可选："
+                        f"tencent/hy-image-v3.0（混元图像 3.0，2026-09-23 实测可用；单次只出 1 张）、"
+                        f"openai/gpt-image-2.5-flare（速度优先）、openai/gpt-image-2、"
+                        f"qwen/qwen-image-2.0 等——完整名单看 ZenMux Model Catalog（目录有滞后，"
+                        f"新模型未收录也可能已能用）")
     p.add_argument("--timeout", type=int, default=600,
                    help="单次请求超时秒数，默认 600。图片编辑实测 100~365s：读超时=客户端主动放弃，"
                         "但服务端可能仍在跑并**照常计费**（实测有一次 364s 跑完、我们提前放弃，钱照扣）")
@@ -1357,8 +1639,9 @@ def add_edit_args(p: argparse.ArgumentParser) -> None:
     g2.add_argument("--quality", default="low", choices=("low", "medium", "high", "xhigh", "max", "auto"),
                     help="默认 low（约 $0.01~0.02/张，估）。medium≈$0.04~0.05、high≈$0.15~0.18（实测）；"
                          "xhigh/max 只有 2.5 系列认")
-    g2.add_argument("--background", default="transparent", choices=("transparent", "opaque", "auto", "none"),
-                    help="默认 transparent（除非强调不透明）；none=完全不传该字段。transparent 只能配 png/webp")
+    g2.add_argument("--background", default=None, choices=("transparent", "opaque", "auto", "none"),
+                    help="**仅 openai 协议**：默认 transparent；vertex 协议不支持该参数（不传，"
+                         "透明底走「纯色底 + flatbg_cut.py 本地抠底」）。none=完全不传该字段")
     g2.add_argument("--output-format", default="png", choices=("png", "jpeg", "webp"), help="默认 png")
     g2.add_argument("--output-compression", type=int, default=None, help="仅 jpeg/webp，0-100")
     g2.add_argument("--moderation", default=None, choices=("low", "auto"))
@@ -1390,6 +1673,17 @@ def add_edit_args(p: argparse.ArgumentParser) -> None:
                     help="成本控制：开跑前查余额（Management API Key），低于该美元数直接拒跑；跑完打印余额差")
     # 说明：这里**故意没有**任何重试开关 —— 实测被掐断/超时的请求照样计费，自动重试可能重复烧钱。
 
+    g3 = p.add_argument_group("Vertex 协议（--protocol vertex，默认）")
+    g3.add_argument("--aspect-ratio", default=None,
+                    help="非 openai 家族（hy 等）的比例覆盖，'宽:高' 形式（1:1 / 16:9 / 3:2）；"
+                         "默认由 --size 折算")
+    g3.add_argument("--sample-image-size", default=None, choices=("1K", "2K", "4K"),
+                    help="分辨率档位透传（官方列了火山/百度；hy 未明说，被 400 就去掉）")
+    g3.add_argument("--enhance-prompt", action="store_true",
+                    help="prompt 自动增强（Hunyuan / Flux / 通义 支持；openai 家族不支持会被忽略）")
+    g3.add_argument("--negative-prompt", default=None,
+                    help="负向提示词（官方支持：Imagen / Kling / 通义；hy 未证实，被 400 就去掉）")
+
 
 def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
@@ -1399,7 +1693,8 @@ def main(argv=None) -> int:
         argv = ["edit"] + argv                                   # 省略子命令时默认 edit
 
     ap = argparse.ArgumentParser(
-        prog="zenmux_edit.py", description="ZenMux 图片编辑（OpenAI Images 协议 + mask 局部重绘）",
+        prog="zenmux_edit.py", description="ZenMux 图片编辑（Vertex AI :predict 默认，"
+              "兼容 openai/gpt-image 与 tencent/hy-image；--protocol openai 回旧路径）",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="例：python tools/zenmux_edit.py edit -i a.png -m weapon.png -m coat.png "
                "--mask-prompt '换成发光短杖' --mask-prompt '换成深红皮甲' --mask-mode sequential")

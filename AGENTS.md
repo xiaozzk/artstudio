@@ -66,10 +66,29 @@
 ## ZenMux 图片编辑 CLI
 
 **用途**：在素材图上**标记若干部位，只重绘这些部位** —— 换一把武器 / 换一件衣服 / 改配色材质。
-走 ZenMux 的 OpenAI Images 协议（`POST /v1/images/edits`），图片以 base64 data URL 传入。
 **这是 `tools/` 里唯一会花钱的脚本。**
 
 - **命令**：`python tools/zenmux_edit.py <check|balance|cost|generation|edit>`，**一律在工作区根下执行**（读根目录 `.env`）。
+- **协议（2026-09-23 起默认 Vertex AI）**：
+  - **默认 `--protocol vertex`**：`POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:predict`
+    —— 统一生图端点，**模型面最宽**（openai / 腾讯混元 / 通义 / Flux / Kling / Imagen）。
+    文生图 = `instances[0].prompt`；编辑 = `instances[0].referenceImages`
+    （`REFERENCE_TYPE_RAW` 原图 + 可选 `REFERENCE_TYPE_MASK`，`maskMode=MASK_MODE_USER_PROVIDED`），
+    **mask 语义与 OpenAI 相同：透明 = 编辑区**。
+    响应 `predictions[]`：Google 系回 `bytesBase64Encoded`，**腾讯系回 `gcsUri`（COS 签名 URL，工具自动下载）**。
+    `--protocol openai` 回旧 `/v1/images/edits`（SSE / multipart / `background` 只有旧协议支持）。
+  - **家族兼容**（请求参数按模型家族分发，源码 `FAMILIES`）：
+
+    | 家族 | 尺寸 | 质量 | n 上限 | 备注 |
+    |------|------|------|--------|------|
+    | `openai/gpt-image-*` | 顶层 `imageSize` | 顶层 `quality` | 10 | |
+    | `tencent/hy-image-*` | `parameters.aspectRatio`（`--size` 自动折算，如 1536x1024→3:2） | 无分档（不发） | **1** | `--enhance-prompt` ✅；`--negative-prompt`/`--sample-image-size` 未证实，被 400 就去掉 |
+
+  - **新模型实例**：`tencent/hy-image-v3.0`（混元图像 3.0）**已真机验证可用**（2026-09-23）——
+    但它**还没进 ZenMux 目录**（`/models` 不显示也能跑），`check` 对 vertex 的目录外模型只 warn 不拦。
+  - ⚠ **vertex 不支持 `background`**（官方映射表标 ❌）：透明件走"prompt 要纯色底（#FF00FF）+
+    `tools/flatbg_cut.py` 本地抠底"；不支持 SSE / multipart / `--image-url`，一律单次 POST + JSON 内嵌 base64。
+    举例：`python tools/zenmux_edit.py edit --model tencent/hy-image-v3.0 -i a.png --mask m_weapon.png --prompt "把剑换成..." --min-credits 1`
 - **自检 / 查余额 / 查账单（都免费）**：
   - `python tools/zenmux_edit.py check` —— key、模型是否在架、mask 覆盖面积、当前 PAYG 余额
   - `python tools/zenmux_edit.py balance [--json]` —— 只查余额
@@ -78,45 +97,31 @@
 - **成本控制**（余额接口只认管理型 key）：
   - `edit --min-credits 1`：开跑前低于 1 USD 就拒跑；跑完打印余额差（≈本次实际花费）
   - 每次运行都会写 `run-summary.json`（余额前后、余额差、各步 token 用量、产物清单）
-  - 每次调用都打印 `x-request-id` 与 `usage.total_tokens`；**产物旁边有同名 `.json` 边车**便于对账
-  - **单价（2026-09 实测反推）**：`image_output` ≈ **$30/1M tokens**、`image_input` ≈ $8/1M、文字 $5/1M。
-    换算成单张：**quality=low（当前默认）≈ $0.01~0.02**（估）、`medium` ≈ $0.04~0.05（估）、
-    **`high` = $0.15~0.18（账单实测）**。别按订阅页的 `$0.03283/flow` 估（那是文本 flow 价）。
-    精确对账：`python tools/zenmux_edit.py cost --models openai/gpt-image-2`
-    （按天看小时桶加 `--dimension BIZ_DT --time YYYYMMDD`）。
-  - ⚠ **被网关掐断的请求照样计费**（实测一轮 7 次全计费 $1.2009，只有 2 次拿到图，白烧 72%）：
-    所以透明件不要用 `--background transparent`（实测该参数会被断连、且 4 次全扣款）；
+  - 每次调用都打印 `x-request-id`；**产物旁边有同名 `.json` 边车**便于对账
+  - **OpenAI 系单价（2026-09 实测反推）**：`image_output` ≈ **$30/1M tokens**、`image_input` ≈ $8/1M、文字 $5/1M。
+    单张：**quality=low（默认）≈ $0.01~0.02**（估）、`medium` ≈ $0.04~0.05（估）、**`high` = $0.15~0.18（账单实测）**。
+    **hy 系单价未实测**——跑完 `cost --models tencent/hy-image-v3.0` 核账。
+  - ⚠ **被网关掐断的请求照样计费**（OpenAI 协议实测一轮 7 次全计费 $1.2009，只有 2 次拿到图）：
     **工具没有任何自动重试**，失败就停下用 `cost` 核账，人工决定要不要重跑。
 - **硬规则 / 实测经验**：
-  1. **一次请求只能带 1 个 mask**（OpenAI Images 协议如此，且只作用于第一张输入图；输入图最多 16 张）。
+  1. **一次请求只能带 1 个 mask**（两种协议都如此，且只作用于第一张输入图）。
      多区域由工具消化：`union`（并成 1 张，1 次调用）/ `sequential`（逐块改并串起来，N 次调用，
      「A 换武器 + B 换衣服」用这个）/ `separate`（N 个候选）。
-  2. **mask 语义：透明（alpha=0）= 要重绘**。工具默认按人画 mask 的习惯读入（`--mask-polarity marked`：
-     涂白/不透明=要改），自动翻成 API 需要的透明洞；PS 存成「alpha 全 255 + 黑白亮度」也能正确识别。
-  3. **先 `--dry-run` 再花钱**：免费出 mask 预览（红=要重绘 / 绿线=边界），确认覆盖面积合理再正式跑。
-     覆盖 0% 会直接报错，>95% 会告警（多半 polarity 反了）。
-  4. **默认值**：`png` / `n=1` / `background=transparent` / **`quality=low`（成本优先，≈$0.01~0.02/张）** / `size=1024x1024`；
-     默认模型 `openai/gpt-image-2.5-sunburst`（编辑精度优先）。要出高质量图显式 `--quality high`（$0.15~0.18/张）。
-     **要保证透明底就显式 `--model openai/gpt-image-2`** —— 2.5 在 edit 端可能 400 拒 `transparent`；
-     工具**不会**自动回退，按报错改 `--background opaque` 再跑。
-     实测（2026-09-21）：**`--background transparent` 会被网关直接掐断连接**（RemoteDisconnected），
-     要透明件请走"`--background opaque` + prompt 要纯洋红 `#FF00FF` 底 + 本地抠底"。
-  4b. **JSON(base64) 编辑通道对 gpt-image-2 恒 500** → 真机一律 `--transport multipart`。
-  4c. **mask 不是硬边界**（实测 mask 覆盖 2.91% 时，mask 外 30.6% 像素被重画）：
-     换单个部位就用 `apply` 思路只把 mask 内的改动贴回原图；要"换皮/做新组件"就走
+  2. **mask 语义：透明（alpha=0）= 要重绘**。默认 `--mask-polarity marked`（涂白=要改），
+     自动翻成协议需要的透明洞；PS 存成「alpha 全 255 + 黑白亮度」也能正确识别。
+  3. **先 `--dry-run` 再花钱**：免费出 mask 预览 + 调用计划（含家族参数分发结果）；加 `--dump-request`
+     落盘请求体。覆盖 0% 报错，>95% 告警（polarity 反了）。
+  4. **默认值**：`png` / `n=1` / `quality=low` / `size=1024x1024` / 模型 `openai/gpt-image-2.5-sunburst`。
+     透明底在 vertex 下没有直通参数——走"纯色底 + 本地抠底"。
+  4b. **mask 不是硬边界**（OpenAI 协议实测 mask 覆盖 2.91% 时，mask 外 30.6% 像素被重画）：
+     换单个部位用 `apply` 思路只把 mask 内改动贴回原图；换皮/新组件走
      **部件单独重画**流程：输入 = 原部件放大 + 风格参考，prompt 要单体/纯色底/保持轮廓朝向与画布位置，
      抠底得 alpha → 按"原部件 alpha maxXY ↔ 新件 alpha maxXY"等比缩放 → 放回原附件画布 → 换回 Spine 重渲验证。
-  5. **没有任何自动重试**（`--retries` / `--retry-on-drop` / `--retry-on-timeout` 已全部移除）：
-     实测被掐断 / 超时 / 5xx 的请求**照样计费**，所以失败就停下 —— 用 `cost` 核账后人工决定。
-     **默认走 SSE 流式**（`--stream`，`--partials 0`）：服务端每 10s 发 `: ZENMUX PROCESSING` 保活，
-     连接不空闲、最不容易被掐断；`--no-stream` 可退回一次性 JSON。
-     每次调用都会记 `requests.jsonl`（`created` / `request_id` / 响应头 / usage / 输入 sha256 / 产物）
-     与 `_responses/response*.json`（响应体，b64 折叠），跟后台 Logs 页对账用得上；
-     `generation --id <generationId>` 可按 id 查单次明细（id 在 Logs 页的 Request 搜索框里拿）。
-  5b. **图片没有 Files API**（`/files` 404、上传 500），所以做不到"上传一次、按 id 反复引用"；
-     要少传字节只能 `--image-url`（外链）或 `--mask-url file:<id>`（id 得来自别处）。
+  5. **没有任何自动重试**：实测被掐断 / 超时 / 5xx 的请求**照样计费**，所以失败就停下 ——
+     用 `cost` 核账后人工决定。每次调用都记 `requests.jsonl`（含 `request_id` / usage / 输入 sha256 / 产物）
+     与 `_responses/response*.json`（b64 折叠），跟后台 Logs 页对账用得上。
   6. 中间产物落 `tmp/zenmux-edit/<时间戳>/`（见上面的中间产物规则）；产物要删先问用户。
-- **完整口径**（参数表、mask 上限调研、体积限制、错误码表）：`tools/zenmux-edit.md`
+- **完整口径**（参数表、家族兼容表、mask 上限调研、体积限制、错误码表）：`tools/zenmux-edit.md`
 
 ## tools/ 本地脚本
 
@@ -132,7 +137,7 @@
 | `outfit-split.py` | 服装拆件拼图 → 可换装件（输入须纯灰底 205） |
 | `outline-part.py` | 皮肤件补内描边（只改 RGB，不动 alpha）；幂等 |
 | `image_parts_tool.py` | 部件边缘精修一体化：`analyze` / `cut` / `prep` / `prompt` / `gen` / `verify` / `apply` / `report` / `diff` / `overview` |
-| `zenmux_edit.py` | **ZenMux 图片编辑（mask 局部重绘，消耗额度）**：标记部位只重绘该处（换武器 / 换衣服）；多 mask 有 union / sequential / separate 三种消化（协议层一次只收 1 个 mask）；见 `tools/zenmux-edit.md` |
+| `zenmux_edit.py` | **ZenMux 图片编辑（mask 局部重绘，消耗额度）**：默认 Vertex AI `:predict` 协议（模型面宽：openai / 混元 / 通义 / Flux…），`--protocol openai` 回旧路径；按模型家族分发参数（见上文）；多 mask 有 union / sequential / separate 三种消化；见 `tools/zenmux-edit.md` |
 | `parts_sheet.py` | 把部件摆成**互不重叠、相邻 ≥N px** 的参考图（喂 AI 当"这些是独立零件"） |
 | `flatbg_cut.py` | 纯色底出图 → 抠成透明件 + 按参考部件 **alpha 最大 XY 等比缩放贴合**到原附件画布 |
 | `spine_part_swap.py` | `locate` 定位插槽可见区（→ mask/尺寸/附件四边形）、`verify` 换图重渲量化改动（远处应为 0px）—— 换皮流水线见 `tools/spine-reskin.md` |

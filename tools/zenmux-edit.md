@@ -1,7 +1,17 @@
-# zenmux_edit.py — ZenMux 图片编辑（mask 局部重绘）
+# zenmux_edit.py — ZenMux 图片编辑（Vertex AI 协议默认；mask 局部重绘）
 
 **给素材图标记若干部位，只让模型重绘这些部位**：换一把武器、换一件衣服、改配色 / 材质。
-走 ZenMux 的 OpenAI Images 协议（`POST /v1/images/edits`），输入图以 **base64 data URL** 发送。
+
+- **默认走 ZenMux 的 Vertex AI 协议**（2026-09-23 起切换）：
+  `POST https://zenmux.ai/api/vertex-ai/v1/publishers/{provider}/models/{model}:predict`，
+  对应官方 SDK 的 `generate_images`（文生图）/ `edit_image`（图编辑）。
+  **支持的模型最多**：openai/gpt-image、腾讯混元、通义万相、Flux、Kling、Imagen 都走这一个端点。
+  `--protocol openai` 可回旧路径（`/v1/images/edits`，SSE 流式 / multipart / `background` 参数都在它上面）。
+- 默认协议下**请求是 `instances + parameters`**：文生图 = `instances[0].prompt`；
+  图编辑 = `instances[0].referenceImages`（`REFERENCE_TYPE_RAW` 原图 + 可选 `REFERENCE_TYPE_MASK`，
+  `maskMode=MASK_MODE_USER_PROVIDED`）。**mask 语义不变：透明（alpha=0）= 要重绘**。
+- 默认协议下**响应**是 `predictions[]`，两种取图形态都有（工具都处理了）：
+  Google 系回 `bytesBase64Encoded`（base64 字节）；**腾讯系回 `gcsUri`（COS 签名 URL）**，工具自动下载。
 
 > 这是 `tools/` 里**唯一会消耗 AI 额度**的脚本（其余都是纯本地、确定性、免费）。
 > 想省钱：`balance` → `check` → `--dry-run` 看 mask 预览 → 最后才 `edit --min-credits 1`。
@@ -111,33 +121,59 @@ python tools/zenmux_edit.py edit --image tmp/hero.png `
 |------|------|------|
 | `--output-format` | `png` | 需要透明就只能是 png / webp |
 | `--n` | `1` | 一次调用出图张数 |
-| `--background` | `transparent` | 只有你显式说要不透明时才改 `opaque`；`none`=完全不传该字段 || `--quality` | `low` | `low`≈**$0.01~0.02/张**（估）· `medium`≈$0.04~0.05（估）· `high`≈**$0.15~0.18/张**（账单实测）。`xhigh`/`max` 只有 2.5 系列认 |
+| `--background` | —（按协议） | **仅 openai 协议**默认 `transparent`；vertex 不支持、不发送（显式传了才会告警）。`transparent` 只能配 png/webp |
+| `--quality` | `low` | `low`≈**$0.01~0.02/张**（估）· `medium`≈$0.04~0.05（估）· `high`≈**$0.15~0.18/张**（账单实测）。`xhigh`/`max` 只有 2.5 系列认。hy 系无分档，不发 |
 | `--size` | `1024x1024` | 也有 `1536x1024` / `1024x1536` / `auto` / **`match`**（跟随输入图，取 16 的倍数） |
 | `--model` | `openai/gpt-image-2.5-sunburst` | 编辑精度优先。同价可选：`...-sunburst-2026-09-08`（钉版本）、`openai/gpt-image-2.5-flare`（速度优先）、`openai/gpt-image-2`（上一代，**文档明确支持 `background=transparent`**）、`openai/gpt-image-1.5` |
-| `--transport` | `json` | base64 data URL；`multipart` 是给服务端 JSON 路由出问题时的备用通道 |
-| `--stream` | **开** | SSE 流式（默认）：服务端每 10s 发 `: ZENMUX PROCESSING` 保活，连接不空闲、最不容易被网关掐断；`--no-stream` 退回一次性 JSON |
-| `--partials` | `0` | 流式中间图数量（0=只要最终图，不额外产生中间图；1~3 才有过程图） |
-| `--image-url` / `--mask-url` | 无 | 用外链/`file:<FILE_ID>` 代替本地上传（仅 JSON 通道）。**实测 ZenMux 没有 Files API**（`/files` 404、上传 500），所以 `file_id` 只能来自别处；外链需要图片公网可访问 |
-| `--multipart-field` | `image[]` | multipart 的图片字段名：ZenMux **正文写 `image`、curl 示例写 `image[]`**（文档自相矛盾），默认 `image[]`，被 400 拒了会自动退回 `image` |
+| `--transport` | `json` | **openai 协议专属**（vertex 纯 JSON 内嵌，无此开关）；multipart 是给服务端 JSON 路由出问题时的备用通道 |
+| `--stream` | **开** | **openai 协议专属** SSE；vertex 是单次 POST 无流式 |
+| `--partials` | `0` | 流式中间图数量（同上，openai 专属） |
+| `--image-url` / `--mask-url` | 无 | **openai 协议专属**（vertex 传了直接拦截）：用外链/`file:<FILE_ID>` 代替本地上传。**实测 ZenMux 没有 Files API**，`file_id` 只能来自别处；外链需公网可访问 |
+| `--multipart-field` | `image[]` | multipart 的图片字段名（openai 协议）：ZenMux **正文写 `image`、curl 示例写 `image[]`**（文档自相矛盾），默认 `image[]` |
 | `--out-dir` | `tmp/zenmux-edit/<时间戳>/` | 生成产物请显式指到目标目录；重名不覆盖，自动加 `-2` |
 | `--retries` | — | **已经彻底移除**：实测被掐断/超时的请求照样计费，自动重试=重复烧钱。失败就停下，用 `cost` 核账后人工决定 |
 | `--retry-on-timeout` | — | 同上，已移除 |
 
-> **默认模型 × 默认透明背景的已知张力**：默认模型是 `openai/gpt-image-2.5-sunburst`，
-> 而 ZenMux 的 OpenAI 协议文档把 `transparent` 列为 `background` 合法取值（流式事件里也会回 `background: transparent`），
-> 但第三方实测 **2.5 系列在 edit 端传 `transparent` 会 400**（ZenMux 文档未明确）。
-> 于是：默认仍按需求发 `transparent`，被 400 拒时 `--bg-fallback`（默认开）自动去掉该字段重试一次（会告警，那张可能是不透明底）。
-> **要保证透明底**（贴图 / 换装件）就显式用 `--model openai/gpt-image-2`，或先在 `--dry-run` 里确认计划，再按第一次实测结果决定。
+> **默认模型 × 透明背景的已知张力（仅 openai 协议）**：ZenMux 的 OpenAI 协议文档把 `transparent`
+> 列为 `background` 合法取值（流式事件里也会回 `background: transparent`），
+> 但第三方实测 **2.5 系列在 edit 端传 `transparent` 会 400 / 断连**（ZenMux 文档未明确）。
+> 工具**不会**自动回退重试（无任何重试，见"产出与纪律"）：被拒就显式 `--background opaque`，
+> 要透明底（贴图 / 换装件）统一走"prompt 纯色底 + `tools/flatbg_cut.py` 本地抠底"——
+> vertex 协议下这**是唯一路径**。
 
-体积上限（三条不是一回事）：
+体积上限（openai 协议口径；vertex 的 `:predict` 无公开字段上限，工具按保守 50MB 拦）：
 
 | 通道 | 限制 | 依据 |
 |------|------|------|
-| JSON / base64（默认） | `image_url` 字段 ≤ 20MiB ⇒ 原图 ≤ 约 15MB | OpenAI schema `maxLength: 20971520` |
-| multipart | 单文件 < 50MB | OpenAI/ZenMux 上传上限 |
-| mask PNG | > 4MB 告警、> 50MB 直接拒 | 4MB 是第三方转售文档的说法，官方未写，故只告警 |
+| JSON / base64（openai 默认） | `image_url` 字段 ≤ 20MiB ⇒ 原图 ≤ 约 15MB | OpenAI schema `maxLength: 20971520` |
+| multipart（openai） | 单文件 < 50MB | OpenAI/ZenMux 上传上限 |
+| vertex instances 内嵌 base64 | 无公开上限；工具按原图 50MB 拦 | 未实测更大值 |
+| mask PNG | > 4MB 告警（openai）、> 50MB 直接拒 | 4MB 是第三方转售文档的说法，官方未写，故只告警 |
+
+## Vertex 协议的模型家族兼容（2026-09-23，先两族）
+
+同一个 `:predict` 端点，**不同家族参数不同**——工具内置家族表自动分发
+（源码 `FAMILIES`，新模型加一格即可）：
+
+| 能力 | openai/gpt-image-* | tencent/hy-image-*（混元） |
+|------|--------------------|-----------------------------|
+| 尺寸 | 顶层透传 `imageSize`（1024x1024 / 1536x1024 / 1024x1536 / auto / 自定义 16 倍数 ≤3840、比例 ≤3:1） | **不吃 imageSize** → `parameters.aspectRatio`（`--size` 自动折算，如 1536x1024→3:2） |
+| 质量 | 顶层透传 `quality`（low/medium/high/auto，计费分档） | **无 quality 分档**（不发，提示无意义） |
+| 张数 n | 1~10 | **只能 1**（--n 2 直接本地拦截，不花钱） |
+| prompt 增强 `--enhance-prompt` | ✗（忽略） | ✅ 文档明确支持 |
+| 负向提示 `--negative-prompt` | ✗（忽略） | ⚠ 未证实（文档只列 Imagen/Kling/通义；带上传，400 就去掉） |
+| 分辨率档 | — | `--sample-image-size 1K/2K/4K`（官方列了火山/百度，hy 未明说） |
+| background 透明 | ❌ 协议不支持（官方映射表标 ❌）→ **透明件走"纯色底 + flatbg_cut.py 本地抠底"** | ❌ 同左 |
+| SSE 流式 / multipart / `--image-url` | （旧 openai 协议才有） | ✗ 单次 POST，JSON 内嵌 base64 |
+
+**实测（2026-09-23，真机 2 次小额计费）**：`tencent/hy-image-v3.0` 文生图与图生图（`REFERENCE_TYPE_RAW` +
+base64 内嵌）均 **200 出图**——注意该模型**还没进 ZenMux 目录**（`/models` 不见踪影但已可用），
+`check` 对 vertex 协议的目录外模型只 give warn 不判 fail。
+
+mask 在 vertex 协议下照常用（`--mask` / `--mask-mode` 全套），语义与 OpenAI 一致：透明 = 编辑区。
 
 ## mask 调研结论（2026-09 核对官方文档）
+
 
 ### 一次请求最多几个 mask？—— **1 个**
 
@@ -206,7 +242,7 @@ python tools/zenmux_edit.py edit --image tmp/hero.png `
 | `404 model_not_available` / `invalid_model` / `model_not_supported` | 模型不在套餐 / 不存在 / 不支持该接口 → 先 `check` 看列表，或换 Pay-As-You-Go key |
 | `413` | prompt 太长 |
 | `422 provider_unprocessable_entity_error` | 平台校验过了但上游处理不了 → 去掉高级参数（`--input-fidelity` / `--moderation` 等）重试 |
-| `400` + message 提到 `background` / `transparent` | 上游模型（如 2.5）在 edit 端不支持透明背景。默认已开 `--bg-fallback`：自动去掉 `background` 重试一次并告警；也可显式 `--background opaque` |
+| `400` + message 提到 `background` / `transparent` | 上游模型（如 2.5）在 edit 端不支持透明背景。**无自动回退**（没重试机制）：显式 `--background opaque`；要透明走"纯色底 + 本地抠底" |
 | `400 invalid_image_file` | 输入图不是标准 PNG/JPEG/WEBP（手机 MPO/HDR 多帧 JPEG 是常见坑）；本工具读图时会 `load()` 取首帧再重编码，正常不会踩 |
 | `400` 提到 `input_fidelity` | 第三方文档称 gpt-image-2.5 传它会 400（ZenMux 文档未明确）；不确定就别传 |
 | `400` 提到 `n` | ZenMux 对部分模型不支持 `n>1` → 保持 `--n 1`，多次出图用 `--mask-mode separate` 或跑多次 |
@@ -220,7 +256,17 @@ python tools/zenmux_edit.py edit --image tmp/hero.png `
 
 ## 已验证 / 未验证
 
-- **已验证（本地 mock 服务端，92 项断言全通过）**：请求体形状（`images[].image_url` data URL、
+- **Vertex 协议真机已验证（2026-09-23，2 次小额计费探针）**：
+  `POST /api/vertex-ai/v1/publishers/tencent/models/hy-image-v3.0:predict`
+  ① 文生图（prompt only）→ 200 出 `gcsUri`（COS 签名 URL）；② 图生图
+  （`instances[0].referenceImages = [REFERENCE_TYPE_RAW + bytesBase64Encoded]`）→ 200 出 `gcsUri`。
+  假 key → 与 OpenAI 协议同一错误信封（`403 access_denied` + `api_key_source`），
+  平台接口（`balance` / `cost` / `generation`）在 Vertex 切换下**不受影响**。
+  工具侧：两种家族请求体（openai 顶层 imageSize/quality；hy 的 aspectRatio/enhancePrompt）
+  已本地断言测试（含 mask 的 `REFERENCE_TYPE_MASK + MASK_MODE_USER_PROVIDED`、
+  hy `--n 2` 拦截、`--size`→aspectRatio 折算、gcsUri/bytesBase64 两种响应解法）。
+  **未真机验证**：mask 在 vertex 协议下的实际重绘效果（要走一次小额 `--min-credits 1`）。
+- **已验证（本地 mock 服务端，92 项断言全通过，openai 协议部分）**：请求体形状（`images[].image_url` data URL、
   `mask.image_url`、`n/size/quality/background/output_format` 默认值、默认模型
   `openai/gpt-image-2.5-sunburst`）、mask 语义转换
   （标记区 → 透明洞，实测覆盖面积与几何面积吻合；`hole` 语义、**alpha 全 255 的 RGBA mask 回退按亮度读**
@@ -233,8 +279,12 @@ python tools/zenmux_edit.py edit --image tmp/hero.png `
   （harness 在 `tmp/mock_zenmux.py` + `tmp/test_zenmux_edit.py`，属临时产物，未入库；随时可重跑，**全程不打真机、不花钱**。）
 - **已在真机验证（免费接口）**：`check`（公开 `GET /models`：199 个模型、7 个可出图、默认模型在架）与
   `balance` / `check` 的余额行（`GET /management/payg/balance` → `余额 10 USD（充值 10 + 赠送 0）`）。
-- **未验证**：对 ZenMux 真机的**生成**调用——按用户要求把所有远程生成调用都 mock 掉，没有产生任何计费请求。
-  真机首次使用建议：先 `check`，再 `check --probe`（预期 404 invalid_model），最后跑一次单 mask 的 `edit --min-credits 1`。
+- **真机验证（2026-09-23，本轮）**：目录里 7 个可出图模型（全是 openai 系）、
+  `balance` 实测 `GET /management/payg/balance` 正常；
+  **vertex 协议 2 次小额计费探针**：`tencent/hy-image-v3.0` 文生图 / 图生图均 200 出 `gcsUri`；
+  假 key 403 信封与 openai 协议一致。**未复验**：openai 协议真机生成（本机连不通 zenmux.ai，
+  记录见"真机实战记录"）；vertex 下 mask 的实际重绘效果；`imageSize`/`quality`/`sampleImageSize`
+  透传在 `:predict` 上的实际生效情况（形状以官方 SDK extra_body 语义为准，错了应是免费 400，跑一次便知）。
 
 ## 真机实战记录（武僧换武器 MVP，2026-09-21）
 
@@ -252,6 +302,8 @@ python tools/zenmux_edit.py edit --image tmp/hero.png `
 
 ## 相关文档
 
+- [Generate Images（Vertex AI 协议，ZenMux）](https://zenmux.ai/docs/api/vertexai/generate-images.html) —— `:predict` 端点、`instances+parameters`、透传参数表
+- [Image Generation Guide（ZenMux）](https://zenmux.ai/docs/guide/advanced/image-generation.html) —— `edit_image` / MaskReferenceImage 示例、OpenAI 参数 → Vertex 映射表
 - [Get PAYG Balance（ZenMux 平台 API）](https://zenmux.ai/docs/api/platform/payg-balance.html) —— 余额 / 成本控制
 - [API 错误码参考（ZenMux）](https://zenmux.ai/docs/guide/advanced/error-codes.html) —— 403 `access_denied`、402、流内错误
 - [图片生成 - OpenAI Image 协议（ZenMux）](https://zenmux.ai/docs/zh/guide/advanced/openai-image-generation.html)
