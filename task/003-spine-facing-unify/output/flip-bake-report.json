@@ -1,0 +1,4118 @@
+{
+ "task": "003-spine-facing-unify",
+ "target_facing": "right",
+ "date": "2026-09-27",
+ "total": 107,
+ "baked": 81,
+ "copied": 13,
+ "failed": 13,
+ "gate_tolerances": {
+  "G1": 1e-09,
+  "G2": 1e-06
+ },
+ "gates_note": "G1 双翻恒等 / G2 真镜像逐骨世界矩阵(root固定setup口径) / G3 不动项审计；G2_rootanim 为含 root 动画的信息级偏差（D4 已知边界，非闸门）",
+ "packages": [
+  {
+   "pkg": "人形/女/三姐妹红裙/girl_lv55.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "两红裙女身体均朝画面左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 三姐妹红裙: 翻转域骨 3，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.41e-13/root动画 3.41e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/三姐妹红裙/girl_lv55.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 4
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.410605131648481e-13,
+     "max_diff_rootanim": 3.410605131648481e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/三姐妹红裙/girl_lv55.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/兽头袋女/fulei.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "维京战士脸朝左，剑在画面左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 兽头袋女: 翻转域骨 1，动画轨 1\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.56e-13/root动画 1.56e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/兽头袋女/fulei.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 6,
+    "transform": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.5631940186722204e-13,
+     "max_diff_rootanim": 1.5631940186722204e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/兽头袋女/fulei.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/冰法女/ice_wizard.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "冰法脸/身体朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 冰法女: 翻转域骨 1，动画轨 1\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 6.82e-13/root动画 6.82e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/冰法女/ice_wizard.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2,
+    "transform": 1
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 6.821210263296962e-13,
+     "max_diff_rootanim": 6.821210263296962e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/冰法女/ice_wizard.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/多身魅魔/succubus.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "player 复核：下半身组件，行走帧膝朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 多身魅魔: 翻转域骨 1，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.67e-13/root动画 1.67e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/多身魅魔/succubus.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.6697754290362354e-13,
+     "max_diff_rootanim": 1.6697754290362354e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/多身魅魔/succubus.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/斗笠女祭司/Pest.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "骑乘冲刺朝左",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 斗笠女祭司: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：cpllar（父骨 upper body 世界 |scale| 偏差 0.1194 / det 0.7926）；upper body4（父骨 upper body 世界 |scale| 偏差 0.1194 / det 0.7926）；upper body5（父骨 upper body 世界 |scale| 偏差 0.1194 / det 0.7926） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/女/暗影战士/ShadowSoldier_035.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "player 复核：左肩甲显著偏大=朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 暗影战士: 翻转域骨 2，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 7.11e-14/root动画 7.11e-14)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/暗影战士/ShadowSoldier_035.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 7.105427357601002e-14,
+     "max_diff_rootanim": 7.105427357601002e-14
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/暗影战士/ShadowSoldier_035.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/火把女战士/RogueSekaniFlamebringer.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "装配后站姿偏左，火把",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 火把女战士: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：shoulderR（父骨 torso2 世界 |scale| 偏差 0.0000 / det -0.9863）；shoulderL（父骨 torso2 世界 |scale| 偏差 0.0000 / det -0.9863） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/女/焰发女猎手/S041_skin6.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "装配后白发战甲脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 焰发女猎手: 翻转域骨 7，动画轨 7\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 2.27e-13/root动画 2.27e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/焰发女猎手/S041_skin6.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 2.2737367544323206e-13,
+     "max_diff_rootanim": 2.2737367544323206e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/焰发女猎手/S041_skin6.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/焰发女猎手/_replaced_S041_skin6.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "同 S041_skin6",
+   "returncode": 0,
+   "stdout_tail": "[bake] 焰发女猎手: 翻转域骨 7，动画轨 7\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 2.27e-13/root动画 2.27e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/焰发女猎手/_replaced_S041_skin6.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 2.2737367544323206e-13,
+     "max_diff_rootanim": 2.2737367544323206e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/焰发女猎手/_replaced_S041_skin6.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/紫袍女审判/P_shengsipanguan.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "白帽判官笔在身后侧",
+   "returncode": 0,
+   "stdout_tail": "[bake] 紫袍女审判: 翻转域骨 6，动画轨 29\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/紫袍女审判/P_shengsipanguan.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/紫袍女审判/P_shengsipanguan.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/红发法师/cha_1166.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "红发法师脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 红发法师: 翻转域骨 2，动画轨 8\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.99e-13/root动画 1.54e+00)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/红发法师/cha_1166.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.9895196601282805e-13,
+     "max_diff_rootanim": 1.5389425253685118
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/红发法师/cha_1166.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/翼盔女剑士/fulei_stage2.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "翼盔女剑士剑在画面左，身朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 翼盔女剑士: 翻转域骨 4，动画轨 2\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 2.28e-13/root动画 2.28e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/翼盔女剑士/fulei_stage2.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 6,
+    "transform": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 2.2779165252220256e-13,
+     "max_diff_rootanim": 2.2779165252220256e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/翼盔女剑士/fulei_stage2.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/蓝拳小萝莉/role_small_Lena.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "front",
+   "note": "正面 chibi 近对称",
+   "returncode": 0,
+   "stdout_tail": "[bake] 蓝拳小萝莉: 翻转域骨 7，动画轨 9\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/蓝拳小萝莉/role_small_Lena.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 8,
+    "transform": 1
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/蓝拳小萝莉/role_small_Lena.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/蓝衣短发女/zhangzitong.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "蓝衣短发女身体朝左",
+   "returncode": 0,
+   "stdout_tail": "       ⚠ 蓝衣短发女: 排除骨 zhi4 世界旋转变化 55.98°/轴偏差 38.15° 超阈，1 个附件保持原样（B-c）\n       ⚠ 蓝衣短发女: 排除骨 zhi7 世界旋转变化 54.54°/轴偏差 25.33° 超阈，1 个附件保持原样（B-c）\n       ⚠ 蓝衣短发女: 排除骨 zhi8 世界旋转变化 52.66°/轴偏差 55.38° 超阈，1 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/蓝衣短发女/zhangzitong.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2,
+    "transform": 3
+   },
+   "tier2": {
+    "excluded_bones": {
+     "bz": {
+      "attachments": 1,
+      "rot_variation_deg": 2.13,
+      "world_rot_deg": 84.44,
+      "axis_deviation_deg": 84.44,
+      "strategy": "B-c"
+     },
+     "e1_l": {
+      "attachments": 5,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": 80.306,
+      "axis_deviation_deg": 80.306,
+      "strategy": "B-c"
+     },
+     "e1_l3": {
+      "attachments": 5,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": 71.556,
+      "axis_deviation_deg": 71.556,
+      "strategy": "B-c"
+     },
+     "e1_r": {
+      "attachments": 6,
+      "rot_variation_deg": 44.3921,
+      "world_rot_deg": 84.826,
+      "axis_deviation_deg": 84.826,
+      "strategy": "B-c"
+     },
+     "e2_r": {
+      "attachments": 6,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": 87.206,
+      "axis_deviation_deg": 87.206,
+      "strategy": "B-c"
+     },
+     "face": {
+      "attachments": 1,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": 83.426,
+      "axis_deviation_deg": 83.426,
+      "strategy": "B-c"
+     },
+     "fadi": {
+      "attachments": 1,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": 76.776,
+      "axis_deviation_deg": 76.776,
+      "strategy": "B-c"
+     },
+     "g1_l": {
+      "attachments": 1,
+      "rot_variation_deg": 2.3464,
+      "world_rot_deg": 6.76,
+      "axis_deviation_deg": 6.76,
+      "strategy": "B-c"
+     },
+     "g1_r": {
+      "attachments": 1,
+      "rot_variation_deg": 45.16,
+      "world_rot_deg": 131.77,
+      "axis_deviation_deg": 48.23,
+      "strategy": "B-c"
+     },
+     "g2_l": {
+      "attachments": 1,
+      "rot_variation_deg": 2.38,
+      "world_rot_deg": -78.37,
+      "axis_deviation_deg": 78.37,
+      "strategy": "B-c"
+     },
+     "g2_r": {
+      "attachments": 1,
+      "rot_variation_deg": 1.11,
+      "world_rot_deg": -82.43,
+      "axis_deviation_deg": 82.43,
+      "strategy": "B-c"
+     },
+     "hand": {
+      "attachments": 1,
+      "rot_variation_deg": 52.5779,
+      "world_rot_deg": 116.07,
+      "axis_deviation_deg": 63.93,
+      "strategy": "B-c"
+     },
+     "jian": {
+      "attachments": 1,
+      "rot_variation_deg": 1.11,
+      "world_rot_deg": 91.96,
+      "axis_deviation_deg": 88.04,
+      "strategy": "B-c"
+     },
+     "liuhai": {
+      "attachments": 1,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": 154.816,
+      "axis_deviation_deg": 25.184,
+      "strategy": "B-c"
+     },
+     "liuhai5": {
+      "attachments": 1,
+      "rot_variation_deg": 3.0797,
+      "world_rot_deg": -106.523,
+      "axis_deviation_deg": 73.477,
+      "strategy": "B-c"
+     },
+     "m1_l": {
+      "attachments": 2,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": 80.586,
+      "axis_deviation_deg": 80.586,
+      "strategy": "B-c"
+     },
+     "m1_r": {
+      "attachments": 4,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": 76.996,
+      "axis_deviation_deg": 76.996,
+      "strategy": "B-c"
+     },
+     "r_l": {
+      "attachments": 1,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": 171.616,
+      "axis_deviation_deg": 8.384,
+      "strategy": "B-c"
+     },
+     "r_r": {
+      "attachments": 1,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": -15.484,
+      "axis_deviation_deg": 15.484,
+      "strategy": "B-c"
+     },
+     "rh_l": {
+      "attachments": 1,
+      "rot_variation_deg": 6.1362,
+      "world_rot_deg": -94.184,
+      "axis_deviation_deg": 85.816,
+      "strategy": "B-c"
+     },
+     "rh_r": {
+      "attachments": 1,
+      "rot_variation_deg": 9.1314,
+      "world_rot_deg": -91.974,
+      "axis_deviation_deg": 88.026,
+      "strategy": "B-c"
+     },
+     "sx_lei_l": {
+      "attachments": 1,
+      "rot_variation_deg": 9.6757,
+      "world_rot_deg": 169.466,
+      "axis_deviation_deg": 10.534,
+      "strategy": "B-c"
+     },
+     "sx_lei_r1": {
+      "attachments": 1,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": 81.196,
+      "axis_deviation_deg": 81.196,
+      "strategy": "B-c"
+     },
+     "sx_lei_r2": {
+      "attachments": 1,
+      "rot_variation_deg": 40.451,
+      "world_rot_deg": -15.464,
+      "axis_deviation_deg": 15.464,
+      "strategy": "B-c"
+     },
+     "sy": {
+      "attachments": 1,
+      "rot_variation_deg": 2.09,
+      "world_rot_deg": 91.315,
+      "axis_deviation_deg": 88.685,
+      "strategy": "B-c"
+     },
+     "z1": {
+      "attachments": 6,
+      "rot_variation_deg": 3.65,
+      "world_rot_deg": 85.356,
+      "axis_deviation_deg": 85.356,
+      "strategy": "B-c"
+     },
+     "zhi1": {
+      "attachments": 1,
+      "rot_variation_deg": 52.5779,
+      "world_rot_deg": 163.69,
+      "axis_deviation_deg": 16.31,
+      "strategy": "B-c"
+     },
+     "zhi4": {
+      "attachments": 1,
+      "rot_variation_deg": 55.9806,
+      "world_rot_deg": 141.85,
+      "axis_deviation_deg": 38.15,
+      "strategy": "B-c"
+     },
+     "zhi7": {
+      "attachments": 1,
+      "rot_variation_deg": 54.5447,
+      "world_rot_deg": 154.67,
+      "axis_deviation_deg": 25.33,
+      "strategy": "B-c"
+     },
+     "zhi8": {
+      "attachments": 1,
+      "rot_variation_deg": 52.6581,
+      "world_rot_deg": 124.62,
+      "axis_deviation_deg": 55.38,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 57
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "蓝衣短发女: 排除骨 bz 世界旋转变化 2.13°/轴偏差 84.44° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 e1_l 世界旋转变化 3.65°/轴偏差 80.31° 超阈，5 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 e1_l3 世界旋转变化 3.65°/轴偏差 71.56° 超阈，5 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 e1_r 世界旋转变化 44.39°/轴偏差 84.83° 超阈，6 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 e2_r 世界旋转变化 3.65°/轴偏差 87.21° 超阈，6 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 face 世界旋转变化 3.65°/轴偏差 83.43° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 fadi 世界旋转变化 3.65°/轴偏差 76.78° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 g1_l 世界旋转变化 2.35°/轴偏差 6.76° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 g1_r 世界旋转变化 45.16°/轴偏差 48.23° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 g2_l 世界旋转变化 2.38°/轴偏差 78.37° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 g2_r 世界旋转变化 1.11°/轴偏差 82.43° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 hand 世界旋转变化 52.58°/轴偏差 63.93° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 jian 世界旋转变化 1.11°/轴偏差 88.04° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 liuhai 世界旋转变化 3.65°/轴偏差 25.18° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 liuhai5 世界旋转变化 3.08°/轴偏差 73.48° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 m1_l 世界旋转变化 3.65°/轴偏差 80.59° 超阈，2 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 m1_r 世界旋转变化 3.65°/轴偏差 77.00° 超阈，4 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 r_l 世界旋转变化 3.65°/轴偏差 8.38° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 r_r 世界旋转变化 3.65°/轴偏差 15.48° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 rh_l 世界旋转变化 6.14°/轴偏差 85.82° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 rh_r 世界旋转变化 9.13°/轴偏差 88.03° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 sx_lei_l 世界旋转变化 9.68°/轴偏差 10.53° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 sx_lei_r1 世界旋转变化 3.65°/轴偏差 81.20° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 sx_lei_r2 世界旋转变化 40.45°/轴偏差 15.46° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 sy 世界旋转变化 2.09°/轴偏差 88.69° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 z1 世界旋转变化 3.65°/轴偏差 85.36° 超阈，6 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 zhi1 世界旋转变化 52.58°/轴偏差 16.31° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 zhi4 世界旋转变化 55.98°/轴偏差 38.15° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 zhi7 世界旋转变化 54.54°/轴偏差 25.33° 超阈，1 个附件保持原样（B-c）",
+    "蓝衣短发女: 排除骨 zhi8 世界旋转变化 52.66°/轴偏差 55.38° 超阈，1 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.4210854715202004e-13,
+     "max_diff_rootanim": 1.4210854715202004e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/蓝衣短发女/zhangzitong.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/蓝袍女妖/31801_zhizunnvwu.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "女巫持镰朝左冲",
+   "returncode": 0,
+   "stdout_tail": "[bake] 蓝袍女妖: 翻转域骨 1，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 9.09e-13/root动画 9.09e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/蓝袍女妖/31801_zhizunnvwu.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "transform": 29
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 9.094947017729282e-13,
+     "max_diff_rootanim": 9.094947017729282e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/蓝袍女妖/31801_zhizunnvwu.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/蓝袍女法师/P_fuzhu.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "白袍钓者竿在左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 蓝袍女法师: 翻转域骨 1，动画轨 6\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/蓝袍女法师/P_fuzhu.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/蓝袍女法师/P_fuzhu.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/蛇发女妖/S024_skin5.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "蛇发战士脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 蛇发女妖: 翻转域骨 4，动画轨 4\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.41e-13/root动画 3.41e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/蛇发女妖/S024_skin5.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.410605131648481e-13,
+     "max_diff_rootanim": 3.410605131648481e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/蛇发女妖/S024_skin5.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/黄角龙女/S019_skin1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "紫魔尾巴在右身朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 黄角龙女: 翻转域骨 5，动画轨 7\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 2.27e-13/root动画 2.27e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/黄角龙女/S019_skin1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 2.2737367544323206e-13,
+     "max_diff_rootanim": 2.2737367544323206e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/黄角龙女/S019_skin1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/女/黑甲女剑士/cha116.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "小机甲冲刺线朝左",
+   "returncode": 0,
+   "stdout_tail": "       ⚠ 黑甲女剑士: 排除骨 rear_arm 世界旋转变化 126.43°/轴偏差 4.25° 超阈，2 个附件保持原样（B-c）\n       ⚠ 黑甲女剑士: 排除骨 touguan 世界旋转变化 115.42°/轴偏差 85.52° 超阈，1 个附件保持原样（B-c）\n       ⚠ 黑甲女剑士: 排除骨 yan3 世界旋转变化 115.42°/轴偏差 0.00° 超阈，4 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/黑甲女剑士/cha116.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 4
+   },
+   "tier2": {
+    "excluded_bones": {
+     "Pike2": {
+      "attachments": 1,
+      "rot_variation_deg": 329.267,
+      "world_rot_deg": 17.65,
+      "axis_deviation_deg": 17.65,
+      "strategy": "B-c"
+     },
+     "body": {
+      "attachments": 1,
+      "rot_variation_deg": 125.38,
+      "world_rot_deg": 78.88,
+      "axis_deviation_deg": 78.88,
+      "strategy": "B-c"
+     },
+     "cloth1": {
+      "attachments": 1,
+      "rot_variation_deg": 105.03,
+      "world_rot_deg": -108.22,
+      "axis_deviation_deg": 71.78,
+      "strategy": "B-c"
+     },
+     "cloth2": {
+      "attachments": 1,
+      "rot_variation_deg": 137.45,
+      "world_rot_deg": -51.3,
+      "axis_deviation_deg": 51.3,
+      "strategy": "B-c"
+     },
+     "cloth7": {
+      "attachments": 1,
+      "rot_variation_deg": 91.78,
+      "world_rot_deg": -90.0,
+      "axis_deviation_deg": 90.0,
+      "strategy": "B-c"
+     },
+     "front_arm": {
+      "attachments": 2,
+      "rot_variation_deg": 146.08,
+      "world_rot_deg": 2.33,
+      "axis_deviation_deg": 2.33,
+      "strategy": "B-c"
+     },
+     "hair02": {
+      "attachments": 1,
+      "rot_variation_deg": 134.992,
+      "world_rot_deg": -88.34,
+      "axis_deviation_deg": 88.34,
+      "strategy": "B-c"
+     },
+     "hair05": {
+      "attachments": 1,
+      "rot_variation_deg": 131.092,
+      "world_rot_deg": -92.04,
+      "axis_deviation_deg": 87.96,
+      "strategy": "B-c"
+     },
+     "hair08": {
+      "attachments": 1,
+      "rot_variation_deg": 146.27,
+      "world_rot_deg": -81.05,
+      "axis_deviation_deg": 81.05,
+      "strategy": "B-c"
+     },
+     "head": {
+      "attachments": 3,
+      "rot_variation_deg": 115.42,
+      "world_rot_deg": 97.1,
+      "axis_deviation_deg": 82.9,
+      "strategy": "B-c"
+     },
+     "hip": {
+      "attachments": 1,
+      "rot_variation_deg": 91.78,
+      "world_rot_deg": 0.0,
+      "axis_deviation_deg": 0.0,
+      "strategy": "B-c"
+     },
+     "innerarm": {
+      "attachments": 1,
+      "rot_variation_deg": 337.66,
+      "world_rot_deg": -124.08,
+      "axis_deviation_deg": 55.92,
+      "strategy": "B-c"
+     },
+     "innerbracer": {
+      "attachments": 2,
+      "rot_variation_deg": 302.551,
+      "world_rot_deg": -146.5,
+      "axis_deviation_deg": 33.5,
+      "strategy": "B-c"
+     },
+     "innerhand1": {
+      "attachments": 3,
+      "rot_variation_deg": 332.8976,
+      "world_rot_deg": -139.0,
+      "axis_deviation_deg": 41.0,
+      "strategy": "B-c"
+     },
+     "innerhorn": {
+      "attachments": 1,
+      "rot_variation_deg": 115.42,
+      "world_rot_deg": 76.72,
+      "axis_deviation_deg": 76.72,
+      "strategy": "B-c"
+     },
+     "innerleg": {
+      "attachments": 1,
+      "rot_variation_deg": 91.78,
+      "world_rot_deg": -97.24,
+      "axis_deviation_deg": 82.76,
+      "strategy": "B-c"
+     },
+     "innerleg2": {
+      "attachments": 1,
+      "rot_variation_deg": 91.78,
+      "world_rot_deg": -90.98,
+      "axis_deviation_deg": 89.02,
+      "strategy": "B-c"
+     },
+     "mei": {
+      "attachments": 1,
+      "rot_variation_deg": 115.42,
+      "world_rot_deg": 0.0,
+      "axis_deviation_deg": 0.0,
+      "strategy": "B-c"
+     },
+     "outarm": {
+      "attachments": 1,
+      "rot_variation_deg": 295.3302,
+      "world_rot_deg": -41.8,
+      "axis_deviation_deg": 41.8,
+      "strategy": "B-c"
+     },
+     "outbracer": {
+      "attachments": 1,
+      "rot_variation_deg": 270.02,
+      "world_rot_deg": -75.42,
+      "axis_deviation_deg": 75.42,
+      "strategy": "B-c"
+     },
+     "outhand1": {
+      "attachments": 1,
+      "rot_variation_deg": 255.6051,
+      "world_rot_deg": -85.29,
+      "axis_deviation_deg": 85.29,
+      "strategy": "B-c"
+     },
+     "outhand2": {
+      "attachments": 1,
+      "rot_variation_deg": 329.4097,
+      "world_rot_deg": -85.28,
+      "axis_deviation_deg": 85.28,
+      "strategy": "B-c"
+     },
+     "outhorn": {
+      "attachments": 1,
+      "rot_variation_deg": 115.42,
+      "world_rot_deg": 111.04,
+      "axis_deviation_deg": 68.96,
+      "strategy": "B-c"
+     },
+     "outleg": {
+      "attachments": 1,
+      "rot_variation_deg": 91.78,
+      "world_rot_deg": -70.27,
+      "axis_deviation_deg": 70.27,
+      "strategy": "B-c"
+     },
+     "outleg2": {
+      "attachments": 1,
+      "rot_variation_deg": 91.78,
+      "world_rot_deg": -72.9,
+      "axis_deviation_deg": 72.9,
+      "strategy": "B-c"
+     },
+     "pike1": {
+      "attachments": 1,
+      "rot_variation_deg": 321.4078,
+      "world_rot_deg": 17.65,
+      "axis_deviation_deg": 17.65,
+      "strategy": "B-c"
+     },
+     "pike2_glow1_1": {
+      "attachments": 1,
+      "rot_variation_deg": 340.3895,
+      "world_rot_deg": 109.09,
+      "axis_deviation_deg": 70.91,
+      "strategy": "B-c"
+     },
+     "pike2_glow1_2": {
+      "attachments": 1,
+      "rot_variation_deg": 340.3895,
+      "world_rot_deg": 109.09,
+      "axis_deviation_deg": 70.91,
+      "strategy": "B-c"
+     },
+     "pike2_glow1_3": {
+      "attachments": 1,
+      "rot_variation_deg": 342.5215,
+      "world_rot_deg": 109.09,
+      "axis_deviation_deg": 70.91,
+      "strategy": "B-c"
+     },
+     "pike2_glow1_4": {
+      "attachments": 1,
+      "rot_variation_deg": 339.96,
+      "world_rot_deg": 109.09,
+      "axis_deviation_deg": 70.91,
+      "strategy": "B-c"
+     },
+     "pike2_glow1_5": {
+      "attachments": 1,
+      "rot_variation_deg": 339.96,
+      "world_rot_deg": 109.09,
+      "axis_deviation_deg": 70.91,
+      "strategy": "B-c"
+     },
+     "pike2_glow1_6": {
+      "attachments": 1,
+      "rot_variation_deg": 341.9306,
+      "world_rot_deg": 109.09,
+      "axis_deviation_deg": 70.91,
+      "strategy": "B-c"
+     },
+     "rear_arm": {
+      "attachments": 2,
+      "rot_variation_deg": 126.43,
+      "world_rot_deg": 175.75,
+      "axis_deviation_deg": 4.25,
+      "strategy": "B-c"
+     },
+     "touguan": {
+      "attachments": 1,
+      "rot_variation_deg": 115.42,
+      "world_rot_deg": 94.48,
+      "axis_deviation_deg": 85.52,
+      "strategy": "B-c"
+     },
+     "yan3": {
+      "attachments": 4,
+      "rot_variation_deg": 115.42,
+      "world_rot_deg": 0.0,
+      "axis_deviation_deg": 0.0,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 45
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "黑甲女剑士: 排除骨 Pike2 世界旋转变化 329.27°/轴偏差 17.65° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 body 世界旋转变化 125.38°/轴偏差 78.88° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 cloth1 世界旋转变化 105.03°/轴偏差 71.78° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 cloth2 世界旋转变化 137.45°/轴偏差 51.30° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 cloth7 世界旋转变化 91.78°/轴偏差 90.00° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 front_arm 世界旋转变化 146.08°/轴偏差 2.33° 超阈，2 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 hair02 世界旋转变化 134.99°/轴偏差 88.34° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 hair05 世界旋转变化 131.09°/轴偏差 87.96° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 hair08 世界旋转变化 146.27°/轴偏差 81.05° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 head 世界旋转变化 115.42°/轴偏差 82.90° 超阈，3 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 hip 世界旋转变化 91.78°/轴偏差 0.00° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 innerarm 世界旋转变化 337.66°/轴偏差 55.92° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 innerbracer 世界旋转变化 302.55°/轴偏差 33.50° 超阈，2 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 innerhand1 世界旋转变化 332.90°/轴偏差 41.00° 超阈，3 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 innerhorn 世界旋转变化 115.42°/轴偏差 76.72° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 innerleg 世界旋转变化 91.78°/轴偏差 82.76° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 innerleg2 世界旋转变化 91.78°/轴偏差 89.02° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 mei 世界旋转变化 115.42°/轴偏差 0.00° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 outarm 世界旋转变化 295.33°/轴偏差 41.80° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 outbracer 世界旋转变化 270.02°/轴偏差 75.42° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 outhand1 世界旋转变化 255.61°/轴偏差 85.29° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 outhand2 世界旋转变化 329.41°/轴偏差 85.28° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 outhorn 世界旋转变化 115.42°/轴偏差 68.96° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 outleg 世界旋转变化 91.78°/轴偏差 70.27° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 outleg2 世界旋转变化 91.78°/轴偏差 72.90° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 pike1 世界旋转变化 321.41°/轴偏差 17.65° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 pike2_glow1_1 世界旋转变化 340.39°/轴偏差 70.91° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 pike2_glow1_2 世界旋转变化 340.39°/轴偏差 70.91° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 pike2_glow1_3 世界旋转变化 342.52°/轴偏差 70.91° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 pike2_glow1_4 世界旋转变化 339.96°/轴偏差 70.91° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 pike2_glow1_5 世界旋转变化 339.96°/轴偏差 70.91° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 pike2_glow1_6 世界旋转变化 341.93°/轴偏差 70.91° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 rear_arm 世界旋转变化 126.43°/轴偏差 4.25° 超阈，2 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 touguan 世界旋转变化 115.42°/轴偏差 85.52° 超阈，1 个附件保持原样（B-c）",
+    "黑甲女剑士: 排除骨 yan3 世界旋转变化 115.42°/轴偏差 0.00° 超阈，4 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/女/黑甲女剑士/cha116.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/三角头刽子手/30501_sanjiaotou.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "三角头跪姿刀指左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 三角头刽子手: 翻转域骨 1，动画轨 1\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 6.82e-13/root动画 6.82e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/三角头刽子手/30501_sanjiaotou.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 3,
+    "transform": 4
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 6.821210263296962e-13,
+     "max_diff_rootanim": 6.821210263296962e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/三角头刽子手/30501_sanjiaotou.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/光头打手/Kimchul.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "光头打手（拒烘包，记录用）",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 光头打手: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：bone_bd（父骨 bone_hip 世界 |scale| 偏差 0.3196 / det 0.6804）；bone_ra（父骨 bone_bd 世界 |scale| 偏差 0.1818 / det 0.7613）；bone_re（父骨 bone_ra 世界 |scale| 偏差 0.4824 / det 0.5176） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/男/兽人狂战士/Unit_Spine_NowsiWarriorSpe1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "牛角蛮战胸口朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 兽人狂战士: 翻转域骨 2，动画轨 15\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.48e-13/root动画 2.12e+00)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/兽人狂战士/Unit_Spine_NowsiWarriorSpe1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.481659405224491e-13,
+     "max_diff_rootanim": 2.1164138276584197
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/兽人狂战士/Unit_Spine_NowsiWarriorSpe1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/兽头女战士/chara243.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "low",
+   "note": "白甲骑士跪姿脸朝右",
+   "returncode": 0,
+   "stdout_tail": "[copy] 兽头女战士: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/兽头女战士/chara243.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "人形/男/军官欧林/OfficerErrin.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "军官欧林持矛突刺朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 军官欧林: 翻转域骨 5，动画轨 36\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.41e-13/root动画 3.41e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/军官欧林/OfficerErrin.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "path": 2,
+    "ik": 7
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.410605131648481e-13,
+     "max_diff_rootanim": 3.410605131648481e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/军官欧林/OfficerErrin.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/冰剑佣兵/ice_mercenary.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "冰剑佣兵斧在左身朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 冰剑佣兵: 翻转域骨 1，动画轨 1\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.99e-13/root动画 1.99e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/冰剑佣兵/ice_mercenary.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.9895196601282805e-13,
+     "max_diff_rootanim": 1.9895196601282805e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/冰剑佣兵/ice_mercenary.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/双刀战士/woke.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "角盔战士跪姿脸朝左下",
+   "returncode": 0,
+   "stdout_tail": "[bake] 双刀战士: 翻转域骨 1，动画轨 6\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/双刀战士/woke.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/双刀战士/woke.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/反叛刺客/Unit_Spine_RebelAssassinSpe1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "front",
+   "note": "正面双镰 chibi",
+   "returncode": 0,
+   "stdout_tail": "[bake] 反叛刺客: 翻转域骨 2，动画轨 14\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 4.26e-13/root动画 1.34e+00)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/反叛刺客/Unit_Spine_RebelAssassinSpe1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 4.263256414560601e-13,
+     "max_diff_rootanim": 1.3370292040874432
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/反叛刺客/Unit_Spine_RebelAssassinSpe1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/反叛弓箭手变体/Unit_Spine_RebelArcherSpe1Skin1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "绿发弓手弓在左瞄准左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 反叛弓箭手变体: 翻转域骨 6，动画轨 35\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 9.69e-10/root动画 1.32e+02)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/反叛弓箭手变体/Unit_Spine_RebelArcherSpe1Skin1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 9.686687008070294e-10,
+     "max_diff_rootanim": 131.82000000041998
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/反叛弓箭手变体/Unit_Spine_RebelArcherSpe1Skin1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/反叛弓箭手变体2/Unit_Spine_RebelArcherSpe1Skin2.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "同 RebelArcherSpe",
+   "returncode": 0,
+   "stdout_tail": "[bake] 反叛弓箭手变体2: 翻转域骨 3，动画轨 10\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 4.55e-13/root动画 4.55e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/反叛弓箭手变体2/Unit_Spine_RebelArcherSpe1Skin2.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 4.547473508864641e-13,
+     "max_diff_rootanim": 4.547473508864641e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/反叛弓箭手变体2/Unit_Spine_RebelArcherSpe1Skin2.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/叛军刺客/Unit_Spine_RebelAssassinRebelDodge1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "蒙面双刃左匕前伸",
+   "returncode": 0,
+   "stdout_tail": "[bake] 叛军刺客: 翻转域骨 2，动画轨 23\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.27e-13/root动画 3.27e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/叛军刺客/Unit_Spine_RebelAssassinRebelDodge1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.268496584496461e-13,
+     "max_diff_rootanim": 3.268496584496461e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/叛军刺客/Unit_Spine_RebelAssassinRebelDodge1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/叛军贼/Unit_Spine_RebelAssassinRebelSteal1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "同 RebelAssassin",
+   "returncode": 0,
+   "stdout_tail": "[bake] 叛军贼: 翻转域骨 2，动画轨 23\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.27e-13/root动画 3.27e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/叛军贼/Unit_Spine_RebelAssassinRebelSteal1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.268496584496461e-13,
+     "max_diff_rootanim": 3.268496584496461e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/叛军贼/Unit_Spine_RebelAssassinRebelSteal1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/吸血鬼刺客/Unit_Spine_VampireAssassin1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "front",
+   "note": "正面双匕",
+   "returncode": 0,
+   "stdout_tail": "[bake] 吸血鬼刺客: 翻转域骨 2，动画轨 13\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.98e-13/root动画 4.32e-01)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/吸血鬼刺客/Unit_Spine_VampireAssassin1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.979039320256561e-13,
+     "max_diff_rootanim": 0.43211706590012966
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/吸血鬼刺客/Unit_Spine_VampireAssassin1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/帝国剑士/Unit_Spine_EmpireSword1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "帝国剑士剑在左手盾在右=朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 帝国剑士: 翻转域骨 4，动画轨 20\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 8.53e-14/root动画 4.33e+01)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国剑士/Unit_Spine_EmpireSword1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 8.526512829121202e-14,
+     "max_diff_rootanim": 43.28000000000003
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国剑士/Unit_Spine_EmpireSword1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/帝国圣骑士/Unit_Spine_EmpirePaladin1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "帝国圣骑锤在左盾在右=朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 帝国圣骑士: 翻转域骨 2，动画轨 18\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.71e-13/root动画 1.71e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国圣骑士/Unit_Spine_EmpirePaladin1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.7053025658242404e-13,
+     "max_diff_rootanim": 1.7053025658242404e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国圣骑士/Unit_Spine_EmpirePaladin1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/帝国圣骑士变体/Unit_Spine_EmpirePaladinSpe1Skin1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "同 EmpirePaladin",
+   "returncode": 0,
+   "stdout_tail": "[bake] 帝国圣骑士变体: 翻转域骨 2，动画轨 20\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.55e-13/root动画 4.33e+01)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国圣骑士变体/Unit_Spine_EmpirePaladinSpe1Skin1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.552713678800501e-13,
+     "max_diff_rootanim": 43.28000000000004
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国圣骑士变体/Unit_Spine_EmpirePaladinSpe1Skin1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/帝国弓箭手/Unit_Spine_EmpireArcherEmpireMoveSpe1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "弩手瞄准左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 帝国弓箭手: 翻转域骨 2，动画轨 10\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.71e-13/root动画 1.71e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国弓箭手/Unit_Spine_EmpireArcherEmpireMoveSpe1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.7053025658242404e-13,
+     "max_diff_rootanim": 1.7053025658242404e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国弓箭手/Unit_Spine_EmpireArcherEmpireMoveSpe1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/帝国战士/Unit_Spine_EmpireWarriorSpe1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "帝国战士剑在左盾在右=朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 帝国战士: 翻转域骨 2，动画轨 11\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 4.55e-13/root动画 7.11e+00)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国战士/Unit_Spine_EmpireWarriorSpe1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 4.547473508864641e-13,
+     "max_diff_rootanim": 7.109032863192695
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国战士/Unit_Spine_EmpireWarriorSpe1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/帝国战士变体2/Unit_Spine_EmpireWarriorSpe1Skin2.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "镰刀在肩身偏左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 帝国战士变体2: 翻转域骨 3，动画轨 34\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 4.55e-13/root动画 4.58e+01)  G3 ✅(违规 0)\n       ⚠ 帝国战士变体2: 排除骨 bone28 世界旋转变化 108.87°/轴偏差 22.94° 超阈，1 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国战士变体2/Unit_Spine_EmpireWarriorSpe1Skin2.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": {
+    "excluded_bones": {
+     "bone28": {
+      "attachments": 1,
+      "rot_variation_deg": 108.87,
+      "world_rot_deg": 22.94,
+      "axis_deviation_deg": 22.94,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 1
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "帝国战士变体2: 排除骨 bone28 世界旋转变化 108.87°/轴偏差 22.94° 超阈，1 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 4.547473508864641e-13,
+     "max_diff_rootanim": 45.78908977188863
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国战士变体2/Unit_Spine_EmpireWarriorSpe1Skin2.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/帝国牧师/Unit_Spine_EmpirePriestSpe1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "粉发祭司杖在左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 帝国牧师: 翻转域骨 2，动画轨 12\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 2.27e-13/root动画 1.05e+00)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国牧师/Unit_Spine_EmpirePriestSpe1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 2.2737367544323206e-13,
+     "max_diff_rootanim": 1.0480984087740097
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国牧师/Unit_Spine_EmpirePriestSpe1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/帝国骑士/Unit_Spine_EmpireKnight2.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "骑士马首朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 帝国骑士: 翻转域骨 2，动画轨 13\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.71e-13/root动画 1.71e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国骑士/Unit_Spine_EmpireKnight2.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.7053025658242404e-13,
+     "max_diff_rootanim": 1.7053025658242404e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/帝国骑士/Unit_Spine_EmpireKnight2.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/忍装玩家/player.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "medium",
+   "note": "player 剪影围巾/马尾向左飘=朝右（多帧确认）",
+   "returncode": 0,
+   "stdout_tail": "[copy] 忍装玩家: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {
+    "ik": 3
+   },
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/忍装玩家/player.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "人形/男/斗笠剑客/cha_1114.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "斗笠剑客衣摆向左身朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 斗笠剑客: 翻转域骨 1，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.71e-13/root动画 1.71e-13)  G3 ✅(违规 0)\n       ⚠ 斗笠剑客: 排除骨 l_foot_1 世界旋转变化 151.04°/轴偏差 31.53° 超阈，1 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/斗笠剑客/cha_1114.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": {
+    "excluded_bones": {
+     "l_foot_1": {
+      "attachments": 1,
+      "rot_variation_deg": 151.0403,
+      "world_rot_deg": -31.529,
+      "axis_deviation_deg": 31.529,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 1
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "斗笠剑客: 排除骨 l_foot_1 世界旋转变化 151.04°/轴偏差 31.53° 超阈，1 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.7053025658242404e-13,
+     "max_diff_rootanim": 1.7053025658242404e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/斗笠剑客/cha_1114.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/斧头狂战/axe.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "斧头狂战脸朝左上",
+   "returncode": 0,
+   "stdout_tail": "[bake] 斧头狂战: 翻转域骨 5，动画轨 14\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.28e-13/root动画 1.16e+01)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/斧头狂战/axe.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 4
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.2789769243681803e-13,
+     "max_diff_rootanim": 11.590818323556391
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/斧头狂战/axe.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/旋风勇者/let-me-solo-all.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "旋转帧不可判、player 渲染空白；按库多数派暂定朝左，需人工 G4 复核",
+   "returncode": 0,
+   "stdout_tail": "[bake] 旋风勇者: 翻转域骨 1，动画轨 1\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/旋风勇者/let-me-solo-all.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/旋风勇者/let-me-solo-all.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/无头骑士/dullahan.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "front",
+   "note": "无头骑士正面持剑",
+   "returncode": 0,
+   "stdout_tail": "[bake] 无头骑士: 翻转域骨 2，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.27e-13/root动画 3.27e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/无头骑士/dullahan.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2,
+    "transform": 1
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.268496584496461e-13,
+     "max_diff_rootanim": 3.268496584496461e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/无头骑士/dullahan.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/春节舞狮男孩/nanzhu_manianchunjie.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "front",
+   "note": "舞狮男孩正面",
+   "returncode": 0,
+   "stdout_tail": "[bake] 春节舞狮男孩: 翻转域骨 1，动画轨 4\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.41e-13/root动画 3.41e-13)  G3 ✅(违规 0)\n       ⚠ 春节舞狮男孩: 排除骨 zuoxiaobi2 世界旋转变化 0.00°/轴偏差 16.35° 超阈，1 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/春节舞狮男孩/nanzhu_manianchunjie.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 5,
+    "transform": 5
+   },
+   "tier2": {
+    "excluded_bones": {
+     "zuoxiaobi2": {
+      "attachments": 1,
+      "rot_variation_deg": 0.0,
+      "world_rot_deg": -16.35,
+      "axis_deviation_deg": 16.35,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 1
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "春节舞狮男孩: 排除骨 zuoxiaobi2 世界旋转变化 0.00°/轴偏差 16.35° 超阈，1 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.410605131648481e-13,
+     "max_diff_rootanim": 3.410605131648481e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/春节舞狮男孩/nanzhu_manianchunjie.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/暗法拳王/100604_quanwang.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "front",
+   "note": "拳王正面双焰",
+   "returncode": 0,
+   "stdout_tail": "[bake] 暗法拳王: 翻转域骨 1，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.71e-13/root动画 1.71e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/暗法拳王/100604_quanwang.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2,
+    "transform": 5
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.7053025658242404e-13,
+     "max_diff_rootanim": 1.7053025658242404e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/暗法拳王/100604_quanwang.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/武僧/monk.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "high",
+   "note": "武僧围脖向右甩、左拳在前=朝右（3 帧一致）",
+   "returncode": 0,
+   "stdout_tail": "[copy] 武僧: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {
+    "ik": 2,
+    "transform": 1
+   },
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/武僧/monk.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "人形/男/法袍法师/Magic Gril.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "法袍法师=002 B 模板原包朝左（锚点）",
+   "returncode": 0,
+   "stdout_tail": "[bake] 法袍法师: 翻转域骨 2，动画轨 8\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/法袍法师/Magic Gril.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/法袍法师/Magic Gril.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/狐面忍者/kunai_ninja.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "狐面忍者第2/3帧装配后朝左",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 狐面忍者: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：R_forearm（父骨 R_arm 世界 |scale| 偏差 2.2100 / det -1.0000）；L_forearm（父骨 L_arm 世界 |scale| 偏差 1.9200 / det -1.0000） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/男/猎人老翁/Npc_OldHunter.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "medium",
+   "note": "猎人老翁脸朝右",
+   "returncode": 0,
+   "stdout_tail": "[copy] 猎人老翁: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {
+    "ik": 6,
+    "transform": 41
+   },
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/猎人老翁/Npc_OldHunter.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "人形/男/猫耳少年/CatGirl.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "猫耳少年脸朝左",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 猫耳少年: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：body2（父骨 body 世界 |scale| 偏差 0.1390 / det 0.8610）；neck（父骨 body2 世界 |scale| 偏差 0.1870 / det 0.8130） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/男/玫瑰刺客/wujiang_10002.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "白发刺客装配后蹲姿朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 玫瑰刺客: 翻转域骨 6，动画轨 25\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 4.26e-14/root动画 4.26e-14)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/玫瑰刺客/wujiang_10002.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 4.263256414560601e-14,
+     "max_diff_rootanim": 4.263256414560601e-14
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/玫瑰刺客/wujiang_10002.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/电弓战将/electro-archer.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "电弓战将护目镜脸朝左（3 帧一致）",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 电弓战将: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：bone11（父骨 bone10 世界 |scale| 偏差 1.7000 / det 2.9217）；bone12（父骨 bone10 世界 |scale| 偏差 1.7000 / det 2.9217）；arrow（父骨 bone8 世界 |scale| 偏差 1.0000 / det 3.2996） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/男/白衫青年/bbaksang.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "白衫青年端面碗在左身朝左",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 白衫青年: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：01_body4（父骨 01_body 世界 |scale| 偏差 0.2978 / det 0.7022）；01_arm_R_A（父骨 01_body2 世界 |scale| 偏差 0.2269 / det 0.7022）；01_arm_R_A2（父骨 01_arm_R_A 世界 |scale| 偏差 0.1966 / det 0.8034） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/男/紫发女刺客/linchaoying.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "紫发女刺客剑在左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 紫发女刺客: 翻转域骨 1，动画轨 1\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/紫发女刺客/linchaoying.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/紫发女刺客/linchaoying.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/红发弓手/Unit_Bowman_0.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "金发弓手弓在左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 红发弓手: 翻转域骨 2，动画轨 14\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.41e-13/root动画 3.41e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/红发弓手/Unit_Bowman_0.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.410605131648481e-13,
+     "max_diff_rootanim": 3.410605131648481e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/红发弓手/Unit_Bowman_0.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/红发纹身师/Tattooist.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "纹身师脸朝左",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 红发纹身师: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：bone_bd（父骨 bone_hip 世界 |scale| 偏差 0.0726 / det 0.9274）；bone_la（父骨 bone_bd 世界 |scale| 偏差 0.1965 / det 0.7741）；bone_le（父骨 bone_la 世界 |scale| 偏差 0.1949 / det 0.8051） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/男/红披盗贼/ouwen.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "狂战士头带脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 红披盗贼: 翻转域骨 1，动画轨 6\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/红披盗贼/ouwen.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/红披盗贼/ouwen.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/红袍斧战/warrior06.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "low",
+   "note": "维京战士斧刃在右脸朝右",
+   "returncode": 0,
+   "stdout_tail": "[copy] 红袍斧战: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {
+    "ik": 2,
+    "transform": 9
+   },
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/红袍斧战/warrior06.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "人形/男/络腮胡剑士/NPC2.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "high",
+   "note": "NPC2=络腮胡剑士，002 已验朝右（锚点）",
+   "returncode": 0,
+   "stdout_tail": "[copy] 络腮胡剑士: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/络腮胡剑士/NPC2.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "人形/男/绿弓游侠/dragon_arrow.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "绿帽弓手拉弓指左下",
+   "returncode": 0,
+   "stdout_tail": "[bake] 绿弓游侠: 翻转域骨 2，动画轨 1\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/绿弓游侠/dragon_arrow.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/绿弓游侠/dragon_arrow.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/绿袍法老/magic.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "low",
+   "note": "老法师鼻朝右",
+   "returncode": 0,
+   "stdout_tail": "[copy] 绿袍法老: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/绿袍法老/magic.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "人形/男/胖盾枪兵/Fat Knight.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "胖盾枪兵矛在左脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 胖盾枪兵: 翻转域骨 3，动画轨 13\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.28e-13/root动画 1.28e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/胖盾枪兵/Fat Knight.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 4
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.2789769243681803e-13,
+     "max_diff_rootanim": 1.2789769243681803e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/胖盾枪兵/Fat Knight.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/蓝发持剑战士/gonbong.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "蓝衣术士荧光棒脸朝左",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 蓝发持剑战士: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：01_body2（父骨 01_body 世界 |scale| 偏差 0.0910 / det 0.9090）；01_body3（父骨 01_body2 世界 |scale| 偏差 0.0300 / det 1.0000）；02_hair2（父骨 02_hair 世界 |scale| 偏差 0.0200 / det 0.9800） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/男/蓝发铠甲武士/samurai.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "武士双刀指左脸朝左（侧脸明确）",
+   "returncode": 0,
+   "stdout_tail": "[bake] 蓝发铠甲武士: 翻转域骨 3，动画轨 7\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 6.10e-10/root动画 6.10e-10)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/蓝发铠甲武士/samurai.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 4
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 6.101181782014464e-10,
+     "max_diff_rootanim": 6.101181782014464e-10
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/蓝发铠甲武士/samurai.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/蓝枪卫兵/guard.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "蓝枪卫兵矛在左脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 蓝枪卫兵: 翻转域骨 4，动画轨 12\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.56e-13/root动画 1.56e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/蓝枪卫兵/guard.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 4
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.5631940186722204e-13,
+     "max_diff_rootanim": 1.5631940186722204e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/蓝枪卫兵/guard.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/蓝甲剑士/Swordman.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "橙发大剑在左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 蓝甲剑士: 翻转域骨 3，动画轨 15\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.12e+02)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/蓝甲剑士/Swordman.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 4
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 112.22000000000003
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/蓝甲剑士/Swordman.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/蓝衣术士/yunggul.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "术士球棍在肩脸朝左",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 蓝衣术士: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：01_body2（父骨 01_body 世界 |scale| 偏差 0.0216 / det 0.9784）；01_body3（父骨 01_body2 世界 |scale| 偏差 0.0445 / det 0.9555）；01_coat_R（父骨 01_body2 世界 |scale| 偏差 0.0445 / det 0.9555） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/男/蓝袍学士/112058.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "front",
+   "note": "蓝袍学士正面看书",
+   "returncode": 0,
+   "stdout_tail": "       ⚠ 蓝袍学士: 排除骨 shoesL belt 世界旋转变化 12.24°/轴偏差 39.95° 超阈，1 个附件保持原样（B-c）\n       ⚠ 蓝袍学士: 排除骨 shoesR belt1 世界旋转变化 0.00°/轴偏差 28.40° 超阈，1 个附件保持原样（B-c）\n       ⚠ 蓝袍学士: 排除骨 shoesR belt2 世界旋转变化 0.00°/轴偏差 34.02° 超阈，1 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/蓝袍学士/112058.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 9,
+    "transform": 3,
+    "path": 24
+   },
+   "tier2": {
+    "excluded_bones": {
+     "Page": {
+      "attachments": 2,
+      "rot_variation_deg": 26.25,
+      "world_rot_deg": -0.0,
+      "axis_deviation_deg": 0.0,
+      "strategy": "B-c"
+     },
+     "armL11": {
+      "attachments": 1,
+      "rot_variation_deg": 14.88,
+      "world_rot_deg": 78.77,
+      "axis_deviation_deg": 78.77,
+      "strategy": "B-c"
+     },
+     "armL4": {
+      "attachments": 3,
+      "rot_variation_deg": 14.88,
+      "world_rot_deg": 90.75,
+      "axis_deviation_deg": 89.25,
+      "strategy": "B-c"
+     },
+     "bookpage": {
+      "attachments": 1,
+      "rot_variation_deg": 14.88,
+      "world_rot_deg": 94.08,
+      "axis_deviation_deg": 85.92,
+      "strategy": "B-c"
+     },
+     "shoesL belt": {
+      "attachments": 1,
+      "rot_variation_deg": 12.2443,
+      "world_rot_deg": -140.05,
+      "axis_deviation_deg": 39.95,
+      "strategy": "B-c"
+     },
+     "shoesR belt1": {
+      "attachments": 1,
+      "rot_variation_deg": 0.0,
+      "world_rot_deg": -28.4,
+      "axis_deviation_deg": 28.4,
+      "strategy": "B-c"
+     },
+     "shoesR belt2": {
+      "attachments": 1,
+      "rot_variation_deg": 0.0,
+      "world_rot_deg": -145.98,
+      "axis_deviation_deg": 34.02,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 10
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "蓝袍学士: 排除骨 Page 世界旋转变化 26.25°/轴偏差 0.00° 超阈，2 个附件保持原样（B-c）",
+    "蓝袍学士: 排除骨 armL11 世界旋转变化 14.88°/轴偏差 78.77° 超阈，1 个附件保持原样（B-c）",
+    "蓝袍学士: 排除骨 armL4 世界旋转变化 14.88°/轴偏差 89.25° 超阈，3 个附件保持原样（B-c）",
+    "蓝袍学士: 排除骨 bookpage 世界旋转变化 14.88°/轴偏差 85.92° 超阈，1 个附件保持原样（B-c）",
+    "蓝袍学士: 排除骨 shoesL belt 世界旋转变化 12.24°/轴偏差 39.95° 超阈，1 个附件保持原样（B-c）",
+    "蓝袍学士: 排除骨 shoesR belt1 世界旋转变化 0.00°/轴偏差 28.40° 超阈，1 个附件保持原样（B-c）",
+    "蓝袍学士: 排除骨 shoesR belt2 世界旋转变化 0.00°/轴偏差 34.02° 超阈，1 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 2.1316282072803006e-13,
+     "max_diff_rootanim": 2.1316282072803006e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/蓝袍学士/112058.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/蛮锤狂战/Unit_Spine_NowsiPaladinNowsiStunSpe1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "NowsiPaladin 锤在左盾在右=朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 蛮锤狂战: 翻转域骨 2，动画轨 12\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 4.55e-13/root动画 2.07e+00)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/蛮锤狂战/Unit_Spine_NowsiPaladinNowsiStunSpe1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 4.547473508864641e-13,
+     "max_diff_rootanim": 2.070127556691773
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/蛮锤狂战/Unit_Spine_NowsiPaladinNowsiStunSpe1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/角盔蛮战/017.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "front",
+   "note": "小维京正面",
+   "returncode": 0,
+   "stdout_tail": "[bake] 角盔蛮战: 翻转域骨 1，动画轨 12\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 5.68e-14/root动画 5.68e-14)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/角盔蛮战/017.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 5.684341886080802e-14,
+     "max_diff_rootanim": 5.684341886080802e-14
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/角盔蛮战/017.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/金发双剑/ThorForm2.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "雷神飞姿脸朝左下",
+   "returncode": 0,
+   "stdout_tail": "[bake] 金发双剑: 翻转域骨 11，动画轨 24\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 3.84e-13/root动画 1.76e+00)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/金发双剑/ThorForm2.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 3.836930773104541e-13,
+     "max_diff_rootanim": 1.7643628069246802
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/金发双剑/ThorForm2.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/金发女剑士/pirate.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "medium",
+   "note": "金发女剑士剑扛右肩脸朝右",
+   "returncode": 0,
+   "stdout_tail": "[copy] 金发女剑士: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {
+    "ik": 4
+   },
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/金发女剑士/pirate.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "人形/男/金袍判官/pangu.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "low",
+   "note": "金甲斧在右脸朝右",
+   "returncode": 0,
+   "stdout_tail": "[copy] 金袍判官: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {
+    "ik": 1,
+    "transform": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/金袍判官/pangu.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "人形/男/金袍少侠/jinhuayanyun_nan.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "金袍少侠脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 金袍少侠: 翻转域骨 1，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/金袍少侠/jinhuayanyun_nan.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/金袍少侠/jinhuayanyun_nan.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/长矛守卫/Act3_Polearm_GuardL.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "长矛守卫侧脸朝左（root scaleX=-1 包，以看图为准）",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 长矛守卫: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：head（父骨 torso2 世界 |scale| 偏差 0.0000 / det -1.0000）；shoulderR（父骨 torso2 世界 |scale| 偏差 0.0000 / det -1.0000）；shoulderL（父骨 torso2 世界 |scale| 偏差 0.0000 / det -1.0000） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/男/长袍老伯/boke.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "长袍老伯矛在左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 长袍老伯: 翻转域骨 4，动画轨 12\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/长袍老伯/boke.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 4
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/长袍老伯/boke.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/隐弓少年/100101_anyinglieshou.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "牛仔弩手弩在左脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 隐弓少年: 翻转域骨 1，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 4.55e-13/root动画 4.55e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/隐弓少年/100101_anyinglieshou.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2,
+    "transform": 1
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 4.547473508864641e-13,
+     "max_diff_rootanim": 4.547473508864641e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/隐弓少年/100101_anyinglieshou.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/青袍剑客/xingxiazhangyi_nan.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "斗笠女侠脸朝左",
+   "returncode": 0,
+   "stdout_tail": "       ⚠ 青袍剑客: 排除骨 x-diaodai10 世界旋转变化 215.04°/轴偏差 86.07° 超阈，1 个附件保持原样（B-c）\n       ⚠ 青袍剑客: 排除骨 x-diaodai3 世界旋转变化 234.21°/轴偏差 89.53° 超阈，1 个附件保持原样（B-c）\n       ⚠ 青袍剑客: 排除骨 x-diaodai6 世界旋转变化 191.06°/轴偏差 89.53° 超阈，1 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/青袍剑客/xingxiazhangyi_nan.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": {
+    "excluded_bones": {
+     "shangshen13": {
+      "attachments": 1,
+      "rot_variation_deg": 208.68,
+      "world_rot_deg": 80.54,
+      "axis_deviation_deg": 80.54,
+      "strategy": "B-c"
+     },
+     "x-bixi": {
+      "attachments": 1,
+      "rot_variation_deg": 104.6,
+      "world_rot_deg": -95.05,
+      "axis_deviation_deg": 84.95,
+      "strategy": "B-c"
+     },
+     "x-diaodai1": {
+      "attachments": 1,
+      "rot_variation_deg": 206.53,
+      "world_rot_deg": -88.18,
+      "axis_deviation_deg": 88.18,
+      "strategy": "B-c"
+     },
+     "x-diaodai10": {
+      "attachments": 1,
+      "rot_variation_deg": 215.04,
+      "world_rot_deg": -86.07,
+      "axis_deviation_deg": 86.07,
+      "strategy": "B-c"
+     },
+     "x-diaodai3": {
+      "attachments": 1,
+      "rot_variation_deg": 234.21,
+      "world_rot_deg": -89.53,
+      "axis_deviation_deg": 89.53,
+      "strategy": "B-c"
+     },
+     "x-diaodai6": {
+      "attachments": 1,
+      "rot_variation_deg": 191.06,
+      "world_rot_deg": -90.47,
+      "axis_deviation_deg": 89.53,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 6
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "青袍剑客: 排除骨 shangshen13 世界旋转变化 208.68°/轴偏差 80.54° 超阈，1 个附件保持原样（B-c）",
+    "青袍剑客: 排除骨 x-bixi 世界旋转变化 104.60°/轴偏差 84.95° 超阈，1 个附件保持原样（B-c）",
+    "青袍剑客: 排除骨 x-diaodai1 世界旋转变化 206.53°/轴偏差 88.18° 超阈，1 个附件保持原样（B-c）",
+    "青袍剑客: 排除骨 x-diaodai10 世界旋转变化 215.04°/轴偏差 86.07° 超阈，1 个附件保持原样（B-c）",
+    "青袍剑客: 排除骨 x-diaodai3 世界旋转变化 234.21°/轴偏差 89.53° 超阈，1 个附件保持原样（B-c）",
+    "青袍剑客: 排除骨 x-diaodai6 世界旋转变化 191.06°/轴偏差 89.53° 超阈，1 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 8.526512829121202e-14,
+     "max_diff_rootanim": 8.526512829121202e-14
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/青袍剑客/xingxiazhangyi_nan.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/骑士领主/LC2_BOSS_KnightMaster.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "骑士领主巨剑指左盔朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 骑士领主: 翻转域骨 3，动画轨 69\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 5.83e-13/root动画 1.55e+02)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/骑士领主/LC2_BOSS_KnightMaster.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 4,
+    "transform": 51
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 5.826450433232822e-13,
+     "max_diff_rootanim": 155.1936335552434
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/骑士领主/LC2_BOSS_KnightMaster.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/鬼面武士/samurai_oni.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "赤鬼武士刀指左战斗姿态朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 鬼面武士: 翻转域骨 2，动画轨 4\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/鬼面武士/samurai_oni.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/鬼面武士/samurai_oni.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/鸟人牧师/Unit_Spine_BirdPriestSpe1Skin1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "front",
+   "note": "鸟祭司正面展翼",
+   "returncode": 0,
+   "stdout_tail": "[bake] 鸟人牧师: 翻转域骨 2，动画轨 9\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 4.55e-13/root动画 4.55e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/鸟人牧师/Unit_Spine_BirdPriestSpe1Skin1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 4.547473508864641e-13,
+     "max_diff_rootanim": 4.547473508864641e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/鸟人牧师/Unit_Spine_BirdPriestSpe1Skin1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/鸟嘴医生/100211_niaozuiyisheng_nan_jw.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "鸟嘴医生喙朝左下",
+   "returncode": 0,
+   "stdout_tail": "[bake] 鸟嘴医生: 翻转域骨 1，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 5.12e-13/root动画 5.12e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/鸟嘴医生/100211_niaozuiyisheng_nan_jw.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 5,
+    "transform": 13
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 5.115907697472721e-13,
+     "max_diff_rootanim": 5.115907697472721e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/鸟嘴医生/100211_niaozuiyisheng_nan_jw.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/黄衣游侠/qiaofeng.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "黄衣游侠拳在左脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 黄衣游侠: 翻转域骨 1，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 5.68e-14/root动画 5.68e-14)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/黄衣游侠/qiaofeng.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 5.684341886080802e-14,
+     "max_diff_rootanim": 5.684341886080802e-14
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/黄衣游侠/qiaofeng.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "人形/男/黄袍剑士/_replaced_leega.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "medium",
+   "note": "黄袍剑士细剑指右下脸朝右",
+   "returncode": 0,
+   "stdout_tail": "[copy] 黄袍剑士: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {
+    "ik": 7
+   },
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/黄袍剑士/_replaced_leega.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "人形/男/黄袍剑士/leega.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "medium",
+   "note": "同 leega",
+   "returncode": 0,
+   "stdout_tail": "[copy] 黄袍剑士: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {
+    "ik": 7
+   },
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/黄袍剑士/leega.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "人形/男/黑衣青年/bboy.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "黑衣青年白面具朝左",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 黑衣青年: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：01_body2（父骨 01_body 世界 |scale| 偏差 0.3353 / det -0.9033）；01_body3（父骨 01_body2 世界 |scale| 偏差 0.2819 / det -0.8948）；01_head（父骨 01_body3 世界 |scale| 偏差 0.7361 / det -0.2639） —— 拒绝产出"
+  },
+  {
+   "pkg": "人形/男/黑袍剑客/xizhaoxiaoxiang_nan.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "绿袍长发脸朝左",
+   "returncode": 0,
+   "stdout_tail": "       G1 ✅(残差 0.00e+00)  G2 ✅(setup 8.53e-14/root动画 8.53e-14)  G3 ✅(违规 0)\n       ⚠ 黑袍剑客: 排除骨 xz-piaodai12 世界旋转变化 251.54°/轴偏差 66.59° 超阈，1 个附件保持原样（B-c）\n       ⚠ 黑袍剑客: 排除骨 xz-piaodai8 世界旋转变化 322.28°/轴偏差 12.01° 超阈，1 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/黑袍剑客/xizhaoxiaoxiang_nan.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": {
+    "excluded_bones": {
+     "xz-piaodai12": {
+      "attachments": 1,
+      "rot_variation_deg": 251.54,
+      "world_rot_deg": -66.59,
+      "axis_deviation_deg": 66.59,
+      "strategy": "B-c"
+     },
+     "xz-piaodai8": {
+      "attachments": 1,
+      "rot_variation_deg": 322.2834,
+      "world_rot_deg": 12.01,
+      "axis_deviation_deg": 12.01,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 2
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "黑袍剑客: 排除骨 xz-piaodai12 世界旋转变化 251.54°/轴偏差 66.59° 超阈，1 个附件保持原样（B-c）",
+    "黑袍剑客: 排除骨 xz-piaodai8 世界旋转变化 322.28°/轴偏差 12.01° 超阈，1 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 8.526512829121202e-14,
+     "max_diff_rootanim": 8.526512829121202e-14
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/人形/男/黑袍剑客/xizhaoxiaoxiang_nan.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "兽人/男/兽人双刀剑客/RogueNoyakinBlade.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "忍者双刀交叉脸朝左",
+   "returncode": 0,
+   "stdout_tail": "       ⚠ 兽人双刀剑客: 排除骨 shoulderL 世界旋转变化 36.72°/轴偏差 81.55° 超阈，2 个附件保持原样（B-c）\n       ⚠ 兽人双刀剑客: 排除骨 torso_scarf 世界旋转变化 35.39°/轴偏差 88.31° 超阈，2 个附件保持原样（B-c）\n       ⚠ 兽人双刀剑客: 排除骨 torso_scarfEnd 世界旋转变化 81.03°/轴偏差 87.48° 超阈，2 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/兽人双刀剑客/RogueNoyakinBlade.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "path": 1,
+    "transform": 2,
+    "ik": 5
+   },
+   "tier2": {
+    "excluded_bones": {
+     "armL1": {
+      "attachments": 2,
+      "rot_variation_deg": 116.15,
+      "world_rot_deg": -22.92,
+      "axis_deviation_deg": 22.92,
+      "strategy": "B-c"
+     },
+     "armL3": {
+      "attachments": 2,
+      "rot_variation_deg": 177.88,
+      "world_rot_deg": -23.592,
+      "axis_deviation_deg": 23.592,
+      "strategy": "B-c"
+     },
+     "armR1": {
+      "attachments": 2,
+      "rot_variation_deg": 121.26,
+      "world_rot_deg": -116.56,
+      "axis_deviation_deg": 63.44,
+      "strategy": "B-c"
+     },
+     "armR3": {
+      "attachments": 4,
+      "rot_variation_deg": 240.95,
+      "world_rot_deg": 72.51,
+      "axis_deviation_deg": 72.51,
+      "strategy": "B-c"
+     },
+     "footL": {
+      "attachments": 4,
+      "rot_variation_deg": 0.0,
+      "world_rot_deg": -63.03,
+      "axis_deviation_deg": 63.03,
+      "strategy": "B-c"
+     },
+     "footR": {
+      "attachments": 2,
+      "rot_variation_deg": -0.0,
+      "world_rot_deg": -141.82,
+      "axis_deviation_deg": 38.18,
+      "strategy": "B-c"
+     },
+     "handL": {
+      "attachments": 4,
+      "rot_variation_deg": 219.57,
+      "world_rot_deg": 18.868,
+      "axis_deviation_deg": 18.868,
+      "strategy": "B-c"
+     },
+     "handR": {
+      "attachments": 4,
+      "rot_variation_deg": 311.6767,
+      "world_rot_deg": 70.66,
+      "axis_deviation_deg": 70.66,
+      "strategy": "B-c"
+     },
+     "head": {
+      "attachments": 8,
+      "rot_variation_deg": 101.99,
+      "world_rot_deg": 86.15,
+      "axis_deviation_deg": 86.15,
+      "strategy": "B-c"
+     },
+     "saber": {
+      "attachments": 2,
+      "rot_variation_deg": 311.6767,
+      "world_rot_deg": 155.35,
+      "axis_deviation_deg": 24.65,
+      "strategy": "B-c"
+     },
+     "saberString": {
+      "attachments": 2,
+      "rot_variation_deg": 283.2327,
+      "world_rot_deg": -90.21,
+      "axis_deviation_deg": 89.79,
+      "strategy": "B-c"
+     },
+     "scabbard": {
+      "attachments": 2,
+      "rot_variation_deg": 215.2071,
+      "world_rot_deg": 132.407,
+      "axis_deviation_deg": 47.593,
+      "strategy": "B-c"
+     },
+     "scarf1": {
+      "attachments": 2,
+      "rot_variation_deg": 75.6,
+      "world_rot_deg": -101.71,
+      "axis_deviation_deg": 78.29,
+      "strategy": "B-c"
+     },
+     "shoulderL": {
+      "attachments": 2,
+      "rot_variation_deg": 36.72,
+      "world_rot_deg": 98.45,
+      "axis_deviation_deg": 81.55,
+      "strategy": "B-c"
+     },
+     "torso_scarf": {
+      "attachments": 2,
+      "rot_variation_deg": 35.39,
+      "world_rot_deg": -88.31,
+      "axis_deviation_deg": 88.31,
+      "strategy": "B-c"
+     },
+     "torso_scarfEnd": {
+      "attachments": 2,
+      "rot_variation_deg": 81.03,
+      "world_rot_deg": -92.52,
+      "axis_deviation_deg": 87.48,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 46
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "兽人双刀剑客: 排除骨 armL1 世界旋转变化 116.15°/轴偏差 22.92° 超阈，2 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 armL3 世界旋转变化 177.88°/轴偏差 23.59° 超阈，2 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 armR1 世界旋转变化 121.26°/轴偏差 63.44° 超阈，2 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 armR3 世界旋转变化 240.95°/轴偏差 72.51° 超阈，4 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 footL 世界旋转变化 0.00°/轴偏差 63.03° 超阈，4 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 footR 世界旋转变化 -0.00°/轴偏差 38.18° 超阈，2 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 handL 世界旋转变化 219.57°/轴偏差 18.87° 超阈，4 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 handR 世界旋转变化 311.68°/轴偏差 70.66° 超阈，4 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 head 世界旋转变化 101.99°/轴偏差 86.15° 超阈，8 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 saber 世界旋转变化 311.68°/轴偏差 24.65° 超阈，2 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 saberString 世界旋转变化 283.23°/轴偏差 89.79° 超阈，2 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 scabbard 世界旋转变化 215.21°/轴偏差 47.59° 超阈，2 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 scarf1 世界旋转变化 75.60°/轴偏差 78.29° 超阈，2 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 shoulderL 世界旋转变化 36.72°/轴偏差 81.55° 超阈，2 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 torso_scarf 世界旋转变化 35.39°/轴偏差 88.31° 超阈，2 个附件保持原样（B-c）",
+    "兽人双刀剑客: 排除骨 torso_scarfEnd 世界旋转变化 81.03°/轴偏差 87.48° 超阈，2 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.7053025658242404e-13,
+     "max_diff_rootanim": 1.7053025658242404e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/兽人双刀剑客/RogueNoyakinBlade.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "兽人/男/兽骨剑士/S017_skin1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "兽骨剑士脸朝左",
+   "returncode": 0,
+   "stdout_tail": "       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.71e-13/root动画 1.71e-13)  G3 ✅(违规 0)\n       ⚠ 兽骨剑士: 排除骨 foot-front 世界旋转变化 66.56°/轴偏差 39.83° 超阈，1 个附件保持原样（B-c）\n       ⚠ 兽骨剑士: 排除骨 foot-rear 世界旋转变化 104.57°/轴偏差 28.13° 超阈，1 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/兽骨剑士/S017_skin1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": {
+    "excluded_bones": {
+     "foot-front": {
+      "attachments": 1,
+      "rot_variation_deg": 66.56,
+      "world_rot_deg": -140.17,
+      "axis_deviation_deg": 39.83,
+      "strategy": "B-c"
+     },
+     "foot-rear": {
+      "attachments": 1,
+      "rot_variation_deg": 104.57,
+      "world_rot_deg": -151.87,
+      "axis_deviation_deg": 28.13,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 2
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "兽骨剑士: 排除骨 foot-front 世界旋转变化 66.56°/轴偏差 39.83° 超阈，1 个附件保持原样（B-c）",
+    "兽骨剑士: 排除骨 foot-rear 世界旋转变化 104.57°/轴偏差 28.13° 超阈，1 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.7053025658242404e-13,
+     "max_diff_rootanim": 1.7053025658242404e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/兽骨剑士/S017_skin1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "兽人/男/兽骨斧战/S017_skin3.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "同 S017",
+   "returncode": 0,
+   "stdout_tail": "       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.71e-13/root动画 1.71e-13)  G3 ✅(违规 0)\n       ⚠ 兽骨斧战: 排除骨 foot-front 世界旋转变化 66.56°/轴偏差 39.83° 超阈，1 个附件保持原样（B-c）\n       ⚠ 兽骨斧战: 排除骨 foot-rear 世界旋转变化 104.57°/轴偏差 28.13° 超阈，1 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/兽骨斧战/S017_skin3.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": {
+    "excluded_bones": {
+     "foot-front": {
+      "attachments": 1,
+      "rot_variation_deg": 66.56,
+      "world_rot_deg": -140.17,
+      "axis_deviation_deg": 39.83,
+      "strategy": "B-c"
+     },
+     "foot-rear": {
+      "attachments": 1,
+      "rot_variation_deg": 104.57,
+      "world_rot_deg": -151.87,
+      "axis_deviation_deg": 28.13,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 2
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "兽骨斧战: 排除骨 foot-front 世界旋转变化 66.56°/轴偏差 39.83° 超阈，1 个附件保持原样（B-c）",
+    "兽骨斧战: 排除骨 foot-rear 世界旋转变化 104.57°/轴偏差 28.13° 超阈，1 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.7053025658242404e-13,
+     "max_diff_rootanim": 1.7053025658242404e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/兽骨斧战/S017_skin3.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "兽人/男/披甲兽将/Cam12Boss1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "角魔俯身脸朝左下",
+   "returncode": 0,
+   "stdout_tail": "[bake] 披甲兽将: 翻转域骨 8，动画轨 12\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 6.00e-10/root动画 1.25e+00)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/披甲兽将/Cam12Boss1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 5.99726490690955e-10,
+     "max_diff_rootanim": 1.245000883454395
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/披甲兽将/Cam12Boss1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "兽人/男/鲨头锤兵/shayumaike.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "鲨头锤兵鲨鱼头侧脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 鲨头锤兵: 翻转域骨 7，动画轨 26\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/鲨头锤兵/shayumaike.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 6,
+    "transform": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/鲨头锤兵/shayumaike.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "兽人/男/鸟肩兽战/S003_skin5.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "鸟肩兽战脸朝左",
+   "returncode": 0,
+   "stdout_tail": "       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n       ⚠ 鸟肩兽战: 排除骨 foot-front 世界旋转变化 210.36°/轴偏差 0.56° 超阈，1 个附件保持原样（B-c）\n       ⚠ 鸟肩兽战: 排除骨 foot-rear 世界旋转变化 298.97°/轴偏差 0.07° 超阈，1 个附件保持原样（B-c）\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/鸟肩兽战/S003_skin5.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": {
+    "excluded_bones": {
+     "foot-front": {
+      "attachments": 1,
+      "rot_variation_deg": 210.36,
+      "world_rot_deg": 179.44,
+      "axis_deviation_deg": 0.56,
+      "strategy": "B-c"
+     },
+     "foot-rear": {
+      "attachments": 1,
+      "rot_variation_deg": 298.975,
+      "world_rot_deg": -179.93,
+      "axis_deviation_deg": 0.07,
+      "strategy": "B-c"
+     }
+    },
+    "ba_count": 0,
+    "bc_count": 2
+   },
+   "inherit_rewritten": [],
+   "warnings": [
+    "鸟肩兽战: 排除骨 foot-front 世界旋转变化 210.36°/轴偏差 0.56° 超阈，1 个附件保持原样（B-c）",
+    "鸟肩兽战: 排除骨 foot-rear 世界旋转变化 298.97°/轴偏差 0.07° 超阈，1 个附件保持原样（B-c）"
+   ],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/兽人/男/鸟肩兽战/S003_skin5.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "哥布林/男/火把哥布林/S004_skin2_low.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "火炬哥布林火把在左脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 火把哥布林: 翻转域骨 1，动画轨 5\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/哥布林/男/火把哥布林/S004_skin2_low.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/哥布林/男/火把哥布林/S004_skin2_low.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "哥布林/男/牛仔哥布林/duyalieshou.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "鸟嘴哥布林枪指左脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 牛仔哥布林: 翻转域骨 9，动画轨 28\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/哥布林/男/牛仔哥布林/duyalieshou.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 6,
+    "transform": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/哥布林/男/牛仔哥布林/duyalieshou.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "哥布林/男/矛枪哥布林/S009_sub_skin5_low.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "哥布林矛刃在左脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 矛枪哥布林: 翻转域骨 1，动画轨 4\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 5.68e-14/root动画 5.68e-14)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/哥布林/男/矛枪哥布林/S009_sub_skin5_low.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 5.684341886080802e-14,
+     "max_diff_rootanim": 5.684341886080802e-14
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/哥布林/男/矛枪哥布林/S009_sub_skin5_low.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "哥布林/男/骑猪勇者/S009_skin4_low.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "哥布林骑猪猪头朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 骑猪勇者: 翻转域骨 2，动画轨 7\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.14e-13/root动画 1.14e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/哥布林/男/骑猪勇者/S009_skin4_low.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.1368683772161603e-13,
+     "max_diff_rootanim": 1.1368683772161603e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/哥布林/男/骑猪勇者/S009_skin4_low.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "恶魔/女/紫翼魔姬/Courier.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "low",
+   "note": "翼族少女尾在左身朝右（3 帧一致）",
+   "returncode": 0,
+   "stdout_tail": "[copy] 紫翼魔姬: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {},
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/恶魔/女/紫翼魔姬/Courier.json",
+   "status": "copied"
+  },
+  {
+   "pkg": "恶魔/男/哪吒童/1021.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "unknown",
+   "note": "预览仅阴影（且属拒烘包，记录用）",
+   "returncode": 1,
+   "stdout_tail": "",
+   "status": "failed",
+   "stderr_tail": "[!] 哪吒童: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）：Head（父骨 Body3 世界 |scale| 偏差 0.0794 / det 0.9979）；Arm_r（父骨 Body3 世界 |scale| 偏差 0.0794 / det 0.9979）；Arm_l（父骨 Body3 世界 |scale| 偏差 0.0794 / det 0.9979） —— 拒绝产出"
+  },
+  {
+   "pkg": "恶魔/男/红面钟馗/shenlin_zhongkui.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "红面钟馗脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 红面钟馗: 翻转域骨 1，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 4.55e-13/root动画 4.55e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/恶魔/男/红面钟馗/shenlin_zhongkui.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "transform": 10
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 4.547473508864641e-13,
+     "max_diff_rootanim": 4.547473508864641e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/恶魔/男/红面钟馗/shenlin_zhongkui.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "恶魔/男/虎魔双刀/tiger demon_2.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "medium",
+   "note": "虎魔刀在左脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 虎魔双刀: 翻转域骨 5，动画轨 7\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 1.42e-13/root动画 1.42e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/恶魔/男/虎魔双刀/tiger demon_2.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 4
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 1.4210854715202004e-13,
+     "max_diff_rootanim": 1.4210854715202004e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/恶魔/男/虎魔双刀/tiger demon_2.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "恶魔/男/血红蔷薇/100205_xinghongqiangwei_nan_jw.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "low",
+   "note": "白发血族脸朝左",
+   "returncode": 0,
+   "stdout_tail": "[bake] 血红蔷薇: 翻转域骨 1，动画轨 0\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 5.68e-13/root动画 5.68e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/恶魔/男/血红蔷薇/100205_xinghongqiangwei_nan_jw.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 5,
+    "transform": 14
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 5.684341886080801e-13,
+     "max_diff_rootanim": 5.684341886080801e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/恶魔/男/血红蔷薇/100205_xinghongqiangwei_nan_jw.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "精灵/女/白袍叶灵/cha_4205.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "front",
+   "note": "绿袍玉女正面",
+   "returncode": 0,
+   "stdout_tail": "[bake] 白袍叶灵: 翻转域骨 4，动画轨 16\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 5.12e-13/root动画 5.12e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/精灵/女/白袍叶灵/cha_4205.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 5.115907697472721e-13,
+     "max_diff_rootanim": 5.115907697472721e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/精灵/女/白袍叶灵/cha_4205.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "精灵/女/鹿灵女猎/Unit_Spine_CentaurArcherCentaurHunterSpe1.json",
+   "facing": "left",
+   "target": "right",
+   "confidence": "high",
+   "note": "半人马弓手马身朝左拉弓",
+   "returncode": 0,
+   "stdout_tail": "[bake] 鹿灵女猎: 翻转域骨 2，动画轨 14\n       G1 ✅(残差 0.00e+00)  G2 ✅(setup 2.27e-13/root动画 2.27e-13)  G3 ✅(违规 0)\n[out] /Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/精灵/女/鹿灵女猎/Unit_Spine_CentaurArcherCentaurHunterSpe1.json",
+   "action": "baked",
+   "baked": true,
+   "constraints": {
+    "ik": 4
+   },
+   "tier2": null,
+   "inherit_rewritten": [],
+   "warnings": [],
+   "gates": {
+    "G1": {
+     "pass": true,
+     "max_residual": 0.0,
+     "violations": 0
+    },
+    "G2": {
+     "pass": true,
+     "max_diff_setup": 2.2737367544323206e-13,
+     "max_diff_rootanim": 2.2737367544323206e-13
+    },
+    "G3": {
+     "pass": true,
+     "violations": 0
+    }
+   },
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/精灵/女/鹿灵女猎/Unit_Spine_CentaurArcherCentaurHunterSpe1.json",
+   "status": "baked"
+  },
+  {
+   "pkg": "精灵/男/兔耳剑客/Qch2_json.json",
+   "facing": "right",
+   "target": "right",
+   "confidence": "medium",
+   "note": "灰发女围巾/尾巴向左飘脸朝右",
+   "returncode": 0,
+   "stdout_tail": "[copy] 兔耳剑客: 朝向 right==right，原样复制",
+   "action": "copy (facing 已达标)",
+   "baked": false,
+   "constraints": {
+    "ik": 2
+   },
+   "tier2": null,
+   "inherit_rewritten": null,
+   "warnings": [],
+   "gates": null,
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/task/003-spine-facing-unify/output/精灵/男/兔耳剑客/Qch2_json.json",
+   "status": "copied"
+  }
+ ]
+}

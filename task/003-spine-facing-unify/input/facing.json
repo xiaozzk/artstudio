@@ -1,0 +1,755 @@
+{
+ "target": "right",
+ "declared": "2026-09-27 agent 看复原预览图（多帧）",
+ "packages": [
+  {
+   "idx": 0,
+   "pkg": "人形/女/三姐妹红裙/girl_lv55.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "两红裙女身体均朝画面左"
+  },
+  {
+   "idx": 1,
+   "pkg": "人形/女/兽头袋女/fulei.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "维京战士脸朝左，剑在画面左"
+  },
+  {
+   "idx": 2,
+   "pkg": "人形/女/冰法女/ice_wizard.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "冰法脸/身体朝左"
+  },
+  {
+   "idx": 3,
+   "pkg": "人形/女/多身魅魔/succubus.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "player 复核：下半身组件，行走帧膝朝左"
+  },
+  {
+   "idx": 4,
+   "pkg": "人形/女/斗笠女祭司/Pest.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "骑乘冲刺朝左"
+  },
+  {
+   "idx": 5,
+   "pkg": "人形/女/暗影战士/ShadowSoldier_035.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "player 复核：左肩甲显著偏大=朝左"
+  },
+  {
+   "idx": 6,
+   "pkg": "人形/女/火把女战士/RogueSekaniFlamebringer.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "装配后站姿偏左，火把"
+  },
+  {
+   "idx": 7,
+   "pkg": "人形/女/焰发女猎手/S041_skin6.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "装配后白发战甲脸朝左"
+  },
+  {
+   "idx": 8,
+   "pkg": "人形/女/焰发女猎手/_replaced_S041_skin6.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "同 S041_skin6"
+  },
+  {
+   "idx": 9,
+   "pkg": "人形/女/紫袍女审判/P_shengsipanguan.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "白帽判官笔在身后侧"
+  },
+  {
+   "idx": 10,
+   "pkg": "人形/女/红发法师/cha_1166.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "红发法师脸朝左"
+  },
+  {
+   "idx": 11,
+   "pkg": "人形/女/翼盔女剑士/fulei_stage2.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "翼盔女剑士剑在画面左，身朝左"
+  },
+  {
+   "idx": 12,
+   "pkg": "人形/女/蓝拳小萝莉/role_small_Lena.json",
+   "facing": "left",
+   "confidence": "front",
+   "note": "正面 chibi 近对称"
+  },
+  {
+   "idx": 13,
+   "pkg": "人形/女/蓝衣短发女/zhangzitong.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "蓝衣短发女身体朝左"
+  },
+  {
+   "idx": 14,
+   "pkg": "人形/女/蓝袍女妖/31801_zhizunnvwu.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "女巫持镰朝左冲"
+  },
+  {
+   "idx": 15,
+   "pkg": "人形/女/蓝袍女法师/P_fuzhu.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "白袍钓者竿在左"
+  },
+  {
+   "idx": 16,
+   "pkg": "人形/女/蛇发女妖/S024_skin5.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "蛇发战士脸朝左"
+  },
+  {
+   "idx": 17,
+   "pkg": "人形/女/黄角龙女/S019_skin1.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "紫魔尾巴在右身朝左"
+  },
+  {
+   "idx": 18,
+   "pkg": "人形/女/黑甲女剑士/cha116.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "小机甲冲刺线朝左"
+  },
+  {
+   "idx": 19,
+   "pkg": "人形/男/三角头刽子手/30501_sanjiaotou.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "三角头跪姿刀指左"
+  },
+  {
+   "idx": 20,
+   "pkg": "人形/男/光头打手/Kimchul.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "光头打手（拒烘包，记录用）"
+  },
+  {
+   "idx": 21,
+   "pkg": "人形/男/兽人狂战士/Unit_Spine_NowsiWarriorSpe1.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "牛角蛮战胸口朝左"
+  },
+  {
+   "idx": 22,
+   "pkg": "人形/男/兽头女战士/chara243.json",
+   "facing": "right",
+   "confidence": "low",
+   "note": "白甲骑士跪姿脸朝右"
+  },
+  {
+   "idx": 23,
+   "pkg": "人形/男/军官欧林/OfficerErrin.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "军官欧林持矛突刺朝左"
+  },
+  {
+   "idx": 24,
+   "pkg": "人形/男/冰剑佣兵/ice_mercenary.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "冰剑佣兵斧在左身朝左"
+  },
+  {
+   "idx": 25,
+   "pkg": "人形/男/双刀战士/woke.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "角盔战士跪姿脸朝左下"
+  },
+  {
+   "idx": 26,
+   "pkg": "人形/男/反叛刺客/Unit_Spine_RebelAssassinSpe1.json",
+   "facing": "left",
+   "confidence": "front",
+   "note": "正面双镰 chibi"
+  },
+  {
+   "idx": 27,
+   "pkg": "人形/男/反叛弓箭手变体/Unit_Spine_RebelArcherSpe1Skin1.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "绿发弓手弓在左瞄准左"
+  },
+  {
+   "idx": 28,
+   "pkg": "人形/男/反叛弓箭手变体2/Unit_Spine_RebelArcherSpe1Skin2.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "同 RebelArcherSpe"
+  },
+  {
+   "idx": 29,
+   "pkg": "人形/男/叛军刺客/Unit_Spine_RebelAssassinRebelDodge1.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "蒙面双刃左匕前伸"
+  },
+  {
+   "idx": 30,
+   "pkg": "人形/男/叛军贼/Unit_Spine_RebelAssassinRebelSteal1.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "同 RebelAssassin"
+  },
+  {
+   "idx": 31,
+   "pkg": "人形/男/吸血鬼刺客/Unit_Spine_VampireAssassin1.json",
+   "facing": "left",
+   "confidence": "front",
+   "note": "正面双匕"
+  },
+  {
+   "idx": 32,
+   "pkg": "人形/男/帝国剑士/Unit_Spine_EmpireSword1.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "帝国剑士剑在左手盾在右=朝左"
+  },
+  {
+   "idx": 33,
+   "pkg": "人形/男/帝国圣骑士/Unit_Spine_EmpirePaladin1.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "帝国圣骑锤在左盾在右=朝左"
+  },
+  {
+   "idx": 34,
+   "pkg": "人形/男/帝国圣骑士变体/Unit_Spine_EmpirePaladinSpe1Skin1.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "同 EmpirePaladin"
+  },
+  {
+   "idx": 35,
+   "pkg": "人形/男/帝国弓箭手/Unit_Spine_EmpireArcherEmpireMoveSpe1.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "弩手瞄准左"
+  },
+  {
+   "idx": 36,
+   "pkg": "人形/男/帝国战士/Unit_Spine_EmpireWarriorSpe1.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "帝国战士剑在左盾在右=朝左"
+  },
+  {
+   "idx": 37,
+   "pkg": "人形/男/帝国战士变体2/Unit_Spine_EmpireWarriorSpe1Skin2.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "镰刀在肩身偏左"
+  },
+  {
+   "idx": 38,
+   "pkg": "人形/男/帝国牧师/Unit_Spine_EmpirePriestSpe1.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "粉发祭司杖在左"
+  },
+  {
+   "idx": 39,
+   "pkg": "人形/男/帝国骑士/Unit_Spine_EmpireKnight2.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "骑士马首朝左"
+  },
+  {
+   "idx": 40,
+   "pkg": "人形/男/忍装玩家/player.json",
+   "facing": "right",
+   "confidence": "medium",
+   "note": "player 剪影围巾/马尾向左飘=朝右（多帧确认）"
+  },
+  {
+   "idx": 41,
+   "pkg": "人形/男/斗笠剑客/cha_1114.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "斗笠剑客衣摆向左身朝左"
+  },
+  {
+   "idx": 42,
+   "pkg": "人形/男/斧头狂战/axe.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "斧头狂战脸朝左上"
+  },
+  {
+   "idx": 43,
+   "pkg": "人形/男/旋风勇者/let-me-solo-all.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "旋转帧不可判、player 渲染空白；按库多数派暂定朝左，需人工 G4 复核"
+  },
+  {
+   "idx": 44,
+   "pkg": "人形/男/无头骑士/dullahan.json",
+   "facing": "left",
+   "confidence": "front",
+   "note": "无头骑士正面持剑"
+  },
+  {
+   "idx": 45,
+   "pkg": "人形/男/春节舞狮男孩/nanzhu_manianchunjie.json",
+   "facing": "left",
+   "confidence": "front",
+   "note": "舞狮男孩正面"
+  },
+  {
+   "idx": 46,
+   "pkg": "人形/男/暗法拳王/100604_quanwang.json",
+   "facing": "left",
+   "confidence": "front",
+   "note": "拳王正面双焰"
+  },
+  {
+   "idx": 47,
+   "pkg": "人形/男/武僧/monk.json",
+   "facing": "right",
+   "confidence": "high",
+   "note": "武僧围脖向右甩、左拳在前=朝右（3 帧一致）"
+  },
+  {
+   "idx": 48,
+   "pkg": "人形/男/法袍法师/Magic Gril.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "法袍法师=002 B 模板原包朝左（锚点）"
+  },
+  {
+   "idx": 49,
+   "pkg": "人形/男/狐面忍者/kunai_ninja.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "狐面忍者第2/3帧装配后朝左"
+  },
+  {
+   "idx": 50,
+   "pkg": "人形/男/猎人老翁/Npc_OldHunter.json",
+   "facing": "right",
+   "confidence": "medium",
+   "note": "猎人老翁脸朝右"
+  },
+  {
+   "idx": 51,
+   "pkg": "人形/男/猫耳少年/CatGirl.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "猫耳少年脸朝左"
+  },
+  {
+   "idx": 52,
+   "pkg": "人形/男/玫瑰刺客/wujiang_10002.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "白发刺客装配后蹲姿朝左"
+  },
+  {
+   "idx": 53,
+   "pkg": "人形/男/电弓战将/electro-archer.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "电弓战将护目镜脸朝左（3 帧一致）"
+  },
+  {
+   "idx": 54,
+   "pkg": "人形/男/白衫青年/bbaksang.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "白衫青年端面碗在左身朝左"
+  },
+  {
+   "idx": 55,
+   "pkg": "人形/男/紫发女刺客/linchaoying.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "紫发女刺客剑在左"
+  },
+  {
+   "idx": 56,
+   "pkg": "人形/男/红发弓手/Unit_Bowman_0.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "金发弓手弓在左"
+  },
+  {
+   "idx": 57,
+   "pkg": "人形/男/红发纹身师/Tattooist.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "纹身师脸朝左"
+  },
+  {
+   "idx": 58,
+   "pkg": "人形/男/红披盗贼/ouwen.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "狂战士头带脸朝左"
+  },
+  {
+   "idx": 59,
+   "pkg": "人形/男/红袍斧战/warrior06.json",
+   "facing": "right",
+   "confidence": "low",
+   "note": "维京战士斧刃在右脸朝右"
+  },
+  {
+   "idx": 60,
+   "pkg": "人形/男/络腮胡剑士/NPC2.json",
+   "facing": "right",
+   "confidence": "high",
+   "note": "NPC2=络腮胡剑士，002 已验朝右（锚点）"
+  },
+  {
+   "idx": 61,
+   "pkg": "人形/男/绿弓游侠/dragon_arrow.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "绿帽弓手拉弓指左下"
+  },
+  {
+   "idx": 62,
+   "pkg": "人形/男/绿袍法老/magic.json",
+   "facing": "right",
+   "confidence": "low",
+   "note": "老法师鼻朝右"
+  },
+  {
+   "idx": 63,
+   "pkg": "人形/男/胖盾枪兵/Fat Knight.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "胖盾枪兵矛在左脸朝左"
+  },
+  {
+   "idx": 64,
+   "pkg": "人形/男/蓝发持剑战士/gonbong.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "蓝衣术士荧光棒脸朝左"
+  },
+  {
+   "idx": 65,
+   "pkg": "人形/男/蓝发铠甲武士/samurai.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "武士双刀指左脸朝左（侧脸明确）"
+  },
+  {
+   "idx": 66,
+   "pkg": "人形/男/蓝枪卫兵/guard.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "蓝枪卫兵矛在左脸朝左"
+  },
+  {
+   "idx": 67,
+   "pkg": "人形/男/蓝甲剑士/Swordman.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "橙发大剑在左"
+  },
+  {
+   "idx": 68,
+   "pkg": "人形/男/蓝衣术士/yunggul.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "术士球棍在肩脸朝左"
+  },
+  {
+   "idx": 69,
+   "pkg": "人形/男/蓝袍学士/112058.json",
+   "facing": "left",
+   "confidence": "front",
+   "note": "蓝袍学士正面看书"
+  },
+  {
+   "idx": 70,
+   "pkg": "人形/男/蛮锤狂战/Unit_Spine_NowsiPaladinNowsiStunSpe1.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "NowsiPaladin 锤在左盾在右=朝左"
+  },
+  {
+   "idx": 71,
+   "pkg": "人形/男/角盔蛮战/017.json",
+   "facing": "left",
+   "confidence": "front",
+   "note": "小维京正面"
+  },
+  {
+   "idx": 72,
+   "pkg": "人形/男/金发双剑/ThorForm2.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "雷神飞姿脸朝左下"
+  },
+  {
+   "idx": 73,
+   "pkg": "人形/男/金发女剑士/pirate.json",
+   "facing": "right",
+   "confidence": "medium",
+   "note": "金发女剑士剑扛右肩脸朝右"
+  },
+  {
+   "idx": 74,
+   "pkg": "人形/男/金袍判官/pangu.json",
+   "facing": "right",
+   "confidence": "low",
+   "note": "金甲斧在右脸朝右"
+  },
+  {
+   "idx": 75,
+   "pkg": "人形/男/金袍少侠/jinhuayanyun_nan.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "金袍少侠脸朝左"
+  },
+  {
+   "idx": 76,
+   "pkg": "人形/男/长矛守卫/Act3_Polearm_GuardL.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "长矛守卫侧脸朝左（root scaleX=-1 包，以看图为准）"
+  },
+  {
+   "idx": 77,
+   "pkg": "人形/男/长袍老伯/boke.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "长袍老伯矛在左"
+  },
+  {
+   "idx": 78,
+   "pkg": "人形/男/隐弓少年/100101_anyinglieshou.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "牛仔弩手弩在左脸朝左"
+  },
+  {
+   "idx": 79,
+   "pkg": "人形/男/青袍剑客/xingxiazhangyi_nan.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "斗笠女侠脸朝左"
+  },
+  {
+   "idx": 80,
+   "pkg": "人形/男/骑士领主/LC2_BOSS_KnightMaster.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "骑士领主巨剑指左盔朝左"
+  },
+  {
+   "idx": 81,
+   "pkg": "人形/男/鬼面武士/samurai_oni.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "赤鬼武士刀指左战斗姿态朝左"
+  },
+  {
+   "idx": 82,
+   "pkg": "人形/男/鸟人牧师/Unit_Spine_BirdPriestSpe1Skin1.json",
+   "facing": "left",
+   "confidence": "front",
+   "note": "鸟祭司正面展翼"
+  },
+  {
+   "idx": 83,
+   "pkg": "人形/男/鸟嘴医生/100211_niaozuiyisheng_nan_jw.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "鸟嘴医生喙朝左下"
+  },
+  {
+   "idx": 84,
+   "pkg": "人形/男/黄衣游侠/qiaofeng.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "黄衣游侠拳在左脸朝左"
+  },
+  {
+   "idx": 85,
+   "pkg": "人形/男/黄袍剑士/_replaced_leega.json",
+   "facing": "right",
+   "confidence": "medium",
+   "note": "黄袍剑士细剑指右下脸朝右"
+  },
+  {
+   "idx": 86,
+   "pkg": "人形/男/黄袍剑士/leega.json",
+   "facing": "right",
+   "confidence": "medium",
+   "note": "同 leega"
+  },
+  {
+   "idx": 87,
+   "pkg": "人形/男/黑衣青年/bboy.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "黑衣青年白面具朝左"
+  },
+  {
+   "idx": 88,
+   "pkg": "人形/男/黑袍剑客/xizhaoxiaoxiang_nan.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "绿袍长发脸朝左"
+  },
+  {
+   "idx": 89,
+   "pkg": "兽人/男/兽人双刀剑客/RogueNoyakinBlade.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "忍者双刀交叉脸朝左"
+  },
+  {
+   "idx": 90,
+   "pkg": "兽人/男/兽骨剑士/S017_skin1.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "兽骨剑士脸朝左"
+  },
+  {
+   "idx": 91,
+   "pkg": "兽人/男/兽骨斧战/S017_skin3.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "同 S017"
+  },
+  {
+   "idx": 92,
+   "pkg": "兽人/男/披甲兽将/Cam12Boss1.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "角魔俯身脸朝左下"
+  },
+  {
+   "idx": 93,
+   "pkg": "兽人/男/鲨头锤兵/shayumaike.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "鲨头锤兵鲨鱼头侧脸朝左"
+  },
+  {
+   "idx": 94,
+   "pkg": "兽人/男/鸟肩兽战/S003_skin5.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "鸟肩兽战脸朝左"
+  },
+  {
+   "idx": 95,
+   "pkg": "哥布林/男/火把哥布林/S004_skin2_low.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "火炬哥布林火把在左脸朝左"
+  },
+  {
+   "idx": 96,
+   "pkg": "哥布林/男/牛仔哥布林/duyalieshou.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "鸟嘴哥布林枪指左脸朝左"
+  },
+  {
+   "idx": 97,
+   "pkg": "哥布林/男/矛枪哥布林/S009_sub_skin5_low.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "哥布林矛刃在左脸朝左"
+  },
+  {
+   "idx": 98,
+   "pkg": "哥布林/男/骑猪勇者/S009_skin4_low.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "哥布林骑猪猪头朝左"
+  },
+  {
+   "idx": 99,
+   "pkg": "恶魔/女/紫翼魔姬/Courier.json",
+   "facing": "right",
+   "confidence": "low",
+   "note": "翼族少女尾在左身朝右（3 帧一致）"
+  },
+  {
+   "idx": 100,
+   "pkg": "恶魔/男/哪吒童/1021.json",
+   "facing": "left",
+   "confidence": "unknown",
+   "note": "预览仅阴影（且属拒烘包，记录用）"
+  },
+  {
+   "idx": 101,
+   "pkg": "恶魔/男/红面钟馗/shenlin_zhongkui.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "红面钟馗脸朝左"
+  },
+  {
+   "idx": 102,
+   "pkg": "恶魔/男/虎魔双刀/tiger demon_2.json",
+   "facing": "left",
+   "confidence": "medium",
+   "note": "虎魔刀在左脸朝左"
+  },
+  {
+   "idx": 103,
+   "pkg": "恶魔/男/血红蔷薇/100205_xinghongqiangwei_nan_jw.json",
+   "facing": "left",
+   "confidence": "low",
+   "note": "白发血族脸朝左"
+  },
+  {
+   "idx": 104,
+   "pkg": "精灵/女/白袍叶灵/cha_4205.json",
+   "facing": "left",
+   "confidence": "front",
+   "note": "绿袍玉女正面"
+  },
+  {
+   "idx": 105,
+   "pkg": "精灵/女/鹿灵女猎/Unit_Spine_CentaurArcherCentaurHunterSpe1.json",
+   "facing": "left",
+   "confidence": "high",
+   "note": "半人马弓手马身朝左拉弓"
+  },
+  {
+   "idx": 106,
+   "pkg": "精灵/男/兔耳剑客/Qch2_json.json",
+   "facing": "right",
+   "confidence": "medium",
+   "note": "灰发女围巾/尾巴向左飘脸朝右"
+  }
+ ]
+}
