@@ -12,7 +12,7 @@ tools/
 ├── sprite/      ② 整图与部件的本地图像处理（生图 → 切件 → 贴图那一段）
 ├── image-edit/  ③ 图片编辑：本地 sd-server（免费）+ ZenMux（唯一联网花钱）+ mock 测试
 ├── browser/     ④ 浏览器登录态复用（CDP 副本）
-├── preview-2d/  ⑤ 2D 预览服务
+├── preview-2d/  ⑤ 2D 预览服务（多库切换 / 卡片实时渲染 / Spine 预览）
 ├── reference-repos/  ⑥ 外部参考仓库的清单与拉取脚本
 └── *.py         兼容转发 shim（见文末）
 ```
@@ -65,7 +65,7 @@ python -m pip install numpy pillow opencv-python requests scipy
 | 目录 | 用途 |
 |------|------|
 | `browser/` | 浏览器登录态复用（CDP 副本）—— 与图片管线无关，见 [`browser/README.md`](browser/README.md) |
-| `preview-2d/` | 2D 预览服务，见 [`preview-2d/README.md`](preview-2d/README.md) |
+| `preview-2d/` | 2D 预览服务：多预览库（下拉切换 / 新建目录 / 导入资源）+ 关键字筛选 + 卡片实时渲染 + Spine 全屏预览，见 [`preview-2d/README.md`](preview-2d/README.md) |
 
 ## ⑥ `reference-repos/` — 外部参考仓库管理（纯本地）
 
