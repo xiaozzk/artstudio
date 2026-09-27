@@ -1,0 +1,85 @@
+[
+  {
+    "anim": "attack",
+    "mirror": false,
+    "scale_translate": 1.0,
+    "facing_A": "right",
+    "facing_B": "right",
+    "facing_warnings": [
+      "A 包朝向数据层判不了：无眼骨，数据层无法自动判定（需 agent 看图确认）",
+      "B 包朝向校验通过：right（眼骨相对父骨平均偏移 +14.4（['eye_r', 'eye_l']））"
+    ],
+    "tracks_mapped": [
+      "arm_l1→bone10(rotate)",
+      "arm_l2→bone11(rotate,translate)",
+      "arm_r1→bone6(rotate)",
+      "arm_r2→bone7(rotate)",
+      "arm_r3→bone8(rotate)",
+      "body_1→bone4(rotate)",
+      "face→bone5(rotate)",
+      "hair→bone9(rotate)",
+      "leg_l2→bone15(translate)",
+      "Shadow→bone23(scale)",
+      "zhuzi→bone20(translate)"
+    ],
+    "tracks_dropped": [
+      "arm_l3",
+      "eye_l",
+      "eye_r",
+      "ping"
+    ],
+    "tracks_sign_flipped": [
+      "arm_l1→bone10",
+      "arm_r1→bone6",
+      "body_1→bone4",
+      "face→bone5",
+      "hair→bone9",
+      "leg_l2→bone15",
+      "Shadow→bone23",
+      "zhuzi→bone20"
+    ],
+    "loop_not_closed": [],
+    "channels_skipped": []
+  },
+  {
+    "anim": "death",
+    "mirror": false,
+    "scale_translate": 1.0,
+    "facing_A": "right",
+    "facing_B": "right",
+    "facing_warnings": [
+      "A 包朝向数据层判不了：无眼骨，数据层无法自动判定（需 agent 看图确认）",
+      "B 包朝向校验通过：right（眼骨相对父骨平均偏移 +14.4（['eye_r', 'eye_l']））"
+    ],
+    "tracks_mapped": [
+      "arm_l1→bone10(rotate)",
+      "arm_l2→bone11(rotate,translate)",
+      "arm_r1→bone6(rotate)",
+      "arm_r2→bone7(rotate)",
+      "arm_r3→bone8(rotate)",
+      "body_1→bone4(rotate)",
+      "body_2→bone2(rotate,translate)",
+      "face→bone5(rotate)",
+      "hair→bone9(rotate)",
+      "leg_r2→bone13(translate)",
+      "Shadow→bone23(translate,scale)"
+    ],
+    "tracks_dropped": [
+      "arm_l3",
+      "eye_l",
+      "eye_r",
+      "ping"
+    ],
+    "tracks_sign_flipped": [
+      "arm_l1→bone10",
+      "arm_r1→bone6",
+      "body_1→bone4",
+      "face→bone5",
+      "hair→bone9",
+      "leg_r2→bone13",
+      "Shadow→bone23"
+    ],
+    "loop_not_closed": [],
+    "channels_skipped": []
+  }
+]

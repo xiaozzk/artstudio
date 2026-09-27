@@ -1,0 +1,32 @@
+{
+  "_comment": "法袍法师(B, flip后朝右) → 络腮胡剑士(A, 朝右) 语义映射表 v2。2026-09-25 修正：v1 按画面位置映射左右，两包朝向相反导致动作镜像错误；v2 按角色语义映射（左手↔左手）。",
+  "_A": "assets/2d/人形/男/络腮胡剑士（朝右；bone6→7→8 画面左链=角色右手持剑手；bone10→11 画面右链=左手）",
+  "_B": "tmp/flip/法袍法师（flip 后朝右；arm_l 左手在画面右持杖；arm_r 右手在画面左）",
+  "_evidence": {
+    "朝向判定": "复原预览图：法袍面朝左（flip 后朝右）；络腮胡面朝右。两包骨架局部朝向几乎相同（arm_l1 243.6°≈bone6 242.3°）但面向相反——同增量在两者身上视觉方向相反，这就是 v1「朝向反了」的根因",
+    "左右手语义": "3/4 侧视：面朝右时角色右手在画面左前侧。络腮胡持剑手在画面左=右手(bone6链)；法袍持杖手 arm_l 是左手（flip 后画面右）",
+    "符号": "flip 后 arm_l1 世界 rot 116.4° vs bone10 -63.1° 差 ~180° → retarget 自动翻符号",
+    "丢弃": "weapon/ping：A 无对应骨；arm_r3 并入 bone8（A 持剑手三段骨其实是 bone6→7→8，bone8 是 429 长的剑骨）"
+  },
+  "mirror": false,
+  "facing_A": "right",
+  "facing_B": "right",
+  "bone_map": {
+    "body_2": "bone2",
+    "body_1": "bone4",
+    "face": "bone5",
+    "hair": "bone9",
+    "arm_l1": "bone10",
+    "arm_l2": "bone11",
+    "arm_r1": "bone6",
+    "arm_r2": "bone7",
+    "arm_r3": "bone8",
+    "leg_l2": "bone15",
+    "leg_l1": "bone16",
+    "leg_r2": "bone13",
+    "leg_r1": "bone14",
+    "pifeng": "bone17",
+    "zhuzi": "bone20",
+    "Shadow": "bone23"
+  }
+}

@@ -1,0 +1,5 @@
+# docs/ 下外部参考仓库清单 —— tools/reference-repos/pull.sh 按本文件克隆/更新。
+# 每行一个 git URL；# 开头与空行忽略；目标目录 = docs/<URLbasename 去掉 .git>/。
+# 这些目录自带 .git、整目录不入库（见 .gitignore 中 docs/*/ 规则与注释）。
+https://github.com/funsanity/Spine-AI-Generator
+https://github.com/GenielabsOpenSource/spine-animation-ai
