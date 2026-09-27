@@ -12,6 +12,7 @@ tools/
 ├── zenmux/    ③ ZenMux AI 改图 CLI（唯一联网、唯一花钱）+ 它的 mock 测试
 ├── browser/   ④ 浏览器登录态复用（CDP 副本）
 ├── preview-2d/⑤ 2D 预览服务
+├── reference-repos/ ⑥ 外部参考仓库的清单与拉取脚本
 └── *.py       兼容转发 shim（见文末）
 ```
 
@@ -29,6 +30,7 @@ python -m pip install numpy pillow opencv-python requests scipy
 | `spine_part_swap.py` | 部件两件事：`locate`（哨兵色重渲定位插槽可见区 → mask / 尺寸 / 附件四边形）、`verify`（换图重渲量化改动范围，远处应为 0px） |
 | `spine_part_extract.py` | 出「局部重绘」的提交三元组：`--mode pair`（摘除件单独图 + 原图置顶突出件 + 黑白 mask）/ `inplace` / `aside`；`paste-back` 把模型出图抠件、按 z 序（含覆盖表）贴回。⚠ **状态：实验性** —— 2026-09-24 用它做「整套逐件换风格」的批量实验，12 件里 4 件被模型"补全上下文"导致语义崩坏（详见该文件的实测注释），方案判为不稳定；工具留着供单件实验，**别当稳定流水线用** |
 | `spine-reskin.md` | 换皮整条流水线（含实测坑与成本）|
+| **`anim/`（动画迁移）** | 把 B 包的功能动作迁到骨骼相近的 A 包：`render_rig.py`（骨骼拓扑渲染图，评估用）、`anim_dump.py`（关键帧解析 + 主次骨骼摘要）、`anim_retarget.py`（按映射表注入 + 校验）、`anim_preview.py`（单文件离线 player 预览）。agent 操作手册见 [`anim/SKILL.md`](spine/anim/SKILL.md)；任务档案 `task/002-anim-retarget/` |
 
 ## ② `sprite/` — 整图与部件处理（纯本地）
 
@@ -52,12 +54,22 @@ python -m pip install numpy pillow opencv-python requests scipy
 | `zenmux_edit.py` | ZenMux 图片编辑：Vertex `:predict`（默认）/ OpenAI 协议，mask 局部重绘、多 mask 三种消化、`--dry-run`、`--min-credits` 守卫 → 见 [`zenmux-edit.md`](zenmux/zenmux-edit.md) 与 [`../../docs/zenmux-cli.md`](../docs/zenmux-cli.md) |
 | `tests/` | **mock 级 CLI 测试**：`python tools/zenmux/tests/test_zenmux_cli.py`（14 条，约 6s，全程 127.0.0.1、**零真机零费用**）→ 见 [`tests/README.md`](zenmux/tests/README.md) |
 
-## ④⑤ 已隔离的老目录
+## ⑤ 分类收尾的既有目录
 
 | 目录 | 用途 |
 |------|------|
 | `browser/` | 浏览器登录态复用（CDP 副本）—— 与图片管线无关，见 [`browser/README.md`](browser/README.md) |
 | `preview-2d/` | 2D 预览服务，见 [`preview-2d/README.md`](preview-2d/README.md) |
+
+## ⑥ `reference-repos/` — 外部参考仓库管理（纯本地）
+
+| 文件 | 作用 |
+|------|------|
+| `pull.sh` | 拉取 / 更新 `docs/` 下的外部参考仓库：不在本地 → 浅 `clone`（`--depth 1`）；已有 → `pull --ff-only`。`--full` 走完整克隆。孤儿仓库（含 `.git` 但不在清单）只提示不动 |
+| `repos.list` | 参考仓库清单（每行一个 git URL，`#` 注释）—— **加新参考仓库就改这个文件**，然后跑 `bash tools/reference-repos/pull.sh` |
+
+约定：这些仓库整目录**不入库**（自带 `.git`，直接 add 会成幽灵子模块），
+忽略规则是 `.gitignore` 的 `docs/*/`；需要入库的 docs 子目录需在 `.gitignore` 里加 `!` 豁免。
 
 ## 兼容转发 shim（**别删**）
 
