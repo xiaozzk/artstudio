@@ -16,7 +16,7 @@
 | `assets/eva_bone/` | Eva 原型素材：`parts/` 基础体拆件、`parts_outfit/` 服装件、拼合图与 manifest |
 | `assets/_archive/` | 更早的素材与一次性脚本（`source/`、`scripts/`、`metadata/`） |
 | `meowa/` | AI 生图素材与预设（`templates/` 放 Meowa 预设信息） |
-| `tools/` | **按场景分区的工具集**：`spine/`（图集修复 / 换皮 / 抽件）、`sprite/`（整图与部件本地处理）、`zenmux/`（**唯一会花钱**的 AI 改图 + 它的 mock 测试）、`browser/`、`preview-2d/`、`reference-repos/`（外部参考仓库拉取）；根下 `*.py` 是**兼容转发 shim**（别删）。清单见 `tools/README.md` |
+| `tools/` | **按场景分区的工具集**：`spine/`（图集修复 / 换皮 / 抽件）、`sprite/`（整图与部件本地处理）、`image-edit/`（图片编辑：本地 sd-server 免费 + ZenMux **唯一会花钱** + mock 测试）、`browser/`、`preview-2d/`、`reference-repos/`（外部参考仓库拉取）；根下 `*.py` 是**兼容转发 shim**（别删）。清单见 `tools/README.md` |
 | `task/` | **任务档案**：**每个子任务一个文件夹** `NNN-slug/`（**入库**，口径同 `docs/`）；`TASK.md` 记目标 / 验收 / 状态 / 产出。约定见 `task/README.md` |
 | `tmp/` | **临时目录**：已忽略、不入库、可随时清 |
 | `download/` | **刚下载、还没处理**的落地目录（素材包 / 第三方仓库 / 待转换资源）：已忽略、不入库，但**别随手清** |
@@ -48,12 +48,16 @@
 - skill 明确规定**不要要求用户把 key 贴进对话** —— 引导其写入 `.env` 即可。
 - 用户已授予最大权限，按此前提协作。
 
-## 生图 / 改图两个 CLI
+## 生图 / 改图 CLI
 
 | CLI | 场景 | 指南 |
 |-----|------|------|
 | **Meowa 生图 CLI** | 出**原画**：角色设定图 / 三视图、服装设计稿、配色与材质设定 | `docs/meowa-cli.md` |
-| **ZenMux 图片编辑 CLI** | 在素材图上**标记若干部位，只重绘这些部位**：换一把武器 / 换一件衣服 / 改配色材质；**`tools/` 里唯一会花钱的脚本** | `docs/zenmux-cli.md`（深度口径 `tools/zenmux/zenmux-edit.md`） |
+| **本地图片编辑 CLI** | 图生图 / mask 局部重绘（**免费**：打 mini-local 局域网 sd-server，Qwen-Image-2.1） | `tools/image-edit/local-edit.md` |
+| **ZenMux 图片编辑 CLI** | 在素材图上**标记若干部位，只重绘这些部位**：换一把武器 / 换一件衣服 / 改配色材质；**`tools/` 里唯一会花钱的脚本** | `docs/zenmux-cli.md`（深度口径 `tools/image-edit/zenmux-edit.md`） |
+
+图片编辑的分工：**先 `local_edit.py` 免费试效果**（要 mini-local 上先 `./run-qwen-i2i.sh start`），
+效果不满意再上 ZenMux 花钱；两者 mask 口径一致（涂白=要改），mask 文件可通用。
 
 两条共同的硬约束（细节与实测经验见各自文档）：
 
@@ -64,7 +68,8 @@
 
 ## tools/ 本地脚本
 
-**纯本地、确定性、不消耗 AI 额度**（唯一例外：`zenmux_edit.py` 走 ZenMux 生图，**消耗额度**）；
+**纯本地、确定性、不消耗 AI 额度**（唯一例外：`image-edit/zenmux_edit.py` 走 ZenMux 生图，**消耗额度**；
+`image-edit/local_edit.py` 联网但打的是 mini-local 局域网本地服务，**免费**）；
 依赖 `numpy pillow opencv-python requests scipy`。**按业务场景分区**（一个场景一个子目录，跨场景不互相依赖），
 完整口径见 `tools/README.md`，一眼版：
 
@@ -83,8 +88,9 @@
 | | `parts_sheet.py` | 把部件摆成**互不重叠、相邻 ≥N px** 的参考图（喂 AI 当"这些是独立零件"） |
 | | `flatbg_cut.py` | 纯色底出图 → 抠成透明件 + 按参考部件 **alpha 最大 XY 等比缩放贴合**到原附件画布 |
 | | `ps_cut/fill_from_layer1.jsx` | PS 里一键补缺口（文件 > 脚本 > 浏览） |
-| **`zenmux/`** | `zenmux_edit.py` | **唯一会花钱**：mask 局部重绘（默认 Vertex AI `:predict`；**混元已于 2026-09-24 移除**），`--dry-run` / `--min-credits` 守卫；指南见 `docs/zenmux-cli.md`，完整口径见 `tools/zenmux/zenmux-edit.md` |
-| | `tests/` | **mock 级 CLI 测试**：`python tools/zenmux/tests/test_zenmux_cli.py`（14 条命令级用例，约 6s，**全程 127.0.0.1、零真机零费用**）→ 口径见 `tools/zenmux/tests/README.md` |
+| **`image-edit/`** | `local_edit.py` | **本地图片编辑（免费）**：mini-local 的 stable-diffision.cpp / Qwen-Image-2.1 图生图（`/sdapi/v1/img2img`），mask 局部重绘、seed/cfg/steps/sampler 可调；口径见 `tools/image-edit/local-edit.md` |
+| | `zenmux_edit.py` | **唯一会花钱**：mask 局部重绘（默认 Vertex AI `:predict`；**混元已于 2026-09-24 移除**），`--dry-run` / `--min-credits` 守卫；指南见 `docs/zenmux-cli.md`，完整口径见 `tools/image-edit/zenmux-edit.md` |
+| | `tests/` | **mock 级 CLI 测试**：`python tools/image-edit/tests/test_zenmux_cli.py`（14 条命令级用例，约 6s，**全程 127.0.0.1、零真机零费用**）→ 口径见 `tools/image-edit/tests/README.md` |
 | **`browser/`** | — | 浏览器登录态复用（CDP 副本，见下节） |
 | **`preview-2d/`** | — | 2D 预览服务 |
 | **根下 shim** | `repair_spine/pipelines.py` 等 4 个 | **兼容转发脚本，别删**：真正的文件已搬进场景目录，但已交付产物里写着旧路径（**105 份 `交付说明.md`**、`outline.json`…） |

@@ -26,8 +26,8 @@ import unittest
 from datetime import datetime
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[3]        # tools/zenmux/tests/ → 工作区根
-CLI = ROOT / "tools" / "zenmux" / "zenmux_edit.py"
+ROOT = Path(__file__).resolve().parents[3]        # tools/image-edit/tests/ → 工作区根
+CLI = ROOT / "tools" / "image-edit" / "zenmux_edit.py"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import mock_zenmux                                                    # noqa: E402

@@ -1,19 +1,20 @@
 # tools/ — 按业务场景分区的工具集
 
-**除 `zenmux/zenmux_edit.py` 外，都是纯本地、确定性、不消耗 AI 额度。**
+**除 `image-edit/zenmux_edit.py`（ZenMux，花钱）外都是免费工具**：
+`image-edit/local_edit.py` 虽然联网，但打的是 mini-local 局域网内的本地 sd-server，**不消耗任何 API 额度**。
 
 目录**按场景隔离**（2026-09-24 重组）：一个场景一个子目录，场景内的工具可以互相 import，
-**跨场景不要互相依赖**。唯一会花钱的 AI 改图工具被单独关在 `zenmux/` 里，一眼能看出边界。
+**跨场景不要互相依赖**。花钱的 AI 改图工具被单独关在 `image-edit/` 里，一眼能看出边界。
 
 ```
 tools/
-├── spine/     ① Spine 素材加工：图集体检修复 / 部件换皮 / 抽件
-├── sprite/    ② 整图与部件的本地图像处理（生图 → 切件 → 贴图那一段）
-├── zenmux/    ③ ZenMux AI 改图 CLI（唯一联网、唯一花钱）+ 它的 mock 测试
-├── browser/   ④ 浏览器登录态复用（CDP 副本）
-├── preview-2d/⑤ 2D 预览服务
-├── reference-repos/ ⑥ 外部参考仓库的清单与拉取脚本
-└── *.py       兼容转发 shim（见文末）
+├── spine/       ① Spine 素材加工：图集体检修复 / 部件换皮 / 抽件
+├── sprite/      ② 整图与部件的本地图像处理（生图 → 切件 → 贴图那一段）
+├── image-edit/  ③ 图片编辑：本地 sd-server（免费）+ ZenMux（唯一联网花钱）+ mock 测试
+├── browser/     ④ 浏览器登录态复用（CDP 副本）
+├── preview-2d/  ⑤ 2D 预览服务
+├── reference-repos/  ⑥ 外部参考仓库的清单与拉取脚本
+└── *.py         兼容转发 shim（见文末）
 ```
 
 ## 依赖
@@ -47,12 +48,17 @@ python -m pip install numpy pillow opencv-python requests scipy
 | `flatbg_cut.py` | 纯色底出图 → 抠成透明件（自动估底 + 反混合去边）+ 按参考部件 alpha 最大 XY 等比贴合 |
 | `ps_cut/fill_from_layer1.jsx` | PS 内一键补缺口（文件 > 脚本 > 浏览） |
 
-## ③ `zenmux/` — AI 改图（**唯一会花钱**）
+## ③ `image-edit/` — 图片编辑（本地 sd-server 免费 + ZenMux 花钱）
 
 | 文件 | 作用 |
 |------|------|
-| `zenmux_edit.py` | ZenMux 图片编辑：Vertex `:predict`（默认）/ OpenAI 协议，mask 局部重绘、多 mask 三种消化、`--dry-run`、`--min-credits` 守卫 → 见 [`zenmux-edit.md`](zenmux/zenmux-edit.md) 与 [`../../docs/zenmux-cli.md`](../docs/zenmux-cli.md) |
-| `tests/` | **mock 级 CLI 测试**：`python tools/zenmux/tests/test_zenmux_cli.py`（14 条，约 6s，全程 127.0.0.1、**零真机零费用**）→ 见 [`tests/README.md`](zenmux/tests/README.md) |
+| `local_edit.py` | **本地图片编辑（免费）**：对接 mini-local 上的 stable-diffision.cpp / Qwen-Image-2.1 图生图（`/sdapi/v1/img2img`），mask 局部重绘、seed/cfg/steps/sampler 可调、尺寸对齐 32 倍数；`check` 做健康检查 → 见 [`local-edit.md`](image-edit/local-edit.md) |
+| `zenmux_edit.py` | **ZenMux 图片编辑（唯一会花钱）**：Vertex `:predict`（默认）/ OpenAI 协议，mask 局部重绘、多 mask 三种消化、`--dry-run`、`--min-credits` 守卫 → 见 [`zenmux-edit.md`](image-edit/zenmux-edit.md) 与 [`../../docs/zenmux-cli.md`](../docs/zenmux-cli.md) |
+| `tests/` | **mock 级 CLI 测试**：`python tools/image-edit/tests/test_zenmux_cli.py`（14 条，约 6s，全程 127.0.0.1、**零真机零费用**）→ 见 [`tests/README.md`](image-edit/tests/README.md) |
+
+> 分工建议：**先 `local_edit.py` 免费试效果**（服务在 mini-local，要 `./run-qwen-i2i.sh start`），
+> 效果不满意再上 `zenmux_edit.py` 花钱（先 `--dry-run` + `--min-credits 1`）。
+> 两者的 mask 口径一致（marked=涂白=要改），mask 文件可以通用。
 
 ## ⑤ 分类收尾的既有目录
 
@@ -80,7 +86,7 @@ python -m pip install numpy pillow opencv-python requests scipy
 |---|---|---|
 | `repair_spine/pipelines.py` | `spine/repair_spine/pipelines.py` | **105 份已交付的 `交付说明.md`** |
 | `spine_part_swap.py` | `spine/spine_part_swap.py` | `assets/武僧/reskin_weapon1/交付说明.md` |
-| `zenmux_edit.py` | `zenmux/zenmux_edit.py` | 同上（核账命令） |
+| `zenmux_edit.py` | `image-edit/zenmux_edit.py` | 同上（核账命令） |
 | `outline-part.py` | `sprite/outline-part.py` | `assets/eva_bone/parts/outline.json` 的 note |
 
 **新代码请直接用新路径**；旧路径只在"复现历史交付"时才会被用到。

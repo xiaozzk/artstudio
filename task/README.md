@@ -46,6 +46,7 @@ task/NNN-短横线-slug/
 |------|------|------|--------|
 | 002 | `002-anim-retarget/` | 规划中 | 成品动画参数迁移：提取功能动作模板 → 语义映射注入交付包 JSON → 官方 player 验收 |
 | 003 | `003-spine-facing-unify/` | 规划中 | assets/2d 107 包全量烘焙镜像统一朝向（002 子任务衍生）：共轭烘焙只动 root 直接子骨，迁移直搬零换算 |
+| 004 | `004-image-edit-local/` | 已完成 | tools/zenmux 改名 image-edit（图片编辑场景）+ 新增 mini-local sd-server 本地图片编辑工具（免费） |
 
 > 001（武僧素材遮罩局部重绘）已于 2026-09-24 **整目录删除**：方案不稳定（12 件批量替换里 4 件语义崩坏），
 > 用户判定放弃。相关工具 `tools/spine/spine_part_extract.py` 保留（代码里记着这次的实测结论）。
