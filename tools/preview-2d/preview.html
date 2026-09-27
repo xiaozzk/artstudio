@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2D 预览图浏览器 · assets/2d</title>
+<link rel="stylesheet" href="vendor/spine-player/spine-player.css">
+<script defer src="vendor/spine-player/spine-player.js"></script>
 <style>
   :root {
     --bg: #0f1115;
@@ -275,6 +277,66 @@
   }
   .lb-info .lb-name { font-weight: 600; margin-right: 10px; }
   .lb-info .lb-pos { color: #b7c1cf; }
+
+  /* Spine 徽标与按钮 */
+  .spine-badges {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 7px;
+  }
+  .spine-badge {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+  .spine-badge.hot { color: #ffd479; border-color: #6b5a2a; }
+  .spine-open-btn {
+    margin-left: auto;
+    padding: 3px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-size: 11px;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .spine-open-btn:hover { background: var(--accent); color: #0b1220; }
+
+  /* Spine 全屏预览层 */
+  #spine-lightbox {
+    position: fixed; inset: 0;
+    background: rgba(10,12,16,.97);
+    z-index: 200;
+    display: flex; flex-direction: column;
+  }
+  #spine-lightbox[hidden] { display: none; }
+  .sp-lb-topbar {
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .sp-lb-title { font-size: 15px; font-weight: 600; }
+  .sp-lb-meta {
+    font-size: 12px; color: var(--text-dim);
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
+  .sp-lb-meta b { color: #ffd479; }
+  .sp-lb-close {
+    margin-left: auto;
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent; color: var(--text);
+    font-size: 18px; cursor: pointer;
+  }
+  .sp-lb-close:hover { border-color: var(--accent); color: var(--accent); }
+  #spine-player-box { flex: 1; min-height: 0; }
+  #spine-player-box .spine-player { height: 100%; }
 </style>
 </head>
 <body>
@@ -304,6 +366,15 @@
     </div>
   </div>
 
+  <div id="spine-lightbox" hidden>
+    <div class="sp-lb-topbar">
+      <span class="sp-lb-title" id="sp-title"></span>
+      <span class="sp-lb-meta" id="sp-meta"></span>
+      <button class="sp-lb-close" id="sp-close" aria-label="关闭">✕</button>
+    </div>
+    <div id="spine-player-box"></div>
+  </div>
+
 <script>
 "use strict";
 const $ = s => document.querySelector(s);
@@ -320,10 +391,13 @@ const state = {
   raw: [],
   grouped: {},
   flat: [],
+  spineIndex: {},
   activeCat: "__all__",
   activeGender: "__all__",
   search: "",
   lbIndex: -1,
+  spKey: null,
+  spPlayer: null,
 };
 
 function sortedKeys(obj, order) {
@@ -401,9 +475,12 @@ function renderStats() {
   for (const c of Object.keys(state.grouped))
     for (const g of Object.keys(state.grouped[c]))
       nChar += Object.keys(state.grouped[c][g]).length;
+  const nSpine = Object.keys(state.spineIndex).length;
+  const nAnim = Object.values(state.spineIndex).reduce((s, v) => s + (v.n_animations || 0), 0);
   const cats = Object.keys(state.grouped).join(" / ") || "—";
   $("#stats").innerHTML =
-    `共 <b>${nImg}</b> 张预览图 · <b>${nChar}</b> 个角色 · 分类：${cats}`;
+    `共 <b>${nImg}</b> 张预览图 · <b>${nChar}</b> 个角色 · ` +
+    `<b>${nSpine}</b> 个带 Spine（<b>${nAnim}</b> 个动画） · 分类：${cats}`;
 }
 
 function makeThumb(item, flatIdx) {
@@ -496,6 +573,28 @@ function renderGallery() {
         ph.className = "character-path";
         ph.textContent = `assets/2d/${c}/${gk}/${char}/`;
         info.appendChild(nm);
+        // Spine 徽标 + 预览按钮
+        const spKey = `${c}/${gk}/${char}`;
+        const sp = state.spineIndex[spKey];
+        if (sp) {
+          const badges = document.createElement("div");
+          badges.className = "spine-badges";
+          const mk = (txt, hot) => {
+            const b = document.createElement("span");
+            b.className = "spine-badge" + (hot ? " hot" : "");
+            b.textContent = txt;
+            badges.appendChild(b);
+          };
+          mk(`🎬 ${sp.n_animations} 动画`, sp.n_animations > 0);
+          mk(`${sp.n_bones} 骨骼`, false);
+          mk(`${sp.n_skins} 皮肤`, sp.n_skins > 1);
+          const btn = document.createElement("button");
+          btn.className = "spine-open-btn";
+          btn.textContent = "骨骼预览";
+          btn.addEventListener("click", ev => { ev.stopPropagation(); openSpine(spKey); });
+          badges.appendChild(btn);
+          info.appendChild(badges);
+        }
         info.appendChild(ph);
         card.appendChild(info);
         grid.appendChild(card);
@@ -507,6 +606,72 @@ function renderGallery() {
     }
     main.appendChild(sec);
   }
+
+  // 实验产物（task/*/output/ 下的迁移结果等）：无预览图，按 spine_index 单独出卡片
+  renderExperimentCards(main);
+}
+
+function renderExperimentCards(main) {
+  const expKeys = Object.keys(state.spineIndex).filter(k => k.startsWith("实验/"));
+  if (expKeys.length === 0) return;
+  const lc = state.search.trim().toLowerCase();
+  const sec = document.createElement("section");
+  sec.className = "category";
+  const h = document.createElement("div");
+  h.className = "category-header";
+  h.innerHTML = `实验产物 <span class="count">${expKeys.length} 个（task/*/output/）</span>`;
+  sec.appendChild(h);
+  const grid = document.createElement("div");
+  grid.className = "character-grid";
+  let shown = 0;
+  for (const key of expKeys) {
+    const name = key.split("/").pop();
+    if (lc && !key.toLowerCase().includes(lc)) continue;
+    shown++;
+    const sp = state.spineIndex[key];
+    const card = document.createElement("article");
+    card.className = "character-card";
+    const ph = document.createElement("div");
+    ph.className = "thumb";
+    ph.style.display = "flex";
+    ph.style.alignItems = "center";
+    ph.style.justifyContent = "center";
+    ph.style.color = "var(--text-dim)";
+    ph.style.fontSize = "12px";
+    ph.textContent = "实验产物（无预览图）";
+    card.appendChild(ph);
+    const info = document.createElement("div");
+    info.className = "character-info";
+    const nm = document.createElement("div");
+    nm.className = "character-name";
+    nm.textContent = name;
+    info.appendChild(nm);
+    const badges = document.createElement("div");
+    badges.className = "spine-badges";
+    const mk = (txt, hot) => {
+      const b = document.createElement("span");
+      b.className = "spine-badge" + (hot ? " hot" : "");
+      b.textContent = txt;
+      badges.appendChild(b);
+    };
+    mk(`🎬 ${sp.n_animations} 动画`, sp.n_animations > 0);
+    mk(`${sp.n_bones} 骨骼`, false);
+    mk(`${sp.n_skins} 皮肤`, sp.n_skins > 1);
+    const btn = document.createElement("button");
+    btn.className = "spine-open-btn";
+    btn.textContent = "骨骼预览";
+    btn.addEventListener("click", () => openSpine(key));
+    badges.appendChild(btn);
+    info.appendChild(badges);
+    const path = document.createElement("div");
+    path.className = "character-path";
+    path.textContent = (sp.url_prefix || "").replace(/^\//, "");
+    info.appendChild(path);
+    card.appendChild(info);
+    grid.appendChild(card);
+  }
+  sec.appendChild(grid);
+  if (shown > 0) main.appendChild(sec);
 }
 
 function openLightbox(flatIdx) {
@@ -533,6 +698,64 @@ function navLightbox(delta) {
   openLightbox(state.lbIndex);
 }
 
+// ---------- Spine 预览 ----------
+
+function openSpine(key) {
+  const sp = state.spineIndex[key];
+  if (!sp) return;
+  if (typeof spine === "undefined" || !spine.SpinePlayer) {
+    alert("spine-player 未加载（vendor/spine-player/spine-player.js 缺失？）");
+    return;
+  }
+  closeSpine();  // 若已开着别的角色先关掉
+  state.spKey = key;
+  $("#sp-title").textContent = key.split("/").pop();
+  $("#sp-meta").innerHTML =
+    `Spine <b>${sp.version}</b> · <b>${sp.n_animations}</b> 动画 · ` +
+    `<b>${sp.n_bones}</b> 骨骼 · <b>${sp.n_skins}</b> 皮肤` +
+    (sp.animations.length ? ` · ${sp.animations.join(" / ")}` : "");
+  $("#spine-lightbox").hidden = false;
+  document.body.style.overflow = "hidden";
+  const box = $("#spine-player-box");
+  box.innerHTML = "";
+  // assets/2d 的包用 IMG_BASE 前缀；task 实验产物自带 url_prefix
+  const prefix = sp.url_prefix || IMG_BASE;
+  const jsonUrl = prefix + sp.json.split("/").map(encodeURIComponent).join("/");
+  const atlasUrl = prefix + sp.atlas.split("/").map(encodeURIComponent).join("/");
+  try {
+    // 注意 4.3 player 的字段名：skeleton（不是 4.2 的 jsonUrl）、atlas（别名 atlasUrl）。
+    // 写错会在 validateConfig 抛 "A URL must be specified..."。
+    state.spPlayer = new spine.SpinePlayer(box, {
+      skeleton: jsonUrl,
+      atlas: atlasUrl,
+      showControls: true,
+      backgroundColor: "#161a22",
+      // 默认播第一个动画；没有动画则显示 setup pose
+      ...(sp.animations.length ? { animation: sp.animations[0] } : {}),
+      success: (player) => {
+        // 自动播放
+        try { player.play?.(); } catch (_) {}
+      },
+      error: (player, msg) => {
+        box.innerHTML = `<div class="empty">加载失败：${msg}</div>`;
+      },
+    });
+  } catch (e) {
+    box.innerHTML = `<div class="empty">播放器初始化失败：${e.message}</div>`;
+  }
+}
+
+function closeSpine() {
+  if (state.spPlayer) {
+    try { state.spPlayer.dispose(); } catch (_) {}
+    state.spPlayer = null;
+  }
+  $("#spine-player-box").innerHTML = "";
+  $("#spine-lightbox").hidden = true;
+  if ($("#lightbox").hidden) document.body.style.overflow = "";
+  state.spKey = null;
+}
+
 async function load() {
   try {
     const r = await fetch(MANIFEST_URL + "?t=" + Date.now());
@@ -540,6 +763,7 @@ async function load() {
     const data = await r.json();
     state.raw = data.items || [];
     state.grouped = data.grouped || {};
+    state.spineIndex = data.spine_index || {};
     applyFilter();
     renderStats();
     renderChips();
@@ -556,6 +780,7 @@ $("#search").addEventListener("input", e => {
   renderGallery();
 });
 $("#reload").addEventListener("click", load);
+$("#sp-close").addEventListener("click", closeSpine);
 $("#lb-prev").addEventListener("click", () => navLightbox(-1));
 $("#lb-next").addEventListener("click", () => navLightbox(1));
 $("#lb-close").addEventListener("click", closeLightbox);
@@ -564,6 +789,10 @@ $("#lightbox").addEventListener("click", e => {
   else if (e.target.id === "lb-img") navLightbox(1);
 });
 document.addEventListener("keydown", e => {
+  if (!$("#spine-lightbox").hidden) {
+    if (e.key === "Escape") closeSpine();
+    return;
+  }
   if ($("#lightbox").hidden) {
     if (e.key === "/" && document.activeElement !== $("#search")) {
       $("#search").focus(); $("#search").select(); e.preventDefault();

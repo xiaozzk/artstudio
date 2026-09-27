@@ -48,17 +48,117 @@ GENDER_ORDER = ["男", "女", ""]
 
 # ---------- 扫描 ----------
 
-def scan_previews() -> list[dict]:
+def _parse_atlas_pages(atlas_path: Path) -> list[str]:
+    """从 .atlas 里提取图集页 png 文件名（相对 atlas 目录）。
+    页名行 = 顶格、无冒号、以图片扩展名结尾。
+    注意不能依赖「下一行是 size:」——libgdx 新版 atlas 的页头字段
+    （size/format/filter/repeat/pma）顺序不固定，实测法袍法师是 filter 在前。"""
+    pages: list[str] = []
+    try:
+        lines = atlas_path.read_text(encoding="utf-8", errors="replace").splitlines()
+    except OSError:
+        return pages
+    for line in lines:
+        s = line.strip()
+        if (s and not line.startswith((" ", "\t")) and ":" not in s
+                and s.lower().endswith((".png", ".jpg", ".jpeg", ".webp"))):
+            pages.append(s)
+    return pages
+
+
+def scan_spine_for_character(char_dir: Path, base: Path | None = None) -> dict | None:
+    """
+    检测角色目录下的 Spine 资产（骨架 json + atlas + 图集页），解析元信息。
+    返回 None 表示该目录没有可用 spine 资产。
+    骨架识别靠内容嗅探（顶层有 skeleton+bones 键），不看文件名——
+    交付包里文件名与目录名常不一致（如「法袍法师/Magic Gril.json」）。
+    base：rel 路径的基准目录（默认 ASSETS_2D）。
+    """
+    base = base or ASSETS_2D
+    if not char_dir.is_dir():
+        return None
+    skeleton = None
+    json_rel = None
+    for jf in sorted(char_dir.glob("*.json")):
+        try:
+            doc = json.loads(jf.read_text(encoding="utf-8", errors="replace"))
+        except Exception:
+            continue
+        if isinstance(doc, dict) and "skeleton" in doc and "bones" in doc:
+            skeleton = doc
+            json_rel = jf.relative_to(base).as_posix()
+            break
+    if skeleton is None:
+        return None
+
+    atlas_rel = None
+    pages: list[str] = []
+    for af in sorted(char_dir.glob("*.atlas")):
+        ps = _parse_atlas_pages(af)
+        # 至少能引到一页图集才算可用
+        ok_pages = [p for p in ps if (char_dir / p).is_file()]
+        if ok_pages:
+            atlas_rel = af.relative_to(base).as_posix()
+            pages = ok_pages
+            break
+    if atlas_rel is None:
+        return None
+
+    anims = sorted(skeleton.get("animations", {}).keys())
+    skins = [s.get("name", "?") for s in skeleton.get("skins", [])]
+    return {
+        "json": json_rel,
+        "atlas": atlas_rel,
+        "pages": pages,
+        "version": skeleton.get("skeleton", {}).get("spine", "?"),
+        "animations": anims,
+        "n_animations": len(anims),
+        "skins": skins,
+        "n_skins": len(skins),
+        "n_bones": len(skeleton.get("bones", [])),
+        "n_slots": len(skeleton.get("slots", [])),
+    }
+
+
+def scan_task_outputs() -> dict[str, dict]:
+    """
+    扫描 task/*/output/<包名>/ 下的实验产物（迁移产物等），并入 spine_index。
+    前端 key 形如 "实验/<task目录名>/<包名>"；url_prefix 指到该包目录，
+    json/atlas 字段退化为纯文件名。
+    实验包通常没有复原预览图，前端按「无图卡片」渲染。
+    """
+    out: dict[str, dict] = {}
+    task_root = WORKSPACE_ROOT / "task"
+    if not task_root.is_dir():
+        return out
+    for output_dir in sorted(task_root.glob("*/output")):
+        task_name = output_dir.parent.name
+        for pkg in sorted(output_dir.iterdir()):
+            if not pkg.is_dir():
+                continue
+            sp = scan_spine_for_character(pkg, base=pkg)
+            if sp is None:
+                continue
+            sp["url_prefix"] = f"/{output_dir.relative_to(WORKSPACE_ROOT).as_posix()}/{pkg.name}/"
+            out[f"实验/{task_name}/{pkg.name}"] = sp
+    return out
+
+
+def scan_previews() -> tuple[list[dict], dict]:
     """
     扫描 assets/2d/<category>/<gender>/<character>/复原预览图*.png
-    返回扁平列表，每条包含 category/gender/character/variant/rel_path/size。
+    返回 (扁平图片列表, spine_index)。
+    每条图片包含 category/gender/character/variant/rel_path/size。
     rel_path 是基于 assets/2d 的正斜杠相对路径。
+    spine_index: "cat/gender/char" → spine 元信息（json/atlas/动画/皮肤/骨骼数）。
     """
     if not ASSETS_2D.is_dir():
         print(f"[!] 找不到 {ASSETS_2D}", file=sys.stderr)
         sys.exit(1)
 
     items: list[dict] = []
+    spine_index: dict[str, dict] = {}
+    char_dirs_done: set[Path] = set()
     for p in sorted(ASSETS_2D.rglob("复原预览图*.png")):
         if not p.is_file():
             continue
@@ -88,7 +188,16 @@ def scan_previews() -> list[dict]:
             "rel_path": rel.as_posix(),
             "size": p.stat().st_size,
         })
-    return items
+        # 顺手扫该角色目录的 spine 资产（每角色一次）
+        char_dir = p.parent
+        if char_dir not in char_dirs_done:
+            char_dirs_done.add(char_dir)
+            sp = scan_spine_for_character(char_dir)
+            if sp is not None:
+                spine_index[f"{category}/{gender}/{character}"] = sp
+    # 并入 task/*/output/ 的实验产物（迁移产物等）
+    spine_index.update(scan_task_outputs())
+    return items, spine_index
 
 
 def group_items(items: list[dict]) -> dict:
@@ -109,13 +218,14 @@ def group_items(items: list[dict]) -> dict:
     return sorted_grouped
 
 
-def write_manifest(items: list[dict], grouped: dict) -> Path:
+def write_manifest(items: list[dict], grouped: dict, spine_index: dict) -> Path:
     payload = {
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "workspace_root": WORKSPACE_ROOT.as_posix(),
         "count": len(items),
         "items": items,
         "grouped": grouped,
+        "spine_index": spine_index,
     }
     MANIFEST_PATH.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2),
@@ -124,10 +234,13 @@ def write_manifest(items: list[dict], grouped: dict) -> Path:
     return MANIFEST_PATH
 
 
-def print_scan_summary(items: list[dict], grouped: dict) -> None:
+def print_scan_summary(items: list[dict], grouped: dict, spine_index: dict | None = None) -> None:
     n_img = len(items)
     n_char = sum(len(chars) for genders in grouped.values() for chars in genders.values())
     print(f"[scan] 共 {n_img} 张预览图，覆盖 {len(grouped)} 个分类 / {n_char} 个角色。")
+    if spine_index is not None:
+        n_anim = sum(v["n_animations"] for v in spine_index.values())
+        print(f"[scan] 其中 {len(spine_index)} 个角色带 Spine 资产（共 {n_anim} 个动画）。")
     for cat, genders in grouped.items():
         for g, chars in genders.items():
             sample = ", ".join(list(chars.keys())[:3])
@@ -207,19 +320,19 @@ def start_server(port: int, host: str, ready_evt: threading.Event) -> None:
 # ---------- 入口 ----------
 
 def cmd_scan(_args) -> int:
-    items = scan_previews()
+    items, spine_index = scan_previews()
     grouped = group_items(items)
-    p = write_manifest(items, grouped)
-    print_scan_summary(items, grouped)
+    p = write_manifest(items, grouped, spine_index)
+    print_scan_summary(items, grouped, spine_index)
     print(f"[scan] 清单已写入 {p}")
     return 0
 
 
 def cmd_serve(args) -> int:
-    items = scan_previews()
+    items, spine_index = scan_previews()
     grouped = group_items(items)
-    write_manifest(items, grouped)
-    print_scan_summary(items, grouped)
+    write_manifest(items, grouped, spine_index)
+    print_scan_summary(items, grouped, spine_index)
     print(f"[manifest] {MANIFEST_PATH}")
 
     port = find_free_port(args.port)

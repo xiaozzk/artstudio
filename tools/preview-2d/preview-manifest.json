@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-22T03:30:27",
-  "workspace_root": "D:/artstudio",
-  "count": 155,
+  "generated_at": "2026-09-26T04:57:44",
+  "workspace_root": "/Users/zhenkunzhu/Desktop/project/artstudio",
+  "count": 157,
   "items": [
     {
       "category": "人形",
@@ -339,6 +339,15 @@
     {
       "category": "人形",
       "gender": "男",
+      "character": "三角头刽子手",
+      "variant": "__default__",
+      "filename": "复原预览图.png",
+      "rel_path": "人形/男/三角头刽子手/复原预览图.png",
+      "size": 1277823
+    },
+    {
+      "category": "人形",
+      "gender": "男",
       "character": "光头打手",
       "variant": "__default__",
       "filename": "复原预览图.png",
@@ -520,15 +529,6 @@
       "category": "人形",
       "gender": "男",
       "character": "忍装玩家",
-      "variant": "default",
-      "filename": "复原预览图_default.png",
-      "rel_path": "人形/男/忍装玩家/复原预览图_default.png",
-      "size": 9131
-    },
-    {
-      "category": "人形",
-      "gender": "男",
-      "character": "忍装玩家",
       "variant": "OutFits_skin2",
       "filename": "复原预览图_OutFits_skin2.png",
       "rel_path": "人形/男/忍装玩家/复原预览图_OutFits_skin2.png",
@@ -627,6 +627,15 @@
     {
       "category": "人形",
       "gender": "男",
+      "character": "忍装玩家",
+      "variant": "default",
+      "filename": "复原预览图_default.png",
+      "rel_path": "人形/男/忍装玩家/复原预览图_default.png",
+      "size": 9131
+    },
+    {
+      "category": "人形",
+      "gender": "男",
       "character": "斗笠剑客",
       "variant": "__default__",
       "filename": "复原预览图.png",
@@ -686,6 +695,15 @@
       "filename": "复原预览图.png",
       "rel_path": "人形/男/无头骑士/复原预览图.png",
       "size": 1023672
+    },
+    {
+      "category": "人形",
+      "gender": "男",
+      "character": "春节舞狮男孩",
+      "variant": "__default__",
+      "filename": "复原预览图.png",
+      "rel_path": "人形/男/春节舞狮男孩/复原预览图.png",
+      "size": 1318210
     },
     {
       "category": "人形",
@@ -1577,6 +1595,17 @@
     },
     "人形": {
       "男": {
+        "三角头刽子手": [
+          {
+            "category": "人形",
+            "gender": "男",
+            "character": "三角头刽子手",
+            "variant": "__default__",
+            "filename": "复原预览图.png",
+            "rel_path": "人形/男/三角头刽子手/复原预览图.png",
+            "size": 1277823
+          }
+        ],
         "光头打手": [
           {
             "category": "人形",
@@ -1802,15 +1831,6 @@
             "category": "人形",
             "gender": "男",
             "character": "忍装玩家",
-            "variant": "default",
-            "filename": "复原预览图_default.png",
-            "rel_path": "人形/男/忍装玩家/复原预览图_default.png",
-            "size": 9131
-          },
-          {
-            "category": "人形",
-            "gender": "男",
-            "character": "忍装玩家",
             "variant": "OutFits_skin2",
             "filename": "复原预览图_OutFits_skin2.png",
             "rel_path": "人形/男/忍装玩家/复原预览图_OutFits_skin2.png",
@@ -1905,6 +1925,15 @@
             "filename": "复原预览图_Weapons_weapon8.png",
             "rel_path": "人形/男/忍装玩家/复原预览图_Weapons_weapon8.png",
             "size": 9131
+          },
+          {
+            "category": "人形",
+            "gender": "男",
+            "character": "忍装玩家",
+            "variant": "default",
+            "filename": "复原预览图_default.png",
+            "rel_path": "人形/男/忍装玩家/复原预览图_default.png",
+            "size": 9131
           }
         ],
         "斗笠剑客": [
@@ -1976,6 +2005,17 @@
             "filename": "复原预览图.png",
             "rel_path": "人形/男/无头骑士/复原预览图.png",
             "size": 1023672
+          }
+        ],
+        "春节舞狮男孩": [
+          {
+            "category": "人形",
+            "gender": "男",
+            "character": "春节舞狮男孩",
+            "variant": "__default__",
+            "filename": "复原预览图.png",
+            "rel_path": "人形/男/春节舞狮男孩/复原预览图.png",
+            "size": 1318210
           }
         ],
         "暗法拳王": [
@@ -3026,6 +3066,2998 @@
           }
         ]
       }
+    }
+  },
+  "spine_index": {
+    "人形/女/三姐妹红裙": {
+      "json": "人形/女/三姐妹红裙/girl_lv55.json",
+      "atlas": "人形/女/三姐妹红裙/girl_lv55.atlas",
+      "pages": [
+        "girl_lv55.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "action",
+        "action2",
+        "begin"
+      ],
+      "n_animations": 3,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 37,
+      "n_slots": 6
+    },
+    "人形/女/兽头袋女": {
+      "json": "人形/女/兽头袋女/fulei.json",
+      "atlas": "人形/女/兽头袋女/fulei.atlas",
+      "pages": [
+        "fulei.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "cast",
+        "cast2",
+        "cast3",
+        "death",
+        "idle"
+      ],
+      "n_animations": 6,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 75,
+      "n_slots": 21
+    },
+    "人形/女/冰法女": {
+      "json": "人形/女/冰法女/ice_wizard.json",
+      "atlas": "人形/女/冰法女/ice_wizard.atlas",
+      "pages": [
+        "ice_wizard.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Attack01",
+        "Dead",
+        "Hit",
+        "Idle",
+        "Run",
+        "Skill01"
+      ],
+      "n_animations": 6,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 52,
+      "n_slots": 21
+    },
+    "人形/女/多身魅魔": {
+      "json": "人形/女/多身魅魔/succubus.json",
+      "atlas": "人形/女/多身魅魔/succubus.atlas",
+      "pages": [
+        "succubus.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "idle",
+        "walk"
+      ],
+      "n_animations": 3,
+      "skins": [
+        "body/body_1",
+        "body/body_2",
+        "body/body_3",
+        "hand_L/hand_L_1",
+        "hand_L/hand_L_2",
+        "hand_L/hand_L_3",
+        "head/head_1",
+        "head/head_2",
+        "head/head_3",
+        "mount/mount_1",
+        "succubus/succubus_1",
+        "succubus/succubus_2",
+        "succubus/succubus_3",
+        "wing_tail/wing_tail_1",
+        "wing_tail/wing_tail_2",
+        "wing_tail/wing_tail_3"
+      ],
+      "n_skins": 16,
+      "n_bones": 108,
+      "n_slots": 7
+    },
+    "人形/女/斗笠女祭司": {
+      "json": "人形/女/斗笠女祭司/Pest.json",
+      "atlas": "人形/女/斗笠女祭司/Pest.atlas",
+      "pages": [
+        "Pest.png",
+        "Pest_2.png",
+        "Pest_3.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "idle"
+      ],
+      "n_animations": 1,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 173,
+      "n_slots": 92
+    },
+    "人形/女/暗影战士": {
+      "json": "人形/女/暗影战士/ShadowSoldier_035.json",
+      "atlas": "人形/女/暗影战士/ShadowSoldier_035.atlas",
+      "pages": [
+        "ShadowSoldier_035.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "idle",
+        "move"
+      ],
+      "n_animations": 4,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 31,
+      "n_slots": 34
+    },
+    "人形/女/火把女战士": {
+      "json": "人形/女/火把女战士/RogueSekaniFlamebringer.json",
+      "atlas": "人形/女/火把女战士/RogueSekaniFlamebringer.atlas",
+      "pages": [
+        "RogueSekaniFlamebringer.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "idle",
+        "idle_mannerism",
+        "pose_attack",
+        "pose_cast_spell",
+        "pose_death",
+        "pose_defend",
+        "pose_hurt",
+        "pose_move_back",
+        "pose_move_front",
+        "pose_ranged_attack"
+      ],
+      "n_animations": 10,
+      "skins": [
+        "default",
+        "elite",
+        "normal"
+      ],
+      "n_skins": 3,
+      "n_bones": 65,
+      "n_slots": 39
+    },
+    "人形/女/焰发女猎手": {
+      "json": "人形/女/焰发女猎手/S041_skin6.json",
+      "atlas": "人形/女/焰发女猎手/S041_skin6.atlas",
+      "pages": [
+        "S041_skin6.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "casting1",
+        "casting2",
+        "casting3",
+        "dead",
+        "idle",
+        "run"
+      ],
+      "n_animations": 7,
+      "skins": [
+        "default",
+        "skin6"
+      ],
+      "n_skins": 2,
+      "n_bones": 54,
+      "n_slots": 41
+    },
+    "人形/女/紫袍女审判": {
+      "json": "人形/女/紫袍女审判/P_shengsipanguan.json",
+      "atlas": "人形/女/紫袍女审判/P_shengsipanguan.atlas",
+      "pages": [
+        "P_shengsipanguan.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "ChuSheng01",
+        "DaiJi01",
+        "GongJi01",
+        "JiNeng02",
+        "JiNeng03",
+        "JiNeng06",
+        "JiNeng_Daiji",
+        "PaoBu01",
+        "SiWang01"
+      ],
+      "n_animations": 9,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 49,
+      "n_slots": 44
+    },
+    "人形/女/红发法师": {
+      "json": "人形/女/红发法师/cha_1166.json",
+      "atlas": "人形/女/红发法师/cha_1166.atlas",
+      "pages": [
+        "cha_1166.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "dead",
+        "hurt",
+        "run",
+        "skill",
+        "stand",
+        "stand2",
+        "walk"
+      ],
+      "n_animations": 8,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 140,
+      "n_slots": 79
+    },
+    "人形/女/翼盔女剑士": {
+      "json": "人形/女/翼盔女剑士/fulei_stage2.json",
+      "atlas": "人形/女/翼盔女剑士/fulei_stage2.atlas",
+      "pages": [
+        "fulei_stage2.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "cast",
+        "cast2",
+        "cast3",
+        "cast4",
+        "cast5",
+        "cast6",
+        "cast7",
+        "cast8",
+        "death",
+        "disappear",
+        "idle"
+      ],
+      "n_animations": 12,
+      "skins": [
+        "default",
+        "black",
+        "white"
+      ],
+      "n_skins": 3,
+      "n_bones": 86,
+      "n_slots": 50
+    },
+    "人形/女/蓝拳小萝莉": {
+      "json": "人形/女/蓝拳小萝莉/role_small_Lena.json",
+      "atlas": "人形/女/蓝拳小萝莉/role_small_Lena.atlas",
+      "pages": [
+        "role_small_Lena.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "die",
+        "idle",
+        "walk"
+      ],
+      "n_animations": 3,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 55,
+      "n_slots": 32
+    },
+    "人形/女/蓝衣短发女": {
+      "json": "人形/女/蓝衣短发女/zhangzitong.json",
+      "atlas": "人形/女/蓝衣短发女/zhangzitong.atlas",
+      "pages": [
+        "zhangzitong.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "angry",
+        "cry",
+        "happy",
+        "idle",
+        "smile",
+        "whiteeyes"
+      ],
+      "n_animations": 6,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 67,
+      "n_slots": 38
+    },
+    "人形/女/蓝袍女妖": {
+      "json": "人形/女/蓝袍女妖/31801_zhizunnvwu.json",
+      "atlas": "人形/女/蓝袍女妖/31801_zhizunnvwu.atlas",
+      "pages": [
+        "31801_zhizunnvwu.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Chuchang",
+        "Death",
+        "Run",
+        "Skill_1",
+        "Skill_2",
+        "Skill_3",
+        "Stand",
+        "Weak"
+      ],
+      "n_animations": 8,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 169,
+      "n_slots": 64
+    },
+    "人形/女/蓝袍女法师": {
+      "json": "人形/女/蓝袍女法师/P_fuzhu.json",
+      "atlas": "人形/女/蓝袍女法师/P_fuzhu.atlas",
+      "pages": [
+        "P_fuzhu.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "ChuSheng01",
+        "DaiJi01",
+        "GongJi01",
+        "JiNeng02",
+        "JiNeng03",
+        "PaoBu01",
+        "SiWang01"
+      ],
+      "n_animations": 7,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 44,
+      "n_slots": 24
+    },
+    "人形/女/蛇发女妖": {
+      "json": "人形/女/蛇发女妖/S024_skin5.json",
+      "atlas": "人形/女/蛇发女妖/S024_skin5.atlas",
+      "pages": [
+        "S024_skin5.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "dead",
+        "gvg_boss_attack1",
+        "idle",
+        "run",
+        "skill1"
+      ],
+      "n_animations": 6,
+      "skins": [
+        "skin5"
+      ],
+      "n_skins": 1,
+      "n_bones": 125,
+      "n_slots": 36
+    },
+    "人形/女/黄角龙女": {
+      "json": "人形/女/黄角龙女/S019_skin1.json",
+      "atlas": "人形/女/黄角龙女/S019_skin1.atlas",
+      "pages": [
+        "S019_skin1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "casting1",
+        "dead",
+        "idle",
+        "run",
+        "skill1"
+      ],
+      "n_animations": 6,
+      "skins": [
+        "skin1"
+      ],
+      "n_skins": 1,
+      "n_bones": 66,
+      "n_slots": 28
+    },
+    "人形/女/黑甲女剑士": {
+      "json": "人形/女/黑甲女剑士/cha116.json",
+      "atlas": "人形/女/黑甲女剑士/cha116.atlas",
+      "pages": [
+        "cha116.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "bak/idle2_bak",
+        "bak/idle3_bak",
+        "bak/move1_bak",
+        "bak/move2_bak",
+        "bak/skill4_bak",
+        "bak/skill5_bak",
+        "die",
+        "hit",
+        "idle",
+        "move",
+        "ride",
+        "skill",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill4_01",
+        "u_skill",
+        "u_skill2",
+        "u_skill3"
+      ],
+      "n_animations": 19,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 136,
+      "n_slots": 97
+    },
+    "人形/男/三角头刽子手": {
+      "json": "人形/男/三角头刽子手/30501_sanjiaotou.json",
+      "atlas": "人形/男/三角头刽子手/30501_sanjiaotou.atlas",
+      "pages": [
+        "30501_sanjiaotou.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Atk",
+        "Chuchang",
+        "Death",
+        "Run",
+        "Skill_1",
+        "Skill_2",
+        "Stand",
+        "Weak"
+      ],
+      "n_animations": 8,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 61,
+      "n_slots": 38
+    },
+    "人形/男/光头打手": {
+      "json": "人形/男/光头打手/Kimchul.json",
+      "atlas": "人形/男/光头打手/Kimchul.atlas",
+      "pages": [
+        "Kimchul.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Attack1",
+        "Attack2",
+        "Death",
+        "Disappear",
+        "Freezing",
+        "Idle",
+        "Knockback",
+        "Knockdown",
+        "MainSkill",
+        "Move",
+        "SkillReady",
+        "StandUp",
+        "Stun",
+        "SubSkill1",
+        "SubSkill2",
+        "SubSkill3",
+        "Victory"
+      ],
+      "n_animations": 17,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 171,
+      "n_slots": 143
+    },
+    "人形/男/兽人狂战士": {
+      "json": "人形/男/兽人狂战士/Unit_Spine_NowsiWarriorSpe1.json",
+      "atlas": "人形/男/兽人狂战士/Unit_Spine_NowsiWarriorSpe1.atlas",
+      "pages": [
+        "Unit_Spine_NowsiWarriorSpe1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "skill6",
+        "skill7",
+        "stand"
+      ],
+      "n_animations": 13,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 31,
+      "n_slots": 23
+    },
+    "人形/男/兽头女战士": {
+      "json": "人形/男/兽头女战士/chara243.json",
+      "atlas": "人形/男/兽头女战士/chara243.atlas",
+      "pages": [
+        "chara243.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "test",
+        "wait"
+      ],
+      "n_animations": 3,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 75,
+      "n_slots": 34
+    },
+    "人形/男/军官欧林": {
+      "json": "人形/男/军官欧林/OfficerErrin.json",
+      "atlas": "人形/男/军官欧林/OfficerErrin.atlas",
+      "pages": [
+        "OfficerErrin.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "idle_aggressive",
+        "idle_aggressive_mannerism",
+        "pose_attack",
+        "pose_cast_spell",
+        "pose_death",
+        "pose_defend",
+        "pose_hurt",
+        "pose_move_back",
+        "pose_move_front",
+        "pose_ranged_attack",
+        "unused_pose_cast_spell_v1"
+      ],
+      "n_animations": 11,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 31,
+      "n_slots": 23
+    },
+    "人形/男/冰剑佣兵": {
+      "json": "人形/男/冰剑佣兵/ice_mercenary.json",
+      "atlas": "人形/男/冰剑佣兵/ice_mercenary.atlas",
+      "pages": [
+        "ice_mercenary.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Attack01",
+        "Dead",
+        "Hit",
+        "Idle",
+        "Run"
+      ],
+      "n_animations": 5,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 28,
+      "n_slots": 13
+    },
+    "人形/男/双刀战士": {
+      "json": "人形/男/双刀战士/woke.json",
+      "atlas": "人形/男/双刀战士/woke.atlas",
+      "pages": [
+        "woke.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "defense",
+        "idle",
+        "run",
+        "skill"
+      ],
+      "n_animations": 6,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 24,
+      "n_slots": 23
+    },
+    "人形/男/反叛刺客": {
+      "json": "人形/男/反叛刺客/Unit_Spine_RebelAssassinSpe1.json",
+      "atlas": "人形/男/反叛刺客/Unit_Spine_RebelAssassinSpe1.atlas",
+      "pages": [
+        "Unit_Spine_RebelAssassinSpe1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "skill6",
+        "stand"
+      ],
+      "n_animations": 12,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 37,
+      "n_slots": 26
+    },
+    "人形/男/反叛弓箭手变体": {
+      "json": "人形/男/反叛弓箭手变体/Unit_Spine_RebelArcherSpe1Skin1.json",
+      "atlas": "人形/男/反叛弓箭手变体/Unit_Spine_RebelArcherSpe1Skin1.atlas",
+      "pages": [
+        "Unit_Spine_RebelArcherSpe1Skin1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "stand"
+      ],
+      "n_animations": 11,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 35,
+      "n_slots": 24
+    },
+    "人形/男/反叛弓箭手变体2": {
+      "json": "人形/男/反叛弓箭手变体2/Unit_Spine_RebelArcherSpe1Skin2.json",
+      "atlas": "人形/男/反叛弓箭手变体2/Unit_Spine_RebelArcherSpe1Skin2.atlas",
+      "pages": [
+        "Unit_Spine_RebelArcherSpe1Skin2.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "stand"
+      ],
+      "n_animations": 11,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 58,
+      "n_slots": 37
+    },
+    "人形/男/叛军刺客": {
+      "json": "人形/男/叛军刺客/Unit_Spine_RebelAssassinRebelDodge1.json",
+      "atlas": "人形/男/叛军刺客/Unit_Spine_RebelAssassinRebelDodge1.atlas",
+      "pages": [
+        "Unit_Spine_RebelAssassinRebelDodge1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "skill6",
+        "stand"
+      ],
+      "n_animations": 12,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 35,
+      "n_slots": 30
+    },
+    "人形/男/叛军贼": {
+      "json": "人形/男/叛军贼/Unit_Spine_RebelAssassinRebelSteal1.json",
+      "atlas": "人形/男/叛军贼/Unit_Spine_RebelAssassinRebelSteal1.atlas",
+      "pages": [
+        "Unit_Spine_RebelAssassinRebelSteal1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "skill6",
+        "stand"
+      ],
+      "n_animations": 12,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 35,
+      "n_slots": 29
+    },
+    "人形/男/吸血鬼刺客": {
+      "json": "人形/男/吸血鬼刺客/Unit_Spine_VampireAssassin1.json",
+      "atlas": "人形/男/吸血鬼刺客/Unit_Spine_VampireAssassin1.atlas",
+      "pages": [
+        "Unit_Spine_VampireAssassin1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "skill6",
+        "stand"
+      ],
+      "n_animations": 12,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 37,
+      "n_slots": 22
+    },
+    "人形/男/帝国剑士": {
+      "json": "人形/男/帝国剑士/Unit_Spine_EmpireSword1.json",
+      "atlas": "人形/男/帝国剑士/Unit_Spine_EmpireSword1.atlas",
+      "pages": [
+        "Unit_Spine_EmpireSword1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "stand"
+      ],
+      "n_animations": 7,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 25,
+      "n_slots": 24
+    },
+    "人形/男/帝国圣骑士": {
+      "json": "人形/男/帝国圣骑士/Unit_Spine_EmpirePaladin1.json",
+      "atlas": "人形/男/帝国圣骑士/Unit_Spine_EmpirePaladin1.atlas",
+      "pages": [
+        "Unit_Spine_EmpirePaladin1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "stand"
+      ],
+      "n_animations": 10,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 34,
+      "n_slots": 28
+    },
+    "人形/男/帝国圣骑士变体": {
+      "json": "人形/男/帝国圣骑士变体/Unit_Spine_EmpirePaladinSpe1Skin1.json",
+      "atlas": "人形/男/帝国圣骑士变体/Unit_Spine_EmpirePaladinSpe1Skin1.atlas",
+      "pages": [
+        "Unit_Spine_EmpirePaladinSpe1Skin1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "stand"
+      ],
+      "n_animations": 10,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 44,
+      "n_slots": 31
+    },
+    "人形/男/帝国弓箭手": {
+      "json": "人形/男/帝国弓箭手/Unit_Spine_EmpireArcherEmpireMoveSpe1.json",
+      "atlas": "人形/男/帝国弓箭手/Unit_Spine_EmpireArcherEmpireMoveSpe1.atlas",
+      "pages": [
+        "Unit_Spine_EmpireArcherEmpireMoveSpe1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "stand"
+      ],
+      "n_animations": 11,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 53,
+      "n_slots": 32
+    },
+    "人形/男/帝国战士": {
+      "json": "人形/男/帝国战士/Unit_Spine_EmpireWarriorSpe1.json",
+      "atlas": "人形/男/帝国战士/Unit_Spine_EmpireWarriorSpe1.atlas",
+      "pages": [
+        "Unit_Spine_EmpireWarriorSpe1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "skill6",
+        "skill7",
+        "stand"
+      ],
+      "n_animations": 13,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 41,
+      "n_slots": 30
+    },
+    "人形/男/帝国战士变体2": {
+      "json": "人形/男/帝国战士变体2/Unit_Spine_EmpireWarriorSpe1Skin2.json",
+      "atlas": "人形/男/帝国战士变体2/Unit_Spine_EmpireWarriorSpe1Skin2.atlas",
+      "pages": [
+        "Unit_Spine_EmpireWarriorSpe1Skin2.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "skill6",
+        "skill7",
+        "stand"
+      ],
+      "n_animations": 13,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 39,
+      "n_slots": 29
+    },
+    "人形/男/帝国牧师": {
+      "json": "人形/男/帝国牧师/Unit_Spine_EmpirePriestSpe1.json",
+      "atlas": "人形/男/帝国牧师/Unit_Spine_EmpirePriestSpe1.atlas",
+      "pages": [
+        "Unit_Spine_EmpirePriestSpe1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "stand"
+      ],
+      "n_animations": 9,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 41,
+      "n_slots": 20
+    },
+    "人形/男/帝国骑士": {
+      "json": "人形/男/帝国骑士/Unit_Spine_EmpireKnight2.json",
+      "atlas": "人形/男/帝国骑士/Unit_Spine_EmpireKnight2.atlas",
+      "pages": [
+        "Unit_Spine_EmpireKnight2.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "stand"
+      ],
+      "n_animations": 7,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 44,
+      "n_slots": 24
+    },
+    "人形/男/忍装玩家": {
+      "json": "人形/男/忍装玩家/player.json",
+      "atlas": "人形/男/忍装玩家/player.atlas",
+      "pages": [
+        "player.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "a1",
+        "appear",
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack4",
+        "attack5",
+        "dash",
+        "dash_air",
+        "dash_attack",
+        "dash_to_idle",
+        "dash_to_move",
+        "die",
+        "double_jump",
+        "get_hurt",
+        "get_up",
+        "idle",
+        "idle1_UI",
+        "idle2_UI",
+        "idle3_UI",
+        "idle4_UI",
+        "idle_old",
+        "idle_to_move",
+        "jump_attack1",
+        "jump_attack2",
+        "jump_attack3",
+        "jump_attack4",
+        "jump_attack5",
+        "jump_attack6",
+        "jump_attack_demo",
+        "jump_down",
+        "jump_end",
+        "jump_start",
+        "jump_to_move",
+        "knock_up1",
+        "knock_up2",
+        "knock_up3",
+        "move",
+        "revive",
+        "roll",
+        "roll_air",
+        "roll_to_idle",
+        "roll_to_move",
+        "skill1_air",
+        "skill1_ground",
+        "skill2_air",
+        "skill2_ground",
+        "spin",
+        "ultimate"
+      ],
+      "n_animations": 49,
+      "skins": [
+        "default",
+        "OutFits/skin2",
+        "OutFits/skin3",
+        "OutFits/skin4",
+        "OutFits/skin5",
+        "OutFits/skin6",
+        "OutFits/skin7",
+        "OutFits/skin8",
+        "Weapons/weapon2",
+        "Weapons/weapon5",
+        "Weapons/weapon6",
+        "Weapons/weapon8"
+      ],
+      "n_skins": 12,
+      "n_bones": 77,
+      "n_slots": 54
+    },
+    "人形/男/斗笠剑客": {
+      "json": "人形/男/斗笠剑客/cha_1114.json",
+      "atlas": "人形/男/斗笠剑客/cha_1114.atlas",
+      "pages": [
+        "cha_1114.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "backward",
+        "dead",
+        "hurt",
+        "run",
+        "skill",
+        "stand",
+        "stand2",
+        "walk"
+      ],
+      "n_animations": 9,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 92,
+      "n_slots": 62
+    },
+    "人形/男/斧头狂战": {
+      "json": "人形/男/斧头狂战/axe.json",
+      "atlas": "人形/男/斧头狂战/axe.atlas",
+      "pages": [
+        "axe.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack4",
+        "damage",
+        "death",
+        "dizziness",
+        "idle",
+        "run",
+        "vctory"
+      ],
+      "n_animations": 10,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 74,
+      "n_slots": 30
+    },
+    "人形/男/旋风勇者": {
+      "json": "人形/男/旋风勇者/let-me-solo-all.json",
+      "atlas": "人形/男/旋风勇者/let-me-solo-all.atlas",
+      "pages": [
+        "let-me-solo-all.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "damage",
+        "death",
+        "idle",
+        "ready",
+        "run",
+        "spawn",
+        "ultimate-attack"
+      ],
+      "n_animations": 8,
+      "skins": [
+        "default",
+        "1",
+        "2",
+        "3"
+      ],
+      "n_skins": 4,
+      "n_bones": 16,
+      "n_slots": 14
+    },
+    "人形/男/无头骑士": {
+      "json": "人形/男/无头骑士/dullahan.json",
+      "atlas": "人形/男/无头骑士/dullahan.atlas",
+      "pages": [
+        "dullahan.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Attack01",
+        "Dead",
+        "Hit",
+        "Idle",
+        "Run",
+        "Skill01"
+      ],
+      "n_animations": 6,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 50,
+      "n_slots": 22
+    },
+    "人形/男/春节舞狮男孩": {
+      "json": "人形/男/春节舞狮男孩/nanzhu_manianchunjie.json",
+      "atlas": "人形/男/春节舞狮男孩/nanzhu_manianchunjie.atlas",
+      "pages": [
+        "nanzhu_manianchunjie.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "2344",
+        "Atk",
+        "Death",
+        "Reload",
+        "Reload_Run",
+        "Reload_Run_Weak",
+        "Reload_Weak",
+        "Run_Fight",
+        "Run_Relaxed",
+        "Run_Weak",
+        "Show_Fight",
+        "Show_Fight_2",
+        "Show_Relaxed",
+        "Stand_Fight",
+        "Stand_Relaxed",
+        "Weak"
+      ],
+      "n_animations": 16,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 127,
+      "n_slots": 83
+    },
+    "人形/男/暗法拳王": {
+      "json": "人形/男/暗法拳王/100604_quanwang.json",
+      "atlas": "人形/男/暗法拳王/100604_quanwang.atlas",
+      "pages": [
+        "100604_quanwang.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack4",
+        "attack5",
+        "born",
+        "idle",
+        "run"
+      ],
+      "n_animations": 8,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 67,
+      "n_slots": 34
+    },
+    "人形/男/武僧": {
+      "json": "人形/男/武僧/monk.json",
+      "atlas": "人形/男/武僧/monk.atlas",
+      "pages": [
+        "monk.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "damage",
+        "death",
+        "idle",
+        "run",
+        "skill",
+        "spawn"
+      ],
+      "n_animations": 7,
+      "skins": [
+        "1",
+        "2",
+        "3"
+      ],
+      "n_skins": 3,
+      "n_bones": 35,
+      "n_slots": 21
+    },
+    "人形/男/法袍法师": {
+      "json": "人形/男/法袍法师/Magic Gril.json",
+      "atlas": "人形/男/法袍法师/Magic Gril.atlas",
+      "pages": [
+        "Magic Gril.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "damage",
+        "death",
+        "defence",
+        "free_run",
+        "idle",
+        "run",
+        "skill_magic"
+      ],
+      "n_animations": 8,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 22,
+      "n_slots": 29
+    },
+    "人形/男/狐面忍者": {
+      "json": "人形/男/狐面忍者/kunai_ninja.json",
+      "atlas": "人形/男/狐面忍者/kunai_ninja.atlas",
+      "pages": [
+        "kunai_ninja.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "appear",
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack_demo",
+        "bow_attack",
+        "bow_attack_fast",
+        "bow_attack_to_idle",
+        "die",
+        "double_jump",
+        "get_hurt",
+        "get_up",
+        "idle",
+        "idle_to_move",
+        "jump_attack1",
+        "jump_attack2",
+        "jump_attack3-1",
+        "jump_attack3-2",
+        "jump_attack3-3",
+        "jump_attack3-4",
+        "jump_attack_demo2",
+        "jump_down",
+        "jump_end",
+        "jump_start",
+        "jump_to_move",
+        "knock_up1",
+        "knock_up2",
+        "knock_up3",
+        "move",
+        "revive",
+        "roll",
+        "roll_air",
+        "roll_demo",
+        "roll_demo2",
+        "roll_to_idle",
+        "roll_to_idle3",
+        "roll_to_move",
+        "skill203_air",
+        "skill203_ground",
+        "skill207_air",
+        "skill207_ground",
+        "skill207_ground2",
+        "spin"
+      ],
+      "n_animations": 43,
+      "skins": [
+        "default",
+        "skin1",
+        "skin2",
+        "skin3",
+        "skin4"
+      ],
+      "n_skins": 5,
+      "n_bones": 70,
+      "n_slots": 46
+    },
+    "人形/男/猎人老翁": {
+      "json": "人形/男/猎人老翁/Npc_OldHunter.json",
+      "atlas": "人形/男/猎人老翁/Npc_OldHunter.atlas",
+      "pages": [
+        "Npc_OldHunter.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "NPC_OldHunter/001A_Idle",
+        "NPC_OldHunter/001B_ChangeDir",
+        "NPC_OldHunter/001D_Talk",
+        "NPC_OldHunter/001D_Talk2",
+        "NPC_OldHunter/001D_Talk3",
+        "NPC_OldHunter/001D_Talk4",
+        "NPC_OldHunter/001sp_Talk_ForBlend",
+        "NPC_OldHunter/002A_Move",
+        "NPC_OldHunter/002A_MoveRun",
+        "NPC_OldHunter/002B_MoveRunB",
+        "NPC_OldHunter/002C_MoveRunC",
+        "NPC_OldHunter/002D_MoveRunD",
+        "NPC_OldHunter/003A_Performance_Surprised",
+        "NPC_OldHunter/003B_Performance_Exhausted",
+        "NPC_OldHunter/003C_Performance_Proud",
+        "NPC_OldHunter/004A_SwordPose",
+        "NPC_OldHunter/004B_SwordPose_Roar",
+        "NPC_OldHunter/004C_SwordPose_MoveRun",
+        "NPC_OldHunter/004D_SwordPose_MoveRun_End"
+      ],
+      "n_animations": 19,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 61,
+      "n_slots": 37
+    },
+    "人形/男/猫耳少年": {
+      "json": "人形/男/猫耳少年/CatGirl.json",
+      "atlas": "人形/男/猫耳少年/CatGirl.atlas",
+      "pages": [
+        "CatGirl.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack/attack1",
+        "attack/attack2",
+        "attack/attack3",
+        "base/dangling",
+        "base/dash",
+        "base/dive",
+        "base/dodge",
+        "base/ground",
+        "base/idle1",
+        "base/idle2",
+        "base/run",
+        "base/walk",
+        "cling/wall-clinging",
+        "crouch/crawling",
+        "crouch/crouching",
+        "damage/airDeath",
+        "damage/airDeath-fall",
+        "damage/airDeath-ground",
+        "damage/death",
+        "damage/hurt",
+        "glide/idle",
+        "glide/moving",
+        "grip/idle",
+        "grip/moving",
+        "jump1/idle-to-jump",
+        "jump1/jump-down",
+        "jump1/jump-up",
+        "jump1/up-to-down",
+        "jump2/begin",
+        "jump2/jump-down",
+        "jump2/jump-up",
+        "jump2/up-to-down",
+        "ladder/climb-down",
+        "ladder/climb-up",
+        "ladder/idle",
+        "push/idle",
+        "push/pulling",
+        "push/pushing",
+        "swim/idle",
+        "swim/swimming"
+      ],
+      "n_animations": 40,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 48,
+      "n_slots": 34
+    },
+    "人形/男/玫瑰刺客": {
+      "json": "人形/男/玫瑰刺客/wujiang_10002.json",
+      "atlas": "人形/男/玫瑰刺客/wujiang_10002.atlas",
+      "pages": [
+        "wujiang_10002.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "1",
+        "101",
+        "102",
+        "300",
+        "444"
+      ],
+      "n_animations": 5,
+      "skins": [
+        "default",
+        "skin_1"
+      ],
+      "n_skins": 2,
+      "n_bones": 30,
+      "n_slots": 22
+    },
+    "人形/男/电弓战将": {
+      "json": "人形/男/电弓战将/electro-archer.json",
+      "atlas": "人形/男/电弓战将/electro-archer.atlas",
+      "pages": [
+        "electro-archer.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "idle",
+        "ready",
+        "run",
+        "ultimate_attack"
+      ],
+      "n_animations": 5,
+      "skins": [
+        "default",
+        "1",
+        "2",
+        "3"
+      ],
+      "n_skins": 4,
+      "n_bones": 26,
+      "n_slots": 27
+    },
+    "人形/男/白衫青年": {
+      "json": "人形/男/白衫青年/bbaksang.json",
+      "atlas": "人形/男/白衫青年/bbaksang.atlas",
+      "pages": [
+        "bbaksang.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Attack1",
+        "Attack2",
+        "Death",
+        "Disappear",
+        "Freezing",
+        "Idle",
+        "Knockback",
+        "Knockdown",
+        "MainSkill",
+        "Move",
+        "SkillReady",
+        "StandUp",
+        "Stun",
+        "SubSkill1",
+        "SubSkill2",
+        "Victory"
+      ],
+      "n_animations": 16,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 136,
+      "n_slots": 78
+    },
+    "人形/男/紫发女刺客": {
+      "json": "人形/男/紫发女刺客/linchaoying.json",
+      "atlas": "人形/男/紫发女刺客/linchaoying.atlas",
+      "pages": [
+        "linchaoying.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Backup_skill",
+        "Backup_skill1",
+        "death",
+        "idle",
+        "run",
+        "skill1",
+        "skill2"
+      ],
+      "n_animations": 7,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 58,
+      "n_slots": 22
+    },
+    "人形/男/红发弓手": {
+      "json": "人形/男/红发弓手/Unit_Bowman_0.json",
+      "atlas": "人形/男/红发弓手/Unit_Bowman_0.atlas",
+      "pages": [
+        "Unit_Bowman_0.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "run",
+        "skill1",
+        "skill2",
+        "stand"
+      ],
+      "n_animations": 7,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 22,
+      "n_slots": 25
+    },
+    "人形/男/红发纹身师": {
+      "json": "人形/男/红发纹身师/Tattooist.json",
+      "atlas": "人形/男/红发纹身师/Tattooist.atlas",
+      "pages": [
+        "Tattooist.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Attack1",
+        "Attack2",
+        "Death",
+        "Disappear",
+        "Freezing",
+        "Idle",
+        "Knockback",
+        "Knockdown",
+        "MainSkill",
+        "Move",
+        "SkillReady",
+        "StandUp",
+        "Stun",
+        "SubSkill1",
+        "SubSkill2",
+        "SubSkill3",
+        "Victory"
+      ],
+      "n_animations": 17,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 341,
+      "n_slots": 234
+    },
+    "人形/男/红披盗贼": {
+      "json": "人形/男/红披盗贼/ouwen.json",
+      "atlas": "人形/男/红披盗贼/ouwen.atlas",
+      "pages": [
+        "ouwen.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "defence",
+        "idle",
+        "run",
+        "skill"
+      ],
+      "n_animations": 6,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 20,
+      "n_slots": 19
+    },
+    "人形/男/红袍斧战": {
+      "json": "人形/男/红袍斧战/warrior06.json",
+      "atlas": "人形/男/红袍斧战/warrior06.atlas",
+      "pages": [
+        "warrior06.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "1",
+        "attack",
+        "die",
+        "idle",
+        "idle02",
+        "move",
+        "show",
+        "skill"
+      ],
+      "n_animations": 8,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 50,
+      "n_slots": 29
+    },
+    "人形/男/络腮胡剑士": {
+      "json": "人形/男/络腮胡剑士/NPC2.json",
+      "atlas": "人形/男/络腮胡剑士/NPC2.atlas",
+      "pages": [
+        "NPC2.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "skill1",
+        "skill2",
+        "stand"
+      ],
+      "n_animations": 3,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 24,
+      "n_slots": 19
+    },
+    "人形/男/绿弓游侠": {
+      "json": "人形/男/绿弓游侠/dragon_arrow.json",
+      "atlas": "人形/男/绿弓游侠/dragon_arrow.atlas",
+      "pages": [
+        "dragon_arrow.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "idle",
+        "idle_ago",
+        "idle_lobby"
+      ],
+      "n_animations": 4,
+      "skins": [
+        "1",
+        "2",
+        "3"
+      ],
+      "n_skins": 3,
+      "n_bones": 20,
+      "n_slots": 15
+    },
+    "人形/男/绿袍法老": {
+      "json": "人形/男/绿袍法老/magic.json",
+      "atlas": "人形/男/绿袍法老/magic.atlas",
+      "pages": [
+        "magic.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack4",
+        "attack5",
+        "attack6",
+        "casting",
+        "damage",
+        "death",
+        "defence",
+        "idle",
+        "run",
+        "victory"
+      ],
+      "n_animations": 13,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 121,
+      "n_slots": 39
+    },
+    "人形/男/胖盾枪兵": {
+      "json": "人形/男/胖盾枪兵/Fat Knight.json",
+      "atlas": "人形/男/胖盾枪兵/Fat Knight.atlas",
+      "pages": [
+        "Fat Knight.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack4",
+        "attack5",
+        "attack6",
+        "damage",
+        "death",
+        "dizziness",
+        "idle",
+        "run",
+        "victory"
+      ],
+      "n_animations": 12,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 65,
+      "n_slots": 26
+    },
+    "人形/男/蓝发持剑战士": {
+      "json": "人形/男/蓝发持剑战士/gonbong.json",
+      "atlas": "人形/男/蓝发持剑战士/gonbong.atlas",
+      "pages": [
+        "gonbong.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Attack1",
+        "Attack2",
+        "Death",
+        "Disappear",
+        "Freezing",
+        "Idle",
+        "Knockback",
+        "Knockdown",
+        "MainSkill",
+        "Move",
+        "SkillReady",
+        "StandUp",
+        "Stun",
+        "SubSkill1",
+        "SubSkill2",
+        "Victory"
+      ],
+      "n_animations": 16,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 120,
+      "n_slots": 66
+    },
+    "人形/男/蓝发铠甲武士": {
+      "json": "人形/男/蓝发铠甲武士/samurai.json",
+      "atlas": "人形/男/蓝发铠甲武士/samurai.atlas",
+      "pages": [
+        "samurai.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "damage",
+        "death",
+        "dizziness",
+        "idle",
+        "run",
+        "skill"
+      ],
+      "n_animations": 7,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 85,
+      "n_slots": 32
+    },
+    "人形/男/蓝枪卫兵": {
+      "json": "人形/男/蓝枪卫兵/guard.json",
+      "atlas": "人形/男/蓝枪卫兵/guard.atlas",
+      "pages": [
+        "guard.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "damage",
+        "death",
+        "defence",
+        "idle",
+        "run",
+        "skill"
+      ],
+      "n_animations": 7,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 75,
+      "n_slots": 27
+    },
+    "人形/男/蓝甲剑士": {
+      "json": "人形/男/蓝甲剑士/Swordman.json",
+      "atlas": "人形/男/蓝甲剑士/Swordman.atlas",
+      "pages": [
+        "Swordman.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack4",
+        "attack5",
+        "attack6",
+        "attack7",
+        "damage",
+        "death",
+        "defence",
+        "dizziness",
+        "idle",
+        "run",
+        "victory"
+      ],
+      "n_animations": 14,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 75,
+      "n_slots": 27
+    },
+    "人形/男/蓝衣术士": {
+      "json": "人形/男/蓝衣术士/yunggul.json",
+      "atlas": "人形/男/蓝衣术士/yunggul.atlas",
+      "pages": [
+        "yunggul.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Attack1",
+        "Attack2",
+        "Death",
+        "Disappear",
+        "Freezing",
+        "Idle",
+        "Knockback",
+        "Knockdown",
+        "MainSkill",
+        "Move",
+        "SkillReady",
+        "StandUp",
+        "Stun",
+        "SubSkill1",
+        "SubSkill2",
+        "Victory"
+      ],
+      "n_animations": 16,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 177,
+      "n_slots": 88
+    },
+    "人形/男/蓝袍学士": {
+      "json": "人形/男/蓝袍学士/112058.json",
+      "atlas": "人形/男/蓝袍学士/112058.atlas",
+      "pages": [
+        "112058.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "happy",
+        "idle",
+        "sad",
+        "state1"
+      ],
+      "n_animations": 4,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 229,
+      "n_slots": 80
+    },
+    "人形/男/蛮锤狂战": {
+      "json": "人形/男/蛮锤狂战/Unit_Spine_NowsiPaladinNowsiStunSpe1.json",
+      "atlas": "人形/男/蛮锤狂战/Unit_Spine_NowsiPaladinNowsiStunSpe1.atlas",
+      "pages": [
+        "Unit_Spine_NowsiPaladinNowsiStunSpe1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "stand"
+      ],
+      "n_animations": 10,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 29,
+      "n_slots": 27
+    },
+    "人形/男/角盔蛮战": {
+      "json": "人形/男/角盔蛮战/017.json",
+      "atlas": "人形/男/角盔蛮战/017.atlas",
+      "pages": [
+        "017.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "attack2",
+        "damage",
+        "die",
+        "knockback",
+        "normal",
+        "skill",
+        "stun",
+        "tornado",
+        "walk",
+        "win",
+        "xxx"
+      ],
+      "n_animations": 12,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 8,
+      "n_slots": 9
+    },
+    "人形/男/金发双剑": {
+      "json": "人形/男/金发双剑/ThorForm2.json",
+      "atlas": "人形/男/金发双剑/ThorForm2.atlas",
+      "pages": [
+        "ThorForm2.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack4",
+        "attack5",
+        "buff",
+        "dead",
+        "defense",
+        "hit1",
+        "hit2",
+        "hit3",
+        "hit4",
+        "idleinair",
+        "idleinground",
+        "idleinhome_loop",
+        "idleinhome_start",
+        "levelup",
+        "moveback",
+        "moveforward",
+        "nockbackinground",
+        "roixuong",
+        "skill1",
+        "skill2radon",
+        "skill2tuluc",
+        "skill3radon",
+        "skill3tuluc",
+        "win"
+      ],
+      "n_animations": 27,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 56,
+      "n_slots": 23
+    },
+    "人形/男/金发女剑士": {
+      "json": "人形/男/金发女剑士/pirate.json",
+      "atlas": "人形/男/金发女剑士/pirate.atlas",
+      "pages": [
+        "pirate.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "damage",
+        "death",
+        "dizziness",
+        "idle",
+        "run",
+        "skill"
+      ],
+      "n_animations": 7,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 93,
+      "n_slots": 32
+    },
+    "人形/男/金袍判官": {
+      "json": "人形/男/金袍判官/pangu.json",
+      "atlas": "人形/男/金袍判官/pangu.atlas",
+      "pages": [
+        "pangu.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "idle",
+        "run"
+      ],
+      "n_animations": 2,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 100,
+      "n_slots": 33
+    },
+    "人形/男/金袍少侠": {
+      "json": "人形/男/金袍少侠/jinhuayanyun_nan.json",
+      "atlas": "人形/男/金袍少侠/jinhuayanyun_nan.atlas",
+      "pages": [
+        "jinhuayanyun_nan.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Backup_death",
+        "death",
+        "idle_crossbow",
+        "idle_fan",
+        "idle_knife",
+        "idle_mount",
+        "idle_sword",
+        "run",
+        "run_crossbow",
+        "run_fan",
+        "run_knife",
+        "run_mount",
+        "run_sword"
+      ],
+      "n_animations": 13,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 73,
+      "n_slots": 27
+    },
+    "人形/男/长矛守卫": {
+      "json": "人形/男/长矛守卫/Act3_Polearm_GuardL.json",
+      "atlas": "人形/男/长矛守卫/Act3_Polearm_GuardL.atlas",
+      "pages": [
+        "Act3_Polearm_GuardL.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "animation",
+        "pose1",
+        "pose2",
+        "pose3"
+      ],
+      "n_animations": 4,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 24,
+      "n_slots": 17
+    },
+    "人形/男/长袍老伯": {
+      "json": "人形/男/长袍老伯/boke.json",
+      "atlas": "人形/男/长袍老伯/boke.atlas",
+      "pages": [
+        "boke.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack4",
+        "damage",
+        "death",
+        "dizziness",
+        "idle",
+        "run",
+        "vctory"
+      ],
+      "n_animations": 10,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 87,
+      "n_slots": 28
+    },
+    "人形/男/隐弓少年": {
+      "json": "人形/男/隐弓少年/100101_anyinglieshou.json",
+      "atlas": "人形/男/隐弓少年/100101_anyinglieshou.atlas",
+      "pages": [
+        "100101_anyinglieshou.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack1",
+        "attack2",
+        "attack3",
+        "born",
+        "idle",
+        "run"
+      ],
+      "n_animations": 6,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 58,
+      "n_slots": 22
+    },
+    "人形/男/青袍剑客": {
+      "json": "人形/男/青袍剑客/xingxiazhangyi_nan.json",
+      "atlas": "人形/男/青袍剑客/xingxiazhangyi_nan.atlas",
+      "pages": [
+        "xingxiazhangyi_nan.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Backup_death",
+        "death",
+        "idle_crossbow",
+        "idle_fan",
+        "idle_knife",
+        "idle_mount",
+        "idle_sword",
+        "run",
+        "run_crossbow",
+        "run_fan",
+        "run_knife",
+        "run_mount",
+        "run_sword"
+      ],
+      "n_animations": 13,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 76,
+      "n_slots": 24
+    },
+    "人形/男/骑士领主": {
+      "json": "人形/男/骑士领主/LC2_BOSS_KnightMaster.json",
+      "atlas": "人形/男/骑士领主/LC2_BOSS_KnightMaster.atlas",
+      "pages": [
+        "LC2_BOSS_KnightMaster.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "BOSS_KnightMaster/001A_Idle",
+        "BOSS_KnightMaster/001B_ChangeDir",
+        "BOSS_KnightMaster/002A_MoveForward",
+        "BOSS_KnightMaster/002B_MoveBackward",
+        "BOSS_KnightMaster/002C_Run",
+        "BOSS_KnightMaster/002D_Run_Start",
+        "BOSS_KnightMaster/002E_JumpBack",
+        "BOSS_KnightMaster/003_001_Slash2Hand",
+        "BOSS_KnightMaster/003_002A_Slash1Hand",
+        "BOSS_KnightMaster/003_002B_Slash2HandMove",
+        "BOSS_KnightMaster/003_002C_Slash1HandDash",
+        "BOSS_KnightMaster/003_003A_SlashCombo",
+        "BOSS_KnightMaster/003_003B_SlashComboBack",
+        "BOSS_KnightMaster/003_003C_SlashComboDash",
+        "BOSS_KnightMaster/003_004A_DownSlash",
+        "BOSS_KnightMaster/003_004B_DownSlashMove",
+        "BOSS_KnightMaster/003_005A_Rolling",
+        "BOSS_KnightMaster/003_005B_RollingDash",
+        "BOSS_KnightMaster/003_005C_RollingBack",
+        "BOSS_KnightMaster/003_005D_SpRolling",
+        "BOSS_KnightMaster/003_006A_Rolling",
+        "BOSS_KnightMaster/003_008A_UpSlashA",
+        "BOSS_KnightMaster/003_009A_RollingDown",
+        "BOSS_KnightMaster/003_010A_SlashChargeA",
+        "BOSS_KnightMaster/003_010B_DownSlash",
+        "BOSS_KnightMaster/003_010B_DownSlashChangeDir",
+        "BOSS_KnightMaster/003_010B_DownSlashDash",
+        "BOSS_KnightMaster/003_010B_DownSlashDashChangeDir",
+        "BOSS_KnightMaster/003_011A_SlashChargeB",
+        "BOSS_KnightMaster/003_011B_UpSlashChangeDir",
+        "BOSS_KnightMaster/003_011B_UpSlashChangeDirDash",
+        "BOSS_KnightMaster/003_012A_Grab_Start",
+        "BOSS_KnightMaster/003_012B_GrabDashBack",
+        "BOSS_KnightMaster/003_012B_GrabDashFront",
+        "BOSS_KnightMaster/003_012B_GrabDashLoop",
+        "BOSS_KnightMaster/003_012C_GrabCombo",
+        "BOSS_KnightMaster/003_012D_GrabFailed",
+        "BOSS_KnightMaster/003_013A_FistAtk",
+        "BOSS_KnightMaster/003_014A_FrontFistAtk",
+        "BOSS_KnightMaster/003_014B_ChargeFistAtk",
+        "BOSS_KnightMaster/003_014C_BackFistAtk",
+        "BOSS_KnightMaster/003_014D_JumpFistAtk",
+        "BOSS_KnightMaster/003_017A_HandleAtkHeavy",
+        "BOSS_KnightMaster/003_017B_HandleAtkFast",
+        "BOSS_KnightMaster/004A_BeAttacked_Stagger_A",
+        "BOSS_KnightMaster/004B_BeAttacked_Stagger_B",
+        "BOSS_KnightMaster/004C_BeAttacked_StaggerHeavy_A",
+        "BOSS_KnightMaster/004D_BeAttacked_StaggerHeavy_B",
+        "BOSS_KnightMaster/004E_BeAttacked_Stagger_ForBlend",
+        "BOSS_KnightMaster/005A_Break_Start",
+        "BOSS_KnightMaster/005B_Break_Loop",
+        "BOSS_KnightMaster/005C_Break_End",
+        "BOSS_KnightMaster/005D_Break_End",
+        "BOSS_KnightMaster/005D_Break_Loop",
+        "BOSS_KnightMaster/005D_Break_Start",
+        "BOSS_KnightMaster/005D_Break_Start2",
+        "BOSS_KnightMaster/007A_Die",
+        "BOSS_KnightMaster/008A_Sp_Roar",
+        "BOSS_KnightMaster/008B_Sp_ChangeDirRoar",
+        "BOSS_KnightMaster/008B_Sp_ChangeDirRoar2",
+        "BOSS_KnightMaster/008C_Rage",
+        "BOSS_KnightMaster/010A_Born",
+        "BOSS_KnightMaster/010B_Born_Test",
+        "BOSS_KnightMaster/Rush_DashRoolingCombo"
+      ],
+      "n_animations": 64,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 98,
+      "n_slots": 62
+    },
+    "人形/男/鬼面武士": {
+      "json": "人形/男/鬼面武士/samurai_oni.json",
+      "atlas": "人形/男/鬼面武士/samurai_oni.atlas",
+      "pages": [
+        "samurai_oni.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "attack_ago",
+        "idle",
+        "idle_ago",
+        "idle_lobby"
+      ],
+      "n_animations": 5,
+      "skins": [
+        "default",
+        "1",
+        "2",
+        "3"
+      ],
+      "n_skins": 4,
+      "n_bones": 22,
+      "n_slots": 24
+    },
+    "人形/男/鸟人牧师": {
+      "json": "人形/男/鸟人牧师/Unit_Spine_BirdPriestSpe1Skin1.json",
+      "atlas": "人形/男/鸟人牧师/Unit_Spine_BirdPriestSpe1Skin1.atlas",
+      "pages": [
+        "Unit_Spine_BirdPriestSpe1Skin1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "stand"
+      ],
+      "n_animations": 9,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 67,
+      "n_slots": 43
+    },
+    "人形/男/鸟嘴医生": {
+      "json": "人形/男/鸟嘴医生/100211_niaozuiyisheng_nan_jw.json",
+      "atlas": "人形/男/鸟嘴医生/100211_niaozuiyisheng_nan_jw.atlas",
+      "pages": [
+        "100211_niaozuiyisheng_nan_jw.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "idle"
+      ],
+      "n_animations": 1,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 132,
+      "n_slots": 42
+    },
+    "人形/男/黄衣游侠": {
+      "json": "人形/男/黄衣游侠/qiaofeng.json",
+      "atlas": "人形/男/黄衣游侠/qiaofeng.atlas",
+      "pages": [
+        "qiaofeng.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "death",
+        "idle",
+        "run",
+        "skill1",
+        "skill2"
+      ],
+      "n_animations": 5,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 52,
+      "n_slots": 16
+    },
+    "人形/男/黄袍剑士": {
+      "json": "人形/男/黄袍剑士/_replaced_leega.json",
+      "atlas": "人形/男/黄袍剑士/_replaced_leega.atlas",
+      "pages": [
+        "leega.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Attack1",
+        "Attack2",
+        "Death",
+        "Disappear",
+        "Freezing",
+        "Idle",
+        "Knockback",
+        "Knockdown",
+        "MainSkill",
+        "Move",
+        "SkillReady",
+        "StandUp",
+        "Stun",
+        "SubSkill1",
+        "SubSkill2",
+        "SubSkill3",
+        "Victory"
+      ],
+      "n_animations": 17,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 217,
+      "n_slots": 96
+    },
+    "人形/男/黑衣青年": {
+      "json": "人形/男/黑衣青年/bboy.json",
+      "atlas": "人形/男/黑衣青年/bboy.atlas",
+      "pages": [
+        "bboy.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Attack1",
+        "Attack2",
+        "Death",
+        "Disappear",
+        "Freezing",
+        "Idle",
+        "Knockback",
+        "Knockdown",
+        "MainSkill",
+        "Move",
+        "SkillReady",
+        "StandUp",
+        "Stun",
+        "SubSkill1",
+        "SubSkill2",
+        "Victory"
+      ],
+      "n_animations": 16,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 116,
+      "n_slots": 67
+    },
+    "人形/男/黑袍剑客": {
+      "json": "人形/男/黑袍剑客/xizhaoxiaoxiang_nan.json",
+      "atlas": "人形/男/黑袍剑客/xizhaoxiaoxiang_nan.atlas",
+      "pages": [
+        "xizhaoxiaoxiang_nan.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Backup_death",
+        "death",
+        "idle_crossbow",
+        "idle_fan",
+        "idle_knife",
+        "idle_mount",
+        "idle_sword",
+        "run",
+        "run_crossbow",
+        "run_fan",
+        "run_knife",
+        "run_mount",
+        "run_sword"
+      ],
+      "n_animations": 13,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 91,
+      "n_slots": 27
+    },
+    "兽人/男/兽人双刀剑客": {
+      "json": "兽人/男/兽人双刀剑客/RogueNoyakinBlade.json",
+      "atlas": "兽人/男/兽人双刀剑客/RogueNoyakinBlade.atlas",
+      "pages": [
+        "RogueNoyakinBlade.png",
+        "RogueNoyakinBlade_2.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "idle",
+        "idle_mannerism",
+        "pose_attack_v1",
+        "pose_attack_v2",
+        "pose_cast_spell",
+        "pose_death",
+        "pose_defend",
+        "pose_hurt",
+        "pose_move_back",
+        "pose_move_front",
+        "pose_ranged_attack"
+      ],
+      "n_animations": 11,
+      "skins": [
+        "default",
+        "elite",
+        "normal"
+      ],
+      "n_skins": 3,
+      "n_bones": 39,
+      "n_slots": 29
+    },
+    "兽人/男/兽骨剑士": {
+      "json": "兽人/男/兽骨剑士/S017_skin1.json",
+      "atlas": "兽人/男/兽骨剑士/S017_skin1.atlas",
+      "pages": [
+        "S017_skin1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "dead",
+        "fx1",
+        "idle",
+        "run",
+        "skill1"
+      ],
+      "n_animations": 6,
+      "skins": [
+        "skin1"
+      ],
+      "n_skins": 1,
+      "n_bones": 31,
+      "n_slots": 36
+    },
+    "兽人/男/兽骨斧战": {
+      "json": "兽人/男/兽骨斧战/S017_skin3.json",
+      "atlas": "兽人/男/兽骨斧战/S017_skin3.atlas",
+      "pages": [
+        "S017_skin3.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "dead",
+        "fx1",
+        "idle",
+        "run",
+        "skill1"
+      ],
+      "n_animations": 6,
+      "skins": [
+        "skin3"
+      ],
+      "n_skins": 1,
+      "n_bones": 31,
+      "n_slots": 36
+    },
+    "兽人/男/披甲兽将": {
+      "json": "兽人/男/披甲兽将/Cam12Boss1.json",
+      "atlas": "兽人/男/披甲兽将/Cam12Boss1.atlas",
+      "pages": [
+        "Cam12Boss1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack1",
+        "attack2",
+        "attack3",
+        "attack4",
+        "attack5",
+        "buff",
+        "dead",
+        "defense",
+        "hit1",
+        "hit2",
+        "hit3",
+        "hit4",
+        "idleinair",
+        "idleinground",
+        "moveback",
+        "moveforward",
+        "roixuong",
+        "skill1",
+        "skill2radon",
+        "skill2tuluc",
+        "skill3radon",
+        "skill3tuluc",
+        "win"
+      ],
+      "n_animations": 23,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 30,
+      "n_slots": 19
+    },
+    "兽人/男/鲨头锤兵": {
+      "json": "兽人/男/鲨头锤兵/shayumaike.json",
+      "atlas": "兽人/男/鲨头锤兵/shayumaike.atlas",
+      "pages": [
+        "shayumaike.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "jineng01_end",
+        "jineng01_loop",
+        "jineng01_star",
+        "jineng02",
+        "jineng03",
+        "siwang",
+        "yidong"
+      ],
+      "n_animations": 7,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 44,
+      "n_slots": 23
+    },
+    "兽人/男/鸟肩兽战": {
+      "json": "兽人/男/鸟肩兽战/S003_skin5.json",
+      "atlas": "兽人/男/鸟肩兽战/S003_skin5.atlas",
+      "pages": [
+        "S003_skin5.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "dead",
+        "idle",
+        "run",
+        "skill1_1",
+        "skill1_2",
+        "skill1_3",
+        "skill2"
+      ],
+      "n_animations": 8,
+      "skins": [
+        "default",
+        "skin5"
+      ],
+      "n_skins": 2,
+      "n_bones": 37,
+      "n_slots": 44
+    },
+    "哥布林/男/火把哥布林": {
+      "json": "哥布林/男/火把哥布林/S004_skin2_low.json",
+      "atlas": "哥布林/男/火把哥布林/S004_skin2_low.atlas",
+      "pages": [
+        "S004_skin2_low.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "casting1",
+        "dead",
+        "idle",
+        "run"
+      ],
+      "n_animations": 5,
+      "skins": [
+        "default",
+        "skin2"
+      ],
+      "n_skins": 2,
+      "n_bones": 14,
+      "n_slots": 23
+    },
+    "哥布林/男/牛仔哥布林": {
+      "json": "哥布林/男/牛仔哥布林/duyalieshou.json",
+      "atlas": "哥布林/男/牛仔哥布林/duyalieshou.atlas",
+      "pages": [
+        "duyalieshou.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "jineng01",
+        "jineng02",
+        "jineng03",
+        "siwang",
+        "yidong"
+      ],
+      "n_animations": 5,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 57,
+      "n_slots": 30
+    },
+    "哥布林/男/矛枪哥布林": {
+      "json": "哥布林/男/矛枪哥布林/S009_sub_skin5_low.json",
+      "atlas": "哥布林/男/矛枪哥布林/S009_sub_skin5_low.atlas",
+      "pages": [
+        "S009_sub_skin5_low.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "dead",
+        "idle",
+        "run"
+      ],
+      "n_animations": 4,
+      "skins": [
+        "default",
+        "skin5"
+      ],
+      "n_skins": 2,
+      "n_bones": 12,
+      "n_slots": 16
+    },
+    "哥布林/男/骑猪勇者": {
+      "json": "哥布林/男/骑猪勇者/S009_skin4_low.json",
+      "atlas": "哥布林/男/骑猪勇者/S009_skin4_low.atlas",
+      "pages": [
+        "S009_skin4_low.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "dead",
+        "idle",
+        "run"
+      ],
+      "n_animations": 4,
+      "skins": [
+        "default",
+        "skin4"
+      ],
+      "n_skins": 2,
+      "n_bones": 16,
+      "n_slots": 22
+    },
+    "恶魔/女/紫翼魔姬": {
+      "json": "恶魔/女/紫翼魔姬/Courier.json",
+      "atlas": "恶魔/女/紫翼魔姬/Courier.atlas",
+      "pages": [
+        "Courier.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack1",
+        "chuchang",
+        "die",
+        "lichang",
+        "run",
+        "shouji",
+        "skill0",
+        "skill1",
+        "skill2",
+        "stand",
+        "win",
+        "yun"
+      ],
+      "n_animations": 12,
+      "skins": [
+        "default",
+        "blue",
+        "red"
+      ],
+      "n_skins": 3,
+      "n_bones": 102,
+      "n_slots": 116
+    },
+    "恶魔/男/哪吒童": {
+      "json": "恶魔/男/哪吒童/1021.json",
+      "atlas": "恶魔/男/哪吒童/1021.atlas",
+      "pages": [
+        "1021.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "action_1",
+        "action_2",
+        "dead",
+        "idle",
+        "walk"
+      ],
+      "n_animations": 5,
+      "skins": [
+        "default",
+        "skin1"
+      ],
+      "n_skins": 2,
+      "n_bones": 17,
+      "n_slots": 16
+    },
+    "恶魔/男/红面钟馗": {
+      "json": "恶魔/男/红面钟馗/shenlin_zhongkui.json",
+      "atlas": "恶魔/男/红面钟馗/shenlin_zhongkui.atlas",
+      "pages": [
+        "shenlin_zhongkui.png",
+        "shenlin_zhongkui_2.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Atk",
+        "Skill_1",
+        "Stand"
+      ],
+      "n_animations": 3,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 179,
+      "n_slots": 64
+    },
+    "恶魔/男/虎魔双刀": {
+      "json": "恶魔/男/虎魔双刀/tiger demon_2.json",
+      "atlas": "恶魔/男/虎魔双刀/tiger demon_2.atlas",
+      "pages": [
+        "tiger demon_2.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "idle",
+        "walk"
+      ],
+      "n_animations": 3,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 37,
+      "n_slots": 15
+    },
+    "恶魔/男/血红蔷薇": {
+      "json": "恶魔/男/血红蔷薇/100205_xinghongqiangwei_nan_jw.json",
+      "atlas": "恶魔/男/血红蔷薇/100205_xinghongqiangwei_nan_jw.atlas",
+      "pages": [
+        "100205_xinghongqiangwei_nan_jw.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "idle"
+      ],
+      "n_animations": 1,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 151,
+      "n_slots": 50
+    },
+    "精灵/女/白袍叶灵": {
+      "json": "精灵/女/白袍叶灵/cha_4205.json",
+      "atlas": "精灵/女/白袍叶灵/cha_4205.atlas",
+      "pages": [
+        "cha_4205.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "dead",
+        "hurt",
+        "run",
+        "skill",
+        "stand",
+        "stand2",
+        "walk"
+      ],
+      "n_animations": 8,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 110,
+      "n_slots": 66
+    },
+    "精灵/女/鹿灵女猎": {
+      "json": "精灵/女/鹿灵女猎/Unit_Spine_CentaurArcherCentaurHunterSpe1.json",
+      "atlas": "精灵/女/鹿灵女猎/Unit_Spine_CentaurArcherCentaurHunterSpe1.atlas",
+      "pages": [
+        "Unit_Spine_CentaurArcherCentaurHunterSpe1.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "hurt",
+        "posture",
+        "run",
+        "skill1",
+        "skill2",
+        "skill3",
+        "skill4",
+        "skill5",
+        "stand"
+      ],
+      "n_animations": 11,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 53,
+      "n_slots": 47
+    },
+    "精灵/男/兔耳剑客": {
+      "json": "精灵/男/兔耳剑客/Qch2_json.json",
+      "atlas": "精灵/男/兔耳剑客/Qch2_json.atlas",
+      "pages": [
+        "Qch2_json.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "Attack1",
+        "Attack1-3",
+        "Attack1_2",
+        "Attack2",
+        "Attack3",
+        "Attack_Heavy",
+        "Attack_Multi",
+        "Attack_Multi2",
+        "Attack_Multi2_End",
+        "Attack_Multi_End",
+        "Attack_Multi_Loop",
+        "Attack_Multi_Start",
+        "Attack_Power",
+        "Attack_Power_End",
+        "Attack_Power_Loop",
+        "Attack_Power_Start",
+        "Attack_Sneak_Assasinate",
+        "Attack_Sneak_Heavy",
+        "Attack_Throw",
+        "Attack_Throw_Multi",
+        "Attack_Throw_Multi_End",
+        "Attack_Throw_Multi_Loop",
+        "Attack_Throw_Multi_Start",
+        "Block",
+        "Buff",
+        "Die",
+        "Dodge",
+        "DoubleAttack",
+        "Hit",
+        "Hit_Heavy",
+        "Idle",
+        "Sneak",
+        "Start",
+        "Victory",
+        "special_end01",
+        "special_end02",
+        "special_start"
+      ],
+      "n_animations": 37,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 97,
+      "n_slots": 54
+    },
+    "实验/002-anim-retarget/络腮胡剑士": {
+      "json": "NPC2.json",
+      "atlas": "NPC2.atlas",
+      "pages": [
+        "NPC2.png"
+      ],
+      "version": "4.3.26",
+      "animations": [
+        "attack",
+        "death",
+        "skill1",
+        "skill2",
+        "stand"
+      ],
+      "n_animations": 5,
+      "skins": [
+        "default"
+      ],
+      "n_skins": 1,
+      "n_bones": 24,
+      "n_slots": 19,
+      "url_prefix": "/task/002-anim-retarget/output/络腮胡剑士/"
     }
   }
 }

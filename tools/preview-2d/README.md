@@ -1,18 +1,37 @@
 # 2D 预览图浏览器
 
 针对 `assets/2d/` 下所有 `复原预览图*.png` 的本地 Web 预览工具。
+**2026-09-24 起同时是 Spine 作品预览器**：卡片带「🎬 N 动画 · M 骨骼 · K 皮肤」徽标，
+点「骨骼预览」开全屏官方 player（切动画 / 切皮肤 / 调速 / 全屏 / 骨骼调试）。
 
 ## 文件
 
 ```
 tools/preview-2d/
 ├── preview.html          # 单文件 Web 应用（HTML + CSS + 内嵌 JS）
-├── preview-manifest.json # 由 serve.py 生成，扫描结果的结构化清单
+├── preview-manifest.json # 由 serve.py 生成，扫描结果的结构化清单（含 spine_index）
 ├── serve.py              # 启动脚本：扫描 → 写 manifest → 起 http.server → 开浏览器
+├── vendor/spine-player/  # 官方 @esotericsoftware/spine-player@4.3.13 本地化（离线可用）
 ├── start.bat             # 一键启动（cmd / 双击）：纯 ASCII，避免 cmd 编码问题
 ├── start.ps1             # 一键启动（PowerShell）：中文消息 + PowerShell 命名参数
+├── start.command         # 一键启动（macOS）：Finder 可双击，终端可直跑，参数透传
 └── README.md             # 本文档
 ```
+
+## Spine 预览
+
+- 扫描时按**内容嗅探**识别骨架 json（顶层有 `skeleton`+`bones` 键，不看文件名——
+  交付包文件名常与目录名不一致，如「法袍法师/Magic Gril.json」）。
+- 图集页解析注意：libgdx 新版 atlas 页头字段顺序不固定（实测有 `filter` 在 `size`
+  前面的），**不能**用「下一行是 size:」判定页名行。
+- player config 的 4.3 字段名是 `skeleton` / `atlas`（4.2 是 `jsonUrl`/`atlasUrl`，
+  写错报 "A URL must be specified for the skeleton JSON or binary file"）。
+- 全部 105 个交付包统一 4.3.26，vendor 的 4.3.13 runtime 全兼容（patch 级无所谓）。
+- 皮肤/动画切换用 player 控制条自带 UI（多皮肤时才出现 skin 按钮），不用自造。
+- **实验产物预览**（2026-09-25）：`task/*/output/<包名>/` 下含骨架+atlas 的目录
+  会被扫进 `spine_index`，key 形如 `实验/<task>/<包名>`，前端在列表末尾的
+  「实验产物」区出无图卡片；`url_prefix` 指向包目录（assets 包用 `/assets/2d/`，
+  实验包用自己目录）。动画迁移产物由此可在 preview-2d 里直接验收。
 
 ## 一键启动
 
@@ -22,6 +41,7 @@ tools/preview-2d/
 |------|------|------|
 | cmd / 资源管理器 | `start.bat` | 默认探测 `python` 或 `py` 解释器；纯英文输出 |
 | PowerShell | `start.ps1` | 中文输出 + 彩色 banner；首次需要响应执行策略 |
+| macOS Finder | `start.command` | 中文输出 + 彩色 banner；双击后在 Terminal 里运行 |
 
 ### 从命令行调用
 
@@ -32,6 +52,22 @@ tools/preview-2d/
 .\tools\preview-2d\start.bat --no-browser
 .\tools\preview-2d\start.bat --port 9000
 ```
+
+**macOS / 终端（`start.command`，也可用 sh/bash 跑，兼容 Linux）**：
+
+```bash
+./tools/preview-2d/start.command                    # 默认开浏览器，按 Ctrl+C 停止
+./tools/preview-2d/start.command --no-browser       # 不开浏览器
+./tools/preview-2d/start.command --port 9000
+./tools/preview-2d/start.command --host 0.0.0.0     # 暴露给局域网
+./tools/preview-2d/start.command scan               # 只扫描 + 写 manifest
+```
+
+> Python 探测顺序：PATH 里的 `python3`（pyenv / Homebrew / CLT）→ `python` →
+> Homebrew 固定路径（`/opt/homebrew`、`/usr/local`）→ `/usr/bin/python3`
+> （仅在 CLT 已装时启用，避免触发「安装开发者工具」弹窗）。
+> 双击后窗口一闪而过或 Finder 只打开编辑器，多半是执行位丢了：
+> `chmod +x tools/preview-2d/start.command` 修一次即可。
 
 **PowerShell 专属（更强类型）**：
 
@@ -51,7 +87,7 @@ tools/preview-2d/
 > powershell -ExecutionPolicy Bypass -File .\tools\preview-2d\start.ps1
 > ```
 
-两者做的事完全一致：`切到工作区根 → 探测 Python → 调 serve.py`。
+三者做的事完全一致：`切到工作区根 → 探测 Python → 调 serve.py`。
 
 ## 手动启动
 
