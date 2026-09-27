@@ -12,11 +12,11 @@
 
 | 路径 | 内容 |
 |------|------|
-| `docs/` | 文档：`meowa-cli.md` / `zenmux-cli.md`（两个 CLI 指南）、`spine-rigging-study.md`、`spine-animation-ai/`（**外部仓库，自带 `.git`，已 gitignore、不入库**） |
+| `docs/` | 文档（根下的 `*.md`）+ **外部参考仓库**（各子目录，自带 `.git`，按 `.gitignore` 的 `docs/*/` 整目录不入库）；由 `tools/reference-repos/pull.sh` 按 `tools/reference-repos/repos.list` 自动克隆 / 更新，加新参考仓库改清单即可 |
 | `assets/eva_bone/` | Eva 原型素材：`parts/` 基础体拆件、`parts_outfit/` 服装件、拼合图与 manifest |
 | `assets/_archive/` | 更早的素材与一次性脚本（`source/`、`scripts/`、`metadata/`） |
 | `meowa/` | AI 生图素材与预设（`templates/` 放 Meowa 预设信息） |
-| `tools/` | **按场景分区的工具集**：`spine/`（图集修复 / 换皮 / 抽件）、`sprite/`（整图与部件本地处理）、`zenmux/`（**唯一会花钱**的 AI 改图 + 它的 mock 测试）、`browser/`、`preview-2d/`；根下 `*.py` 是**兼容转发 shim**（别删）。清单见 `tools/README.md` |
+| `tools/` | **按场景分区的工具集**：`spine/`（图集修复 / 换皮 / 抽件）、`sprite/`（整图与部件本地处理）、`zenmux/`（**唯一会花钱**的 AI 改图 + 它的 mock 测试）、`browser/`、`preview-2d/`、`reference-repos/`（外部参考仓库拉取）；根下 `*.py` 是**兼容转发 shim**（别删）。清单见 `tools/README.md` |
 | `task/` | **任务档案**：**每个子任务一个文件夹** `NNN-slug/`（**入库**，口径同 `docs/`）；`TASK.md` 记目标 / 验收 / 状态 / 产出。约定见 `task/README.md` |
 | `tmp/` | **临时目录**：已忽略、不入库、可随时清 |
 | `download/` | **刚下载、还没处理**的落地目录（素材包 / 第三方仓库 / 待转换资源）：已忽略、不入库，但**别随手清** |
