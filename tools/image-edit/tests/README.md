@@ -1,21 +1,21 @@
-# tools/zenmux/tests/ — ZenMux CLI 的 mock 级测试
+# tools/image-edit/tests/ — ZenMux CLI 的 mock 级测试
 
 **口径（2026-09-23 用户指示）：先 mock，再只验 CLI 命令。**
 真机测试**是要花钱的**（实测被网关掐断的请求照常计费），所以这里一条真机请求都不发。
 
 ```powershell
 # 在工作区根执行
-python tools/zenmux/tests/test_zenmux_cli.py            # 全部 14 条，约 6 秒，花费 $0
-python tools/zenmux/tests/test_zenmux_cli.py -v         # 逐条列名
-python tools/zenmux/tests/test_zenmux_cli.py -k vertex  # 只跑命中名字的
+python tools/image-edit/tests/test_zenmux_cli.py            # 全部 14 条，约 6 秒，花费 $0
+python tools/image-edit/tests/test_zenmux_cli.py -v         # 逐条列名
+python tools/image-edit/tests/test_zenmux_cli.py -k vertex  # 只跑命中名字的
 ```
 
 ## 两个文件
 
 | 文件 | 作用 |
 |------|------|
-| `mock_zenmux.py` | 假 ZenMux 服务端（**纯标准库**，不依赖 PIL / requests）。可被测试 import，也能手工起：`python tools/zenmux/tests/mock_zenmux.py --port 8765 --scenario ok`（场景 `ok` / `deny`=403 / `low`=余额 0） |
-| `test_zenmux_cli.py` | 14 条 CLI 级用例：起 mock → 用 `subprocess` 跑 `tools/zenmux/zenmux_edit.py` → 断言退出码 / 输出关键词 / 落盘产物 |
+| `mock_zenmux.py` | 假 ZenMux 服务端（**纯标准库**，不依赖 PIL / requests）。可被测试 import，也能手工起：`python tools/image-edit/tests/mock_zenmux.py --port 8765 --scenario ok`（场景 `ok` / `deny`=403 / `low`=余额 0） |
+| `test_zenmux_cli.py` | 14 条 CLI 级用例：起 mock → 用 `subprocess` 跑 `tools/image-edit/zenmux_edit.py` → 断言退出码 / 输出关键词 / 落盘产物 |
 
 ## 怎么保证"零真机、零费用"
 

@@ -1,7 +1,7 @@
 # ZenMux 图片编辑 CLI 指南
 
 > 本文是 `AGENTS.md` 里「ZenMux 图片编辑 CLI」一节的展开版：**什么场景用 + 怎么跑 + 实测硬规则**。
-> 参数表、家族兼容全表、mask 上限调研、体积限制、错误码表见 `tools/zenmux/zenmux-edit.md`（**完整口径**）。
+> 参数表、家族兼容全表、mask 上限调研、体积限制、错误码表见 `tools/image-edit/zenmux-edit.md`（**完整口径**）。
 > 路径相对工作区根；key 一律写进 `.env`，**不要贴进对话**。
 
 ## 场景
@@ -11,9 +11,12 @@
 **这是 `tools/` 里唯一会花钱的脚本**，其余本地脚本都是确定性、免费的（清单见 `tools/README.md`）。
 出**原画**（角色设定图 / 三视图 / 设计稿）用 Meowa，不用这里 —— 见 `docs/meowa-cli.md`。
 
+**免费替代**：同目录的 `local_edit.py` 对接 mini-local 上的本地 sd-server（Qwen-Image-2.1 图生图），
+**局域网内、零 API 额度**，适合先免费试效果 / 不着急的小批量 —— 口径见 `tools/image-edit/local-edit.md`。
+
 ## 命令
 
-`python tools/zenmux/zenmux_edit.py <check|balance|cost|generation|edit>`，**一律在工作区根下执行**（读根目录 `.env`）。
+`python tools/image-edit/zenmux_edit.py <check|balance|cost|generation|edit>`，**一律在工作区根下执行**（读根目录 `.env`）。
 
 ## 协议（2026-09-23 起默认 Vertex AI）
 
@@ -36,7 +39,7 @@
   带 `--mask` 的原位编辑不注入（要保留原背景），整图编辑要保留原背景加 `--no-solid-bg`。
   不支持 SSE / multipart / `--image-url`，一律单次 POST + JSON 内嵌 base64。
 
-  举例：`python tools/zenmux/zenmux_edit.py edit --model openai/gpt-image-2 -i a.png --mask m_weapon.png --prompt "把剑换成..." --min-credits 1`
+  举例：`python tools/image-edit/zenmux_edit.py edit --model openai/gpt-image-2 -i a.png --mask m_weapon.png --prompt "把剑换成..." --min-credits 1`
 
 > 🗑 **混元（`tencent/hy-image-*`）支持已于 2026-09-24 移除**：实测成本固定 $0.0298/张（low 档比
 > `gpt-image-2` 贵 1.48×）、`--size` 不生效、且会把"只重绘这一件"的任务理解成补全整个角色，
@@ -46,11 +49,11 @@
 
 | 命令 | 用途 |
 |------|------|
-| `python tools/zenmux/zenmux_edit.py check` | key、模型是否在架、mask 覆盖面积、当前 PAYG 余额 |
-| `python tools/zenmux/zenmux_edit.py balance [--json]` | 只查余额 |
-| `python tools/zenmux/zenmux_edit.py cost [--models M] [--dimension BIZ_MTH\|BIZ_DT\|BIZ_HOUR] [--time T]` | 查账单 |
-| `python tools/zenmux/zenmux_edit.py generation --id <generationId>` | 单次调用明细（id 从 Logs 页 Request 搜索框拿） |
-| `python tools/zenmux/tests/test_zenmux_cli.py` | **改完 `zenmux_edit.py` 先跑这个**：14 条 CLI 级用例，起本地 mock 服务端，全程 127.0.0.1，约 6s、**$0** |
+| `python tools/image-edit/zenmux_edit.py check` | key、模型是否在架、mask 覆盖面积、当前 PAYG 余额 |
+| `python tools/image-edit/zenmux_edit.py balance [--json]` | 只查余额 |
+| `python tools/image-edit/zenmux_edit.py cost [--models M] [--dimension BIZ_MTH\|BIZ_DT\|BIZ_HOUR] [--time T]` | 查账单 |
+| `python tools/image-edit/zenmux_edit.py generation --id <generationId>` | 单次调用明细（id 从 Logs 页 Request 搜索框拿） |
+| `python tools/image-edit/tests/test_zenmux_cli.py` | **改完 `zenmux_edit.py` 先跑这个**：14 条 CLI 级用例，起本地 mock 服务端，全程 127.0.0.1，约 6s、**$0** |
 
 > 测试口径：**先 mock，再只验 CLI 命令**（退出码 / 输出 / 产物）。**别拿真机当测试** —— 每次调用都要钱，
 > 被网关掐断的请求也照常计费。真机验证走人工流程：`--dry-run` → `--min-credits 1` 小额一张 → `cost` 核账。
@@ -63,7 +66,7 @@
 - **OpenAI 系单价（2026-09 实测反推）**：`image_output` ≈ **$30/1M tokens**、`image_input` ≈ $8/1M、文字 $5/1M。
   单张：**`quality=low`（默认）实测 $0.018~0.020**（按输入图大小浮动；**成本大头是 `image_input`**——
   一张 385×1672 的风格参考图就占 68%）、`medium` ≈ $0.04~0.05（估）、**`high` = $0.15~0.18（账单实测）**。
-  （算法与实测样本见 `tools/zenmux/zenmux-edit.md` 的「单张图成本」。）
+  （算法与实测样本见 `tools/image-edit/zenmux-edit.md` 的「单张图成本」。）
 - ⚠ **被 400 拒的请求不计费**（实测：内容安全拦截 `safety_violations` 后余额不变），
   但**被网关掐断的请求照常计费**（OpenAI 协议实测一轮 7 次全计费 $1.2009，只有 2 次拿到图）：
   **工具没有任何自动重试**，失败就停下用 `cost` 核账，人工决定要不要重跑。
@@ -94,7 +97,7 @@
 
 | 文档 | 内容 |
 |------|------|
-| `tools/zenmux/zenmux-edit.md` | **完整口径**：依赖与凭据、默认值全表、成本拆解、家族兼容全表、mask 调研、体积限制、排错表、真机实战记录（权威） |
-| `tools/zenmux/tests/README.md` | **mock 级测试**：14 条 CLI 用例的覆盖清单、零真机零费用的保证方式、边界（不要往里加真机用例） |
+| `tools/image-edit/zenmux-edit.md` | **完整口径**：依赖与凭据、默认值全表、成本拆解、家族兼容全表、mask 调研、体积限制、排错表、真机实战记录（权威） |
+| `tools/image-edit/tests/README.md` | **mock 级测试**：14 条 CLI 用例的覆盖清单、零真机零费用的保证方式、边界（不要往里加真机用例） |
 | `tools/README.md` | 本地脚本清单与通用经验 |
 | `docs/meowa-cli.md` | 出原画（整张参考图）走 Meowa |

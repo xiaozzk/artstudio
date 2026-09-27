@@ -53,10 +53,10 @@ runner 从**执行命令的当前目录**和**工作区根**读 `.env`，工作�
 | `generation --id <generationId>` | `GET /management/generation?id=` | 单次调用明细（用量/账单）。id 从控制台 **Logs 页的 Request 搜索框**里拿（形如 `2534CCEDTKJR00217635`） |
 
 ```powershell
-python tools/zenmux/zenmux_edit.py balance
-python tools/zenmux/zenmux_edit.py cost --models openai/gpt-image-2
-python tools/zenmux/zenmux_edit.py cost --dimension BIZ_DT --time 20260922   # 看那天是几点烧的
-python tools/zenmux/zenmux_edit.py edit ... --min-credits 1
+python tools/image-edit/zenmux_edit.py balance
+python tools/image-edit/zenmux_edit.py cost --models openai/gpt-image-2
+python tools/image-edit/zenmux_edit.py cost --dimension BIZ_DT --time 20260922   # 看那天是几点烧的
+python tools/image-edit/zenmux_edit.py edit ... --min-credits 1
 ```
 
 - `--min-credits 1`：**开跑前**查一次余额，低于 1 USD 直接拒跑（一个请求都不发）；
@@ -102,14 +102,14 @@ python tools/zenmux/zenmux_edit.py edit ... --min-credits 1
 
 ```powershell
 # 1) 自检（不花额度）：key 是否读到、模型是否在架、mask 覆盖是否合理
-python tools/zenmux/zenmux_edit.py check --image assets/eva_bone/parts/hero.png --mask tmp/m_weapon.png
+python tools/image-edit/zenmux_edit.py check --image assets/eva_bone/parts/hero.png --mask tmp/m_weapon.png
 
 # 2) 免费预演：出 mask 预览图（红=要重绘 / 绿=保留）+ 打印调用计划，不发请求
-python tools/zenmux/zenmux_edit.py edit --image tmp/hero.png --mask tmp/m_weapon.png `
+python tools/image-edit/zenmux_edit.py edit --image tmp/hero.png --mask tmp/m_weapon.png `
     --prompt "把手里那把剑换成一把发光的短杖" --dry-run --out-dir tmp/zenmux-edit/dry
 
 # 3) 正式编辑（消耗额度）
-python tools/zenmux/zenmux_edit.py edit --image tmp/hero.png `
+python tools/image-edit/zenmux_edit.py edit --image tmp/hero.png `
     --mask tmp/m_weapon.png --mask-prompt "把手里那把剑换成一把发光的短杖" `
     --mask tmp/m_coat.png   --mask-prompt "把外套换成深红色皮甲" `
     --mask-mode sequential --out-dir tmp/zenmux-edit/run1
@@ -267,9 +267,9 @@ mask 在 vertex 协议下照常用（`--mask` / `--mask-mode` 全套），语义
   `--size 1024x1024` 生效（**512×512 会被总像素下限 655360 挡住**）。
   假 key → 与 OpenAI 协议同一错误信封（`403 access_denied` + `api_key_source`），
   平台接口（`balance` / `cost` / `generation`）在 Vertex 切换下**不受影响**。
-  工具侧形状由 `tools/zenmux/tests/` 的 CLI 级测试覆盖（openai 家族顶层 `imageSize`/`quality`、
+  工具侧形状由 `tools/image-edit/tests/` 的 CLI 级测试覆盖（openai 家族顶层 `imageSize`/`quality`、
   mask 的 `REFERENCE_TYPE_MASK + MASK_MODE_USER_PROVIDED`、`gcsUri` 下载分支）。
-- **本地 mock 的 CLI 级测试（零真机、零费用）**：`python tools/zenmux/tests/test_zenmux_cli.py` —— 14 条，约 6s。
+- **本地 mock 的 CLI 级测试（零真机、零费用）**：`python tools/image-edit/tests/test_zenmux_cli.py` —— 14 条，约 6s。
   口径是「**先 mock，再只验 CLI 命令**」（用户 2026-09-23 指示：真机测试要花钱，不再逐条断内部函数）：
   断言只有退出码 / stdout 关键词 / 落盘产物 / `--dump-request` 的请求体。覆盖
   `check` / `balance`（含余额为 0 时退出 1）/ `cost` / `generation` /
@@ -277,7 +277,7 @@ mask 在 vertex 协议下照常用（`--mask` / `--mask-mode` 全套），语义
   `gcsUri` 下载走合成 provider `mock/gcs-image`）/
   本地拦截（`--n` 越界、透明底配 jpeg、缺 prompt、`--aspect-ratio` 形式错、未知子命令）/
   403 `access_denied` 提示 / `--dry-run` 一个 POST 都不发。
-  mock 服务端是 `tools/zenmux/tests/mock_zenmux.py`（纯标准库，也能手工起）；测试进程另把 `HTTPS_PROXY`
+  mock 服务端是 `tools/image-edit/tests/mock_zenmux.py`（纯标准库，也能手工起）；测试进程另把 `HTTPS_PROXY`
   指到死端口兜底 —— 哪天漏配 `--base-url`，请求会立刻失败，而不是悄悄打到 zenmux.ai 烧钱。
   口径与用例清单见 [`tests/README.md`](tests/README.md)。
 - 上一版那份 **92 条内部断言**的 harness（曾放 `tmp/mock_zenmux.py` + `tmp/test_zenmux_edit.py`）
@@ -304,7 +304,7 @@ mask 在 vertex 协议下照常用（`--mask` / `--mask-mode` 全套），语义
 | mask 不是硬边界 | 实测 mask 只覆盖 2.91% 画面，生成图**mask 外 30.6% 像素被重画**（另一只手的武器被抹掉）→ 要么只把 mask 内改回贴回原图，要么用"部件单独重画"流程 |
 | 单次编辑的实测开销 | 704x960 / high / 3 张输入图：103s、6566 tokens；784x848 单独画部件：113s、6871 tokens。**账单口径：一次 $0.15~0.18**（`image_output` 占 94%），按 flow 单价估会差 5 倍 |
 | **被掐断 = 照常计费（重要）** | 实测一轮 7 次请求全计费 $1.2009，只有 2 次拿到图：其中 1 次客户端被掐断但服务端跑了 364.7s 照扣 $0.1512；另外 `background=transparent` 的 4 次（1 原始 + 3 重试）各扣 $0.1797。<br>→ 对策：**① 不用 transparent（现在默认 opaque + 纯色底）**；**② 工具无任何重试开关，失败就停下**；**③ 事后用 `cost` 核账** |
-| 查询账单（免额度） | `python tools/zenmux/zenmux_edit.py cost --models openai/gpt-image-2`（默认按月看天桶）<br>`... cost --dimension BIZ_DT --time 20260922`（按天看小时桶，能看出是几点烧的）<br>`... cost --json` 出原始结构；接口 `/api/v1/management/cost`，与 Usage 共享 60 次/分钟限流 |
+| 查询账单（免额度） | `python tools/image-edit/zenmux_edit.py cost --models openai/gpt-image-2`（默认按月看天桶）<br>`... cost --dimension BIZ_DT --time 20260922`（按天看小时桶，能看出是几点烧的）<br>`... cost --json` 出原始结构；接口 `/api/v1/management/cost`，与 Usage 共享 60 次/分钟限流 |
 | 长连接怎么不被打断 | 图片编辑**没有异步/轮询接口**（Images 协议是同步的；`/management/generation` 只是账单查询，3~5 分钟后才有数据）。唯一替代通道是 **SSE 流式**：`--stream`（配 `--partials 0` 最省，只要最终图），ZenMux 每 **10 秒**发一次 `: ZENMUX PROCESSING` 保活注释，连接不会长时间空闲；出问题也能收到流内 error 事件而不是干巴巴断连 |
 | 部件"单独重画"流程（推荐给换皮） | 输入 = 原部件放大 + 风格参考，prompt 要"单体 / 居中 / 纯色底 / 保持轮廓朝向与画布位置"→ 抠底得 alpha → 按"原部件 alpha maxXY ↔ 新件 alpha maxXY"等比缩放 → 放回原附件画布 → 换回 Spine 重渲验证（远处应为 0px 变化） |
 

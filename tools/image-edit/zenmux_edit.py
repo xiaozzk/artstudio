@@ -23,10 +23,10 @@
     edit        图片编辑（**消耗 ZenMux 额度**）
 
 用法示例
-    python tools/zenmux/zenmux_edit.py check
-    python tools/zenmux/zenmux_edit.py balance
-    python tools/zenmux/zenmux_edit.py cost --models openai/gpt-image-2 --dimension BIZ_DT
-    python tools/zenmux/zenmux_edit.py edit --image assets/eva_bone/parts/hero.png \\
+    python tools/image-edit/zenmux_edit.py check
+    python tools/image-edit/zenmux_edit.py balance
+    python tools/image-edit/zenmux_edit.py cost --models openai/gpt-image-2 --dimension BIZ_DT
+    python tools/image-edit/zenmux_edit.py edit --image assets/eva_bone/parts/hero.png \\
         --mask tmp/m_weapon.png --mask-prompt "把手里那把剑换成一把发光的短杖" \\
         --mask tmp/m_coat.png   --mask-prompt "把这件外套换成深红色皮甲" \\
         --mask-mode sequential --min-credits 1 --out-dir tmp/zenmux-edit/run1
@@ -47,7 +47,7 @@
       quality=high **一次 $0.15~0.18**（账单实测），low 实测 $0.018~0.020（按输入图大小浮动）；
       成本大头是 `image_input`（风格参考图越大幅越贵）。
 
-关于 mask 的硬事实（2026-09 核对官方文档，详见 tools/zenmux-edit.md）
+关于 mask 的硬事实（2026-09 核对官方文档，详见 tools/image-edit/zenmux-edit.md）
     * **两种协议都只接受 1 个 mask**，且只作用于第一张输入图
       （vertex = referenceImages 里的一个 REFERENCE_TYPE_MASK；openai = 单 mask 字段；
       输入图上限：openai 16 张、Flux 8、Kling 1）。"多个 mask"必须由本工具消化：
@@ -93,7 +93,7 @@ if hasattr(sys.stdout, "reconfigure"):      # Windows 控制台默认 cp936，�
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
-BASE = Path(__file__).resolve().parents[2]             # 工作区根（tools/zenmux/ → 上两级）
+BASE = Path(__file__).resolve().parents[2]             # 工作区根（tools/image-edit/ → 上两级）
 DEFAULT_BASE_URL = "https://zenmux.ai/api/v1"          # OpenAI 协议 + 平台管理（余额/账单）端点
 VERTEX_BASE_URL = "https://zenmux.ai/api/vertex-ai"    # Vertex AI 协议端点（:predict 统一生图/编辑）
 DEFAULT_PROTOCOL = "vertex"                            # 2026-09-23 起默认切到 Vertex 协议（支持的模型更多）
@@ -112,7 +112,7 @@ CUSTOM_SIZE_MAX_SIDE = 3840
 PRESET_SIZES = ("1024x1024", "1536x1024", "1024x1536", "auto")
 MASK_MODES = ("union", "sequential", "separate")
 
-# 单张编辑的成本（USD/张）。**low 与 high 都是账单实测**（见 tools/zenmux-edit.md）；
+# 单张编辑的成本（USD/张）。**low 与 high 都是账单实测**（见 tools/image-edit/zenmux-edit.md）；
 # low 实测 $0.018~0.020/张（2026-09-24，随输入图大小浮动：一张 385×1672 的风格参考图就占 68%）。
 # 计费大头是 image_output（≈$30/MTok），input 图 ≈$8/MTok；medium 按 token 比例折算，仍标"估"。
 COST_PER_IMAGE = {"low": "$0.018~0.020（实测，随输入图大小浮动）", "medium": "约 $0.04~0.05（估）",
@@ -1483,7 +1483,7 @@ def cmd_edit(args) -> int:
                                      "message": str(e), "model": args.model, "prompt": step.prompt})
             die(f"读超时：{e}\n"
                 f"       ⚠ 请求已经发出去了，上游很可能已经出图并计费（实测有 364s 跑完、客户端先放弃的情况）。\n"
-                f"       先别重跑：`python tools/zenmux/zenmux_edit.py cost --dimension BIZ_DT` 看这几分钟有没有扣款，"
+                f"       先别重跑：`python tools/image-edit/zenmux_edit.py cost --dimension BIZ_DT` 看这几分钟有没有扣款，"
                 f"再人工决定（工具**不会**自动重试）", 2)
         except requests.RequestException as e:
             # ⚠ 实测（2026-09-22）：被网关掐断的请求**照样计费**（7 次计费里 5 次没拿到图）。
@@ -1497,7 +1497,7 @@ def cmd_edit(args) -> int:
                 extra = ("\n       ↳ 被掐断多半是 `--background transparent`（实测该参数在 edit 端点会被网关断连）；"
                          "要透明件就 `--background opaque` + prompt 要纯色底（如 #FF00FF）再本地抠底。"
                          "\n       ↳ ⚠ 这次请求**很可能已经计费**（实测被掐断的都进了账单）："
-                         "`python tools/zenmux/zenmux_edit.py cost --dimension BIZ_DT` 核一下。"
+                         "`python tools/image-edit/zenmux_edit.py cost --dimension BIZ_DT` 核一下。"
                          "\n       ↳ 工具不会自动重试（重复烧钱的代价 >> 省下的那点时间）。")
             die(f"网络错误：{e}" + extra, 2)
 
@@ -1723,7 +1723,7 @@ def main(argv=None) -> int:
         prog="zenmux_edit.py", description="ZenMux 图片编辑（Vertex AI :predict 默认，"
               "兼容各 provider 的 vertex 生图模型；--protocol openai 回旧路径）",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="例：python tools/zenmux/zenmux_edit.py edit -i a.png -m weapon.png -m coat.png "
+        epilog="例：python tools/image-edit/zenmux_edit.py edit -i a.png -m weapon.png -m coat.png "
                "--mask-prompt '换成发光短杖' --mask-prompt '换成深红皮甲' --mask-mode sequential")
     sub = ap.add_subparsers(dest="cmd")
 

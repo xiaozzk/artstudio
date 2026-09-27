@@ -44,12 +44,12 @@ python tools/sprite/parts_sheet.py --from-dir assets/武僧/images_original --ou
 #    ⚠ 2026-09-23 起默认协议是 vertex（单次 POST、无 SSE，也不吃 --transport）；
 #      下面带 --background/--transport 的写法是**旧 openai 协议**，要加 --protocol openai 才生效。
 #   3a. 只换一个部位（整图 mask 编辑）
-python tools/zenmux/zenmux_edit.py edit --image assets/武僧/复原预览图_1.png --image tmp/reskin/parts_sheet.png `
+python tools/image-edit/zenmux_edit.py edit --image assets/武僧/复原预览图_1.png --image tmp/reskin/parts_sheet.png `
     --image tmp/reskin/style_ref.png --mask tmp/reskin/mask_weapon_1_visible.png --mask-grow 2 `
     --prompt "..." --model openai/gpt-image-2 --size match --quality high --background opaque `
     --protocol openai --transport multipart --out-dir tmp/reskin/run1
 #   3b. 做新组件（部件单体重画；推荐，组件天生干净）
-python tools/zenmux/zenmux_edit.py edit --image tmp/reskin/part_weapon11_x4.png --image tmp/reskin/style_ref.png `
+python tools/image-edit/zenmux_edit.py edit --image tmp/reskin/part_weapon11_x4.png --image tmp/reskin/style_ref.png `
     --prompt "Redraw this single part ... flat solid magenta background FF00FF, no hand, no character" `
     --model openai/gpt-image-2 --size match --quality high --protocol openai --transport multipart `
     --out-dir tmp/reskin/run2
@@ -92,7 +92,7 @@ python tools/spine/spine_part_swap.py verify --json assets/武僧/monk.json `
 | 抠底结果 | alpha 632×699 → 等比 **×0.1617** → 106×115 新附件 |
 | 换皮回验 | 改动 14,500 px，单簇集中在武器位；**主簇外 0 px** ✅ |
 | 整图 mask 编辑（对照） | 6,566 tokens / 103s；mask 外漂移 30.6%（需 apply 回贴） |
-| 单次成本 | **别按订阅详情里的 `base_usd_per_flow = $0.03283` 估图片编辑** —— 那是文本 flow 的价。<br>按 **`quality=low`（当前默认）实测 $0.018~0.020/张**（随输入图大小浮动）、`medium` ≈ $0.04~0.05（估）、**`high` = $0.15~0.18/张（账单实测）**。<br>计费大头是出图 token（≈$30/1M），但 `image_input` 能占到 68%（一张大风格参考图）；对账：`python tools/zenmux/zenmux_edit.py cost --models openai/gpt-image-2` |
+| 单次成本 | **别按订阅详情里的 `base_usd_per_flow = $0.03283` 估图片编辑** —— 那是文本 flow 的价。<br>按 **`quality=low`（当前默认）实测 $0.018~0.020/张**（随输入图大小浮动）、`medium` ≈ $0.04~0.05（估）、**`high` = $0.15~0.18/张（账单实测）**。<br>计费大头是出图 token（≈$30/1M），但 `image_input` 能占到 68%（一张大风格参考图）；对账：`python tools/image-edit/zenmux_edit.py cost --models openai/gpt-image-2` |
 | **被掐断的请求照样计费** | 实测那一轮 **7 次请求全计费 = $1.2009**，但只有 2 次拿到了图：<br>· 02:58 latency 364.7s / $0.151170 ← 客户端被掐断，**服务端跑完照扣**<br>· 03:12/03:14/03:16/03:18 latency 186~194s / 各 $0.179710 ← `background=transparent` 的 4 次（1 次原始 + 3 次重试）**全部计费**<br>· 03:01 / 03:20 是真正拿到图的 2 次<br>→ **白烧 $0.87（占 72%）**。所以：① 别用 transparent；② 被掐断**不要自动重试**（工具已没有任何重试开关，重试=人工再跑一枪，先核账）；③ 想确认就把 `cost` 按小时桶拉出来看 |
 
 ## 六、坑与对策
