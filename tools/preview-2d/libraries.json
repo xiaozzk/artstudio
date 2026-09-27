@@ -1,0 +1,25 @@
+{
+  "libraries": [
+    {
+      "id": "assets-2d",
+      "name": "assets/2d",
+      "kind": "default",
+      "path": "assets/2d",
+      "builtin": true
+    },
+    {
+      "id": "imports",
+      "name": "导入资源",
+      "kind": "import",
+      "path": "download/preview-2d-imports",
+      "builtin": true
+    },
+    {
+      "id": "task-outputs",
+      "name": "实验产物",
+      "kind": "task",
+      "path": "task",
+      "builtin": true
+    }
+  ]
+}
