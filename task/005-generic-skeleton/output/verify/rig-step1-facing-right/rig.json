@@ -1,0 +1,441 @@
+{
+  "package": "task/005-generic-skeleton/output/step1-facing-right",
+  "version": "4.3.26",
+  "bones": [
+    {
+      "name": "root",
+      "x": 0.0,
+      "y": 0.0,
+      "rot": 0.0,
+      "length": 0.0,
+      "parent": null,
+      "depth": 0
+    },
+    {
+      "name": "bone",
+      "x": 15.36,
+      "y": 165.89,
+      "rot": 0.0,
+      "length": 0.0,
+      "parent": "root",
+      "depth": 0
+    },
+    {
+      "name": "bone2",
+      "x": -2.31,
+      "y": 160.48,
+      "rot": -91.96,
+      "length": 71.58,
+      "parent": "bone",
+      "depth": 0
+    },
+    {
+      "name": "bone3",
+      "x": -5.04,
+      "y": 85.92,
+      "rot": -88.33,
+      "length": 80.44,
+      "parent": "bone2",
+      "depth": 0
+    },
+    {
+      "name": "bone5",
+      "x": 33.22,
+      "y": 158.41,
+      "rot": -73.18,
+      "length": 74.36,
+      "parent": "bone",
+      "depth": 0
+    },
+    {
+      "name": "bone6",
+      "x": 55.69,
+      "y": 88.25,
+      "rot": -71.8,
+      "length": 85.47,
+      "parent": "bone5",
+      "depth": 0
+    },
+    {
+      "name": "bone8",
+      "x": 15.42,
+      "y": 170.79,
+      "rot": 90.89,
+      "length": 59.36,
+      "parent": "bone",
+      "depth": 0
+    },
+    {
+      "name": "bone18",
+      "x": 14.55,
+      "y": 228.99,
+      "rot": 89.46,
+      "length": 84.14,
+      "parent": "bone8",
+      "depth": 0
+    },
+    {
+      "name": "bone9",
+      "x": 17.18,
+      "y": 306.59,
+      "rot": 91.48,
+      "length": 159.76,
+      "parent": "bone18",
+      "depth": 0
+    },
+    {
+      "name": "bone10",
+      "x": 50.79,
+      "y": 275.51,
+      "rot": -64.51,
+      "length": 61.98,
+      "parent": "bone18",
+      "depth": 0
+    },
+    {
+      "name": "bone11",
+      "x": 76.38,
+      "y": 225.53,
+      "rot": -90.64,
+      "length": 66.95,
+      "parent": "bone10",
+      "depth": 0
+    },
+    {
+      "name": "bone14",
+      "x": -14.4,
+      "y": 276.42,
+      "rot": 236.14,
+      "length": 62.88,
+      "parent": "bone18",
+      "depth": 0
+    },
+    {
+      "name": "bone15",
+      "x": -48.35,
+      "y": 225.31,
+      "rot": 215.44,
+      "length": 61.99,
+      "parent": "bone14",
+      "depth": 0
+    },
+    {
+      "name": "bone17",
+      "x": -101.18,
+      "y": 187.98,
+      "rot": 197.69,
+      "length": 14.61,
+      "parent": "bone15",
+      "depth": 0
+    },
+    {
+      "name": "bone16",
+      "x": -111.57,
+      "y": 184.1,
+      "rot": 196.54,
+      "length": 83.3,
+      "parent": "bone17",
+      "depth": 0
+    },
+    {
+      "name": "bone27",
+      "x": 0.37,
+      "y": -32.92,
+      "rot": 0.0,
+      "length": 0.0,
+      "parent": "root",
+      "depth": 0
+    },
+    {
+      "name": "bone29",
+      "x": -3.81,
+      "y": 375.21,
+      "rot": 91.48,
+      "length": 0.0,
+      "parent": "bone9",
+      "depth": 0
+    },
+    {
+      "name": "bone19",
+      "x": 102.67,
+      "y": 161.81,
+      "rot": -269.95,
+      "length": 75.91,
+      "parent": "bone11",
+      "depth": 0
+    },
+    {
+      "name": "bone12",
+      "x": -42.45,
+      "y": 404.4,
+      "rot": 256.64,
+      "length": 85.67,
+      "parent": "bone9",
+      "depth": 0
+    },
+    {
+      "name": "bone20",
+      "x": -62.13,
+      "y": 321.29,
+      "rot": 264.08,
+      "length": 106.18,
+      "parent": "bone12",
+      "depth": 0
+    },
+    {
+      "name": "bone21",
+      "x": -73.36,
+      "y": 213.98,
+      "rot": 274.81,
+      "length": 110.05,
+      "parent": "bone20",
+      "depth": 0
+    },
+    {
+      "name": "bone22",
+      "x": 82.43,
+      "y": 417.41,
+      "rot": -74.35,
+      "length": 89.29,
+      "parent": "bone9",
+      "depth": 0
+    },
+    {
+      "name": "bone28",
+      "x": 107.54,
+      "y": 330.4,
+      "rot": -80.29,
+      "length": 120.65,
+      "parent": "bone22",
+      "depth": 0
+    },
+    {
+      "name": "bone30",
+      "x": 126.79,
+      "y": 219.15,
+      "rot": -86.42,
+      "length": 127.58,
+      "parent": "bone28",
+      "depth": 0
+    },
+    {
+      "name": "bone31",
+      "x": 65.16,
+      "y": 377.26,
+      "rot": -82.04,
+      "length": 27.17,
+      "parent": "bone9",
+      "depth": 0
+    },
+    {
+      "name": "bone32",
+      "x": 68.74,
+      "y": 352.33,
+      "rot": -84.36,
+      "length": 23.88,
+      "parent": "bone31",
+      "depth": 0
+    },
+    {
+      "name": "bone33",
+      "x": 70.98,
+      "y": 330.49,
+      "rot": -85.56,
+      "length": 38.26,
+      "parent": "bone32",
+      "depth": 0
+    },
+    {
+      "name": "bone38",
+      "x": 15.43,
+      "y": 165.81,
+      "rot": -100.31,
+      "length": 2.99,
+      "parent": "bone",
+      "depth": 0
+    },
+    {
+      "name": "bone39",
+      "x": 15.47,
+      "y": 162.88,
+      "rot": -89.24,
+      "length": 20.03,
+      "parent": "bone38",
+      "depth": 0
+    },
+    {
+      "name": "bone40",
+      "x": 58.46,
+      "y": 155.34,
+      "rot": -119.48,
+      "length": 48.94,
+      "parent": "bone39",
+      "depth": 0
+    },
+    {
+      "name": "bone41",
+      "x": 34.37,
+      "y": 112.73,
+      "rot": -157.76,
+      "length": 41.45,
+      "parent": "bone40",
+      "depth": 0
+    },
+    {
+      "name": "bone42",
+      "x": -3.99,
+      "y": 97.04,
+      "rot": -169.12,
+      "length": 36.14,
+      "parent": "bone41",
+      "depth": 0
+    },
+    {
+      "name": "bone44",
+      "x": -23.86,
+      "y": 197.13,
+      "rot": -110.97,
+      "length": 76.14,
+      "parent": "bone39",
+      "depth": 0
+    },
+    {
+      "name": "bone45",
+      "x": 43.46,
+      "y": 196.54,
+      "rot": -60.48,
+      "length": 68.81,
+      "parent": "bone39",
+      "depth": 0
+    },
+    {
+      "name": "bone25",
+      "x": 110.05,
+      "y": 192.15,
+      "rot": -315.0,
+      "length": 21.85,
+      "parent": "bone19",
+      "depth": 0
+    },
+    {
+      "name": "bone26",
+      "x": 125.66,
+      "y": 207.6,
+      "rot": -326.39,
+      "length": 31.23,
+      "parent": "bone25",
+      "depth": 0
+    },
+    {
+      "name": "bone43",
+      "x": -40.78,
+      "y": 89.35,
+      "rot": -147.0,
+      "length": 27.35,
+      "parent": "bone42",
+      "depth": 0
+    },
+    {
+      "name": "bone46",
+      "x": -63.72,
+      "y": 74.46,
+      "rot": -115.05,
+      "length": 23.15,
+      "parent": "bone43",
+      "depth": 0
+    },
+    {
+      "name": "bone47",
+      "x": -73.52,
+      "y": 53.48,
+      "rot": -51.85,
+      "length": 17.45,
+      "parent": "bone46",
+      "depth": 0
+    },
+    {
+      "name": "bone48",
+      "x": -62.54,
+      "y": 39.96,
+      "rot": -8.05,
+      "length": 18.21,
+      "parent": "bone47",
+      "depth": 0
+    },
+    {
+      "name": "bone49",
+      "x": 19.84,
+      "y": 427.86,
+      "rot": 83.81,
+      "length": 26.21,
+      "parent": "bone9",
+      "depth": 0
+    },
+    {
+      "name": "bone50",
+      "x": 22.66,
+      "y": 453.92,
+      "rot": 78.31,
+      "length": 26.15,
+      "parent": "bone49",
+      "depth": 0
+    },
+    {
+      "name": "bone51",
+      "x": 28.11,
+      "y": 479.37,
+      "rot": 77.39,
+      "length": 31.46,
+      "parent": "bone50",
+      "depth": 0
+    },
+    {
+      "name": "bone52",
+      "x": -161.24,
+      "y": 134.48,
+      "rot": 298.72,
+      "length": 21.14,
+      "parent": "bone16",
+      "depth": 0
+    }
+  ],
+  "slots": [
+    "ty",
+    "Hty",
+    "wq2",
+    "wq1",
+    "wb",
+    "Rtui2",
+    "Rtui3",
+    "Rtui",
+    "Ltui2",
+    "Ltui",
+    "Rhand2",
+    "Rhand",
+    "qz",
+    "body",
+    "tf5",
+    "zs5",
+    "jiao3",
+    "zs4",
+    "no",
+    "zs3",
+    "tf3",
+    "zs2",
+    "tf2",
+    "jiao2",
+    "zs",
+    "tf",
+    "jiao",
+    "Lhand2",
+    "Lhand",
+    "dun",
+    "dun2"
+  ],
+  "attachments_region": 23,
+  "attachments_mesh_degraded": 7,
+  "canvas": [
+    548,
+    642
+  ]
+}
