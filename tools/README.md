@@ -52,7 +52,7 @@ python -m pip install numpy pillow opencv-python requests scipy
 
 | 文件 | 作用 |
 |------|------|
-| `local_edit.py` | **本地图片编辑（免费）**：对接 mini-local 上的 stable-diffision.cpp / Qwen-Image-2.1 图生图（`/sdapi/v1/img2img`），mask 局部重绘、seed/cfg/steps/sampler 可调、尺寸对齐 32 倍数；`check` 做健康检查 → 见 [`local-edit.md`](image-edit/local-edit.md) |
+| `local_edit.py` | **本地图片编辑（免费）**：对接 mini-local 上的 sd-server（**FastAPI 提交-轮询**：`/sdapi/v1/img2img` 提交 → `GET /jobs/{id}` 轮询；推理引擎 stable-diffusion.cpp 的 sd-cli / Qwen-Image-2.1），mask 局部重绘、seed/cfg/steps/sample_method 可调、尺寸对齐 32 倍数；`check` 做健康检查 + 队列状态 → 见 [`local-edit.md`](image-edit/local-edit.md) |
 | `zenmux_edit.py` | **ZenMux 图片编辑（唯一会花钱）**：Vertex `:predict`（默认）/ OpenAI 协议，mask 局部重绘、多 mask 三种消化、`--dry-run`、`--min-credits` 守卫 → 见 [`zenmux-edit.md`](image-edit/zenmux-edit.md) 与 [`../../docs/zenmux-cli.md`](../docs/zenmux-cli.md) |
 | `tests/` | **mock 级 CLI 测试**：`python tools/image-edit/tests/test_zenmux_cli.py`（14 条，约 6s，全程 127.0.0.1、**零真机零费用**）→ 见 [`tests/README.md`](image-edit/tests/README.md) |
 
