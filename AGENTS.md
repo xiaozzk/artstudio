@@ -88,7 +88,7 @@
 | | `parts_sheet.py` | 把部件摆成**互不重叠、相邻 ≥N px** 的参考图（喂 AI 当"这些是独立零件"） |
 | | `flatbg_cut.py` | 纯色底出图 → 抠成透明件 + 按参考部件 **alpha 最大 XY 等比缩放贴合**到原附件画布 |
 | | `ps_cut/fill_from_layer1.jsx` | PS 里一键补缺口（文件 > 脚本 > 浏览） |
-| **`image-edit/`** | `local_edit.py` | **本地图片编辑（免费）**：mini-local 的 stable-diffision.cpp / Qwen-Image-2.1 图生图（`/sdapi/v1/img2img`），mask 局部重绘、seed/cfg/steps/sampler 可调；口径见 `tools/image-edit/local-edit.md` |
+| **`image-edit/`** | `local_edit.py` | **本地图片编辑（免费）**：mini-local 的 sd-server（FastAPI **提交-轮询**：`/sdapi/v1/img2img` 提交 → `GET /jobs/{id}` 轮询；Qwen-Image-2.1），mask 局部重绘、seed/cfg/steps/sample_method 可调；口径见 `tools/image-edit/local-edit.md` |
 | | `zenmux_edit.py` | **唯一会花钱**：mask 局部重绘（默认 Vertex AI `:predict`；**混元已于 2026-09-24 移除**），`--dry-run` / `--min-credits` 守卫；指南见 `docs/zenmux-cli.md`，完整口径见 `tools/image-edit/zenmux-edit.md` |
 | | `tests/` | **mock 级 CLI 测试**：`python tools/image-edit/tests/test_zenmux_cli.py`（14 条命令级用例，约 6s，**全程 127.0.0.1、零真机零费用**）→ 口径见 `tools/image-edit/tests/README.md` |
 | **`browser/`** | — | 浏览器登录态复用（CDP 副本，见下节） |

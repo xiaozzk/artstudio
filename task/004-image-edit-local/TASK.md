@@ -11,7 +11,7 @@
 ## 目标
 
 图片编辑不再 = ZenMux（花钱）一家：`tools/zenmux/` 改名 `tools/image-edit/`（场景 = 图片编辑），
-并新增一个对接 mini-local 上 stable-diffision.cpp（Qwen-Image-2.1）HTTP 服务的本地工具
+并新增一个对接 mini-local 上 sd-server（stable-diffusion.cpp 引擎 / Qwen-Image-2.1）HTTP 服务的本地工具
 `local_edit.py` —— 局域网内、**不消耗任何 API 额度**的图生图 / mask 局部编辑，
 作为 ZenMux 免费替代 / 免费预演的第一站。
 
@@ -49,3 +49,10 @@
 - 2026-09-28 真机冒烟：服务在线（懒加载后首请求装配 DiT）；59×90 小图 4.5s 出图，
   语义正确（尖精灵耳 + 透明底）。小图会把边长警告性取整到 32 倍数（64×96），
   实际素材件多为小图、很快；整张 1024² 级别才需要 --timeout 加大（默认 900s 已留余量）。
+- 2026-09-28 **服务端架构变更跟进**（同日晚些）：服务改为 **Python（FastAPI + 单 worker）+ 异步非阻塞
+  提交-轮询**（`202 {id, poll_url}` → `GET /jobs/{id}`，无长连接；C++ 层 `/sdcpp/v1/*` 下线）。
+  `local_edit.py` 重写为提交-轮询：状态机 queued/generating/completed/failed 全程打印、
+  429 队列满 / 404 TTL 过期 / failed(stderr 尾 8 行) 分别给出处置提示。
+  Python 层不再收 ref_image_args / scheduler / clip_skip，字段改 `sample_method`；
+  **RNG 强制 cpu 与 CLI 同序列**（旧版服务/CLI 不同序列的坑消失，seed 可复现），cfg 默认已对齐 6.0。
+  回归冒烟：hair.png 344×432 → 352×448，1m05s 出图正确（波浪长发），边车 json 记 job 时间戳与服务端留档路径。
