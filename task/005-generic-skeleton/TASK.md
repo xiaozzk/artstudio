@@ -48,7 +48,7 @@
 3. `spine_flip_bake.py --from left --to right` 烘焙 → `output/step1-facing-right/`，闸门记录进报告。
 4. 渲染验证（步骤 5 的渲染链或 render_rig）确认朝右。
 5. 拼接槽标注图（attachment 单图 + 槽名标注）→ 图像识别 → 产出重命名映射表。
-6. `scripts/rename_bones.py` 执行重命名 → `output/step2-renamed/`，跑完整性/等价性校验。
+6. `scripts/rename_bones.py` 执行重命名 → `/output/Unit_Spine_EmpirePaladinSpe1Skin1.json`（028 重组后终稿直出），跑完整性/等价性校验。
 7. 回写 TASK.md 与台账。
 
 ## 产出（2026-09-28 用户确认后重组为**单一最终包**）
@@ -88,3 +88,10 @@
   - 原始朝左旧骨名 JSON → 可从 `output/原始资源_*.zip` 回退；
     原始 atlas/png 与终稿图集内容完全一致（管线不动图集/贴图）
   - `tmp/005*`（内存如渲染批图、校验渲染）已清；slot-sheet.png 移入 `notes/` 作识别证据。
+- 2026-09-29（用户拍板）：**分区名通用化修订**——`chest→upper_body`（上半身）、
+  `skirt_root→lower_body`（下身），连带 `chest_upper→chest`
+  （承接 chest 位，避免与 upper_body 语义重叠；`hip → upper_body → chest → head`
+  即标准 Spine 人形链）。执行方式：从 git 历史（`63dab65`）恢复原始 4.3.26 包
+  → flip → rename 全链路重跑（翻转 G1/G2/G3 与重命名自检再次全过）；
+  等价性实证：旧终稿做 3 名替换后与新终稿**字节级一致**、渲染 pose 逐像素一致。
+  换装分区挂点即 `upper_body`（上半身）/ `lower_body`（下身）。
