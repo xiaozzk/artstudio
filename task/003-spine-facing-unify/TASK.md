@@ -79,6 +79,15 @@ electro-archer、bbaksang、Tattooist、gonbong、yunggul、Act3_Polearm_GuardL�
 
 ## 决策与笔记
 
+- 2026-09-27：**单包试运行（用户指定）**：按用户要求用 `spine_flip_bake.py` 把
+  `assets/2d/人形/男/帝国圣骑士变体/` 烘焙为朝右，先出完整包目录
+  `assets/2d/人形/男/帝国圣骑士变体-右/`（json+atlas+png 三件套，原包不动）供人工验证。
+  闸门：G1 残差 0、G2 setup 3.55e-13 / root 动画 4.33e+01（D4 信息级边界）、G3 零违规；
+  翻转域骨 2、动画轨 20。预览：`tmp/003_paladin_variant_left.html`（原包）vs
+  `tmp/003_paladin_variant_right.html`（烘焙包）。
+  **→ 人工验证通过**：烘焙 JSON 已替换回原包（SHA256 与烘焙产物一致，atlas/png 原样），
+  `帝国圣骑士变体-右/` 目录已按用户指示删除；原包可随时经
+  `原始资源_*.zip` 回退。首个 assets/2d 原包就地翻向落地。
 - 2026-09-27：**D1–D6 用户拍板**——D1 统一**向右**；D2 由 agent 定（B-a 判定分流 + 失败降 B-c）；
   D3 产物落 `task/003-spine-facing-unify/output/`（待人工校验后再沉淀）；D4/D5/D6 由 agent 定
   （D4 接受镜像轴固定、D5 保留旧 spine_flip.py、D6 做 K 精确共轭）。详见 notes/2026-09-27。
