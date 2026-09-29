@@ -30,8 +30,8 @@
 
 - [x] **A1 朝向**：烘焙后渲染人物脸部朝右（复现：
       `python3 tools/spine/anim/render_rig.py output/Unit_Spine_EmpirePaladinSpe1Skin1.json -o tmp/x`）；
-      `spine_flip_bake` 闸门 **G1 残差 0.0 / G2 setup 3.55e-13 / G3 违规 0** 全过，
-      报告 `output/step1-flip-report.jsonl`。
+      `spine_flip_bake` 闸门 **G1 残差 0.0 / G2 setup 3.55e-13 / G3 违规 0** 全过
+      （报告 `step1-flip-report.jsonl` 已归档于 git 历史，见产出表注）。
 - [x] **A2 重命名完整性**：全文档深度扫描旧骨名残留 **0 处**（只计被改名骨；
       键名 `bone` 字段与未改名 `root` 不算）；
       parent / slot.bone / 动画轨道 key 全部指向新名，父链无环。
@@ -57,8 +57,6 @@
 |------|------|
 | `output/` | **最终交付包**（下一步换装任务直接以此为包目录）：朝右 + 44 英文骨名三件套 `Unit_Spine_EmpirePaladinSpe1Skin1.{json,atlas,png}` + `images_original/`（32 张单图）+ `交付说明.md`（含 005 差异说明）+ `复原预览图.png` + 原始资源回退 zip |
 | `output/rename-map.json` | 44 骨重命名映射与识别依据（evidence） |
-| `output/step1-flip-report.jsonl` | Step1 烘焙报告（翻转域骨、G1/G2/G3 数值） |
-| `output/step2-rename-report.json` | Step2 重命名自检报告 |
 | `scripts/rename_bones.py` | 骨骼批量重命名脚本（引用完整性 + 动画等价自检，可复用） |
 | `scripts/slot_sheet.py` | 附件单图 → 槽名标注总览图（识别证据生成，工作区根运行） |
 | `notes/2026-09-28-识别与命名.md` | 朝向判定 / 识别记录 / 命名决策 |
@@ -95,3 +93,7 @@
   → flip → rename 全链路重跑（翻转 G1/G2/G3 与重命名自检再次全过）；
   等价性实证：旧终稿做 3 名替换后与新终稿**字节级一致**、渲染 pose 逐像素一致。
   换装分区挂点即 `upper_body`（上半身）/ `lower_body`（下身）。
+- 2026-09-30（用户确认）：`output/` 两份过程报告删除，闸门数值已录本档案
+  （Step1：G1 残差 0.0 / G2 setup 3.55e-13 / root 动画 4.33e+01 信息级 / G3 违规 0；
+  Step2：44 骨改名、A2 零残留 / A3 动画等价 / problems 空）。
+  再生：重跑 `spine_flip_bake.py --report <文件>` 与 `rename_bones.py` 自检即可。
