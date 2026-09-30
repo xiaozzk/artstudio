@@ -97,3 +97,14 @@
   （Step1：G1 残差 0.0 / G2 setup 3.55e-13 / root 动画 4.33e+01 信息级 / G3 违规 0；
   Step2：44 骨改名、A2 零残留 / A3 动画等价 / problems 空）。
   再生：重跑 `spine_flip_bake.py --report <文件>` 与 `rename_bones.py` 自检即可。
+- 2026-09-30（用户重建 .spine 工程）：用户在 Spine 4.3.26 编辑器内把终稿逆向重建为
+  `output/*.spine` 工程文件，验证 CLI 导出链路（`--update 4.3.26` + `--export json+pack`）
+  **一次通过**：三件套结构、44 英文骨名（含 09-29 分区）、10 动画、渲染逐像素与终稿一致；
+  新自动 pack 图集更紧凑（1477×271 vs 2048×300）。**⚠ 排雷：CLI 必须带 `--update <版本>`，
+  否则旧版 launcher 丢 `json+pack` 快捷值报 "Output specified without an input or action"。**
+  完整命令、产物验证表、后续口径见 [`notes/2026-09-30-CLI导出验证.md`](notes/2026-09-30-CLI导出验证.md)。
+- 2026-09-30（用户拍板）：**CLI 导出三件套覆盖 `output/` 交付版**——`.spine` 工程为
+  唯一权威源，交付物由 `--export json+pack` 直出。覆盖校验全过：骨名/动画/槽位全等、
+  渲染 pose 逐像素 diff=None、图集区域集合一致（自动 pack 更紧凑 1477×271）、
+  hash 更新 `n/JcyJmkJwY`。旧手工三件套保留于 git `003a241` 可回退。
+  此后换装流程：编辑器改 `.spine` → CLI 重出三件套（不再手工拼图集）。
