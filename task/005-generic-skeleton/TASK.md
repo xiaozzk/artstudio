@@ -71,6 +71,48 @@
 - 2026-09-28：Step1+Step2 全部落地并通过 A1–A5；状态改**已完成**。
   遗留：未跑官方 player 复核、`skeleton.hash` 未重算（工具链口径，同 003 交付包处理）；
   通用骨骼下一阶段（槽位规划换皮 / 002 动画迁移接入）另立任务。
+- 2026-10-02（用户拍板）：**三类命名统一**（骨骼/插槽/附件图）——侧别不用缩写且放类型前
+  （`arm_l_upper→arm_upper_left_bone`）、骨骼 `_bone` / 插槽 `_slot` 结尾、多级骨 `_1.._N`
+  结尾（`tail_bone_1..7`）；槽名与所挂骨语义对齐（`Lhand2→arm_upper_left_slot`、
+  `Rtui3→leg_shin_left_slot_2`、`leg_l_shin.png→leg_shin_left_slot`）；附件=图集区域=
+  图片名同步（`no/by/attack→face_open/face_blink/face_attack`、`wb→tail`、
+  `L/Rhand→hand_left/right`）。JSON+atlas+12 张图联动，几何/图集像素/绘制顺序不动；
+  自检（映射完备/引用全效/区域双射/零残留/槽序不变）全过，渲染 setup 帧
+  改名前后逐像素一致。完整映射表与校验记录见
+  [`notes/2026-10-02-命名统一.md`](notes/2026-10-02-命名统一.md)；
+  执行脚本 `scripts/unify_names.py`。
+  **⚠ `output/*.spine` 工程未回灌（仍旧名），再从工程导出会覆盖本次命名。**
+- 2026-10-02（**回滚记录**）：曾按「重建骨骼 rest pose + 烘焙贴图」的彻底方案改过 output/
+  （`scripts/conjugate_bake.py`，骨骼旋转归零 + 附件 rot=0/scale=1 + 贴图重烘 + 图集重打包），
+  G1–G3 数学闸门虽过，但 G4 整机渲染暴露出**镜像框架**缺陷（hip 的 scaleX=-1 被表示为
+  shearY=-180 的镜像框架 → 已烘成正立的贴图穿过该框架被二次镜像，25% 像素损伤）。
+  用户随后拍板：**骨骼 rest pose 不改，改附件与骨骼的相对旋转（附件去适配骨骼）**。
+  已完整回滚并验证：
+  - JSON 与用户提供的回滚目标逐项一致（29/29 检查项通过：骨旋转、附件 rotation/scale、
+    mesh 顶点数据齐全）；
+  - 25 张单图从 git HEAD（LFS）取回并按当前命名落位，尺寸与 JSON 声明逐项吻合；
+  - 打包页图按图集 bounds 重拼，`pipelines.py verify` 回环 **25/25 一致，RGB/alpha 最大差 0**；
+  - 整机渲染与回滚前基准 `notes/preview-setup-pose.png` **逐像素 0 差**。
+  两个烘焙脚本已标注「已废弃」仅作存档；后续按「附件侧规范化」方案推进（见下条）。
+- 2026-10-02（换肤前置）：`scripts/slot_sheet.py` 升级为可复用 CLI（换肤组件图）——
+  默认 `--sort bone`：**不分组、紧凑网格**；排序键=骨骼 setup 世界 y（10px 桶，从高到低
+  = 从头到脚，复用 `render_rig.compute_world` 同一套数学）> 层级深度（顶层/父骨先于子骨）
+  > bones[] 序 > 槽名相似度（去 left/right 侧别的部件基名，左右件成对相邻、left 在前；
+  2026-10-02 用户口径：ear_left/ear_right 不再被 slots 序拆开）> slots[] 序；
+  每格完整标注骨名+槽名（多附件槽追加附件名），
+  全名不省略（喂大模型读图）；无附件空槽不出格；可选 `--sort slot|size`；
+  补 Windows 字体路径。
+  **尺寸/姿态口径（对齐 preview-setup-pose，除全局缩放外 1:1 复刻）**：
+  每格=附件在 setup pose 的**装配姿态**——骨世界旋转 + 附件 x/y/rotation/scaleX/scaleY
+  完整叠加（region=四角四边形 2 三角投影；mesh=蒙皮顶点按 JSON triangles 逐三角形
+  投影），展示尺寸=世界 bbox，全图共用全局缩放 → 任意两格相对大小与朝向
+  =预览图真实比例。region 不再贴原始 PNG 方向（face 三态带 -91° 附件旋转，
+  原图方向与装配方向差 90°，用户指正后改装配姿态口径）。
+  ⚠ 世界矩阵必须用 Spine 官方双轴公式（x 轴角=rotation+shearX、y 轴角=
+  rotation+90+shearY、各自乘 scale）——本包 hip 带 scaleX=-1 镜像域，
+  用 R·diag 展开 b/c 分量会错位 → 蒙皮形状整体上下翻转（踩过）。
+  改名后总览图 `notes/slot-sheet-renamed.png`
+  （25 格 / 5×5 / 1800×1820：face 三态→head 11 件→双臂→上身→大腿→下装→尾→小腿）。
 - 基座包零 constraints（无 ik/transform/path），动画轨道含 slots/bones/drawOrder/events 四类，
   重命名只需覆盖 bones 名与其引用点。
 - 命名规范：lowercase_snake；侧别沿用骨架自身 R/L 标签（不随镜像换边）；

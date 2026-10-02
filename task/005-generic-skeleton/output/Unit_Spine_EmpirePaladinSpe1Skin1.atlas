@@ -1,89 +1,53 @@
 Unit_Spine_EmpirePaladinSpe1Skin1.png
-size:1477,271
-filter:Linear,Linear
-pma:true
-Hty
-bounds:117,58,211,190
-rotate:90
-Lhand
-bounds:1165,2,52,117
-Lhand2
-bounds:312,3,48,66
-Ltui
-bounds:362,4,65,115
-offsets:2,0,67,115
-rotate:90
-Ltui2
-bounds:1219,4,52,115
-Rhand
-bounds:928,2,86,105
-offsets:0,1,86,107
-Rhand2
-bounds:117,2,54,77
-rotate:90
-Rtui
-bounds:1132,121,59,117
-offsets:12,0,71,117
-rotate:90
-Rtui2
-bounds:196,3,53,114
-rotate:90
-attack
-bounds:997,115,133,154
-offsets:2,7,135,161
+	size: 2048, 1024
+	filter: Linear, Linear
+arm_upper_left
+	bounds: 2, 2, 48, 66
+arm_upper_right
+	bounds: 217, 2, 54, 77
 body
-bounds:1404,10,51,82
-by
-bounds:641,97,136,172
-offsets:0,7,136,179
-dun
-bounds:460,80,189,179
-offsets:0,0,193,179
-rotate:90
-dun2
-bounds:1273,2,26,19
-jiao
-bounds:1331,25,95,71
-rotate:90
-jiao2
-bounds:479,2,76,155
-rotate:90
-jiao3
-bounds:915,109,80,160
-offsets:0,9,80,169
-no
-bounds:779,107,134,162
-offsets:2,0,136,162
-qz
-bounds:1273,23,97,56
-rotate:90
-tf
-bounds:309,71,198,149
-rotate:90
-tf2
-bounds:636,4,127,74
-offsets:0,0,127,76
-tf3
-bounds:1337,132,34,48
-tf5
-bounds:1016,9,49,104
-ty
-bounds:1132,182,336,87
-wb
-bounds:1404,94,86,71
-rotate:90
-wq1
-bounds:1251,122,84,58
-wq2
-bounds:2,5,264,113
-rotate:90
-zs
-bounds:831,4,95,101
-zs2
-bounds:1067,13,96,100
-zs3
-bounds:1373,138,22,42
-zs5
-bounds:1373,138,22,42
-zs4
-bounds:765,3,64,92
+	bounds: 432, 2, 51, 82
+ear_left
+	bounds: 647, 2, 95, 101
+ear_right
+	bounds: 862, 2, 64, 92
+ear_rings_left
+	bounds: 1077, 2, 22, 42
+ear_rings_right
+	bounds: 1077, 2, 22, 42
+face_attack
+	bounds: 1292, 2, 135, 161
+face_blink
+	bounds: 1507, 2, 136, 179
+face_open
+	bounds: 1722, 2, 136, 162
+hair_back
+	bounds: 2, 196, 211, 190
+hair_front
+	bounds: 217, 196, 198, 149
+hair_template_left
+	bounds: 432, 196, 49, 104
+hair_template_right
+	bounds: 647, 196, 34, 48
+hand_left
+	bounds: 862, 196, 52, 117
+hand_right
+	bounds: 1077, 196, 86, 107
+horn
+	bounds: 1292, 196, 95, 71
+horn_left
+	bounds: 1507, 196, 76, 155
+horn_right
+	bounds: 1722, 196, 80, 169
+leg_shin_left
+	bounds: 2, 390, 53, 114
+leg_shin_right
+	bounds: 2, 390, 53, 114
+leg_thigh_left
+	bounds: 217, 390, 67, 115
+leg_thigh_right
+	bounds: 432, 390, 71, 117
+skirt
+	bounds: 647, 390, 97, 56
+tail
+	bounds: 862, 390, 86, 71
