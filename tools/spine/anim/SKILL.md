@@ -17,7 +17,7 @@ description: >
 
 | 脚本 | 一句话 |
 |------|--------|
-| `render_rig.py <包> -o <目录>` | 渲 setup pose + 骨骼拓扑叠加图 + rig.json（骨骼世界坐标/朝向清单） |
+| `render_rig.py <包> -o <目录>` | 渲 setup pose + 骨骼拓扑叠加图 + rig.json（骨骼世界坐标/朝向清单）。与 `pipelines.py render` **同口径**：region 与 mesh 附件都画（镜像域/负 scale/shear 由几何自然处理）、`linkedmesh` 解引用、多皮肤（default + 附件最多那套）、图集 rotate/offsets、skeleton.x/y 偏移。实测：005 包 0.00%、linkedmesh 包（旋风勇者）0.00%、多皮肤包（鬼面武士）1.54%（同尺寸逐像素超差）。**剩余差距：约束（IK/path/transform）未解算**——含约束的包（蓝衣术士/武僧/火把女战士）骨骼姿态会不同（15%~44%），这类包请用 `python3 tools/spine/repair_spine/pipelines.py render <包目录> [--bones] --out <png>` |
 | `spine_flip.py <包> -o <目录> [--check]` | JSON 级水平镜像（换朝向）；`--check` 双翻回原文自检 |
 | `anim_retarget.py --A <包> --B <包> --anim <名> --map <映射.json> --out <目录>` | 按映射表把 B 的动画增量时间轴注入 A 的副本（**永远不动原包**） |
 | `anim_preview.py <包目录> [--animation 名] [-o out.html]` | 生成单文件离线预览 HTML（官方 player 内嵌，双击即开） |

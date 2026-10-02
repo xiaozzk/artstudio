@@ -31,7 +31,7 @@ python -m pip install numpy pillow opencv-python requests scipy
 | `spine_part_swap.py` | 部件两件事：`locate`（哨兵色重渲定位插槽可见区 → mask / 尺寸 / 附件四边形）、`verify`（换图重渲量化改动范围，远处应为 0px） |
 | `spine_part_extract.py` | 出「局部重绘」的提交三元组：`--mode pair`（摘除件单独图 + 原图置顶突出件 + 黑白 mask）/ `inplace` / `aside`；`paste-back` 把模型出图抠件、按 z 序（含覆盖表）贴回。⚠ **状态：实验性** —— 2026-09-24 用它做「整套逐件换风格」的批量实验，12 件里 4 件被模型"补全上下文"导致语义崩坏（详见该文件的实测注释），方案判为不稳定；工具留着供单件实验，**别当稳定流水线用** |
 | `spine-reskin.md` | 换皮整条流水线（含实测坑与成本）|
-| **`anim/`（动画迁移）** | 把 B 包的功能动作迁到骨骼相近的 A 包：`render_rig.py`（骨骼拓扑渲染图，评估用）、`anim_dump.py`（关键帧解析 + 主次骨骼摘要）、`anim_retarget.py`（按映射表注入 + 校验）、`anim_preview.py`（单文件离线 player 预览）。agent 操作手册见 [`anim/SKILL.md`](spine/anim/SKILL.md)；任务档案 `task/002-anim-retarget/` |
+| **`anim/`（动画迁移）** | 把 B 包的功能动作迁到骨骼相近的 A 包：`render_rig.py`（骨骼拓扑渲染图，评估/相对 diff 用；与 `pipelines.py render` 同口径：region+mesh 都画、镜像域正确、linkedmesh 解引用、多皮肤、图集 rotate/offsets；实测 0.00%~1.54% 超差。**剩余差距：约束（IK/path/transform）未解算**，含约束的包请用 pipelines render）、`anim_dump.py`（关键帧解析 + 主次骨骼摘要）、`anim_retarget.py`（按映射表注入 + 校验）、`anim_preview.py`（单文件离线 player 预览）。agent 操作手册见 [`anim/SKILL.md`](spine/anim/SKILL.md)；任务档案 `task/002-anim-retarget/` |
 
 ## ② `sprite/` — 整图与部件处理（纯本地）
 
