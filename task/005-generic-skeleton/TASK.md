@@ -150,3 +150,21 @@
   渲染 pose 逐像素 diff=None、图集区域集合一致（自动 pack 更紧凑 1477×271）、
   hash 更新 `n/JcyJmkJwY`。旧手工三件套保留于 git `003a241` 可回退。
   此后换装流程：编辑器改 `.spine` → CLI 重出三件套（不再手工拼图集）。
+- 2026-10-02（用户拍板，agent 执行）：**镜像域上移 `hip_bone` → `root_bone`**。
+  翻转烘焙当年把 `scaleX=-1` 挂在 root 直接子骨（hip）上，坑：①贴图先烘正立再穿过
+  镜像框架=二次镜像（conjugate_bake 25% 像素损伤事故）②旋转过镜像域变号，角度
+  不能直接相加 ③隐形域难发现 ④新画皮肤件不补偿会左右反。改法（严格共轭等价，
+  渲染不变）：`root_bone` 加 `scaleX=-1`；`hip_bone` 局部变换取共轭 `L'=S∘L`
+  （`x: 2.735203→-2.735203`、`rotation: 0.1010933→-0.1010933`、`scaleX` 删除），
+  其余全部不动。闸门全过：①除 root 外 33 骨世界矩阵最大差 1.1e-16（root=
+  原矩阵∘diag(-1,1) 严格成立）②render_rig setup 渲染逐像素 0 差 ③slot_sheet
+  逐像素 0 差（独立数学路径双验证）。**口径变更：镜像判断一律逐骨查 scale 正负，
+  不写死骨名**（分析脚本 `tmp/005-render/inspect_orientation_matrix.py` 已改为
+  自动检测全部负 scale 骨）；`slot_sheet.py`/`render_rig.py` 注释同步。
+  ⚠ `.spine` 工程未回灌（仍旧名 + hip 镜像），从工程重导出会丢本修改。
+  同日第二步：**`tools/spine/anim/spine_flip_bake.py` 重构为 v2（镜像挂 root）**——
+  翻转域子骨改纯旋转共轭 M=Fx·A_r⁻¹·Fx·A_r（只动 x/y/rotation，shear/scale 不动），
+  动画只动 translate 通道；root 零旋转特例=整个烘焙只加 root scaleX=-1。
+  G1/G2/G3 全过；回归：005 基座（G2 3.13e-13）+ 3 个复杂已交付包 dry-run + 新旧产物
+  175 采样点 A/B 世界矩阵差 1.7e-13。记录见
+  [`../003-spine-facing-unify/notes/2026-10-02-翻转烘焙v2镜像上移root.md`](../003-spine-facing-unify/notes/2026-10-02-翻转烘焙v2镜像上移root.md)。

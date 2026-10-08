@@ -10,8 +10,8 @@
 	"audio": "E:\\temp\\Temp\\spine_conv_oswbn6lu"
 },
 "bones": [
-	{ "name": "root_bone", "rotation": 0.1010933 },
-	{ "name": "hip_bone", "parent": "root_bone", "rotation": 0.1010933, "x": 2.735203, "y": 169.8136, "scaleX": -1 },
+	{ "name": "root_bone", "rotation": 0.1010933, "scaleX": -1 },
+	{ "name": "hip_bone", "parent": "root_bone", "rotation": -0.1010933, "x": -2.735203, "y": 169.8136 },
 	{ "name": "leg_thigh_right_bone", "parent": "hip_bone", "length": 71.58, "rotation": -96.43512, "x": -18.44161, "y": -6.972595 },
 	{ "name": "leg_shin_right_bone", "parent": "leg_thigh_right_bone", "length": 80.44, "rotation": 3.7310934, "x": 74.7374, "y": 0.6417541 },
 	{ "name": "leg_thigh_left_bone", "parent": "hip_bone", "length": 74.36, "rotation": -87.61813, "x": 19.543644, "y": -8.02304 },

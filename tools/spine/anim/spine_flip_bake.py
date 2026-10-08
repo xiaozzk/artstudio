@@ -1,30 +1,37 @@
 #!/usr/bin/env python3
-"""spine_flip_bake.py — assets/2d 全库「朝向统一」共轭烘焙工具（task/003-spine-facing-unify）。
+"""spine_flip_bake.py — assets/2d 全库「朝向统一」共轭烘焙工具（task/003，v2 镜像挂 root）。
 
 与旧 `spine_flip.py`（全局部取反 + 附件贴图翻转、遇 constraints 拒绝）不同，本工具做
-**数据级共轭烘焙**：只改 root 直接子骨（inherit=normal）的局部变换与动画通道，取反
-奇对称分量（x / rotation / shearX / shearY / scaleX），其余一切不动——更深的骨、全部
-附件、deform、slots、skins、skeleton、atlas/png 原样，子树通过继承自动完成镜像。
+**数据级共轭烘焙**。v2（2026-10-02 用户拍板，取代 v1「共轭进 root 直接子骨」——镜像标记
+挂在链中间的 hip 类骨上，坑：贴图先烘正立会二次镜像、旋转过镜像变号、换皮需隐形补偿）：
+
+**镜像标记只挂 root**：root 局部 scaleX 取负，root 直接子骨做**纯旋转共轭**（不携带镜像，
+scaleX 保持原号），更深的骨、全部附件、deform、slots、skins、skeleton、atlas/png 原样，
+子树通过继承自动完成镜像。
 
 数学核心（算法规格见 task/003-spine-facing-unify/notes/2026-09-26-需求调研与方案.md）：
 
     设 Fx = diag(-1,1)（跨竖直轴的世界镜像），root setup 局部矩阵 A_r（仿射）。
-    共轭矩阵  K = A_r⁻¹ · Fx · A_r  （3×3 仿射，含 root x/y≠0 的平移分量）。
-    对 root 直接子骨：L' = K · L  ⇒  子骨世界 W' = A_r·L' = Fx·A_r·L = Fx·W。
+    目标：翻转域骨世界 W' = Fx·W，且镜像只由 root 携带：
 
-    本库 root 均为「纯等比缩放 + 旋转 θr（≤0.185°）+ 零 shear」，K 的线性部分是正交反射，
-    可闭式分解：rotation' = α - rotation，shearX' = -shearX，shearY' = -shearY，
-    scaleX' = -scaleX，scaleY' = scaleY，(x',y') = K·(x,y)（α = K 线性部的反射轴角，
-    θr=0 时 α=0 退化为纯取反——统一一条代码路径，无 θr 分支，实现决策 D6）。
+        root' 局部 = A_r·Fx          ⇒  字段：scaleX → -scaleX，其余全不动
+        子骨局部 L' = M·L，M = Fx·A_r⁻¹·Fx·A_r = T(c)·R(2θr)（det>0，纯旋转共轭）
+        闭式分解（子骨）：x' = M·(x,y)，rotation' = rotation + β（β = atan2(M_c,M_a) = -α），
+        shearX/shearY/scaleX/scaleY **全部不动**。
+    特例（root 在原点、零旋转、等比 1）：M = I ⇒ 整个烘焙 = root 加 scaleX=-1，
+    子骨一字不动——这是期望的最小形态。
 
-    动画通道（4.3 runtime apply 语义，alpha=1 / from=setup）：
-      rotate.value → -value（rotation' = α - (setup+value) = setup' - value）
-      translate (x,y) → K_线性·(x,y)（key 是相对 setup 的平移偏移，只乘线性部）
-      shear (x,y) → (-x,-y)；scale / scalex / scaley **不变**（key 是 setup scale 的相对乘数，
-      镜像符号由 setup 的 -scaleX 提供，Animation.ts ScaleTimeline `x *= setup.scaleX` 实证）。
+    本库 root 均为「纯等比缩放 + 旋转 θr（≤0.185°）+ 零 shear」，M 线性部是纯旋转，
+    可闭式分解；root 带 shear/非等比缩放仍拒绝（防御性退出）。
 
-数学性质：烘焙产物与「运行时 skeleton.scaleX=-1」在**逐骨世界矩阵上严格等价**（root 固定
-在 setup 时；root 动画旋转/缩放的包镜像轴固定，属 D4 已知边界，见 G2 口径说明）。
+    动画通道（4.3 runtime apply 语义，alpha=1 / from=setup）——比 v1 少两类翻号：
+      rotate → value **不变**（key 是相对 setup 的偏移，setup rotation 已含 β）
+      translate → M 线性部·(x,y)（θr≈0 时≈恒等；x/y 成对写回）
+      shear / scale → **不变**
+      bezier：translate 无法安全共轭（x/y 曲线不可拆），告警人工复核；rotate/shear 不动。
+
+数学性质：烘焙产物逐骨世界矩阵（root 固定 setup 时）与「运行时 skeleton.scaleX=-1」
+严格等价；root 的世界矩阵本身变为 A_r·Fx（root 无槽无附件，不承载绘制内容）。
 
 用法：
   # 烘焙一次（含 G1/G2/G3 自检），产物只写 JSON，不动原包
@@ -35,14 +42,15 @@
 
 边界（防御性退出，遇以下任一情况报错、不静默产出）：
   - 非 4.x 格式；含 constraints（ik/transform/path/physics）；未知 inherit 值；
-    未知附件类型；未知骨动画通道；root 非等比缩放或带 shear（K 非正交反射，闭式分解不成立）。
+    未知附件类型；未知骨动画通道；root 非等比缩放或带 shear（M 非纯旋转，闭式分解不成立）。
 
 自检（烘焙即执行，任一不过则非零退出、产物不落盘）：
   G1 双翻恒等：产物再烘焙一次与原包归一化 diff=0（θr≠0 允许 ≤1e-9 浮点残差）。
   G2 运行时等价：模拟官方 4.3 runtime（BonePose.updateWorldTransform 五分支 + timeline apply），
-     「原包+scaleX=-1」vs「烘焙包+scaleX=+1」逐骨世界矩阵 max diff ≤ 1e-6。
+     烘焙包逐骨世界矩阵 == Fx·原包世界矩阵，max diff ≤ 1e-6。
      口径 A（闸门）root 固定 setup；口径 B（信息级）含 root 动画，报告 max diff（D4 边界）。
-  G3 不动项审计：产物与原包 diff 仅允许落在翻转域 5 字段及其动画通道（+ Tier2 B-a 附件）。
+  G3 不动项审计：产物与原包 diff 仅允许落在 root 的 scaleX、翻转域子骨的 {x,y,rotation}
+     及其 translate 动画通道（+ Tier2 B-a 附件 + noScale→normal 改写）。
 """
 from __future__ import annotations
 
@@ -62,8 +70,11 @@ KNOWN_ATT = {"region", "mesh", "linkedmesh", "point", "path", "boundingbox", "cl
 VIS_ATT = {"region", "mesh", "linkedmesh"}          # 可见（参与 Tier2 判定）
 SKIP_ATT_FLIP = {"point", "path", "boundingbox", "clipping"}  # B-a 不翻转的非绘制附件
 KNOWN_BONE_CH = {"rotate", "translate", "scale", "shear"}
-# 翻转域骨允许被改的 setup 字段（含 y：θr≠0 或 root x/y≠0 时 K 共轭会动 y）
-FLIP_SETUP_FIELDS = {"x", "y", "rotation", "shearX", "shearY", "scaleX"}
+# v2 允许被改的 setup 字段：root 只动 scaleX；翻转域子骨只动 {x,y,rotation}（纯旋转共轭）
+ROOT_FLIP_FIELDS = {"scaleX"}
+CHILD_FLIP_FIELDS = {"x", "y", "rotation"}
+# v2 允许被改的动画通道：只有 translate（rotate/shear/scale 都是相对量，不动）
+ANIM_FLIP_CHANNELS = {"translate"}
 G1_TOL = 1e-9
 G2_TOL = 1e-6
 # Tier2 B-a 闸门：世界线性部分旋转变化 ≤ 该角度(度) 且 镜像轴偏差 ≤ 该角度
@@ -204,8 +215,9 @@ def compute_K(doc, ctx):
 
 def flip_domain(doc):
     """翻转域：root 直接子骨且 inherit ∈ {normal, noScale}（均继承反射 → 参与翻转）。
-    noScale 直接子骨必须一并共轭——root 自身不翻，它不会自动跟随（调研 §4.3 语义落地，
-    2026-09-27 实测 Kimchul 的 noScale 武器骨验证）。"""
+    noScale 直接子骨必须一并共轭——noScale 语义只保留父骨朝向、剥掉反射，烘焙前先
+    改写成 normal（plan_inherit_rewrite）再共轭（2026-09-27 实测 Kimchul 的 noScale
+    武器骨验证）。v2 下共轭是纯旋转（M），子骨不携带镜像。"""
     rname = doc["bones"][0].get("name", "root")
     return {b["name"] for b in doc["bones"][1:]
             if b.get("parent") == rname and b.get("inherit", "normal") in ("normal", "noScale")}
@@ -297,27 +309,32 @@ def apply_inherit_rewrite(doc, rewrite):
     return done
 
 
-# ---------- 烘焙（方案 A 共轭） ----------
+# ---------- 烘焙（v2 共轭：镜像挂 root，子骨纯旋转共轭） ----------
 
-def bake_bones(doc, K, alpha, flipset):
-    """就地修改 doc 的 bones：翻转域骨 L' = K·L（闭式分解）。"""
+def bake_root(doc):
+    """root 自身携带镜像：scaleX → -scaleX，其余字段不动。返回原 scaleX。"""
+    r = doc["bones"][0]
+    old = r.get("scaleX", 1.0)
+    _set(r, "scaleX", -old, 1.0)
+    return old
+
+
+def bake_bones(doc, M, beta, flipset):
+    """就地修改 doc 的 bones：翻转域直接子骨 L' = M·L（纯旋转共轭）。
+
+    M = Fx·A_r⁻¹·Fx·A_r = T(c)·R(β)（det>0）：x/y 仿射共轭、rotation 加 β；
+    shearX/shearY/scaleX/scaleY **不动**（子骨不再携带镜像——v2 核心差异）。"""
     n = 0
     for b in doc.get("bones", []):
         if b["name"] not in flipset:
             continue
         x, y = b.get("x", 0.0), b.get("y", 0.0)
         rot = b.get("rotation", 0.0)
-        shx, shy = b.get("shearX", 0.0), b.get("shearY", 0.0)
-        sx, sy = b.get("scaleX", 1.0), b.get("scaleY", 1.0)
-        nx, ny = mat_apply(K, x, y)
-        nrot = alpha - rot
+        nx, ny = mat_apply(M, x, y)
         # 写回：只在与原值不同或原本就存在该字段时写，保持缺省字段语义
         _set(b, "x", nx, 0.0)
         _set(b, "y", ny, 0.0)
-        _set(b, "rotation", nrot, 0.0)
-        _set(b, "shearX", -shx, 0.0)
-        _set(b, "shearY", -shy, 0.0)
-        _set(b, "scaleX", -sx, 1.0)
+        _set(b, "rotation", rot + beta, 0.0)
         n += 1
     return n
 
@@ -338,9 +355,11 @@ def _set(b, key, val, default):
     # 否则保持缺省（不新增显式缺省字段）
 
 
-def bake_animations(doc, K, alpha, flipset, warnings):
-    """就地修改 animations：翻转域骨的 rotate/translate/shear 通道共轭；scale 不动。"""
+def bake_animations(doc, M, beta, flipset, warnings):
+    """就地修改 animations：翻转域骨的 translate 通道乘 M 线性部；
+    rotate/shear/scale **不动**（v2：镜像在 root，key 都是相对量，共轭已在 setup rotation 里）。"""
     n = 0
+    warned_bezier = set()
     for aname, anim in doc.get("animations", {}).items():
         for bname, tracks in anim.get("bones", {}).items():
             if bname not in flipset:
@@ -349,49 +368,28 @@ def bake_animations(doc, K, alpha, flipset, warnings):
                 if not isinstance(keys, list):
                     continue
                 for k in keys:
-                    if ch == "rotate" and "value" in k:
-                        k["value"] = _r9(-k["value"])
-                    elif ch == "translate":
+                    if ch == "translate":
                         kx, ky = k.get("x", 0.0), k.get("y", 0.0)
-                        # 只乘 K 线性部（key 是平移偏移，无平移分量）。
-                        # x/y 任一存在就必须成对写回——θr≠0 时 y'=K[3]·x 不可丢，
-                        # 否则双翻失逆（G1 会抓到 1e-6 级残差，2026-09-27 Kimchul 实测）。
+                        # 只乘 M 线性部（key 是平移偏移，无平移分量）。
+                        # x/y 任一存在就必须成对写回——β≠0 时 y'=M[3]·x 不可丢，
+                        # 否则双翻失逆（G1 会抓到 1e-6 级残差）。
                         if "x" in k or "y" in k:
-                            nx = K[0]*kx + K[1]*ky
-                            ny = K[3]*kx + K[4]*ky
+                            nx = M[0]*kx + M[1]*ky
+                            ny = M[3]*kx + M[4]*ky
                             k["x"] = _r9(nx)
                             k["y"] = _r9(ny)
-                    elif ch == "shear":
-                        if "x" in k:
-                            k["x"] = _r9(-k["x"])
-                        if "y" in k:
-                            k["y"] = _r9(-k["y"])
-                    elif ch == "scale":
-                        pass  # key 是 setup scale 相对乘数，不动
-                    # bezier curve：本库 0 个；若出现按通道符号变换并告警
+                    # rotate/shear/scale：v2 一律不动
                     cv = k.get("curve")
-                    if isinstance(cv, list):
-                        _bake_bezier(ch, cv, K, warnings, aname, bname)
+                    if isinstance(cv, list) and ch == "translate":
+                        # bezier 对 translate 的 x/y 分别存曲线，无法在此安全共轭；
+                        # β≈0（root 旋转 ≤0.185°）时 M 线性部≈恒等，保守不动并告警。
+                        tag = (aname, bname, ch)
+                        if tag not in warned_bezier:
+                            warned_bezier.add(tag)
+                            warnings.append(f"动画 {aname} 骨 {bname} 通道 translate: "
+                                            f"bezier 曲线未共轭（β={beta:.4f}°≈0，请人工复核）")
             n += 1
     return n
-
-
-def _bake_bezier(ch, cv, K, warnings, aname, bname):
-    """bezier 控制点（每 4 个一组：cx1, v1, cx2, v2）的 value 分量（下标 1、3）按通道变换。"""
-    for i in range(1, len(cv), 4):
-        for j in (i, i + 2):
-            if j >= len(cv):
-                break
-            v = cv[j]
-            if ch == "rotate":
-                cv[j] = -v
-            elif ch == "shear":
-                cv[j] = -v
-            elif ch == "translate":
-                # translate 的 value 分量需区分 x/y——bezier 对 translate 分别存两条曲线，
-                # 无法在此简单共轭；告警并保守取负（本库无 bezier，仅防御）。
-                cv[j] = -v
-    warnings.append(f"动画 {aname} 骨 {bname} 通道 {ch}: bezier curve 已按符号变换（请人工复核）")
 
 
 # ---------- Tier 2：排除域可见附件 B-a 二次翻转 ----------
@@ -731,7 +729,7 @@ def max_world_diff(W1, W2, skip=()):
 # ---------- 主流程 ----------
 
 def bake_doc(doc, ctx, warnings, _second=False):
-    """对 doc 深拷贝执行共轭烘焙（noScale 改写 + K 共轭）。返回 (烘焙后doc, info)。"""
+    """对 doc 深拷贝执行共轭烘焙（noScale 改写 + 镜像挂 root 共轭）。返回 (烘焙后doc, info)。"""
     out = json.loads(json.dumps(doc))
     # 1) noScale→normal 改写（镜像子树内、父骨世界 |scale|≈1 无反射的安全骨）
     rewrite, rejects = plan_inherit_rewrite(out, ctx)
@@ -739,12 +737,16 @@ def bake_doc(doc, ctx, warnings, _second=False):
         err(f"{ctx}: noScale 骨改写不安全（父骨世界 scale≠1 或含反射）："
             + "；".join(rejects[:3]) + " —— 拒绝产出")
     rewritten = apply_inherit_rewrite(out, rewrite)
-    # 2) K 共轭 root 直接子骨（inherit∈{normal,noScale}）
+    # 2) v2 共轭：M = Fx·K（纯旋转），root 携带镜像，root 直接子骨共轭（inherit∈{normal,noScale}）
     K, alpha = compute_K(out, ctx)
+    M = mat_mul(FX, K)
+    beta = math.atan2(M[3], M[0]) / DEG  # = -α = 2θr（M 线性部是纯旋转）
     flipset = flip_domain(out)
-    nb = bake_bones(out, K, alpha, flipset)
-    na = bake_animations(out, K, alpha, flipset, warnings)
-    info = {"K": K, "alpha": alpha, "flip_bones": sorted(flipset),
+    root_sx = bake_root(out)
+    nb = bake_bones(out, M, beta, flipset)
+    na = bake_animations(out, M, beta, flipset, warnings)
+    info = {"M": M, "beta": beta, "alpha": alpha, "root_scaleX": root_sx,
+            "flip_bones": sorted(flipset),
             "baked_bones": nb, "baked_anim_tracks": na,
             "inherit_rewritten": sorted(rewritten)}
     return out, info
@@ -782,7 +784,8 @@ def run_g2(orig, baked, ctx):
     比 runtime-flip 参考更严格也更正确（后者对 noScale 骨本身就有去镜像偏差）。
 
     比较集 = 镜像子树（翻转域骨及其后代，不含 root 与排除域）：
-      - root 自身世界本就不动（镜像由子骨的共轭局部实现）；
+      - root 自身世界变为 A_r·Fx（镜像标记所在地；root 无槽无附件，不承载绘制内容，
+        故不入比较集）；
       - 排除域（onlyTranslation/noROR/noScaleOrReflection 及子树）设计上不镜像
         （位置随父镜像、朝向保持原样），其视觉由 Tier 2 B-a/B-c 策略单独处理。
 
@@ -825,7 +828,7 @@ def max_world_diff_fx(Wo, Wb, compare):
     return m, worst
 
 
-def run_g3(orig, baked, flipset, tier2_ba, inherit_rewritten, ctx):
+def run_g3(orig, baked, flipset, tier2_ba, inherit_rewritten, root_name, ctx):
     """G3 不动项审计。返回违规 diff 列表。"""
     na = normalize(orig)
     nb = normalize(baked)
@@ -833,7 +836,7 @@ def run_g3(orig, baked, flipset, tier2_ba, inherit_rewritten, ctx):
     bone_names = [b.get("name") for b in orig.get("bones", [])]
     violations = []
     for p, a, b in diffs:
-        if not _g3_allowed(p, flipset, tier2_ba, bone_names, set(inherit_rewritten)):
+        if not _g3_allowed(p, flipset, tier2_ba, bone_names, set(inherit_rewritten), root_name):
             violations.append((p, a, b))
     return violations
 
@@ -853,8 +856,9 @@ def _seg_idx(s):
     return None
 
 
-def _g3_allowed(path, flipset, tier2_ba, bone_names, inherit_rewritten):
-    """差异路径是否被允许（翻转域 5 字段及其动画通道 + noScale 改写 inherit + Tier2 B-a）。"""
+def _g3_allowed(path, flipset, tier2_ba, bone_names, inherit_rewritten, root_name):
+    """差异路径是否被允许（v2：root 的 scaleX + 翻转域子骨 {x,y,rotation} 及其 translate
+    动画通道 + noScale 改写 inherit + Tier2 B-a）。"""
     parts = path.lstrip(".").split(".")
     head = _seg(parts[0])
     # bones[i].<field>
@@ -864,13 +868,15 @@ def _g3_allowed(path, flipset, tier2_ba, bone_names, inherit_rewritten):
         field = _seg(parts[-1])
         if field == "inherit":
             return name in inherit_rewritten  # noScale→normal 安全改写（G2 验证）
-        return name in flipset and field in FLIP_SETUP_FIELDS
+        if name == root_name:
+            return field in ROOT_FLIP_FIELDS
+        return name in flipset and field in CHILD_FLIP_FIELDS
     if head == "animations":
         # animations.<名>.bones.<骨>.<通道>[i]....
         if len(parts) >= 5 and _seg(parts[2]) == "bones":
             bname = parts[3]
             ch = _seg(parts[4])
-            return bname in flipset and ch in ("rotate", "translate", "shear")
+            return bname in flipset and ch in ANIM_FLIP_CHANNELS
         # Tier2 B-a：deform 动画顶点（attachments/deform 两段布局都认）
         if tier2_ba and _seg(parts[2]) in ("attachments", "deform"):
             return True
@@ -1044,7 +1050,8 @@ def main(argv):
     g1_hard, g1_maxres = run_g1(doc, baked, info, ctx)
     g2A, g2B, g2wA = run_g2(doc, baked, ctx)
     g3_viol = run_g3(doc, baked, info["flip_bones"], tier2_ba,
-                     info.get("inherit_rewritten", []), ctx)
+                     info.get("inherit_rewritten", []),
+                     doc["bones"][0].get("name", "root"), ctx)
     result["inherit_rewritten"] = info.get("inherit_rewritten", [])
     result["gates"] = {
         "G1": {"pass": not g1_hard, "max_residual": g1_maxres, "violations": len(g1_hard)},

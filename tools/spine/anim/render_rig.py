@@ -10,8 +10,9 @@
 逐像素比对：超差(>8) **0.00%**、最大差 2）：
   1. **世界变换同口径**：含 scale/shear 继承、skeleton.x/y 根部偏移，与
      normal / onlyTranslation / noRotationOrReflection / noScale / noScaleOrReflection
-     五种 inherit；**镜像域（负 scale）也正确**（此前只累乘旋转，hip 带 scaleX=-1 的包
-     会整条子树镜像）。
+     五种 inherit；**镜像域（负 scale）也正确**（此前只累乘旋转，任一骨带负 scale
+     的包——如 005 原包的 hip scaleX=-1，2026-10-02 已共轭上移至 root——会整条子树镜像；
+     判断一律逐骨查 scale 正负，不写死骨名）。
   2. **region 与 mesh 都画**：region 按四角四边形 2 三角形投影；mesh 按加权顶点 +
      JSON triangles 逐三角形投影。二者共用同一条贴图投影路径，
      镜像/负 scale/shear 都由几何自然处理。缺贴图时在 overlay 留 bbox 框 + 槽名。

@@ -16,7 +16,8 @@
 世界矩阵 = Spine 官方双轴公式（同 pipelines.update_world）：
   x 轴角 = rotation + shearX，y 轴角 = rotation + 90 + shearY，各自乘 scaleX/scaleY。
   ⚠ 不能用 R·diag(sx,sy) 手动展开：分量抄错位在镜像域（scaleX=-1）下会把
-  蒙皮形状整体翻转（本包 hip 带 scaleX=-1，实测踩过）。
+  蒙皮形状整体翻转（实测踩过）。镜像域位置：2026-10-02 起在 root_bone
+  （原在 hip_bone，已共轭上移，渲染逐像素不变）；判断一律逐骨查 scale 正负，不写死骨名。
 
 排序（--sort bone，默认）——坐标 > 顶层 > 子骨骼 > 名称相似度 > 槽序：
   主键 = 所挂骨骼 setup 世界 y（10px 桶，从高到低 = 从头到脚）；次键 = 层级深度
