@@ -4,14 +4,28 @@
 
 纯本地、确定性（PIL+numpy），不消耗 AI 额度。
 
-渲染口径（2026-10-02 用户拍板，除整体缩放外 1:1 复刻 preview-setup-pose）：
+渲染口径（**纯渲染口径**，2026-10-10 用户拍板收敛；源头是 2026-10-02 的装配姿态口径）：
   每格内容 = 附件在 setup pose 下的**装配姿态**（含骨世界旋转 + 附件 x/y/rotation/
-  scaleX/scaleY 的完整叠加），不是原始贴图方向：
+  scaleX/scaleY 的完整叠加），不是原始贴图方向，**也不贴 images_original 原图**：
   - region/普通附件：四角四边形（附件变换 + 骨骼世界矩阵）按 2 三角形投影
   - mesh/linkedmesh：加权/非加权顶点蒙皮后按 JSON triangles 逐三角形投影
-  展示尺寸 = 世界 bbox（旋转后的包围盒）；全图共用一个全局缩放（最大件定标），
-  任意两格的相对大小、朝向 = 预览图里的真实相对大小。
+  展示尺寸 = 世界 bbox（旋转后的包围盒）；全图**共用一个全局缩放**（`--max-size`
+  与最大件共同定标），任意两格的相对大小、朝向 = 渲染图（preview-setup-pose）里的真实关系。
+  实测对账（2026-10-10，14 件逐件 vs `pipelines.py render` 单件隔离渲染）：
+  内容盒尺寸差 0–5px（渲染侧恒偏大 = ss=3→LANCZOS 抗锯齿外溢）、质心偏移 ≤3px、
+  对齐后 >2px 之外的轮廓差 0–2px ⇒ 几何同源，逐像素差异只来自采样链。
   标注完整骨名/槽名（多附件槽追加附件名）；无附件空槽不出格；多附件槽连排。
+
+布局（2026-10-10 新增）：最大件占 **2×2 大格**，其余各占 1×1，全图仍共用一个全局
+  缩放 ⇒ 既保住跨件相对大小可比，又把整体字号/件体量比等格网格放大约 1.8×
+  （005 包：s 0.690 → 1.278）。成品长边锁在 `--max-size`（默认 2048）以内，
+  无需事后二次缩放。
+
+⚠ 生图方向陷阱（2026-10-10 实测，换肤必读）：本图是**装配方向**，而回灌用的贴图是
+  **原图方向**，两者在 6 件上差 ~90°（arm_upper_left/right、hand_left、body、hair_back、
+  skirt），hand_right 42°、tail 27°。照本图方向画件再存回 `images_original/` 会转错，
+  而 `flatbg_cut.py --fit-to` 只做等比缩放 + 中心对齐、**不含旋转**。
+  要拿方向/像素尺寸当尺子，另出原图口径（见 task/005 notes）。
 
 世界矩阵 = Spine 官方双轴公式（同 pipelines.update_world）：
   x 轴角 = rotation + shearX，y 轴角 = rotation + 90 + shearY，各自乘 scaleX/scaleY。
@@ -28,9 +42,12 @@
   其余模式：slot=按 JSON slots 数组顺序（绘制顺序）；size=按图片体积（旧口径）。
 
 用法（工作区根运行）：
-  python task/005-generic-skeleton/scripts/slot_sheet.py <包目录> [-o 输出.png] [--sort bone]
+  python task/005-generic-skeleton/scripts/slot_sheet.py <包目录> [-o 输出.png]
+      [--sort bone] [--max-size 2048] [--cols 5] [--label-h 84] [--no-hero]
 包目录需含 *.json（骨架）+ images_original/（附件单图）。旧包无 images_original 时退回包根。
 """
+from __future__ import annotations
+
 import argparse
 import json
 import math
@@ -41,8 +58,11 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-CELL_W, CELL_H, LABEL_H, COLS, BUCKET = 360, 300, 64, 5, 10
+BUCKET = 10
+LABEL_FONT = (15, 15, 13)
 BG_FRAME = (200, 200, 210)
+CELL_PAD = 8            # 格内边距（画）+ 定标余量另算
+SCALE_PAD = 16          # 定标时每格四边各留的余量（= 2*CELL_PAD）
 
 # 世界坐标/层级计算复用渲染器的同一套数学（骨骼链旋转累乘，Y-up）
 _ROOT = Path(__file__).resolve().parents[3]
@@ -250,9 +270,45 @@ def sort_rows(rows, doc, mode: str):
     raise SystemExit(f'[!] 未知排序: {mode}')
 
 
+# ---------- 布局求解 ----------
+
+def solve_layout(n_parts: int, boxes: dict, hero: str | None, max_size: int,
+                 cols: int, label_h: int):
+    """返回 (COLS, ROWS, CELL_W, CELL_H, s)。
+
+    约束：cols*CELL_W <= max_size 且 rows*(CELL_H+label_h) <= max_size；
+    目标：在**所有件都能塞进自己格子**的前提下把统一缩放 s 取到最大。
+    hero 占 2x2（其画区 = 2*CELL_W 宽、2*CELL_H+label_h 高）。
+    """
+    need = n_parts + (3 if hero else 0)          # hero 多占 3 个格位
+    rows = max(1, math.ceil(need / cols))
+    if hero and rows < 2:                        # 单行放不下 2x2，退化为等比网格
+        hero, need = None, n_parts
+        rows = max(1, math.ceil(need / cols))
+    cell_w = max_size // cols
+    cell_h = max_size // rows - label_h
+    if cell_h <= SCALE_PAD:
+        raise SystemExit(f'[!] 格子太矮（{cell_h}px）：调小 --cols 或 --label-h')
+
+    s = float('inf')
+    for name, (w, h) in boxes.items():
+        if w <= 0 or h <= 0:
+            continue
+        if name == hero:
+            bw, bh = 2 * cell_w, 2 * cell_h + label_h
+        else:
+            bw, bh = cell_w, cell_h
+        s = min(s, (bw - SCALE_PAD) / w, (bh - SCALE_PAD) / h)
+    if not math.isfinite(s) or s <= 0:
+        raise SystemExit('[!] 无法定标（附件 bbox 全为 0？）')
+    return cols, rows, cell_w, cell_h, s
+
+
 # ---------- 拼图 ----------
 
-def make_sheet(rows, img_dir: Path, out: Path, doc: dict):
+def make_sheet(rows, img_dir: Path, out: Path, doc: dict,
+               max_size: int = 2048, cols: int = 5, label_h: int = 84,
+               hero: bool = True):
     mats = world_matrices(doc)
     tex_sizes = {f.stem: Image.open(f).size for f in sorted(img_dir.glob('*.png'))}
     slot_bone = {s['name']: s.get('bone', '') for s in doc['slots']}
@@ -270,28 +326,43 @@ def make_sheet(rows, img_dir: Path, out: Path, doc: dict):
             tex = Image.open(img_dir / f'{aname}.png').convert('RGBA')
             rasters[aname] = (rasterize(pts, uvpx, tris, tex), bbox)
 
-    pad_px = 8                                   # 格内边距
-    # 全局缩放：所有装配 bbox 都能塞进格子（最大件决定）
-    s = 1.0
-    for (_, (w, h)) in rasters.values():
-        if w > 0 and h > 0:
-            s = min(s, (CELL_W - 2 * pad_px) / w, (CELL_H - 2 * pad_px) / h)
+    boxes = {n: b for n, (_, b) in rasters.items()}
+    # 大件（bbox 面积最大）占 2x2；其余按 order 顺序填格
+    hero_att = None
+    if hero and rows:
+        hero_att = max((r for r in rows if r[3] in boxes),
+                       key=lambda r: boxes[r[3]][0] * boxes[r[3]][1])[3]
 
-    n_rows = (len(rows) + COLS - 1) // COLS
-    sheet = Image.new('RGB', (COLS * CELL_W, n_rows * (CELL_H + LABEL_H)), BG_FRAME)
+    COLS, ROWS, CELL_W, CELL_H, s = solve_layout(
+        len(rows), boxes, hero_att, max_size, cols, label_h)
+    print(f'[slot_sheet] 布局 {COLS}x{ROWS}  格 {CELL_W}x{CELL_H}+{label_h}  '
+          f'hero={hero_att}  全局 s={s:.3f}  成品 {COLS * CELL_W}x{ROWS * (CELL_H + label_h)}')
+
+    # 占位：hero 占 (0,0)(0,1)(1,0)(1,1)
+    taken = {(0, 0), (0, 1), (1, 0), (1, 1)} if hero_att else set()
+    free = [(r, c) for r in range(ROWS) for c in range(COLS) if (r, c) not in taken]
+    rest = [r for r in rows if r[3] != hero_att]
+    if len(rest) > len(free):
+        raise SystemExit(f'[!] 格位不够：需要 {len(rest)}，只有 {len(free)}')
+    place = ([((0, 0), next(r for r in rows if r[3] == hero_att))] if hero_att else []) \
+        + list(zip(free, rest))
+
+    f_bone, f_slot, f_att = (find_font(sz) for sz in LABEL_FONT)
+    sheet = Image.new('RGB', (COLS * CELL_W, ROWS * (CELL_H + label_h)), BG_FRAME)
     d = ImageDraw.Draw(sheet)
-    f_bone, f_slot, f_att = find_font(15), find_font(15), find_font(13)
-
     slot_att_count: dict[str, int] = {}
     for _, slot, _, _ in rows:
         slot_att_count[slot] = slot_att_count.get(slot, 0) + 1
 
-    for i, (idx, slot, bone, att) in enumerate(rows):
-        cx, cy = (i % COLS) * CELL_W, (i // COLS) * (CELL_H + LABEL_H)
-        cell = Image.new('RGBA', (CELL_W - 8, CELL_H - 8), (180, 180, 195, 255))
+    for (gr, gc), (idx, slot, bone, att) in place:
+        span = 2 if att == hero_att else 1
+        bw = CELL_W * span
+        bh = CELL_H * span + (label_h if span == 2 else 0)   # hero 画区吃掉行 0 的标签带
+        cx, cy = gc * CELL_W, gr * (CELL_H + label_h)
+        cell = Image.new('RGBA', (bw - CELL_PAD, bh - CELL_PAD), (180, 180, 195, 255))
         cd = ImageDraw.Draw(cell)
-        for yy in range(0, CELL_H - 8, 24):  # 棋盘底可辨透明边界
-            for xx in range(0, CELL_W - 8, 24):
+        for yy in range(0, bh - CELL_PAD, 24):               # 棋盘底可辨透明边界
+            for xx in range(0, bw - CELL_PAD, 24):
                 if (xx // 24 + yy // 24) % 2 == 0:
                     cd.rectangle([xx, yy, xx + 23, yy + 23], fill=(205, 205, 220, 255))
         if att in rasters:
@@ -301,18 +372,20 @@ def make_sheet(rows, img_dir: Path, out: Path, doc: dict):
             tw, th = img.size
         disp = (max(1, round(tw * s)), max(1, round(th * s)))
         img = img.resize(disp, Image.LANCZOS)
-        cell.alpha_composite(img, ((CELL_W - 8 - img.width) // 2,
-                                   (CELL_H - 8 - img.height) // 2))
-        sheet.paste(cell.convert('RGB'), (cx + 4, cy + 4))
-        d.rectangle([cx + 4, cy + CELL_H, cx + CELL_W - 4, cy + CELL_H + LABEL_H - 4],
-                    fill=(25, 25, 35))
-        d.text((cx + 10, cy + CELL_H + 4), f'bone {bone}', fill=(150, 235, 150), font=f_bone)
-        d.text((cx + 10, cy + CELL_H + 24), slot, fill=(120, 220, 255), font=f_slot)
-        if slot_att_count[slot] > 1:  # 多附件槽（三态等）才追加附件名小字
-            d.text((cx + 10, cy + CELL_H + 44), f'att {att}', fill=(255, 230, 120), font=f_att)
+        cell.alpha_composite(img, ((bw - CELL_PAD - img.width) // 2,
+                                   (bh - CELL_PAD - img.height) // 2))
+        sheet.paste(cell.convert('RGB'), (cx + CELL_PAD // 2, cy + CELL_PAD // 2))
+        d.rectangle([cx + 4, cy + bh, cx + bw - 4, cy + bh + label_h - 4], fill=(25, 25, 35))
+        d.text((cx + 10, cy + bh + 4), f'bone {bone}', fill=(150, 235, 150), font=f_bone)
+        d.text((cx + 10, cy + bh + 22), slot, fill=(120, 220, 255), font=f_slot)
+        if slot_att_count[slot] > 1:                        # 多附件槽（三态等）才追加附件名小字
+            d.text((cx + 10, cy + bh + 44), f'att {att}', fill=(255, 230, 120), font=f_att)
+
     out.parent.mkdir(parents=True, exist_ok=True)
     sheet.save(out)
-    print(f'saved {out} {sheet.size} cells={len(rows)} global_scale={s:.3f}')
+    print(f'-> {out}  {sheet.size}  cells={len(rows)}  '
+          f'{"OK <= " + str(max_size) if max(sheet.size) <= max_size else "!! 超出 " + str(max_size)}')
+    return sheet
 
 
 def main(argv) -> int:
@@ -320,6 +393,12 @@ def main(argv) -> int:
     ap.add_argument('pkg', type=Path)
     ap.add_argument('-o', '--out', type=Path, default=Path('tmp/slot-sheet.png'))
     ap.add_argument('--sort', choices=('bone', 'slot', 'size'), default='bone')
+    ap.add_argument('--max-size', type=int, default=2048,
+                    help='成品长边上限（默认 2048；全图统一缩放后保证不超过它）')
+    ap.add_argument('--cols', type=int, default=5, help='列数（默认 5）')
+    ap.add_argument('--label-h', type=int, default=84, help='每格标签带高度（默认 84）')
+    ap.add_argument('--no-hero', dest='hero', action='store_false',
+                    help='关掉「最大件占 2x2」的布局，退回全等格网格')
     a = ap.parse_args(argv[1:])
     pkg = a.pkg.resolve()
     img_dir = pkg / 'images_original'
@@ -327,7 +406,8 @@ def main(argv) -> int:
         img_dir = pkg  # 旧包单图直接放包根
     doc = load_doc(pkg)
     rows = sort_rows(collect_rows(doc, img_dir), doc, a.sort)
-    make_sheet(rows, img_dir, a.out, doc)
+    make_sheet(rows, img_dir, a.out, doc, max_size=a.max_size, cols=a.cols,
+               label_h=a.label_h, hero=a.hero)
     return 0
 
 
