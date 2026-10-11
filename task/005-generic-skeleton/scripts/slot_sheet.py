@@ -44,6 +44,11 @@
 用法（工作区根运行）：
   python task/005-generic-skeleton/scripts/slot_sheet.py <包目录> [-o 输出.png]
       [--sort bone] [--max-size 2048] [--cols 5] [--label-h 84] [--no-hero]
+      [--only 件名,件名] [--list]
+
+  --only：只出指定件（骨名 / 槽名 / 附件名，子串匹配）——拆解表缺件或多件时，
+          用它出「局部参考图」，再拿去做局部生成补件；
+  --list：只列出包里所有可用件名（附件名 / 槽名 / 骨名），不出图。
 包目录需含 *.json（骨架）+ images_original/（附件单图）。旧包无 images_original 时退回包根。
 """
 from __future__ import annotations
@@ -399,6 +404,9 @@ def main(argv) -> int:
     ap.add_argument('--label-h', type=int, default=84, help='每格标签带高度（默认 84）')
     ap.add_argument('--no-hero', dest='hero', action='store_false',
                     help='关掉「最大件占 2x2」的布局，退回全等格网格')
+    ap.add_argument('--only', default=None,
+                    help='只出指定件：逗号分隔，可写骨名/槽名/附件名（子串匹配）')
+    ap.add_argument('--list', action='store_true', help='只列出可用件名，不出图')
     a = ap.parse_args(argv[1:])
     pkg = a.pkg.resolve()
     img_dir = pkg / 'images_original'
@@ -406,6 +414,24 @@ def main(argv) -> int:
         img_dir = pkg  # 旧包单图直接放包根
     doc = load_doc(pkg)
     rows = sort_rows(collect_rows(doc, img_dir), doc, a.sort)
+
+    if a.list:
+        print(f'[slot_sheet] {pkg.name} 共 {len(rows)} 件：')
+        for _, slot, bone, att in rows:
+            print(f'  {att:26s} slot={slot:26s} bone={bone}')
+        return 0
+
+    if a.only:
+        keys = [k.strip() for k in a.only.split(',') if k.strip()]
+        picked = [r for r in rows
+                  if any(k in r[3] or k in r[1] or k == r[2] for k in keys)]
+        if not picked:
+            print(f'[!] --only 未匹配到任何件：{a.only}（用 --list 看可用件名）')
+            return 2
+        print(f'[slot_sheet] --only 命中 {len(picked)}/{len(rows)} 件：'
+              + ', '.join(r[3] for r in picked))
+        rows = picked
+
     make_sheet(rows, img_dir, a.out, doc, max_size=a.max_size, cols=a.cols,
                label_h=a.label_h, hero=a.hero)
     return 0

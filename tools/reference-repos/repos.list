@@ -3,3 +3,4 @@
 # 这些目录自带 .git、整目录不入库（见 .gitignore 中 docs/*/ 规则与注释）。
 https://github.com/funsanity/Spine-AI-Generator
 https://github.com/GenielabsOpenSource/spine-animation-ai
+https://github.com/taotao7/FrameBaker
