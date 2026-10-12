@@ -168,6 +168,46 @@
 **不需要**给 chrome-devtools MCP 加 `--browserUrl` —— 那会把 MCP 绑死在副本上、还要重载 Host。
 直接用 CDP 更轻（Node ≥ 22 自带 WebSocket，零依赖）。
 
+## Git / LFS 治理（2026-10 里程碑）
+
+**里程碑标签**：`milestone/3d-pivot-2026-10`。这次对历史做了一次性治理（远端已强推覆盖）：
+
+| 指标 | 治理前 | 治理后 |
+|---|---|---|
+| `.git` | 475 MB | **205 MB**（LFS 444 → 199 MB，回收 4947 个 2D 时代 LFS 对象） |
+| LFS 条目（全历史） | 5357 | **332**（3D 资产 + 少量杂项） |
+| 提交数 | 50 | 48（2 个只有 2D 大件的提交被清空后自动剪掉） |
+| 普通对象 | 30 MB | 5.2 MB |
+
+做法：`git filter-repo --invert-paths --path assets/2d --path assets/eva_bone --path assets/武僧`
+（保留全部提交信息，只从历史里剔除 2D 大件）→ 删旧引用 → `git gc --prune=now` → `git lfs prune`。
+
+**两条硬教训（都实际踩到了）**：
+
+1. **强推前必须先 `git fetch`** —— 本次发现远端 `main` 领先本地一个提交（`154ede5`，10-11 在**另一台机器**推的
+   2D 收尾：`task/005` 的 4 个脚本 + `repos.list`）。直接强推就会把它抹掉。
+   处置：先 `git rebase -X theirs origin/main` 把本地提交叠上去，再用
+   `git push --force-with-lease=refs/heads/main:<远端实际 sha>` 推送（lease 能防"推的时候远端又变了"）。
+2. **`git rm --cached` 只是"不入库"，但一旦之后 checkout / rebase / 重写历史切换提交，Git 会把
+   "旧提交里跟踪、新提交里没有"的文件从工作树删掉**（`.gitignore` **拦不住**）。
+   本次 `assets/2d` 的 **5423 个曾入库文件被删**（磁盘 537 M → 270 M），已从远端旧提交恢复：
+   ```bash
+   git checkout <旧提交> -- assets/2d     # 取回（LFS 内容走本地对象库，无需联网）
+   git reset -q HEAD -- assets/2d         # 退回"本地保留、不入库"状态
+   ```
+   → **规则**：把大件移出 git 之前，先确认存在**独立物理副本**（远端旧历史 / 备份 / 另一份拷贝）。
+
+**备份口径（两种都要，缺一不可）**：
+
+- `git bundle create <路径> --all` —— 只含 **git 对象（指针）**，**不含 LFS 内容**（本次 bundle 仅 7.3 MB）。
+- 单独复制 **`.git/lfs`** —— LFS 实体内容（本次 442 MB）。
+- 本次备份位置：`~/Desktop/artstudio-pre-rewrite2-*.bundle`、`~/Desktop/artstudio-lfs-backup-*/lfs`、
+  `~/Desktop/artstudio-task005-from-remote-20261013.zip`（确认无误后可自行删除）。
+
+**远端 LFS 配额注意**：强推**不会**释放 GitHub 上已上传的 LFS 对象（那 253 MB 的 2D 对象仍计入配额）。
+要让远端 LFS 归零，只能**删除并重建仓库**（或联系 GitHub 支持）；当前占用 ≈442 MB，免费额度 10 GiB 足够，
+故不折腾。克隆成本：git 层 6.3 MB + 当前提交的 LFS ≈200 MB。
+
 ## 删除规则（硬性，2026-09-14 事故后新增）
 
 **只有用户明确通知删除的产物才能删。**
