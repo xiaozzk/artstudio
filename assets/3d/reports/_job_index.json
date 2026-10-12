@@ -1,0 +1,252 @@
+[
+ {
+  "group": "mco_outfits",
+  "name": "Female_Peasant",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Outfits/Female_Peasant.fbx"
+ },
+ {
+  "group": "mco_outfits",
+  "name": "Female_Ranger",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Outfits/Female_Ranger.fbx"
+ },
+ {
+  "group": "mco_outfits",
+  "name": "Male_Peasant",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Outfits/Male_Peasant.fbx"
+ },
+ {
+  "group": "mco_outfits",
+  "name": "Male_Ranger",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Outfits/Male_Ranger.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Female_Peasant_Arms",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Peasant_Arms.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Female_Peasant_Body",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Peasant_Body.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Female_Peasant_Feet",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Peasant_Feet.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Female_Peasant_Legs",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Peasant_Legs.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Female_Ranger_Acc_Pauldrons",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Acc_Pauldrons.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Female_Ranger_Arms",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Arms.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Female_Ranger_Body",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Body.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Female_Ranger_Feet",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Feet.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Female_Ranger_Head_Hood",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Head_Hood.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Female_Ranger_Legs",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Legs.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Male_Peasant_Arms",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Peasant_Arms.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Male_Peasant_Body",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Peasant_Body.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Male_Peasant_Feet",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Peasant_Feet.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Male_Peasant_Legs",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Peasant_Legs.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Male_Ranger_Acc_Pauldron",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Acc_Pauldron.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Male_Ranger_Arms",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Arms.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Male_Ranger_Body",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Body.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Male_Ranger_Feet_Boots",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Feet_Boots.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Male_Ranger_Head_Hood",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Head_Hood.fbx"
+ },
+ {
+  "group": "mco_parts",
+  "name": "Male_Ranger_Legs",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Legs.fbx"
+ },
+ {
+  "group": "ubc_base",
+  "name": "Superhero_Female_FullBody",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Unity/Superhero_Female_FullBody.fbx"
+ },
+ {
+  "group": "ubc_base",
+  "name": "Superhero_Male_FullBody",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Unity/Superhero_Male_FullBody.fbx"
+ },
+ {
+  "group": "ubc_hair_o0",
+  "name": "Eyebrows_Female",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Eyebrows_Female.fbx"
+ },
+ {
+  "group": "ubc_hair_o0",
+  "name": "Eyebrows_Regular",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Eyebrows_Regular.fbx"
+ },
+ {
+  "group": "ubc_hair_o0",
+  "name": "Hair_Beard",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_Beard.fbx"
+ },
+ {
+  "group": "ubc_hair_o0",
+  "name": "Hair_Buns",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_Buns.fbx"
+ },
+ {
+  "group": "ubc_hair_o0",
+  "name": "Hair_Buzzed",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_Buzzed.fbx"
+ },
+ {
+  "group": "ubc_hair_o0",
+  "name": "Hair_BuzzedFemale",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_BuzzedFemale.fbx"
+ },
+ {
+  "group": "ubc_hair_o0",
+  "name": "Hair_Long",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_Long.fbx"
+ },
+ {
+  "group": "ubc_hair_o0",
+  "name": "Hair_SimpleParted",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_SimpleParted.fbx"
+ },
+ {
+  "group": "ubc_hair_o0_ue",
+  "name": "Eyebrows_Female",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Eyebrows_Female.fbx"
+ },
+ {
+  "group": "ubc_hair_o0_ue",
+  "name": "Eyebrows_Regular",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Eyebrows_Regular.fbx"
+ },
+ {
+  "group": "ubc_hair_o0_ue",
+  "name": "Hair_Beard",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_Beard.fbx"
+ },
+ {
+  "group": "ubc_hair_o0_ue",
+  "name": "Hair_Buns",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_Buns.fbx"
+ },
+ {
+  "group": "ubc_hair_o0_ue",
+  "name": "Hair_Buzzed",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_Buzzed.fbx"
+ },
+ {
+  "group": "ubc_hair_o0_ue",
+  "name": "Hair_BuzzedFemale",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_BuzzedFemale.fbx"
+ },
+ {
+  "group": "ubc_hair_o0_ue",
+  "name": "Hair_Long",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_Long.fbx"
+ },
+ {
+  "group": "ubc_hair_o0_ue",
+  "name": "Hair_SimpleParted",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_SimpleParted.fbx"
+ },
+ {
+  "group": "ubc_hair_hb",
+  "name": "Eyebrows_Female",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Eyebrows_Female.fbx"
+ },
+ {
+  "group": "ubc_hair_hb",
+  "name": "Eyebrows_Regular",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Eyebrows_Regular.fbx"
+ },
+ {
+  "group": "ubc_hair_hb",
+  "name": "Hair_Beard",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_Beard.fbx"
+ },
+ {
+  "group": "ubc_hair_hb",
+  "name": "Hair_Buns",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_Buns.fbx"
+ },
+ {
+  "group": "ubc_hair_hb",
+  "name": "Hair_Buzzed",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_Buzzed.fbx"
+ },
+ {
+  "group": "ubc_hair_hb",
+  "name": "Hair_BuzzedFemale",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_BuzzedFemale.fbx"
+ },
+ {
+  "group": "ubc_hair_hb",
+  "name": "Hair_Long",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_Long.fbx"
+ },
+ {
+  "group": "ubc_hair_hb",
+  "name": "Hair_SimpleParted",
+  "src": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_SimpleParted.fbx"
+ }
+]

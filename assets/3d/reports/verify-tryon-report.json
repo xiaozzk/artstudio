@@ -1,0 +1,7442 @@
+{
+ "task": "task-6",
+ "verifier": "verifier（独立验收方，READ-ONLY）",
+ "generated_at": "2026-10-12 19:48:36",
+ "duration_seconds": 44.5,
+ "host": {
+  "blender": "Blender 5.2.2 LTS"
+ },
+ "verdict": "通过",
+ "verdict_detail": "4/4 份试穿 .blend 断言全过（单 rig 65 骨 / 无第二骨架 / 全 mesh 蒙皮 / 头部裁剪量化吻合 / 贴图 packed&md5 命中 / 无躯干残留）。Lead 自述 6 条里 5 条成立、1 条不成立（差异范围）。",
+ "coverage": {
+  "blends": [
+   "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "download/tryon-blend/TryOn_Female_Ranger.blend"
+  ],
+  "preview_pngs": [
+   "download/tryon-blend/preview/TryOn_Female_Peasant.png",
+   "download/tryon-blend/preview/TryOn_Female_Ranger.png",
+   "download/tryon-blend/preview/TryOn_Male_Peasant.png",
+   "download/tryon-blend/preview/TryOn_Male_Ranger.png",
+   "download/tryon-blend/preview/_sheet_TryOn.png"
+  ],
+  "count": 4,
+  "spot_check_backups_present": [
+   "download/tryon-blend/TryOn_Female_Peasant.blend1",
+   "download/tryon-blend/TryOn_Female_Ranger.blend1",
+   "download/tryon-blend/TryOn_Male_Peasant.blend1",
+   "download/tryon-blend/TryOn_Male_Ranger.blend1"
+  ]
+ },
+ "lead_claims_check": {
+  "C1_head_cut_by_weights": {
+   "claim": "按顶点组把身体 mesh 裁成只剩头部（Head/neck_01 权重和 > 0.5）",
+   "measured": {
+    "TryOn_Male_Peasant.blend": {
+     "before": 7281,
+     "after": 1562,
+     "kept_pct": 21.45
+    },
+    "TryOn_Female_Peasant.blend": {
+     "before": 7376,
+     "after": 1644,
+     "kept_pct": 22.29
+    },
+    "TryOn_Male_Ranger.blend": {
+     "before": 7281,
+     "after": 1562,
+     "kept_pct": 21.45
+    },
+    "TryOn_Female_Ranger.blend": {
+     "before": 7376,
+     "after": 1644,
+     "kept_pct": 22.29
+    }
+   },
+   "verdict": "成立"
+  },
+  "C2_three_head_meshes_plus_hair": {
+   "claim": "头部 3 个 mesh（body 残件 + Eyes + Eyebrows）+（Peasant 两套）HeadBone 发型挂到服装 rig",
+   "measured": {
+    "TryOn_Male_Peasant.blend": [
+     "Hair_SimpleParted",
+     "Head_Eyebrows",
+     "Head_Eyes",
+     "Head_SuperHero_Male"
+    ],
+    "TryOn_Female_Peasant.blend": [
+     "Hair_Long",
+     "Head_Eyebrows",
+     "Head_Eyes",
+     "Head_Superhero_Female"
+    ],
+    "TryOn_Male_Ranger.blend": [
+     "Head_Eyebrows",
+     "Head_Eyes",
+     "Head_SuperHero_Male"
+    ],
+    "TryOn_Female_Ranger.blend": [
+     "Head_Eyebrows",
+     "Head_Eyes",
+     "Head_Superhero_Female"
+    ]
+   },
+   "verdict": "成立"
+  },
+  "C3_dropped_extra_rigs": {
+   "claim": "删掉多余骨架，最终只剩 1 个 rig",
+   "measured": {
+    "TryOn_Male_Peasant.blend": [
+     {
+      "name": "RIG_TryOn_Male_Peasant",
+      "bones": 65
+     }
+    ],
+    "TryOn_Female_Peasant.blend": [
+     {
+      "name": "RIG_TryOn_Female_Peasant",
+      "bones": 65
+     }
+    ],
+    "TryOn_Male_Ranger.blend": [
+     {
+      "name": "RIG_TryOn_Male_Ranger",
+      "bones": 65
+     }
+    ],
+    "TryOn_Female_Ranger.blend": [
+     {
+      "name": "RIG_TryOn_Female_Ranger",
+      "bones": 65
+     }
+    ]
+   },
+   "verdict": "成立"
+  },
+  "C4_bone_names_identical": {
+   "claim": "两套资产骨名逐根相同",
+   "measured": {
+    "male": {
+     "Male_Peasant": {
+      "joints": 65,
+      "name_sets_identical": true
+     },
+     "Male_Ranger": {
+      "joints": 65,
+      "name_sets_identical": true
+     }
+    },
+    "female": {
+     "Female_Peasant": {
+      "joints": 65,
+      "name_sets_identical": true
+     },
+     "Female_Ranger": {
+      "joints": 65,
+      "name_sets_identical": true
+     }
+    }
+   },
+   "verdict": "成立"
+  },
+  "C5_head_neck_rest_identical": {
+   "claim": "Head (0, 0.0829, 0) / neck_01 (0, 0.2151, 0) 的 rest 变换逐位一致",
+   "measured": {
+    "male": {
+     "Male_Peasant": {
+      "Head": {
+       "d_world_matrix_max": 0.0,
+       "local_translation_ref": [
+        0.0,
+        0.08285235,
+        1e-08
+       ],
+       "local_translation_other": [
+        0.0,
+        0.08285235,
+        1e-08
+       ],
+       "world_translation_ref": [
+        0.0,
+        1.5998,
+        -0.0174
+       ]
+      },
+      "neck_01": {
+       "d_world_matrix_max": 0.0,
+       "local_translation_ref": [
+        0.0,
+        0.21509314,
+        2e-08
+       ],
+       "local_translation_other": [
+        0.0,
+        0.21509314,
+        2e-08
+       ],
+       "world_translation_ref": [
+        0.0,
+        1.5205,
+        -0.0414
+       ]
+      }
+     },
+     "Male_Ranger": {
+      "Head": {
+       "d_world_matrix_max": 0.0,
+       "local_translation_ref": [
+        0.0,
+        0.08285235,
+        1e-08
+       ],
+       "local_translation_other": [
+        0.0,
+        0.08285235,
+        1e-08
+       ],
+       "world_translation_ref": [
+        0.0,
+        1.5998,
+        -0.0174
+       ]
+      },
+      "neck_01": {
+       "d_world_matrix_max": 0.0,
+       "local_translation_ref": [
+        0.0,
+        0.21509314,
+        2e-08
+       ],
+       "local_translation_other": [
+        0.0,
+        0.21509314,
+        2e-08
+       ],
+       "world_translation_ref": [
+        0.0,
+        1.5205,
+        -0.0414
+       ]
+      }
+     }
+    },
+    "female": {
+     "Female_Peasant": {
+      "Head": {
+       "d_world_matrix_max": 0.0,
+       "local_translation_ref": [
+        -0.0,
+        0.07119121,
+        2e-08
+       ],
+       "local_translation_other": [
+        -0.0,
+        0.07119121,
+        2e-08
+       ],
+       "world_translation_ref": [
+        -0.0,
+        1.5496,
+        -0.0109
+       ]
+      },
+      "neck_01": {
+       "d_world_matrix_max": 0.0,
+       "local_translation_ref": [
+        -0.0,
+        0.19815585,
+        3e-08
+       ],
+       "local_translation_other": [
+        -0.0,
+        0.19815585,
+        3e-08
+       ],
+       "world_translation_ref": [
+        -0.0,
+        1.4849,
+        -0.0406
+       ]
+      }
+     },
+     "Female_Ranger": {
+      "Head": {
+       "d_world_matrix_max": 0.0,
+       "local_translation_ref": [
+        -0.0,
+        0.07119121,
+        2e-08
+       ],
+       "local_translation_other": [
+        -0.0,
+        0.07119121,
+        2e-08
+       ],
+       "world_translation_ref": [
+        -0.0,
+        1.5496,
+        -0.0109
+       ]
+      },
+      "neck_01": {
+       "d_world_matrix_max": 0.0,
+       "local_translation_ref": [
+        -0.0,
+        0.19815585,
+        3e-08
+       ],
+       "local_translation_other": [
+        -0.0,
+        0.19815585,
+        3e-08
+       ],
+       "world_translation_ref": [
+        -0.0,
+        1.4849,
+        -0.0406
+       ]
+      }
+     }
+    }
+   },
+   "verdict": "成立（Head/neck_01 世界矩阵差 = 0；所引数字是 glTF 局部平移 0.08285235 / 0.21509314）"
+  },
+  "C6_diff_only_upperarm_thigh": {
+   "claim": "两套 rig 的差异只在 upperarm_l / thigh_l",
+   "measured": {
+    "male": {
+     "Male_Peasant": {
+      "differing_joints": 58,
+      "of_joints": 65,
+      "identical_joints": [
+       "Head",
+       "neck_01",
+       "pelvis",
+       "root",
+       "spine_01",
+       "spine_02",
+       "spine_03"
+      ],
+      "max_translation_mm": 34.094,
+      "max_rotation_deg": 13.367,
+      "differing_bones": [
+       "ball_l",
+       "ball_leaf_l",
+       "ball_leaf_r",
+       "ball_r",
+       "calf_l",
+       "calf_r",
+       "clavicle_l",
+       "clavicle_r",
+       "foot_l",
+       "foot_r",
+       "hand_l",
+       "hand_r",
+       "index_01_l",
+       "index_01_r",
+       "index_02_l",
+       "index_02_r",
+       "index_03_l",
+       "index_03_r",
+       "index_04_leaf_l",
+       "index_04_leaf_r",
+       "lowerarm_l",
+       "lowerarm_r",
+       "middle_01_l",
+       "middle_01_r",
+       "middle_02_l",
+       "middle_02_r",
+       "middle_03_l",
+       "middle_03_r",
+       "middle_04_leaf_l",
+       "middle_04_leaf_r",
+       "pinky_01_l",
+       "pinky_01_r",
+       "pinky_02_l",
+       "pinky_02_r",
+       "pinky_03_l",
+       "pinky_03_r",
+       "pinky_04_leaf_l",
+       "pinky_04_leaf_r",
+       "ring_01_l",
+       "ring_01_r",
+       "ring_02_l",
+       "ring_02_r",
+       "ring_03_l",
+       "ring_03_r",
+       "ring_04_leaf_l",
+       "ring_04_leaf_r",
+       "thigh_l",
+       "thigh_r",
+       "thumb_01_l",
+       "thumb_01_r",
+       "thumb_02_l",
+       "thumb_02_r",
+       "thumb_03_l",
+       "thumb_03_r",
+       "thumb_04_leaf_l",
+       "thumb_04_leaf_r",
+       "upperarm_l",
+       "upperarm_r"
+      ]
+     },
+     "Male_Ranger": {
+      "differing_joints": 58,
+      "of_joints": 65,
+      "identical_joints": [
+       "Head",
+       "neck_01",
+       "pelvis",
+       "root",
+       "spine_01",
+       "spine_02",
+       "spine_03"
+      ],
+      "max_translation_mm": 34.094,
+      "max_rotation_deg": 13.367,
+      "differing_bones": [
+       "ball_l",
+       "ball_leaf_l",
+       "ball_leaf_r",
+       "ball_r",
+       "calf_l",
+       "calf_r",
+       "clavicle_l",
+       "clavicle_r",
+       "foot_l",
+       "foot_r",
+       "hand_l",
+       "hand_r",
+       "index_01_l",
+       "index_01_r",
+       "index_02_l",
+       "index_02_r",
+       "index_03_l",
+       "index_03_r",
+       "index_04_leaf_l",
+       "index_04_leaf_r",
+       "lowerarm_l",
+       "lowerarm_r",
+       "middle_01_l",
+       "middle_01_r",
+       "middle_02_l",
+       "middle_02_r",
+       "middle_03_l",
+       "middle_03_r",
+       "middle_04_leaf_l",
+       "middle_04_leaf_r",
+       "pinky_01_l",
+       "pinky_01_r",
+       "pinky_02_l",
+       "pinky_02_r",
+       "pinky_03_l",
+       "pinky_03_r",
+       "pinky_04_leaf_l",
+       "pinky_04_leaf_r",
+       "ring_01_l",
+       "ring_01_r",
+       "ring_02_l",
+       "ring_02_r",
+       "ring_03_l",
+       "ring_03_r",
+       "ring_04_leaf_l",
+       "ring_04_leaf_r",
+       "thigh_l",
+       "thigh_r",
+       "thumb_01_l",
+       "thumb_01_r",
+       "thumb_02_l",
+       "thumb_02_r",
+       "thumb_03_l",
+       "thumb_03_r",
+       "thumb_04_leaf_l",
+       "thumb_04_leaf_r",
+       "upperarm_l",
+       "upperarm_r"
+      ]
+     }
+    },
+    "female": {
+     "Female_Peasant": {
+      "differing_joints": 0,
+      "of_joints": 65,
+      "identical_joints": [
+       "Head",
+       "ball_l",
+       "ball_leaf_l",
+       "ball_leaf_r",
+       "ball_r",
+       "calf_l",
+       "calf_r",
+       "clavicle_l",
+       "clavicle_r",
+       "foot_l",
+       "foot_r",
+       "hand_l",
+       "hand_r",
+       "index_01_l",
+       "index_01_r",
+       "index_02_l",
+       "index_02_r",
+       "index_03_l",
+       "index_03_r",
+       "index_04_leaf_l",
+       "index_04_leaf_r",
+       "lowerarm_l",
+       "lowerarm_r",
+       "middle_01_l",
+       "middle_01_r",
+       "middle_02_l",
+       "middle_02_r",
+       "middle_03_l",
+       "middle_03_r",
+       "middle_04_leaf_l",
+       "middle_04_leaf_r",
+       "neck_01",
+       "pelvis",
+       "pinky_01_l",
+       "pinky_01_r",
+       "pinky_02_l",
+       "pinky_02_r",
+       "pinky_03_l",
+       "pinky_03_r",
+       "pinky_04_leaf_l",
+       "pinky_04_leaf_r",
+       "ring_01_l",
+       "ring_01_r",
+       "ring_02_l",
+       "ring_02_r",
+       "ring_03_l",
+       "ring_03_r",
+       "ring_04_leaf_l",
+       "ring_04_leaf_r",
+       "root",
+       "spine_01",
+       "spine_02",
+       "spine_03",
+       "thigh_l",
+       "thigh_r",
+       "thumb_01_l",
+       "thumb_01_r",
+       "thumb_02_l",
+       "thumb_02_r",
+       "thumb_03_l",
+       "thumb_03_r",
+       "thumb_04_leaf_l",
+       "thumb_04_leaf_r",
+       "upperarm_l",
+       "upperarm_r"
+      ],
+      "max_translation_mm": 0,
+      "max_rotation_deg": 0,
+      "differing_bones": []
+     },
+     "Female_Ranger": {
+      "differing_joints": 0,
+      "of_joints": 65,
+      "identical_joints": [
+       "Head",
+       "ball_l",
+       "ball_leaf_l",
+       "ball_leaf_r",
+       "ball_r",
+       "calf_l",
+       "calf_r",
+       "clavicle_l",
+       "clavicle_r",
+       "foot_l",
+       "foot_r",
+       "hand_l",
+       "hand_r",
+       "index_01_l",
+       "index_01_r",
+       "index_02_l",
+       "index_02_r",
+       "index_03_l",
+       "index_03_r",
+       "index_04_leaf_l",
+       "index_04_leaf_r",
+       "lowerarm_l",
+       "lowerarm_r",
+       "middle_01_l",
+       "middle_01_r",
+       "middle_02_l",
+       "middle_02_r",
+       "middle_03_l",
+       "middle_03_r",
+       "middle_04_leaf_l",
+       "middle_04_leaf_r",
+       "neck_01",
+       "pelvis",
+       "pinky_01_l",
+       "pinky_01_r",
+       "pinky_02_l",
+       "pinky_02_r",
+       "pinky_03_l",
+       "pinky_03_r",
+       "pinky_04_leaf_l",
+       "pinky_04_leaf_r",
+       "ring_01_l",
+       "ring_01_r",
+       "ring_02_l",
+       "ring_02_r",
+       "ring_03_l",
+       "ring_03_r",
+       "ring_04_leaf_l",
+       "ring_04_leaf_r",
+       "root",
+       "spine_01",
+       "spine_02",
+       "spine_03",
+       "thigh_l",
+       "thigh_r",
+       "thumb_01_l",
+       "thumb_01_r",
+       "thumb_02_l",
+       "thumb_02_r",
+       "thumb_03_l",
+       "thumb_03_r",
+       "thumb_04_leaf_l",
+       "thumb_04_leaf_r",
+       "upperarm_l",
+       "upperarm_r"
+      ],
+      "max_translation_mm": 0,
+      "max_rotation_deg": 0,
+      "differing_bones": []
+     }
+    }
+   },
+   "verdict": "**不成立**",
+   "detail": "实测：男侧 58/65 根关节不一致（整个手臂链含 clavicle 旋转 2.55°、全部手指/拇指旋转最高 13.37°、整条腿链 X 偏移 23.7mm、上臂/前臂/手 20–23mm）；女侧 65/65 完全一致（差异为 0）。只有 root/pelvis/spine_01..03/neck_01/Head 7 根完全相同。"
+  }
+ },
+ "files": [
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "size_mb": 59.26,
+   "expected": {
+    "outfit": "Male_Peasant",
+    "head_src": "Superhero_Male_FullBody",
+    "hair": "Hair_SimpleParted"
+   },
+   "head_src_blend": "download/ubc-blend/BaseCharacter_Superhero_Male.blend",
+   "armature_objects": [
+    {
+     "name": "RIG_TryOn_Male_Peasant",
+     "bones": 65,
+     "parent": null
+    }
+   ],
+   "armature_datablocks": [
+    {
+     "name": "RIG_TryOn_Male_Peasant",
+     "bones": 65
+    }
+   ],
+   "bone_count": 65,
+   "actions": [],
+   "real_mesh_count": 8,
+   "helper_meshes": [
+    "Icosphere",
+    "Icosphere.001",
+    "Icosphere.002"
+   ],
+   "collections_hide_render": {
+    "glTF_not_exported": true,
+    "Hair": false,
+    "Head_from_UBC": false,
+    "Outfit": false
+   },
+   "meshes": [
+    {
+     "name": "Hair_SimpleParted",
+     "collections": [
+      "Hair"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 757,
+     "tris": 1301,
+     "sum_head_neck_gt05": 757,
+     "min_sum_head_neck": 1.0,
+     "dominant_top": [
+      [
+       "Head",
+       757
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Head_Eyebrows",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 646,
+     "tris": 984,
+     "sum_head_neck_gt05": 646,
+     "min_sum_head_neck": 1.0,
+     "dominant_top": [
+      [
+       "Head",
+       646
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Head_Eyes",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 556,
+     "tris": 768,
+     "sum_head_neck_gt05": 556,
+     "min_sum_head_neck": 1.0,
+     "dominant_top": [
+      [
+       "Head",
+       556
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Head_SuperHero_Male",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1562,
+     "tris": 2844,
+     "sum_head_neck_gt05": 1562,
+     "min_sum_head_neck": 0.510386,
+     "dominant_top": [
+      [
+       "Head",
+       1375
+      ],
+      [
+       "neck_01",
+       183
+      ],
+      [
+       "clavicle_l",
+       2
+      ],
+      [
+       "clavicle_r",
+       2
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Icosphere",
+     "collections": [
+      "glTF_not_exported"
+     ],
+     "helper": true,
+     "parent": null,
+     "armature_modifiers": [],
+     "use_vertex_groups": true,
+     "vgroups": 0,
+     "vgroups_not_in_rig": [],
+     "verts": 42,
+     "tris": 80,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       null,
+       42
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Icosphere.001",
+     "collections": [
+      "glTF_not_exported"
+     ],
+     "helper": true,
+     "parent": null,
+     "armature_modifiers": [],
+     "use_vertex_groups": true,
+     "vgroups": 0,
+     "vgroups_not_in_rig": [],
+     "verts": 42,
+     "tris": 80,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       null,
+       42
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Icosphere.002",
+     "collections": [
+      "glTF_not_exported"
+     ],
+     "helper": true,
+     "parent": null,
+     "armature_modifiers": [],
+     "use_vertex_groups": true,
+     "vgroups": 0,
+     "vgroups_not_in_rig": [],
+     "verts": 42,
+     "tris": 80,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       null,
+       42
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Peasant_Arms",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 3315,
+     "tris": 5338,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "lowerarm_r",
+       311
+      ],
+      [
+       "lowerarm_l",
+       294
+      ],
+      [
+       "upperarm_r",
+       204
+      ],
+      [
+       "upperarm_l",
+       198
+      ],
+      [
+       "hand_l",
+       171
+      ],
+      [
+       "hand_r",
+       171
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Peasant_Body",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 3006,
+     "tris": 3856,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "spine_01",
+       1557
+      ],
+      [
+       "upperarm_l",
+       375
+      ],
+      [
+       "upperarm_r",
+       375
+      ],
+      [
+       "pelvis",
+       229
+      ],
+      [
+       "spine_02",
+       126
+      ],
+      [
+       "spine_03",
+       102
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Peasant_Feet",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1878,
+     "tris": 2588,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "calf_l",
+       612
+      ],
+      [
+       "calf_r",
+       612
+      ],
+      [
+       "foot_l",
+       270
+      ],
+      [
+       "foot_r",
+       270
+      ],
+      [
+       "ball_l",
+       57
+      ],
+      [
+       "ball_r",
+       57
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Peasant_Legs",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 656,
+     "tris": 1112,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "calf_l",
+       157
+      ],
+      [
+       "calf_r",
+       157
+      ],
+      [
+       "thigh_l",
+       131
+      ],
+      [
+       "thigh_r",
+       127
+      ],
+      [
+       "pelvis",
+       78
+      ],
+      [
+       "spine_01",
+       6
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    }
+   ],
+   "missing_meshes": [],
+   "unmatched_source_meshes": [],
+   "mesh_tris_mapping": [
+    {
+     "source": "Male_Peasant_Arms",
+     "produced": "Male_Peasant_Arms",
+     "tris": 5338
+    },
+    {
+     "source": "Male_Peasant_Body",
+     "produced": "Male_Peasant_Body",
+     "tris": 3856
+    },
+    {
+     "source": "Male_Peasant_Feet",
+     "produced": "Male_Peasant_Feet",
+     "tris": 2588
+    },
+    {
+     "source": "Male_Peasant_Legs",
+     "produced": "Male_Peasant_Legs",
+     "tris": 1112
+    },
+    {
+     "source": "Face",
+     "produced": "Head_Eyebrows",
+     "tris": 984
+    },
+    {
+     "source": "Face.001",
+     "produced": "Head_Eyes",
+     "tris": 768
+    }
+   ],
+   "head_mesh": "Head_SuperHero_Male",
+   "head_verts": 1562,
+   "source_body_verts": 7281,
+   "source_criterion_verts": 1562,
+   "head_kept_pct": 21.45,
+   "head_z_range": [
+    1.5346,
+    1.8101
+   ],
+   "image_count": 15,
+   "images_total_md5_matched": 15,
+   "images_unmatched": [],
+   "known_ref_verified": [
+    {
+     "want": "T_Eye_Normal_png.png",
+     "md5": [
+      "bb522558326f97d393ed5e769dd1bb62"
+     ]
+    },
+    {
+     "want": "T_Hair_1_Normal_png.png",
+     "md5": [
+      "83395d8b513c5885b8411a60d5d479c6",
+      "83395d8b513c5885b8411a60d5d479c6"
+     ]
+    }
+   ],
+   "penetration": {
+    "Hair_SimpleParted": {
+     "overlap_face_pairs": 292,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1562,
+     "min_distance_m": 0.000215,
+     "min_distance_mm": 0.2152,
+     "head_verts_within_2mm": 61
+    },
+    "Head_Eyebrows": {
+     "overlap_face_pairs": 460,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1562,
+     "min_distance_m": 5.7e-05,
+     "min_distance_mm": 0.0574,
+     "head_verts_within_2mm": 60
+    },
+    "Head_Eyes": {
+     "overlap_face_pairs": 190,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1562,
+     "min_distance_m": 0.000184,
+     "min_distance_mm": 0.1836,
+     "head_verts_within_2mm": 34
+    },
+    "Male_Peasant_Arms": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1562,
+     "min_distance_m": 0.07453,
+     "min_distance_mm": 74.5302,
+     "head_verts_within_2mm": 0
+    },
+    "Male_Peasant_Body": {
+     "overlap_face_pairs": 16,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1562,
+     "min_distance_m": 0.000198,
+     "min_distance_mm": 0.1983,
+     "head_verts_within_2mm": 12
+    },
+    "Male_Peasant_Feet": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 0,
+     "min_distance_m": null,
+     "min_distance_mm": null,
+     "head_verts_within_2mm": 0
+    },
+    "Male_Peasant_Legs": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 21,
+     "min_distance_m": 0.484317,
+     "min_distance_mm": 484.3168,
+     "head_verts_within_2mm": 0
+    }
+   },
+   "mesh_pair_overlaps": {
+    "Hair_SimpleParted | Head_SuperHero_Male": 292,
+    "Head_Eyebrows | Head_SuperHero_Male": 460,
+    "Head_Eyes | Head_SuperHero_Male": 190,
+    "Head_SuperHero_Male | Male_Peasant_Body": 16,
+    "Male_Peasant_Arms | Male_Peasant_Body": 126,
+    "Male_Peasant_Feet | Male_Peasant_Legs": 212
+   },
+   "check_exit_code": 0,
+   "assert_ok": true,
+   "failures": [],
+   "warnings": [],
+   "drift": {
+    "tryon_head_verts": 1562,
+    "source_criterion_verts": 1562,
+    "hausdorff_tryon_to_source_m": 0.0,
+    "hausdorff_source_to_tryon_m": 0.0,
+    "mean_tryon_to_source_m": 0.0,
+    "max_nn_mm": 0.0,
+    "verts_with_nn_gt_1e-6": 0,
+    "exact_multiset_equal_at_1e-6": true,
+    "exact_multiset_equal_at_1e-5": true
+   },
+   "check_seconds": 3.48,
+   "check_log": "tmp/pack2blend/verify/_work_tryon/chk_TryOn_Male_Peasant.log"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "size_mb": 51.63,
+   "expected": {
+    "outfit": "Female_Peasant",
+    "head_src": "Superhero_Female_FullBody",
+    "hair": "Hair_Long"
+   },
+   "head_src_blend": "download/ubc-blend/BaseCharacter_Superhero_Female.blend",
+   "armature_objects": [
+    {
+     "name": "RIG_TryOn_Female_Peasant",
+     "bones": 65,
+     "parent": null
+    }
+   ],
+   "armature_datablocks": [
+    {
+     "name": "RIG_TryOn_Female_Peasant",
+     "bones": 65
+    }
+   ],
+   "bone_count": 65,
+   "actions": [],
+   "real_mesh_count": 8,
+   "helper_meshes": [
+    "Icosphere",
+    "Icosphere.001",
+    "Icosphere.002"
+   ],
+   "collections_hide_render": {
+    "glTF_not_exported": true,
+    "Hair": false,
+    "Head_from_UBC": false,
+    "Outfit": false
+   },
+   "meshes": [
+    {
+     "name": "Female_Peasant_Arms",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 5436,
+     "tris": 6848,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "lowerarm_l",
+       1614
+      ],
+      [
+       "lowerarm_r",
+       1614
+      ],
+      [
+       "upperarm_l",
+       199
+      ],
+      [
+       "upperarm_r",
+       199
+      ],
+      [
+       "hand_l",
+       94
+      ],
+      [
+       "hand_r",
+       94
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Female_Peasant_Body",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1730,
+     "tris": 2188,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "spine_03",
+       350
+      ],
+      [
+       "spine_01",
+       346
+      ],
+      [
+       "spine_02",
+       302
+      ],
+      [
+       "clavicle_l",
+       237
+      ],
+      [
+       "clavicle_r",
+       231
+      ],
+      [
+       "pelvis",
+       120
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Female_Peasant_Feet",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1892,
+     "tris": 2588,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "calf_l",
+       657
+      ],
+      [
+       "calf_r",
+       657
+      ],
+      [
+       "foot_l",
+       225
+      ],
+      [
+       "foot_r",
+       225
+      ],
+      [
+       "ball_l",
+       36
+      ],
+      [
+       "ball_r",
+       36
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Female_Peasant_Legs",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1126,
+     "tris": 1944,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "thigh_l",
+       272
+      ],
+      [
+       "thigh_r",
+       272
+      ],
+      [
+       "pelvis",
+       224
+      ],
+      [
+       "calf_l",
+       168
+      ],
+      [
+       "calf_r",
+       168
+      ],
+      [
+       "spine_01",
+       22
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Hair_Long",
+     "collections": [
+      "Hair"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 3080,
+     "tris": 2906,
+     "sum_head_neck_gt05": 3080,
+     "min_sum_head_neck": 1.0,
+     "dominant_top": [
+      [
+       "Head",
+       3080
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Head_Eyebrows",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 912,
+     "tris": 1480,
+     "sum_head_neck_gt05": 912,
+     "min_sum_head_neck": 1.0,
+     "dominant_top": [
+      [
+       "Head",
+       912
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Head_Eyes",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 556,
+     "tris": 768,
+     "sum_head_neck_gt05": 556,
+     "min_sum_head_neck": 1.0,
+     "dominant_top": [
+      [
+       "Head",
+       556
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Head_Superhero_Female",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Peasant",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Peasant"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1644,
+     "tris": 3020,
+     "sum_head_neck_gt05": 1644,
+     "min_sum_head_neck": 0.505182,
+     "dominant_top": [
+      [
+       "Head",
+       1481
+      ],
+      [
+       "neck_01",
+       163
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Icosphere",
+     "collections": [
+      "glTF_not_exported"
+     ],
+     "helper": true,
+     "parent": null,
+     "armature_modifiers": [],
+     "use_vertex_groups": true,
+     "vgroups": 0,
+     "vgroups_not_in_rig": [],
+     "verts": 42,
+     "tris": 80,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       null,
+       42
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Icosphere.001",
+     "collections": [
+      "glTF_not_exported"
+     ],
+     "helper": true,
+     "parent": null,
+     "armature_modifiers": [],
+     "use_vertex_groups": true,
+     "vgroups": 0,
+     "vgroups_not_in_rig": [],
+     "verts": 42,
+     "tris": 80,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       null,
+       42
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Icosphere.002",
+     "collections": [
+      "glTF_not_exported"
+     ],
+     "helper": true,
+     "parent": null,
+     "armature_modifiers": [],
+     "use_vertex_groups": true,
+     "vgroups": 0,
+     "vgroups_not_in_rig": [],
+     "verts": 42,
+     "tris": 80,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       null,
+       42
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    }
+   ],
+   "missing_meshes": [],
+   "unmatched_source_meshes": [],
+   "mesh_tris_mapping": [
+    {
+     "source": "Female_Peasant_Arms",
+     "produced": "Female_Peasant_Arms",
+     "tris": 6848
+    },
+    {
+     "source": "Female_Peasant_Body",
+     "produced": "Female_Peasant_Body",
+     "tris": 2188
+    },
+    {
+     "source": "Female_Peasant_Feet",
+     "produced": "Female_Peasant_Feet",
+     "tris": 2588
+    },
+    {
+     "source": "Female_Peasant_Legs",
+     "produced": "Female_Peasant_Legs",
+     "tris": 1944
+    },
+    {
+     "source": "Eyebrows",
+     "produced": "Head_Eyebrows",
+     "tris": 1480
+    },
+    {
+     "source": "Eyes",
+     "produced": "Head_Eyes",
+     "tris": 768
+    }
+   ],
+   "head_mesh": "Head_Superhero_Female",
+   "head_verts": 1644,
+   "source_body_verts": 7376,
+   "source_criterion_verts": 1644,
+   "head_kept_pct": 22.29,
+   "head_z_range": [
+    1.4859,
+    1.7666
+   ],
+   "image_count": 12,
+   "images_total_md5_matched": 12,
+   "images_unmatched": [],
+   "known_ref_verified": [
+    {
+     "want": "T_Eye_Normal_png.png",
+     "md5": [
+      "bb522558326f97d393ed5e769dd1bb62"
+     ]
+    },
+    {
+     "want": "T_Hair_2_Normal_png.png",
+     "md5": [
+      "e5a1d975a2c383374c0879bdda7706be",
+      "e5a1d975a2c383374c0879bdda7706be"
+     ]
+    }
+   ],
+   "penetration": {
+    "Female_Peasant_Arms": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1644,
+     "min_distance_m": 0.080387,
+     "min_distance_mm": 80.3873,
+     "head_verts_within_2mm": 0
+    },
+    "Female_Peasant_Body": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1644,
+     "min_distance_m": 0.006927,
+     "min_distance_mm": 6.9272,
+     "head_verts_within_2mm": 0
+    },
+    "Female_Peasant_Feet": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 0,
+     "min_distance_m": null,
+     "min_distance_mm": null,
+     "head_verts_within_2mm": 0
+    },
+    "Female_Peasant_Legs": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 519,
+     "min_distance_m": 0.403592,
+     "min_distance_mm": 403.5917,
+     "head_verts_within_2mm": 0
+    },
+    "Hair_Long": {
+     "overlap_face_pairs": 577,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1644,
+     "min_distance_m": 3e-06,
+     "min_distance_mm": 0.003,
+     "head_verts_within_2mm": 95
+    },
+    "Head_Eyebrows": {
+     "overlap_face_pairs": 478,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1644,
+     "min_distance_m": 6.9e-05,
+     "min_distance_mm": 0.0694,
+     "head_verts_within_2mm": 56
+    },
+    "Head_Eyes": {
+     "overlap_face_pairs": 192,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1644,
+     "min_distance_m": 0.000253,
+     "min_distance_mm": 0.2533,
+     "head_verts_within_2mm": 38
+    }
+   },
+   "mesh_pair_overlaps": {
+    "Female_Peasant_Arms | Female_Peasant_Body": 128,
+    "Female_Peasant_Body | Hair_Long": 94,
+    "Female_Peasant_Feet | Female_Peasant_Legs": 94,
+    "Hair_Long | Head_Eyebrows": 80,
+    "Hair_Long | Head_Superhero_Female": 577,
+    "Head_Eyebrows | Head_Eyes": 46,
+    "Head_Eyebrows | Head_Superhero_Female": 478,
+    "Head_Eyes | Head_Superhero_Female": 192
+   },
+   "check_exit_code": 0,
+   "assert_ok": true,
+   "failures": [],
+   "warnings": [],
+   "drift": {
+    "tryon_head_verts": 1644,
+    "source_criterion_verts": 1644,
+    "hausdorff_tryon_to_source_m": 0.0,
+    "hausdorff_source_to_tryon_m": 0.0,
+    "mean_tryon_to_source_m": 0.0,
+    "max_nn_mm": 0.0,
+    "verts_with_nn_gt_1e-6": 0,
+    "exact_multiset_equal_at_1e-6": true,
+    "exact_multiset_equal_at_1e-5": true
+   },
+   "check_seconds": 3.28,
+   "check_log": "tmp/pack2blend/verify/_work_tryon/chk_TryOn_Female_Peasant.log"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "size_mb": 54.88,
+   "expected": {
+    "outfit": "Male_Ranger",
+    "head_src": "Superhero_Male_FullBody",
+    "hair": null
+   },
+   "head_src_blend": "download/ubc-blend/BaseCharacter_Superhero_Male.blend",
+   "armature_objects": [
+    {
+     "name": "RIG_TryOn_Male_Ranger",
+     "bones": 65,
+     "parent": null
+    }
+   ],
+   "armature_datablocks": [
+    {
+     "name": "RIG_TryOn_Male_Ranger",
+     "bones": 65
+    }
+   ],
+   "bone_count": 65,
+   "actions": [],
+   "real_mesh_count": 12,
+   "helper_meshes": [
+    "Icosphere",
+    "Icosphere.001"
+   ],
+   "collections_hide_render": {
+    "glTF_not_exported": true,
+    "Head_from_UBC": false,
+    "Outfit": false
+   },
+   "meshes": [
+    {
+     "name": "Head_Eyebrows",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 646,
+     "tris": 984,
+     "sum_head_neck_gt05": 646,
+     "min_sum_head_neck": 1.0,
+     "dominant_top": [
+      [
+       "Head",
+       646
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Head_Eyes",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 556,
+     "tris": 768,
+     "sum_head_neck_gt05": 556,
+     "min_sum_head_neck": 1.0,
+     "dominant_top": [
+      [
+       "Head",
+       556
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Head_SuperHero_Male",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1562,
+     "tris": 2844,
+     "sum_head_neck_gt05": 1562,
+     "min_sum_head_neck": 0.510386,
+     "dominant_top": [
+      [
+       "Head",
+       1375
+      ],
+      [
+       "neck_01",
+       183
+      ],
+      [
+       "clavicle_l",
+       2
+      ],
+      [
+       "clavicle_r",
+       2
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Icosphere",
+     "collections": [
+      "glTF_not_exported"
+     ],
+     "helper": true,
+     "parent": null,
+     "armature_modifiers": [],
+     "use_vertex_groups": true,
+     "vgroups": 0,
+     "vgroups_not_in_rig": [],
+     "verts": 42,
+     "tris": 80,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       null,
+       42
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Icosphere.001",
+     "collections": [
+      "glTF_not_exported"
+     ],
+     "helper": true,
+     "parent": null,
+     "armature_modifiers": [],
+     "use_vertex_groups": true,
+     "vgroups": 0,
+     "vgroups_not_in_rig": [],
+     "verts": 42,
+     "tris": 80,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       null,
+       42
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Ranger_Acc_Pauldron",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1092,
+     "tris": 1376,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "upperarm_l",
+       1092
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Ranger_Arms",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 3042,
+     "tris": 4928,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "hand_l",
+       175
+      ],
+      [
+       "hand_r",
+       175
+      ],
+      [
+       "lowerarm_l",
+       174
+      ],
+      [
+       "lowerarm_r",
+       174
+      ],
+      [
+       "upperarm_l",
+       159
+      ],
+      [
+       "upperarm_r",
+       159
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Ranger_Arms_Bracer",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 4000,
+     "tris": 3636,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "lowerarm_l",
+       1857
+      ],
+      [
+       "lowerarm_r",
+       1857
+      ],
+      [
+       "hand_l",
+       143
+      ],
+      [
+       "hand_r",
+       143
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Ranger_Body",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 2825,
+     "tris": 2998,
+     "sum_head_neck_gt05": 97,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "spine_03",
+       991
+      ],
+      [
+       "clavicle_l",
+       396
+      ],
+      [
+       "clavicle_r",
+       391
+      ],
+      [
+       "neck_01",
+       225
+      ],
+      [
+       "spine_01",
+       210
+      ],
+      [
+       "spine_02",
+       192
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Ranger_Body_Belt_1",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 928,
+     "tris": 804,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "spine_02",
+       788
+      ],
+      [
+       "spine_01",
+       140
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Ranger_Body_Belt_2",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 928,
+     "tris": 804,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "spine_02",
+       788
+      ],
+      [
+       "spine_01",
+       140
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Ranger_Feet_Boots",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 10174,
+     "tris": 9172,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "calf_l",
+       4479
+      ],
+      [
+       "calf_r",
+       4479
+      ],
+      [
+       "foot_l",
+       371
+      ],
+      [
+       "foot_r",
+       371
+      ],
+      [
+       "ball_l",
+       156
+      ],
+      [
+       "ball_r",
+       156
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Ranger_Head_Hood",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1240,
+     "tris": 2136,
+     "sum_head_neck_gt05": 811,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "Head",
+       836
+      ],
+      [
+       "spine_03",
+       150
+      ],
+      [
+       "clavicle_l",
+       134
+      ],
+      [
+       "clavicle_r",
+       116
+      ],
+      [
+       "neck_01",
+       4
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Male_Ranger_Legs",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Male_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Male_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 644,
+     "tris": 1128,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "thigh_l",
+       150
+      ],
+      [
+       "thigh_r",
+       144
+      ],
+      [
+       "calf_l",
+       140
+      ],
+      [
+       "calf_r",
+       140
+      ],
+      [
+       "pelvis",
+       70
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    }
+   ],
+   "missing_meshes": [],
+   "unmatched_source_meshes": [],
+   "mesh_tris_mapping": [
+    {
+     "source": "Male_Ranger_Acc_Pauldron",
+     "produced": "Male_Ranger_Acc_Pauldron",
+     "tris": 1376
+    },
+    {
+     "source": "Male_Ranger_Arms",
+     "produced": "Male_Ranger_Arms",
+     "tris": 4928
+    },
+    {
+     "source": "Male_Ranger_Arms_Bracer",
+     "produced": "Male_Ranger_Arms_Bracer",
+     "tris": 3636
+    },
+    {
+     "source": "Male_Ranger_Body",
+     "produced": "Male_Ranger_Body",
+     "tris": 2998
+    },
+    {
+     "source": "Male_Ranger_Body_Belt_1",
+     "produced": "Male_Ranger_Body_Belt_1",
+     "tris": 804
+    },
+    {
+     "source": "Male_Ranger_Body_Belt_1.001",
+     "produced": "Male_Ranger_Body_Belt_2",
+     "tris": 804
+    },
+    {
+     "source": "Male_Ranger_Feet_Boots",
+     "produced": "Male_Ranger_Feet_Boots",
+     "tris": 9172
+    },
+    {
+     "source": "Male_Ranger_Head_Hood",
+     "produced": "Male_Ranger_Head_Hood",
+     "tris": 2136
+    },
+    {
+     "source": "Male_Ranger_Legs",
+     "produced": "Male_Ranger_Legs",
+     "tris": 1128
+    },
+    {
+     "source": "Face",
+     "produced": "Head_Eyebrows",
+     "tris": 984
+    },
+    {
+     "source": "Face.001",
+     "produced": "Head_Eyes",
+     "tris": 768
+    }
+   ],
+   "head_mesh": "Head_SuperHero_Male",
+   "head_verts": 1562,
+   "source_body_verts": 7281,
+   "source_criterion_verts": 1562,
+   "head_kept_pct": 21.45,
+   "head_z_range": [
+    1.5346,
+    1.8101
+   ],
+   "image_count": 13,
+   "images_total_md5_matched": 13,
+   "images_unmatched": [],
+   "known_ref_verified": [
+    {
+     "want": "T_Eye_Normal_png.png",
+     "md5": [
+      "bb522558326f97d393ed5e769dd1bb62"
+     ]
+    }
+   ],
+   "penetration": {
+    "Head_Eyebrows": {
+     "overlap_face_pairs": 460,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1562,
+     "min_distance_m": 5.7e-05,
+     "min_distance_mm": 0.0574,
+     "head_verts_within_2mm": 60
+    },
+    "Head_Eyes": {
+     "overlap_face_pairs": 190,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1562,
+     "min_distance_m": 0.000184,
+     "min_distance_mm": 0.1836,
+     "head_verts_within_2mm": 34
+    },
+    "Male_Ranger_Acc_Pauldron": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1562,
+     "min_distance_m": 0.034522,
+     "min_distance_mm": 34.5225,
+     "head_verts_within_2mm": 0
+    },
+    "Male_Ranger_Arms": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1562,
+     "min_distance_m": 0.07453,
+     "min_distance_mm": 74.5302,
+     "head_verts_within_2mm": 0
+    },
+    "Male_Ranger_Arms_Bracer": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1357,
+     "min_distance_m": 0.371794,
+     "min_distance_mm": 371.794,
+     "head_verts_within_2mm": 0
+    },
+    "Male_Ranger_Body": {
+     "overlap_face_pairs": 276,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1562,
+     "min_distance_m": 8.6e-05,
+     "min_distance_mm": 0.0865,
+     "head_verts_within_2mm": 42
+    },
+    "Male_Ranger_Body_Belt_1": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1362,
+     "min_distance_m": 0.312355,
+     "min_distance_mm": 312.3547,
+     "head_verts_within_2mm": 0
+    },
+    "Male_Ranger_Body_Belt_2": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 874,
+     "min_distance_m": 0.367592,
+     "min_distance_mm": 367.5921,
+     "head_verts_within_2mm": 0
+    },
+    "Male_Ranger_Feet_Boots": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 0,
+     "min_distance_m": null,
+     "min_distance_mm": null,
+     "head_verts_within_2mm": 0
+    },
+    "Male_Ranger_Head_Hood": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 1562,
+     "min_distance_m": 0.000429,
+     "min_distance_mm": 0.429,
+     "head_verts_within_2mm": 1
+    },
+    "Male_Ranger_Legs": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1562,
+     "head_verts_with_surface_within_0.5m": 29,
+     "min_distance_m": 0.48567,
+     "min_distance_mm": 485.6696,
+     "head_verts_within_2mm": 0
+    }
+   },
+   "mesh_pair_overlaps": {
+    "Head_Eyebrows | Head_SuperHero_Male": 460,
+    "Head_Eyes | Head_SuperHero_Male": 190,
+    "Head_SuperHero_Male | Male_Ranger_Body": 276,
+    "Male_Ranger_Acc_Pauldron | Male_Ranger_Arms": 29,
+    "Male_Ranger_Acc_Pauldron | Male_Ranger_Body": 214,
+    "Male_Ranger_Acc_Pauldron | Male_Ranger_Head_Hood": 78,
+    "Male_Ranger_Arms | Male_Ranger_Arms_Bracer": 558,
+    "Male_Ranger_Arms | Male_Ranger_Body": 163,
+    "Male_Ranger_Body | Male_Ranger_Body_Belt_1": 329,
+    "Male_Ranger_Body | Male_Ranger_Body_Belt_2": 213,
+    "Male_Ranger_Body | Male_Ranger_Head_Hood": 298,
+    "Male_Ranger_Feet_Boots | Male_Ranger_Legs": 462
+   },
+   "check_exit_code": 0,
+   "assert_ok": true,
+   "failures": [],
+   "warnings": [],
+   "drift": {
+    "tryon_head_verts": 1562,
+    "source_criterion_verts": 1562,
+    "hausdorff_tryon_to_source_m": 0.0,
+    "hausdorff_source_to_tryon_m": 0.0,
+    "mean_tryon_to_source_m": 0.0,
+    "max_nn_mm": 0.0,
+    "verts_with_nn_gt_1e-6": 0,
+    "exact_multiset_equal_at_1e-6": true,
+    "exact_multiset_equal_at_1e-5": true
+   },
+   "check_seconds": 3.36,
+   "check_log": "tmp/pack2blend/verify/_work_tryon/chk_TryOn_Male_Ranger.log"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "size_mb": 55.23,
+   "expected": {
+    "outfit": "Female_Ranger",
+    "head_src": "Superhero_Female_FullBody",
+    "hair": null
+   },
+   "head_src_blend": "download/ubc-blend/BaseCharacter_Superhero_Female.blend",
+   "armature_objects": [
+    {
+     "name": "RIG_TryOn_Female_Ranger",
+     "bones": 65,
+     "parent": null
+    }
+   ],
+   "armature_datablocks": [
+    {
+     "name": "RIG_TryOn_Female_Ranger",
+     "bones": 65
+    }
+   ],
+   "bone_count": 65,
+   "actions": [],
+   "real_mesh_count": 12,
+   "helper_meshes": [
+    "Icosphere",
+    "Icosphere.001"
+   ],
+   "collections_hide_render": {
+    "glTF_not_exported": true,
+    "Head_from_UBC": false,
+    "Outfit": false
+   },
+   "meshes": [
+    {
+     "name": "Female_Ranger_Acc_Pauldrons",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1092,
+     "tris": 1376,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "upperarm_l",
+       1092
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Female_Ranger_Arms",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 2976,
+     "tris": 4872,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "lowerarm_l",
+       208
+      ],
+      [
+       "lowerarm_r",
+       208
+      ],
+      [
+       "upperarm_l",
+       191
+      ],
+      [
+       "upperarm_r",
+       191
+      ],
+      [
+       "index_01_l",
+       107
+      ],
+      [
+       "index_01_r",
+       107
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Female_Ranger_Arms_Bracer",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 4000,
+     "tris": 3636,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "lowerarm_l",
+       2000
+      ],
+      [
+       "lowerarm_r",
+       2000
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Female_Ranger_Body",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 2785,
+     "tris": 2962,
+     "sum_head_neck_gt05": 247,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "spine_03",
+       1019
+      ],
+      [
+       "clavicle_r",
+       303
+      ],
+      [
+       "clavicle_l",
+       301
+      ],
+      [
+       "neck_01",
+       299
+      ],
+      [
+       "spine_01",
+       211
+      ],
+      [
+       "spine_02",
+       209
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Female_Ranger_Body_Belt_1",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 928,
+     "tris": 804,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "spine_02",
+       928
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Female_Ranger_Body_Belt_2",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 928,
+     "tris": 804,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "spine_02",
+       928
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Female_Ranger_Feet",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 10174,
+     "tris": 9172,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "calf_l",
+       4527
+      ],
+      [
+       "calf_r",
+       4527
+      ],
+      [
+       "foot_l",
+       324
+      ],
+      [
+       "foot_r",
+       324
+      ],
+      [
+       "ball_l",
+       152
+      ],
+      [
+       "ball_r",
+       152
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Female_Ranger_Head_Hood",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1240,
+     "tris": 2136,
+     "sum_head_neck_gt05": 920,
+     "min_sum_head_neck": 0.03035,
+     "dominant_top": [
+      [
+       "Head",
+       840
+      ],
+      [
+       "spine_03",
+       236
+      ],
+      [
+       "neck_01",
+       114
+      ],
+      [
+       "clavicle_r",
+       26
+      ],
+      [
+       "clavicle_l",
+       24
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Female_Ranger_Legs",
+     "collections": [
+      "Outfit"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 685,
+     "tris": 1204,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       "thigh_l",
+       161
+      ],
+      [
+       "calf_l",
+       155
+      ],
+      [
+       "thigh_r",
+       149
+      ],
+      [
+       "calf_r",
+       138
+      ],
+      [
+       "pelvis",
+       82
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Head_Eyebrows",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 912,
+     "tris": 1480,
+     "sum_head_neck_gt05": 912,
+     "min_sum_head_neck": 1.0,
+     "dominant_top": [
+      [
+       "Head",
+       912
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Head_Eyes",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 556,
+     "tris": 768,
+     "sum_head_neck_gt05": 556,
+     "min_sum_head_neck": 1.0,
+     "dominant_top": [
+      [
+       "Head",
+       556
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Head_Superhero_Female",
+     "collections": [
+      "Head_from_UBC"
+     ],
+     "helper": false,
+     "parent": "RIG_TryOn_Female_Ranger",
+     "armature_modifiers": [
+      "RIG_TryOn_Female_Ranger"
+     ],
+     "use_vertex_groups": true,
+     "vgroups": 65,
+     "vgroups_not_in_rig": [],
+     "verts": 1644,
+     "tris": 3020,
+     "sum_head_neck_gt05": 1644,
+     "min_sum_head_neck": 0.505182,
+     "dominant_top": [
+      [
+       "Head",
+       1481
+      ],
+      [
+       "neck_01",
+       163
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Icosphere",
+     "collections": [
+      "glTF_not_exported"
+     ],
+     "helper": true,
+     "parent": null,
+     "armature_modifiers": [],
+     "use_vertex_groups": true,
+     "vgroups": 0,
+     "vgroups_not_in_rig": [],
+     "verts": 42,
+     "tris": 80,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       null,
+       42
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    },
+    {
+     "name": "Icosphere.001",
+     "collections": [
+      "glTF_not_exported"
+     ],
+     "helper": true,
+     "parent": null,
+     "armature_modifiers": [],
+     "use_vertex_groups": true,
+     "vgroups": 0,
+     "vgroups_not_in_rig": [],
+     "verts": 42,
+     "tris": 80,
+     "sum_head_neck_gt05": 0,
+     "min_sum_head_neck": 0.0,
+     "dominant_top": [
+      [
+       null,
+       42
+      ]
+     ],
+     "matrix_world": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    }
+   ],
+   "missing_meshes": [],
+   "unmatched_source_meshes": [],
+   "mesh_tris_mapping": [
+    {
+     "source": "Female_Ranger_Acc_Pauldrons",
+     "produced": "Female_Ranger_Acc_Pauldrons",
+     "tris": 1376
+    },
+    {
+     "source": "Female_Ranger_Arms",
+     "produced": "Female_Ranger_Arms",
+     "tris": 4872
+    },
+    {
+     "source": "Female_Ranger_Arms_Bracer",
+     "produced": "Female_Ranger_Arms_Bracer",
+     "tris": 3636
+    },
+    {
+     "source": "Female_Ranger_Body",
+     "produced": "Female_Ranger_Body",
+     "tris": 2962
+    },
+    {
+     "source": "Female_Ranger_Body_Belt_1",
+     "produced": "Female_Ranger_Body_Belt_1",
+     "tris": 804
+    },
+    {
+     "source": "Female_Ranger_Body_Belt_2",
+     "produced": "Female_Ranger_Body_Belt_2",
+     "tris": 804
+    },
+    {
+     "source": "Female_Ranger_Feet",
+     "produced": "Female_Ranger_Feet",
+     "tris": 9172
+    },
+    {
+     "source": "Female_Ranger_Head_Hood",
+     "produced": "Female_Ranger_Head_Hood",
+     "tris": 2136
+    },
+    {
+     "source": "Female_Ranger_Legs",
+     "produced": "Female_Ranger_Legs",
+     "tris": 1204
+    },
+    {
+     "source": "Eyebrows",
+     "produced": "Head_Eyebrows",
+     "tris": 1480
+    },
+    {
+     "source": "Eyes",
+     "produced": "Head_Eyes",
+     "tris": 768
+    }
+   ],
+   "head_mesh": "Head_Superhero_Female",
+   "head_verts": 1644,
+   "source_body_verts": 7376,
+   "source_criterion_verts": 1644,
+   "head_kept_pct": 22.29,
+   "head_z_range": [
+    1.4859,
+    1.7666
+   ],
+   "image_count": 13,
+   "images_total_md5_matched": 13,
+   "images_unmatched": [],
+   "known_ref_verified": [
+    {
+     "want": "T_Eye_Normal_png.png",
+     "md5": [
+      "bb522558326f97d393ed5e769dd1bb62"
+     ]
+    }
+   ],
+   "penetration": {
+    "Female_Ranger_Acc_Pauldrons": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1644,
+     "min_distance_m": 0.055369,
+     "min_distance_mm": 55.3689,
+     "head_verts_within_2mm": 0
+    },
+    "Female_Ranger_Arms": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1644,
+     "min_distance_m": 0.063175,
+     "min_distance_mm": 63.1753,
+     "head_verts_within_2mm": 0
+    },
+    "Female_Ranger_Arms_Bracer": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1608,
+     "min_distance_m": 0.364685,
+     "min_distance_mm": 364.6851,
+     "head_verts_within_2mm": 0
+    },
+    "Female_Ranger_Body": {
+     "overlap_face_pairs": 96,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1644,
+     "min_distance_m": 5e-05,
+     "min_distance_mm": 0.0497,
+     "head_verts_within_2mm": 24
+    },
+    "Female_Ranger_Body_Belt_1": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1468,
+     "min_distance_m": 0.293093,
+     "min_distance_mm": 293.0934,
+     "head_verts_within_2mm": 0
+    },
+    "Female_Ranger_Body_Belt_2": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1184,
+     "min_distance_m": 0.330735,
+     "min_distance_mm": 330.7351,
+     "head_verts_within_2mm": 0
+    },
+    "Female_Ranger_Feet": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 0,
+     "min_distance_m": null,
+     "min_distance_mm": null,
+     "head_verts_within_2mm": 0
+    },
+    "Female_Ranger_Head_Hood": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1644,
+     "min_distance_m": 0.002007,
+     "min_distance_mm": 2.0068,
+     "head_verts_within_2mm": 0
+    },
+    "Female_Ranger_Legs": {
+     "overlap_face_pairs": 0,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 199,
+     "min_distance_m": 0.436013,
+     "min_distance_mm": 436.0132,
+     "head_verts_within_2mm": 0
+    },
+    "Head_Eyebrows": {
+     "overlap_face_pairs": 478,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1644,
+     "min_distance_m": 6.9e-05,
+     "min_distance_mm": 0.0694,
+     "head_verts_within_2mm": 56
+    },
+    "Head_Eyes": {
+     "overlap_face_pairs": 192,
+     "head_verts_tested": 1644,
+     "head_verts_with_surface_within_0.5m": 1644,
+     "min_distance_m": 0.000253,
+     "min_distance_mm": 0.2533,
+     "head_verts_within_2mm": 38
+    }
+   },
+   "mesh_pair_overlaps": {
+    "Female_Ranger_Acc_Pauldrons | Female_Ranger_Arms": 8,
+    "Female_Ranger_Acc_Pauldrons | Female_Ranger_Body": 155,
+    "Female_Ranger_Acc_Pauldrons | Female_Ranger_Head_Hood": 84,
+    "Female_Ranger_Arms | Female_Ranger_Arms_Bracer": 386,
+    "Female_Ranger_Arms | Female_Ranger_Body": 52,
+    "Female_Ranger_Body | Female_Ranger_Body_Belt_1": 260,
+    "Female_Ranger_Body | Female_Ranger_Body_Belt_2": 386,
+    "Female_Ranger_Body | Female_Ranger_Head_Hood": 281,
+    "Female_Ranger_Body | Head_Superhero_Female": 96,
+    "Female_Ranger_Feet | Female_Ranger_Legs": 445,
+    "Head_Eyebrows | Head_Eyes": 46,
+    "Head_Eyebrows | Head_Superhero_Female": 478,
+    "Head_Eyes | Head_Superhero_Female": 192
+   },
+   "check_exit_code": 0,
+   "assert_ok": true,
+   "failures": [],
+   "warnings": [],
+   "drift": {
+    "tryon_head_verts": 1644,
+    "source_criterion_verts": 1644,
+    "hausdorff_tryon_to_source_m": 0.0,
+    "hausdorff_source_to_tryon_m": 0.0,
+    "mean_tryon_to_source_m": 0.0,
+    "max_nn_mm": 0.0,
+    "verts_with_nn_gt_1e-6": 0,
+    "exact_multiset_equal_at_1e-6": true,
+    "exact_multiset_equal_at_1e-5": true
+   },
+   "check_seconds": 2.74,
+   "check_log": "tmp/pack2blend/verify/_work_tryon/chk_TryOn_Female_Ranger.log"
+  }
+ ],
+ "failures": [],
+ "penetration_summary": {
+  "download/tryon-blend/TryOn_Male_Peasant.blend": [
+   {
+    "other": "Hair_SimpleParted",
+    "overlap_face_pairs": 292,
+    "min_distance_mm": 0.2152,
+    "head_verts_within_2mm": 61
+   },
+   {
+    "other": "Head_Eyebrows",
+    "overlap_face_pairs": 460,
+    "min_distance_mm": 0.0574,
+    "head_verts_within_2mm": 60
+   },
+   {
+    "other": "Head_Eyes",
+    "overlap_face_pairs": 190,
+    "min_distance_mm": 0.1836,
+    "head_verts_within_2mm": 34
+   },
+   {
+    "other": "Male_Peasant_Arms",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 74.5302,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Male_Peasant_Body",
+    "overlap_face_pairs": 16,
+    "min_distance_mm": 0.1983,
+    "head_verts_within_2mm": 12
+   },
+   {
+    "other": "Male_Peasant_Feet",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": null,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Male_Peasant_Legs",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 484.3168,
+    "head_verts_within_2mm": 0
+   }
+  ],
+  "download/tryon-blend/TryOn_Female_Peasant.blend": [
+   {
+    "other": "Female_Peasant_Arms",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 80.3873,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Female_Peasant_Body",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 6.9272,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Female_Peasant_Feet",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": null,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Female_Peasant_Legs",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 403.5917,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Hair_Long",
+    "overlap_face_pairs": 577,
+    "min_distance_mm": 0.003,
+    "head_verts_within_2mm": 95
+   },
+   {
+    "other": "Head_Eyebrows",
+    "overlap_face_pairs": 478,
+    "min_distance_mm": 0.0694,
+    "head_verts_within_2mm": 56
+   },
+   {
+    "other": "Head_Eyes",
+    "overlap_face_pairs": 192,
+    "min_distance_mm": 0.2533,
+    "head_verts_within_2mm": 38
+   }
+  ],
+  "download/tryon-blend/TryOn_Male_Ranger.blend": [
+   {
+    "other": "Head_Eyebrows",
+    "overlap_face_pairs": 460,
+    "min_distance_mm": 0.0574,
+    "head_verts_within_2mm": 60
+   },
+   {
+    "other": "Head_Eyes",
+    "overlap_face_pairs": 190,
+    "min_distance_mm": 0.1836,
+    "head_verts_within_2mm": 34
+   },
+   {
+    "other": "Male_Ranger_Acc_Pauldron",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 34.5225,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Male_Ranger_Arms",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 74.5302,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Male_Ranger_Arms_Bracer",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 371.794,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Male_Ranger_Body",
+    "overlap_face_pairs": 276,
+    "min_distance_mm": 0.0865,
+    "head_verts_within_2mm": 42
+   },
+   {
+    "other": "Male_Ranger_Body_Belt_1",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 312.3547,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Male_Ranger_Body_Belt_2",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 367.5921,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Male_Ranger_Feet_Boots",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": null,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Male_Ranger_Head_Hood",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 0.429,
+    "head_verts_within_2mm": 1
+   },
+   {
+    "other": "Male_Ranger_Legs",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 485.6696,
+    "head_verts_within_2mm": 0
+   }
+  ],
+  "download/tryon-blend/TryOn_Female_Ranger.blend": [
+   {
+    "other": "Female_Ranger_Acc_Pauldrons",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 55.3689,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Female_Ranger_Arms",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 63.1753,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Female_Ranger_Arms_Bracer",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 364.6851,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Female_Ranger_Body",
+    "overlap_face_pairs": 96,
+    "min_distance_mm": 0.0497,
+    "head_verts_within_2mm": 24
+   },
+   {
+    "other": "Female_Ranger_Body_Belt_1",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 293.0934,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Female_Ranger_Body_Belt_2",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 330.7351,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Female_Ranger_Feet",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": null,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Female_Ranger_Head_Hood",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 2.0068,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Female_Ranger_Legs",
+    "overlap_face_pairs": 0,
+    "min_distance_mm": 436.0132,
+    "head_verts_within_2mm": 0
+   },
+   {
+    "other": "Head_Eyebrows",
+    "overlap_face_pairs": 478,
+    "min_distance_mm": 0.0694,
+    "head_verts_within_2mm": 56
+   },
+   {
+    "other": "Head_Eyes",
+    "overlap_face_pairs": 192,
+    "min_distance_mm": 0.2533,
+    "head_verts_within_2mm": 38
+   }
+  ]
+ },
+ "penetration_assessment": [
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "other": "Hair_SimpleParted",
+   "group": "同源头部件（UBC 内部：头/眼/眉/发，壳层内嵌属设计）",
+   "overlap_face_pairs": 292,
+   "min_distance_mm": 0.2152,
+   "head_verts_within_2mm": 61,
+   "judgement": "设计内嵌，非穿模"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "other": "Head_Eyebrows",
+   "group": "同源头部件（UBC 内部：头/眼/眉/发，壳层内嵌属设计）",
+   "overlap_face_pairs": 460,
+   "min_distance_mm": 0.0574,
+   "head_verts_within_2mm": 60,
+   "judgement": "设计内嵌，非穿模"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "other": "Head_Eyes",
+   "group": "同源头部件（UBC 内部：头/眼/眉/发，壳层内嵌属设计）",
+   "overlap_face_pairs": 190,
+   "min_distance_mm": 0.1836,
+   "head_verts_within_2mm": 34,
+   "judgement": "设计内嵌，非穿模"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "other": "Male_Peasant_Arms",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 74.5302,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "other": "Male_Peasant_Body",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 16,
+   "min_distance_mm": 0.1983,
+   "head_verts_within_2mm": 12,
+   "judgement": "接口处浅穿插（需目视复核）"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "other": "Male_Peasant_Feet",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": null,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "other": "Male_Peasant_Legs",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 484.3168,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "other": "Female_Peasant_Arms",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 80.3873,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "other": "Female_Peasant_Body",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 6.9272,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "other": "Female_Peasant_Feet",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": null,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "other": "Female_Peasant_Legs",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 403.5917,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "other": "Hair_Long",
+   "group": "同源头部件（UBC 内部：头/眼/眉/发，壳层内嵌属设计）",
+   "overlap_face_pairs": 577,
+   "min_distance_mm": 0.003,
+   "head_verts_within_2mm": 95,
+   "judgement": "设计内嵌，非穿模"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "other": "Head_Eyebrows",
+   "group": "同源头部件（UBC 内部：头/眼/眉/发，壳层内嵌属设计）",
+   "overlap_face_pairs": 478,
+   "min_distance_mm": 0.0694,
+   "head_verts_within_2mm": 56,
+   "judgement": "设计内嵌，非穿模"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "other": "Head_Eyes",
+   "group": "同源头部件（UBC 内部：头/眼/眉/发，壳层内嵌属设计）",
+   "overlap_face_pairs": 192,
+   "min_distance_mm": 0.2533,
+   "head_verts_within_2mm": 38,
+   "judgement": "设计内嵌，非穿模"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Head_Eyebrows",
+   "group": "同源头部件（UBC 内部：头/眼/眉/发，壳层内嵌属设计）",
+   "overlap_face_pairs": 460,
+   "min_distance_mm": 0.0574,
+   "head_verts_within_2mm": 60,
+   "judgement": "设计内嵌，非穿模"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Head_Eyes",
+   "group": "同源头部件（UBC 内部：头/眼/眉/发，壳层内嵌属设计）",
+   "overlap_face_pairs": 190,
+   "min_distance_mm": 0.1836,
+   "head_verts_within_2mm": 34,
+   "judgement": "设计内嵌，非穿模"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Male_Ranger_Acc_Pauldron",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 34.5225,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Male_Ranger_Arms",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 74.5302,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Male_Ranger_Arms_Bracer",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 371.794,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Male_Ranger_Body",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 276,
+   "min_distance_mm": 0.0865,
+   "head_verts_within_2mm": 42,
+   "judgement": "接口处浅穿插（需目视复核）"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Male_Ranger_Body_Belt_1",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 312.3547,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Male_Ranger_Body_Belt_2",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 367.5921,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Male_Ranger_Feet_Boots",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": null,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Male_Ranger_Head_Hood",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 0.429,
+   "head_verts_within_2mm": 1,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Male_Ranger_Legs",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 485.6696,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Female_Ranger_Acc_Pauldrons",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 55.3689,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Female_Ranger_Arms",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 63.1753,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Female_Ranger_Arms_Bracer",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 364.6851,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Female_Ranger_Body",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 96,
+   "min_distance_mm": 0.0497,
+   "head_verts_within_2mm": 24,
+   "judgement": "接口处浅穿插（需目视复核）"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Female_Ranger_Body_Belt_1",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 293.0934,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Female_Ranger_Body_Belt_2",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 330.7351,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Female_Ranger_Feet",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": null,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Female_Ranger_Head_Hood",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 2.0068,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Female_Ranger_Legs",
+   "group": "试穿接口（UBC 头部 vs MCO 服装）",
+   "overlap_face_pairs": 0,
+   "min_distance_mm": 436.0132,
+   "head_verts_within_2mm": 0,
+   "judgement": "无三角形相交"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Head_Eyebrows",
+   "group": "同源头部件（UBC 内部：头/眼/眉/发，壳层内嵌属设计）",
+   "overlap_face_pairs": 478,
+   "min_distance_mm": 0.0694,
+   "head_verts_within_2mm": 56,
+   "judgement": "设计内嵌，非穿模"
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Head_Eyes",
+   "group": "同源头部件（UBC 内部：头/眼/眉/发，壳层内嵌属设计）",
+   "overlap_face_pairs": 192,
+   "min_distance_mm": 0.2533,
+   "head_verts_within_2mm": 38,
+   "judgement": "设计内嵌，非穿模"
+  }
+ ],
+ "penetration_overlap_vs_head": [
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "other": "Hair_SimpleParted",
+   "overlap_face_pairs": 292
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "other": "Head_Eyebrows",
+   "overlap_face_pairs": 460
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "other": "Head_Eyes",
+   "overlap_face_pairs": 190
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Peasant.blend",
+   "other": "Male_Peasant_Body",
+   "overlap_face_pairs": 16
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "other": "Hair_Long",
+   "overlap_face_pairs": 577
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "other": "Head_Eyebrows",
+   "overlap_face_pairs": 478
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Peasant.blend",
+   "other": "Head_Eyes",
+   "overlap_face_pairs": 192
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Head_Eyebrows",
+   "overlap_face_pairs": 460
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Head_Eyes",
+   "overlap_face_pairs": 190
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Male_Ranger.blend",
+   "other": "Male_Ranger_Body",
+   "overlap_face_pairs": 276
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Female_Ranger_Body",
+   "overlap_face_pairs": 96
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Head_Eyebrows",
+   "overlap_face_pairs": 478
+  },
+  {
+   "path": "download/tryon-blend/TryOn_Female_Ranger.blend",
+   "other": "Head_Eyes",
+   "overlap_face_pairs": 192
+  }
+ ],
+ "rig_gltf_comparison": {
+  "tool": "tryon_rig_gltf_check.py",
+  "tolerance": 1e-06,
+  "result": {
+   "male": {
+    "ref": "tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/Superhero_Male_FullBody.gltf",
+    "vs": {
+     "Male_Peasant": {
+      "ref": "tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/Superhero_Male_FullBody.gltf",
+      "other": "download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Male_Peasant.gltf",
+      "skin_joints_ref": 65,
+      "skin_joints_other": 65,
+      "joint_name_sets_identical": true,
+      "joint_names_only_ref": [],
+      "joint_names_only_other": [],
+      "all_named_nodes_ref": 69,
+      "all_named_nodes_other": 70,
+      "extra_named_nodes_other": [
+       "Male_Peasant_Arms",
+       "Male_Peasant_Body",
+       "Male_Peasant_Feet",
+       "Male_Peasant_Legs"
+      ],
+      "extra_named_nodes_ref": [
+       "Eyebrows",
+       "Eyes",
+       "SuperHero_Male"
+      ],
+      "identical_world": [
+       "Head",
+       "neck_01",
+       "pelvis",
+       "root",
+       "spine_01",
+       "spine_02",
+       "spine_03"
+      ],
+      "differing": [
+       {
+        "bone": "ball_l",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 0.0,
+        "local_translation_ref": [
+         -0.0,
+         0.15907371,
+         -1e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.15907371,
+         -1e-08
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "ball_leaf_l",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2e-06,
+        "local_translation_ref": [
+         -0.0,
+         0.07889984,
+         -0.0
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.07889984,
+         -0.0
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "ball_leaf_r",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2e-06,
+        "local_translation_ref": [
+         0.0,
+         0.07889984,
+         -0.0
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.07889984,
+         -0.0
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "ball_r",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 1e-05,
+        "local_translation_ref": [
+         0.0,
+         0.15907371,
+         -1e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.15907371,
+         -1e-08
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "calf_l",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2e-06,
+        "local_translation_ref": [
+         -1e-08,
+         0.42880002,
+         0.0
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.42880002,
+         0.0
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "calf_r",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2e-06,
+        "local_translation_ref": [
+         1e-08,
+         0.42880002,
+         0.0
+        ],
+        "local_translation_other": [
+         1e-08,
+         0.42880002,
+         0.0
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "clavicle_l",
+        "d_world_translation_m": 0.0,
+        "d_world_matrix_max": 0.03946733,
+        "d_rotation_deg": 2.548089,
+        "local_translation_ref": [
+         0.0314,
+         0.17371765,
+         0.06732845
+        ],
+        "local_translation_other": [
+         0.0314,
+         0.17371765,
+         0.06732845
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "rotation"
+       },
+       {
+        "bone": "clavicle_r",
+        "d_world_translation_m": 0.0,
+        "d_world_matrix_max": 0.03946733,
+        "d_rotation_deg": 2.548089,
+        "local_translation_ref": [
+         -0.0314,
+         0.17371765,
+         0.06732845
+        ],
+        "local_translation_other": [
+         -0.0314,
+         0.17371765,
+         0.06732845
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "rotation"
+       },
+       {
+        "bone": "foot_l",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2.7e-05,
+        "local_translation_ref": [
+         0.0,
+         0.45878839,
+         1e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.45878839,
+         1e-08
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "foot_r",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2.7e-05,
+        "local_translation_ref": [
+         0.0,
+         0.45878839,
+         1e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.45878839,
+         1e-08
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "hand_l",
+        "d_world_translation_m": 0.02328709,
+        "d_world_matrix_max": 0.02328709,
+        "d_rotation_deg": 1.9e-05,
+        "local_translation_ref": [
+         -1.5e-07,
+         0.24359423,
+         0.0
+        ],
+        "local_translation_other": [
+         8e-08,
+         0.2404201,
+         -0.0
+        ],
+        "d_local_translation_m": 0.00317413,
+        "kind": "translation"
+       },
+       {
+        "bone": "hand_r",
+        "d_world_translation_m": 0.02328706,
+        "d_world_matrix_max": 0.02328706,
+        "d_rotation_deg": 2.4e-05,
+        "local_translation_ref": [
+         1.5e-07,
+         0.2435942,
+         0.0
+        ],
+        "local_translation_other": [
+         -9e-08,
+         0.2404201,
+         -1e-08
+        ],
+        "d_local_translation_m": 0.0031741,
+        "kind": "translation"
+       },
+       {
+        "bone": "index_01_l",
+        "d_world_translation_m": 0.0270423,
+        "d_world_matrix_max": 0.03822012,
+        "d_rotation_deg": 2.321582,
+        "local_translation_ref": [
+         0.00715948,
+         0.11740257,
+         0.04064335
+        ],
+        "local_translation_other": [
+         0.00940001,
+         0.11500009,
+         0.03249999
+        ],
+        "d_local_translation_m": 0.00878101,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_01_r",
+        "d_world_translation_m": 0.02704228,
+        "d_world_matrix_max": 0.03822017,
+        "d_rotation_deg": 2.321584,
+        "local_translation_ref": [
+         -0.00715947,
+         0.11740258,
+         0.04064335
+        ],
+        "local_translation_other": [
+         -0.00940001,
+         0.11500009,
+         0.0325
+        ],
+        "d_local_translation_m": 0.00878101,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_02_l",
+        "d_world_translation_m": 0.0270893,
+        "d_world_matrix_max": 0.038221,
+        "d_rotation_deg": 2.321647,
+        "local_translation_ref": [
+         -0.0,
+         0.03261243,
+         1.2e-07
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.03261239,
+         1.4e-07
+        ],
+        "d_local_translation_m": 4e-08,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_02_r",
+        "d_world_translation_m": 0.02708926,
+        "d_world_matrix_max": 0.03822102,
+        "d_rotation_deg": 2.321648,
+        "local_translation_ref": [
+         0.0,
+         0.03261245,
+         1.2e-07
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.03261243,
+         1.6e-07
+        ],
+        "d_local_translation_m": 4e-08,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_03_l",
+        "d_world_translation_m": 0.02718075,
+        "d_world_matrix_max": 0.03822489,
+        "d_rotation_deg": 2.321854,
+        "local_translation_ref": [
+         -0.0,
+         0.02791134,
+         6e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.02791146,
+         1.7e-07
+        ],
+        "d_local_translation_m": 1.6e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_03_r",
+        "d_world_translation_m": 0.02718074,
+        "d_world_matrix_max": 0.03822491,
+        "d_rotation_deg": 2.321855,
+        "local_translation_ref": [
+         0.0,
+         0.02791137,
+         6e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.02791146,
+         1.7e-07
+        ],
+        "d_local_translation_m": 1.4e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_04_leaf_l",
+        "d_world_translation_m": 0.02729736,
+        "d_world_matrix_max": 0.03822563,
+        "d_rotation_deg": 3.158921,
+        "local_translation_ref": [
+         -0.0,
+         0.02411005,
+         -1.3e-07
+        ],
+        "local_translation_other": [
+         0.0,
+         0.02411015,
+         1.7e-07
+        ],
+        "d_local_translation_m": 3.1e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_04_leaf_r",
+        "d_world_translation_m": 0.02729736,
+        "d_world_matrix_max": 0.03822565,
+        "d_rotation_deg": 3.158921,
+        "local_translation_ref": [
+         0.0,
+         0.02411007,
+         -1.3e-07
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.02411015,
+         1.7e-07
+        ],
+        "d_local_translation_m": 3.1e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "lowerarm_l",
+        "d_world_translation_m": 0.02011155,
+        "d_world_matrix_max": 0.02011155,
+        "d_rotation_deg": 0.023612,
+        "local_translation_ref": [
+         4e-08,
+         0.25111508,
+         -1e-08
+        ],
+        "local_translation_other": [
+         -4e-08,
+         0.25111493,
+         -0.0
+        ],
+        "d_local_translation_m": 1.7e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "lowerarm_r",
+        "d_world_translation_m": 0.02011155,
+        "d_world_matrix_max": 0.02011155,
+        "d_rotation_deg": 0.023613,
+        "local_translation_ref": [
+         -3e-08,
+         0.25111508,
+         -0.0
+        ],
+        "local_translation_other": [
+         4e-08,
+         0.25111493,
+         -0.0
+        ],
+        "d_local_translation_m": 1.7e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_01_l",
+        "d_world_translation_m": 0.02745458,
+        "d_world_matrix_max": 0.03821579,
+        "d_rotation_deg": 2.321247,
+        "local_translation_ref": [
+         0.00468255,
+         0.11543878,
+         0.01511338
+        ],
+        "local_translation_other": [
+         0.00699997,
+         0.11260004,
+         0.007
+        ],
+        "d_local_translation_m": 0.00890258,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_01_r",
+        "d_world_translation_m": 0.02745456,
+        "d_world_matrix_max": 0.0382158,
+        "d_rotation_deg": 2.321248,
+        "local_translation_ref": [
+         -0.00468254,
+         0.1154388,
+         0.01511339
+        ],
+        "local_translation_other": [
+         -0.00699997,
+         0.11260004,
+         0.007
+        ],
+        "d_local_translation_m": 0.00890259,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_02_l",
+        "d_world_translation_m": 0.027513,
+        "d_world_matrix_max": 0.03821687,
+        "d_rotation_deg": 2.321366,
+        "local_translation_ref": [
+         -0.0,
+         0.03752608,
+         -2e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.03752619,
+         1.5e-07
+        ],
+        "d_local_translation_m": 2e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_02_r",
+        "d_world_translation_m": 0.02751294,
+        "d_world_matrix_max": 0.03821688,
+        "d_rotation_deg": 2.321366,
+        "local_translation_ref": [
+         0.0,
+         0.03752603,
+         -2e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.03752619,
+         1.5e-07
+        ],
+        "d_local_translation_m": 2.3e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_03_l",
+        "d_world_translation_m": 0.02761888,
+        "d_world_matrix_max": 0.03821595,
+        "d_rotation_deg": 2.321274,
+        "local_translation_ref": [
+         -0.0,
+         0.03011664,
+         -6e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.03011666,
+         1.2e-07
+        ],
+        "d_local_translation_m": 1.9e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_03_r",
+        "d_world_translation_m": 0.0276188,
+        "d_world_matrix_max": 0.03821596,
+        "d_rotation_deg": 2.321274,
+        "local_translation_ref": [
+         -0.0,
+         0.03011661,
+         -7e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.03011666,
+         1.2e-07
+        ],
+        "d_local_translation_m": 2e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_04_leaf_l",
+        "d_world_translation_m": 0.02778144,
+        "d_world_matrix_max": 0.03821605,
+        "d_rotation_deg": 3.14791,
+        "local_translation_ref": [
+         0.0,
+         0.03051967,
+         2e-07
+        ],
+        "local_translation_other": [
+         1e-08,
+         0.03051982,
+         2e-08
+        ],
+        "d_local_translation_m": 2.3e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_04_leaf_r",
+        "d_world_translation_m": 0.02778138,
+        "d_world_matrix_max": 0.03821606,
+        "d_rotation_deg": 3.1479,
+        "local_translation_ref": [
+         -0.0,
+         0.0305197,
+         1.9e-07
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.03051982,
+         2e-08
+        ],
+        "d_local_translation_m": 2.1e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_01_l",
+        "d_world_translation_m": 0.02802355,
+        "d_world_matrix_max": 0.03820374,
+        "d_rotation_deg": 2.3205,
+        "local_translation_ref": [
+         0.00603773,
+         0.09854142,
+         -0.03461738
+        ],
+        "local_translation_other": [
+         0.00900007,
+         0.09510005,
+         -0.0425
+        ],
+        "d_local_translation_m": 0.00909693,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_01_r",
+        "d_world_translation_m": 0.02802353,
+        "d_world_matrix_max": 0.03820379,
+        "d_rotation_deg": 2.320503,
+        "local_translation_ref": [
+         -0.00603772,
+         0.09854142,
+         -0.03461738
+        ],
+        "local_translation_other": [
+         -0.00900005,
+         0.09510005,
+         -0.0425
+        ],
+        "d_local_translation_m": 0.00909694,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_02_l",
+        "d_world_translation_m": 0.0280378,
+        "d_world_matrix_max": 0.03820407,
+        "d_rotation_deg": 2.320654,
+        "local_translation_ref": [
+         1e-08,
+         0.03163103,
+         -1.8e-07
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.031631,
+         7e-08
+        ],
+        "d_local_translation_m": 2.5e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_02_r",
+        "d_world_translation_m": 0.0280378,
+        "d_world_matrix_max": 0.03820409,
+        "d_rotation_deg": 2.320654,
+        "local_translation_ref": [
+         -1e-08,
+         0.03163103,
+         -6e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.03163097,
+         9e-08
+        ],
+        "d_local_translation_m": 1.6e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_03_l",
+        "d_world_translation_m": 0.02809854,
+        "d_world_matrix_max": 0.0382109,
+        "d_rotation_deg": 2.320861,
+        "local_translation_ref": [
+         -0.0,
+         0.02743083,
+         1.8e-07
+        ],
+        "local_translation_other": [
+         0.0,
+         0.02743077,
+         -4e-08
+        ],
+        "d_local_translation_m": 2.2e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_03_r",
+        "d_world_translation_m": 0.02809851,
+        "d_world_matrix_max": 0.03821092,
+        "d_rotation_deg": 2.320862,
+        "local_translation_ref": [
+         0.0,
+         0.02743079,
+         1.8e-07
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.02743077,
+         -4e-08
+        ],
+        "d_local_translation_m": 2.1e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_04_leaf_l",
+        "d_world_translation_m": 0.02817662,
+        "d_world_matrix_max": 0.03821133,
+        "d_rotation_deg": 3.132476,
+        "local_translation_ref": [
+         0.0,
+         0.02152332,
+         -4e-08
+        ],
+        "local_translation_other": [
+         1e-08,
+         0.02152321,
+         -2.8e-07
+        ],
+        "d_local_translation_m": 2.7e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_04_leaf_r",
+        "d_world_translation_m": 0.0281766,
+        "d_world_matrix_max": 0.03821135,
+        "d_rotation_deg": 3.132474,
+        "local_translation_ref": [
+         -0.0,
+         0.02152333,
+         -5e-08
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.0215232,
+         -2.8e-07
+        ],
+        "d_local_translation_m": 2.7e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_01_l",
+        "d_world_translation_m": 0.02779504,
+        "d_world_matrix_max": 0.03822931,
+        "d_rotation_deg": 2.322286,
+        "local_translation_ref": [
+         0.00475181,
+         0.1094006,
+         -0.01237016
+        ],
+        "local_translation_other": [
+         0.00730002,
+         0.10620005,
+         -0.0204
+        ],
+        "d_local_translation_m": 0.00901194,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_01_r",
+        "d_world_translation_m": 0.02779502,
+        "d_world_matrix_max": 0.03822933,
+        "d_rotation_deg": 2.322287,
+        "local_translation_ref": [
+         -0.0047518,
+         0.10940062,
+         -0.01237016
+        ],
+        "local_translation_other": [
+         -0.00730001,
+         0.10620005,
+         -0.0204
+        ],
+        "d_local_translation_m": 0.00901195,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_02_l",
+        "d_world_translation_m": 0.02782252,
+        "d_world_matrix_max": 0.03821831,
+        "d_rotation_deg": 2.321854,
+        "local_translation_ref": [
+         1e-08,
+         0.03600123,
+         -8e-08
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.03600129,
+         1.5e-07
+        ],
+        "d_local_translation_m": 2.4e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_02_r",
+        "d_world_translation_m": 0.02782246,
+        "d_world_matrix_max": 0.03821834,
+        "d_rotation_deg": 2.321855,
+        "local_translation_ref": [
+         -0.0,
+         0.03600119,
+         -8e-08
+        ],
+        "local_translation_other": [
+         1e-08,
+         0.03600129,
+         1.5e-07
+        ],
+        "d_local_translation_m": 2.5e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_03_l",
+        "d_world_translation_m": 0.02789606,
+        "d_world_matrix_max": 0.03822757,
+        "d_rotation_deg": 2.32218,
+        "local_translation_ref": [
+         0.0,
+         0.02830018,
+         5e-08
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.02830015,
+         1.1e-07
+        ],
+        "d_local_translation_m": 7e-08,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_03_r",
+        "d_world_translation_m": 0.02789602,
+        "d_world_matrix_max": 0.03822759,
+        "d_rotation_deg": 2.322181,
+        "local_translation_ref": [
+         -0.0,
+         0.0283002,
+         5e-08
+        ],
+        "local_translation_other": [
+         1e-08,
+         0.02830015,
+         1.1e-07
+        ],
+        "d_local_translation_m": 8e-08,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_04_leaf_l",
+        "d_world_translation_m": 0.02802307,
+        "d_world_matrix_max": 0.03831988,
+        "d_rotation_deg": 3.187083,
+        "local_translation_ref": [
+         -1e-08,
+         0.02910166,
+         1e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.02910153,
+         3e-08
+        ],
+        "d_local_translation_m": 1.3e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_04_leaf_r",
+        "d_world_translation_m": 0.02802299,
+        "d_world_matrix_max": 0.0383199,
+        "d_rotation_deg": 3.187081,
+        "local_translation_ref": [
+         1e-08,
+         0.02910162,
+         2e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.02910153,
+         3e-08
+        ],
+        "d_local_translation_m": 9e-08,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thigh_l",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 0.0,
+        "local_translation_ref": [
+         0.11430514,
+         0.02317694,
+         0.00048783
+        ],
+        "local_translation_other": [
+         0.0906,
+         0.02317694,
+         0.00048783
+        ],
+        "d_local_translation_m": 0.02370514,
+        "kind": "translation"
+       },
+       {
+        "bone": "thigh_r",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 0.0,
+        "local_translation_ref": [
+         -0.11430514,
+         0.02317694,
+         0.00048783
+        ],
+        "local_translation_other": [
+         -0.0906,
+         0.02317694,
+         0.00048783
+        ],
+        "d_local_translation_m": 0.02370514,
+        "kind": "translation"
+       },
+       {
+        "bone": "thumb_01_l",
+        "d_world_translation_m": 0.03298563,
+        "d_world_matrix_max": 0.20979605,
+        "d_rotation_deg": 13.36743,
+        "local_translation_ref": [
+         0.02748132,
+         0.03381355,
+         0.04106312
+        ],
+        "local_translation_other": [
+         0.02139998,
+         0.02770009,
+         0.02740001
+        ],
+        "d_local_translation_m": 0.01615666,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_01_r",
+        "d_world_translation_m": 0.03298561,
+        "d_world_matrix_max": 0.20979595,
+        "d_rotation_deg": 13.367424,
+        "local_translation_ref": [
+         -0.02748132,
+         0.03381357,
+         0.04106312
+        ],
+        "local_translation_other": [
+         -0.02139997,
+         0.02770009,
+         0.02740001
+        ],
+        "d_local_translation_m": 0.01615667,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_02_l",
+        "d_world_translation_m": 0.03409398,
+        "d_world_matrix_max": 0.20882339,
+        "d_rotation_deg": 13.326303,
+        "local_translation_ref": [
+         -1.1e-07,
+         0.03951994,
+         4e-08
+        ],
+        "local_translation_other": [
+         -1.8e-07,
+         0.03956537,
+         1e-08
+        ],
+        "d_local_translation_m": 4.543e-05,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_02_r",
+        "d_world_translation_m": 0.03409392,
+        "d_world_matrix_max": 0.20882353,
+        "d_rotation_deg": 13.326312,
+        "local_translation_ref": [
+         -5e-08,
+         0.03952001,
+         3e-08
+        ],
+        "local_translation_other": [
+         -5e-08,
+         0.03956544,
+         -3e-08
+        ],
+        "d_local_translation_m": 4.542e-05,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_03_l",
+        "d_world_translation_m": 0.03223218,
+        "d_world_matrix_max": 0.20913095,
+        "d_rotation_deg": 13.333322,
+        "local_translation_ref": [
+         -1e-08,
+         0.0354909,
+         -3e-08
+        ],
+        "local_translation_other": [
+         4e-08,
+         0.03922773,
+         -5e-08
+        ],
+        "d_local_translation_m": 0.00373683,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_03_r",
+        "d_world_translation_m": 0.03223184,
+        "d_world_matrix_max": 0.20913112,
+        "d_rotation_deg": 13.333335,
+        "local_translation_ref": [
+         1e-08,
+         0.0354908,
+         1e-08
+        ],
+        "local_translation_other": [
+         -1.8e-07,
+         0.03922785,
+         -2e-08
+        ],
+        "d_local_translation_m": 0.00373705,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_04_leaf_l",
+        "d_world_translation_m": 0.03378666,
+        "d_world_matrix_max": 0.11956235,
+        "d_rotation_deg": 8.308128,
+        "local_translation_ref": [
+         -1e-07,
+         0.0345581,
+         2e-08
+        ],
+        "local_translation_other": [
+         -1.1e-07,
+         0.0345996,
+         1e-08
+        ],
+        "d_local_translation_m": 4.15e-05,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_04_leaf_r",
+        "d_world_translation_m": 0.03378631,
+        "d_world_matrix_max": 0.11956228,
+        "d_rotation_deg": 8.308142,
+        "local_translation_ref": [
+         1e-08,
+         0.0345581,
+         2e-08
+        ],
+        "local_translation_other": [
+         1.7e-07,
+         0.03459972,
+         1e-08
+        ],
+        "d_local_translation_m": 4.162e-05,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "upperarm_l",
+        "d_world_translation_m": 0.02011157,
+        "d_world_matrix_max": 0.02011157,
+        "d_rotation_deg": 3e-05,
+        "local_translation_ref": [
+         -0.00913572,
+         0.20573901,
+         -0.03967121
+        ],
+        "local_translation_other": [
+         -0.00964107,
+         0.18830481,
+         -0.03967199
+        ],
+        "d_local_translation_m": 0.01744152,
+        "kind": "translation"
+       },
+       {
+        "bone": "upperarm_r",
+        "d_world_translation_m": 0.02011157,
+        "d_world_matrix_max": 0.02011157,
+        "d_rotation_deg": 3e-05,
+        "local_translation_ref": [
+         0.00913572,
+         0.20573901,
+         -0.03967121
+        ],
+        "local_translation_other": [
+         0.00964107,
+         0.18830481,
+         -0.03967199
+        ],
+        "d_local_translation_m": 0.01744152,
+        "kind": "translation"
+       }
+      ],
+      "identical_count": 7,
+      "differing_count": 58,
+      "differing_bones": [
+       "ball_l",
+       "ball_leaf_l",
+       "ball_leaf_r",
+       "ball_r",
+       "calf_l",
+       "calf_r",
+       "clavicle_l",
+       "clavicle_r",
+       "foot_l",
+       "foot_r",
+       "hand_l",
+       "hand_r",
+       "index_01_l",
+       "index_01_r",
+       "index_02_l",
+       "index_02_r",
+       "index_03_l",
+       "index_03_r",
+       "index_04_leaf_l",
+       "index_04_leaf_r",
+       "lowerarm_l",
+       "lowerarm_r",
+       "middle_01_l",
+       "middle_01_r",
+       "middle_02_l",
+       "middle_02_r",
+       "middle_03_l",
+       "middle_03_r",
+       "middle_04_leaf_l",
+       "middle_04_leaf_r",
+       "pinky_01_l",
+       "pinky_01_r",
+       "pinky_02_l",
+       "pinky_02_r",
+       "pinky_03_l",
+       "pinky_03_r",
+       "pinky_04_leaf_l",
+       "pinky_04_leaf_r",
+       "ring_01_l",
+       "ring_01_r",
+       "ring_02_l",
+       "ring_02_r",
+       "ring_03_l",
+       "ring_03_r",
+       "ring_04_leaf_l",
+       "ring_04_leaf_r",
+       "thigh_l",
+       "thigh_r",
+       "thumb_01_l",
+       "thumb_01_r",
+       "thumb_02_l",
+       "thumb_02_r",
+       "thumb_03_l",
+       "thumb_03_r",
+       "thumb_04_leaf_l",
+       "thumb_04_leaf_r",
+       "upperarm_l",
+       "upperarm_r"
+      ],
+      "claim_diff_only_upperarm_thigh": false,
+      "key_bones": {
+       "Head": {
+        "d_world_matrix_max": 0.0,
+        "local_translation_ref": [
+         0.0,
+         0.08285235,
+         1e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.08285235,
+         1e-08
+        ],
+        "world_translation_ref": [
+         0.0,
+         1.5998,
+         -0.0174
+        ]
+       },
+       "neck_01": {
+        "d_world_matrix_max": 0.0,
+        "local_translation_ref": [
+         0.0,
+         0.21509314,
+         2e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.21509314,
+         2e-08
+        ],
+        "world_translation_ref": [
+         0.0,
+         1.5205,
+         -0.0414
+        ]
+       }
+      }
+     },
+     "Male_Ranger": {
+      "ref": "tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/Superhero_Male_FullBody.gltf",
+      "other": "download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Male_Ranger.gltf",
+      "skin_joints_ref": 65,
+      "skin_joints_other": 65,
+      "joint_name_sets_identical": true,
+      "joint_names_only_ref": [],
+      "joint_names_only_other": [],
+      "all_named_nodes_ref": 69,
+      "all_named_nodes_other": 75,
+      "extra_named_nodes_other": [
+       "Male_Ranger_Acc_Pauldron",
+       "Male_Ranger_Arms",
+       "Male_Ranger_Arms_Bracer",
+       "Male_Ranger_Body",
+       "Male_Ranger_Body_Belt_1",
+       "Male_Ranger_Body_Belt_2",
+       "Male_Ranger_Feet_Boots",
+       "Male_Ranger_Head_Hood",
+       "Male_Ranger_Legs"
+      ],
+      "extra_named_nodes_ref": [
+       "Eyebrows",
+       "Eyes",
+       "SuperHero_Male"
+      ],
+      "identical_world": [
+       "Head",
+       "neck_01",
+       "pelvis",
+       "root",
+       "spine_01",
+       "spine_02",
+       "spine_03"
+      ],
+      "differing": [
+       {
+        "bone": "ball_l",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 0.0,
+        "local_translation_ref": [
+         -0.0,
+         0.15907371,
+         -1e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.15907371,
+         -1e-08
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "ball_leaf_l",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2e-06,
+        "local_translation_ref": [
+         -0.0,
+         0.07889984,
+         -0.0
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.07889984,
+         -0.0
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "ball_leaf_r",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2e-06,
+        "local_translation_ref": [
+         0.0,
+         0.07889984,
+         -0.0
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.07889984,
+         -0.0
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "ball_r",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 1e-05,
+        "local_translation_ref": [
+         0.0,
+         0.15907371,
+         -1e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.15907371,
+         -1e-08
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "calf_l",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2e-06,
+        "local_translation_ref": [
+         -1e-08,
+         0.42880002,
+         0.0
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.42880002,
+         0.0
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "calf_r",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2e-06,
+        "local_translation_ref": [
+         1e-08,
+         0.42880002,
+         0.0
+        ],
+        "local_translation_other": [
+         1e-08,
+         0.42880002,
+         0.0
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "clavicle_l",
+        "d_world_translation_m": 0.0,
+        "d_world_matrix_max": 0.03946733,
+        "d_rotation_deg": 2.548089,
+        "local_translation_ref": [
+         0.0314,
+         0.17371765,
+         0.06732845
+        ],
+        "local_translation_other": [
+         0.0314,
+         0.17371765,
+         0.06732845
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "rotation"
+       },
+       {
+        "bone": "clavicle_r",
+        "d_world_translation_m": 0.0,
+        "d_world_matrix_max": 0.03946733,
+        "d_rotation_deg": 2.548089,
+        "local_translation_ref": [
+         -0.0314,
+         0.17371765,
+         0.06732845
+        ],
+        "local_translation_other": [
+         -0.0314,
+         0.17371765,
+         0.06732845
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "rotation"
+       },
+       {
+        "bone": "foot_l",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2.7e-05,
+        "local_translation_ref": [
+         0.0,
+         0.45878839,
+         1e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.45878839,
+         1e-08
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "foot_r",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 2.7e-05,
+        "local_translation_ref": [
+         0.0,
+         0.45878839,
+         1e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.45878839,
+         1e-08
+        ],
+        "d_local_translation_m": 0.0,
+        "kind": "translation"
+       },
+       {
+        "bone": "hand_l",
+        "d_world_translation_m": 0.02328709,
+        "d_world_matrix_max": 0.02328709,
+        "d_rotation_deg": 1.9e-05,
+        "local_translation_ref": [
+         -1.5e-07,
+         0.24359423,
+         0.0
+        ],
+        "local_translation_other": [
+         8e-08,
+         0.2404201,
+         -0.0
+        ],
+        "d_local_translation_m": 0.00317413,
+        "kind": "translation"
+       },
+       {
+        "bone": "hand_r",
+        "d_world_translation_m": 0.02328706,
+        "d_world_matrix_max": 0.02328706,
+        "d_rotation_deg": 2.4e-05,
+        "local_translation_ref": [
+         1.5e-07,
+         0.2435942,
+         0.0
+        ],
+        "local_translation_other": [
+         -9e-08,
+         0.2404201,
+         -1e-08
+        ],
+        "d_local_translation_m": 0.0031741,
+        "kind": "translation"
+       },
+       {
+        "bone": "index_01_l",
+        "d_world_translation_m": 0.0270423,
+        "d_world_matrix_max": 0.03822012,
+        "d_rotation_deg": 2.321582,
+        "local_translation_ref": [
+         0.00715948,
+         0.11740257,
+         0.04064335
+        ],
+        "local_translation_other": [
+         0.00940001,
+         0.11500009,
+         0.03249999
+        ],
+        "d_local_translation_m": 0.00878101,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_01_r",
+        "d_world_translation_m": 0.02704228,
+        "d_world_matrix_max": 0.03822017,
+        "d_rotation_deg": 2.321584,
+        "local_translation_ref": [
+         -0.00715947,
+         0.11740258,
+         0.04064335
+        ],
+        "local_translation_other": [
+         -0.00940001,
+         0.11500009,
+         0.0325
+        ],
+        "d_local_translation_m": 0.00878101,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_02_l",
+        "d_world_translation_m": 0.0270893,
+        "d_world_matrix_max": 0.038221,
+        "d_rotation_deg": 2.321647,
+        "local_translation_ref": [
+         -0.0,
+         0.03261243,
+         1.2e-07
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.03261239,
+         1.4e-07
+        ],
+        "d_local_translation_m": 4e-08,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_02_r",
+        "d_world_translation_m": 0.02708926,
+        "d_world_matrix_max": 0.03822102,
+        "d_rotation_deg": 2.321648,
+        "local_translation_ref": [
+         0.0,
+         0.03261245,
+         1.2e-07
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.03261243,
+         1.6e-07
+        ],
+        "d_local_translation_m": 4e-08,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_03_l",
+        "d_world_translation_m": 0.02718075,
+        "d_world_matrix_max": 0.03822489,
+        "d_rotation_deg": 2.321854,
+        "local_translation_ref": [
+         -0.0,
+         0.02791134,
+         6e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.02791146,
+         1.7e-07
+        ],
+        "d_local_translation_m": 1.6e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_03_r",
+        "d_world_translation_m": 0.02718074,
+        "d_world_matrix_max": 0.03822491,
+        "d_rotation_deg": 2.321855,
+        "local_translation_ref": [
+         0.0,
+         0.02791137,
+         6e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.02791146,
+         1.7e-07
+        ],
+        "d_local_translation_m": 1.4e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_04_leaf_l",
+        "d_world_translation_m": 0.02729736,
+        "d_world_matrix_max": 0.03822563,
+        "d_rotation_deg": 3.158921,
+        "local_translation_ref": [
+         -0.0,
+         0.02411005,
+         -1.3e-07
+        ],
+        "local_translation_other": [
+         0.0,
+         0.02411015,
+         1.7e-07
+        ],
+        "d_local_translation_m": 3.1e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "index_04_leaf_r",
+        "d_world_translation_m": 0.02729736,
+        "d_world_matrix_max": 0.03822565,
+        "d_rotation_deg": 3.158921,
+        "local_translation_ref": [
+         0.0,
+         0.02411007,
+         -1.3e-07
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.02411015,
+         1.7e-07
+        ],
+        "d_local_translation_m": 3.1e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "lowerarm_l",
+        "d_world_translation_m": 0.02011155,
+        "d_world_matrix_max": 0.02011155,
+        "d_rotation_deg": 0.023612,
+        "local_translation_ref": [
+         4e-08,
+         0.25111508,
+         -1e-08
+        ],
+        "local_translation_other": [
+         -4e-08,
+         0.25111493,
+         -0.0
+        ],
+        "d_local_translation_m": 1.7e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "lowerarm_r",
+        "d_world_translation_m": 0.02011155,
+        "d_world_matrix_max": 0.02011155,
+        "d_rotation_deg": 0.023613,
+        "local_translation_ref": [
+         -3e-08,
+         0.25111508,
+         -0.0
+        ],
+        "local_translation_other": [
+         4e-08,
+         0.25111493,
+         -0.0
+        ],
+        "d_local_translation_m": 1.7e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_01_l",
+        "d_world_translation_m": 0.02745458,
+        "d_world_matrix_max": 0.03821579,
+        "d_rotation_deg": 2.321247,
+        "local_translation_ref": [
+         0.00468255,
+         0.11543878,
+         0.01511338
+        ],
+        "local_translation_other": [
+         0.00699997,
+         0.11260004,
+         0.007
+        ],
+        "d_local_translation_m": 0.00890258,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_01_r",
+        "d_world_translation_m": 0.02745456,
+        "d_world_matrix_max": 0.0382158,
+        "d_rotation_deg": 2.321248,
+        "local_translation_ref": [
+         -0.00468254,
+         0.1154388,
+         0.01511339
+        ],
+        "local_translation_other": [
+         -0.00699997,
+         0.11260004,
+         0.007
+        ],
+        "d_local_translation_m": 0.00890259,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_02_l",
+        "d_world_translation_m": 0.027513,
+        "d_world_matrix_max": 0.03821687,
+        "d_rotation_deg": 2.321366,
+        "local_translation_ref": [
+         -0.0,
+         0.03752608,
+         -2e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.03752619,
+         1.5e-07
+        ],
+        "d_local_translation_m": 2e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_02_r",
+        "d_world_translation_m": 0.02751294,
+        "d_world_matrix_max": 0.03821688,
+        "d_rotation_deg": 2.321366,
+        "local_translation_ref": [
+         0.0,
+         0.03752603,
+         -2e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.03752619,
+         1.5e-07
+        ],
+        "d_local_translation_m": 2.3e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_03_l",
+        "d_world_translation_m": 0.02761888,
+        "d_world_matrix_max": 0.03821595,
+        "d_rotation_deg": 2.321274,
+        "local_translation_ref": [
+         -0.0,
+         0.03011664,
+         -6e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.03011666,
+         1.2e-07
+        ],
+        "d_local_translation_m": 1.9e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_03_r",
+        "d_world_translation_m": 0.0276188,
+        "d_world_matrix_max": 0.03821596,
+        "d_rotation_deg": 2.321274,
+        "local_translation_ref": [
+         -0.0,
+         0.03011661,
+         -7e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.03011666,
+         1.2e-07
+        ],
+        "d_local_translation_m": 2e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_04_leaf_l",
+        "d_world_translation_m": 0.02778144,
+        "d_world_matrix_max": 0.03821605,
+        "d_rotation_deg": 3.14791,
+        "local_translation_ref": [
+         0.0,
+         0.03051967,
+         2e-07
+        ],
+        "local_translation_other": [
+         1e-08,
+         0.03051982,
+         2e-08
+        ],
+        "d_local_translation_m": 2.3e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "middle_04_leaf_r",
+        "d_world_translation_m": 0.02778138,
+        "d_world_matrix_max": 0.03821606,
+        "d_rotation_deg": 3.1479,
+        "local_translation_ref": [
+         -0.0,
+         0.0305197,
+         1.9e-07
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.03051982,
+         2e-08
+        ],
+        "d_local_translation_m": 2.1e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_01_l",
+        "d_world_translation_m": 0.02802355,
+        "d_world_matrix_max": 0.03820374,
+        "d_rotation_deg": 2.3205,
+        "local_translation_ref": [
+         0.00603773,
+         0.09854142,
+         -0.03461738
+        ],
+        "local_translation_other": [
+         0.00900007,
+         0.09510005,
+         -0.0425
+        ],
+        "d_local_translation_m": 0.00909693,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_01_r",
+        "d_world_translation_m": 0.02802353,
+        "d_world_matrix_max": 0.03820379,
+        "d_rotation_deg": 2.320503,
+        "local_translation_ref": [
+         -0.00603772,
+         0.09854142,
+         -0.03461738
+        ],
+        "local_translation_other": [
+         -0.00900005,
+         0.09510005,
+         -0.0425
+        ],
+        "d_local_translation_m": 0.00909694,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_02_l",
+        "d_world_translation_m": 0.0280378,
+        "d_world_matrix_max": 0.03820407,
+        "d_rotation_deg": 2.320654,
+        "local_translation_ref": [
+         1e-08,
+         0.03163103,
+         -1.8e-07
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.031631,
+         7e-08
+        ],
+        "d_local_translation_m": 2.5e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_02_r",
+        "d_world_translation_m": 0.0280378,
+        "d_world_matrix_max": 0.03820409,
+        "d_rotation_deg": 2.320654,
+        "local_translation_ref": [
+         -1e-08,
+         0.03163103,
+         -6e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.03163097,
+         9e-08
+        ],
+        "d_local_translation_m": 1.6e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_03_l",
+        "d_world_translation_m": 0.02809854,
+        "d_world_matrix_max": 0.0382109,
+        "d_rotation_deg": 2.320861,
+        "local_translation_ref": [
+         -0.0,
+         0.02743083,
+         1.8e-07
+        ],
+        "local_translation_other": [
+         0.0,
+         0.02743077,
+         -4e-08
+        ],
+        "d_local_translation_m": 2.2e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_03_r",
+        "d_world_translation_m": 0.02809851,
+        "d_world_matrix_max": 0.03821092,
+        "d_rotation_deg": 2.320862,
+        "local_translation_ref": [
+         0.0,
+         0.02743079,
+         1.8e-07
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.02743077,
+         -4e-08
+        ],
+        "d_local_translation_m": 2.1e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_04_leaf_l",
+        "d_world_translation_m": 0.02817662,
+        "d_world_matrix_max": 0.03821133,
+        "d_rotation_deg": 3.132476,
+        "local_translation_ref": [
+         0.0,
+         0.02152332,
+         -4e-08
+        ],
+        "local_translation_other": [
+         1e-08,
+         0.02152321,
+         -2.8e-07
+        ],
+        "d_local_translation_m": 2.7e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "pinky_04_leaf_r",
+        "d_world_translation_m": 0.0281766,
+        "d_world_matrix_max": 0.03821135,
+        "d_rotation_deg": 3.132474,
+        "local_translation_ref": [
+         -0.0,
+         0.02152333,
+         -5e-08
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.0215232,
+         -2.8e-07
+        ],
+        "d_local_translation_m": 2.7e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_01_l",
+        "d_world_translation_m": 0.02779504,
+        "d_world_matrix_max": 0.03822931,
+        "d_rotation_deg": 2.322286,
+        "local_translation_ref": [
+         0.00475181,
+         0.1094006,
+         -0.01237016
+        ],
+        "local_translation_other": [
+         0.00730002,
+         0.10620005,
+         -0.0204
+        ],
+        "d_local_translation_m": 0.00901194,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_01_r",
+        "d_world_translation_m": 0.02779502,
+        "d_world_matrix_max": 0.03822933,
+        "d_rotation_deg": 2.322287,
+        "local_translation_ref": [
+         -0.0047518,
+         0.10940062,
+         -0.01237016
+        ],
+        "local_translation_other": [
+         -0.00730001,
+         0.10620005,
+         -0.0204
+        ],
+        "d_local_translation_m": 0.00901195,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_02_l",
+        "d_world_translation_m": 0.02782252,
+        "d_world_matrix_max": 0.03821831,
+        "d_rotation_deg": 2.321854,
+        "local_translation_ref": [
+         1e-08,
+         0.03600123,
+         -8e-08
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.03600129,
+         1.5e-07
+        ],
+        "d_local_translation_m": 2.4e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_02_r",
+        "d_world_translation_m": 0.02782246,
+        "d_world_matrix_max": 0.03821834,
+        "d_rotation_deg": 2.321855,
+        "local_translation_ref": [
+         -0.0,
+         0.03600119,
+         -8e-08
+        ],
+        "local_translation_other": [
+         1e-08,
+         0.03600129,
+         1.5e-07
+        ],
+        "d_local_translation_m": 2.5e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_03_l",
+        "d_world_translation_m": 0.02789606,
+        "d_world_matrix_max": 0.03822757,
+        "d_rotation_deg": 2.32218,
+        "local_translation_ref": [
+         0.0,
+         0.02830018,
+         5e-08
+        ],
+        "local_translation_other": [
+         -1e-08,
+         0.02830015,
+         1.1e-07
+        ],
+        "d_local_translation_m": 7e-08,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_03_r",
+        "d_world_translation_m": 0.02789602,
+        "d_world_matrix_max": 0.03822759,
+        "d_rotation_deg": 2.322181,
+        "local_translation_ref": [
+         -0.0,
+         0.0283002,
+         5e-08
+        ],
+        "local_translation_other": [
+         1e-08,
+         0.02830015,
+         1.1e-07
+        ],
+        "d_local_translation_m": 8e-08,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_04_leaf_l",
+        "d_world_translation_m": 0.02802307,
+        "d_world_matrix_max": 0.03831988,
+        "d_rotation_deg": 3.187083,
+        "local_translation_ref": [
+         -1e-08,
+         0.02910166,
+         1e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.02910153,
+         3e-08
+        ],
+        "d_local_translation_m": 1.3e-07,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "ring_04_leaf_r",
+        "d_world_translation_m": 0.02802299,
+        "d_world_matrix_max": 0.0383199,
+        "d_rotation_deg": 3.187081,
+        "local_translation_ref": [
+         1e-08,
+         0.02910162,
+         2e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.02910153,
+         3e-08
+        ],
+        "d_local_translation_m": 9e-08,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thigh_l",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 0.0,
+        "local_translation_ref": [
+         0.11430514,
+         0.02317694,
+         0.00048783
+        ],
+        "local_translation_other": [
+         0.0906,
+         0.02317694,
+         0.00048783
+        ],
+        "d_local_translation_m": 0.02370514,
+        "kind": "translation"
+       },
+       {
+        "bone": "thigh_r",
+        "d_world_translation_m": 0.02370514,
+        "d_world_matrix_max": 0.02370514,
+        "d_rotation_deg": 0.0,
+        "local_translation_ref": [
+         -0.11430514,
+         0.02317694,
+         0.00048783
+        ],
+        "local_translation_other": [
+         -0.0906,
+         0.02317694,
+         0.00048783
+        ],
+        "d_local_translation_m": 0.02370514,
+        "kind": "translation"
+       },
+       {
+        "bone": "thumb_01_l",
+        "d_world_translation_m": 0.03298563,
+        "d_world_matrix_max": 0.20979605,
+        "d_rotation_deg": 13.36743,
+        "local_translation_ref": [
+         0.02748132,
+         0.03381355,
+         0.04106312
+        ],
+        "local_translation_other": [
+         0.02139998,
+         0.02770009,
+         0.02740001
+        ],
+        "d_local_translation_m": 0.01615666,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_01_r",
+        "d_world_translation_m": 0.03298561,
+        "d_world_matrix_max": 0.20979595,
+        "d_rotation_deg": 13.367424,
+        "local_translation_ref": [
+         -0.02748132,
+         0.03381357,
+         0.04106312
+        ],
+        "local_translation_other": [
+         -0.02139997,
+         0.02770009,
+         0.02740001
+        ],
+        "d_local_translation_m": 0.01615667,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_02_l",
+        "d_world_translation_m": 0.03409398,
+        "d_world_matrix_max": 0.20882339,
+        "d_rotation_deg": 13.326303,
+        "local_translation_ref": [
+         -1.1e-07,
+         0.03951994,
+         4e-08
+        ],
+        "local_translation_other": [
+         -1.8e-07,
+         0.03956537,
+         1e-08
+        ],
+        "d_local_translation_m": 4.543e-05,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_02_r",
+        "d_world_translation_m": 0.03409392,
+        "d_world_matrix_max": 0.20882353,
+        "d_rotation_deg": 13.326312,
+        "local_translation_ref": [
+         -5e-08,
+         0.03952001,
+         3e-08
+        ],
+        "local_translation_other": [
+         -5e-08,
+         0.03956544,
+         -3e-08
+        ],
+        "d_local_translation_m": 4.542e-05,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_03_l",
+        "d_world_translation_m": 0.03223218,
+        "d_world_matrix_max": 0.20913095,
+        "d_rotation_deg": 13.333322,
+        "local_translation_ref": [
+         -1e-08,
+         0.0354909,
+         -3e-08
+        ],
+        "local_translation_other": [
+         4e-08,
+         0.03922773,
+         -5e-08
+        ],
+        "d_local_translation_m": 0.00373683,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_03_r",
+        "d_world_translation_m": 0.03223184,
+        "d_world_matrix_max": 0.20913112,
+        "d_rotation_deg": 13.333335,
+        "local_translation_ref": [
+         1e-08,
+         0.0354908,
+         1e-08
+        ],
+        "local_translation_other": [
+         -1.8e-07,
+         0.03922785,
+         -2e-08
+        ],
+        "d_local_translation_m": 0.00373705,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_04_leaf_l",
+        "d_world_translation_m": 0.03378666,
+        "d_world_matrix_max": 0.11956235,
+        "d_rotation_deg": 8.308128,
+        "local_translation_ref": [
+         -1e-07,
+         0.0345581,
+         2e-08
+        ],
+        "local_translation_other": [
+         -1.1e-07,
+         0.0345996,
+         1e-08
+        ],
+        "d_local_translation_m": 4.15e-05,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "thumb_04_leaf_r",
+        "d_world_translation_m": 0.03378631,
+        "d_world_matrix_max": 0.11956228,
+        "d_rotation_deg": 8.308142,
+        "local_translation_ref": [
+         1e-08,
+         0.0345581,
+         2e-08
+        ],
+        "local_translation_other": [
+         1.7e-07,
+         0.03459972,
+         1e-08
+        ],
+        "d_local_translation_m": 4.162e-05,
+        "kind": "translation+rotation"
+       },
+       {
+        "bone": "upperarm_l",
+        "d_world_translation_m": 0.02011157,
+        "d_world_matrix_max": 0.02011157,
+        "d_rotation_deg": 3e-05,
+        "local_translation_ref": [
+         -0.00913572,
+         0.20573901,
+         -0.03967121
+        ],
+        "local_translation_other": [
+         -0.00964107,
+         0.18830481,
+         -0.03967199
+        ],
+        "d_local_translation_m": 0.01744152,
+        "kind": "translation"
+       },
+       {
+        "bone": "upperarm_r",
+        "d_world_translation_m": 0.02011157,
+        "d_world_matrix_max": 0.02011157,
+        "d_rotation_deg": 3e-05,
+        "local_translation_ref": [
+         0.00913572,
+         0.20573901,
+         -0.03967121
+        ],
+        "local_translation_other": [
+         0.00964107,
+         0.18830481,
+         -0.03967199
+        ],
+        "d_local_translation_m": 0.01744152,
+        "kind": "translation"
+       }
+      ],
+      "identical_count": 7,
+      "differing_count": 58,
+      "differing_bones": [
+       "ball_l",
+       "ball_leaf_l",
+       "ball_leaf_r",
+       "ball_r",
+       "calf_l",
+       "calf_r",
+       "clavicle_l",
+       "clavicle_r",
+       "foot_l",
+       "foot_r",
+       "hand_l",
+       "hand_r",
+       "index_01_l",
+       "index_01_r",
+       "index_02_l",
+       "index_02_r",
+       "index_03_l",
+       "index_03_r",
+       "index_04_leaf_l",
+       "index_04_leaf_r",
+       "lowerarm_l",
+       "lowerarm_r",
+       "middle_01_l",
+       "middle_01_r",
+       "middle_02_l",
+       "middle_02_r",
+       "middle_03_l",
+       "middle_03_r",
+       "middle_04_leaf_l",
+       "middle_04_leaf_r",
+       "pinky_01_l",
+       "pinky_01_r",
+       "pinky_02_l",
+       "pinky_02_r",
+       "pinky_03_l",
+       "pinky_03_r",
+       "pinky_04_leaf_l",
+       "pinky_04_leaf_r",
+       "ring_01_l",
+       "ring_01_r",
+       "ring_02_l",
+       "ring_02_r",
+       "ring_03_l",
+       "ring_03_r",
+       "ring_04_leaf_l",
+       "ring_04_leaf_r",
+       "thigh_l",
+       "thigh_r",
+       "thumb_01_l",
+       "thumb_01_r",
+       "thumb_02_l",
+       "thumb_02_r",
+       "thumb_03_l",
+       "thumb_03_r",
+       "thumb_04_leaf_l",
+       "thumb_04_leaf_r",
+       "upperarm_l",
+       "upperarm_r"
+      ],
+      "claim_diff_only_upperarm_thigh": false,
+      "key_bones": {
+       "Head": {
+        "d_world_matrix_max": 0.0,
+        "local_translation_ref": [
+         0.0,
+         0.08285235,
+         1e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.08285235,
+         1e-08
+        ],
+        "world_translation_ref": [
+         0.0,
+         1.5998,
+         -0.0174
+        ]
+       },
+       "neck_01": {
+        "d_world_matrix_max": 0.0,
+        "local_translation_ref": [
+         0.0,
+         0.21509314,
+         2e-08
+        ],
+        "local_translation_other": [
+         0.0,
+         0.21509314,
+         2e-08
+        ],
+        "world_translation_ref": [
+         0.0,
+         1.5205,
+         -0.0414
+        ]
+       }
+      }
+     }
+    }
+   },
+   "female": {
+    "ref": "tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/Superhero_Female_FullBody.gltf",
+    "vs": {
+     "Female_Peasant": {
+      "ref": "tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/Superhero_Female_FullBody.gltf",
+      "other": "download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Female_Peasant.gltf",
+      "skin_joints_ref": 65,
+      "skin_joints_other": 65,
+      "joint_name_sets_identical": true,
+      "joint_names_only_ref": [],
+      "joint_names_only_other": [],
+      "all_named_nodes_ref": 69,
+      "all_named_nodes_other": 70,
+      "extra_named_nodes_other": [
+       "Female_Peasant_Arms",
+       "Female_Peasant_Body",
+       "Female_Peasant_Feet",
+       "Female_Peasant_Legs"
+      ],
+      "extra_named_nodes_ref": [
+       "Eyebrows",
+       "Eyes",
+       "Superhero_Female"
+      ],
+      "identical_world": [
+       "Head",
+       "ball_l",
+       "ball_leaf_l",
+       "ball_leaf_r",
+       "ball_r",
+       "calf_l",
+       "calf_r",
+       "clavicle_l",
+       "clavicle_r",
+       "foot_l",
+       "foot_r",
+       "hand_l",
+       "hand_r",
+       "index_01_l",
+       "index_01_r",
+       "index_02_l",
+       "index_02_r",
+       "index_03_l",
+       "index_03_r",
+       "index_04_leaf_l",
+       "index_04_leaf_r",
+       "lowerarm_l",
+       "lowerarm_r",
+       "middle_01_l",
+       "middle_01_r",
+       "middle_02_l",
+       "middle_02_r",
+       "middle_03_l",
+       "middle_03_r",
+       "middle_04_leaf_l",
+       "middle_04_leaf_r",
+       "neck_01",
+       "pelvis",
+       "pinky_01_l",
+       "pinky_01_r",
+       "pinky_02_l",
+       "pinky_02_r",
+       "pinky_03_l",
+       "pinky_03_r",
+       "pinky_04_leaf_l",
+       "pinky_04_leaf_r",
+       "ring_01_l",
+       "ring_01_r",
+       "ring_02_l",
+       "ring_02_r",
+       "ring_03_l",
+       "ring_03_r",
+       "ring_04_leaf_l",
+       "ring_04_leaf_r",
+       "root",
+       "spine_01",
+       "spine_02",
+       "spine_03",
+       "thigh_l",
+       "thigh_r",
+       "thumb_01_l",
+       "thumb_01_r",
+       "thumb_02_l",
+       "thumb_02_r",
+       "thumb_03_l",
+       "thumb_03_r",
+       "thumb_04_leaf_l",
+       "thumb_04_leaf_r",
+       "upperarm_l",
+       "upperarm_r"
+      ],
+      "differing": [],
+      "identical_count": 65,
+      "differing_count": 0,
+      "differing_bones": [],
+      "claim_diff_only_upperarm_thigh": false,
+      "key_bones": {
+       "Head": {
+        "d_world_matrix_max": 0.0,
+        "local_translation_ref": [
+         -0.0,
+         0.07119121,
+         2e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.07119121,
+         2e-08
+        ],
+        "world_translation_ref": [
+         -0.0,
+         1.5496,
+         -0.0109
+        ]
+       },
+       "neck_01": {
+        "d_world_matrix_max": 0.0,
+        "local_translation_ref": [
+         -0.0,
+         0.19815585,
+         3e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.19815585,
+         3e-08
+        ],
+        "world_translation_ref": [
+         -0.0,
+         1.4849,
+         -0.0406
+        ]
+       }
+      }
+     },
+     "Female_Ranger": {
+      "ref": "tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/Superhero_Female_FullBody.gltf",
+      "other": "download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Female_Ranger.gltf",
+      "skin_joints_ref": 65,
+      "skin_joints_other": 65,
+      "joint_name_sets_identical": true,
+      "joint_names_only_ref": [],
+      "joint_names_only_other": [],
+      "all_named_nodes_ref": 69,
+      "all_named_nodes_other": 75,
+      "extra_named_nodes_other": [
+       "Female_Ranger_Acc_Pauldrons",
+       "Female_Ranger_Arms",
+       "Female_Ranger_Arms_Bracer",
+       "Female_Ranger_Body",
+       "Female_Ranger_Body_Belt_1",
+       "Female_Ranger_Body_Belt_2",
+       "Female_Ranger_Feet",
+       "Female_Ranger_Head_Hood",
+       "Female_Ranger_Legs"
+      ],
+      "extra_named_nodes_ref": [
+       "Eyebrows",
+       "Eyes",
+       "Superhero_Female"
+      ],
+      "identical_world": [
+       "Head",
+       "ball_l",
+       "ball_leaf_l",
+       "ball_leaf_r",
+       "ball_r",
+       "calf_l",
+       "calf_r",
+       "clavicle_l",
+       "clavicle_r",
+       "foot_l",
+       "foot_r",
+       "hand_l",
+       "hand_r",
+       "index_01_l",
+       "index_01_r",
+       "index_02_l",
+       "index_02_r",
+       "index_03_l",
+       "index_03_r",
+       "index_04_leaf_l",
+       "index_04_leaf_r",
+       "lowerarm_l",
+       "lowerarm_r",
+       "middle_01_l",
+       "middle_01_r",
+       "middle_02_l",
+       "middle_02_r",
+       "middle_03_l",
+       "middle_03_r",
+       "middle_04_leaf_l",
+       "middle_04_leaf_r",
+       "neck_01",
+       "pelvis",
+       "pinky_01_l",
+       "pinky_01_r",
+       "pinky_02_l",
+       "pinky_02_r",
+       "pinky_03_l",
+       "pinky_03_r",
+       "pinky_04_leaf_l",
+       "pinky_04_leaf_r",
+       "ring_01_l",
+       "ring_01_r",
+       "ring_02_l",
+       "ring_02_r",
+       "ring_03_l",
+       "ring_03_r",
+       "ring_04_leaf_l",
+       "ring_04_leaf_r",
+       "root",
+       "spine_01",
+       "spine_02",
+       "spine_03",
+       "thigh_l",
+       "thigh_r",
+       "thumb_01_l",
+       "thumb_01_r",
+       "thumb_02_l",
+       "thumb_02_r",
+       "thumb_03_l",
+       "thumb_03_r",
+       "thumb_04_leaf_l",
+       "thumb_04_leaf_r",
+       "upperarm_l",
+       "upperarm_r"
+      ],
+      "differing": [],
+      "identical_count": 65,
+      "differing_count": 0,
+      "differing_bones": [],
+      "claim_diff_only_upperarm_thigh": false,
+      "key_bones": {
+       "Head": {
+        "d_world_matrix_max": 0.0,
+        "local_translation_ref": [
+         -0.0,
+         0.07119121,
+         2e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.07119121,
+         2e-08
+        ],
+        "world_translation_ref": [
+         -0.0,
+         1.5496,
+         -0.0109
+        ]
+       },
+       "neck_01": {
+        "d_world_matrix_max": 0.0,
+        "local_translation_ref": [
+         -0.0,
+         0.19815585,
+         3e-08
+        ],
+        "local_translation_other": [
+         -0.0,
+         0.19815585,
+         3e-08
+        ],
+        "world_translation_ref": [
+         -0.0,
+         1.4849,
+         -0.0406
+        ]
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "renders": [
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Female_Peasant_front.png",
+   "view": "front",
+   "rc": 0,
+   "seconds": 5.59,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Female_Peasant_head.png",
+   "view": "head",
+   "rc": 0,
+   "seconds": 7.58,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Female_Peasant_head_side.png",
+   "view": "head_side",
+   "rc": 0,
+   "seconds": 7.14,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Female_Peasant_side.png",
+   "view": "side",
+   "rc": 0,
+   "seconds": 4.84,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Female_Ranger_front.png",
+   "view": "front",
+   "rc": 0,
+   "seconds": 5.61,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Female_Ranger_head.png",
+   "view": "head",
+   "rc": 0,
+   "seconds": 7.69,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Female_Ranger_head_side.png",
+   "view": "head_side",
+   "rc": 0,
+   "seconds": 6.73,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Female_Ranger_side.png",
+   "view": "side",
+   "rc": 0,
+   "seconds": 5.19,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Male_Peasant_front.png",
+   "view": "front",
+   "rc": 0,
+   "seconds": 4.49,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Male_Peasant_head.png",
+   "view": "head",
+   "rc": 0,
+   "seconds": 6.24,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Male_Peasant_head_side.png",
+   "view": "head_side",
+   "rc": 0,
+   "seconds": 7.09,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Male_Peasant_side.png",
+   "view": "side",
+   "rc": 0,
+   "seconds": 4.65,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Male_Ranger_front.png",
+   "view": "front",
+   "rc": 0,
+   "seconds": 4.6,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Male_Ranger_head.png",
+   "view": "head",
+   "rc": 0,
+   "seconds": 8.92,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Male_Ranger_head_side.png",
+   "view": "head_side",
+   "rc": 0,
+   "seconds": 7.9,
+   "exists": true
+  },
+  {
+   "png": "tmp/pack2blend/verify/tryon_TryOn_Male_Ranger_side.png",
+   "view": "side",
+   "rc": 0,
+   "seconds": 4.59,
+   "exists": true
+  }
+ ],
+ "preview_pngs_viewed": [
+  "download/tryon-blend/preview/TryOn_Female_Peasant.png",
+  "download/tryon-blend/preview/TryOn_Female_Ranger.png",
+  "download/tryon-blend/preview/TryOn_Male_Peasant.png",
+  "download/tryon-blend/preview/TryOn_Male_Ranger.png",
+  "download/tryon-blend/preview/_sheet_TryOn.png"
+ ],
+ "readonly_evidence": {
+  "files_fingerprinted": 9,
+  "before_after_differences": [],
+  "read_only_confirmed": true
+ },
+ "artifacts": {
+  "report": "tmp/pack2blend/verify/tryon-verify-report.json",
+  "renders": [
+   "tmp/pack2blend/verify/tryon_TryOn_Female_Peasant_front.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Female_Peasant_head.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Female_Peasant_head_side.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Female_Peasant_side.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Female_Ranger_front.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Female_Ranger_head.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Female_Ranger_head_side.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Female_Ranger_side.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Male_Peasant_front.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Male_Peasant_head.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Male_Peasant_head_side.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Male_Peasant_side.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Male_Ranger_front.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Male_Ranger_head.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Male_Ranger_head_side.png",
+   "tmp/pack2blend/verify/tryon_TryOn_Male_Ranger_side.png"
+  ],
+  "scripts": [
+   "tryon_check.py",
+   "tryon_src_probe.py",
+   "tryon_render.py",
+   "tryon_rig_gltf_check.py",
+   "run_tryon_verify.py",
+   "tryon_selftest.py",
+   "tryon_selftest_make.py"
+  ]
+ },
+ "selftest_assertion_failure_behavior": {
+  "kind": "task6_negative_and_positive_selftest",
+  "cases": [
+   {
+    "case": "good_tryon.blend",
+    "expect_rc": 0,
+    "actual_rc": 0,
+    "failure_items": [],
+    "ok": true,
+    "blend_unchanged": true
+   },
+   {
+    "case": "bad_two_rigs.blend",
+    "expect_rc": 2,
+    "actual_rc": 2,
+    "failure_items": [
+     "T1_single_rig",
+     "T1_single_rig"
+    ],
+    "ok": true,
+    "blend_unchanged": true
+   },
+   {
+    "case": "bad_torso_residual.blend",
+    "expect_rc": 2,
+    "actual_rc": 2,
+    "failure_items": [
+     "T3_mesh_skinned",
+     "T7_head_cut",
+     "T7_head_cut",
+     "T7_head_cut"
+    ],
+    "ok": true,
+    "blend_unchanged": true
+   },
+   {
+    "case": "bad_no_modifier.blend",
+    "expect_rc": 2,
+    "actual_rc": 2,
+    "failure_items": [
+     "T3_mesh_skinned"
+    ],
+    "ok": true,
+    "blend_unchanged": true
+   },
+   {
+    "case": "bad_unpacked.blend",
+    "expect_rc": 2,
+    "actual_rc": 2,
+    "failure_items": [
+     "T5_image_packed"
+    ],
+    "ok": true,
+    "blend_unchanged": true
+   },
+   {
+    "case": "bad_orphan_armature.blend",
+    "expect_rc": 2,
+    "actual_rc": 2,
+    "failure_items": [
+     "T1_single_rig"
+    ],
+    "ok": true,
+    "blend_unchanged": true
+   },
+   {
+    "case": "bad_wrong_head_verts.blend",
+    "expect_rc": 2,
+    "actual_rc": 2,
+    "failure_items": [
+     "T7_head_cut"
+    ],
+    "ok": true,
+    "blend_unchanged": true
+   }
+  ],
+  "failures": [],
+  "passed": true
+ }
+}

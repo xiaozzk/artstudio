@@ -1,0 +1,1921 @@
+{
+ "task": "task-2",
+ "generated_from": {
+  "spec": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/pack2blend/specs/outfit.json",
+  "log": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/pack2blend/logs/outfit.log",
+  "job_result_lines": 24,
+  "verify_reopen_lines": 24
+ },
+ "jobs_total": 24,
+ "jobs_ok": 24,
+ "jobs_failed": [],
+ "blends": [
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Male_Peasant.blend",
+   "title": "Outfit Male_Peasant",
+   "collection": "Outfit/Male_Peasant",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Male_Peasant.gltf",
+   "size_mb": 36.58,
+   "mesh_count": 4,
+   "meshes": [
+    {
+     "name": "Male_Peasant_Arms",
+     "verts": 3315,
+     "tris": 5338,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Peasant_Body",
+     "verts": 3006,
+     "tris": 3856,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Peasant_Feet",
+     "verts": 1878,
+     "tris": 2588,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Peasant_Legs",
+     "verts": 656,
+     "tris": 1112,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Peasant",
+     "bones": 65
+    }
+   ],
+   "verts": 8855,
+   "tris": 12894,
+   "images_total": 6,
+   "images_packed": 6,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Peasant",
+    "MI_Regular_Male"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Male_Peasant.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Female_Peasant.blend",
+   "title": "Outfit Female_Peasant",
+   "collection": "Outfit/Female_Peasant",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Female_Peasant.gltf",
+   "size_mb": 28.43,
+   "mesh_count": 4,
+   "meshes": [
+    {
+     "name": "Female_Peasant_Arms",
+     "verts": 5436,
+     "tris": 6848,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Peasant_Body",
+     "verts": 1730,
+     "tris": 2188,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Peasant_Feet",
+     "verts": 1892,
+     "tris": 2588,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Peasant_Legs",
+     "verts": 1126,
+     "tris": 1944,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Peasant",
+     "bones": 65
+    }
+   ],
+   "verts": 10184,
+   "tris": 13568,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Peasant",
+    "MI_Peasant.001"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Female_Peasant.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Male_Ranger.blend",
+   "title": "Outfit Male_Ranger",
+   "collection": "Outfit/Male_Ranger",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Male_Ranger.gltf",
+   "size_mb": 38.09,
+   "mesh_count": 9,
+   "meshes": [
+    {
+     "name": "Male_Ranger_Acc_Pauldron",
+     "verts": 1092,
+     "tris": 1376,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Ranger_Arms",
+     "verts": 3042,
+     "tris": 4928,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Ranger_Arms_Bracer",
+     "verts": 4000,
+     "tris": 3636,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Ranger_Body",
+     "verts": 2825,
+     "tris": 2998,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Ranger_Body_Belt_1",
+     "verts": 928,
+     "tris": 804,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Ranger_Body_Belt_2",
+     "verts": 928,
+     "tris": 804,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Ranger_Feet_Boots",
+     "verts": 10174,
+     "tris": 9172,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Ranger_Head_Hood",
+     "verts": 1240,
+     "tris": 2136,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Ranger_Legs",
+     "verts": 644,
+     "tris": 1128,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Ranger",
+     "bones": 65
+    }
+   ],
+   "verts": 24873,
+   "tris": 26982,
+   "images_total": 6,
+   "images_packed": 6,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger",
+    "MI_Ranger.001",
+    "MI_Regular_Male"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Male_Ranger.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Female_Ranger.blend",
+   "title": "Outfit Female_Ranger",
+   "collection": "Outfit/Female_Ranger",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Female_Ranger.gltf",
+   "size_mb": 38.12,
+   "mesh_count": 9,
+   "meshes": [
+    {
+     "name": "Female_Ranger_Acc_Pauldrons",
+     "verts": 1092,
+     "tris": 1376,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Ranger_Arms",
+     "verts": 2976,
+     "tris": 4872,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Ranger_Arms_Bracer",
+     "verts": 4000,
+     "tris": 3636,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Ranger_Body",
+     "verts": 2785,
+     "tris": 2962,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Ranger_Body_Belt_1",
+     "verts": 928,
+     "tris": 804,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Ranger_Body_Belt_2",
+     "verts": 928,
+     "tris": 804,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Ranger_Feet",
+     "verts": 10174,
+     "tris": 9172,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Ranger_Head_Hood",
+     "verts": 1240,
+     "tris": 2136,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Ranger_Legs",
+     "verts": 685,
+     "tris": 1204,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Ranger",
+     "bones": 65
+    }
+   ],
+   "verts": 24808,
+   "tris": 26966,
+   "images_total": 6,
+   "images_packed": 6,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger",
+    "MI_Regular_Female"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Female_Ranger.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Arms.blend",
+   "title": "Part Female_Peasant_Arms",
+   "collection": "Parts/Female_Peasant_Arms",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Peasant_Arms.gltf",
+   "size_mb": 28.12,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Female_Peasant_Arms",
+     "verts": 5436,
+     "tris": 6848,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Peasant_Arms",
+     "bones": 65
+    }
+   ],
+   "verts": 5436,
+   "tris": 6848,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Peasant"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Arms.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Body.blend",
+   "title": "Part Female_Peasant_Body",
+   "collection": "Parts/Female_Peasant_Body",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Peasant_Body.gltf",
+   "size_mb": 28.0,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Female_Peasant_Body",
+     "verts": 1730,
+     "tris": 2188,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Peasant_Body",
+     "bones": 65
+    }
+   ],
+   "verts": 1730,
+   "tris": 2188,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Peasant"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Body.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Feet.blend",
+   "title": "Part Female_Peasant_Feet",
+   "collection": "Parts/Female_Peasant_Feet",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Peasant_Feet.gltf",
+   "size_mb": 27.94,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Female_Peasant_Feet",
+     "verts": 1892,
+     "tris": 2588,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Peasant_Feet",
+     "bones": 65
+    }
+   ],
+   "verts": 1892,
+   "tris": 2588,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Peasant"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Feet.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Legs.blend",
+   "title": "Part Female_Peasant_Legs",
+   "collection": "Parts/Female_Peasant_Legs",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Peasant_Legs.gltf",
+   "size_mb": 27.92,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Female_Peasant_Legs",
+     "verts": 1126,
+     "tris": 1944,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Peasant_Legs",
+     "bones": 65
+    }
+   ],
+   "verts": 1126,
+   "tris": 1944,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Peasant"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Legs.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Acc_Pauldrons.blend",
+   "title": "Part Female_Ranger_Acc_Pauldrons",
+   "collection": "Parts/Female_Ranger_Acc_Pauldrons",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Acc_Pauldrons.gltf",
+   "size_mb": 28.9,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Female_Ranger_Acc_Pauldrons",
+     "verts": 1092,
+     "tris": 1376,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Ranger_Acc_Pauldrons",
+     "bones": 65
+    }
+   ],
+   "verts": 1092,
+   "tris": 1376,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Acc_Pauldrons.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Arms.blend",
+   "title": "Part Female_Ranger_Arms",
+   "collection": "Parts/Female_Ranger_Arms",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Arms.gltf",
+   "size_mb": 37.34,
+   "mesh_count": 2,
+   "meshes": [
+    {
+     "name": "Female_Ranger_Arms",
+     "verts": 2976,
+     "tris": 4872,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Ranger_Arms_Bracer",
+     "verts": 4000,
+     "tris": 3636,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Ranger_Arms",
+     "bones": 65
+    }
+   ],
+   "verts": 6976,
+   "tris": 8508,
+   "images_total": 6,
+   "images_packed": 6,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger",
+    "MI_Regular_Female"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Arms.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Body.blend",
+   "title": "Part Female_Ranger_Body",
+   "collection": "Parts/Female_Ranger_Body",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Body.gltf",
+   "size_mb": 29.06,
+   "mesh_count": 3,
+   "meshes": [
+    {
+     "name": "Female_Ranger_Body",
+     "verts": 2785,
+     "tris": 2962,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Ranger_Body_Belt_1",
+     "verts": 928,
+     "tris": 804,
+     "vgroups": 65
+    },
+    {
+     "name": "Female_Ranger_Body_Belt_2",
+     "verts": 928,
+     "tris": 804,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Ranger_Body",
+     "bones": 65
+    }
+   ],
+   "verts": 4641,
+   "tris": 4570,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Body.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Feet.blend",
+   "title": "Part Female_Ranger_Feet",
+   "collection": "Parts/Female_Ranger_Feet",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Feet.gltf",
+   "size_mb": 29.21,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Female_Ranger_Feet",
+     "verts": 10174,
+     "tris": 9172,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Ranger_Feet",
+     "bones": 65
+    }
+   ],
+   "verts": 10174,
+   "tris": 9172,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Feet.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Head_Hood.blend",
+   "title": "Part Female_Ranger_Head_Hood",
+   "collection": "Parts/Female_Ranger_Head_Hood",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Head_Hood.gltf",
+   "size_mb": 28.95,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Female_Ranger_Head_Hood",
+     "verts": 1240,
+     "tris": 2136,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Ranger_Head_Hood",
+     "bones": 65
+    }
+   ],
+   "verts": 1240,
+   "tris": 2136,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Head_Hood.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Legs.blend",
+   "title": "Part Female_Ranger_Legs",
+   "collection": "Parts/Female_Ranger_Legs",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Legs.gltf",
+   "size_mb": 28.9,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Female_Ranger_Legs",
+     "verts": 685,
+     "tris": 1204,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Female_Ranger_Legs",
+     "bones": 65
+    }
+   ],
+   "verts": 685,
+   "tris": 1204,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Legs.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Arms.blend",
+   "title": "Part Male_Peasant_Arms",
+   "collection": "Parts/Male_Peasant_Arms",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Peasant_Arms.gltf",
+   "size_mb": 36.25,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Male_Peasant_Arms",
+     "verts": 3315,
+     "tris": 5338,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Peasant_Arms",
+     "bones": 65
+    }
+   ],
+   "verts": 3315,
+   "tris": 5338,
+   "images_total": 6,
+   "images_packed": 6,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Peasant",
+    "MI_Regular_Male"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Arms.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Body.blend",
+   "title": "Part Male_Peasant_Body",
+   "collection": "Parts/Male_Peasant_Body",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Peasant_Body.gltf",
+   "size_mb": 28.02,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Male_Peasant_Body",
+     "verts": 3006,
+     "tris": 3856,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Peasant_Body",
+     "bones": 65
+    }
+   ],
+   "verts": 3006,
+   "tris": 3856,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Peasant"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Body.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Feet.blend",
+   "title": "Part Male_Peasant_Feet",
+   "collection": "Parts/Male_Peasant_Feet",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Peasant_Feet.gltf",
+   "size_mb": 27.94,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Male_Peasant_Feet",
+     "verts": 1878,
+     "tris": 2588,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Peasant_Feet",
+     "bones": 65
+    }
+   ],
+   "verts": 1878,
+   "tris": 2588,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Peasant"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Feet.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Legs.blend",
+   "title": "Part Male_Peasant_Legs",
+   "collection": "Parts/Male_Peasant_Legs",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Peasant_Legs.gltf",
+   "size_mb": 27.88,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Male_Peasant_Legs",
+     "verts": 656,
+     "tris": 1112,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Peasant_Legs",
+     "bones": 65
+    }
+   ],
+   "verts": 656,
+   "tris": 1112,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Peasant"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Legs.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Acc_Pauldron.blend",
+   "title": "Part Male_Ranger_Acc_Pauldron",
+   "collection": "Parts/Male_Ranger_Acc_Pauldron",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Acc_Pauldron.gltf",
+   "size_mb": 28.9,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Male_Ranger_Acc_Pauldron",
+     "verts": 1092,
+     "tris": 1376,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Ranger_Acc_Pauldron",
+     "bones": 65
+    }
+   ],
+   "verts": 1092,
+   "tris": 1376,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Acc_Pauldron.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Arms.blend",
+   "title": "Part Male_Ranger_Arms",
+   "collection": "Parts/Male_Ranger_Arms",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Arms.gltf",
+   "size_mb": 37.21,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Male_Ranger_Arms",
+     "verts": 3042,
+     "tris": 4928,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Ranger_Arms",
+     "bones": 65
+    }
+   ],
+   "verts": 3042,
+   "tris": 4928,
+   "images_total": 6,
+   "images_packed": 6,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger",
+    "MI_Regular_Male"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Arms.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Body.blend",
+   "title": "Part Male_Ranger_Body",
+   "collection": "Parts/Male_Ranger_Body",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Body.gltf",
+   "size_mb": 29.05,
+   "mesh_count": 3,
+   "meshes": [
+    {
+     "name": "Male_Ranger_Body",
+     "verts": 2825,
+     "tris": 2998,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Ranger_Body_Belt_1",
+     "verts": 928,
+     "tris": 804,
+     "vgroups": 65
+    },
+    {
+     "name": "Male_Ranger_Body_Belt_2",
+     "verts": 928,
+     "tris": 804,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Ranger_Body",
+     "bones": 65
+    }
+   ],
+   "verts": 4681,
+   "tris": 4606,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger",
+    "MI_Ranger.001"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Body.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Feet_Boots.blend",
+   "title": "Part Male_Ranger_Feet_Boots",
+   "collection": "Parts/Male_Ranger_Feet_Boots",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Feet_Boots.gltf",
+   "size_mb": 29.18,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Male_Ranger_Feet_Boots",
+     "verts": 10174,
+     "tris": 9172,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Ranger_Feet_Boots",
+     "bones": 65
+    }
+   ],
+   "verts": 10174,
+   "tris": 9172,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Feet_Boots.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Head_Hood.blend",
+   "title": "Part Male_Ranger_Head_Hood",
+   "collection": "Parts/Male_Ranger_Head_Hood",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Head_Hood.gltf",
+   "size_mb": 28.95,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Male_Ranger_Head_Hood",
+     "verts": 1240,
+     "tris": 2136,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Ranger_Head_Hood",
+     "bones": 65
+    }
+   ],
+   "verts": 1240,
+   "tris": 2136,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Head_Hood.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Legs.blend",
+   "title": "Part Male_Ranger_Legs",
+   "collection": "Parts/Male_Ranger_Legs",
+   "source": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Legs.gltf",
+   "size_mb": 28.9,
+   "mesh_count": 1,
+   "meshes": [
+    {
+     "name": "Male_Ranger_Legs",
+     "verts": 644,
+     "tris": 1128,
+     "vgroups": 65
+    }
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Male_Ranger_Legs",
+     "bones": 65
+    }
+   ],
+   "verts": 644,
+   "tris": 1128,
+   "images_total": 3,
+   "images_packed": 3,
+   "images_size_zero": [],
+   "materials": [
+    "MI_Ranger"
+   ],
+   "unskinned": [],
+   "preview": {
+    "ok": true,
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Legs.png",
+    "engine": "BLENDER_EEVEE"
+   }
+  }
+ ],
+ "cross_check": [
+  {
+   "outfit": "Male_Peasant",
+   "outfit_tris": 12894,
+   "parts_sum_tris": 12894,
+   "delta_pct": 0.0,
+   "parts": [
+    "Male_Peasant_Arms",
+    "Male_Peasant_Body",
+    "Male_Peasant_Feet",
+    "Male_Peasant_Legs"
+   ]
+  },
+  {
+   "outfit": "Female_Peasant",
+   "outfit_tris": 13568,
+   "parts_sum_tris": 13568,
+   "delta_pct": 0.0,
+   "parts": [
+    "Female_Peasant_Arms",
+    "Female_Peasant_Body",
+    "Female_Peasant_Feet",
+    "Female_Peasant_Legs"
+   ]
+  },
+  {
+   "outfit": "Male_Ranger",
+   "outfit_tris": 26982,
+   "parts_sum_tris": 23346,
+   "delta_pct": 15.57,
+   "parts": [
+    "Male_Ranger_Acc_Pauldron",
+    "Male_Ranger_Arms",
+    "Male_Ranger_Body",
+    "Male_Ranger_Feet_Boots",
+    "Male_Ranger_Head_Hood",
+    "Male_Ranger_Legs"
+   ]
+  },
+  {
+   "outfit": "Female_Ranger",
+   "outfit_tris": 26966,
+   "parts_sum_tris": 26966,
+   "delta_pct": 0.0,
+   "parts": [
+    "Female_Ranger_Acc_Pauldrons",
+    "Female_Ranger_Arms",
+    "Female_Ranger_Body",
+    "Female_Ranger_Feet",
+    "Female_Ranger_Head_Hood",
+    "Female_Ranger_Legs"
+   ]
+  }
+ ],
+ "anomalies": [
+  {
+   "kind": "cross_check_delta",
+   "outfit": "Male_Ranger",
+   "detail": "成品 26982 tris 与散件之和 23346 差 15.57%（阈值 ±5%）",
+   "root_cause": "源包本身的部件不对称：Outfits/Male_Ranger.gltf 含 mesh Male_Ranger_Arms_Bracer（3636 tris），而 Modular Parts/Male_Ranger_Arms.gltf 只有 mesh Male_Ranger_Arms（不含 Bracer）——已用源 glTF 的 meshes[].name 逐条比对确认。差额 3636 tris 正好等于 Bracer 的面数，即差值是「成品多出 Bracer」而非转换丢件/重复。对照组 Modular Parts/Female_Ranger_Arms.gltf 同时含 Arms + Arms_Bracer，其成品/散件差 0.00%，说明转换器对同结构文件无损耗。",
+   "delta_tris": 3636,
+   "source_evidence": {
+    "Outfits/Male_Ranger.gltf": [
+     "Male_Ranger_Acc_Pauldron",
+     "Male_Ranger_Arms",
+     "Male_Ranger_Arms_Bracer",
+     "Male_Ranger_Body",
+     "Male_Ranger_Body_Belt_1",
+     "Male_Ranger_Body_Belt_1.001",
+     "Male_Ranger_Feet_Boots",
+     "Male_Ranger_Head_Hood",
+     "Male_Ranger_Legs"
+    ],
+    "Modular Parts/Male_Ranger_Arms.gltf": [
+     "Male_Ranger_Arms"
+    ],
+    "Modular Parts/Female_Ranger_Arms.gltf": [
+     "Female_Ranger_Arms",
+     "Female_Ranger_Arms_Bracer"
+    ]
+   },
+   "verdict": "源数据差异（生产方未把 Bracer 单独导出为散件），非转换缺陷；无需重转，24 份产出全部保留。"
+  }
+ ],
+ "independent_reopen_verify": {
+  "all_ok": true,
+  "per_file": [
+   {
+    "file": "Outfit_Male_Peasant.blend",
+    "mesh_count": 4,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Peasant",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 6,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Outfit_Female_Peasant.blend",
+    "mesh_count": 4,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Peasant",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Outfit_Male_Ranger.blend",
+    "mesh_count": 9,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Ranger",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 6,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Outfit_Female_Ranger.blend",
+    "mesh_count": 9,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Ranger",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 6,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Female_Peasant_Arms.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Peasant_Arms",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Female_Peasant_Body.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Peasant_Body",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Female_Peasant_Feet.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Peasant_Feet",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Female_Peasant_Legs.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Peasant_Legs",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Female_Ranger_Acc_Pauldrons.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Ranger_Acc_Pauldrons",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Female_Ranger_Arms.blend",
+    "mesh_count": 2,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Ranger_Arms",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 6,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Female_Ranger_Body.blend",
+    "mesh_count": 3,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Ranger_Body",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Female_Ranger_Feet.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Ranger_Feet",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Female_Ranger_Head_Hood.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Ranger_Head_Hood",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Female_Ranger_Legs.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Female_Ranger_Legs",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Male_Peasant_Arms.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Peasant_Arms",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 6,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Male_Peasant_Body.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Peasant_Body",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Male_Peasant_Feet.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Peasant_Feet",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Male_Peasant_Legs.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Peasant_Legs",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Male_Ranger_Acc_Pauldron.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Ranger_Acc_Pauldron",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Male_Ranger_Arms.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Ranger_Arms",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 6,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Male_Ranger_Body.blend",
+    "mesh_count": 3,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Ranger_Body",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Male_Ranger_Feet_Boots.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Ranger_Feet_Boots",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Male_Ranger_Head_Hood.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Ranger_Head_Hood",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   },
+   {
+    "file": "Male_Ranger_Legs.blend",
+    "mesh_count": 1,
+    "mesh_count_match": true,
+    "rigs": [
+     {
+      "name": "RIG_Male_Ranger_Legs",
+      "bones": 65
+     }
+    ],
+    "bones65": true,
+    "images_total": 3,
+    "images_match": true,
+    "unpacked": [],
+    "zero": [],
+    "skinning_vgroups": [
+     65
+    ],
+    "vgroups65": true
+   }
+  ]
+ },
+ "preview_stats": [
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Male_Peasant.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 64.93,
+   "std": 17.26,
+   "max": 204.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Female_Peasant.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 63.37,
+   "std": 12.74,
+   "max": 200.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Male_Ranger.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 62.93,
+   "std": 11.96,
+   "max": 204.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Female_Ranger.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 62.88,
+   "std": 11.75,
+   "max": 203.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Arms.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 63.25,
+   "std": 10.24,
+   "max": 202.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Body.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 71.93,
+   "std": 28.14,
+   "max": 199.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Feet.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 71.07,
+   "std": 22.82,
+   "max": 205.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Legs.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 63.26,
+   "std": 9.09,
+   "max": 132.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Acc_Pauldrons.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 81.1,
+   "std": 43.59,
+   "max": 228.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Arms.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 62.47,
+   "std": 6.47,
+   "max": 207.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Body.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 71.6,
+   "std": 23.93,
+   "max": 206.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Feet.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 75.15,
+   "std": 29.49,
+   "max": 203.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Head_Hood.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 68.47,
+   "std": 22.36,
+   "max": 177.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Legs.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 60.86,
+   "std": 8.16,
+   "max": 111.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Arms.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 62.87,
+   "std": 8.54,
+   "max": 205.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Body.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 81.33,
+   "std": 40.72,
+   "max": 218.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Feet.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 71.08,
+   "std": 22.75,
+   "max": 205.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Legs.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 62.85,
+   "std": 8.9,
+   "max": 126.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Acc_Pauldron.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 81.04,
+   "std": 43.53,
+   "max": 228.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Arms.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 62.27,
+   "std": 6.33,
+   "max": 205.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Body.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 71.64,
+   "std": 23.99,
+   "max": 208.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Feet_Boots.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 75.07,
+   "std": 29.38,
+   "max": 203.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Head_Hood.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 68.67,
+   "std": 23.45,
+   "max": 178.0,
+   "nonblank": true
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Legs.png",
+   "size": [
+    500,
+    700
+   ],
+   "mean": 61.01,
+   "std": 8.1,
+   "max": 110.0,
+   "nonblank": true
+  }
+ ],
+ "gates": {
+  "jobs_failed_empty": true,
+  "all_unskinned_empty": true,
+  "all_images_packed": true,
+  "all_images_size_zero_empty": true,
+  "all_rigs_ge1_bones65": true,
+  "all_preview_ok_and_exist": true,
+  "all_24_blend_exist": true,
+  "blend_count_24": true,
+  "cross_check_within_5pct_except_documented": true,
+  "no_stray_blend1_in_per_asset": true,
+  "pack2blend_done_line": true,
+  "independent_reopen_all_ok": true,
+  "preview_pixels_500x700_nonblank": true,
+  "source_inputs_all_present": true
+ },
+ "gates_all_pass": true,
+ "totals": {
+  "blend_count": 24,
+  "size_mb_sum": 737.84,
+  "tris_sum": 157184,
+  "preview_count": 24,
+  "preview_size_bytes_sum": 9055183
+ },
+ "write_scope_respected": {
+  "wrote": [
+   "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/*.blend (4)",
+   "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/*.blend (20)",
+   "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/*.png (24)",
+   "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/conversion-report.json",
+   "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/pack2blend/specs/outfit.json",
+   "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/pack2blend/logs/outfit.log"
+  ],
+  "untouched_verified_by_mtime": {
+   "download/modular-outfits-fantasy/blend/*.blend (顶层 6 份)": "2026-10-12 17:46（我的运行窗口 18:03:18–18:04:03 之前）"
+  }
+ }
+}

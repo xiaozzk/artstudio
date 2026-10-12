@@ -14,6 +14,7 @@ tools/
 ├── browser/     ④ 浏览器登录态复用（CDP 副本）
 ├── preview-2d/  ⑤ 2D 预览服务（多库切换 / 卡片实时渲染 / Spine 预览）
 ├── reference-repos/  ⑥ 外部参考仓库的清单与拉取脚本
+├── 3d/          ⑦ **3D 角色资产**（glTF/FBX → 自包含 .blend / 试穿合成 / 批量断言 / Godot 侧 harness）
 └── *.py         兼容转发 shim（见文末）
 ```
 
@@ -77,6 +78,20 @@ python -m pip install numpy pillow opencv-python requests scipy
 约定：这些仓库整目录**不入库**（自带 `.git`，直接 add 会成幽灵子模块），
 忽略规则是 `.gitignore` 的 `docs/*/`；需要入库的 docs 子目录需在 `.gitignore` 里加 `!` 豁免。
 
+## ⑦ `3d/` — 3D 角色资产加工（当前主方向）
+
+面向 Godot 4 的 3D 流水线：Quaternius 的 `Universal Base Characters` + `Modular Character Outfits - Fantasy`
+两个 CC0 包 → **自包含 `.blend`** → 试穿合成 → 批量断言 → Godot 4.6 运行时换装。
+完整口径、坑清单与复现命令见 [`3d/README.md`](3d/README.md)；素材台账与产物在 `assets/3d/`。
+
+| 脚本 | 作用 |
+|------|------|
+| `pack2blend.py` | **批量 glTF/FBX → 自包含 .blend**：一个 spec 的 `jobs[]` 一次 Blender 进程串行转 N 份；贴图全 pack；坏引用重链（作者机器绝对路径 / `*_png` 错名）；可选网格布局；内嵌中文 README |
+| `build_tryon.py` | **试穿合成**：基础角色按顶点组裁成「只剩头部」+ 服装（+发型）合并到服装自带 65 骨 rig → 单 rig 可动画件 |
+| `check_blends.py` / `run_check.py` | **批量重开断言 + 联系表**：A 蒙皮件（65 骨 + 全 mesh 蒙皮）/ B 静态件（源无骨架者不得有 modifier 或 vertex_groups）两套判据 |
+| `fix_blend_readme.py` | 只改 `.blend` 内文本块，并用几何+骨骼+贴图 sha256 自证几何未变 |
+| `godot/` | Godot 4.6 侧 harness：运行时 `GLTFDocument` 零拷贝换装、`.blend` 直读（self-contained 配置）、`SubViewport` 离屏渲染验收 |
+
 ## 兼容转发 shim（**别删**）
 
 `tools/` 根目录下这几个文件**不是工具本体**，而是 3 行转发脚本 —— 真正的文件已经搬进场景目录，
@@ -87,7 +102,7 @@ python -m pip install numpy pillow opencv-python requests scipy
 | `repair_spine/pipelines.py` | `spine/repair_spine/pipelines.py` | **105 份已交付的 `交付说明.md`** |
 | `spine_part_swap.py` | `spine/spine_part_swap.py` | `assets/武僧/reskin_weapon1/交付说明.md` |
 | `zenmux_edit.py` | `image-edit/zenmux_edit.py` | 同上（核账命令） |
-| `outline-part.py` | `sprite/outline-part.py` | `assets/eva_bone/parts/outline.json` 的 note |
+| `outline-part.py` | `sprite/outline-part.py` | `assets/2d/eva_bone/parts/outline.json` 的 note（2D 资产已迁 `assets/2d/`） |
 
 **新代码请直接用新路径**；旧路径只在"复现历史交付"时才会被用到。
 

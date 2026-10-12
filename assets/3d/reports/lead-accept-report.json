@@ -1,0 +1,2110 @@
+{
+ "total": 99,
+ "checked": 99,
+ "ok": 99,
+ "failed": [],
+ "by_scope": {
+  "ubc": {
+   "count": 19,
+   "ok": 19,
+   "tris_total": 109352,
+   "size_mb_total": 179.8,
+   "files": [
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/BaseCharacter_Superhero_Female.blend",
+     "size_mb": 15.14,
+     "tris": 15060,
+     "rigs": [
+      {
+       "name": "RIG_Superhero_Female_FullBody",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 7,
+      "images_packed": 7,
+      "images_size_zero": [],
+      "materials_with_texture": 3,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/BaseCharacter_Superhero_Male.blend",
+     "size_mb": 14.84,
+     "tris": 14318,
+     "rigs": [
+      {
+       "name": "RIG_Superhero_Male_FullBody",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 7,
+      "images_packed": 7,
+      "images_size_zero": [],
+      "materials_with_texture": 3,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Female__HeadBone.blend",
+     "size_mb": 6.3,
+     "tris": 1480,
+     "rigs": [
+      {
+       "name": "RIG_Eyebrows_Female",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Female__Origin0.blend",
+     "size_mb": 6.28,
+     "tris": 1480,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Regular__HeadBone.blend",
+     "size_mb": 5.77,
+     "tris": 984,
+     "rigs": [
+      {
+       "name": "RIG_Eyebrows_Regular",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Regular__Origin0.blend",
+     "size_mb": 5.75,
+     "tris": 984,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Beard__HeadBone.blend",
+     "size_mb": 5.77,
+     "tris": 1034,
+     "rigs": [
+      {
+       "name": "RIG_Hair_Beard",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Beard__Origin0.blend",
+     "size_mb": 5.75,
+     "tris": 1034,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buns__HeadBone.blend",
+     "size_mb": 6.38,
+     "tris": 3284,
+     "rigs": [
+      {
+       "name": "RIG_Hair_Buns",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buns__Origin0.blend",
+     "size_mb": 6.36,
+     "tris": 3284,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_BuzzedFemale__HeadBone.blend",
+     "size_mb": 5.76,
+     "tris": 830,
+     "rigs": [
+      {
+       "name": "RIG_Hair_BuzzedFemale",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_BuzzedFemale__Origin0.blend",
+     "size_mb": 5.74,
+     "tris": 830,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buzzed__HeadBone.blend",
+     "size_mb": 5.76,
+     "tris": 830,
+     "rigs": [
+      {
+       "name": "RIG_Hair_Buzzed",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buzzed__Origin0.blend",
+     "size_mb": 5.74,
+     "tris": 830,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Long__HeadBone.blend",
+     "size_mb": 6.37,
+     "tris": 2906,
+     "rigs": [
+      {
+       "name": "RIG_Hair_Long",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Long__Origin0.blend",
+     "size_mb": 6.35,
+     "tris": 2906,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_SimpleParted__HeadBone.blend",
+     "size_mb": 5.78,
+     "tris": 1301,
+     "rigs": [
+      {
+       "name": "RIG_Hair_SimpleParted",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_SimpleParted__Origin0.blend",
+     "size_mb": 5.76,
+     "tris": 1301,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/UBC_Standard_ALL.blend",
+     "size_mb": 54.21,
+     "tris": 54676,
+     "rigs": [
+      {
+       "name": "RIG_Eyebrows_Female",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Eyebrows_Regular",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Hair_Beard",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Hair_Buns",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Hair_Buzzed",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Hair_BuzzedFemale",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Hair_Long",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Hair_SimpleParted",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Superhero_Female_FullBody",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Superhero_Male_FullBody",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 21,
+      "images_packed": 21,
+      "images_size_zero": [],
+      "materials_with_texture": 22,
+      "helper_hidden": true
+     }
+    }
+   ]
+  },
+  "mco-per-asset": {
+   "count": 24,
+   "ok": 24,
+   "tris_total": 157184,
+   "size_mb_total": 737.8,
+   "files": [
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Female_Peasant.blend",
+     "size_mb": 28.43,
+     "tris": 13568,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Female_Ranger.blend",
+     "size_mb": 38.12,
+     "tris": 26966,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 6,
+      "images_packed": 6,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Male_Peasant.blend",
+     "size_mb": 36.58,
+     "tris": 12894,
+     "rigs": [
+      {
+       "name": "RIG_Male_Peasant",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 6,
+      "images_packed": 6,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Male_Ranger.blend",
+     "size_mb": 38.09,
+     "tris": 26982,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 6,
+      "images_packed": 6,
+      "images_size_zero": [],
+      "materials_with_texture": 3,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Arms.blend",
+     "size_mb": 28.12,
+     "tris": 6848,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant_Arms",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Body.blend",
+     "size_mb": 28.0,
+     "tris": 2188,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant_Body",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Feet.blend",
+     "size_mb": 27.94,
+     "tris": 2588,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant_Feet",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Legs.blend",
+     "size_mb": 27.92,
+     "tris": 1944,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant_Legs",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Acc_Pauldrons.blend",
+     "size_mb": 28.9,
+     "tris": 1376,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Acc_Pauldrons",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Arms.blend",
+     "size_mb": 37.34,
+     "tris": 8508,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Arms",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 6,
+      "images_packed": 6,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Body.blend",
+     "size_mb": 29.06,
+     "tris": 4570,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Body",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Feet.blend",
+     "size_mb": 29.21,
+     "tris": 9172,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Feet",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Head_Hood.blend",
+     "size_mb": 28.95,
+     "tris": 2136,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Head_Hood",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Legs.blend",
+     "size_mb": 28.9,
+     "tris": 1204,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Legs",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Arms.blend",
+     "size_mb": 36.25,
+     "tris": 5338,
+     "rigs": [
+      {
+       "name": "RIG_Male_Peasant_Arms",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 6,
+      "images_packed": 6,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Body.blend",
+     "size_mb": 28.02,
+     "tris": 3856,
+     "rigs": [
+      {
+       "name": "RIG_Male_Peasant_Body",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Feet.blend",
+     "size_mb": 27.94,
+     "tris": 2588,
+     "rigs": [
+      {
+       "name": "RIG_Male_Peasant_Feet",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Legs.blend",
+     "size_mb": 27.88,
+     "tris": 1112,
+     "rigs": [
+      {
+       "name": "RIG_Male_Peasant_Legs",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Acc_Pauldron.blend",
+     "size_mb": 28.9,
+     "tris": 1376,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Acc_Pauldron",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Arms.blend",
+     "size_mb": 37.21,
+     "tris": 4928,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Arms",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 6,
+      "images_packed": 6,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Body.blend",
+     "size_mb": 29.05,
+     "tris": 4606,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Body",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Feet_Boots.blend",
+     "size_mb": 29.18,
+     "tris": 9172,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Feet_Boots",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Head_Hood.blend",
+     "size_mb": 28.95,
+     "tris": 2136,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Head_Hood",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Legs.blend",
+     "size_mb": 28.9,
+     "tris": 1128,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Legs",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    }
+   ]
+  },
+  "fbx": {
+   "count": 50,
+   "ok": 50,
+   "tris_total": 228145,
+   "size_mb_total": 651.0,
+   "files": [
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/outfits/Female_Peasant.blend",
+     "size_mb": 18.73,
+     "tris": 13568,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/outfits/Female_Ranger.blend",
+     "size_mb": 27.33,
+     "tris": 26966,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 5,
+      "images_packed": 5,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/outfits/Male_Peasant.blend",
+     "size_mb": 26.91,
+     "tris": 12894,
+     "rigs": [
+      {
+       "name": "RIG_Male_Peasant",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 5,
+      "images_packed": 5,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/outfits/Male_Ranger.blend",
+     "size_mb": 27.33,
+     "tris": 26982,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 5,
+      "images_packed": 5,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Peasant_Arms.blend",
+     "size_mb": 18.54,
+     "tris": 6848,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant_Arms",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Peasant_Body.blend",
+     "size_mb": 18.46,
+     "tris": 2188,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant_Body",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Peasant_Feet.blend",
+     "size_mb": 18.45,
+     "tris": 2588,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant_Feet",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Peasant_Legs.blend",
+     "size_mb": 18.44,
+     "tris": 1944,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant_Legs",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Acc_Pauldrons.blend",
+     "size_mb": 18.58,
+     "tris": 1376,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Acc_Pauldrons",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Arms.blend",
+     "size_mb": 26.9,
+     "tris": 8508,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Arms",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 5,
+      "images_packed": 5,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Body.blend",
+     "size_mb": 18.68,
+     "tris": 4570,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Body",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Feet.blend",
+     "size_mb": 18.74,
+     "tris": 9172,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Feet",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Head_Hood.blend",
+     "size_mb": 18.62,
+     "tris": 2136,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Head_Hood",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Legs.blend",
+     "size_mb": 18.59,
+     "tris": 1204,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger_Legs",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Peasant_Arms.blend",
+     "size_mb": 26.7,
+     "tris": 5338,
+     "rigs": [
+      {
+       "name": "RIG_Male_Peasant_Arms",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 5,
+      "images_packed": 5,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Peasant_Body.blend",
+     "size_mb": 18.5,
+     "tris": 3856,
+     "rigs": [
+      {
+       "name": "RIG_Male_Peasant_Body",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Peasant_Feet.blend",
+     "size_mb": 18.45,
+     "tris": 2588,
+     "rigs": [
+      {
+       "name": "RIG_Male_Peasant_Feet",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Peasant_Legs.blend",
+     "size_mb": 18.41,
+     "tris": 1112,
+     "rigs": [
+      {
+       "name": "RIG_Male_Peasant_Legs",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Acc_Pauldron.blend",
+     "size_mb": 18.58,
+     "tris": 1376,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Acc_Pauldron",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Arms.blend",
+     "size_mb": 26.9,
+     "tris": 8564,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Arms",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 5,
+      "images_packed": 5,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Body.blend",
+     "size_mb": 18.68,
+     "tris": 4606,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Body",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Feet_Boots.blend",
+     "size_mb": 18.74,
+     "tris": 9172,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Feet_Boots",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Head_Hood.blend",
+     "size_mb": 18.62,
+     "tris": 2136,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Head_Hood",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Legs.blend",
+     "size_mb": 18.59,
+     "tris": 1128,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger_Legs",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/base/Superhero_Female_FullBody.blend",
+     "size_mb": 12.59,
+     "tris": 15060,
+     "rigs": [
+      {
+       "name": "RIG_Superhero_Female_FullBody",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 7,
+      "images_packed": 7,
+      "images_size_zero": [],
+      "materials_with_texture": 3,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/base/Superhero_Male_FullBody.blend",
+     "size_mb": 12.33,
+     "tris": 14318,
+     "rigs": [
+      {
+       "name": "RIG_Superhero_Male_FullBody",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 7,
+      "images_packed": 7,
+      "images_size_zero": [],
+      "materials_with_texture": 3,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Eyebrows_Female.blend",
+     "size_mb": 5.71,
+     "tris": 1480,
+     "rigs": [
+      {
+       "name": "RIG_Eyebrows_Female",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Eyebrows_Regular.blend",
+     "size_mb": 5.22,
+     "tris": 984,
+     "rigs": [
+      {
+       "name": "RIG_Eyebrows_Regular",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_Beard.blend",
+     "size_mb": 5.22,
+     "tris": 1034,
+     "rigs": [
+      {
+       "name": "RIG_Hair_Beard",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_Buns.blend",
+     "size_mb": 5.74,
+     "tris": 3284,
+     "rigs": [
+      {
+       "name": "RIG_Hair_Buns",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_Buzzed.blend",
+     "size_mb": 5.22,
+     "tris": 830,
+     "rigs": [
+      {
+       "name": "RIG_Hair_Buzzed",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_BuzzedFemale.blend",
+     "size_mb": 5.22,
+     "tris": 830,
+     "rigs": [
+      {
+       "name": "RIG_Hair_BuzzedFemale",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_Long.blend",
+     "size_mb": 5.74,
+     "tris": 2906,
+     "rigs": [
+      {
+       "name": "RIG_Hair_Long",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_SimpleParted.blend",
+     "size_mb": 5.23,
+     "tris": 1301,
+     "rigs": [
+      {
+       "name": "RIG_Hair_SimpleParted",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Eyebrows_Female.blend",
+     "size_mb": 5.69,
+     "tris": 1480,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Eyebrows_Regular.blend",
+     "size_mb": 5.2,
+     "tris": 984,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_Beard.blend",
+     "size_mb": 5.2,
+     "tris": 1034,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_Buns.blend",
+     "size_mb": 5.72,
+     "tris": 3284,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_Buzzed.blend",
+     "size_mb": 5.2,
+     "tris": 830,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_BuzzedFemale.blend",
+     "size_mb": 5.2,
+     "tris": 830,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_Long.blend",
+     "size_mb": 5.72,
+     "tris": 2906,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_SimpleParted.blend",
+     "size_mb": 5.22,
+     "tris": 1301,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Eyebrows_Female.blend",
+     "size_mb": 5.69,
+     "tris": 1480,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Eyebrows_Regular.blend",
+     "size_mb": 5.2,
+     "tris": 984,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_Beard.blend",
+     "size_mb": 5.2,
+     "tris": 1034,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_Buns.blend",
+     "size_mb": 5.72,
+     "tris": 3284,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_Buzzed.blend",
+     "size_mb": 5.2,
+     "tris": 830,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_BuzzedFemale.blend",
+     "size_mb": 5.2,
+     "tris": 830,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_Long.blend",
+     "size_mb": 5.72,
+     "tris": 2906,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_SimpleParted.blend",
+     "size_mb": 5.22,
+     "tris": 1301,
+     "rigs": [],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 2,
+      "images_packed": 2,
+      "images_size_zero": [],
+      "materials_with_texture": 1,
+      "helper_hidden": true
+     }
+    }
+   ]
+  },
+  "lead-delivered": {
+   "count": 6,
+   "ok": 6,
+   "tris_total": 314368,
+   "size_mb_total": 368.2,
+   "files": [
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/MCO-Fantasy_Standard_ALL.blend",
+     "size_mb": 150.68,
+     "tris": 157184,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Peasant_Arms",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Peasant_Body",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Peasant_Feet",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Peasant_Legs",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Acc_Pauldrons",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Arms",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Body",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Feet",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Head_Hood",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Legs",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Peasant",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Peasant_Arms",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Peasant_Body",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Peasant_Feet",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Peasant_Legs",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Acc_Pauldron",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Arms",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Body",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Feet_Boots",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Head_Hood",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Legs",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 24,
+      "images_packed": 24,
+      "images_size_zero": [],
+      "materials_with_texture": 33,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/ModularParts_Fantasy_Standard.blend",
+     "size_mb": 76.31,
+     "tris": 76774,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant_Arms",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Peasant_Body",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Peasant_Feet",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Peasant_Legs",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Acc_Pauldrons",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Arms",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Body",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Feet",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Head_Hood",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Female_Ranger_Legs",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Peasant_Arms",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Peasant_Body",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Peasant_Feet",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Peasant_Legs",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Acc_Pauldron",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Arms",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Body",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Feet_Boots",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Head_Hood",
+       "bones": 65
+      },
+      {
+       "name": "RIG_Male_Ranger_Legs",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 12,
+      "images_packed": 12,
+      "images_size_zero": [],
+      "materials_with_texture": 24,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/Outfit_Female_Peasant.blend",
+     "size_mb": 28.43,
+     "tris": 13568,
+     "rigs": [
+      {
+       "name": "RIG_Female_Peasant",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 3,
+      "images_packed": 3,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/Outfit_Female_Ranger.blend",
+     "size_mb": 38.12,
+     "tris": 26966,
+     "rigs": [
+      {
+       "name": "RIG_Female_Ranger",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 6,
+      "images_packed": 6,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/Outfit_Male_Peasant.blend",
+     "size_mb": 36.58,
+     "tris": 12894,
+     "rigs": [
+      {
+       "name": "RIG_Male_Peasant",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 6,
+      "images_packed": 6,
+      "images_size_zero": [],
+      "materials_with_texture": 2,
+      "helper_hidden": true
+     }
+    },
+    {
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/Outfit_Male_Ranger.blend",
+     "size_mb": 38.1,
+     "tris": 26982,
+     "rigs": [
+      {
+       "name": "RIG_Male_Ranger",
+       "bones": 65
+      }
+     ],
+     "ok": true,
+     "checks": {
+      "unskinned": [],
+      "images_total": 6,
+      "images_packed": 6,
+      "images_size_zero": [],
+      "materials_with_texture": 3,
+      "helper_hidden": true
+     }
+    }
+   ]
+  }
+ },
+ "contact_sheets": {
+  "lead": {
+   "sheet": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/pack2blend/accept/contact_lead.png",
+   "previews": 30
+  }
+ }
+}

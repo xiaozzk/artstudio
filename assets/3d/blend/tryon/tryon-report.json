@@ -1,0 +1,603 @@
+{
+ "TryOn_Male_Peasant": {
+  "outfit": "Male_Peasant",
+  "head_src": "Superhero_Male_FullBody",
+  "hair": "Hair_SimpleParted",
+  "final_rig": "RIG_TryOn_Male_Peasant",
+  "final_rig_bones": 65,
+  "head_cut": {
+   "mesh": "SuperHero_Male",
+   "verts_before": 7281,
+   "verts_after": 1562,
+   "kept_pct": 21.5,
+   "criterion": "sum(weight on Head,neck_01) > 0.5"
+  },
+  "dropped_rigs": 2,
+  "relink": {
+   "fixed": [
+    {
+     "image": "T_Eye_Normal.png",
+     "orig_name": "T_Eye_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Eye_Normal.png"
+    },
+    {
+     "image": "T_Hair_1_Normal.png",
+     "orig_name": "T_Hair_1_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Hair_1_Normal.png"
+    }
+   ],
+   "missing": []
+  },
+  "bbox": {
+   "min": [
+    -0.951,
+    -1.0,
+    -1.0
+   ],
+   "max": [
+    0.951,
+    1.0,
+    1.84
+   ]
+  },
+  "meshes": [
+   {
+    "name": "Hair_SimpleParted",
+    "verts": 757,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Head_Eyebrows",
+    "verts": 646,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Head_Eyes",
+    "verts": 556,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Head_SuperHero_Male",
+    "verts": 1562,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Icosphere",
+    "verts": 42,
+    "skinned": false,
+    "vgroups": 0
+   },
+   {
+    "name": "Icosphere.001",
+    "verts": 42,
+    "skinned": false,
+    "vgroups": 0
+   },
+   {
+    "name": "Icosphere.002",
+    "verts": 42,
+    "skinned": false,
+    "vgroups": 0
+   },
+   {
+    "name": "Male_Peasant_Arms",
+    "verts": 3315,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Male_Peasant_Body",
+    "verts": 3006,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Male_Peasant_Feet",
+    "verts": 1878,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Male_Peasant_Legs",
+    "verts": 656,
+    "skinned": true,
+    "vgroups": 65
+   }
+  ],
+  "materials": [
+   "MI_Eyes",
+   "MI_Hair_1",
+   "MI_Hair_1.001",
+   "MI_Peasant",
+   "MI_Regular_Male",
+   "MI_Superhero_Male"
+  ],
+  "images": {
+   "total": 15,
+   "packed": 15,
+   "size_zero": []
+  },
+  "armatures": [
+   {
+    "name": "RIG_TryOn_Male_Peasant",
+    "bones": 65
+   }
+  ],
+  "head_bbox": {
+   "min": [
+    -0.0925,
+    -0.1152,
+    1.5346
+   ],
+   "max": [
+    0.0925,
+    0.1232,
+    1.8101
+   ]
+  },
+  "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/tryon-blend/TryOn_Male_Peasant.blend",
+  "size_mb": 56.51,
+  "preview": "/Users/zhenkunzhu/Desktop/project/artstudio/download/tryon-blend/preview/TryOn_Male_Peasant.png"
+ },
+ "TryOn_Female_Peasant": {
+  "outfit": "Female_Peasant",
+  "head_src": "Superhero_Female_FullBody",
+  "hair": "Hair_Long",
+  "final_rig": "RIG_TryOn_Female_Peasant",
+  "final_rig_bones": 65,
+  "head_cut": {
+   "mesh": "Superhero_Female",
+   "verts_before": 7376,
+   "verts_after": 1644,
+   "kept_pct": 22.3,
+   "criterion": "sum(weight on Head,neck_01) > 0.5"
+  },
+  "dropped_rigs": 2,
+  "relink": {
+   "fixed": [
+    {
+     "image": "T_Eye_Normal.png",
+     "orig_name": "T_Eye_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Eye_Normal.png"
+    }
+   ],
+   "missing": []
+  },
+  "bbox": {
+   "min": [
+    -0.951,
+    -1.0,
+    -1.0
+   ],
+   "max": [
+    0.951,
+    1.0,
+    1.777
+   ]
+  },
+  "meshes": [
+   {
+    "name": "Female_Peasant_Arms",
+    "verts": 5436,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Female_Peasant_Body",
+    "verts": 1730,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Female_Peasant_Feet",
+    "verts": 1892,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Female_Peasant_Legs",
+    "verts": 1126,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Hair_Long",
+    "verts": 3080,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Head_Eyebrows",
+    "verts": 912,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Head_Eyes",
+    "verts": 556,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Head_Superhero_Female",
+    "verts": 1644,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Icosphere",
+    "verts": 42,
+    "skinned": false,
+    "vgroups": 0
+   },
+   {
+    "name": "Icosphere.001",
+    "verts": 42,
+    "skinned": false,
+    "vgroups": 0
+   },
+   {
+    "name": "Icosphere.002",
+    "verts": 42,
+    "skinned": false,
+    "vgroups": 0
+   }
+  ],
+  "materials": [
+   "MI_Eyes",
+   "MI_Hair_2",
+   "MI_Hair_2.001",
+   "MI_Peasant",
+   "MI_Peasant.001",
+   "MI_Superhero_Female"
+  ],
+  "images": {
+   "total": 12,
+   "packed": 12,
+   "size_zero": []
+  },
+  "armatures": [
+   {
+    "name": "RIG_TryOn_Female_Peasant",
+    "bones": 65
+   }
+  ],
+  "head_bbox": {
+   "min": [
+    -0.0889,
+    -0.1119,
+    1.4859
+   ],
+   "max": [
+    0.0889,
+    0.1129,
+    1.7666
+   ]
+  },
+  "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/tryon-blend/TryOn_Female_Peasant.blend",
+  "size_mb": 49.24,
+  "preview": "/Users/zhenkunzhu/Desktop/project/artstudio/download/tryon-blend/preview/TryOn_Female_Peasant.png"
+ },
+ "TryOn_Male_Ranger": {
+  "outfit": "Male_Ranger",
+  "head_src": "Superhero_Male_FullBody",
+  "hair": null,
+  "final_rig": "RIG_TryOn_Male_Ranger",
+  "final_rig_bones": 65,
+  "head_cut": {
+   "mesh": "SuperHero_Male",
+   "verts_before": 7281,
+   "verts_after": 1562,
+   "kept_pct": 21.5,
+   "criterion": "sum(weight on Head,neck_01) > 0.5"
+  },
+  "dropped_rigs": 1,
+  "relink": {
+   "fixed": [
+    {
+     "image": "T_Eye_Normal.png",
+     "orig_name": "T_Eye_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Eye_Normal.png"
+    },
+    {
+     "image": "T_Hair_1_Normal.png",
+     "orig_name": "T_Hair_1_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Hair_1_Normal.png"
+    }
+   ],
+   "missing": []
+  },
+  "bbox": {
+   "min": [
+    -0.951,
+    -1.0,
+    -1.0
+   ],
+   "max": [
+    0.951,
+    1.0,
+    1.865
+   ]
+  },
+  "meshes": [
+   {
+    "name": "Head_Eyebrows",
+    "verts": 646,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Head_Eyes",
+    "verts": 556,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Head_SuperHero_Male",
+    "verts": 1562,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Icosphere",
+    "verts": 42,
+    "skinned": false,
+    "vgroups": 0
+   },
+   {
+    "name": "Icosphere.001",
+    "verts": 42,
+    "skinned": false,
+    "vgroups": 0
+   },
+   {
+    "name": "Male_Ranger_Acc_Pauldron",
+    "verts": 1092,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Male_Ranger_Arms",
+    "verts": 3042,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Male_Ranger_Arms_Bracer",
+    "verts": 4000,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Male_Ranger_Body",
+    "verts": 2825,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Male_Ranger_Body_Belt_1",
+    "verts": 928,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Male_Ranger_Body_Belt_2",
+    "verts": 928,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Male_Ranger_Feet_Boots",
+    "verts": 10174,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Male_Ranger_Head_Hood",
+    "verts": 1240,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Male_Ranger_Legs",
+    "verts": 644,
+    "skinned": true,
+    "vgroups": 65
+   }
+  ],
+  "materials": [
+   "MI_Eyes",
+   "MI_Hair_1",
+   "MI_Ranger",
+   "MI_Ranger.001",
+   "MI_Regular_Male",
+   "MI_Superhero_Male"
+  ],
+  "images": {
+   "total": 13,
+   "packed": 13,
+   "size_zero": []
+  },
+  "armatures": [
+   {
+    "name": "RIG_TryOn_Male_Ranger",
+    "bones": 65
+   }
+  ],
+  "head_bbox": {
+   "min": [
+    -0.0925,
+    -0.1152,
+    1.5346
+   ],
+   "max": [
+    0.0925,
+    0.1232,
+    1.8101
+   ]
+  },
+  "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/tryon-blend/TryOn_Male_Ranger.blend",
+  "size_mb": 52.34,
+  "preview": "/Users/zhenkunzhu/Desktop/project/artstudio/download/tryon-blend/preview/TryOn_Male_Ranger.png"
+ },
+ "TryOn_Female_Ranger": {
+  "outfit": "Female_Ranger",
+  "head_src": "Superhero_Female_FullBody",
+  "hair": null,
+  "final_rig": "RIG_TryOn_Female_Ranger",
+  "final_rig_bones": 65,
+  "head_cut": {
+   "mesh": "Superhero_Female",
+   "verts_before": 7376,
+   "verts_after": 1644,
+   "kept_pct": 22.3,
+   "criterion": "sum(weight on Head,neck_01) > 0.5"
+  },
+  "dropped_rigs": 1,
+  "relink": {
+   "fixed": [
+    {
+     "image": "T_Eye_Normal.png",
+     "orig_name": "T_Eye_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Eye_Normal.png"
+    }
+   ],
+   "missing": []
+  },
+  "bbox": {
+   "min": [
+    -0.951,
+    -1.0,
+    -1.0
+   ],
+   "max": [
+    0.951,
+    1.0,
+    1.794
+   ]
+  },
+  "meshes": [
+   {
+    "name": "Female_Ranger_Acc_Pauldrons",
+    "verts": 1092,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Female_Ranger_Arms",
+    "verts": 2976,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Female_Ranger_Arms_Bracer",
+    "verts": 4000,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Female_Ranger_Body",
+    "verts": 2785,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Female_Ranger_Body_Belt_1",
+    "verts": 928,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Female_Ranger_Body_Belt_2",
+    "verts": 928,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Female_Ranger_Feet",
+    "verts": 10174,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Female_Ranger_Head_Hood",
+    "verts": 1240,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Female_Ranger_Legs",
+    "verts": 685,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Head_Eyebrows",
+    "verts": 912,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Head_Eyes",
+    "verts": 556,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Head_Superhero_Female",
+    "verts": 1644,
+    "skinned": true,
+    "vgroups": 65
+   },
+   {
+    "name": "Icosphere",
+    "verts": 42,
+    "skinned": false,
+    "vgroups": 0
+   },
+   {
+    "name": "Icosphere.001",
+    "verts": 42,
+    "skinned": false,
+    "vgroups": 0
+   }
+  ],
+  "materials": [
+   "MI_Eyes",
+   "MI_Hair_2",
+   "MI_Ranger",
+   "MI_Regular_Female",
+   "MI_Superhero_Female"
+  ],
+  "images": {
+   "total": 13,
+   "packed": 13,
+   "size_zero": []
+  },
+  "armatures": [
+   {
+    "name": "RIG_TryOn_Female_Ranger",
+    "bones": 65
+   }
+  ],
+  "head_bbox": {
+   "min": [
+    -0.0889,
+    -0.1119,
+    1.4859
+   ],
+   "max": [
+    0.0889,
+    0.1129,
+    1.7666
+   ]
+  },
+  "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/tryon-blend/TryOn_Female_Ranger.blend",
+  "size_mb": 52.67,
+  "preview": "/Users/zhenkunzhu/Desktop/project/artstudio/download/tryon-blend/preview/TryOn_Female_Ranger.png"
+ }
+}

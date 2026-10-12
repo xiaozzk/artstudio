@@ -1,0 +1,435 @@
+{
+ "jobs": [
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/BaseCharacter_Superhero_Male.blend",
+   "title": "UBC Superhero_Male",
+   "notes": "Universal Base Characters[Standard] 免费标准版形体（Superhero Male 全身，glTF/Godot-UE 侧），65 骨通用人形 rig。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/Superhero_Male_FullBody.gltf",
+     "collection": "BaseCharacters/Superhero_Male"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/BaseCharacter_Superhero_Male.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/BaseCharacter_Superhero_Female.blend",
+   "title": "UBC Superhero_Female",
+   "notes": "Universal Base Characters[Standard] 免费标准版形体（Superhero Female 全身，glTF/Godot-UE 侧），65 骨通用人形 rig。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/Superhero_Female_FullBody.gltf",
+     "collection": "BaseCharacters/Superhero_Female"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/BaseCharacter_Superhero_Female.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Female__HeadBone.blend",
+   "title": "UBC Eyebrows_Female (HeadBone)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Eyebrows_Female，绑定方式：Rigged to Head Bone（骨骼绑定到 Head）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Eyebrows_Female.gltf",
+     "collection": "Hairstyles_HeadBone/Eyebrows_Female"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Eyebrows_Female__HeadBone.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Regular__HeadBone.blend",
+   "title": "UBC Eyebrows_Regular (HeadBone)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Eyebrows_Regular，绑定方式：Rigged to Head Bone（骨骼绑定到 Head）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Eyebrows_Regular.gltf",
+     "collection": "Hairstyles_HeadBone/Eyebrows_Regular"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Eyebrows_Regular__HeadBone.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Beard__HeadBone.blend",
+   "title": "UBC Hair_Beard (HeadBone)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_Beard，绑定方式：Rigged to Head Bone（骨骼绑定到 Head）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_Beard.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_Beard"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Beard__HeadBone.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buns__HeadBone.blend",
+   "title": "UBC Hair_Buns (HeadBone)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_Buns，绑定方式：Rigged to Head Bone（骨骼绑定到 Head）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_Buns.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_Buns"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Buns__HeadBone.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buzzed__HeadBone.blend",
+   "title": "UBC Hair_Buzzed (HeadBone)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_Buzzed，绑定方式：Rigged to Head Bone（骨骼绑定到 Head）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_Buzzed.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_Buzzed"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Buzzed__HeadBone.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_BuzzedFemale__HeadBone.blend",
+   "title": "UBC Hair_BuzzedFemale (HeadBone)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_BuzzedFemale，绑定方式：Rigged to Head Bone（骨骼绑定到 Head）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_BuzzedFemale.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_BuzzedFemale"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_BuzzedFemale__HeadBone.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Long__HeadBone.blend",
+   "title": "UBC Hair_Long (HeadBone)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_Long，绑定方式：Rigged to Head Bone（骨骼绑定到 Head）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_Long.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_Long"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Long__HeadBone.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_SimpleParted__HeadBone.blend",
+   "title": "UBC Hair_SimpleParted (HeadBone)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_SimpleParted，绑定方式：Rigged to Head Bone（骨骼绑定到 Head）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_SimpleParted.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_SimpleParted"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_SimpleParted__HeadBone.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Female__Origin0.blend",
+   "title": "UBC Eyebrows_Female (Origin0)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Eyebrows_Female，绑定方式：Origin at 0（原点在世界原点）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Eyebrows_Female.gltf",
+     "collection": "Hairstyles_Origin0/Eyebrows_Female"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Eyebrows_Female__Origin0.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Regular__Origin0.blend",
+   "title": "UBC Eyebrows_Regular (Origin0)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Eyebrows_Regular，绑定方式：Origin at 0（原点在世界原点）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Eyebrows_Regular.gltf",
+     "collection": "Hairstyles_Origin0/Eyebrows_Regular"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Eyebrows_Regular__Origin0.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Beard__Origin0.blend",
+   "title": "UBC Hair_Beard (Origin0)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_Beard，绑定方式：Origin at 0（原点在世界原点）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_Beard.gltf",
+     "collection": "Hairstyles_Origin0/Hair_Beard"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Beard__Origin0.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buns__Origin0.blend",
+   "title": "UBC Hair_Buns (Origin0)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_Buns，绑定方式：Origin at 0（原点在世界原点）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_Buns.gltf",
+     "collection": "Hairstyles_Origin0/Hair_Buns"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Buns__Origin0.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buzzed__Origin0.blend",
+   "title": "UBC Hair_Buzzed (Origin0)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_Buzzed，绑定方式：Origin at 0（原点在世界原点）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_Buzzed.gltf",
+     "collection": "Hairstyles_Origin0/Hair_Buzzed"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Buzzed__Origin0.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_BuzzedFemale__Origin0.blend",
+   "title": "UBC Hair_BuzzedFemale (Origin0)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_BuzzedFemale，绑定方式：Origin at 0（原点在世界原点）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_BuzzedFemale.gltf",
+     "collection": "Hairstyles_Origin0/Hair_BuzzedFemale"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_BuzzedFemale__Origin0.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Long__Origin0.blend",
+   "title": "UBC Hair_Long (Origin0)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_Long，绑定方式：Origin at 0（原点在世界原点）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_Long.gltf",
+     "collection": "Hairstyles_Origin0/Hair_Long"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Long__Origin0.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_SimpleParted__Origin0.blend",
+   "title": "UBC Hair_SimpleParted (Origin0)",
+   "notes": "Universal Base Characters[Standard] 免费标准版发型 Hair_SimpleParted，绑定方式：Origin at 0（原点在世界原点）。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_SimpleParted.gltf",
+     "collection": "Hairstyles_Origin0/Hair_SimpleParted"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_SimpleParted__Origin0.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/UBC_Standard_ALL.blend",
+   "title": "UBC Standard ALL",
+   "notes": "Universal Base Characters[Standard] 免费标准版全集：2 形体（Superhero 男女）+ 8 发型 × 2 绑定（HeadBone / Origin0），共 18 个 collection，网格排布便于总览。",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/Superhero_Male_FullBody.gltf",
+     "collection": "BaseCharacters/Superhero_Male"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/Superhero_Female_FullBody.gltf",
+     "collection": "BaseCharacters/Superhero_Female"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Eyebrows_Female.gltf",
+     "collection": "Hairstyles_HeadBone/Eyebrows_Female"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Eyebrows_Regular.gltf",
+     "collection": "Hairstyles_HeadBone/Eyebrows_Regular"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_Beard.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_Beard"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_Buns.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_Buns"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_Buzzed.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_Buzzed"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_BuzzedFemale.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_BuzzedFemale"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_Long.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_Long"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_SimpleParted.gltf",
+     "collection": "Hairstyles_HeadBone/Hair_SimpleParted"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Eyebrows_Female.gltf",
+     "collection": "Hairstyles_Origin0/Eyebrows_Female"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Eyebrows_Regular.gltf",
+     "collection": "Hairstyles_Origin0/Eyebrows_Regular"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_Beard.gltf",
+     "collection": "Hairstyles_Origin0/Hair_Beard"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_Buns.gltf",
+     "collection": "Hairstyles_Origin0/Hair_Buns"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_Buzzed.gltf",
+     "collection": "Hairstyles_Origin0/Hair_Buzzed"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_BuzzedFemale.gltf",
+     "collection": "Hairstyles_Origin0/Hair_BuzzedFemale"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_Long.gltf",
+     "collection": "Hairstyles_Origin0/Hair_Long"
+    },
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)/Hair_SimpleParted.gltf",
+     "collection": "Hairstyles_Origin0/Hair_SimpleParted"
+    }
+   ],
+   "grid": {
+    "dx": 1.0,
+    "dy": 1.4
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/UBC_Standard_ALL.png",
+    "w": 1600,
+    "h": 1000,
+    "layout": "grid"
+   }
+  }
+ ]
+}

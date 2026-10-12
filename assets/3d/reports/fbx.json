@@ -1,0 +1,1306 @@
+{
+ "jobs": [
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/outfits/Female_Peasant.blend",
+   "title": "MCO FBX Female_Peasant",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Outfits/Female_Peasant.fbx",
+     "collection": "Outfit/Female_Peasant"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/outfits/Female_Peasant.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/outfits/Female_Ranger.blend",
+   "title": "MCO FBX Female_Ranger",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Outfits/Female_Ranger.fbx",
+     "collection": "Outfit/Female_Ranger"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/outfits/Female_Ranger.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/outfits/Male_Peasant.blend",
+   "title": "MCO FBX Male_Peasant",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Outfits/Male_Peasant.fbx",
+     "collection": "Outfit/Male_Peasant"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/outfits/Male_Peasant.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/outfits/Male_Ranger.blend",
+   "title": "MCO FBX Male_Ranger",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Outfits/Male_Ranger.fbx",
+     "collection": "Outfit/Male_Ranger"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/outfits/Male_Ranger.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Peasant_Arms.blend",
+   "title": "MCO FBX Female_Peasant_Arms",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Peasant_Arms.fbx",
+     "collection": "Parts/Female_Peasant_Arms"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Female_Peasant_Arms.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Peasant_Body.blend",
+   "title": "MCO FBX Female_Peasant_Body",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Peasant_Body.fbx",
+     "collection": "Parts/Female_Peasant_Body"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Female_Peasant_Body.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Peasant_Feet.blend",
+   "title": "MCO FBX Female_Peasant_Feet",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Peasant_Feet.fbx",
+     "collection": "Parts/Female_Peasant_Feet"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Female_Peasant_Feet.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Peasant_Legs.blend",
+   "title": "MCO FBX Female_Peasant_Legs",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Peasant_Legs.fbx",
+     "collection": "Parts/Female_Peasant_Legs"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Female_Peasant_Legs.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Acc_Pauldrons.blend",
+   "title": "MCO FBX Female_Ranger_Acc_Pauldrons",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Acc_Pauldrons.fbx",
+     "collection": "Parts/Female_Ranger_Acc_Pauldrons"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Female_Ranger_Acc_Pauldrons.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Arms.blend",
+   "title": "MCO FBX Female_Ranger_Arms",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Arms.fbx",
+     "collection": "Parts/Female_Ranger_Arms"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Female_Ranger_Arms.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Body.blend",
+   "title": "MCO FBX Female_Ranger_Body",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Body.fbx",
+     "collection": "Parts/Female_Ranger_Body"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Female_Ranger_Body.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Feet.blend",
+   "title": "MCO FBX Female_Ranger_Feet",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Feet.fbx",
+     "collection": "Parts/Female_Ranger_Feet"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Female_Ranger_Feet.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Head_Hood.blend",
+   "title": "MCO FBX Female_Ranger_Head_Hood",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Head_Hood.fbx",
+     "collection": "Parts/Female_Ranger_Head_Hood"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Female_Ranger_Head_Hood.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Female_Ranger_Legs.blend",
+   "title": "MCO FBX Female_Ranger_Legs",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Female_Ranger_Legs.fbx",
+     "collection": "Parts/Female_Ranger_Legs"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Female_Ranger_Legs.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Peasant_Arms.blend",
+   "title": "MCO FBX Male_Peasant_Arms",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Peasant_Arms.fbx",
+     "collection": "Parts/Male_Peasant_Arms"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Male_Peasant_Arms.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Peasant_Body.blend",
+   "title": "MCO FBX Male_Peasant_Body",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Peasant_Body.fbx",
+     "collection": "Parts/Male_Peasant_Body"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Male_Peasant_Body.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Peasant_Feet.blend",
+   "title": "MCO FBX Male_Peasant_Feet",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Peasant_Feet.fbx",
+     "collection": "Parts/Male_Peasant_Feet"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Male_Peasant_Feet.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Peasant_Legs.blend",
+   "title": "MCO FBX Male_Peasant_Legs",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Peasant_Legs.fbx",
+     "collection": "Parts/Male_Peasant_Legs"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Male_Peasant_Legs.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Acc_Pauldron.blend",
+   "title": "MCO FBX Male_Ranger_Acc_Pauldron",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Acc_Pauldron.fbx",
+     "collection": "Parts/Male_Ranger_Acc_Pauldron"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Male_Ranger_Acc_Pauldron.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Arms.blend",
+   "title": "MCO FBX Male_Ranger_Arms",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Arms.fbx",
+     "collection": "Parts/Male_Ranger_Arms"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Male_Ranger_Arms.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Body.blend",
+   "title": "MCO FBX Male_Ranger_Body",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Body.fbx",
+     "collection": "Parts/Male_Ranger_Body"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Male_Ranger_Body.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Feet_Boots.blend",
+   "title": "MCO FBX Male_Ranger_Feet_Boots",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Feet_Boots.fbx",
+     "collection": "Parts/Male_Ranger_Feet_Boots"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Male_Ranger_Feet_Boots.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Head_Hood.blend",
+   "title": "MCO FBX Male_Ranger_Head_Hood",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Head_Hood.fbx",
+     "collection": "Parts/Male_Ranger_Head_Hood"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Male_Ranger_Head_Hood.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Legs.blend",
+   "title": "MCO FBX Male_Ranger_Legs",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Modular Parts/Male_Ranger_Legs.fbx",
+     "collection": "Parts/Male_Ranger_Legs"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/mco/parts/Male_Ranger_Legs.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/base/Superhero_Female_FullBody.blend",
+   "title": "UBC FBX Superhero_Female_FullBody",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Unity/Superhero_Female_FullBody.fbx",
+     "collection": "BaseCharacters/Superhero_Female_FullBody"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/base/Superhero_Female_FullBody.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/base/Superhero_Male_FullBody.blend",
+   "title": "UBC FBX Superhero_Male_FullBody",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Unity/Superhero_Male_FullBody.fbx",
+     "collection": "BaseCharacters/Superhero_Male_FullBody"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/base/Superhero_Male_FullBody.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Eyebrows_Female.blend",
+   "title": "UBC FBX Eyebrows_Female",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Eyebrows_Female.fbx",
+     "collection": "Hairstyles_Origin0/Eyebrows_Female"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0/Eyebrows_Female.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Eyebrows_Regular.blend",
+   "title": "UBC FBX Eyebrows_Regular",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Eyebrows_Regular.fbx",
+     "collection": "Hairstyles_Origin0/Eyebrows_Regular"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0/Eyebrows_Regular.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_Beard.blend",
+   "title": "UBC FBX Hair_Beard",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_Beard.fbx",
+     "collection": "Hairstyles_Origin0/Hair_Beard"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0/Hair_Beard.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_Buns.blend",
+   "title": "UBC FBX Hair_Buns",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_Buns.fbx",
+     "collection": "Hairstyles_Origin0/Hair_Buns"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0/Hair_Buns.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_Buzzed.blend",
+   "title": "UBC FBX Hair_Buzzed",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_Buzzed.fbx",
+     "collection": "Hairstyles_Origin0/Hair_Buzzed"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0/Hair_Buzzed.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_BuzzedFemale.blend",
+   "title": "UBC FBX Hair_BuzzedFemale",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_BuzzedFemale.fbx",
+     "collection": "Hairstyles_Origin0/Hair_BuzzedFemale"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0/Hair_BuzzedFemale.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_Long.blend",
+   "title": "UBC FBX Hair_Long",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_Long.fbx",
+     "collection": "Hairstyles_Origin0/Hair_Long"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0/Hair_Long.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_SimpleParted.blend",
+   "title": "UBC FBX Hair_SimpleParted",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unity)/Hair_SimpleParted.fbx",
+     "collection": "Hairstyles_Origin0/Hair_SimpleParted"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0/Hair_SimpleParted.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Eyebrows_Female.blend",
+   "title": "UBC FBX Eyebrows_Female",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Eyebrows_Female.fbx",
+     "collection": "Hairstyles_Origin0_Unreal/Eyebrows_Female"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0_unreal/Eyebrows_Female.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Eyebrows_Regular.blend",
+   "title": "UBC FBX Eyebrows_Regular",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Eyebrows_Regular.fbx",
+     "collection": "Hairstyles_Origin0_Unreal/Eyebrows_Regular"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0_unreal/Eyebrows_Regular.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_Beard.blend",
+   "title": "UBC FBX Hair_Beard",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_Beard.fbx",
+     "collection": "Hairstyles_Origin0_Unreal/Hair_Beard"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0_unreal/Hair_Beard.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_Buns.blend",
+   "title": "UBC FBX Hair_Buns",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_Buns.fbx",
+     "collection": "Hairstyles_Origin0_Unreal/Hair_Buns"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0_unreal/Hair_Buns.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_Buzzed.blend",
+   "title": "UBC FBX Hair_Buzzed",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_Buzzed.fbx",
+     "collection": "Hairstyles_Origin0_Unreal/Hair_Buzzed"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0_unreal/Hair_Buzzed.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_BuzzedFemale.blend",
+   "title": "UBC FBX Hair_BuzzedFemale",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_BuzzedFemale.fbx",
+     "collection": "Hairstyles_Origin0_Unreal/Hair_BuzzedFemale"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0_unreal/Hair_BuzzedFemale.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_Long.blend",
+   "title": "UBC FBX Hair_Long",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_Long.fbx",
+     "collection": "Hairstyles_Origin0_Unreal/Hair_Long"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0_unreal/Hair_Long.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0_unreal/Hair_SimpleParted.blend",
+   "title": "UBC FBX Hair_SimpleParted",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/FBX (Unreal Engine)/Hair_SimpleParted.fbx",
+     "collection": "Hairstyles_Origin0_Unreal/Hair_SimpleParted"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_origin0_unreal/Hair_SimpleParted.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Eyebrows_Female.blend",
+   "title": "UBC FBX Eyebrows_Female",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Eyebrows_Female.fbx",
+     "collection": "Hairstyles_HeadBone/Eyebrows_Female"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_headbone/Eyebrows_Female.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Eyebrows_Regular.blend",
+   "title": "UBC FBX Eyebrows_Regular",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Eyebrows_Regular.fbx",
+     "collection": "Hairstyles_HeadBone/Eyebrows_Regular"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_headbone/Eyebrows_Regular.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_Beard.blend",
+   "title": "UBC FBX Hair_Beard",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_Beard.fbx",
+     "collection": "Hairstyles_HeadBone/Hair_Beard"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_headbone/Hair_Beard.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_Buns.blend",
+   "title": "UBC FBX Hair_Buns",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_Buns.fbx",
+     "collection": "Hairstyles_HeadBone/Hair_Buns"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_headbone/Hair_Buns.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_Buzzed.blend",
+   "title": "UBC FBX Hair_Buzzed",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_Buzzed.fbx",
+     "collection": "Hairstyles_HeadBone/Hair_Buzzed"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_headbone/Hair_Buzzed.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_BuzzedFemale.blend",
+   "title": "UBC FBX Hair_BuzzedFemale",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_BuzzedFemale.fbx",
+     "collection": "Hairstyles_HeadBone/Hair_BuzzedFemale"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_headbone/Hair_BuzzedFemale.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_Long.blend",
+   "title": "UBC FBX Hair_Long",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_Long.fbx",
+     "collection": "Hairstyles_HeadBone/Hair_Long"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_headbone/Hair_Long.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_SimpleParted.blend",
+   "title": "UBC FBX Hair_SimpleParted",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/FBX (Unity)/Hair_SimpleParted.fbx",
+     "collection": "Hairstyles_HeadBone/Hair_SimpleParted"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Origin at 0/glTF (Godot)",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/preview/ubc/hair_headbone/Hair_SimpleParted.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  }
+ ]
+}

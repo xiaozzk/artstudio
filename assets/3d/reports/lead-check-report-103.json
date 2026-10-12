@@ -1,0 +1,52 @@
+{
+ "total": 103,
+ "checked": 103,
+ "ok": 103,
+ "failed": [],
+ "by_scope": {
+  "base-characters": {
+   "count": 19,
+   "ok": 19,
+   "tris_total": 109352,
+   "size_mb_total": 179.8
+  },
+  "outfits-gltf": {
+   "count": 6,
+   "ok": 6,
+   "tris_total": 314368,
+   "size_mb_total": 368.2
+  },
+  "outfits-gltf-per-asset": {
+   "count": 24,
+   "ok": 24,
+   "tris_total": 157184,
+   "size_mb_total": 737.8
+  },
+  "outfits-fbx": {
+   "count": 50,
+   "ok": 50,
+   "tris_total": 228145,
+   "size_mb_total": 651.0
+  },
+  "tryon": {
+   "count": 4,
+   "ok": 4,
+   "tris_total": 104345,
+   "size_mb_total": 210.8
+  }
+ },
+ "contact_sheets": {
+  "base-characters": {
+   "sheet": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/3d-check/contact_base-characters.png",
+   "previews": 19
+  },
+  "outfits-gltf-per-asset": {
+   "sheet": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/3d-check/contact_outfits-gltf-per-asset.png",
+   "previews": 24
+  },
+  "tryon": {
+   "sheet": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/3d-check/contact_tryon.png",
+   "previews": 4
+  }
+ }
+}

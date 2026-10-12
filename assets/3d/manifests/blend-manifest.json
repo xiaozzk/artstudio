@@ -1,0 +1,1071 @@
+{
+ "generated_at": "2026-10-13 02:43:45",
+ "root": "assets/3d",
+ "note": "blend/ 只存网格 + 指向共享 textures/ 的相对路径（2026-10 去重改造：2.1 GB → 44 MB）；packs/ 不入库（官方页可重下，见 source 列）。本清单入库，用于重出后逐文件校验；校验命令见 assets/3d/README.md「清单与复现」。",
+ "count": 129,
+ "blend_count": 103,
+ "pack_count": 2,
+ "texture_count": 24,
+ "total_mb": 544.1,
+ "shard_totals": {
+  "base-characters": {
+   "count": 19,
+   "ok": 19,
+   "tris_total": 109352
+  },
+  "outfits-gltf": {
+   "count": 6,
+   "ok": 6,
+   "tris_total": 314368
+  },
+  "outfits-gltf-per-asset": {
+   "count": 24,
+   "ok": 24,
+   "tris_total": 157184
+  },
+  "outfits-fbx": {
+   "count": 50,
+   "ok": 50,
+   "tris_total": 228145
+  },
+  "tryon": {
+   "count": 4,
+   "ok": 4,
+   "tris_total": 104345
+  }
+ },
+ "entries": [
+  {
+   "path": "3d/blend/base-characters/BaseCharacter_Superhero_Female.blend",
+   "bytes": 846296,
+   "mb": 0.81,
+   "sha256": "216d4785fe526a0d4aa6eca258d370463753cf3a5de603ce2123a8787f1b4968",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/BaseCharacter_Superhero_Male.blend",
+   "bytes": 822869,
+   "mb": 0.78,
+   "sha256": "de403fa7428899b3edb88ca1b983254f9acbe37ec43c0960b9f524af2f100e25",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Eyebrows_Female__HeadBone.blend",
+   "bytes": 168193,
+   "mb": 0.16,
+   "sha256": "c2038bc93b7632c3e592af97659f383eb7f2cffdd45cbfb6d0e6054a3bb36e8b",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Eyebrows_Female__Origin0.blend",
+   "bytes": 146787,
+   "mb": 0.14,
+   "sha256": "9be9d81fda24f45d4543f305d0819524a086a9a7d3fa702894b10e5210009675",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Eyebrows_Regular__HeadBone.blend",
+   "bytes": 148680,
+   "mb": 0.14,
+   "sha256": "79822cc2e8a96ce554ca1c785617bc6f0338c9ed7be84e245d0f9810cfca0f50",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Eyebrows_Regular__Origin0.blend",
+   "bytes": 129115,
+   "mb": 0.12,
+   "sha256": "42b33daa5bedbb02ec5475f589a39e17ee9f84340a7a36efa22b49d0f08131e7",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_Beard__HeadBone.blend",
+   "bytes": 150609,
+   "mb": 0.14,
+   "sha256": "ecce0c10d17ccf8819c20463e7942a459cf1b297fb39ec51a83ef3b46cae0508",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_Beard__Origin0.blend",
+   "bytes": 130282,
+   "mb": 0.12,
+   "sha256": "584175eb05c44e33b7a2d9c324b97157f76a712a4c1e60243871a8f54870bcc4",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_Buns__HeadBone.blend",
+   "bytes": 253836,
+   "mb": 0.24,
+   "sha256": "1a2fb7f0ec4c29b9524a2cd7cefe7d33b3463e182d276baf22c678ec189fd54f",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_Buns__Origin0.blend",
+   "bytes": 228088,
+   "mb": 0.22,
+   "sha256": "cfcf2e31152de2a3c0465a5f50c63eafc0c9fc8920ae106b36581057ed3021f3",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_BuzzedFemale__HeadBone.blend",
+   "bytes": 142799,
+   "mb": 0.14,
+   "sha256": "201f9e4d2b83769be91d3ed085a47344a21c8a9a4e2ab066485f00d1a8191bbe",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_BuzzedFemale__Origin0.blend",
+   "bytes": 123796,
+   "mb": 0.12,
+   "sha256": "a93ab877ac73e90880a4e92e99cc7d328430800f4e641797b83269a05bc0054f",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_Buzzed__HeadBone.blend",
+   "bytes": 144258,
+   "mb": 0.14,
+   "sha256": "db8cc3896097eb58ebdde8a9280b299e44c3ca22befde5e1a2aca04da1c87b81",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_Buzzed__Origin0.blend",
+   "bytes": 124729,
+   "mb": 0.12,
+   "sha256": "d9b7ef21fafedfacd2109faa0fb46984a37ce071d305af577b7ff2d9003ad24f",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_Long__HeadBone.blend",
+   "bytes": 239031,
+   "mb": 0.23,
+   "sha256": "bd3ff0fbbabf958a9cf758f157bbb8eee50ecaa73eae31c6dca395b3aaa88845",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_Long__Origin0.blend",
+   "bytes": 213291,
+   "mb": 0.2,
+   "sha256": "0518bb261dd78414539e5df096c5b32b34afc06bf258b514b1b889d49e25d68c",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_SimpleParted__HeadBone.blend",
+   "bytes": 167175,
+   "mb": 0.16,
+   "sha256": "889931b5e5992071da1db15b95d5d387e28a569cdc4fe5e7fa1fc8fb32ec44f8",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/Hair_Hair_SimpleParted__Origin0.blend",
+   "bytes": 146298,
+   "mb": 0.14,
+   "sha256": "eb039beb9d7d784a6a5aec5c6f83354946fc7a3c41feb29304a5fcfbc0cca26b",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/base-characters/UBC_Standard_ALL.blend",
+   "bytes": 2452541,
+   "mb": 2.34,
+   "sha256": "e9a45c27bc1735d6743e2380fbe58be1ba8835deb45d048da21ceecc6c4ac6af",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/outfits/Female_Peasant.blend",
+   "bytes": 468936,
+   "mb": 0.45,
+   "sha256": "3a7c7d057bdf85e0fdfb866516bf0e794ea7452e5463451a3fec7be45b992b16",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/outfits/Female_Ranger.blend",
+   "bytes": 771235,
+   "mb": 0.74,
+   "sha256": "df6c17aeef3e9e7f828969920f00bec06902e6921774c3e015513da681383b21",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/outfits/Male_Peasant.blend",
+   "bytes": 503859,
+   "mb": 0.48,
+   "sha256": "19a67cb2a4b4611f04a643b3d4605ecb390d4a1c389d20653bc46c152d6228ae",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/outfits/Male_Ranger.blend",
+   "bytes": 772903,
+   "mb": 0.74,
+   "sha256": "630271d62b6ff5ee0c7b7c6ef7ee2089b54a184a4ba79adf8bc6c65cb283befe",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Female_Peasant_Arms.blend",
+   "bytes": 274226,
+   "mb": 0.26,
+   "sha256": "02478d936c148a26dd2909dc881940bf8750dded10f2c3512fd0e0e46a425e50",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Female_Peasant_Body.blend",
+   "bytes": 186635,
+   "mb": 0.18,
+   "sha256": "261985c0f97cb4a5775a15a3e0e4da75f55c20ec963072eb3a927995ef55f225",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Female_Peasant_Feet.blend",
+   "bytes": 174099,
+   "mb": 0.17,
+   "sha256": "767cbaec29aa6b06d05bd0cd35ab19f54ba7c8a80afa833bc3569a441f8dea34",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Female_Peasant_Legs.blend",
+   "bytes": 166634,
+   "mb": 0.16,
+   "sha256": "3ad1603bd053ed47e3cb7a16b6b33f7619889831772bfef94024dc4962887aea",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Female_Ranger_Acc_Pauldrons.blend",
+   "bytes": 138660,
+   "mb": 0.13,
+   "sha256": "5a97fb6ea589d68231af745a0cd319908ac9b2c26046f75e29a57d544bdb291e",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Female_Ranger_Arms.blend",
+   "bytes": 319625,
+   "mb": 0.3,
+   "sha256": "f23476d3cda24d364415de90255a6e7d05d5927edbd526fe396bcf8290c5854f",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Female_Ranger_Body.blend",
+   "bytes": 239408,
+   "mb": 0.23,
+   "sha256": "1920f574b34838748664df708e04ae586267ea3ab4c55761adaabd6c316b6385",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Female_Ranger_Feet.blend",
+   "bytes": 306319,
+   "mb": 0.29,
+   "sha256": "083e6ab24fed52c148693cb92ed0e14a0f51d3f4ffd30f6c7286286a0becf928",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Female_Ranger_Head_Hood.blend",
+   "bytes": 180909,
+   "mb": 0.17,
+   "sha256": "c17cbe90e3832e1f4a839da5644b46ceafa3bd3d63e0029b1e9aa20e0a4d7d78",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Female_Ranger_Legs.blend",
+   "bytes": 144846,
+   "mb": 0.14,
+   "sha256": "194871bea0045f3a9f55e15ac451f6989542d2ee0fdd16877804b799fd853de2",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Male_Peasant_Arms.blend",
+   "bytes": 287536,
+   "mb": 0.27,
+   "sha256": "39d8d0c2e3bb4d9497c7986cb34795e2c53422177a61d99790dbd00aa42d1ab4",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Male_Peasant_Body.blend",
+   "bytes": 230771,
+   "mb": 0.22,
+   "sha256": "2edee81b1647ff526ccecd89b9257b0086058df10c005ae30631516d02c5f6f5",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Male_Peasant_Feet.blend",
+   "bytes": 174313,
+   "mb": 0.17,
+   "sha256": "41a3ceadd0d08b87e99dc86cb76d93197181273f8cc9d1ed77f19ceb80525768",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Male_Peasant_Legs.blend",
+   "bytes": 139573,
+   "mb": 0.13,
+   "sha256": "0674faf617177f0878cb32cacbb7de06f7a575a8cb9ca45b4278b08cbc69da83",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Male_Ranger_Acc_Pauldron.blend",
+   "bytes": 138180,
+   "mb": 0.13,
+   "sha256": "926c796f5b24d24ba2e2ae049365a7fd6df89bf91f879fff1692efc7d44f90c4",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Male_Ranger_Arms.blend",
+   "bytes": 320733,
+   "mb": 0.31,
+   "sha256": "c7dbef3848514e1115ed5f7595d1fc6d446f9da9c6edbaaef6d7e5a7366b9c41",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Male_Ranger_Body.blend",
+   "bytes": 241345,
+   "mb": 0.23,
+   "sha256": "bddb942f9e69486420b0192ecac7d7ddd61023bbf990a141849bbd0097c49ecc",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Male_Ranger_Feet_Boots.blend",
+   "bytes": 306428,
+   "mb": 0.29,
+   "sha256": "68ed0cd7f058b0e45f1167441dfc663ccd2e9190e4af4043d7d55ae82abdc696",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Male_Ranger_Head_Hood.blend",
+   "bytes": 178270,
+   "mb": 0.17,
+   "sha256": "47c781822ad8426706ec94cdc105a261989c48ea213655991501a8c9f8361da5",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/mco/parts/Male_Ranger_Legs.blend",
+   "bytes": 141912,
+   "mb": 0.14,
+   "sha256": "3ce41df04849515a576dd612c4c34468f5744c1a8275e91292d1fa79597310ad",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/base/Superhero_Female_FullBody.blend",
+   "bytes": 567708,
+   "mb": 0.54,
+   "sha256": "8485139e89c3288fd5b63beffaaf18a74ac54240065e73ee36291ea36ee76a45",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/base/Superhero_Male_FullBody.blend",
+   "bytes": 550814,
+   "mb": 0.53,
+   "sha256": "43af9cac09307ae6ae86cc26049c69ab5083b60e79b3632fc0221b5eb9fcc2f6",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_headbone/Eyebrows_Female.blend",
+   "bytes": 144858,
+   "mb": 0.14,
+   "sha256": "809b06b88dabc7b2ada1c88ffb95e739bca812be69ade6c31598fa86448ba34f",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_headbone/Eyebrows_Regular.blend",
+   "bytes": 129672,
+   "mb": 0.12,
+   "sha256": "6cf00cfae6f206f91263847cab9ac84e001cbb4dc21a577138a6ad052cc65558",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_headbone/Hair_Beard.blend",
+   "bytes": 131516,
+   "mb": 0.13,
+   "sha256": "79b4efe42d5d73e79dbdd4423155dedb6a8cb4d73f23644049750ba7acd075e7",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_headbone/Hair_Buns.blend",
+   "bytes": 177734,
+   "mb": 0.17,
+   "sha256": "43be6c8b2e5fcf30a26bce4a34f3b27e2a07462f3e7add8c92e1d4f6a4bd28d6",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_headbone/Hair_Buzzed.blend",
+   "bytes": 128818,
+   "mb": 0.12,
+   "sha256": "fc934f2f0362ed505855ed6cd20a48a77ad5a2d23de6e4d9ff96037cc82f62c0",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_headbone/Hair_BuzzedFemale.blend",
+   "bytes": 128257,
+   "mb": 0.12,
+   "sha256": "35f1a3630a22d8e10e1c21c42298144fb9c5888dc8ea98d9143d658f15241f97",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_headbone/Hair_Long.blend",
+   "bytes": 173848,
+   "mb": 0.17,
+   "sha256": "bdf8921750a2119421f3aae9ab9a54458e5dd52ba1106f0d16b677b8e4f1fd90",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_headbone/Hair_SimpleParted.blend",
+   "bytes": 145545,
+   "mb": 0.14,
+   "sha256": "97bee0623f026fd02b009aa52c76ddfbb7ea1792f8cbddc518d1ce69ddf63a47",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0/Eyebrows_Female.blend",
+   "bytes": 124954,
+   "mb": 0.12,
+   "sha256": "1ef3b63f241aadb5ad1f63c8334c4460597d9e08719cb68d1ec15ddad17ab0b1",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0/Eyebrows_Regular.blend",
+   "bytes": 112343,
+   "mb": 0.11,
+   "sha256": "bd907c9b0e464b77c38f6eac574081f76eed062e651f6f2a242f792e29492621",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0/Hair_Beard.blend",
+   "bytes": 113635,
+   "mb": 0.11,
+   "sha256": "bb83d246d55453a36b52b55e7c5b193e5c060026f7d61d9ed7be1837b9dfb97c",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0/Hair_Buns.blend",
+   "bytes": 157768,
+   "mb": 0.15,
+   "sha256": "48a304a56846905f1cd294e27ed32847f655c0fb39e996b201bb7fdce6907338",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0/Hair_Buzzed.blend",
+   "bytes": 111548,
+   "mb": 0.11,
+   "sha256": "ec58cb5166d16d41c1c19214f0e79136e358cd073166d45563e9da867ad43154",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0/Hair_BuzzedFemale.blend",
+   "bytes": 109467,
+   "mb": 0.1,
+   "sha256": "cb03969844c912bfba62778188dbd83355126d75f34e7bb30fb26cf54a814024",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0/Hair_Long.blend",
+   "bytes": 153935,
+   "mb": 0.15,
+   "sha256": "f608a80b6aade91ba564bd1c4b518337ea4e6e47b923f0b624726d4b21db08cc",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0/Hair_SimpleParted.blend",
+   "bytes": 128238,
+   "mb": 0.12,
+   "sha256": "c794b6de3559104827397b3cfb2f89a77f38a50aa8c87d60987a0b5bec1cf57a",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0_unreal/Eyebrows_Female.blend",
+   "bytes": 124915,
+   "mb": 0.12,
+   "sha256": "93d7b9fdb5f30af55764e9c2778118672d0630d0562c93d4c7413905fecfa048",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0_unreal/Eyebrows_Regular.blend",
+   "bytes": 112152,
+   "mb": 0.11,
+   "sha256": "0860ec4664f1ee5b24527ec1f6351f30e01038d3abe4327c877f6b8977c88efc",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0_unreal/Hair_Beard.blend",
+   "bytes": 113701,
+   "mb": 0.11,
+   "sha256": "a035face80c0e5c6c46f56c544363d79eee2513afcdb257bdc2a0f3f544a27ff",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0_unreal/Hair_Buns.blend",
+   "bytes": 156854,
+   "mb": 0.15,
+   "sha256": "b66f046f62917197bf0f27b0169bce195787e2f3febe575601bfa9905a1496f9",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0_unreal/Hair_Buzzed.blend",
+   "bytes": 110881,
+   "mb": 0.11,
+   "sha256": "ac2ec2ddf7581248c1dd1f3fa5541a5f1a6e0c98b369d49f331ba6a4b5a3f0d9",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0_unreal/Hair_BuzzedFemale.blend",
+   "bytes": 109509,
+   "mb": 0.1,
+   "sha256": "11de8425532811eb647a912cf077befb5d7078b2e56017602e67a9ff35364edc",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0_unreal/Hair_Long.blend",
+   "bytes": 154012,
+   "mb": 0.15,
+   "sha256": "64e2f6e3fe2efade56c7f29ebca5467b654ecb9b46221d9f402faf4a9642896b",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-fbx/ubc/hair_origin0_unreal/Hair_SimpleParted.blend",
+   "bytes": 128058,
+   "mb": 0.12,
+   "sha256": "f5bc86fc58780fcc3c98520433595f4b2e8e2c5f359c5a1489ff459438a71021",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/outfits/Outfit_Female_Peasant.blend",
+   "bytes": 739414,
+   "mb": 0.71,
+   "sha256": "343cf447aef293724d4027816e66a41da91bbeddec8e33842e44c3dd31cf76bf",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/outfits/Outfit_Female_Ranger.blend",
+   "bytes": 1293418,
+   "mb": 1.23,
+   "sha256": "6eb41d279619b62fc7f2f6d58d4b827cb68e5746ff9de0f868f50ef93e6c8032",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/outfits/Outfit_Male_Peasant.blend",
+   "bytes": 745541,
+   "mb": 0.71,
+   "sha256": "276e58c0a57d3686c66208065cf3e041a14b54640b07f9c075d0592dd4acf4be",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/outfits/Outfit_Male_Ranger.blend",
+   "bytes": 1264357,
+   "mb": 1.21,
+   "sha256": "be5698a6295b7dff203b79024d3068a49801fe92723d335f1cc0d5b73220a76e",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Female_Peasant_Arms.blend",
+   "bytes": 409167,
+   "mb": 0.39,
+   "sha256": "3a42ae87b55a5aafb210dc8b576ba85e1482d49b3b64f3db704307d43b373002",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Female_Peasant_Body.blend",
+   "bytes": 292842,
+   "mb": 0.28,
+   "sha256": "733293becf4f8742ac6402b6d1eae960f5b7bc7daf8ceccfa3bd3469da46610d",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Female_Peasant_Feet.blend",
+   "bytes": 224556,
+   "mb": 0.21,
+   "sha256": "95a0f6934827141da06cb1450e9c8c9b309f801947d89ae1abe61b7f5d284fcc",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Female_Peasant_Legs.blend",
+   "bytes": 205734,
+   "mb": 0.2,
+   "sha256": "9f278a43fe8ad1c4aa56f8ccc820776062e214d32fdae3f51075f354e318be3b",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Female_Ranger_Acc_Pauldrons.blend",
+   "bytes": 167228,
+   "mb": 0.16,
+   "sha256": "01186d4ac64f451eef266874921b462d689000f305141a6218b2e8e7dc0f7ac4",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Female_Ranger_Arms.blend",
+   "bytes": 479614,
+   "mb": 0.46,
+   "sha256": "101928051f63fa9bd789fe1bb076ad121da401ac14fe20ef77abf8d6e1899c28",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Female_Ranger_Body.blend",
+   "bytes": 331522,
+   "mb": 0.32,
+   "sha256": "f2bead77ba8eb1691c0d58c23e29f95b3a7a8b8caaf27b48c546345c79eca979",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Female_Ranger_Feet.blend",
+   "bytes": 493078,
+   "mb": 0.47,
+   "sha256": "348214f9ef5e3301bad1de5e611cc59163e6518da25670a49360d64047b594bf",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Female_Ranger_Head_Hood.blend",
+   "bytes": 221318,
+   "mb": 0.21,
+   "sha256": "b34b0a82d29404de342ffafcdd7e551ea482ed0c81363f8d4a3e455334767871",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Female_Ranger_Legs.blend",
+   "bytes": 169823,
+   "mb": 0.16,
+   "sha256": "985ca38f4a5966b8b074dfb02ed427ba284cd463d76d065f0952df588326284b",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Male_Peasant_Arms.blend",
+   "bytes": 392428,
+   "mb": 0.37,
+   "sha256": "dc24f82a24057ce3e9030353dc3fa9c7cda3bcfc59cadf2a7f3e2355eca152d4",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Male_Peasant_Body.blend",
+   "bytes": 310957,
+   "mb": 0.3,
+   "sha256": "8ebe8050daec7971a1afa2ea533dade5b6559a6d279907004f21e09f3ec30df1",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Male_Peasant_Feet.blend",
+   "bytes": 225902,
+   "mb": 0.22,
+   "sha256": "6bc3bda62ec29a6513b1dc4b2edcbe67d8a88628590d2842512b069e7f4992c1",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Male_Peasant_Legs.blend",
+   "bytes": 163322,
+   "mb": 0.16,
+   "sha256": "c14baff1f2d5e0ad56a96470ab46526946608b653ae3164d94d9b8b52f488f08",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Male_Ranger_Acc_Pauldron.blend",
+   "bytes": 166223,
+   "mb": 0.16,
+   "sha256": "92dac769ba96eb7437216aa3b01cb4712714f50bc382fb5503a1ecc95e630a08",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Male_Ranger_Arms.blend",
+   "bytes": 336739,
+   "mb": 0.32,
+   "sha256": "5313ad344e1debacf7d6c359566003c8cb4c62e14546cf5fd83477727ab44da6",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Male_Ranger_Body.blend",
+   "bytes": 326808,
+   "mb": 0.31,
+   "sha256": "3efe0e59727a1a50e954b7e996a09047bef56966e355117916343580db2a4a13",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Male_Ranger_Feet_Boots.blend",
+   "bytes": 485881,
+   "mb": 0.46,
+   "sha256": "9759142895784387c307b6216e819ba9ff632fa19454a71adb071712fbacb1da",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Male_Ranger_Head_Hood.blend",
+   "bytes": 216784,
+   "mb": 0.21,
+   "sha256": "1cd617a56dca68d30a629a4065f77c867fc1cdecbafb0289a4a87222ffcb9433",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf-per-asset/parts/Male_Ranger_Legs.blend",
+   "bytes": 166173,
+   "mb": 0.16,
+   "sha256": "a3072dba1389ae2312cb0a721ba086cacc14dadfc7491450509ffb0c39916efe",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf/MCO-Fantasy_Standard_ALL.blend",
+   "bytes": 5409662,
+   "mb": 5.16,
+   "sha256": "318a9eb35c114a437e7f4a7d58b775e1dbb779155e97139e4ce280dcba3f7832",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf/ModularParts_Fantasy_Standard.blend",
+   "bytes": 3728102,
+   "mb": 3.56,
+   "sha256": "453aabbcc37953d5343d039438705f59449a0cdc77d80946138b6f88a8c2df8c",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf/Outfit_Female_Peasant.blend",
+   "bytes": 740157,
+   "mb": 0.71,
+   "sha256": "e4e02597e86015f3420212bf279df6100b1513f8e1ca890a73e2c7aeca91c5f9",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf/Outfit_Female_Ranger.blend",
+   "bytes": 1294086,
+   "mb": 1.23,
+   "sha256": "26d35af05309ed606404de084bceb7c4a51069c7634e3b6753bfb0158e4f0070",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf/Outfit_Male_Peasant.blend",
+   "bytes": 746252,
+   "mb": 0.71,
+   "sha256": "5ff3c15dc34c680bc5ef1586fd994b94ca1587be6634af4408c51ba3b356bee8",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/outfits-gltf/Outfit_Male_Ranger.blend",
+   "bytes": 1266187,
+   "mb": 1.21,
+   "sha256": "cb5cc3614d760d2de56513a74f29606a6077195cdd97e7ff5ed146f8e86ab8bc",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/tryon/TryOn_Female_Peasant.blend",
+   "bytes": 1088874,
+   "mb": 1.04,
+   "sha256": "8e6cb31782ad00021aedc53b43a20b3548a11278f3d6decae5304dff9ae10a1a",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/tryon/TryOn_Female_Ranger.blend",
+   "bytes": 1519828,
+   "mb": 1.45,
+   "sha256": "139397ed5a43480999c73dd32e621ffa0ed39bb28acc74c0df3fa206bf8d9027",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/tryon/TryOn_Male_Peasant.blend",
+   "bytes": 1008882,
+   "mb": 0.96,
+   "sha256": "ed810f44c9609b53d44a4763d14ff7cb223261e575baa91621d0a27f15ae4d1c",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/blend/tryon/TryOn_Male_Ranger.blend",
+   "bytes": 1464716,
+   "mb": 1.4,
+   "sha256": "2881b01b5cf512c41f619fa80002ed56c6e84552a81e0e0bafe51fc11d9f7485",
+   "kind": "blend",
+   "source": null
+  },
+  {
+   "path": "3d/packs/Modular Character Outfits - Fantasy[Standard].zip",
+   "bytes": 294347394,
+   "mb": 280.71,
+   "sha256": "c3468b18871cc8c8f05ab14df7712baf22cb9f389cbd870babf130e595187f70",
+   "kind": "pack",
+   "source": "https://quaternius.com/packs/modularcharacteroutfitsfantasy.html"
+  },
+  {
+   "path": "3d/packs/Universal Base Characters[Standard].zip",
+   "bytes": 128968391,
+   "mb": 122.99,
+   "sha256": "fdbf1804c90dfc1ea03e992bff7da2dfd1a79318e13270a660180f9308455f40",
+   "kind": "pack",
+   "source": "https://quaternius.com/packs/universalbasecharacters.html"
+  },
+  {
+   "path": "3d/textures/T_Eye_Brown.png",
+   "bytes": 35958,
+   "mb": 0.03,
+   "sha256": "d08e3356a83211bc6ca21fe3a8e39f4b5c1a3b8f85457fc2c0fb57be09935025",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Eye_Normal.png",
+   "bytes": 15097,
+   "mb": 0.01,
+   "sha256": "a74aa37050f26fe336e7dbe5d1e9f01942879dd541c67be2f836633529bc68b7",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Hair_1_BaseColor.png",
+   "bytes": 1570376,
+   "mb": 1.5,
+   "sha256": "bc7aa863bd22ab0a995cd838cceb4d3a5186ee54ee2fb0108fad85d20c057e6e",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Hair_1_Normal.png",
+   "bytes": 3770683,
+   "mb": 3.6,
+   "sha256": "fd4530bb696a083ac7f9c2f685b4bb15d91150040e76c905db591c7644b4aa87",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Hair_2_BaseColor.png",
+   "bytes": 1729467,
+   "mb": 1.65,
+   "sha256": "f9f4f2fb3eeeefb0b6f0fdef38b0770fd6607640c1c680b8139dd76697e9f9b3",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Hair_2_Normal.png",
+   "bytes": 4109628,
+   "mb": 3.92,
+   "sha256": "214dff8981ab87319b2acfaf1ad9143db020989afa14896a0d70048a667e17e3",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Peasant_BaseColor.png",
+   "bytes": 5055760,
+   "mb": 4.82,
+   "sha256": "a43635628d95571cd62fd4db0cc3a6ea32778b2bc02f242dda224c89d07f1ade",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Peasant_Normal.png",
+   "bytes": 14110336,
+   "mb": 13.46,
+   "sha256": "7598fa7b63e46fd4dac29708bf5a81e05eb9a67280f7b13c61e28a9110eeb679",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Peasant_ORM.png",
+   "bytes": 9903835,
+   "mb": 9.45,
+   "sha256": "e1932f5f91104afca89c501416a5fec09069b8552734237fc09045fabc4ca9b4",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Ranger_BaseColor.png",
+   "bytes": 6630927,
+   "mb": 6.32,
+   "sha256": "846ef2170b04ee584ad83bb8a1e86dab57a9a43b1193204505912c274d949925",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Ranger_Normal.png",
+   "bytes": 12713653,
+   "mb": 12.12,
+   "sha256": "dd64da2af3180f0c8f0b721cfc5f0d2720c351b97da8285c6cf49e7717c84147",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Ranger_ORM.png",
+   "bytes": 10792085,
+   "mb": 10.29,
+   "sha256": "aca03d2fba12508ef07d5968ca22267fb207ea26ae898b6b2def8a296bd44f1c",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Regular_Female_Dark_BaseColor.png",
+   "bytes": 1348542,
+   "mb": 1.29,
+   "sha256": "3b6ab973f9f3d6f8961226a0dbd99cf6d1b72df3795a8a5c1620a55754c161c2",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Regular_Female_Normal.png",
+   "bytes": 3913459,
+   "mb": 3.73,
+   "sha256": "e1051d3d56df9cf061bc14c769c37253aecd595f8275f9d4c0d6e0e953c00e18",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Regular_Female_Roughness.png",
+   "bytes": 3274215,
+   "mb": 3.12,
+   "sha256": "da541fbd4b3bffe754fada5c29f8a0d8f836bf20ce7df8273607af4729a3a5ae",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Regular_Male_Dark_BaseColor.png",
+   "bytes": 1316151,
+   "mb": 1.26,
+   "sha256": "b4dcc0f4139aab548d7c070c4655bd2080ef16caeaaabee6c4aeb693c524e802",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Regular_Male_Normal.png",
+   "bytes": 4064184,
+   "mb": 3.88,
+   "sha256": "10cd71e2453e577fdd43e912b6016a99baf64964f0593e524bdd304855e15e2a",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Regular_Male_Roughness.png",
+   "bytes": 3160102,
+   "mb": 3.01,
+   "sha256": "086c2eb25bddfdb77d8e639ccbffb8df723ef4a1910d8e1b217e852f8668bfe5",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Superhero_Female_Dark_BaseColor.png",
+   "bytes": 1319410,
+   "mb": 1.26,
+   "sha256": "d366843ee7d9e9f37ec87a0e1c98c7f2e45573c08eeb80a51a6d9344e68cf288",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Superhero_Female_Normal.png",
+   "bytes": 3420584,
+   "mb": 3.26,
+   "sha256": "3b90600cbd90d1e8b39bcb0befee4333388003a82af9d0ff00825d144cf99373",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Superhero_Female_Roughness.png",
+   "bytes": 1997719,
+   "mb": 1.91,
+   "sha256": "4e00eb2d8196cebacd027e3360b9da6431d8915e27e1b5262c14f20eaaa6dced",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Superhero_Male_Dark.png",
+   "bytes": 1384380,
+   "mb": 1.32,
+   "sha256": "df680cbc1967a61e85998bfafb8f7bc0a36dd604bb3266486c4b06b1a184bb45",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Superhero_Male_Normal.png",
+   "bytes": 3687166,
+   "mb": 3.52,
+   "sha256": "3645858289beb51643155a924e5148735dd5fe226230532936375c06ba829dec",
+   "kind": "texture",
+   "source": null
+  },
+  {
+   "path": "3d/textures/T_Superhero_Male_Roughness.png",
+   "bytes": 1912686,
+   "mb": 1.82,
+   "sha256": "5079fd95603bdd34700abd42ca6bcf43b615929f29134822aeb63a3a8bb3400c",
+   "kind": "texture",
+   "source": null
+  }
+ ]
+}

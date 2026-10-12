@@ -1,0 +1,1094 @@
+{
+ "task": "task-1",
+ "generated_at": "2026-10-12 18:18:16",
+ "jobs_total": 19,
+ "jobs_ok": 19,
+ "jobs_failed": [],
+ "blends": [
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/BaseCharacter_Superhero_Male.blend",
+   "kind": "skinned",
+   "size_mb": 14.84,
+   "mesh_count": 3,
+   "meshes": [
+    "Eyebrows",
+    "Eyes",
+    "SuperHero_Male"
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Superhero_Male_FullBody",
+     "bones": 65
+    }
+   ],
+   "tris": 14318,
+   "verts": 8483,
+   "images_total": 7,
+   "images_packed": 7,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [],
+   "collections": [
+    "BaseCharacters/Superhero_Male"
+   ],
+   "readme_text": true,
+   "relink_fixed": [
+    {
+     "image": "T_Eye_Normal.png",
+     "orig_name": "T_Eye_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Eye_Normal.png",
+     "renamed": true
+    },
+    {
+     "image": "T_Hair_1_Normal.png",
+     "orig_name": "T_Hair_1_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Hair_1_Normal.png",
+     "renamed": true
+    }
+   ],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/BaseCharacter_Superhero_Male.png",
+    "exists": true,
+    "bytes": 497014,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/BaseCharacter_Superhero_Female.blend",
+   "kind": "skinned",
+   "size_mb": 15.14,
+   "mesh_count": 3,
+   "meshes": [
+    "Eyebrows",
+    "Eyes",
+    "Superhero_Female"
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Superhero_Female_FullBody",
+     "bones": 65
+    }
+   ],
+   "tris": 15060,
+   "verts": 8844,
+   "images_total": 7,
+   "images_packed": 7,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [],
+   "collections": [
+    "BaseCharacters/Superhero_Female"
+   ],
+   "readme_text": true,
+   "relink_fixed": [
+    {
+     "image": "T_Eye_Normal.png",
+     "orig_name": "T_Eye_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Eye_Normal.png",
+     "renamed": true
+    }
+   ],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/BaseCharacter_Superhero_Female.png",
+    "exists": true,
+    "bytes": 492600,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Female__HeadBone.blend",
+   "kind": "skinned",
+   "size_mb": 6.3,
+   "mesh_count": 1,
+   "meshes": [
+    "Eyebrows_Female"
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Eyebrows_Female",
+     "bones": 65
+    }
+   ],
+   "tris": 1480,
+   "verts": 912,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [],
+   "collections": [
+    "Hairstyles_HeadBone/Eyebrows_Female"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Eyebrows_Female__HeadBone.png",
+    "exists": true,
+    "bytes": 470010,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Regular__HeadBone.blend",
+   "kind": "skinned",
+   "size_mb": 5.77,
+   "mesh_count": 1,
+   "meshes": [
+    "Eyebrows_Regular"
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Eyebrows_Regular",
+     "bones": 65
+    }
+   ],
+   "tris": 984,
+   "verts": 646,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [],
+   "collections": [
+    "Hairstyles_HeadBone/Eyebrows_Regular"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Eyebrows_Regular__HeadBone.png",
+    "exists": true,
+    "bytes": 469046,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Beard__HeadBone.blend",
+   "kind": "skinned",
+   "size_mb": 5.77,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_Beard"
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Hair_Beard",
+     "bones": 65
+    }
+   ],
+   "tris": 1034,
+   "verts": 596,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [],
+   "collections": [
+    "Hairstyles_HeadBone/Hair_Beard"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Beard__HeadBone.png",
+    "exists": true,
+    "bytes": 507936,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buns__HeadBone.blend",
+   "kind": "skinned",
+   "size_mb": 6.38,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_Buns"
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Hair_Buns",
+     "bones": 65
+    }
+   ],
+   "tris": 3284,
+   "verts": 3501,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [],
+   "collections": [
+    "Hairstyles_HeadBone/Hair_Buns"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Buns__HeadBone.png",
+    "exists": true,
+    "bytes": 510429,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buzzed__HeadBone.blend",
+   "kind": "skinned",
+   "size_mb": 5.76,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_Buzzed"
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Hair_Buzzed",
+     "bones": 65
+    }
+   ],
+   "tris": 830,
+   "verts": 466,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [],
+   "collections": [
+    "Hairstyles_HeadBone/Hair_Buzzed"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Buzzed__HeadBone.png",
+    "exists": true,
+    "bytes": 519636,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_BuzzedFemale__HeadBone.blend",
+   "kind": "skinned",
+   "size_mb": 5.76,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_BuzzedFemale"
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Hair_BuzzedFemale",
+     "bones": 65
+    }
+   ],
+   "tris": 830,
+   "verts": 466,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [],
+   "collections": [
+    "Hairstyles_HeadBone/Hair_BuzzedFemale"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_BuzzedFemale__HeadBone.png",
+    "exists": true,
+    "bytes": 516262,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Long__HeadBone.blend",
+   "kind": "skinned",
+   "size_mb": 6.37,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_Long"
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Hair_Long",
+     "bones": 65
+    }
+   ],
+   "tris": 2906,
+   "verts": 3080,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [],
+   "collections": [
+    "Hairstyles_HeadBone/Hair_Long"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Long__HeadBone.png",
+    "exists": true,
+    "bytes": 538131,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_SimpleParted__HeadBone.blend",
+   "kind": "skinned",
+   "size_mb": 5.78,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_SimpleParted"
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Hair_SimpleParted",
+     "bones": 65
+    }
+   ],
+   "tris": 1301,
+   "verts": 757,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [],
+   "collections": [
+    "Hairstyles_HeadBone/Hair_SimpleParted"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_SimpleParted__HeadBone.png",
+    "exists": true,
+    "bytes": 534729,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Female__Origin0.blend",
+   "kind": "static",
+   "size_mb": 6.28,
+   "mesh_count": 1,
+   "meshes": [
+    "Eyebrows_Female"
+   ],
+   "rigs": [],
+   "tris": 1480,
+   "verts": 912,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [
+    "Eyebrows_Female"
+   ],
+   "collections": [
+    "Hairstyles_Origin0/Eyebrows_Female"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Eyebrows_Female__Origin0.png",
+    "exists": true,
+    "bytes": 470145,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [
+     "rigs>=1（源 glTF skins=0，静态件）",
+     "bones==65（静态件无 rig）",
+     "unskinned==[]（静态件本就没有 armature modifier）"
+    ],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Eyebrows_Regular__Origin0.blend",
+   "kind": "static",
+   "size_mb": 5.75,
+   "mesh_count": 1,
+   "meshes": [
+    "Eyebrows_Regular"
+   ],
+   "rigs": [],
+   "tris": 984,
+   "verts": 646,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [
+    "Eyebrows_Regular"
+   ],
+   "collections": [
+    "Hairstyles_Origin0/Eyebrows_Regular"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Eyebrows_Regular__Origin0.png",
+    "exists": true,
+    "bytes": 469059,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [
+     "rigs>=1（源 glTF skins=0，静态件）",
+     "bones==65（静态件无 rig）",
+     "unskinned==[]（静态件本就没有 armature modifier）"
+    ],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Beard__Origin0.blend",
+   "kind": "static",
+   "size_mb": 5.75,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_Beard"
+   ],
+   "rigs": [],
+   "tris": 1034,
+   "verts": 596,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [
+    "Hair_Beard"
+   ],
+   "collections": [
+    "Hairstyles_Origin0/Hair_Beard"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Beard__Origin0.png",
+    "exists": true,
+    "bytes": 507523,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [
+     "rigs>=1（源 glTF skins=0，静态件）",
+     "bones==65（静态件无 rig）",
+     "unskinned==[]（静态件本就没有 armature modifier）"
+    ],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buns__Origin0.blend",
+   "kind": "static",
+   "size_mb": 6.36,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_Buns"
+   ],
+   "rigs": [],
+   "tris": 3284,
+   "verts": 3502,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [
+    "Hair_Buns"
+   ],
+   "collections": [
+    "Hairstyles_Origin0/Hair_Buns"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Buns__Origin0.png",
+    "exists": true,
+    "bytes": 510270,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [
+     "rigs>=1（源 glTF skins=0，静态件）",
+     "bones==65（静态件无 rig）",
+     "unskinned==[]（静态件本就没有 armature modifier）"
+    ],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Buzzed__Origin0.blend",
+   "kind": "static",
+   "size_mb": 5.74,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_Buzzed"
+   ],
+   "rigs": [],
+   "tris": 830,
+   "verts": 466,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [
+    "Hair_Buzzed"
+   ],
+   "collections": [
+    "Hairstyles_Origin0/Hair_Buzzed"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Buzzed__Origin0.png",
+    "exists": true,
+    "bytes": 519565,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [
+     "rigs>=1（源 glTF skins=0，静态件）",
+     "bones==65（静态件无 rig）",
+     "unskinned==[]（静态件本就没有 armature modifier）"
+    ],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_BuzzedFemale__Origin0.blend",
+   "kind": "static",
+   "size_mb": 5.74,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_BuzzedFemale"
+   ],
+   "rigs": [],
+   "tris": 830,
+   "verts": 466,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [
+    "Hair_BuzzedFemale"
+   ],
+   "collections": [
+    "Hairstyles_Origin0/Hair_BuzzedFemale"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_BuzzedFemale__Origin0.png",
+    "exists": true,
+    "bytes": 516204,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [
+     "rigs>=1（源 glTF skins=0，静态件）",
+     "bones==65（静态件无 rig）",
+     "unskinned==[]（静态件本就没有 armature modifier）"
+    ],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_Long__Origin0.blend",
+   "kind": "static",
+   "size_mb": 6.35,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_Long"
+   ],
+   "rigs": [],
+   "tris": 2906,
+   "verts": 3080,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [
+    "Hair_Long"
+   ],
+   "collections": [
+    "Hairstyles_Origin0/Hair_Long"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_Long__Origin0.png",
+    "exists": true,
+    "bytes": 537996,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [
+     "rigs>=1（源 glTF skins=0，静态件）",
+     "bones==65（静态件无 rig）",
+     "unskinned==[]（静态件本就没有 armature modifier）"
+    ],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/Hair_Hair_SimpleParted__Origin0.blend",
+   "kind": "static",
+   "size_mb": 5.76,
+   "mesh_count": 1,
+   "meshes": [
+    "Hair_SimpleParted"
+   ],
+   "rigs": [],
+   "tris": 1301,
+   "verts": 757,
+   "images_total": 2,
+   "images_packed": 2,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [
+    "Hair_SimpleParted"
+   ],
+   "collections": [
+    "Hairstyles_Origin0/Hair_SimpleParted"
+   ],
+   "readme_text": true,
+   "relink_fixed": [],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/Hair_Hair_SimpleParted__Origin0.png",
+    "exists": true,
+    "bytes": 534750,
+    "wh": [
+     600,
+     800
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [
+     "rigs>=1（源 glTF skins=0，静态件）",
+     "bones==65（静态件无 rig）",
+     "unskinned==[]（静态件本就没有 armature modifier）"
+    ],
+    "issues": []
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/UBC_Standard_ALL.blend",
+   "kind": "mixed",
+   "size_mb": 54.21,
+   "mesh_count": 22,
+   "meshes": [
+    "Eyebrows",
+    "Eyebrows.001",
+    "Eyebrows_Female",
+    "Eyebrows_Female.001",
+    "Eyebrows_Regular",
+    "Eyebrows_Regular.001",
+    "Eyes",
+    "Eyes.001",
+    "Hair_Beard",
+    "Hair_Beard.001",
+    "Hair_Buns",
+    "Hair_Buns.001",
+    "Hair_Buzzed",
+    "Hair_Buzzed.001",
+    "Hair_BuzzedFemale",
+    "Hair_BuzzedFemale.001",
+    "Hair_Long",
+    "Hair_Long.001",
+    "Hair_SimpleParted",
+    "Hair_SimpleParted.001",
+    "Superhero_Female",
+    "SuperHero_Male"
+   ],
+   "rigs": [
+    {
+     "name": "RIG_Eyebrows_Female",
+     "bones": 65
+    },
+    {
+     "name": "RIG_Eyebrows_Regular",
+     "bones": 65
+    },
+    {
+     "name": "RIG_Hair_Beard",
+     "bones": 65
+    },
+    {
+     "name": "RIG_Hair_Buns",
+     "bones": 65
+    },
+    {
+     "name": "RIG_Hair_Buzzed",
+     "bones": 65
+    },
+    {
+     "name": "RIG_Hair_BuzzedFemale",
+     "bones": 65
+    },
+    {
+     "name": "RIG_Hair_Long",
+     "bones": 65
+    },
+    {
+     "name": "RIG_Hair_SimpleParted",
+     "bones": 65
+    },
+    {
+     "name": "RIG_Superhero_Female_FullBody",
+     "bones": 65
+    },
+    {
+     "name": "RIG_Superhero_Male_FullBody",
+     "bones": 65
+    }
+   ],
+   "tris": 54676,
+   "verts": 38176,
+   "images_total": 21,
+   "images_packed": 21,
+   "images_size_zero": [],
+   "images_unpacked": [],
+   "unskinned": [
+    "Eyebrows_Female.001",
+    "Eyebrows_Regular.001",
+    "Hair_Beard.001",
+    "Hair_Buns.001",
+    "Hair_Buzzed.001",
+    "Hair_BuzzedFemale.001",
+    "Hair_Long.001",
+    "Hair_SimpleParted.001"
+   ],
+   "collections": [
+    "BaseCharacters/Superhero_Female",
+    "BaseCharacters/Superhero_Male",
+    "Hairstyles_HeadBone/Eyebrows_Female",
+    "Hairstyles_HeadBone/Eyebrows_Regular",
+    "Hairstyles_HeadBone/Hair_Beard",
+    "Hairstyles_HeadBone/Hair_Buns",
+    "Hairstyles_HeadBone/Hair_Buzzed",
+    "Hairstyles_HeadBone/Hair_BuzzedFemale",
+    "Hairstyles_HeadBone/Hair_Long",
+    "Hairstyles_HeadBone/Hair_SimpleParted",
+    "Hairstyles_Origin0/Eyebrows_Female",
+    "Hairstyles_Origin0/Eyebrows_Regular",
+    "Hairstyles_Origin0/Hair_Beard",
+    "Hairstyles_Origin0/Hair_Buns",
+    "Hairstyles_Origin0/Hair_Buzzed",
+    "Hairstyles_Origin0/Hair_BuzzedFemale",
+    "Hairstyles_Origin0/Hair_Long",
+    "Hairstyles_Origin0/Hair_SimpleParted"
+   ],
+   "readme_text": true,
+   "relink_fixed": [
+    {
+     "image": "T_Eye_Normal.png",
+     "orig_name": "T_Eye_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Eye_Normal.png",
+     "renamed": true
+    },
+    {
+     "image": "T_Eye_Normal.png.001",
+     "orig_name": "T_Eye_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Eye_Normal.png",
+     "renamed": true
+    },
+    {
+     "image": "T_Hair_1_Normal.png",
+     "orig_name": "T_Hair_1_Normal_png.png",
+     "path": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Hair_1_Normal.png",
+     "renamed": true
+    }
+   ],
+   "relink_missing": [],
+   "preview": {
+    "ok": true,
+    "engine": "BLENDER_EEVEE",
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/ubc-blend/preview/UBC_Standard_ALL.png",
+    "exists": true,
+    "bytes": 1645517,
+    "wh": [
+     1600,
+     1000
+    ],
+    "wh_ok": true
+   },
+   "gate": {
+    "ok": true,
+    "na": [
+     "混装件：8 个 _Origin0 静态 mesh 的 rig/unskinned 判据"
+    ],
+    "issues": []
+   }
+  }
+ ],
+ "totals": {
+  "blends": 19,
+  "size_mb_sum": 179.81,
+  "tris_sum": 109352,
+  "verts_sum": 76352,
+  "skinned_blends": 10,
+  "static_blends": 8,
+  "mixed_blends": 1,
+  "rigs_total": 20,
+  "images_packed_sum": 67,
+  "images_total_sum": 67,
+  "relink_fixed_records": 6,
+  "relink_fixed_blends": [
+   "BaseCharacter_Superhero_Male.blend",
+   "BaseCharacter_Superhero_Female.blend",
+   "UBC_Standard_ALL.blend"
+  ],
+  "relink_fixed_upstream_files": [
+   "T_Eye_Normal_png.png",
+   "T_Hair_1_Normal_png.png"
+  ],
+  "previews": 19
+ },
+ "gate_checks": {
+  "jobs_failed_empty": true,
+  "blends_exist_size_gt0": true,
+  "images_packed_eq_total_all": true,
+  "images_size_zero_empty_all": true,
+  "preview_ok_and_png_on_disk_all": true,
+  "preview_resolution_expected_all": true,
+  "skinned_blends_65bones_fully_skinned": true,
+  "static_blends_no_armature_vgroups0": true,
+  "mixed_blend_partition_ok": true,
+  "overall_pass": true
+ },
+ "anomalies": [
+  "上游源包坏引用（已由转换器 relink 修复，非转换器 bug）：Base Characters/Godot - UE/Superhero_Male_FullBody.gltf 的 images[].uri 写成 T_Hair_1_Normal_png.png / T_Eye_Normal_png.png，Superhero_Female_FullBody.gltf 写成 T_Eye_Normal_png.png，而包内实际文件是同目录的 T_Hair_1_Normal.png / T_Eye_Normal.png（全包 find 无 *_Normal_png.png）。修复前 Male 5/7、Female 6/7、ALL 18/21 packed，这 2 张图 Image.size=(0,0) 且 pack_all 报 'Unable to pack file ... not found'（.blend 不自包含）。pack2blend.py（md5 3681a28bf12e0a5f5f21316b50984ab1，relink 默认开启 + _name_candidates 文件名归一化）重跑后已修：Male fixed=2、Female fixed=1、ALL fixed=3，全部 renamed=true，现 7/7、7/7、21/21 packed、size_zero=[]。",
+  "静态件按源语义判 N/A：Hairstyles/Origin at 0/glTF (Godot)/<H>.gltf 8 份源头即静态网格（实测 nodes=1、skins=0，无 armature；converter-fbx 在 FBX 侧同样实测无 ARMATURE），因此 Hair_<H>__Origin0.blend 的「rigs≥1」「all bones==65」「unskinned==[]」三项记为 N/A（源资产固有属性），未伪造 rig。对应判定规则改为：静态件必须无 ARMATURE modifier 且 vertex_groups==0（8 份全部符合）。",
+  "UBC_Standard_ALL.blend 为混装件（kind=mixed）：10 个 65 骨 rig（2 形体 + 8 HeadBone 发型）+ 8 个 _Origin0 静态 mesh（Eyebrows_Female.001 / Eyebrows_Regular.001 / Hair_Beard.001 / Hair_Buns.001 / Hair_Buzzed.001 / Hair_BuzzedFemale.001 / Hair_Long.001 / Hair_SimpleParted.001，vgroups=0 且无 ARMATURE modifier）。静态部分同样按 N/A 处理，蒙皮部分 65 骨/满 vertex_groups 全过。",
+  "UBC_Standard_ALL 的 grid 总览图取景不合格（观感/取景问题，不影响 .blend 内数据完整性）：画幅 [1600, 1000]，18 个真实顶层件里只有 11 个完全落在画幅内、7 个被裁切（['Eyebrows_Female.001', 'Eyebrows_Regular.001', 'Hair_Buzzed.001', 'Hair_BuzzedFemale.001', 'Hair_Long.001', 'RIG_Eyebrows_Female', 'RIG_Hair_BuzzedFemale']）。两处根因都在 tmp/pack2blend/pack2blend.py（我未改动，已上报 lead）：(a) layout_grid() 经 top_level() 取顶层件时把 glTF 导入器的隐藏辅助体也算进去了 —— 本件 28 个顶层件 = 18 真实件 + 10 个 glTF_not_exported 集合里的 Icosphere（hide_render/hide_viewport=True，不渲染但占格子），于是网格变成 6 列×5 行、真实资产被排进散乱格子；(b) setup_stage()->bbox_of_meshes() 在 layout_grid() 移动对象之后没有 view_layer.update()，读到的是**未刷新**的 matrix_world，于是按位移前的 bbox（size=1.8589 m）而非位移后的 5.20×5.87 m 取景：相机落在 [0.0, -4.821, 1.064]，与位移前 bbox 的推算值 (0, -4.833, 1.049) 完全吻合，可视范围仅约 3.15×1.97 m，故边缘件被裁。另：grid dx=1.0 小于形体臂展 1.86 m，2 个形体同处一行（RIG_Superhero_Female_FullBody x=-0.50 / RIG_Superhero_Male_FullBody x=+0.50、y=5.60），手臂互相穿插约 0.86 m。建议：top_level() 排除 HELPER 集合、setup_stage() 前调用 view_layer.update()、grid dx≥2.0 或把形体单独排一行/改正交相机。其余 18 份单件 preview（layout=none）取景正常，未受影响。",
+  "收尾清理（lead 2026-10-12 指派）：删除 download/ubc-blend/*.blend1 共 19 份（180 MB，Blender 覆盖保存同名 .blend 时的自动备份，可再生、非交付物）；19 份 .blend 与 19 张 preview 未动。",
+  "过程记录（已被 RUN2 取代，不是缺陷）：首轮转换（pack2blend.py 修好前）我用 download/ubc-blend/tools/fix_textures.py 对 Male/Female/ALL 三份 .blend 做过一次性就地重链（结果与 RUN2 一致，size 14.84/15.14/54.21 MB 未变）；RUN2 起贴图修复来自转换器 relink 本身，该脚本已停用，仅作证据/兜底保留。"
+ ],
+ "evidence": {
+  "converter": {
+   "script": "tmp/pack2blend/pack2blend.py",
+   "md5": "3681a28bf12e0a5f5f21316b50984ab1",
+   "blender": "5.2.2 LTS"
+  },
+  "spec": "tmp/pack2blend/specs/ubc.json",
+  "log": "tmp/pack2blend/logs/ubc.log",
+  "log_records": {
+   "JOB_RESULT": 19,
+   "VERIFY_RESULT": 19,
+   "FIX_RESULT": 3
+  },
+  "source_root": "tmp/ubc/Universal Base Characters[Standard]",
+  "tools": [
+   "download/ubc-blend/tools/verify_blends.py（落盘复测，本报告数值来源）",
+   "download/ubc-blend/tools/check_all_framing.py（总览图取景量化）",
+   "download/ubc-blend/tools/fix_textures.py（首轮兜底，已停用）"
+  ],
+  "framing": {
+   "resolution": [
+    1600,
+    1000
+   ],
+   "camera": {
+    "loc": [
+     0.0,
+     -4.821,
+     1.064
+    ],
+    "lens": 55.0
+   },
+   "top_level_items": 28,
+   "asset_items": 18,
+   "helper_items": 10,
+   "fully_inside": 11,
+   "clipped_names": [
+    "Eyebrows_Female.001",
+    "Eyebrows_Regular.001",
+    "Hair_Buzzed.001",
+    "Hair_BuzzedFemale.001",
+    "Hair_Long.001",
+    "RIG_Eyebrows_Female",
+    "RIG_Hair_BuzzedFemale"
+   ]
+  }
+ },
+ "housekeeping": [
+  "删除 download/ubc-blend/*.blend1 共 19 份（Blender 自动备份，180 MB）；19 份 .blend 与 preview/*.png（19 张）保留。",
+  "download/ubc-blend/tools/ 下 3 个脚本仅作复现/证据，不是交付物本体。"
+ ]
+}

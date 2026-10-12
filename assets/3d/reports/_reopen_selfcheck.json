@@ -1,0 +1,329 @@
+{
+ "generated_by": "/tmp/reopen_check.py (Blender 5.2.2, 独立重开)",
+ "all_pass": true,
+ "results": [
+  {
+   "blend": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/outfits/Male_Ranger.blend",
+   "kind": "skinned",
+   "checks": {
+    "rig_count_ge1": true,
+    "all_bones_65": true,
+    "all_meshes_armature_modifier": true,
+    "all_meshes_vgroups_gt0": true,
+    "images_nonempty": true,
+    "all_images_packed": true,
+    "no_zero_size_image": true,
+    "materials_have_tex_image": true,
+    "has_material": true
+   },
+   "errors": [],
+   "rigs": [
+    {
+     "name": "RIG_Male_Ranger",
+     "bones": 65
+    }
+   ],
+   "mesh_count": 9,
+   "images": [
+    {
+     "name": "T_Ranger_BaseColor.png",
+     "size": [
+      4096,
+      4096
+     ],
+     "packed": true,
+     "bytes": 6630927
+    },
+    {
+     "name": "T_Ranger_Normal.png",
+     "size": [
+      4096,
+      4096
+     ],
+     "packed": true,
+     "bytes": 12713653
+    },
+    {
+     "name": "T_Regular_Male_Dark_BaseColor.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 1316151
+    },
+    {
+     "name": "T_Regular_Male_Normal.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 4064184
+    },
+    {
+     "name": "T_Regular_Male_Roughness.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 3160102
+    }
+   ],
+   "tex_image_nodes": 5,
+   "helper_collection": null,
+   "pass": true
+  },
+  {
+   "blend": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/mco/parts/Male_Ranger_Arms.blend",
+   "kind": "skinned",
+   "checks": {
+    "rig_count_ge1": true,
+    "all_bones_65": true,
+    "all_meshes_armature_modifier": true,
+    "all_meshes_vgroups_gt0": true,
+    "images_nonempty": true,
+    "all_images_packed": true,
+    "no_zero_size_image": true,
+    "materials_have_tex_image": true,
+    "has_material": true
+   },
+   "errors": [],
+   "rigs": [
+    {
+     "name": "RIG_Male_Ranger_Arms",
+     "bones": 65
+    }
+   ],
+   "mesh_count": 2,
+   "images": [
+    {
+     "name": "T_Ranger_BaseColor.png",
+     "size": [
+      4096,
+      4096
+     ],
+     "packed": true,
+     "bytes": 6630927
+    },
+    {
+     "name": "T_Ranger_Normal.png",
+     "size": [
+      4096,
+      4096
+     ],
+     "packed": true,
+     "bytes": 12713653
+    },
+    {
+     "name": "T_Regular_Male_Dark_BaseColor.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 1316151
+    },
+    {
+     "name": "T_Regular_Male_Normal.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 4064184
+    },
+    {
+     "name": "T_Regular_Male_Roughness.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 3160102
+    }
+   ],
+   "tex_image_nodes": 5,
+   "helper_collection": null,
+   "pass": true
+  },
+  {
+   "blend": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/base/Superhero_Male_FullBody.blend",
+   "kind": "skinned",
+   "checks": {
+    "rig_count_ge1": true,
+    "all_bones_65": true,
+    "all_meshes_armature_modifier": true,
+    "all_meshes_vgroups_gt0": true,
+    "images_nonempty": true,
+    "all_images_packed": true,
+    "no_zero_size_image": true,
+    "materials_have_tex_image": true,
+    "has_material": true
+   },
+   "errors": [],
+   "rigs": [
+    {
+     "name": "RIG_Superhero_Male_FullBody",
+     "bones": 65
+    }
+   ],
+   "mesh_count": 3,
+   "images": [
+    {
+     "name": "T_Eye_Brown.png",
+     "size": [
+      256,
+      256
+     ],
+     "packed": true,
+     "bytes": 35958
+    },
+    {
+     "name": "T_Eye_Normal.png.001",
+     "size": [
+      256,
+      256
+     ],
+     "packed": true,
+     "bytes": 15097
+    },
+    {
+     "name": "T_Hair_1_BaseColor.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 1570376
+    },
+    {
+     "name": "T_Hair_1_Normal.png.001",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 3770683
+    },
+    {
+     "name": "T_Superhero_Male_Dark.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 1384380
+    },
+    {
+     "name": "T_Superhero_Male_Normal.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 3687166
+    },
+    {
+     "name": "T_Superhero_Male_Roughness.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 1912686
+    }
+   ],
+   "tex_image_nodes": 7,
+   "helper_collection": null,
+   "pass": true
+  },
+  {
+   "blend": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_headbone/Hair_Long.blend",
+   "kind": "skinned",
+   "checks": {
+    "rig_count_ge1": true,
+    "all_bones_65": true,
+    "all_meshes_armature_modifier": true,
+    "all_meshes_vgroups_gt0": true,
+    "images_nonempty": true,
+    "all_images_packed": true,
+    "no_zero_size_image": true,
+    "materials_have_tex_image": true,
+    "has_material": true
+   },
+   "errors": [],
+   "rigs": [
+    {
+     "name": "RIG_Hair_Long",
+     "bones": 65
+    }
+   ],
+   "mesh_count": 1,
+   "images": [
+    {
+     "name": "T_Hair_2_BaseColor.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 1729467
+    },
+    {
+     "name": "T_Hair_2_Normal.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 4109628
+    }
+   ],
+   "tex_image_nodes": 2,
+   "helper_collection": null,
+   "pass": true
+  },
+  {
+   "blend": "/Users/zhenkunzhu/Desktop/project/artstudio/download/fbx-blend/ubc/hair_origin0/Hair_Long.blend",
+   "kind": "static",
+   "checks": {
+    "no_armature": true,
+    "no_armature_modifier": true,
+    "all_vgroups_zero": true,
+    "images_nonempty": true,
+    "all_images_packed": true,
+    "no_zero_size_image": true,
+    "materials_have_tex_image": true,
+    "has_material": true
+   },
+   "errors": [],
+   "rigs": [],
+   "mesh_count": 1,
+   "images": [
+    {
+     "name": "T_Hair_2_BaseColor.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 1729467
+    },
+    {
+     "name": "T_Hair_2_Normal.png",
+     "size": [
+      2048,
+      2048
+     ],
+     "packed": true,
+     "bytes": 4109628
+    }
+   ],
+   "tex_image_nodes": 2,
+   "helper_collection": null,
+   "pass": true
+  }
+ ]
+}

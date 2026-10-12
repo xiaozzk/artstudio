@@ -1,0 +1,61 @@
+{
+ "mode": "fix",
+ "files": {
+  "TryOn_Male_Peasant.blend": {
+   "geom_sha256": "dac727f7bae5c19a1557ac8a9847eaf6e0197b1dd9575289df24786ebe38b93b",
+   "texts": [
+    "README_试穿说明"
+   ],
+   "text_len": {
+    "README_试穿说明": 726
+   },
+   "geom_sha256_after": "dac727f7bae5c19a1557ac8a9847eaf6e0197b1dd9575289df24786ebe38b93b",
+   "geom_unchanged": true,
+   "text_len_after": {
+    "README_试穿说明": 1075
+   }
+  },
+  "TryOn_Female_Peasant.blend": {
+   "geom_sha256": "80ffa6cca336e960334aa506fc18d3d2a207e5cd255b6245d63bce33066196b7",
+   "texts": [
+    "README_试穿说明"
+   ],
+   "text_len": {
+    "README_试穿说明": 726
+   },
+   "geom_sha256_after": "80ffa6cca336e960334aa506fc18d3d2a207e5cd255b6245d63bce33066196b7",
+   "geom_unchanged": true,
+   "text_len_after": {
+    "README_试穿说明": 1073
+   }
+  },
+  "TryOn_Male_Ranger.blend": {
+   "geom_sha256": "c78fbb959a6a36e703e5d623874ff11a8b3bbfe050eedd4a3908a13d02d19614",
+   "texts": [
+    "README_试穿说明"
+   ],
+   "text_len": {
+    "README_试穿说明": 718
+   },
+   "geom_sha256_after": "c78fbb959a6a36e703e5d623874ff11a8b3bbfe050eedd4a3908a13d02d19614",
+   "geom_unchanged": true,
+   "text_len_after": {
+    "README_试穿说明": 1073
+   }
+  },
+  "TryOn_Female_Ranger.blend": {
+   "geom_sha256": "fe6c171dbef1a02494245bbe537160e49f4045228fa875b3345eed90c42f4708",
+   "texts": [
+    "README_试穿说明"
+   ],
+   "text_len": {
+    "README_试穿说明": 726
+   },
+   "geom_sha256_after": "fe6c171dbef1a02494245bbe537160e49f4045228fa875b3345eed90c42f4708",
+   "geom_unchanged": true,
+   "text_len_after": {
+    "README_试穿说明": 1079
+   }
+  }
+ }
+}

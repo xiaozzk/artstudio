@@ -1,0 +1,198 @@
+{
+  "Outfit_Male_Peasant.blend": {
+    "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/Outfit_Male_Peasant.blend",
+    "size_mb": 36.6,
+    "objects_total": 9,
+    "object_kinds": {
+      "MESH": 5,
+      "ARMATURE": 1,
+      "EMPTY": 0,
+      "CAMERA": 1,
+      "LIGHT": 2
+    },
+    "rigs": {
+      "RIG_Male_Peasant": 65
+    },
+    "verts": 8897,
+    "tris": 12974,
+    "images": 6,
+    "images_packed": 6,
+    "images_size0": [],
+    "materials": 2,
+    "collections": [
+      "Outfit/Male_Peasant"
+    ]
+  },
+  "Outfit_Female_Peasant.blend": {
+    "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/Outfit_Female_Peasant.blend",
+    "size_mb": 28.4,
+    "objects_total": 9,
+    "object_kinds": {
+      "MESH": 5,
+      "ARMATURE": 1,
+      "EMPTY": 0,
+      "CAMERA": 1,
+      "LIGHT": 2
+    },
+    "rigs": {
+      "RIG_Female_Peasant": 65
+    },
+    "verts": 10226,
+    "tris": 13648,
+    "images": 3,
+    "images_packed": 3,
+    "images_size0": [],
+    "materials": 2,
+    "collections": [
+      "Outfit/Female_Peasant"
+    ]
+  },
+  "Outfit_Male_Ranger.blend": {
+    "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/Outfit_Male_Ranger.blend",
+    "size_mb": 38.1,
+    "objects_total": 14,
+    "object_kinds": {
+      "MESH": 10,
+      "ARMATURE": 1,
+      "EMPTY": 0,
+      "CAMERA": 1,
+      "LIGHT": 2
+    },
+    "rigs": {
+      "RIG_Male_Ranger": 65
+    },
+    "verts": 24915,
+    "tris": 27062,
+    "images": 6,
+    "images_packed": 6,
+    "images_size0": [],
+    "materials": 3,
+    "collections": [
+      "Outfit/Male_Ranger"
+    ]
+  },
+  "Outfit_Female_Ranger.blend": {
+    "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/Outfit_Female_Ranger.blend",
+    "size_mb": 38.1,
+    "objects_total": 14,
+    "object_kinds": {
+      "MESH": 10,
+      "ARMATURE": 1,
+      "EMPTY": 0,
+      "CAMERA": 1,
+      "LIGHT": 2
+    },
+    "rigs": {
+      "RIG_Female_Ranger": 65
+    },
+    "verts": 24850,
+    "tris": 27046,
+    "images": 6,
+    "images_packed": 6,
+    "images_size0": [],
+    "materials": 2,
+    "collections": [
+      "Outfit/Female_Ranger"
+    ]
+  },
+  "ModularParts_Fantasy_Standard.blend": {
+    "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/ModularParts_Fantasy_Standard.blend",
+    "size_mb": 76.3,
+    "objects_total": 68,
+    "object_kinds": {
+      "MESH": 45,
+      "ARMATURE": 20,
+      "EMPTY": 0,
+      "CAMERA": 1,
+      "LIGHT": 2
+    },
+    "rigs": {
+      "RIG_Female_Peasant_Arms": 65,
+      "RIG_Female_Peasant_Body": 65,
+      "RIG_Female_Peasant_Feet": 65,
+      "RIG_Female_Peasant_Legs": 65,
+      "RIG_Female_Ranger_Acc_Pauldrons": 65,
+      "RIG_Female_Ranger_Arms": 65,
+      "RIG_Female_Ranger_Body": 65,
+      "RIG_Female_Ranger_Feet": 65,
+      "RIG_Female_Ranger_Head_Hood": 65,
+      "RIG_Female_Ranger_Legs": 65,
+      "RIG_Male_Peasant_Arms": 65,
+      "RIG_Male_Peasant_Body": 65,
+      "RIG_Male_Peasant_Feet": 65,
+      "RIG_Male_Peasant_Legs": 65,
+      "RIG_Male_Ranger_Acc_Pauldron": 65,
+      "RIG_Male_Ranger_Arms": 65,
+      "RIG_Male_Ranger_Body": 65,
+      "RIG_Male_Ranger_Feet_Boots": 65,
+      "RIG_Male_Ranger_Head_Hood": 65,
+      "RIG_Male_Ranger_Legs": 65
+    },
+    "verts": 65560,
+    "tris": 78374,
+    "images": 12,
+    "images_packed": 12,
+    "images_size0": [],
+    "materials": 24,
+    "collections": [
+      "ModularParts/Female_Peasant",
+      "ModularParts/Female_Ranger",
+      "ModularParts/Male_Peasant",
+      "ModularParts/Male_Ranger"
+    ]
+  },
+  "MCO-Fantasy_Standard_ALL.blend": {
+    "path": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/MCO-Fantasy_Standard_ALL.blend",
+    "size_mb": 150.7,
+    "objects_total": 102,
+    "object_kinds": {
+      "MESH": 75,
+      "ARMATURE": 24,
+      "EMPTY": 0,
+      "CAMERA": 1,
+      "LIGHT": 2
+    },
+    "rigs": {
+      "RIG_Female_Peasant": 65,
+      "RIG_Female_Peasant_Arms": 65,
+      "RIG_Female_Peasant_Body": 65,
+      "RIG_Female_Peasant_Feet": 65,
+      "RIG_Female_Peasant_Legs": 65,
+      "RIG_Female_Ranger": 65,
+      "RIG_Female_Ranger_Acc_Pauldrons": 65,
+      "RIG_Female_Ranger_Arms": 65,
+      "RIG_Female_Ranger_Body": 65,
+      "RIG_Female_Ranger_Feet": 65,
+      "RIG_Female_Ranger_Head_Hood": 65,
+      "RIG_Female_Ranger_Legs": 65,
+      "RIG_Male_Peasant": 65,
+      "RIG_Male_Peasant_Arms": 65,
+      "RIG_Male_Peasant_Body": 65,
+      "RIG_Male_Peasant_Feet": 65,
+      "RIG_Male_Peasant_Legs": 65,
+      "RIG_Male_Ranger": 65,
+      "RIG_Male_Ranger_Acc_Pauldron": 65,
+      "RIG_Male_Ranger_Arms": 65,
+      "RIG_Male_Ranger_Body": 65,
+      "RIG_Male_Ranger_Feet_Boots": 65,
+      "RIG_Male_Ranger_Head_Hood": 65,
+      "RIG_Male_Ranger_Legs": 65
+    },
+    "verts": 134448,
+    "tris": 159104,
+    "images": 24,
+    "images_packed": 24,
+    "images_size0": [],
+    "materials": 33,
+    "collections": [
+      "01_Outfits/Female_Peasant",
+      "01_Outfits/Female_Ranger",
+      "01_Outfits/Male_Peasant",
+      "01_Outfits/Male_Ranger",
+      "02_ModularParts/Female_Peasant",
+      "02_ModularParts/Female_Ranger",
+      "02_ModularParts/Male_Peasant",
+      "02_ModularParts/Male_Ranger"
+    ]
+  }
+}

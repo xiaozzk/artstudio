@@ -44,10 +44,19 @@ task/NNN-短横线-slug/
 
 | 编号 | 目录 | 状态 | 一句话 |
 |------|------|------|--------|
-| 002 | `002-anim-retarget/` | 规划中 | 成品动画参数迁移：提取功能动作模板 → 语义映射注入交付包 JSON → 官方 player 验收 |
-| 003 | `003-spine-facing-unify/` | 规划中 | assets/2d 107 包全量烘焙镜像统一朝向（002 子任务衍生）：共轭烘焙只动 root 直接子骨，迁移直搬零换算 |
-| 004 | `004-image-edit-local/` | 已完成 | tools/zenmux 改名 image-edit（图片编辑场景）+ 新增 mini-local sd-server 本地图片编辑工具（免费） |
-| 005 | `005-generic-skeleton/` | 已完成 | 通用骨骼：基于帝国圣骑士变体烘焙朝右（003 工具）+ 插槽识别重命名 44 骨（英文） |
+| 002 | ~~`002-anim-retarget/`~~ | **已归档** | 成品动画参数迁移：提取功能动作模板 → 语义映射注入交付包 JSON → 官方 player 验收 |
+| 003 | ~~`003-spine-facing-unify/`~~ | **已归档** | assets/2d 107 包全量烘焙镜像统一朝向（002 子任务衍生）：共轭烘焙只动 root 直接子骨，迁移直搬零换算 |
+| 004 | ~~`004-image-edit-local/`~~ | **已归档** | tools/zenmux 改名 image-edit（图片编辑场景）+ 新增 mini-local sd-server 本地图片编辑工具（免费） |
+| 005 | ~~`005-generic-skeleton/`~~ | **已归档** | 通用骨骼：基于帝国圣骑士变体烘焙朝右（003 工具）+ 插槽识别重命名 44 骨（英文） |
+| 006 | ~~`006-spine-convert-batch/`~~ | **已归档** | `download/convert` 50 包 Spine 3.8.95 → 4.3.26 批量转换 + 看图归档到 `assets/2d`（105 → 155 包） |
+| 007 | — | **下一个可用编号** | 3D 角色管线方向（素材台账 `assets/3d/`、工具 `tools/3d/`） |
 
+> 002~006 已于 2026-10 随 **3D 转型**整体归档；归档包 `archive-2d/tasks-2d.zip`
+> （445 文件 / 37 MB）随后**按用户决定删除（2026-10-13）** —— 任务已完成、可复用脚本已沉淀进 `tools/`，
+> 归档只剩追溯价值。**追溯途径**：002~005 的目录内容仍在 **git 历史**里；
+> **006（`006-spine-convert-batch`）从未入库**，其内容与随包 tmp 快照
+> （`帝国圣骑士变体` / `005-render` / `gen-1to5` / `verify-slot.png` / `slot_sheet.diff`）**已不再保留**。
+> 2D 时代的工具（`tools/spine/`、`tools/sprite/`、`tools/preview-2d/`）**保留可用**，但只作历史参考。
+>
 > 001（武僧素材遮罩局部重绘）已于 2026-09-24 **整目录删除**：方案不稳定（12 件批量替换里 4 件语义崩坏），
 > 用户判定放弃。相关工具 `tools/spine/spine_part_extract.py` 保留（代码里记着这次的实测结论）。

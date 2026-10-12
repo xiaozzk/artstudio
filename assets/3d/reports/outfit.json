@@ -1,0 +1,436 @@
+{
+ "jobs": [
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Male_Peasant.blend",
+   "title": "Outfit Male_Peasant",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 成品套装",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Male_Peasant.gltf",
+     "collection": "Outfit/Male_Peasant"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Male_Peasant.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Female_Peasant.blend",
+   "title": "Outfit Female_Peasant",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 成品套装",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Female_Peasant.gltf",
+     "collection": "Outfit/Female_Peasant"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Female_Peasant.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Male_Ranger.blend",
+   "title": "Outfit Male_Ranger",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 成品套装",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Male_Ranger.gltf",
+     "collection": "Outfit/Male_Ranger"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Male_Ranger.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/outfits/Outfit_Female_Ranger.blend",
+   "title": "Outfit Female_Ranger",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 成品套装",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Female_Ranger.gltf",
+     "collection": "Outfit/Female_Ranger"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Outfit_Female_Ranger.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Arms.blend",
+   "title": "Part Female_Peasant_Arms",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Peasant_Arms.gltf",
+     "collection": "Parts/Female_Peasant_Arms"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Arms.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Body.blend",
+   "title": "Part Female_Peasant_Body",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Peasant_Body.gltf",
+     "collection": "Parts/Female_Peasant_Body"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Body.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Feet.blend",
+   "title": "Part Female_Peasant_Feet",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Peasant_Feet.gltf",
+     "collection": "Parts/Female_Peasant_Feet"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Feet.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Peasant_Legs.blend",
+   "title": "Part Female_Peasant_Legs",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Peasant_Legs.gltf",
+     "collection": "Parts/Female_Peasant_Legs"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Peasant_Legs.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Acc_Pauldrons.blend",
+   "title": "Part Female_Ranger_Acc_Pauldrons",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Acc_Pauldrons.gltf",
+     "collection": "Parts/Female_Ranger_Acc_Pauldrons"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Acc_Pauldrons.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Arms.blend",
+   "title": "Part Female_Ranger_Arms",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Arms.gltf",
+     "collection": "Parts/Female_Ranger_Arms"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Arms.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Body.blend",
+   "title": "Part Female_Ranger_Body",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Body.gltf",
+     "collection": "Parts/Female_Ranger_Body"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Body.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Feet.blend",
+   "title": "Part Female_Ranger_Feet",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Feet.gltf",
+     "collection": "Parts/Female_Ranger_Feet"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Feet.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Head_Hood.blend",
+   "title": "Part Female_Ranger_Head_Hood",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Head_Hood.gltf",
+     "collection": "Parts/Female_Ranger_Head_Hood"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Head_Hood.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Female_Ranger_Legs.blend",
+   "title": "Part Female_Ranger_Legs",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Female_Ranger_Legs.gltf",
+     "collection": "Parts/Female_Ranger_Legs"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Female_Ranger_Legs.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Arms.blend",
+   "title": "Part Male_Peasant_Arms",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Peasant_Arms.gltf",
+     "collection": "Parts/Male_Peasant_Arms"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Arms.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Body.blend",
+   "title": "Part Male_Peasant_Body",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Peasant_Body.gltf",
+     "collection": "Parts/Male_Peasant_Body"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Body.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Feet.blend",
+   "title": "Part Male_Peasant_Feet",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Peasant_Feet.gltf",
+     "collection": "Parts/Male_Peasant_Feet"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Feet.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Peasant_Legs.blend",
+   "title": "Part Male_Peasant_Legs",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Peasant_Legs.gltf",
+     "collection": "Parts/Male_Peasant_Legs"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Peasant_Legs.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Acc_Pauldron.blend",
+   "title": "Part Male_Ranger_Acc_Pauldron",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Acc_Pauldron.gltf",
+     "collection": "Parts/Male_Ranger_Acc_Pauldron"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Acc_Pauldron.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Arms.blend",
+   "title": "Part Male_Ranger_Arms",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Arms.gltf",
+     "collection": "Parts/Male_Ranger_Arms"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Arms.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Body.blend",
+   "title": "Part Male_Ranger_Body",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Body.gltf",
+     "collection": "Parts/Male_Ranger_Body"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Body.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Feet_Boots.blend",
+   "title": "Part Male_Ranger_Feet_Boots",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Feet_Boots.gltf",
+     "collection": "Parts/Male_Ranger_Feet_Boots"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Feet_Boots.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Head_Hood.blend",
+   "title": "Part Male_Ranger_Head_Hood",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Head_Hood.gltf",
+     "collection": "Parts/Male_Ranger_Head_Hood"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Head_Hood.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/parts/Male_Ranger_Legs.blend",
+   "title": "Part Male_Ranger_Legs",
+   "notes": "Modular Character Outfits - Fantasy [Standard] / 模块化散件",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Modular Parts/Male_Ranger_Legs.gltf",
+     "collection": "Parts/Male_Ranger_Legs"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/blend/per-asset/preview/Male_Ranger_Legs.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  }
+ ]
+}

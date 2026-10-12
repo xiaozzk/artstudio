@@ -1,0 +1,65 @@
+{
+ "jobs": [
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/pack2blend/_smoke/smoke_gltf_hairstyle.blend",
+   "title": "smoke glTF hairstyle",
+   "notes": "smoke",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/ubc/Universal Base Characters[Standard]/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)/Hair_Long.gltf",
+     "collection": "Hair/Hair_Long"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/pack2blend/_smoke/p_hairstyle.png",
+    "w": 500,
+    "h": 700,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/pack2blend/_smoke/smoke_gltf_outfit.blend",
+   "title": "smoke glTF outfit",
+   "notes": "smoke",
+   "imports": [
+    {
+     "format": "gltf",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits/Male_Ranger.gltf",
+     "collection": "Outfit/Male_Ranger"
+    }
+   ],
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/pack2blend/_smoke/p_outfit.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  },
+  {
+   "out": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/pack2blend/_smoke/smoke_fbx_relink.blend",
+   "title": "smoke FBX relink",
+   "notes": "smoke",
+   "imports": [
+    {
+     "format": "fbx",
+     "file": "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/FBX (Unity)/Outfits/Male_Ranger.fbx",
+     "collection": "Outfit/Male_Ranger"
+    }
+   ],
+   "relink": {
+    "enabled": true,
+    "search_dirs": [
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Textures",
+     "/Users/zhenkunzhu/Desktop/project/artstudio/download/modular-outfits-fantasy/Modular Character Outfits - Fantasy[Standard]/Exports/glTF (Godot-Unreal)/Outfits"
+    ]
+   },
+   "preview": {
+    "out": "/Users/zhenkunzhu/Desktop/project/artstudio/tmp/pack2blend/_smoke/p_fbx.png",
+    "w": 600,
+    "h": 800,
+    "layout": "none"
+   }
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+; Godot 4.6 落地验证工程（task-5）
+; 素材一律用绝对路径在运行时经 GLTFDocument 加载，不复制进工程（避免重复 125MB 贴图）。
+config_version=5
+
+[application]
+
+config/name="godot-modular"
+config/features=PackedStringArray("4.6", "Forward Plus")
+
+[rendering]
+
+renderer/rendering_method="forward_plus"
+
+; 注意：不要在这里写 filesystem/import/blender/blender_path。
+; 实测 Godot 4.6 里它**只是 Editor Setting**（editor_settings.cpp:679 用 EDITOR_SETTING_USAGE 注册），
+; 写进 project.godot 完全无效；headless 下还会直接报
+; "Cannot configure blender path in headless mode"。正确做法见 REPORT.md 的「.blend 直读」一节。
