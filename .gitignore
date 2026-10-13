@@ -91,3 +91,4 @@ archive-2d/
 # 注：assets/3d/blend/ 经贴图去重改造后只剩网格（2.1 GB → 44 MB）+ 指向 assets/3d/textures/ 的相对路径，已改为入库
 assets/3d/packs/
 assets/2d/
+

@@ -1,0 +1,1303 @@
+{
+  "generated_by": "verifier/v_nontrivial.py",
+  "classified": {
+    "moved": "max|disp| > 1e-4 cm",
+    "BUG_suspect": "体形骨有权重却零位移",
+    "static_by_design": "无权重且零位移",
+    "moves_but_unweighted": "无权重却有位移（位置继承, SPEC F14)"
+  },
+  "cases": [
+    {
+      "outfit": "Female_Ranger",
+      "per_part": {
+        "Female_Ranger_Acc_Pauldrons": {
+          "BS_Thin": {
+            "max_disp_cm": 2.26257,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 2.96963,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          }
+        },
+        "Female_Ranger_Arms": {
+          "BS_Thin": {
+            "max_disp_cm": 1.80353,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.28862,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 2.36713,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.28862,
+            "class": "moved"
+          }
+        },
+        "Female_Ranger_Arms_Bracer": {
+          "BS_Thin": {
+            "max_disp_cm": 1.93189,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.99215,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 2.53561,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.99215,
+            "class": "moved"
+          }
+        },
+        "Female_Ranger_Body": {
+          "BS_Thin": {
+            "max_disp_cm": 3.09615,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.92165,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 4.06369,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.92165,
+            "class": "moved"
+          }
+        },
+        "Female_Ranger_Body_Belt_1": {
+          "BS_Thin": {
+            "max_disp_cm": 2.53714,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.32999,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          }
+        },
+        "Female_Ranger_Body_Belt_2": {
+          "BS_Thin": {
+            "max_disp_cm": 2.405,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.15657,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          }
+        },
+        "Female_Ranger_Feet": {
+          "BS_Thin": {
+            "max_disp_cm": 3.13136,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.88894,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 4.10991,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.88894,
+            "class": "moved"
+          }
+        },
+        "Female_Ranger_Head_Hood": {
+          "BS_Thin": {
+            "max_disp_cm": 1.55067,
+            "max_w_shape": 0.96965,
+            "mean_w_shape": 0.3224,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 2.03525,
+            "max_w_shape": 0.96965,
+            "mean_w_shape": 0.3224,
+            "class": "moved"
+          }
+        },
+        "Female_Ranger_Legs": {
+          "BS_Thin": {
+            "max_disp_cm": 3.20748,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 4.20981,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          }
+        },
+        "Head_Eyebrows": {
+          "BS_Thin": {
+            "max_disp_cm": 0.0,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          }
+        },
+        "Head_Eyes": {
+          "BS_Thin": {
+            "max_disp_cm": 0.0,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          }
+        },
+        "Head_Superhero_Female": {
+          "BS_Thin": {
+            "max_disp_cm": 0.43334,
+            "max_w_shape": 0.49482,
+            "mean_w_shape": 0.01703,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 0.56876,
+            "max_w_shape": 0.49482,
+            "mean_w_shape": 0.01703,
+            "class": "moved"
+          }
+        }
+      },
+      "digests": {
+        "Basis": "3c93abca38a5d6db",
+        "BS_Thin": "e5346f1cf12a6dbe",
+        "BS_Heavy": "6d87cac343fd772d"
+      },
+      "t2": {
+        "digest": {
+          "BS_Thin": "e5346f1cf12a6dbe",
+          "BS_Heavy": "6d87cac343fd772d"
+        },
+        "m4b": {
+          "note": "堵'空 morph 全绿'的假 PASS；按'体形骨权重 vs 实测位移必须同向'判定",
+          "tiers": {
+            "BS_Thin": {
+              "per_part": {
+                "Female_Ranger_Acc_Pauldrons": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.2626,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Arms": {
+                  "shape_bone_weight_frac": 0.3374,
+                  "max_disp_cm": 1.8035,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Arms_Bracer": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 1.9319,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Body": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.0961,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Body_Belt_1": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.5371,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Body_Belt_2": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.405,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Feet": {
+                  "shape_bone_weight_frac": 0.9454,
+                  "max_disp_cm": 3.1314,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Head_Hood": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 1.5507,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Legs": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.2075,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Head_Eyebrows": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 0.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyes": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 0.0,
+                  "category": "static_by_design"
+                },
+                "Head_Superhero_Female": {
+                  "shape_bone_weight_frac": 0.104,
+                  "max_disp_cm": 0.4333,
+                  "moved_frac": 0.115,
+                  "category": "driven"
+                }
+              },
+              "driven_parts": 10,
+              "max_disp_cm": 3.2075,
+              "any_bug": false,
+              "ok": true
+            },
+            "BS_Heavy": {
+              "per_part": {
+                "Female_Ranger_Acc_Pauldrons": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.9696,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Arms": {
+                  "shape_bone_weight_frac": 0.3374,
+                  "max_disp_cm": 2.3671,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Arms_Bracer": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.5356,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Body": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 4.0637,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Body_Belt_1": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.33,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Body_Belt_2": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.1566,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Feet": {
+                  "shape_bone_weight_frac": 0.9454,
+                  "max_disp_cm": 4.1099,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Head_Hood": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.0353,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Ranger_Legs": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 4.2098,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Head_Eyebrows": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyes": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_Superhero_Female": {
+                  "shape_bone_weight_frac": 0.104,
+                  "max_disp_cm": 0.5688,
+                  "moved_frac": 0.9605,
+                  "category": "driven"
+                }
+              },
+              "driven_parts": 10,
+              "max_disp_cm": 4.2098,
+              "any_bug": false,
+              "ok": true
+            }
+          },
+          "ok": true,
+          "basis_digest_16": "3c93abca38a5d6db",
+          "morph_digest_16": {
+            "BS_Thin": "e5346f1cf12a6dbe",
+            "BS_Heavy": "6d87cac343fd772d"
+          },
+          "digest_differs_from_basis": true
+        },
+        "arm_span": null,
+        "arm_span_judge": null
+      },
+      "verdict": {
+        "n_parts": 12,
+        "counts": {
+          "static_by_design": 4,
+          "moved": 20
+        },
+        "any_BUG_suspect": false,
+        "any_moves_but_unweighted": false,
+        "morph_digest_differs_from_basis": {
+          "BS_Thin": true,
+          "BS_Heavy": true
+        },
+        "digest_match_t2": {
+          "BS_Thin": true,
+          "BS_Heavy": true
+        }
+      }
+    },
+    {
+      "outfit": "Female_Peasant",
+      "per_part": {
+        "Female_Peasant_Arms": {
+          "BS_Thin": {
+            "max_disp_cm": 1.81726,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.66557,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 2.38515,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.66557,
+            "class": "moved"
+          }
+        },
+        "Female_Peasant_Body": {
+          "BS_Thin": {
+            "max_disp_cm": 2.82851,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.97166,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.71242,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.97166,
+            "class": "moved"
+          }
+        },
+        "Female_Peasant_Feet": {
+          "BS_Thin": {
+            "max_disp_cm": 3.13597,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.70067,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 4.11594,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.70067,
+            "class": "moved"
+          }
+        },
+        "Female_Peasant_Legs": {
+          "BS_Thin": {
+            "max_disp_cm": 3.03594,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.98467,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          }
+        },
+        "Head_Eyebrows": {
+          "BS_Thin": {
+            "max_disp_cm": 0.0,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          }
+        },
+        "Head_Eyes": {
+          "BS_Thin": {
+            "max_disp_cm": 0.0,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          }
+        },
+        "Head_Superhero_Female": {
+          "BS_Thin": {
+            "max_disp_cm": 0.43334,
+            "max_w_shape": 0.49482,
+            "mean_w_shape": 0.01703,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 0.56876,
+            "max_w_shape": 0.49482,
+            "mean_w_shape": 0.01703,
+            "class": "moved"
+          }
+        },
+        "Hair_Long": {
+          "BS_Thin": {
+            "max_disp_cm": 0.0,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          }
+        }
+      },
+      "digests": {
+        "Basis": "609a22732a6ed13f",
+        "BS_Thin": "2f1e1a18e76f609f",
+        "BS_Heavy": "33c7cfe143a2e33a"
+      },
+      "t2": {
+        "digest": {
+          "BS_Thin": "2f1e1a18e76f609f",
+          "BS_Heavy": "33c7cfe143a2e33a"
+        },
+        "m4b": {
+          "note": "堵'空 morph 全绿'的假 PASS；按'体形骨权重 vs 实测位移必须同向'判定",
+          "tiers": {
+            "BS_Thin": {
+              "per_part": {
+                "Female_Peasant_Arms": {
+                  "shape_bone_weight_frac": 0.6917,
+                  "max_disp_cm": 1.8173,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Peasant_Body": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.8285,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Peasant_Feet": {
+                  "shape_bone_weight_frac": 0.9091,
+                  "max_disp_cm": 3.136,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Peasant_Legs": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.0359,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Hair_Long": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 0.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyebrows": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 0.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyes": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 0.0,
+                  "category": "static_by_design"
+                },
+                "Head_Superhero_Female": {
+                  "shape_bone_weight_frac": 0.104,
+                  "max_disp_cm": 0.4333,
+                  "moved_frac": 0.115,
+                  "category": "driven"
+                }
+              },
+              "driven_parts": 5,
+              "max_disp_cm": 3.136,
+              "any_bug": false,
+              "ok": true
+            },
+            "BS_Heavy": {
+              "per_part": {
+                "Female_Peasant_Arms": {
+                  "shape_bone_weight_frac": 0.6917,
+                  "max_disp_cm": 2.3852,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Peasant_Body": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.7124,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Peasant_Feet": {
+                  "shape_bone_weight_frac": 0.9091,
+                  "max_disp_cm": 4.1159,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Female_Peasant_Legs": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.9847,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Hair_Long": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyebrows": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyes": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_Superhero_Female": {
+                  "shape_bone_weight_frac": 0.104,
+                  "max_disp_cm": 0.5688,
+                  "moved_frac": 0.9605,
+                  "category": "driven"
+                }
+              },
+              "driven_parts": 5,
+              "max_disp_cm": 4.1159,
+              "any_bug": false,
+              "ok": true
+            }
+          },
+          "ok": true,
+          "basis_digest_16": "609a22732a6ed13f",
+          "morph_digest_16": {
+            "BS_Thin": "2f1e1a18e76f609f",
+            "BS_Heavy": "33c7cfe143a2e33a"
+          },
+          "digest_differs_from_basis": true
+        },
+        "arm_span": null,
+        "arm_span_judge": null
+      },
+      "verdict": {
+        "n_parts": 8,
+        "counts": {
+          "static_by_design": 6,
+          "moved": 10
+        },
+        "any_BUG_suspect": false,
+        "any_moves_but_unweighted": false,
+        "morph_digest_differs_from_basis": {
+          "BS_Thin": true,
+          "BS_Heavy": true
+        },
+        "digest_match_t2": {
+          "BS_Thin": true,
+          "BS_Heavy": true
+        }
+      }
+    },
+    {
+      "outfit": "Male_Ranger",
+      "per_part": {
+        "Male_Ranger_Acc_Pauldron": {
+          "BS_Thin": {
+            "max_disp_cm": 2.69116,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.53214,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          }
+        },
+        "Male_Ranger_Arms": {
+          "BS_Thin": {
+            "max_disp_cm": 2.54158,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.2505,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.33582,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.2505,
+            "class": "moved"
+          }
+        },
+        "Male_Ranger_Arms_Bracer": {
+          "BS_Thin": {
+            "max_disp_cm": 2.27078,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.92765,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 2.98039,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.92765,
+            "class": "moved"
+          }
+        },
+        "Male_Ranger_Body": {
+          "BS_Thin": {
+            "max_disp_cm": 2.91275,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.92844,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.82298,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.92844,
+            "class": "moved"
+          }
+        },
+        "Male_Ranger_Body_Belt_1": {
+          "BS_Thin": {
+            "max_disp_cm": 2.49425,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.2737,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          }
+        },
+        "Male_Ranger_Body_Belt_2": {
+          "BS_Thin": {
+            "max_disp_cm": 2.55769,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.35697,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          }
+        },
+        "Male_Ranger_Feet_Boots": {
+          "BS_Thin": {
+            "max_disp_cm": 2.74688,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.88631,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.60528,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.88631,
+            "class": "moved"
+          }
+        },
+        "Male_Ranger_Head_Hood": {
+          "BS_Thin": {
+            "max_disp_cm": 2.14238,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.33853,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 2.81186,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.33853,
+            "class": "moved"
+          }
+        },
+        "Male_Ranger_Legs": {
+          "BS_Thin": {
+            "max_disp_cm": 2.86205,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.75643,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          }
+        },
+        "Head_Eyebrows": {
+          "BS_Thin": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          }
+        },
+        "Head_Eyes": {
+          "BS_Thin": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          }
+        },
+        "Head_SuperHero_Male": {
+          "BS_Thin": {
+            "max_disp_cm": 0.67778,
+            "max_w_shape": 0.48961,
+            "mean_w_shape": 0.02629,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 0.88958,
+            "max_w_shape": 0.48961,
+            "mean_w_shape": 0.02629,
+            "class": "moved"
+          }
+        }
+      },
+      "digests": {
+        "Basis": "90e9dd08179c15d0",
+        "BS_Thin": "ee34ee72fb0dd997",
+        "BS_Heavy": "7864b3144db1538b"
+      },
+      "t2": {
+        "digest": {
+          "BS_Thin": "ee34ee72fb0dd997",
+          "BS_Heavy": "7864b3144db1538b"
+        },
+        "m4b": {
+          "note": "堵'空 morph 全绿'的假 PASS；按'体形骨权重 vs 实测位移必须同向'判定",
+          "tiers": {
+            "BS_Thin": {
+              "per_part": {
+                "Head_Eyebrows": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyes": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_SuperHero_Male": {
+                  "shape_bone_weight_frac": 0.1472,
+                  "max_disp_cm": 0.6778,
+                  "moved_frac": 0.9994,
+                  "category": "driven"
+                },
+                "Male_Ranger_Acc_Pauldron": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.6912,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Arms": {
+                  "shape_bone_weight_frac": 0.3044,
+                  "max_disp_cm": 2.5416,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Arms_Bracer": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.2708,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Body": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.9127,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Body_Belt_1": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.4943,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Body_Belt_2": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.5577,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Feet_Boots": {
+                  "shape_bone_weight_frac": 0.9304,
+                  "max_disp_cm": 2.7469,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Head_Hood": {
+                  "shape_bone_weight_frac": 0.5306,
+                  "max_disp_cm": 2.1424,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Legs": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.862,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                }
+              },
+              "driven_parts": 10,
+              "max_disp_cm": 2.9127,
+              "any_bug": false,
+              "ok": true
+            },
+            "BS_Heavy": {
+              "per_part": {
+                "Head_Eyebrows": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyes": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_SuperHero_Male": {
+                  "shape_bone_weight_frac": 0.1472,
+                  "max_disp_cm": 0.8896,
+                  "moved_frac": 0.9994,
+                  "category": "driven"
+                },
+                "Male_Ranger_Acc_Pauldron": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.5321,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Arms": {
+                  "shape_bone_weight_frac": 0.3044,
+                  "max_disp_cm": 3.3358,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Arms_Bracer": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.9804,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Body": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.823,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Body_Belt_1": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.2737,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Body_Belt_2": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.357,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Feet_Boots": {
+                  "shape_bone_weight_frac": 0.9304,
+                  "max_disp_cm": 3.6053,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Head_Hood": {
+                  "shape_bone_weight_frac": 0.5306,
+                  "max_disp_cm": 2.8119,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Ranger_Legs": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.7564,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                }
+              },
+              "driven_parts": 10,
+              "max_disp_cm": 3.823,
+              "any_bug": false,
+              "ok": true
+            }
+          },
+          "ok": true,
+          "basis_digest_16": "90e9dd08179c15d0",
+          "morph_digest_16": {
+            "BS_Thin": "ee34ee72fb0dd997",
+            "BS_Heavy": "7864b3144db1538b"
+          },
+          "digest_differs_from_basis": true
+        },
+        "arm_span": null,
+        "arm_span_judge": null
+      },
+      "verdict": {
+        "n_parts": 12,
+        "counts": {
+          "static_by_design": 4,
+          "moved": 20
+        },
+        "any_BUG_suspect": false,
+        "any_moves_but_unweighted": false,
+        "morph_digest_differs_from_basis": {
+          "BS_Thin": true,
+          "BS_Heavy": true
+        },
+        "digest_match_t2": {
+          "BS_Thin": true,
+          "BS_Heavy": true
+        }
+      }
+    },
+    {
+      "outfit": "Male_Peasant",
+      "per_part": {
+        "Male_Peasant_Arms": {
+          "BS_Thin": {
+            "max_disp_cm": 2.54158,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.33828,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.33582,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.33828,
+            "class": "moved"
+          }
+        },
+        "Male_Peasant_Body": {
+          "BS_Thin": {
+            "max_disp_cm": 2.95106,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.99513,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.87326,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.99513,
+            "class": "moved"
+          }
+        },
+        "Male_Peasant_Feet": {
+          "BS_Thin": {
+            "max_disp_cm": 2.61683,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.66423,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 3.43459,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 0.66423,
+            "class": "moved"
+          }
+        },
+        "Male_Peasant_Legs": {
+          "BS_Thin": {
+            "max_disp_cm": 3.1083,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 4.07964,
+            "max_w_shape": 1.0,
+            "mean_w_shape": 1.0,
+            "class": "moved"
+          }
+        },
+        "Head_Eyebrows": {
+          "BS_Thin": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          }
+        },
+        "Head_Eyes": {
+          "BS_Thin": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          }
+        },
+        "Head_SuperHero_Male": {
+          "BS_Thin": {
+            "max_disp_cm": 0.67778,
+            "max_w_shape": 0.48961,
+            "mean_w_shape": 0.02629,
+            "class": "moved"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 0.88958,
+            "max_w_shape": 0.48961,
+            "mean_w_shape": 0.02629,
+            "class": "moved"
+          }
+        },
+        "Hair_SimpleParted": {
+          "BS_Thin": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          },
+          "BS_Heavy": {
+            "max_disp_cm": 1e-05,
+            "max_w_shape": 0.0,
+            "mean_w_shape": 0.0,
+            "class": "static_by_design"
+          }
+        }
+      },
+      "digests": {
+        "Basis": "15bfb061fea7b85c",
+        "BS_Thin": "4905a02aa50cbaa9",
+        "BS_Heavy": "7d011d19451e9d61"
+      },
+      "t2": {
+        "digest": {
+          "BS_Thin": "4905a02aa50cbaa9",
+          "BS_Heavy": "7d011d19451e9d61"
+        },
+        "m4b": {
+          "note": "堵'空 morph 全绿'的假 PASS；按'体形骨权重 vs 实测位移必须同向'判定",
+          "tiers": {
+            "BS_Thin": {
+              "per_part": {
+                "Hair_SimpleParted": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyebrows": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyes": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_SuperHero_Male": {
+                  "shape_bone_weight_frac": 0.1472,
+                  "max_disp_cm": 0.6778,
+                  "moved_frac": 0.9994,
+                  "category": "driven"
+                },
+                "Male_Peasant_Arms": {
+                  "shape_bone_weight_frac": 0.3858,
+                  "max_disp_cm": 2.5416,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Peasant_Body": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 2.9511,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Peasant_Feet": {
+                  "shape_bone_weight_frac": 0.8253,
+                  "max_disp_cm": 2.6168,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Peasant_Legs": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.1083,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                }
+              },
+              "driven_parts": 5,
+              "max_disp_cm": 3.1083,
+              "any_bug": false,
+              "ok": true
+            },
+            "BS_Heavy": {
+              "per_part": {
+                "Hair_SimpleParted": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyebrows": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_Eyes": {
+                  "shape_bone_weight_frac": 0.0,
+                  "max_disp_cm": 0.0,
+                  "moved_frac": 1.0,
+                  "category": "static_by_design"
+                },
+                "Head_SuperHero_Male": {
+                  "shape_bone_weight_frac": 0.1472,
+                  "max_disp_cm": 0.8896,
+                  "moved_frac": 0.9994,
+                  "category": "driven"
+                },
+                "Male_Peasant_Arms": {
+                  "shape_bone_weight_frac": 0.3858,
+                  "max_disp_cm": 3.3358,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Peasant_Body": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 3.8733,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Peasant_Feet": {
+                  "shape_bone_weight_frac": 0.8253,
+                  "max_disp_cm": 3.4346,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                },
+                "Male_Peasant_Legs": {
+                  "shape_bone_weight_frac": 1.0,
+                  "max_disp_cm": 4.0796,
+                  "moved_frac": 1.0,
+                  "category": "driven"
+                }
+              },
+              "driven_parts": 5,
+              "max_disp_cm": 4.0796,
+              "any_bug": false,
+              "ok": true
+            }
+          },
+          "ok": true,
+          "basis_digest_16": "15bfb061fea7b85c",
+          "morph_digest_16": {
+            "BS_Thin": "4905a02aa50cbaa9",
+            "BS_Heavy": "7d011d19451e9d61"
+          },
+          "digest_differs_from_basis": true
+        },
+        "arm_span": null,
+        "arm_span_judge": null
+      },
+      "verdict": {
+        "n_parts": 8,
+        "counts": {
+          "static_by_design": 6,
+          "moved": 10
+        },
+        "any_BUG_suspect": false,
+        "any_moves_but_unweighted": false,
+        "morph_digest_differs_from_basis": {
+          "BS_Thin": true,
+          "BS_Heavy": true
+        },
+        "digest_match_t2": {
+          "BS_Thin": true,
+          "BS_Heavy": true
+        }
+      }
+    }
+  ]
+}

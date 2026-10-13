@@ -1,0 +1,412 @@
+{
+  "generated_by": "verifier/v_transfer.py",
+  "note": "verifier 自己实现的 SPEC §4.2 传递；用于计时 + 与 T2 对账。",
+  "cases": [
+    {
+      "sex": "Female",
+      "outfit": "Outfit_Female_Ranger",
+      "phases_s": {
+        "1_strip": 0.0032,
+        "load_body": 0.0536,
+        "2_refit_bone_space": 0.1416,
+        "3a_bind": 0.8903,
+        "3b_transfer_eval": 2.7742,
+        "3_transfer_total": 3.6645,
+        "total": 3.931
+      },
+      "strip_removed_faces": 1872,
+      "per_piece": {
+        "Female_Ranger_Acc_Pauldrons": {
+          "n_verts": 1092,
+          "bind_seconds": 0.0333,
+          "max_bind_dist_cm": 6.898,
+          "mean_bind_dist_cm": 3.672,
+          "p95_bind_dist_cm": 6.034,
+          "bind_bytes_28B_per_vert": 30576,
+          "transfer_noop_max_cm": 1.0538157654256076e-05,
+          "BS_Thin_max_cm": 2.0042080511596763,
+          "BS_Thin_mean_cm": 1.617188070475303,
+          "BS_Heavy_max_cm": 2.540878701560706,
+          "BS_Heavy_mean_cm": 2.119138078921387
+        },
+        "Female_Ranger_Arms": {
+          "n_verts": 1774,
+          "bind_seconds": 0.0552,
+          "max_bind_dist_cm": 2.373,
+          "mean_bind_dist_cm": 0.277,
+          "p95_bind_dist_cm": 1.126,
+          "bind_bytes_28B_per_vert": 49672,
+          "transfer_noop_max_cm": 1.044798200461122e-05,
+          "BS_Thin_max_cm": 2.1692872637561624,
+          "BS_Thin_mean_cm": 1.518943133002355,
+          "BS_Heavy_max_cm": 2.8547489466684164,
+          "BS_Heavy_mean_cm": 1.9944053163219848
+        },
+        "Female_Ranger_Arms_Bracer": {
+          "n_verts": 4000,
+          "bind_seconds": 0.1295,
+          "max_bind_dist_cm": 3.745,
+          "mean_bind_dist_cm": 1.516,
+          "p95_bind_dist_cm": 3.023,
+          "bind_bytes_28B_per_vert": 112000,
+          "transfer_noop_max_cm": 1.1483621137526335e-05,
+          "BS_Thin_max_cm": 1.7588493411814972,
+          "BS_Thin_mean_cm": 1.5571216285183542,
+          "BS_Heavy_max_cm": 2.287413570864292,
+          "BS_Heavy_mean_cm": 2.0430472596126488
+        },
+        "Female_Ranger_Body": {
+          "n_verts": 2785,
+          "bind_seconds": 0.087,
+          "max_bind_dist_cm": 5.014,
+          "mean_bind_dist_cm": 1.817,
+          "p95_bind_dist_cm": 4.113,
+          "bind_bytes_28B_per_vert": 77980,
+          "transfer_noop_max_cm": 1.0947308695917661e-05,
+          "BS_Thin_max_cm": 3.03054820908646,
+          "BS_Thin_mean_cm": 1.6789097790195575,
+          "BS_Heavy_max_cm": 3.978210476484919,
+          "BS_Heavy_mean_cm": 2.1992678628405584
+        },
+        "Female_Ranger_Body_Belt_1": {
+          "n_verts": 928,
+          "bind_seconds": 0.0277,
+          "max_bind_dist_cm": 4.259,
+          "mean_bind_dist_cm": 2.037,
+          "p95_bind_dist_cm": 3.987,
+          "bind_bytes_28B_per_vert": 25984,
+          "transfer_noop_max_cm": 5.005016029165571e-06,
+          "BS_Thin_max_cm": 1.9969985344504615,
+          "BS_Thin_mean_cm": 1.7276729544426235,
+          "BS_Heavy_max_cm": 2.6177670917558706,
+          "BS_Heavy_mean_cm": 2.265329248407537
+        },
+        "Female_Ranger_Body_Belt_2": {
+          "n_verts": 928,
+          "bind_seconds": 0.0276,
+          "max_bind_dist_cm": 4.167,
+          "mean_bind_dist_cm": 2.016,
+          "p95_bind_dist_cm": 3.834,
+          "bind_bytes_28B_per_vert": 25984,
+          "transfer_noop_max_cm": 3.938666478104251e-06,
+          "BS_Thin_max_cm": 1.9145745903747327,
+          "BS_Thin_mean_cm": 1.630028258173408,
+          "BS_Heavy_max_cm": 2.5114372171519417,
+          "BS_Heavy_mean_cm": 2.1380005969148863
+        },
+        "Female_Ranger_Feet": {
+          "n_verts": 10174,
+          "bind_seconds": 0.3108,
+          "max_bind_dist_cm": 8.549,
+          "mean_bind_dist_cm": 2.795,
+          "p95_bind_dist_cm": 5.926,
+          "bind_bytes_28B_per_vert": 284872,
+          "transfer_noop_max_cm": 1.747479292739272e-06,
+          "BS_Thin_max_cm": 2.904516841793946,
+          "BS_Thin_mean_cm": 2.0789651654067947,
+          "BS_Heavy_max_cm": 3.8121448537726548,
+          "BS_Heavy_mean_cm": 2.7278725418830976
+        },
+        "Female_Ranger_Head_Hood": {
+          "n_verts": 1240,
+          "bind_seconds": 0.0389,
+          "max_bind_dist_cm": 12.049,
+          "mean_bind_dist_cm": 5.046,
+          "p95_bind_dist_cm": 10.014,
+          "bind_bytes_28B_per_vert": 34720,
+          "transfer_noop_max_cm": 1.0362483556872937e-05,
+          "BS_Thin_max_cm": 1.5598368573431476,
+          "BS_Thin_mean_cm": 0.3692883079997908,
+          "BS_Heavy_max_cm": 2.039534811986354,
+          "BS_Heavy_mean_cm": 0.4610743002563953
+        },
+        "Female_Ranger_Legs": {
+          "n_verts": 685,
+          "bind_seconds": 0.0209,
+          "max_bind_dist_cm": 4.533,
+          "mean_bind_dist_cm": 1.45,
+          "p95_bind_dist_cm": 3.841,
+          "bind_bytes_28B_per_vert": 19180,
+          "transfer_noop_max_cm": 6.0234167468166645e-06,
+          "BS_Thin_max_cm": 3.249305763534881,
+          "BS_Thin_mean_cm": 1.9258969888569153,
+          "BS_Heavy_max_cm": 4.2645927946582916,
+          "BS_Heavy_mean_cm": 2.5266996389145766
+        }
+      },
+      "n_cloth_verts": 23606
+    },
+    {
+      "sex": "Male",
+      "outfit": "Outfit_Male_Ranger",
+      "phases_s": {
+        "1_strip": 0.0033,
+        "load_body": 0.0549,
+        "2_refit_bone_space": 0.136,
+        "3a_bind": 0.8958,
+        "3b_transfer_eval": 2.8048,
+        "3_transfer_total": 3.7006,
+        "total": 3.963
+      },
+      "strip_removed_faces": 1880,
+      "per_piece": {
+        "Male_Ranger_Acc_Pauldron": {
+          "n_verts": 1092,
+          "bind_seconds": 0.0337,
+          "max_bind_dist_cm": 5.415,
+          "mean_bind_dist_cm": 2.415,
+          "p95_bind_dist_cm": 4.46,
+          "bind_bytes_28B_per_vert": 30576,
+          "transfer_noop_max_cm": 1.0976988327633546e-05,
+          "BS_Thin_max_cm": 2.5200840724020073,
+          "BS_Thin_mean_cm": 2.1132390540426704,
+          "BS_Heavy_max_cm": 3.241844617203312,
+          "BS_Heavy_mean_cm": 2.771968963999329
+        },
+        "Male_Ranger_Arms": {
+          "n_verts": 1836,
+          "bind_seconds": 0.0566,
+          "max_bind_dist_cm": 4.856,
+          "mean_bind_dist_cm": 0.564,
+          "p95_bind_dist_cm": 2.289,
+          "bind_bytes_28B_per_vert": 51408,
+          "transfer_noop_max_cm": 1.1246007455082084e-05,
+          "BS_Thin_max_cm": 2.8638909176761365,
+          "BS_Thin_mean_cm": 2.045453106939481,
+          "BS_Heavy_max_cm": 3.885462567940993,
+          "BS_Heavy_mean_cm": 2.686166719391083
+        },
+        "Male_Ranger_Arms_Bracer": {
+          "n_verts": 4000,
+          "bind_seconds": 0.1222,
+          "max_bind_dist_cm": 4.165,
+          "mean_bind_dist_cm": 1.447,
+          "p95_bind_dist_cm": 3.099,
+          "bind_bytes_28B_per_vert": 112000,
+          "transfer_noop_max_cm": 1.1404895338386716e-05,
+          "BS_Thin_max_cm": 2.42180164542876,
+          "BS_Thin_mean_cm": 2.0552416997363587,
+          "BS_Heavy_max_cm": 3.17862969772612,
+          "BS_Heavy_mean_cm": 2.696713413903088
+        },
+        "Male_Ranger_Body": {
+          "n_verts": 2825,
+          "bind_seconds": 0.0882,
+          "max_bind_dist_cm": 6.869,
+          "mean_bind_dist_cm": 1.213,
+          "p95_bind_dist_cm": 3.919,
+          "bind_bytes_28B_per_vert": 79100,
+          "transfer_noop_max_cm": 9.256706893816144e-06,
+          "BS_Thin_max_cm": 3.4342065884804605,
+          "BS_Thin_mean_cm": 1.7710247394204806,
+          "BS_Heavy_max_cm": 4.57285721452695,
+          "BS_Heavy_mean_cm": 2.3262284578017094
+        },
+        "Male_Ranger_Body_Belt_1": {
+          "n_verts": 928,
+          "bind_seconds": 0.0287,
+          "max_bind_dist_cm": 3.09,
+          "mean_bind_dist_cm": 1.078,
+          "p95_bind_dist_cm": 2.394,
+          "bind_bytes_28B_per_vert": 25984,
+          "transfer_noop_max_cm": 6.6111876667783465e-06,
+          "BS_Thin_max_cm": 2.5007718845706295,
+          "BS_Thin_mean_cm": 1.8787765585194436,
+          "BS_Heavy_max_cm": 3.2777918023324846,
+          "BS_Heavy_mean_cm": 2.465140409171636
+        },
+        "Male_Ranger_Body_Belt_2": {
+          "n_verts": 928,
+          "bind_seconds": 0.0289,
+          "max_bind_dist_cm": 4.638,
+          "mean_bind_dist_cm": 1.517,
+          "p95_bind_dist_cm": 3.135,
+          "bind_bytes_28B_per_vert": 25984,
+          "transfer_noop_max_cm": 4.344170076405375e-06,
+          "BS_Thin_max_cm": 2.3429238789238873,
+          "BS_Thin_mean_cm": 1.851549762526487,
+          "BS_Heavy_max_cm": 3.0752221354339686,
+          "BS_Heavy_mean_cm": 2.427933913104194
+        },
+        "Male_Ranger_Feet_Boots": {
+          "n_verts": 10174,
+          "bind_seconds": 0.3096,
+          "max_bind_dist_cm": 7.389,
+          "mean_bind_dist_cm": 2.405,
+          "p95_bind_dist_cm": 5.209,
+          "bind_bytes_28B_per_vert": 284872,
+          "transfer_noop_max_cm": 2.1553721896443498e-06,
+          "BS_Thin_max_cm": 2.95177817032144,
+          "BS_Thin_mean_cm": 2.1281415957710172,
+          "BS_Heavy_max_cm": 3.874206086922844,
+          "BS_Heavy_mean_cm": 2.792868391985309
+        },
+        "Male_Ranger_Head_Hood": {
+          "n_verts": 1240,
+          "bind_seconds": 0.0399,
+          "max_bind_dist_cm": 9.955,
+          "mean_bind_dist_cm": 4.784,
+          "p95_bind_dist_cm": 8.353,
+          "bind_bytes_28B_per_vert": 34720,
+          "transfer_noop_max_cm": 1.0860103690673167e-05,
+          "BS_Thin_max_cm": 1.4526884571721905,
+          "BS_Thin_mean_cm": 0.3349067706337415,
+          "BS_Heavy_max_cm": 1.9228611107277451,
+          "BS_Heavy_mean_cm": 0.42430330888038925
+        },
+        "Male_Ranger_Legs": {
+          "n_verts": 644,
+          "bind_seconds": 0.0205,
+          "max_bind_dist_cm": 3.865,
+          "mean_bind_dist_cm": 1.48,
+          "p95_bind_dist_cm": 3.399,
+          "bind_bytes_28B_per_vert": 18032,
+          "transfer_noop_max_cm": 3.3033430902138005e-06,
+          "BS_Thin_max_cm": 3.0904266141502634,
+          "BS_Thin_mean_cm": 1.9937655467608746,
+          "BS_Heavy_max_cm": 4.05621637828524,
+          "BS_Heavy_mean_cm": 2.6167331396454947
+        }
+      },
+      "n_cloth_verts": 23667
+    },
+    {
+      "sex": "Female",
+      "outfit": "Outfit_Female_Peasant",
+      "phases_s": {
+        "1_strip": 0.0,
+        "load_body": 0.0317,
+        "2_refit_bone_space": 0.058,
+        "3a_bind": 0.3963,
+        "3b_transfer_eval": 1.1947,
+        "3_transfer_total": 1.591,
+        "total": 1.743
+      },
+      "strip_removed_faces": 0,
+      "per_piece": {
+        "Female_Peasant_Arms": {
+          "n_verts": 5436,
+          "bind_seconds": 0.1767,
+          "max_bind_dist_cm": 3.524,
+          "mean_bind_dist_cm": 0.636,
+          "p95_bind_dist_cm": 2.362,
+          "bind_bytes_28B_per_vert": 152208,
+          "transfer_noop_max_cm": 1.1356449328720676e-05,
+          "BS_Thin_max_cm": 2.035866189540054,
+          "BS_Thin_mean_cm": 1.5250782184352896,
+          "BS_Heavy_max_cm": 2.6878500409054804,
+          "BS_Heavy_mean_cm": 2.001620153869646
+        },
+        "Female_Peasant_Body": {
+          "n_verts": 1730,
+          "bind_seconds": 0.0534,
+          "max_bind_dist_cm": 3.277,
+          "mean_bind_dist_cm": 0.927,
+          "p95_bind_dist_cm": 2.433,
+          "bind_bytes_28B_per_vert": 48440,
+          "transfer_noop_max_cm": 8.685863390806385e-06,
+          "BS_Thin_max_cm": 2.7908716453492732,
+          "BS_Thin_mean_cm": 1.5565733613189878,
+          "BS_Heavy_max_cm": 3.6636527960231544,
+          "BS_Heavy_mean_cm": 2.038548078564767
+        },
+        "Female_Peasant_Feet": {
+          "n_verts": 1892,
+          "bind_seconds": 0.0585,
+          "max_bind_dist_cm": 5.411,
+          "mean_bind_dist_cm": 1.893,
+          "p95_bind_dist_cm": 4.458,
+          "bind_bytes_28B_per_vert": 52976,
+          "transfer_noop_max_cm": 1.649990068099252e-06,
+          "BS_Thin_max_cm": 2.900916392740334,
+          "BS_Thin_mean_cm": 1.9662976301916026,
+          "BS_Heavy_max_cm": 3.8076194729822253,
+          "BS_Heavy_mean_cm": 2.5806366236274707
+        },
+        "Female_Peasant_Legs": {
+          "n_verts": 1126,
+          "bind_seconds": 0.0347,
+          "max_bind_dist_cm": 2.189,
+          "mean_bind_dist_cm": 0.689,
+          "p95_bind_dist_cm": 1.676,
+          "bind_bytes_28B_per_vert": 31528,
+          "transfer_noop_max_cm": 6.4604045403956685e-06,
+          "BS_Thin_max_cm": 3.2865369747875586,
+          "BS_Thin_mean_cm": 1.8620867769691754,
+          "BS_Heavy_max_cm": 4.31370765805545,
+          "BS_Heavy_mean_cm": 2.4445135179817257
+        }
+      },
+      "n_cloth_verts": 10184
+    },
+    {
+      "sex": "Male",
+      "outfit": "Outfit_Male_Peasant",
+      "phases_s": {
+        "1_strip": 0.0035,
+        "load_body": 0.0258,
+        "2_refit_bone_space": 0.0419,
+        "3a_bind": 0.2625,
+        "3b_transfer_eval": 0.7571,
+        "3_transfer_total": 1.0196,
+        "total": 1.151
+      },
+      "strip_removed_faces": 3930,
+      "per_piece": {
+        "Male_Peasant_Arms": {
+          "n_verts": 818,
+          "bind_seconds": 0.0249,
+          "max_bind_dist_cm": 4.856,
+          "mean_bind_dist_cm": 1.005,
+          "p95_bind_dist_cm": 2.712,
+          "bind_bytes_28B_per_vert": 22904,
+          "transfer_noop_max_cm": 1.0170745664767644e-05,
+          "BS_Thin_max_cm": 3.0946113457293487,
+          "BS_Thin_mean_cm": 2.2106156888916035,
+          "BS_Heavy_max_cm": 4.184303068482453,
+          "BS_Heavy_mean_cm": 2.9034675332947226
+        },
+        "Male_Peasant_Body": {
+          "n_verts": 3006,
+          "bind_seconds": 0.0925,
+          "max_bind_dist_cm": 5.996,
+          "mean_bind_dist_cm": 1.443,
+          "p95_bind_dist_cm": 3.892,
+          "bind_bytes_28B_per_vert": 84168,
+          "transfer_noop_max_cm": 1.0006595425630547e-05,
+          "BS_Thin_max_cm": 3.4992163943114543,
+          "BS_Thin_mean_cm": 2.0554766325269203,
+          "BS_Heavy_max_cm": 4.597630607781427,
+          "BS_Heavy_mean_cm": 2.6942636737222467
+        },
+        "Male_Peasant_Feet": {
+          "n_verts": 1878,
+          "bind_seconds": 0.0578,
+          "max_bind_dist_cm": 5.229,
+          "mean_bind_dist_cm": 2.21,
+          "p95_bind_dist_cm": 4.454,
+          "bind_bytes_28B_per_vert": 52584,
+          "transfer_noop_max_cm": 1.6296124723240676e-06,
+          "BS_Thin_max_cm": 2.9696198119388884,
+          "BS_Thin_mean_cm": 1.9919320949102732,
+          "BS_Heavy_max_cm": 3.898202680149981,
+          "BS_Heavy_mean_cm": 2.614878587717711
+        },
+        "Male_Peasant_Legs": {
+          "n_verts": 656,
+          "bind_seconds": 0.0208,
+          "max_bind_dist_cm": 6.51,
+          "mean_bind_dist_cm": 1.789,
+          "p95_bind_dist_cm": 4.164,
+          "bind_bytes_28B_per_vert": 18368,
+          "transfer_noop_max_cm": 4.2045168428653035e-06,
+          "BS_Thin_max_cm": 3.099100463005623,
+          "BS_Thin_mean_cm": 2.0903211692671895,
+          "BS_Heavy_max_cm": 4.067566540707846,
+          "BS_Heavy_mean_cm": 2.7434406398295343
+        }
+      },
+      "n_cloth_verts": 6358
+    }
+  ]
+}

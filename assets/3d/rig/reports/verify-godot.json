@@ -1,0 +1,3875 @@
+{
+  "generated_by": "verifier/v_godot.py",
+  "preview_dir": "assets/3d/rig/previews",
+  "checks": {
+    "G1_G2_G3_morph_per_part": {
+      "n_shots": 10,
+      "n_shots_with_per_part_receipt": 9,
+      "n_shots_all_parts_report_value": 8,
+      "shots": [
+        {
+          "shot": "bodyshape_female_3tiers",
+          "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_bodyshape_female_3tiers.png",
+          "k_requested": null,
+          "n_parts": 6,
+          "parts_by_kind": {
+            "character": 3,
+            "hair": 3
+          },
+          "n_parts_with_value": 6,
+          "value_min": 0.0,
+          "value_max": 1.0,
+          "all_parts_report_value": true,
+          "sample_parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 1.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            },
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            }
+          ]
+        },
+        {
+          "shot": "bodyshape_male_3tiers",
+          "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_bodyshape_male_3tiers.png",
+          "k_requested": null,
+          "n_parts": 6,
+          "parts_by_kind": {
+            "character": 3,
+            "hair": 3
+          },
+          "n_parts_with_value": 6,
+          "value_min": 0.0,
+          "value_max": 1.0,
+          "all_parts_report_value": true,
+          "sample_parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 8,
+              "note": "已驱动",
+              "part": "character:Male_Peasant",
+              "thin": 1.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Buzzed",
+              "thin": null
+            },
+            {
+              "heavy": 0.0,
+              "meshes": 8,
+              "note": "已驱动",
+              "part": "character:Male_Peasant",
+              "thin": 0.0
+            }
+          ]
+        },
+        {
+          "shot": "debug_p1_vs_p3",
+          "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_debug_p1_vs_p3.png",
+          "k_requested": -1.0,
+          "n_parts": 0,
+          "parts_by_kind": {},
+          "n_parts_with_value": 0,
+          "value_min": null,
+          "value_max": null,
+          "all_parts_report_value": false,
+          "sample_parts": []
+        },
+        {
+          "shot": "female_heavy",
+          "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_heavy.png",
+          "k_requested": 1.0,
+          "n_parts": 2,
+          "parts_by_kind": {
+            "character": 1,
+            "hair": 1
+          },
+          "n_parts_with_value": 2,
+          "value_min": 0.0,
+          "value_max": 1.0,
+          "all_parts_report_value": true,
+          "sample_parts": [
+            {
+              "heavy": 1.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "shot": "female_standard",
+          "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_standard.png",
+          "k_requested": 0.0,
+          "n_parts": 2,
+          "parts_by_kind": {
+            "character": 1,
+            "hair": 1
+          },
+          "n_parts_with_value": 2,
+          "value_min": 0.0,
+          "value_max": 0.0,
+          "all_parts_report_value": true,
+          "sample_parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "shot": "female_thin",
+          "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_thin.png",
+          "k_requested": -1.0,
+          "n_parts": 2,
+          "parts_by_kind": {
+            "character": 1,
+            "hair": 1
+          },
+          "n_parts_with_value": 2,
+          "value_min": 0.0,
+          "value_max": 1.0,
+          "all_parts_report_value": true,
+          "sample_parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 1.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "shot": "hair_4",
+          "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_hair_4.png",
+          "k_requested": null,
+          "n_parts": 8,
+          "parts_by_kind": {
+            "character": 4,
+            "hair": 4
+          },
+          "n_parts_with_value": 8,
+          "value_min": 0.0,
+          "value_max": 0.0,
+          "all_parts_report_value": true,
+          "sample_parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Buzzed",
+              "thin": null
+            },
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            }
+          ]
+        },
+        {
+          "shot": "height_sweep",
+          "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_height_sweep.png",
+          "k_requested": null,
+          "n_parts": 6,
+          "parts_by_kind": {
+            "character": 3,
+            "hair": 3
+          },
+          "n_parts_with_value": 6,
+          "value_min": 0.0,
+          "value_max": 0.0,
+          "all_parts_report_value": true,
+          "sample_parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            },
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            }
+          ]
+        },
+        {
+          "shot": "outfits_4",
+          "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_outfits_4.png",
+          "k_requested": null,
+          "n_parts": 4,
+          "parts_by_kind": {
+            "character": 4
+          },
+          "n_parts_with_value": 8,
+          "value_min": 0.0,
+          "value_max": 0.0,
+          "all_parts_report_value": false,
+          "sample_parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": 0.0,
+              "meshes": 8,
+              "note": "已驱动",
+              "part": "character:Female_Peasant",
+              "thin": 0.0
+            },
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Male_Ranger",
+              "thin": 0.0
+            }
+          ]
+        },
+        {
+          "shot": "ui_page",
+          "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_ui_page.png",
+          "k_requested": null,
+          "n_parts": 2,
+          "parts_by_kind": {
+            "character": 1,
+            "hair": 1
+          },
+          "n_parts_with_value": 2,
+          "value_min": 0.0,
+          "value_max": 0.85,
+          "all_parts_report_value": true,
+          "sample_parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 8,
+              "note": "已驱动",
+              "part": "character:Female_Peasant",
+              "thin": 0.85
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            }
+          ]
+        }
+      ]
+    },
+    "G4_hygiene": {
+      "zero_copy": {
+        "assets_copied_into_project": 0,
+        "note": "所有 .blend 由 Blender headless 预导出为 .glb 到 tmp/ 缓存（工程外），Godot 运行时用 GLTFDocument 读绝对路径；工程目录内只有代码与 project.godot。"
+      },
+      "assets_copied_into_project": 0,
+      "zero_copy_ok": true,
+      "n_bake_log_lines": 8,
+      "n_suspicious_log_lines": 0,
+      "suspicious_sample": [],
+      "godot": "4.6.2-stable (official)",
+      "blender_bin": "/Applications/Blender.app/Contents/MacOS/Blender",
+      "one_command": "/Applications/Godot.app/Contents/MacOS/Godot --path tools/3d/godot/preview -s res://shoot.gd --resolution 640x480",
+      "elapsed_ms": 44947
+    },
+    "G5_screenshots": {
+      "n_shots": 10,
+      "n_png_found": 10,
+      "n_looks_blank": 0,
+      "n_viewport_black": 0,
+      "pngs": [
+        {
+          "width": 820,
+          "height": 1180,
+          "colortype": 2,
+          "bytes_per_px": 3,
+          "byte_mean": 42.501,
+          "byte_variance": 1402.825,
+          "nonblack_frac": 0.9874,
+          "looks_blank": false,
+          "shot": "female_thin",
+          "path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_thin.png",
+          "_full": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_thin.png",
+          "resolution": [
+            820,
+            1180
+          ],
+          "left60": {
+            "byte_mean": 45.09,
+            "byte_variance": 1468.899,
+            "colored_frac": 0.13725
+          },
+          "right40": {
+            "byte_mean": 38.619,
+            "byte_variance": 1278.591,
+            "colored_frac": 0.02917
+          },
+          "left_viewport_has_rendered_content": true,
+          "viewport_black": false
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "colortype": 2,
+          "bytes_per_px": 3,
+          "byte_mean": 42.745,
+          "byte_variance": 1344.02,
+          "nonblack_frac": 0.9915,
+          "looks_blank": false,
+          "shot": "female_standard",
+          "path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_standard.png",
+          "_full": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_standard.png",
+          "resolution": [
+            820,
+            1180
+          ],
+          "left60": {
+            "byte_mean": 45.574,
+            "byte_variance": 1419.018,
+            "colored_frac": 0.14785
+          },
+          "right40": {
+            "byte_mean": 38.502,
+            "byte_variance": 1201.514,
+            "colored_frac": 0.02883
+          },
+          "left_viewport_has_rendered_content": true,
+          "viewport_black": false
+        },
+        {
+          "width": 820,
+          "height": 1180,
+          "colortype": 2,
+          "bytes_per_px": 3,
+          "byte_mean": 44.376,
+          "byte_variance": 1521.625,
+          "nonblack_frac": 0.9859,
+          "looks_blank": false,
+          "shot": "female_heavy",
+          "path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_heavy.png",
+          "_full": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_heavy.png",
+          "resolution": [
+            820,
+            1180
+          ],
+          "left60": {
+            "byte_mean": 47.495,
+            "byte_variance": 1617.516,
+            "colored_frac": 0.16914
+          },
+          "right40": {
+            "byte_mean": 39.698,
+            "byte_variance": 1341.313,
+            "colored_frac": 0.04831
+          },
+          "left_viewport_has_rendered_content": true,
+          "viewport_black": false
+        },
+        {
+          "width": 2280,
+          "height": 1180,
+          "colortype": 2,
+          "bytes_per_px": 3,
+          "byte_mean": 41.904,
+          "byte_variance": 1317.394,
+          "nonblack_frac": 0.9854,
+          "looks_blank": false,
+          "shot": "bodyshape_female_3tiers",
+          "path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_bodyshape_female_3tiers.png",
+          "_full": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_bodyshape_female_3tiers.png",
+          "resolution": [
+            2280,
+            1180
+          ],
+          "left60": {
+            "byte_mean": 42.725,
+            "byte_variance": 1406.561,
+            "colored_frac": 0.10959
+          },
+          "right40": {
+            "byte_mean": 40.672,
+            "byte_variance": 1181.114,
+            "colored_frac": 0.10391
+          },
+          "left_viewport_has_rendered_content": true,
+          "viewport_black": false
+        },
+        {
+          "width": 2280,
+          "height": 1180,
+          "colortype": 2,
+          "bytes_per_px": 3,
+          "byte_mean": 45.351,
+          "byte_variance": 1849.158,
+          "nonblack_frac": 0.986,
+          "looks_blank": false,
+          "shot": "bodyshape_male_3tiers",
+          "path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_bodyshape_male_3tiers.png",
+          "_full": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_bodyshape_male_3tiers.png",
+          "resolution": [
+            2280,
+            1180
+          ],
+          "left60": {
+            "byte_mean": 46.145,
+            "byte_variance": 1917.395,
+            "colored_frac": 0.11431
+          },
+          "right40": {
+            "byte_mean": 44.161,
+            "byte_variance": 1744.441,
+            "colored_frac": 0.1072
+          },
+          "left_viewport_has_rendered_content": true,
+          "viewport_black": false
+        },
+        {
+          "width": 2280,
+          "height": 1180,
+          "colortype": 2,
+          "bytes_per_px": 3,
+          "byte_mean": 42.713,
+          "byte_variance": 1463.473,
+          "nonblack_frac": 0.9865,
+          "looks_blank": false,
+          "shot": "height_sweep",
+          "path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_height_sweep.png",
+          "_full": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_height_sweep.png",
+          "resolution": [
+            2280,
+            1180
+          ],
+          "left60": {
+            "byte_mean": 43.019,
+            "byte_variance": 1468.26,
+            "colored_frac": 0.10791
+          },
+          "right40": {
+            "byte_mean": 42.255,
+            "byte_variance": 1455.943,
+            "colored_frac": 0.10473
+          },
+          "left_viewport_has_rendered_content": true,
+          "viewport_black": false
+        },
+        {
+          "width": 2760,
+          "height": 1180,
+          "colortype": 2,
+          "bytes_per_px": 3,
+          "byte_mean": 42.595,
+          "byte_variance": 1319.555,
+          "nonblack_frac": 0.9919,
+          "looks_blank": false,
+          "shot": "outfits_4",
+          "path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_outfits_4.png",
+          "_full": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_outfits_4.png",
+          "resolution": [
+            2760,
+            1180
+          ],
+          "left60": {
+            "byte_mean": 42.715,
+            "byte_variance": 1282.54,
+            "colored_frac": 0.11891
+          },
+          "right40": {
+            "byte_mean": 42.414,
+            "byte_variance": 1375.024,
+            "colored_frac": 0.09862
+          },
+          "left_viewport_has_rendered_content": true,
+          "viewport_black": false
+        },
+        {
+          "width": 2760,
+          "height": 1180,
+          "colortype": 2,
+          "bytes_per_px": 3,
+          "byte_mean": 41.572,
+          "byte_variance": 1140.807,
+          "nonblack_frac": 0.9919,
+          "looks_blank": false,
+          "shot": "hair_4",
+          "path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_hair_4.png",
+          "_full": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_hair_4.png",
+          "resolution": [
+            2760,
+            1180
+          ],
+          "left60": {
+            "byte_mean": 42.854,
+            "byte_variance": 1282.391,
+            "colored_frac": 0.12156
+          },
+          "right40": {
+            "byte_mean": 39.649,
+            "byte_variance": 922.269,
+            "colored_frac": 0.09276
+          },
+          "left_viewport_has_rendered_content": true,
+          "viewport_black": false
+        },
+        {
+          "width": 1520,
+          "height": 1080,
+          "colortype": 6,
+          "bytes_per_px": 4,
+          "byte_mean": 89.672,
+          "byte_variance": 9582.144,
+          "nonblack_frac": 0.9954,
+          "looks_blank": false,
+          "shot": "debug_p1_vs_p3",
+          "path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_debug_p1_vs_p3.png",
+          "_full": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_debug_p1_vs_p3.png",
+          "resolution": [
+            1520,
+            1080
+          ],
+          "left60": {
+            "byte_mean": 32.756,
+            "byte_variance": 390.208,
+            "colored_frac": 0.04904
+          },
+          "right40": {
+            "byte_mean": 37.273,
+            "byte_variance": 972.537,
+            "colored_frac": 0.09373
+          },
+          "left_viewport_has_rendered_content": true,
+          "viewport_black": false
+        },
+        {
+          "width": 1560,
+          "height": 1010,
+          "colortype": 2,
+          "bytes_per_px": 3,
+          "byte_mean": 35.472,
+          "byte_variance": 1017.357,
+          "nonblack_frac": 0.9998,
+          "looks_blank": false,
+          "shot": "ui_page",
+          "path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_ui_page.png",
+          "_full": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_ui_page.png",
+          "resolution": [
+            1560,
+            1010
+          ],
+          "left60": {
+            "byte_mean": 37.37,
+            "byte_variance": 859.591,
+            "colored_frac": 0.0515
+          },
+          "right40": {
+            "byte_mean": 32.624,
+            "byte_variance": 1240.494,
+            "colored_frac": 0.0171
+          },
+          "left_viewport_has_rendered_content": true,
+          "viewport_black": false
+        }
+      ]
+    },
+    "G6_penetration_panel": {
+      "raw": {
+        "Female_Peasant": {
+          "assets": {
+            "body": "Female",
+            "garment": "Female_Peasant",
+            "hair": "Hair_Long"
+          },
+          "calibration": {
+            "C1_solid_only_expect_100": 100.0,
+            "C2_layer_only_expect_0": 0.0,
+            "layer_px_calibration": 7295,
+            "ok": true,
+            "solid_px_calibration": 803
+          },
+          "curve_pixel_method": {
+            "azimuths_deg": [
+              0.0,
+              90.0,
+              180.0,
+              270.0
+            ],
+            "calibration": {
+              "C1_solid_only_expect_100": 100.0,
+              "C2_layer_only_expect_0": 0.0,
+              "layer_px_calibration": 7295,
+              "ok": true,
+              "solid_px_calibration": 803
+            },
+            "classes": [
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Peasant",
+                "mesh": "Female_Peasant_Arms",
+                "part": "Female_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Peasant.001",
+                "mesh": "Female_Peasant_Body",
+                "part": "Female_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Peasant.001",
+                "mesh": "Female_Peasant_Feet",
+                "part": "Female_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Peasant",
+                "mesh": "Female_Peasant_Legs",
+                "part": "Female_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Hair_2.001",
+                "mesh": "Hair_Long",
+                "part": "Female_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Hair_2",
+                "mesh": "Head_Eyebrows",
+                "part": "Female_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Eyes",
+                "mesh": "Head_Eyes",
+                "part": "Female_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Superhero_Female",
+                "mesh": "Head_Superhero_Female",
+                "part": "Female_Peasant",
+                "surface": 0
+              }
+            ],
+            "first_k_over_baseline_plus_2pct": null,
+            "ks": [
+              -1.0,
+              -0.75,
+              -0.5,
+              -0.25,
+              0.0,
+              0.25,
+              0.5,
+              0.75,
+              1.0
+            ],
+            "max_pct": [
+              0.6,
+              0.58,
+              0.59,
+              0.54,
+              0.49,
+              0.47,
+              0.48,
+              0.46,
+              0.42
+            ],
+            "mean_pct": [
+              0.22,
+              0.21,
+              0.21,
+              0.21,
+              0.18,
+              0.22,
+              0.2,
+              0.2,
+              0.2
+            ],
+            "method": "pixel: P1 solid-only / P2 layer-only / P3 both; alpha=mask; pen = |layer px hidden behind solid| / |layer px|",
+            "normalization": "penetration_pct = occluded_px / layer_px（**归一化到覆盖层/服装**）；同时给 penetration_pct_of_union = occluded_px / union_px（归一化到剪影）以便与 garment 的 P_full 对账 —— 两者都对，但不是同一个数",
+            "resolution": [
+              224,
+              312
+            ],
+            "rest_baseline_pct": 0.18,
+            "route": "B2_self_contained",
+            "rows": [
+              {
+                "k": -1.0,
+                "max_pct": 0.6,
+                "mean_pct": 0.22,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -1.0,
+                    "layer_px": 6332,
+                    "occluded_px": 38,
+                    "penetration_pct": 0.6,
+                    "penetration_pct_of_union": 0.54,
+                    "solid_px": 805,
+                    "solid_visible_share_pct": 11.24,
+                    "union_px": 7091
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -1.0,
+                    "layer_px": 3812,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.05,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 903,
+                    "solid_visible_share_pct": 19.07,
+                    "union_px": 4708
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -1.0,
+                    "layer_px": 6413,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.16,
+                    "penetration_pct_of_union": 0.14,
+                    "solid_px": 830,
+                    "solid_visible_share_pct": 11.06,
+                    "union_px": 7199
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -1.0,
+                    "layer_px": 3812,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.05,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 906,
+                    "solid_visible_share_pct": 19.13,
+                    "union_px": 4711
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 15.13
+              },
+              {
+                "k": -0.75,
+                "max_pct": 0.58,
+                "mean_pct": 0.21,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.75,
+                    "layer_px": 6584,
+                    "occluded_px": 38,
+                    "penetration_pct": 0.58,
+                    "penetration_pct_of_union": 0.52,
+                    "solid_px": 805,
+                    "solid_visible_share_pct": 10.85,
+                    "union_px": 7343
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.75,
+                    "layer_px": 3953,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.05,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 903,
+                    "solid_visible_share_pct": 18.47,
+                    "union_px": 4846
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.75,
+                    "layer_px": 6658,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.15,
+                    "penetration_pct_of_union": 0.13,
+                    "solid_px": 830,
+                    "solid_visible_share_pct": 10.69,
+                    "union_px": 7444
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.75,
+                    "layer_px": 3953,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.05,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 906,
+                    "solid_visible_share_pct": 18.52,
+                    "union_px": 4849
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 14.63
+              },
+              {
+                "k": -0.5,
+                "max_pct": 0.59,
+                "mean_pct": 0.21,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.5,
+                    "layer_px": 6828,
+                    "occluded_px": 40,
+                    "penetration_pct": 0.59,
+                    "penetration_pct_of_union": 0.53,
+                    "solid_px": 805,
+                    "solid_visible_share_pct": 10.53,
+                    "union_px": 7587
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.5,
+                    "layer_px": 4098,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.05,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 903,
+                    "solid_visible_share_pct": 17.85,
+                    "union_px": 4986
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.5,
+                    "layer_px": 6914,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.14,
+                    "penetration_pct_of_union": 0.13,
+                    "solid_px": 830,
+                    "solid_visible_share_pct": 10.34,
+                    "union_px": 7700
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.5,
+                    "layer_px": 4098,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.05,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 906,
+                    "solid_visible_share_pct": 17.9,
+                    "union_px": 4989
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 14.16
+              },
+              {
+                "k": -0.25,
+                "max_pct": 0.54,
+                "mean_pct": 0.21,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.25,
+                    "layer_px": 7058,
+                    "occluded_px": 38,
+                    "penetration_pct": 0.54,
+                    "penetration_pct_of_union": 0.49,
+                    "solid_px": 803,
+                    "solid_visible_share_pct": 10.2,
+                    "union_px": 7817
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.25,
+                    "layer_px": 4250,
+                    "occluded_px": 3,
+                    "penetration_pct": 0.07,
+                    "penetration_pct_of_union": 0.06,
+                    "solid_px": 903,
+                    "solid_visible_share_pct": 17.33,
+                    "union_px": 5137
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.25,
+                    "layer_px": 7168,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.14,
+                    "penetration_pct_of_union": 0.13,
+                    "solid_px": 828,
+                    "solid_visible_share_pct": 10.01,
+                    "union_px": 7954
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.25,
+                    "layer_px": 4250,
+                    "occluded_px": 3,
+                    "penetration_pct": 0.07,
+                    "penetration_pct_of_union": 0.06,
+                    "solid_px": 906,
+                    "solid_visible_share_pct": 17.37,
+                    "union_px": 5140
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 13.73
+              },
+              {
+                "k": 0.0,
+                "max_pct": 0.49,
+                "mean_pct": 0.18,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.0,
+                    "layer_px": 7295,
+                    "occluded_px": 36,
+                    "penetration_pct": 0.49,
+                    "penetration_pct_of_union": 0.45,
+                    "solid_px": 803,
+                    "solid_visible_share_pct": 9.87,
+                    "union_px": 8054
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.0,
+                    "layer_px": 4381,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.05,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 901,
+                    "solid_visible_share_pct": 16.86,
+                    "union_px": 5267
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.0,
+                    "layer_px": 7422,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.13,
+                    "penetration_pct_of_union": 0.12,
+                    "solid_px": 828,
+                    "solid_visible_share_pct": 9.7,
+                    "union_px": 8208
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.0,
+                    "layer_px": 4381,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.05,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 904,
+                    "solid_visible_share_pct": 16.91,
+                    "union_px": 5270
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 13.34
+              },
+              {
+                "k": 0.25,
+                "max_pct": 0.47,
+                "mean_pct": 0.22,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.25,
+                    "layer_px": 7610,
+                    "occluded_px": 36,
+                    "penetration_pct": 0.47,
+                    "penetration_pct_of_union": 0.43,
+                    "solid_px": 801,
+                    "solid_visible_share_pct": 9.5,
+                    "union_px": 8369
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.25,
+                    "layer_px": 4580,
+                    "occluded_px": 4,
+                    "penetration_pct": 0.09,
+                    "penetration_pct_of_union": 0.07,
+                    "solid_px": 901,
+                    "solid_visible_share_pct": 16.19,
+                    "union_px": 5460
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.25,
+                    "layer_px": 7784,
+                    "occluded_px": 16,
+                    "penetration_pct": 0.21,
+                    "penetration_pct_of_union": 0.19,
+                    "solid_px": 826,
+                    "solid_visible_share_pct": 9.27,
+                    "union_px": 8562
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.25,
+                    "layer_px": 4580,
+                    "occluded_px": 4,
+                    "penetration_pct": 0.09,
+                    "penetration_pct_of_union": 0.07,
+                    "solid_px": 904,
+                    "solid_visible_share_pct": 16.24,
+                    "union_px": 5463
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 12.8
+              },
+              {
+                "k": 0.5,
+                "max_pct": 0.48,
+                "mean_pct": 0.2,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.5,
+                    "layer_px": 7954,
+                    "occluded_px": 38,
+                    "penetration_pct": 0.48,
+                    "penetration_pct_of_union": 0.44,
+                    "solid_px": 799,
+                    "solid_visible_share_pct": 9.04,
+                    "union_px": 8703
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.5,
+                    "layer_px": 4766,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.04,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 900,
+                    "solid_visible_share_pct": 15.53,
+                    "union_px": 5640
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.5,
+                    "layer_px": 8095,
+                    "occluded_px": 18,
+                    "penetration_pct": 0.22,
+                    "penetration_pct_of_union": 0.2,
+                    "solid_px": 824,
+                    "solid_visible_share_pct": 8.93,
+                    "union_px": 8869
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.5,
+                    "layer_px": 4766,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.04,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 903,
+                    "solid_visible_share_pct": 15.58,
+                    "union_px": 5643
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 12.27
+              },
+              {
+                "k": 0.75,
+                "max_pct": 0.46,
+                "mean_pct": 0.2,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.75,
+                    "layer_px": 8246,
+                    "occluded_px": 38,
+                    "penetration_pct": 0.46,
+                    "penetration_pct_of_union": 0.42,
+                    "solid_px": 799,
+                    "solid_visible_share_pct": 8.75,
+                    "union_px": 8995
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.75,
+                    "layer_px": 4973,
+                    "occluded_px": 3,
+                    "penetration_pct": 0.06,
+                    "penetration_pct_of_union": 0.05,
+                    "solid_px": 899,
+                    "solid_visible_share_pct": 14.94,
+                    "union_px": 5843
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.75,
+                    "layer_px": 8436,
+                    "occluded_px": 18,
+                    "penetration_pct": 0.21,
+                    "penetration_pct_of_union": 0.2,
+                    "solid_px": 826,
+                    "solid_visible_share_pct": 8.58,
+                    "union_px": 9208
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.75,
+                    "layer_px": 4973,
+                    "occluded_px": 3,
+                    "penetration_pct": 0.06,
+                    "penetration_pct_of_union": 0.05,
+                    "solid_px": 902,
+                    "solid_visible_share_pct": 14.98,
+                    "union_px": 5846
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 11.81
+              },
+              {
+                "k": 1.0,
+                "max_pct": 0.42,
+                "mean_pct": 0.2,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 1.0,
+                    "layer_px": 8598,
+                    "occluded_px": 36,
+                    "penetration_pct": 0.42,
+                    "penetration_pct_of_union": 0.39,
+                    "solid_px": 799,
+                    "solid_visible_share_pct": 8.38,
+                    "union_px": 9345
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 1.0,
+                    "layer_px": 5151,
+                    "occluded_px": 4,
+                    "penetration_pct": 0.08,
+                    "penetration_pct_of_union": 0.07,
+                    "solid_px": 899,
+                    "solid_visible_share_pct": 14.46,
+                    "union_px": 6017
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 1.0,
+                    "layer_px": 8732,
+                    "occluded_px": 18,
+                    "penetration_pct": 0.21,
+                    "penetration_pct_of_union": 0.19,
+                    "solid_px": 824,
+                    "solid_visible_share_pct": 8.31,
+                    "union_px": 9504
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 1.0,
+                    "layer_px": 5151,
+                    "occluded_px": 4,
+                    "penetration_pct": 0.08,
+                    "penetration_pct_of_union": 0.07,
+                    "solid_px": 902,
+                    "solid_visible_share_pct": 14.5,
+                    "union_px": 6020
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 11.41
+              }
+            ]
+          },
+          "height_uniformity": {
+            "bone_matrix_dispersion": {
+              "bone_root_scale": {
+                "dispersion": 0.0,
+                "max": 1.08,
+                "mean": 1.08,
+                "min": 1.08,
+                "n_bones": 130
+              },
+              "node_scale": {
+                "dispersion": 0.0,
+                "max": 1.0,
+                "mean": 1.0,
+                "min": 1.0,
+                "n_bones": 130
+              },
+              "note": "逐骨线性缩放离散度（纯矩阵，与 verifier 的 Blender 口径同义）：node_scale 模式下骨骼 pose 完全没动 → 逐骨缩放恒为 1；bone_root_scale 模式在 Godot 里按骨层级继承（Godot 的 Skeleton3D **没有** Blender 的 inherit_scale 标志），所以它与 Blender 侧行为不一定一致 —— 这两列就是用来当场对账的。"
+            },
+            "camera": "PROJECTION_ORTHOGONAL（只用于身高一致性；穿模计数仍是透视）",
+            "h": 1.08,
+            "metric": "累积面积剖面（17 点，归一化）相对偏差的离散度 —— 等比缩放下应≈0",
+            "modes": {
+              "bone_root_scale": {
+                "bone_stretch": {
+                  "dispersion": 1e-06,
+                  "expected_ratio": 1.08,
+                  "height_gain_pct": 8.0,
+                  "max_ratio": 1.080002,
+                  "mean_ratio": 1.08,
+                  "min_ratio": 1.079998,
+                  "n_segments": 52
+                },
+                "bone_stretch_dispersion": 1e-06,
+                "bone_stretch_height_gain_pct": 8.0,
+                "dispersion": 0.00744,
+                "dispersion_definition": "std(累积面积剖面相对偏差)",
+                "height_gain_pct_area": 8.0,
+                "height_ratio_sy_area": 1.08002,
+                "height_ratio_sy_px": 1.08299,
+                "pass_le_0.01": true,
+                "pass_le_0.01_bone_stretch": true,
+                "profile_h1": {
+                  "area_px": 11704,
+                  "cum_profile": [
+                    30.0,
+                    960.0,
+                    2118.0,
+                    3394.0,
+                    5036.0,
+                    7166.0,
+                    9330.0,
+                    10934.0,
+                    11704.0
+                  ],
+                  "height_px": 241,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 53
+                },
+                "profile_h2": {
+                  "area_px": 13652,
+                  "cum_profile": [
+                    32.0,
+                    1102.0,
+                    2480.0,
+                    3934.0,
+                    5892.0,
+                    8438.0,
+                    10938.0,
+                    12798.0,
+                    13652.0
+                  ],
+                  "height_px": 261,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 33
+                },
+                "profile_mean_rel_dev": 0.00034,
+                "profile_rel_dev": [
+                  -0.01588,
+                  0.00384,
+                  -0.00629,
+                  0.00303,
+                  0.00949,
+                  0.00507,
+                  0.00346,
+                  0.0
+                ],
+                "silhouette_note": "以下为**像素副口径**（正交剪影 + 累积面积剖面），噪声底 ~0.006（224x312 分辨率下的行量化）"
+              },
+              "node_scale": {
+                "bone_stretch": {
+                  "dispersion": 1e-06,
+                  "expected_ratio": 1.08,
+                  "height_gain_pct": 8.0,
+                  "max_ratio": 1.080002,
+                  "mean_ratio": 1.08,
+                  "min_ratio": 1.079998,
+                  "n_segments": 52
+                },
+                "bone_stretch_dispersion": 1e-06,
+                "bone_stretch_height_gain_pct": 8.0,
+                "dispersion": 0.00744,
+                "dispersion_definition": "std(累积面积剖面相对偏差)",
+                "height_gain_pct_area": 8.0,
+                "height_ratio_sy_area": 1.08002,
+                "height_ratio_sy_px": 1.08299,
+                "pass_le_0.01": true,
+                "pass_le_0.01_bone_stretch": true,
+                "profile_h1": {
+                  "area_px": 11704,
+                  "cum_profile": [
+                    30.0,
+                    960.0,
+                    2118.0,
+                    3394.0,
+                    5036.0,
+                    7166.0,
+                    9330.0,
+                    10934.0,
+                    11704.0
+                  ],
+                  "height_px": 241,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 53
+                },
+                "profile_h2": {
+                  "area_px": 13652,
+                  "cum_profile": [
+                    32.0,
+                    1102.0,
+                    2480.0,
+                    3934.0,
+                    5892.0,
+                    8438.0,
+                    10938.0,
+                    12798.0,
+                    13652.0
+                  ],
+                  "height_px": 261,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 33
+                },
+                "profile_mean_rel_dev": 0.00034,
+                "profile_rel_dev": [
+                  -0.01588,
+                  0.00384,
+                  -0.00629,
+                  0.00303,
+                  0.00949,
+                  0.00507,
+                  0.00346,
+                  0.0
+                ],
+                "silhouette_note": "以下为**像素副口径**（正交剪影 + 累积面积剖面），噪声底 ~0.006（224x312 分辨率下的行量化）"
+              }
+            },
+            "route": "B2_self_contained",
+            "threshold": 0.01
+          },
+          "route": "B2_self_contained"
+        },
+        "Female_Ranger": {
+          "assets": {
+            "body": "Female",
+            "garment": "Female_Ranger",
+            "hair": "Hair_Long"
+          },
+          "calibration": {
+            "C1_solid_only_expect_100": 100.0,
+            "C2_layer_only_expect_0": 0.0,
+            "layer_px_calibration": 8984,
+            "ok": true,
+            "solid_px_calibration": 626
+          },
+          "curve_pixel_method": {
+            "azimuths_deg": [
+              0.0,
+              90.0,
+              180.0,
+              270.0
+            ],
+            "calibration": {
+              "C1_solid_only_expect_100": 100.0,
+              "C2_layer_only_expect_0": 0.0,
+              "layer_px_calibration": 8984,
+              "ok": true,
+              "solid_px_calibration": 626
+            },
+            "classes": [
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Female_Ranger_Acc_Pauldrons",
+                "part": "Female_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Female_Ranger_Arms",
+                "part": "Female_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Regular_Female",
+                "mesh": "Female_Ranger_Arms",
+                "part": "Female_Ranger",
+                "surface": 1
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Female_Ranger_Arms_Bracer",
+                "part": "Female_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Female_Ranger_Body",
+                "part": "Female_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Female_Ranger_Body_Belt_1",
+                "part": "Female_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Female_Ranger_Body_Belt_2",
+                "part": "Female_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Female_Ranger_Feet",
+                "part": "Female_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Female_Ranger_Head_Hood",
+                "part": "Female_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Female_Ranger_Legs",
+                "part": "Female_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Hair_2",
+                "mesh": "Head_Eyebrows",
+                "part": "Female_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Eyes",
+                "mesh": "Head_Eyes",
+                "part": "Female_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Superhero_Female",
+                "mesh": "Head_Superhero_Female",
+                "part": "Female_Ranger",
+                "surface": 0
+              }
+            ],
+            "first_k_over_baseline_plus_2pct": null,
+            "ks": [
+              -1.0,
+              -0.75,
+              -0.5,
+              -0.25,
+              0.0,
+              0.25,
+              0.5,
+              0.75,
+              1.0
+            ],
+            "max_pct": [
+              6.38,
+              6.14,
+              5.91,
+              5.65,
+              5.48,
+              5.21,
+              5.03,
+              4.81,
+              4.65
+            ],
+            "mean_pct": [
+              2.71,
+              2.58,
+              2.51,
+              2.38,
+              2.31,
+              2.2,
+              2.11,
+              2.01,
+              1.93
+            ],
+            "method": "pixel: P1 solid-only / P2 layer-only / P3 both; alpha=mask; pen = |layer px hidden behind solid| / |layer px|",
+            "normalization": "penetration_pct = occluded_px / layer_px（**归一化到覆盖层/服装**）；同时给 penetration_pct_of_union = occluded_px / union_px（归一化到剪影）以便与 garment 的 P_full 对账 —— 两者都对，但不是同一个数",
+            "resolution": [
+              224,
+              312
+            ],
+            "rest_baseline_pct": 2.31,
+            "route": "B2_self_contained",
+            "rows": [
+              {
+                "k": -1.0,
+                "max_pct": 6.38,
+                "mean_pct": 2.71,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -1.0,
+                    "layer_px": 7838,
+                    "occluded_px": 500,
+                    "penetration_pct": 6.38,
+                    "penetration_pct_of_union": 6.32,
+                    "solid_px": 624,
+                    "solid_visible_share_pct": 7.21,
+                    "union_px": 7908
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -1.0,
+                    "layer_px": 5496,
+                    "occluded_px": 121,
+                    "penetration_pct": 2.2,
+                    "penetration_pct_of_union": 2.15,
+                    "solid_px": 863,
+                    "solid_visible_share_pct": 4.63,
+                    "union_px": 5636
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -1.0,
+                    "layer_px": 7986,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.03,
+                    "penetration_pct_of_union": 0.02,
+                    "solid_px": 626,
+                    "solid_visible_share_pct": 0.89,
+                    "union_px": 8056
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -1.0,
+                    "layer_px": 5462,
+                    "occluded_px": 121,
+                    "penetration_pct": 2.22,
+                    "penetration_pct_of_union": 2.16,
+                    "solid_px": 863,
+                    "solid_visible_share_pct": 4.68,
+                    "union_px": 5603
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 4.35
+              },
+              {
+                "k": -0.75,
+                "max_pct": 6.14,
+                "mean_pct": 2.58,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.75,
+                    "layer_px": 8144,
+                    "occluded_px": 500,
+                    "penetration_pct": 6.14,
+                    "penetration_pct_of_union": 6.08,
+                    "solid_px": 630,
+                    "solid_visible_share_pct": 7.01,
+                    "union_px": 8220
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.75,
+                    "layer_px": 5669,
+                    "occluded_px": 117,
+                    "penetration_pct": 2.06,
+                    "penetration_pct_of_union": 2.01,
+                    "solid_px": 861,
+                    "solid_visible_share_pct": 4.42,
+                    "union_px": 5809
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.75,
+                    "layer_px": 8293,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.02,
+                    "penetration_pct_of_union": 0.02,
+                    "solid_px": 628,
+                    "solid_visible_share_pct": 0.88,
+                    "union_px": 8365
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.75,
+                    "layer_px": 5636,
+                    "occluded_px": 119,
+                    "penetration_pct": 2.11,
+                    "penetration_pct_of_union": 2.06,
+                    "solid_px": 861,
+                    "solid_visible_share_pct": 4.47,
+                    "union_px": 5775
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 4.2
+              },
+              {
+                "k": -0.5,
+                "max_pct": 5.91,
+                "mean_pct": 2.51,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.5,
+                    "layer_px": 8426,
+                    "occluded_px": 498,
+                    "penetration_pct": 5.91,
+                    "penetration_pct_of_union": 5.86,
+                    "solid_px": 620,
+                    "solid_visible_share_pct": 6.64,
+                    "union_px": 8492
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.5,
+                    "layer_px": 5845,
+                    "occluded_px": 120,
+                    "penetration_pct": 2.05,
+                    "penetration_pct_of_union": 2.01,
+                    "solid_px": 859,
+                    "solid_visible_share_pct": 4.33,
+                    "union_px": 5984
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.5,
+                    "layer_px": 8586,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.02,
+                    "penetration_pct_of_union": 0.02,
+                    "solid_px": 632,
+                    "solid_visible_share_pct": 0.85,
+                    "union_px": 8658
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.5,
+                    "layer_px": 5818,
+                    "occluded_px": 120,
+                    "penetration_pct": 2.06,
+                    "penetration_pct_of_union": 2.01,
+                    "solid_px": 859,
+                    "solid_visible_share_pct": 4.35,
+                    "union_px": 5957
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 4.04
+              },
+              {
+                "k": -0.25,
+                "max_pct": 5.65,
+                "mean_pct": 2.38,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.25,
+                    "layer_px": 8745,
+                    "occluded_px": 494,
+                    "penetration_pct": 5.65,
+                    "penetration_pct_of_union": 5.6,
+                    "solid_px": 622,
+                    "solid_visible_share_pct": 6.4,
+                    "union_px": 8815
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.25,
+                    "layer_px": 6013,
+                    "occluded_px": 115,
+                    "penetration_pct": 1.91,
+                    "penetration_pct_of_union": 1.87,
+                    "solid_px": 860,
+                    "solid_visible_share_pct": 4.13,
+                    "union_px": 6152
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.25,
+                    "layer_px": 8877,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.02,
+                    "penetration_pct_of_union": 0.02,
+                    "solid_px": 624,
+                    "solid_visible_share_pct": 0.8,
+                    "union_px": 8947
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.25,
+                    "layer_px": 5976,
+                    "occluded_px": 116,
+                    "penetration_pct": 1.94,
+                    "penetration_pct_of_union": 1.9,
+                    "solid_px": 860,
+                    "solid_visible_share_pct": 4.15,
+                    "union_px": 6114
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.87
+              },
+              {
+                "k": 0.0,
+                "max_pct": 5.48,
+                "mean_pct": 2.31,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.0,
+                    "layer_px": 8984,
+                    "occluded_px": 492,
+                    "penetration_pct": 5.48,
+                    "penetration_pct_of_union": 5.43,
+                    "solid_px": 626,
+                    "solid_visible_share_pct": 6.23,
+                    "union_px": 9056
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.0,
+                    "layer_px": 6206,
+                    "occluded_px": 115,
+                    "penetration_pct": 1.85,
+                    "penetration_pct_of_union": 1.81,
+                    "solid_px": 856,
+                    "solid_visible_share_pct": 3.99,
+                    "union_px": 6344
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.0,
+                    "layer_px": 9152,
+                    "occluded_px": 4,
+                    "penetration_pct": 0.04,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 620,
+                    "solid_visible_share_pct": 0.76,
+                    "union_px": 9218
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.0,
+                    "layer_px": 6171,
+                    "occluded_px": 115,
+                    "penetration_pct": 1.86,
+                    "penetration_pct_of_union": 1.82,
+                    "solid_px": 856,
+                    "solid_visible_share_pct": 4.01,
+                    "union_px": 6309
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.75
+              },
+              {
+                "k": 0.25,
+                "max_pct": 5.21,
+                "mean_pct": 2.2,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.25,
+                    "layer_px": 9372,
+                    "occluded_px": 488,
+                    "penetration_pct": 5.21,
+                    "penetration_pct_of_union": 5.17,
+                    "solid_px": 616,
+                    "solid_visible_share_pct": 5.87,
+                    "union_px": 9438
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.25,
+                    "layer_px": 6423,
+                    "occluded_px": 114,
+                    "penetration_pct": 1.77,
+                    "penetration_pct_of_union": 1.74,
+                    "solid_px": 853,
+                    "solid_visible_share_pct": 3.83,
+                    "union_px": 6560
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.25,
+                    "layer_px": 9532,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.02,
+                    "penetration_pct_of_union": 0.02,
+                    "solid_px": 628,
+                    "solid_visible_share_pct": 0.77,
+                    "union_px": 9604
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.25,
+                    "layer_px": 6392,
+                    "occluded_px": 116,
+                    "penetration_pct": 1.81,
+                    "penetration_pct_of_union": 1.78,
+                    "solid_px": 853,
+                    "solid_visible_share_pct": 3.89,
+                    "union_px": 6530
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.59
+              },
+              {
+                "k": 0.5,
+                "max_pct": 5.03,
+                "mean_pct": 2.11,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.5,
+                    "layer_px": 9716,
+                    "occluded_px": 489,
+                    "penetration_pct": 5.03,
+                    "penetration_pct_of_union": 5.0,
+                    "solid_px": 616,
+                    "solid_visible_share_pct": 5.67,
+                    "union_px": 9782
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.5,
+                    "layer_px": 6671,
+                    "occluded_px": 112,
+                    "penetration_pct": 1.68,
+                    "penetration_pct_of_union": 1.65,
+                    "solid_px": 855,
+                    "solid_visible_share_pct": 3.66,
+                    "union_px": 6808
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.5,
+                    "layer_px": 9936,
+                    "occluded_px": 4,
+                    "penetration_pct": 0.04,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 614,
+                    "solid_visible_share_pct": 0.68,
+                    "union_px": 10000
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.5,
+                    "layer_px": 6639,
+                    "occluded_px": 112,
+                    "penetration_pct": 1.69,
+                    "penetration_pct_of_union": 1.65,
+                    "solid_px": 855,
+                    "solid_visible_share_pct": 3.67,
+                    "union_px": 6776
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.42
+              },
+              {
+                "k": 0.75,
+                "max_pct": 4.81,
+                "mean_pct": 2.01,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.75,
+                    "layer_px": 10124,
+                    "occluded_px": 487,
+                    "penetration_pct": 4.81,
+                    "penetration_pct_of_union": 4.78,
+                    "solid_px": 618,
+                    "solid_visible_share_pct": 5.45,
+                    "union_px": 10192
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.75,
+                    "layer_px": 6906,
+                    "occluded_px": 110,
+                    "penetration_pct": 1.59,
+                    "penetration_pct_of_union": 1.56,
+                    "solid_px": 848,
+                    "solid_visible_share_pct": 3.49,
+                    "union_px": 7042
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.75,
+                    "layer_px": 10296,
+                    "occluded_px": 4,
+                    "penetration_pct": 0.04,
+                    "penetration_pct_of_union": 0.04,
+                    "solid_px": 620,
+                    "solid_visible_share_pct": 0.68,
+                    "union_px": 10362
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.75,
+                    "layer_px": 6869,
+                    "occluded_px": 110,
+                    "penetration_pct": 1.6,
+                    "penetration_pct_of_union": 1.57,
+                    "solid_px": 848,
+                    "solid_visible_share_pct": 3.51,
+                    "union_px": 7005
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.28
+              },
+              {
+                "k": 1.0,
+                "max_pct": 4.65,
+                "mean_pct": 1.93,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 1.0,
+                    "layer_px": 10469,
+                    "occluded_px": 487,
+                    "penetration_pct": 4.65,
+                    "penetration_pct_of_union": 4.62,
+                    "solid_px": 622,
+                    "solid_visible_share_pct": 5.32,
+                    "union_px": 10543
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 1.0,
+                    "layer_px": 7149,
+                    "occluded_px": 109,
+                    "penetration_pct": 1.52,
+                    "penetration_pct_of_union": 1.5,
+                    "solid_px": 850,
+                    "solid_visible_share_pct": 3.36,
+                    "union_px": 7285
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 1.0,
+                    "layer_px": 10698,
+                    "occluded_px": 2,
+                    "penetration_pct": 0.02,
+                    "penetration_pct_of_union": 0.02,
+                    "solid_px": 620,
+                    "solid_visible_share_pct": 0.65,
+                    "union_px": 10766
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 1.0,
+                    "layer_px": 7111,
+                    "occluded_px": 110,
+                    "penetration_pct": 1.55,
+                    "penetration_pct_of_union": 1.52,
+                    "solid_px": 850,
+                    "solid_visible_share_pct": 3.39,
+                    "union_px": 7247
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.18
+              }
+            ]
+          },
+          "height_uniformity": {
+            "bone_matrix_dispersion": {
+              "bone_root_scale": {
+                "dispersion": 0.0,
+                "max": 1.08,
+                "mean": 1.08,
+                "min": 1.08,
+                "n_bones": 130
+              },
+              "node_scale": {
+                "dispersion": 0.0,
+                "max": 1.0,
+                "mean": 1.0,
+                "min": 1.0,
+                "n_bones": 130
+              },
+              "note": "逐骨线性缩放离散度（纯矩阵，与 verifier 的 Blender 口径同义）：node_scale 模式下骨骼 pose 完全没动 → 逐骨缩放恒为 1；bone_root_scale 模式在 Godot 里按骨层级继承（Godot 的 Skeleton3D **没有** Blender 的 inherit_scale 标志），所以它与 Blender 侧行为不一定一致 —— 这两列就是用来当场对账的。"
+            },
+            "camera": "PROJECTION_ORTHOGONAL（只用于身高一致性；穿模计数仍是透视）",
+            "h": 1.08,
+            "metric": "累积面积剖面（17 点，归一化）相对偏差的离散度 —— 等比缩放下应≈0",
+            "modes": {
+              "bone_root_scale": {
+                "bone_stretch": {
+                  "dispersion": 1e-06,
+                  "expected_ratio": 1.08,
+                  "height_gain_pct": 8.0,
+                  "max_ratio": 1.080002,
+                  "mean_ratio": 1.08,
+                  "min_ratio": 1.079998,
+                  "n_segments": 52
+                },
+                "bone_stretch_dispersion": 1e-06,
+                "bone_stretch_height_gain_pct": 8.0,
+                "dispersion": 0.00551,
+                "dispersion_definition": "std(累积面积剖面相对偏差)",
+                "height_gain_pct_area": 7.88,
+                "height_ratio_sy_area": 1.07881,
+                "height_ratio_sy_px": 1.07755,
+                "pass_le_0.01": true,
+                "pass_le_0.01_bone_stretch": true,
+                "profile_h1": {
+                  "area_px": 13270,
+                  "cum_profile": [
+                    30.0,
+                    1034.0,
+                    2352.0,
+                    3944.0,
+                    5806.0,
+                    8323.0,
+                    10554.0,
+                    12390.0,
+                    13270.0
+                  ],
+                  "height_px": 245,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 49
+                },
+                "profile_h2": {
+                  "area_px": 15444,
+                  "cum_profile": [
+                    34.0,
+                    1192.0,
+                    2686.0,
+                    4550.0,
+                    6674.0,
+                    9571.0,
+                    12222.0,
+                    14371.0,
+                    15444.0
+                  ],
+                  "height_px": 264,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 30
+                },
+                "profile_mean_rel_dev": -0.0087,
+                "profile_rel_dev": [
+                  -0.00947,
+                  -0.01875,
+                  -0.00874,
+                  -0.01231,
+                  -0.01193,
+                  -0.00497,
+                  -0.00339,
+                  0.0
+                ],
+                "silhouette_note": "以下为**像素副口径**（正交剪影 + 累积面积剖面），噪声底 ~0.006（224x312 分辨率下的行量化）"
+              },
+              "node_scale": {
+                "bone_stretch": {
+                  "dispersion": 1e-06,
+                  "expected_ratio": 1.08,
+                  "height_gain_pct": 8.0,
+                  "max_ratio": 1.080002,
+                  "mean_ratio": 1.08,
+                  "min_ratio": 1.079998,
+                  "n_segments": 52
+                },
+                "bone_stretch_dispersion": 1e-06,
+                "bone_stretch_height_gain_pct": 8.0,
+                "dispersion": 0.00551,
+                "dispersion_definition": "std(累积面积剖面相对偏差)",
+                "height_gain_pct_area": 7.88,
+                "height_ratio_sy_area": 1.07881,
+                "height_ratio_sy_px": 1.07755,
+                "pass_le_0.01": true,
+                "pass_le_0.01_bone_stretch": true,
+                "profile_h1": {
+                  "area_px": 13270,
+                  "cum_profile": [
+                    30.0,
+                    1034.0,
+                    2352.0,
+                    3944.0,
+                    5806.0,
+                    8323.0,
+                    10554.0,
+                    12390.0,
+                    13270.0
+                  ],
+                  "height_px": 245,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 49
+                },
+                "profile_h2": {
+                  "area_px": 15444,
+                  "cum_profile": [
+                    34.0,
+                    1192.0,
+                    2686.0,
+                    4550.0,
+                    6674.0,
+                    9571.0,
+                    12222.0,
+                    14371.0,
+                    15444.0
+                  ],
+                  "height_px": 264,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 30
+                },
+                "profile_mean_rel_dev": -0.0087,
+                "profile_rel_dev": [
+                  -0.00947,
+                  -0.01875,
+                  -0.00874,
+                  -0.01231,
+                  -0.01193,
+                  -0.00497,
+                  -0.00339,
+                  0.0
+                ],
+                "silhouette_note": "以下为**像素副口径**（正交剪影 + 累积面积剖面），噪声底 ~0.006（224x312 分辨率下的行量化）"
+              }
+            },
+            "route": "B2_self_contained",
+            "threshold": 0.01
+          },
+          "route": "B2_self_contained"
+        },
+        "Male_Peasant": {
+          "assets": {
+            "body": "Male",
+            "garment": "Male_Peasant",
+            "hair": "Hair_Buzzed"
+          },
+          "calibration": {
+            "C1_solid_only_expect_100": 100.0,
+            "C2_layer_only_expect_0": 0.0,
+            "layer_px_calibration": 8204,
+            "ok": true,
+            "solid_px_calibration": 1573
+          },
+          "curve_pixel_method": {
+            "azimuths_deg": [
+              0.0,
+              90.0,
+              180.0,
+              270.0
+            ],
+            "calibration": {
+              "C1_solid_only_expect_100": 100.0,
+              "C2_layer_only_expect_0": 0.0,
+              "layer_px_calibration": 8204,
+              "ok": true,
+              "solid_px_calibration": 1573
+            },
+            "classes": [
+              {
+                "class": "solid(skin)",
+                "material": "MI_Hair_1.001",
+                "mesh": "Hair_SimpleParted",
+                "part": "Male_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Hair_1",
+                "mesh": "Head_Eyebrows",
+                "part": "Male_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Eyes",
+                "mesh": "Head_Eyes",
+                "part": "Male_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Superhero_Male",
+                "mesh": "Head_SuperHero_Male",
+                "part": "Male_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Peasant",
+                "mesh": "Male_Peasant_Arms",
+                "part": "Male_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Regular_Male",
+                "mesh": "Male_Peasant_Arms",
+                "part": "Male_Peasant",
+                "surface": 1
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Peasant",
+                "mesh": "Male_Peasant_Body",
+                "part": "Male_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Peasant",
+                "mesh": "Male_Peasant_Feet",
+                "part": "Male_Peasant",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Peasant",
+                "mesh": "Male_Peasant_Legs",
+                "part": "Male_Peasant",
+                "surface": 0
+              }
+            ],
+            "first_k_over_baseline_plus_2pct": null,
+            "ks": [
+              -1.0,
+              -0.75,
+              -0.5,
+              -0.25,
+              0.0,
+              0.25,
+              0.5,
+              0.75,
+              1.0
+            ],
+            "max_pct": [
+              11.87,
+              11.87,
+              11.86,
+              11.82,
+              11.75,
+              11.67,
+              11.49,
+              11.15,
+              11.11
+            ],
+            "mean_pct": [
+              6.04,
+              6.03,
+              6.03,
+              6.01,
+              5.94,
+              5.88,
+              5.78,
+              5.61,
+              5.58
+            ],
+            "method": "pixel: P1 solid-only / P2 layer-only / P3 both; alpha=mask; pen = |layer px hidden behind solid| / |layer px|",
+            "normalization": "penetration_pct = occluded_px / layer_px（**归一化到覆盖层/服装**）；同时给 penetration_pct_of_union = occluded_px / union_px（归一化到剪影）以便与 garment 的 P_full 对账 —— 两者都对，但不是同一个数",
+            "resolution": [
+              224,
+              312
+            ],
+            "rest_baseline_pct": 5.94,
+            "route": "B2_self_contained",
+            "rows": [
+              {
+                "k": -1.0,
+                "max_pct": 11.87,
+                "mean_pct": 6.04,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -1.0,
+                    "layer_px": 7073,
+                    "occluded_px": 20,
+                    "penetration_pct": 0.28,
+                    "penetration_pct_of_union": 0.24,
+                    "solid_px": 1487,
+                    "solid_visible_share_pct": 15.26,
+                    "union_px": 8323
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -1.0,
+                    "layer_px": 4370,
+                    "occluded_px": 518,
+                    "penetration_pct": 11.85,
+                    "penetration_pct_of_union": 10.0,
+                    "solid_px": 1540,
+                    "solid_visible_share_pct": 25.64,
+                    "union_px": 5180
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -1.0,
+                    "layer_px": 7236,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.14,
+                    "penetration_pct_of_union": 0.12,
+                    "solid_px": 1516,
+                    "solid_visible_share_pct": 14.8,
+                    "union_px": 8481
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -1.0,
+                    "layer_px": 4371,
+                    "occluded_px": 519,
+                    "penetration_pct": 11.87,
+                    "penetration_pct_of_union": 10.03,
+                    "solid_px": 1524,
+                    "solid_visible_share_pct": 25.55,
+                    "union_px": 5174
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 20.31
+              },
+              {
+                "k": -0.75,
+                "max_pct": 11.87,
+                "mean_pct": 6.03,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.75,
+                    "layer_px": 7355,
+                    "occluded_px": 18,
+                    "penetration_pct": 0.24,
+                    "penetration_pct_of_union": 0.21,
+                    "solid_px": 1509,
+                    "solid_visible_share_pct": 14.89,
+                    "union_px": 8621
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.75,
+                    "layer_px": 4517,
+                    "occluded_px": 536,
+                    "penetration_pct": 11.87,
+                    "penetration_pct_of_union": 10.09,
+                    "solid_px": 1566,
+                    "solid_visible_share_pct": 25.08,
+                    "union_px": 5314
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.75,
+                    "layer_px": 7559,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.13,
+                    "penetration_pct_of_union": 0.11,
+                    "solid_px": 1534,
+                    "solid_visible_share_pct": 14.35,
+                    "union_px": 8814
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.75,
+                    "layer_px": 4520,
+                    "occluded_px": 536,
+                    "penetration_pct": 11.86,
+                    "penetration_pct_of_union": 10.09,
+                    "solid_px": 1547,
+                    "solid_visible_share_pct": 24.99,
+                    "union_px": 5311
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 19.83
+              },
+              {
+                "k": -0.5,
+                "max_pct": 11.86,
+                "mean_pct": 6.03,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.5,
+                    "layer_px": 7647,
+                    "occluded_px": 20,
+                    "penetration_pct": 0.26,
+                    "penetration_pct_of_union": 0.22,
+                    "solid_px": 1529,
+                    "solid_visible_share_pct": 14.47,
+                    "union_px": 8917
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.5,
+                    "layer_px": 4672,
+                    "occluded_px": 554,
+                    "penetration_pct": 11.86,
+                    "penetration_pct_of_union": 10.15,
+                    "solid_px": 1574,
+                    "solid_visible_share_pct": 24.58,
+                    "union_px": 5460
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.5,
+                    "layer_px": 7841,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.13,
+                    "penetration_pct_of_union": 0.11,
+                    "solid_px": 1560,
+                    "solid_visible_share_pct": 14.06,
+                    "union_px": 9112
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.5,
+                    "layer_px": 4672,
+                    "occluded_px": 554,
+                    "penetration_pct": 11.86,
+                    "penetration_pct_of_union": 10.16,
+                    "solid_px": 1556,
+                    "solid_visible_share_pct": 24.5,
+                    "union_px": 5454
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 19.4
+              },
+              {
+                "k": -0.25,
+                "max_pct": 11.82,
+                "mean_pct": 6.01,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.25,
+                    "layer_px": 7922,
+                    "occluded_px": 22,
+                    "penetration_pct": 0.28,
+                    "penetration_pct_of_union": 0.24,
+                    "solid_px": 1563,
+                    "solid_visible_share_pct": 14.26,
+                    "union_px": 9214
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.25,
+                    "layer_px": 4821,
+                    "occluded_px": 570,
+                    "penetration_pct": 11.82,
+                    "penetration_pct_of_union": 10.18,
+                    "solid_px": 1573,
+                    "solid_visible_share_pct": 24.05,
+                    "union_px": 5597
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.25,
+                    "layer_px": 8130,
+                    "occluded_px": 8,
+                    "penetration_pct": 0.1,
+                    "penetration_pct_of_union": 0.09,
+                    "solid_px": 1577,
+                    "solid_visible_share_pct": 13.66,
+                    "union_px": 9407
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.25,
+                    "layer_px": 4821,
+                    "occluded_px": 570,
+                    "penetration_pct": 11.82,
+                    "penetration_pct_of_union": 10.19,
+                    "solid_px": 1558,
+                    "solid_visible_share_pct": 23.97,
+                    "union_px": 5591
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 18.99
+              },
+              {
+                "k": 0.0,
+                "max_pct": 11.75,
+                "mean_pct": 5.94,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.0,
+                    "layer_px": 8204,
+                    "occluded_px": 14,
+                    "penetration_pct": 0.17,
+                    "penetration_pct_of_union": 0.15,
+                    "solid_px": 1573,
+                    "solid_visible_share_pct": 13.83,
+                    "union_px": 9504
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.0,
+                    "layer_px": 4987,
+                    "occluded_px": 586,
+                    "penetration_pct": 11.75,
+                    "penetration_pct_of_union": 10.17,
+                    "solid_px": 1594,
+                    "solid_visible_share_pct": 23.61,
+                    "union_px": 5761
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.0,
+                    "layer_px": 8431,
+                    "occluded_px": 6,
+                    "penetration_pct": 0.07,
+                    "penetration_pct_of_union": 0.06,
+                    "solid_px": 1588,
+                    "solid_visible_share_pct": 13.23,
+                    "union_px": 9710
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.0,
+                    "layer_px": 4989,
+                    "occluded_px": 586,
+                    "penetration_pct": 11.75,
+                    "penetration_pct_of_union": 10.18,
+                    "solid_px": 1575,
+                    "solid_visible_share_pct": 23.52,
+                    "union_px": 5757
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 18.55
+              },
+              {
+                "k": 0.25,
+                "max_pct": 11.67,
+                "mean_pct": 5.88,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.25,
+                    "layer_px": 8542,
+                    "occluded_px": 16,
+                    "penetration_pct": 0.19,
+                    "penetration_pct_of_union": 0.16,
+                    "solid_px": 1620,
+                    "solid_visible_share_pct": 13.62,
+                    "union_px": 9870
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.25,
+                    "layer_px": 5200,
+                    "occluded_px": 607,
+                    "penetration_pct": 11.67,
+                    "penetration_pct_of_union": 10.17,
+                    "solid_px": 1629,
+                    "solid_visible_share_pct": 23.08,
+                    "union_px": 5971
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.25,
+                    "layer_px": 8787,
+                    "occluded_px": 0,
+                    "penetration_pct": 0.0,
+                    "penetration_pct_of_union": 0.0,
+                    "solid_px": 1633,
+                    "solid_visible_share_pct": 12.98,
+                    "union_px": 10098
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.25,
+                    "layer_px": 5201,
+                    "occluded_px": 607,
+                    "penetration_pct": 11.67,
+                    "penetration_pct_of_union": 10.17,
+                    "solid_px": 1612,
+                    "solid_visible_share_pct": 23.0,
+                    "union_px": 5966
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 18.17
+              },
+              {
+                "k": 0.5,
+                "max_pct": 11.49,
+                "mean_pct": 5.78,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.5,
+                    "layer_px": 8931,
+                    "occluded_px": 12,
+                    "penetration_pct": 0.13,
+                    "penetration_pct_of_union": 0.12,
+                    "solid_px": 1630,
+                    "solid_visible_share_pct": 13.13,
+                    "union_px": 10267
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.5,
+                    "layer_px": 5413,
+                    "occluded_px": 622,
+                    "penetration_pct": 11.49,
+                    "penetration_pct_of_union": 10.06,
+                    "solid_px": 1649,
+                    "solid_visible_share_pct": 22.51,
+                    "union_px": 6183
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.5,
+                    "layer_px": 9167,
+                    "occluded_px": 0,
+                    "penetration_pct": 0.0,
+                    "penetration_pct_of_union": 0.0,
+                    "solid_px": 1676,
+                    "solid_visible_share_pct": 12.75,
+                    "union_px": 10506
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.5,
+                    "layer_px": 5413,
+                    "occluded_px": 622,
+                    "penetration_pct": 11.49,
+                    "penetration_pct_of_union": 10.07,
+                    "solid_px": 1628,
+                    "solid_visible_share_pct": 22.44,
+                    "union_px": 6177
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 17.71
+              },
+              {
+                "k": 0.75,
+                "max_pct": 11.15,
+                "mean_pct": 5.61,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.75,
+                    "layer_px": 9271,
+                    "occluded_px": 12,
+                    "penetration_pct": 0.13,
+                    "penetration_pct_of_union": 0.11,
+                    "solid_px": 1662,
+                    "solid_visible_share_pct": 12.79,
+                    "union_px": 10617
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.75,
+                    "layer_px": 5631,
+                    "occluded_px": 628,
+                    "penetration_pct": 11.15,
+                    "penetration_pct_of_union": 9.82,
+                    "solid_px": 1665,
+                    "solid_visible_share_pct": 21.75,
+                    "union_px": 6394
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.75,
+                    "layer_px": 9506,
+                    "occluded_px": 0,
+                    "penetration_pct": 0.0,
+                    "penetration_pct_of_union": 0.0,
+                    "solid_px": 1685,
+                    "solid_visible_share_pct": 12.3,
+                    "union_px": 10839
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.75,
+                    "layer_px": 5631,
+                    "occluded_px": 628,
+                    "penetration_pct": 11.15,
+                    "penetration_pct_of_union": 9.83,
+                    "solid_px": 1644,
+                    "solid_visible_share_pct": 21.68,
+                    "union_px": 6388
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 17.13
+              },
+              {
+                "k": 1.0,
+                "max_pct": 11.11,
+                "mean_pct": 5.58,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 1.0,
+                    "layer_px": 9617,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.1,
+                    "penetration_pct_of_union": 0.09,
+                    "solid_px": 1705,
+                    "solid_visible_share_pct": 12.59,
+                    "union_px": 10991
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 1.0,
+                    "layer_px": 5837,
+                    "occluded_px": 648,
+                    "penetration_pct": 11.1,
+                    "penetration_pct_of_union": 9.82,
+                    "solid_px": 1684,
+                    "solid_visible_share_pct": 21.33,
+                    "union_px": 6596
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 1.0,
+                    "layer_px": 9893,
+                    "occluded_px": 0,
+                    "penetration_pct": 0.0,
+                    "penetration_pct_of_union": 0.0,
+                    "solid_px": 1721,
+                    "solid_visible_share_pct": 12.03,
+                    "union_px": 11246
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 1.0,
+                    "layer_px": 5833,
+                    "occluded_px": 648,
+                    "penetration_pct": 11.11,
+                    "penetration_pct_of_union": 9.84,
+                    "solid_px": 1667,
+                    "solid_visible_share_pct": 21.27,
+                    "union_px": 6586
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 16.81
+              }
+            ]
+          },
+          "height_uniformity": {
+            "bone_matrix_dispersion": {
+              "bone_root_scale": {
+                "dispersion": 0.0,
+                "max": 1.08,
+                "mean": 1.08,
+                "min": 1.08,
+                "n_bones": 130
+              },
+              "node_scale": {
+                "dispersion": 0.0,
+                "max": 1.0,
+                "mean": 1.0,
+                "min": 1.0,
+                "n_bones": 130
+              },
+              "note": "逐骨线性缩放离散度（纯矩阵，与 verifier 的 Blender 口径同义）：node_scale 模式下骨骼 pose 完全没动 → 逐骨缩放恒为 1；bone_root_scale 模式在 Godot 里按骨层级继承（Godot 的 Skeleton3D **没有** Blender 的 inherit_scale 标志），所以它与 Blender 侧行为不一定一致 —— 这两列就是用来当场对账的。"
+            },
+            "camera": "PROJECTION_ORTHOGONAL（只用于身高一致性；穿模计数仍是透视）",
+            "h": 1.08,
+            "metric": "累积面积剖面（17 点，归一化）相对偏差的离散度 —— 等比缩放下应≈0",
+            "modes": {
+              "bone_root_scale": {
+                "bone_stretch": {
+                  "dispersion": 1e-06,
+                  "expected_ratio": 1.08,
+                  "height_gain_pct": 8.0,
+                  "max_ratio": 1.080001,
+                  "mean_ratio": 1.08,
+                  "min_ratio": 1.079998,
+                  "n_segments": 52
+                },
+                "bone_stretch_dispersion": 1e-06,
+                "bone_stretch_height_gain_pct": 8.0,
+                "dispersion": 0.00671,
+                "dispersion_definition": "std(累积面积剖面相对偏差)",
+                "height_gain_pct_area": 7.95,
+                "height_ratio_sy_area": 1.0795,
+                "height_ratio_sy_px": 1.08,
+                "pass_le_0.01": true,
+                "pass_le_0.01_bone_stretch": true,
+                "profile_h1": {
+                  "area_px": 13768,
+                  "cum_profile": [
+                    30.0,
+                    960.0,
+                    2230.0,
+                    3900.0,
+                    5616.0,
+                    8042.0,
+                    11004.0,
+                    13147.0,
+                    13768.0
+                  ],
+                  "height_px": 250,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 44
+                },
+                "profile_h2": {
+                  "area_px": 16044,
+                  "cum_profile": [
+                    34.0,
+                    1098.0,
+                    2584.0,
+                    4566.0,
+                    6550.0,
+                    9337.0,
+                    12837.0,
+                    15334.0,
+                    16044.0
+                  ],
+                  "height_px": 270,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 24
+                },
+                "profile_mean_rel_dev": -0.00254,
+                "profile_rel_dev": [
+                  -0.0185,
+                  -0.00563,
+                  0.00468,
+                  0.00086,
+                  -0.00367,
+                  0.00109,
+                  0.00089,
+                  0.0
+                ],
+                "silhouette_note": "以下为**像素副口径**（正交剪影 + 累积面积剖面），噪声底 ~0.006（224x312 分辨率下的行量化）"
+              },
+              "node_scale": {
+                "bone_stretch": {
+                  "dispersion": 1e-06,
+                  "expected_ratio": 1.08,
+                  "height_gain_pct": 8.0,
+                  "max_ratio": 1.080003,
+                  "mean_ratio": 1.08,
+                  "min_ratio": 1.079998,
+                  "n_segments": 52
+                },
+                "bone_stretch_dispersion": 1e-06,
+                "bone_stretch_height_gain_pct": 8.0,
+                "dispersion": 0.00671,
+                "dispersion_definition": "std(累积面积剖面相对偏差)",
+                "height_gain_pct_area": 7.95,
+                "height_ratio_sy_area": 1.0795,
+                "height_ratio_sy_px": 1.08,
+                "pass_le_0.01": true,
+                "pass_le_0.01_bone_stretch": true,
+                "profile_h1": {
+                  "area_px": 13768,
+                  "cum_profile": [
+                    30.0,
+                    960.0,
+                    2230.0,
+                    3900.0,
+                    5616.0,
+                    8042.0,
+                    11004.0,
+                    13147.0,
+                    13768.0
+                  ],
+                  "height_px": 250,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 44
+                },
+                "profile_h2": {
+                  "area_px": 16044,
+                  "cum_profile": [
+                    34.0,
+                    1098.0,
+                    2584.0,
+                    4566.0,
+                    6550.0,
+                    9337.0,
+                    12837.0,
+                    15334.0,
+                    16044.0
+                  ],
+                  "height_px": 270,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 24
+                },
+                "profile_mean_rel_dev": -0.00254,
+                "profile_rel_dev": [
+                  -0.0185,
+                  -0.00563,
+                  0.00468,
+                  0.00086,
+                  -0.00367,
+                  0.00109,
+                  0.00089,
+                  0.0
+                ],
+                "silhouette_note": "以下为**像素副口径**（正交剪影 + 累积面积剖面），噪声底 ~0.006（224x312 分辨率下的行量化）"
+              }
+            },
+            "route": "B2_self_contained",
+            "threshold": 0.01
+          },
+          "route": "B2_self_contained"
+        },
+        "Male_Ranger": {
+          "assets": {
+            "body": "Male",
+            "garment": "Male_Ranger",
+            "hair": "Hair_Buzzed"
+          },
+          "calibration": {
+            "C1_solid_only_expect_100": 100.0,
+            "C2_layer_only_expect_0": 0.0,
+            "layer_px_calibration": 9809,
+            "ok": true,
+            "solid_px_calibration": 700
+          },
+          "curve_pixel_method": {
+            "azimuths_deg": [
+              0.0,
+              90.0,
+              180.0,
+              270.0
+            ],
+            "calibration": {
+              "C1_solid_only_expect_100": 100.0,
+              "C2_layer_only_expect_0": 0.0,
+              "layer_px_calibration": 9809,
+              "ok": true,
+              "solid_px_calibration": 700
+            },
+            "classes": [
+              {
+                "class": "solid(skin)",
+                "material": "MI_Hair_1",
+                "mesh": "Head_Eyebrows",
+                "part": "Male_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Eyes",
+                "mesh": "Head_Eyes",
+                "part": "Male_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Superhero_Male",
+                "mesh": "Head_SuperHero_Male",
+                "part": "Male_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Male_Ranger_Acc_Pauldron",
+                "part": "Male_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger.001",
+                "mesh": "Male_Ranger_Arms",
+                "part": "Male_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "solid(skin)",
+                "material": "MI_Regular_Male",
+                "mesh": "Male_Ranger_Arms",
+                "part": "Male_Ranger",
+                "surface": 1
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger.001",
+                "mesh": "Male_Ranger_Arms_Bracer",
+                "part": "Male_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger.001",
+                "mesh": "Male_Ranger_Body",
+                "part": "Male_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Male_Ranger_Body_Belt_1",
+                "part": "Male_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger",
+                "mesh": "Male_Ranger_Body_Belt_2",
+                "part": "Male_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger.001",
+                "mesh": "Male_Ranger_Feet_Boots",
+                "part": "Male_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger.001",
+                "mesh": "Male_Ranger_Head_Hood",
+                "part": "Male_Ranger",
+                "surface": 0
+              },
+              {
+                "class": "layer(cloth)",
+                "material": "MI_Ranger.001",
+                "mesh": "Male_Ranger_Legs",
+                "part": "Male_Ranger",
+                "surface": 0
+              }
+            ],
+            "first_k_over_baseline_plus_2pct": null,
+            "ks": [
+              -1.0,
+              -0.75,
+              -0.5,
+              -0.25,
+              0.0,
+              0.25,
+              0.5,
+              0.75,
+              1.0
+            ],
+            "max_pct": [
+              6.67,
+              6.33,
+              6.14,
+              5.8,
+              5.57,
+              5.33,
+              5.04,
+              4.83,
+              4.58
+            ],
+            "mean_pct": [
+              2.58,
+              2.57,
+              2.47,
+              2.4,
+              2.34,
+              2.27,
+              2.15,
+              2.08,
+              1.97
+            ],
+            "method": "pixel: P1 solid-only / P2 layer-only / P3 both; alpha=mask; pen = |layer px hidden behind solid| / |layer px|",
+            "normalization": "penetration_pct = occluded_px / layer_px（**归一化到覆盖层/服装**）；同时给 penetration_pct_of_union = occluded_px / union_px（归一化到剪影）以便与 garment 的 P_full 对账 —— 两者都对，但不是同一个数",
+            "resolution": [
+              224,
+              312
+            ],
+            "rest_baseline_pct": 2.34,
+            "route": "B2_self_contained",
+            "rows": [
+              {
+                "k": -1.0,
+                "max_pct": 6.67,
+                "mean_pct": 2.58,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -1.0,
+                    "layer_px": 8570,
+                    "occluded_px": 572,
+                    "penetration_pct": 6.67,
+                    "penetration_pct_of_union": 6.62,
+                    "solid_px": 702,
+                    "solid_visible_share_pct": 7.41,
+                    "union_px": 8638
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -1.0,
+                    "layer_px": 5779,
+                    "occluded_px": 104,
+                    "penetration_pct": 1.8,
+                    "penetration_pct_of_union": 1.75,
+                    "solid_px": 875,
+                    "solid_visible_share_pct": 4.27,
+                    "union_px": 5928
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -1.0,
+                    "layer_px": 8732,
+                    "occluded_px": 8,
+                    "penetration_pct": 0.09,
+                    "penetration_pct_of_union": 0.09,
+                    "solid_px": 700,
+                    "solid_visible_share_pct": 0.91,
+                    "union_px": 8804
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -1.0,
+                    "layer_px": 5742,
+                    "occluded_px": 101,
+                    "penetration_pct": 1.76,
+                    "penetration_pct_of_union": 1.71,
+                    "solid_px": 875,
+                    "solid_visible_share_pct": 4.24,
+                    "union_px": 5891
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 4.21
+              },
+              {
+                "k": -0.75,
+                "max_pct": 6.33,
+                "mean_pct": 2.57,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.75,
+                    "layer_px": 8884,
+                    "occluded_px": 562,
+                    "penetration_pct": 6.33,
+                    "penetration_pct_of_union": 6.27,
+                    "solid_px": 712,
+                    "solid_visible_share_pct": 7.2,
+                    "union_px": 8968
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.75,
+                    "layer_px": 5946,
+                    "occluded_px": 113,
+                    "penetration_pct": 1.9,
+                    "penetration_pct_of_union": 1.86,
+                    "solid_px": 874,
+                    "solid_visible_share_pct": 4.16,
+                    "union_px": 6086
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.75,
+                    "layer_px": 9098,
+                    "occluded_px": 12,
+                    "penetration_pct": 0.13,
+                    "penetration_pct_of_union": 0.13,
+                    "solid_px": 708,
+                    "solid_visible_share_pct": 0.96,
+                    "union_px": 9174
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.75,
+                    "layer_px": 5909,
+                    "occluded_px": 112,
+                    "penetration_pct": 1.9,
+                    "penetration_pct_of_union": 1.85,
+                    "solid_px": 874,
+                    "solid_visible_share_pct": 4.17,
+                    "union_px": 6049
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 4.12
+              },
+              {
+                "k": -0.5,
+                "max_pct": 6.14,
+                "mean_pct": 2.47,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.5,
+                    "layer_px": 9155,
+                    "occluded_px": 562,
+                    "penetration_pct": 6.14,
+                    "penetration_pct_of_union": 6.09,
+                    "solid_px": 710,
+                    "solid_visible_share_pct": 6.87,
+                    "union_px": 9227
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.5,
+                    "layer_px": 6115,
+                    "occluded_px": 112,
+                    "penetration_pct": 1.83,
+                    "penetration_pct_of_union": 1.79,
+                    "solid_px": 875,
+                    "solid_visible_share_pct": 3.97,
+                    "union_px": 6251
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.5,
+                    "layer_px": 9418,
+                    "occluded_px": 8,
+                    "penetration_pct": 0.08,
+                    "penetration_pct_of_union": 0.08,
+                    "solid_px": 710,
+                    "solid_visible_share_pct": 0.93,
+                    "union_px": 9498
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.5,
+                    "layer_px": 6074,
+                    "occluded_px": 112,
+                    "penetration_pct": 1.84,
+                    "penetration_pct_of_union": 1.8,
+                    "solid_px": 875,
+                    "solid_visible_share_pct": 3.99,
+                    "union_px": 6210
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.94
+              },
+              {
+                "k": -0.25,
+                "max_pct": 5.8,
+                "mean_pct": 2.4,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": -0.25,
+                    "layer_px": 9475,
+                    "occluded_px": 550,
+                    "penetration_pct": 5.8,
+                    "penetration_pct_of_union": 5.76,
+                    "solid_px": 706,
+                    "solid_visible_share_pct": 6.52,
+                    "union_px": 9547
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": -0.25,
+                    "layer_px": 6282,
+                    "occluded_px": 116,
+                    "penetration_pct": 1.85,
+                    "penetration_pct_of_union": 1.81,
+                    "solid_px": 872,
+                    "solid_visible_share_pct": 3.87,
+                    "union_px": 6414
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": -0.25,
+                    "layer_px": 9734,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.1,
+                    "penetration_pct_of_union": 0.1,
+                    "solid_px": 692,
+                    "solid_visible_share_pct": 0.78,
+                    "union_px": 9800
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": -0.25,
+                    "layer_px": 6237,
+                    "occluded_px": 116,
+                    "penetration_pct": 1.86,
+                    "penetration_pct_of_union": 1.82,
+                    "solid_px": 872,
+                    "solid_visible_share_pct": 3.88,
+                    "union_px": 6368
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.76
+              },
+              {
+                "k": 0.0,
+                "max_pct": 5.57,
+                "mean_pct": 2.34,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.0,
+                    "layer_px": 9809,
+                    "occluded_px": 546,
+                    "penetration_pct": 5.57,
+                    "penetration_pct_of_union": 5.53,
+                    "solid_px": 700,
+                    "solid_visible_share_pct": 6.22,
+                    "union_px": 9877
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.0,
+                    "layer_px": 6464,
+                    "occluded_px": 119,
+                    "penetration_pct": 1.84,
+                    "penetration_pct_of_union": 1.81,
+                    "solid_px": 872,
+                    "solid_visible_share_pct": 3.75,
+                    "union_px": 6592
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.0,
+                    "layer_px": 10045,
+                    "occluded_px": 8,
+                    "penetration_pct": 0.08,
+                    "penetration_pct_of_union": 0.08,
+                    "solid_px": 694,
+                    "solid_visible_share_pct": 0.79,
+                    "union_px": 10117
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.0,
+                    "layer_px": 6420,
+                    "occluded_px": 119,
+                    "penetration_pct": 1.85,
+                    "penetration_pct_of_union": 1.82,
+                    "solid_px": 872,
+                    "solid_visible_share_pct": 3.77,
+                    "union_px": 6548
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.63
+              },
+              {
+                "k": 0.25,
+                "max_pct": 5.33,
+                "mean_pct": 2.27,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.25,
+                    "layer_px": 10177,
+                    "occluded_px": 542,
+                    "penetration_pct": 5.33,
+                    "penetration_pct_of_union": 5.28,
+                    "solid_px": 716,
+                    "solid_visible_share_pct": 6.08,
+                    "union_px": 10259
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.25,
+                    "layer_px": 6695,
+                    "occluded_px": 121,
+                    "penetration_pct": 1.81,
+                    "penetration_pct_of_union": 1.77,
+                    "solid_px": 874,
+                    "solid_visible_share_pct": 3.58,
+                    "union_px": 6818
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.25,
+                    "layer_px": 10450,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.1,
+                    "penetration_pct_of_union": 0.1,
+                    "solid_px": 702,
+                    "solid_visible_share_pct": 0.8,
+                    "union_px": 10524
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.25,
+                    "layer_px": 6649,
+                    "occluded_px": 122,
+                    "penetration_pct": 1.83,
+                    "penetration_pct_of_union": 1.8,
+                    "solid_px": 874,
+                    "solid_visible_share_pct": 3.6,
+                    "union_px": 6771
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.52
+              },
+              {
+                "k": 0.5,
+                "max_pct": 5.04,
+                "mean_pct": 2.15,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.5,
+                    "layer_px": 10586,
+                    "occluded_px": 534,
+                    "penetration_pct": 5.04,
+                    "penetration_pct_of_union": 5.01,
+                    "solid_px": 700,
+                    "solid_visible_share_pct": 5.7,
+                    "union_px": 10660
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.5,
+                    "layer_px": 6928,
+                    "occluded_px": 120,
+                    "penetration_pct": 1.73,
+                    "penetration_pct_of_union": 1.7,
+                    "solid_px": 874,
+                    "solid_visible_share_pct": 3.39,
+                    "union_px": 7047
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.5,
+                    "layer_px": 10883,
+                    "occluded_px": 12,
+                    "penetration_pct": 0.11,
+                    "penetration_pct_of_union": 0.11,
+                    "solid_px": 706,
+                    "solid_visible_share_pct": 0.78,
+                    "union_px": 10957
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.5,
+                    "layer_px": 6885,
+                    "occluded_px": 120,
+                    "penetration_pct": 1.74,
+                    "penetration_pct_of_union": 1.71,
+                    "solid_px": 874,
+                    "solid_visible_share_pct": 3.44,
+                    "union_px": 7006
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.33
+              },
+              {
+                "k": 0.75,
+                "max_pct": 4.83,
+                "mean_pct": 2.08,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 0.75,
+                    "layer_px": 10983,
+                    "occluded_px": 530,
+                    "penetration_pct": 4.83,
+                    "penetration_pct_of_union": 4.8,
+                    "solid_px": 700,
+                    "solid_visible_share_pct": 5.38,
+                    "union_px": 11047
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 0.75,
+                    "layer_px": 7175,
+                    "occluded_px": 122,
+                    "penetration_pct": 1.7,
+                    "penetration_pct_of_union": 1.67,
+                    "solid_px": 869,
+                    "solid_visible_share_pct": 3.21,
+                    "union_px": 7287
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 0.75,
+                    "layer_px": 11273,
+                    "occluded_px": 8,
+                    "penetration_pct": 0.07,
+                    "penetration_pct_of_union": 0.07,
+                    "solid_px": 698,
+                    "solid_visible_share_pct": 0.69,
+                    "union_px": 11343
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 0.75,
+                    "layer_px": 7123,
+                    "occluded_px": 122,
+                    "penetration_pct": 1.71,
+                    "penetration_pct_of_union": 1.69,
+                    "solid_px": 869,
+                    "solid_visible_share_pct": 3.29,
+                    "union_px": 7239
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.14
+              },
+              {
+                "k": 1.0,
+                "max_pct": 4.58,
+                "mean_pct": 1.97,
+                "n_azimuths": 4,
+                "per_azimuth": [
+                  {
+                    "azimuth_deg": 0.0,
+                    "k": 1.0,
+                    "layer_px": 11353,
+                    "occluded_px": 520,
+                    "penetration_pct": 4.58,
+                    "penetration_pct_of_union": 4.55,
+                    "solid_px": 712,
+                    "solid_visible_share_pct": 5.26,
+                    "union_px": 11435
+                  },
+                  {
+                    "azimuth_deg": 90.0,
+                    "k": 1.0,
+                    "layer_px": 7401,
+                    "occluded_px": 118,
+                    "penetration_pct": 1.59,
+                    "penetration_pct_of_union": 1.57,
+                    "solid_px": 865,
+                    "solid_visible_share_pct": 3.0,
+                    "union_px": 7508
+                  },
+                  {
+                    "azimuth_deg": 180.0,
+                    "k": 1.0,
+                    "layer_px": 11697,
+                    "occluded_px": 10,
+                    "penetration_pct": 0.09,
+                    "penetration_pct_of_union": 0.08,
+                    "solid_px": 700,
+                    "solid_visible_share_pct": 0.66,
+                    "union_px": 11765
+                  },
+                  {
+                    "azimuth_deg": 270.0,
+                    "k": 1.0,
+                    "layer_px": 7347,
+                    "occluded_px": 120,
+                    "penetration_pct": 1.63,
+                    "penetration_pct_of_union": 1.61,
+                    "solid_px": 865,
+                    "solid_visible_share_pct": 3.08,
+                    "union_px": 7457
+                  }
+                ],
+                "route": "B2_self_contained",
+                "solid_visible_share_pct": 3.0
+              }
+            ]
+          },
+          "height_uniformity": {
+            "bone_matrix_dispersion": {
+              "bone_root_scale": {
+                "dispersion": 0.0,
+                "max": 1.08,
+                "mean": 1.08,
+                "min": 1.08,
+                "n_bones": 130
+              },
+              "node_scale": {
+                "dispersion": 0.0,
+                "max": 1.0,
+                "mean": 1.0,
+                "min": 1.0,
+                "n_bones": 130
+              },
+              "note": "逐骨线性缩放离散度（纯矩阵，与 verifier 的 Blender 口径同义）：node_scale 模式下骨骼 pose 完全没动 → 逐骨缩放恒为 1；bone_root_scale 模式在 Godot 里按骨层级继承（Godot 的 Skeleton3D **没有** Blender 的 inherit_scale 标志），所以它与 Blender 侧行为不一定一致 —— 这两列就是用来当场对账的。"
+            },
+            "camera": "PROJECTION_ORTHOGONAL（只用于身高一致性；穿模计数仍是透视）",
+            "h": 1.08,
+            "metric": "累积面积剖面（17 点，归一化）相对偏差的离散度 —— 等比缩放下应≈0",
+            "modes": {
+              "bone_root_scale": {
+                "bone_stretch": {
+                  "dispersion": 1e-06,
+                  "expected_ratio": 1.08,
+                  "height_gain_pct": 8.0,
+                  "max_ratio": 1.080001,
+                  "mean_ratio": 1.08,
+                  "min_ratio": 1.079998,
+                  "n_segments": 52
+                },
+                "bone_stretch_dispersion": 1e-06,
+                "bone_stretch_height_gain_pct": 8.0,
+                "dispersion": 0.00921,
+                "dispersion_definition": "std(累积面积剖面相对偏差)",
+                "height_gain_pct_area": 7.9,
+                "height_ratio_sy_area": 1.07898,
+                "height_ratio_sy_px": 1.07874,
+                "pass_le_0.01": true,
+                "pass_le_0.01_bone_stretch": true,
+                "profile_h1": {
+                  "area_px": 14336,
+                  "cum_profile": [
+                    30.0,
+                    1064.0,
+                    2456.0,
+                    4146.0,
+                    5944.0,
+                    8597.0,
+                    11410.0,
+                    13564.0,
+                    14336.0
+                  ],
+                  "height_px": 254,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 40
+                },
+                "profile_h2": {
+                  "area_px": 16690,
+                  "cum_profile": [
+                    34.0,
+                    1268.0,
+                    2866.0,
+                    4774.0,
+                    6908.0,
+                    10041.0,
+                    13268.0,
+                    15765.0,
+                    16690.0
+                  ],
+                  "height_px": 274,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 20
+                },
+                "profile_mean_rel_dev": 0.00171,
+                "profile_rel_dev": [
+                  0.02364,
+                  0.00235,
+                  -0.01094,
+                  -0.00174,
+                  0.00323,
+                  -0.00117,
+                  -0.00166,
+                  0.0
+                ],
+                "silhouette_note": "以下为**像素副口径**（正交剪影 + 累积面积剖面），噪声底 ~0.006（224x312 分辨率下的行量化）"
+              },
+              "node_scale": {
+                "bone_stretch": {
+                  "dispersion": 1e-06,
+                  "expected_ratio": 1.08,
+                  "height_gain_pct": 8.0,
+                  "max_ratio": 1.080003,
+                  "mean_ratio": 1.08,
+                  "min_ratio": 1.079998,
+                  "n_segments": 52
+                },
+                "bone_stretch_dispersion": 1e-06,
+                "bone_stretch_height_gain_pct": 8.0,
+                "dispersion": 0.00921,
+                "dispersion_definition": "std(累积面积剖面相对偏差)",
+                "height_gain_pct_area": 7.9,
+                "height_ratio_sy_area": 1.07898,
+                "height_ratio_sy_px": 1.07874,
+                "pass_le_0.01": true,
+                "pass_le_0.01_bone_stretch": true,
+                "profile_h1": {
+                  "area_px": 14336,
+                  "cum_profile": [
+                    30.0,
+                    1064.0,
+                    2456.0,
+                    4146.0,
+                    5944.0,
+                    8597.0,
+                    11410.0,
+                    13564.0,
+                    14336.0
+                  ],
+                  "height_px": 254,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 40
+                },
+                "profile_h2": {
+                  "area_px": 16690,
+                  "cum_profile": [
+                    34.0,
+                    1268.0,
+                    2866.0,
+                    4774.0,
+                    6908.0,
+                    10041.0,
+                    13268.0,
+                    15765.0,
+                    16690.0
+                  ],
+                  "height_px": 274,
+                  "ok": true,
+                  "ymax": 293,
+                  "ymin": 20
+                },
+                "profile_mean_rel_dev": 0.00171,
+                "profile_rel_dev": [
+                  0.02364,
+                  0.00235,
+                  -0.01094,
+                  -0.00174,
+                  0.00323,
+                  -0.00117,
+                  -0.00166,
+                  0.0
+                ],
+                "silhouette_note": "以下为**像素副口径**（正交剪影 + 累积面积剖面），噪声底 ~0.006（224x312 分辨率下的行量化）"
+              }
+            },
+            "route": "B2_self_contained",
+            "threshold": 0.01
+          },
+          "route": "B2_self_contained"
+        }
+      },
+      "n_entries": 4,
+      "n_usable": 4,
+      "all_unavailable": false
+    }
+  },
+  "found": {
+    "report_keys": [
+      "asset_provenance",
+      "assets",
+      "bake_log",
+      "blender_bin",
+      "cache_dir",
+      "elapsed_ms",
+      "fonts",
+      "generated_at",
+      "godot",
+      "morph_per_mesh_coverage",
+      "one_command",
+      "penetration_deprecated_bvh",
+      "penetration_method_note",
+      "penetration_pixel_method_curves",
+      "root",
+      "shots",
+      "task",
+      "tool",
+      "zero_copy"
+    ],
+    "receipt_keys": [
+      "contract",
+      "note",
+      "shots"
+    ]
+  },
+  "status": "OK"
+}

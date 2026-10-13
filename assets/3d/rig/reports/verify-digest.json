@@ -1,0 +1,132 @@
+{
+  "generated_by": "verifier/v_digest.py",
+  "spec": "对每件按名字排序，顶点顺序 pack('<3f') 后整体 sha256[:16]",
+  "manifest_found": true,
+  "manifest_sha256_16": "6a8e9edc541e8aee",
+  "cases": [
+    {
+      "outfit": "Female_Ranger",
+      "n_meshes": 12,
+      "total_verts": 27920,
+      "variants": {
+        "BS_Thin|name=0|basis=0": "e5346f1cf12a6dbe",
+        "BS_Thin|name=0|basis=1": "0082757c1bb3ae2e",
+        "BS_Thin|name=1|basis=0": "6785aba668316b78",
+        "BS_Thin|name=1|basis=1": "394a4c136d702255",
+        "BS_Heavy|name=0|basis=0": "6d87cac343fd772d",
+        "BS_Heavy|name=0|basis=1": "005cf14807135127",
+        "BS_Heavy|name=1|basis=0": "038ae477e8567967",
+        "BS_Heavy|name=1|basis=1": "87ae281bfb935ae4"
+      },
+      "t2_manifest": {
+        "BS_Thin": "e5346f1cf12a6dbe",
+        "BS_Heavy": "6d87cac343fd772d"
+      },
+      "match": {
+        "BS_Thin": {
+          "manifest": "e5346f1cf12a6dbe",
+          "verifier_matching_variant": "BS_Thin|name=0|basis=0",
+          "agrees": true
+        },
+        "BS_Heavy": {
+          "manifest": "6d87cac343fd772d",
+          "verifier_matching_variant": "BS_Heavy|name=0|basis=0",
+          "agrees": true
+        }
+      }
+    },
+    {
+      "outfit": "Female_Peasant",
+      "n_meshes": 8,
+      "total_verts": 16376,
+      "variants": {
+        "BS_Thin|name=0|basis=0": "2f1e1a18e76f609f",
+        "BS_Thin|name=0|basis=1": "3be1026547003cc9",
+        "BS_Thin|name=1|basis=0": "eb05e7b7855b9742",
+        "BS_Thin|name=1|basis=1": "24ca3065ee894988",
+        "BS_Heavy|name=0|basis=0": "33c7cfe143a2e33a",
+        "BS_Heavy|name=0|basis=1": "c38404bd2dd15a02",
+        "BS_Heavy|name=1|basis=0": "d4d2cfc2d6c94002",
+        "BS_Heavy|name=1|basis=1": "097c519a758437d1"
+      },
+      "t2_manifest": {
+        "BS_Thin": "2f1e1a18e76f609f",
+        "BS_Heavy": "33c7cfe143a2e33a"
+      },
+      "match": {
+        "BS_Thin": {
+          "manifest": "2f1e1a18e76f609f",
+          "verifier_matching_variant": "BS_Thin|name=0|basis=0",
+          "agrees": true
+        },
+        "BS_Heavy": {
+          "manifest": "33c7cfe143a2e33a",
+          "verifier_matching_variant": "BS_Heavy|name=0|basis=0",
+          "agrees": true
+        }
+      }
+    },
+    {
+      "outfit": "Male_Ranger",
+      "n_meshes": 12,
+      "total_verts": 27637,
+      "variants": {
+        "BS_Thin|name=0|basis=0": "ee34ee72fb0dd997",
+        "BS_Thin|name=0|basis=1": "c1603165d841151a",
+        "BS_Thin|name=1|basis=0": "740d53a260a770b8",
+        "BS_Thin|name=1|basis=1": "cf0bd29db9f7f442",
+        "BS_Heavy|name=0|basis=0": "7864b3144db1538b",
+        "BS_Heavy|name=0|basis=1": "8661c449213939ad",
+        "BS_Heavy|name=1|basis=0": "5de87a97b7f84ec1",
+        "BS_Heavy|name=1|basis=1": "1671418f76242391"
+      },
+      "t2_manifest": {
+        "BS_Thin": "ee34ee72fb0dd997",
+        "BS_Heavy": "7864b3144db1538b"
+      },
+      "match": {
+        "BS_Thin": {
+          "manifest": "ee34ee72fb0dd997",
+          "verifier_matching_variant": "BS_Thin|name=0|basis=0",
+          "agrees": true
+        },
+        "BS_Heavy": {
+          "manifest": "7864b3144db1538b",
+          "verifier_matching_variant": "BS_Heavy|name=0|basis=0",
+          "agrees": true
+        }
+      }
+    },
+    {
+      "outfit": "Male_Peasant",
+      "n_meshes": 8,
+      "total_verts": 12376,
+      "variants": {
+        "BS_Thin|name=0|basis=0": "4905a02aa50cbaa9",
+        "BS_Thin|name=0|basis=1": "4ad8d7c47a3598fd",
+        "BS_Thin|name=1|basis=0": "834cf1a1e3e0fbcd",
+        "BS_Thin|name=1|basis=1": "edd6624c92c78042",
+        "BS_Heavy|name=0|basis=0": "7d011d19451e9d61",
+        "BS_Heavy|name=0|basis=1": "2158cdd2f6b41bb6",
+        "BS_Heavy|name=1|basis=0": "f04c6fc8a4240029",
+        "BS_Heavy|name=1|basis=1": "af49bbdd49e0d5c7"
+      },
+      "t2_manifest": {
+        "BS_Thin": "4905a02aa50cbaa9",
+        "BS_Heavy": "7d011d19451e9d61"
+      },
+      "match": {
+        "BS_Thin": {
+          "manifest": "4905a02aa50cbaa9",
+          "verifier_matching_variant": "BS_Thin|name=0|basis=0",
+          "agrees": true
+        },
+        "BS_Heavy": {
+          "manifest": "7d011d19451e9d61",
+          "verifier_matching_variant": "BS_Heavy|name=0|basis=0",
+          "agrees": true
+        }
+      }
+    }
+  ]
+}

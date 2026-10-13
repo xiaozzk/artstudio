@@ -1,0 +1,436 @@
+{
+  "contract": "SPEC §3.3  [BS_Thin(index 0), BS_Heavy(index 1)]",
+  "note": "逐 **mesh** 一行的实测读回（件级证据，不只按角色聚合）：morph_per_mesh 每行含 {part, part_key, mesh, path, blend_shape_names, thin_index, heavy_index, thin_value_set/read_back, heavy_value_set/read_back, contract_ok, read_back_ok}",
+  "shots": {
+    "bodyshape_female_3tiers": {
+      "garment_key": "",
+      "h": null,
+      "k": null,
+      "morph_per_part": [
+        {
+          "figure": "Female/Ranger",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 1.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "figure": "Female/Ranger",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "figure": "Female/Ranger",
+          "parts": [
+            {
+              "heavy": 1.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            }
+          ]
+        }
+      ],
+      "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_bodyshape_female_3tiers.png"
+    },
+    "bodyshape_male_3tiers": {
+      "garment_key": "",
+      "h": null,
+      "k": null,
+      "morph_per_part": [
+        {
+          "figure": "Male/Peasant",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 8,
+              "note": "已驱动",
+              "part": "character:Male_Peasant",
+              "thin": 1.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Buzzed",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "figure": "Male/Peasant",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 8,
+              "note": "已驱动",
+              "part": "character:Male_Peasant",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Buzzed",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "figure": "Male/Peasant",
+          "parts": [
+            {
+              "heavy": 1.0,
+              "meshes": 8,
+              "note": "已驱动",
+              "part": "character:Male_Peasant",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Buzzed",
+              "thin": null
+            }
+          ]
+        }
+      ],
+      "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_bodyshape_male_3tiers.png"
+    },
+    "debug_p1_vs_p3": {
+      "garment_key": "Female_Ranger",
+      "h": null,
+      "k": -1.0,
+      "morph_per_part": [],
+      "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_debug_p1_vs_p3.png"
+    },
+    "female_heavy": {
+      "garment_key": "Female_Ranger",
+      "h": 1.0,
+      "k": 1.0,
+      "morph_per_part": [
+        {
+          "heavy": 1.0,
+          "meshes": 12,
+          "note": "已驱动",
+          "part": "character:Female_Ranger",
+          "thin": 0.0
+        },
+        {
+          "heavy": null,
+          "meshes": 1,
+          "note": "无 morph 通道",
+          "part": "hair:Hair_Long",
+          "thin": null
+        }
+      ],
+      "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_heavy.png"
+    },
+    "female_standard": {
+      "garment_key": "Female_Ranger",
+      "h": 1.0,
+      "k": 0.0,
+      "morph_per_part": [
+        {
+          "heavy": 0.0,
+          "meshes": 12,
+          "note": "已驱动",
+          "part": "character:Female_Ranger",
+          "thin": 0.0
+        },
+        {
+          "heavy": null,
+          "meshes": 1,
+          "note": "无 morph 通道",
+          "part": "hair:Hair_Long",
+          "thin": null
+        }
+      ],
+      "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_standard.png"
+    },
+    "female_thin": {
+      "garment_key": "Female_Ranger",
+      "h": 1.0,
+      "k": -1.0,
+      "morph_per_part": [
+        {
+          "heavy": 0.0,
+          "meshes": 12,
+          "note": "已驱动",
+          "part": "character:Female_Ranger",
+          "thin": 1.0
+        },
+        {
+          "heavy": null,
+          "meshes": 1,
+          "note": "无 morph 通道",
+          "part": "hair:Hair_Long",
+          "thin": null
+        }
+      ],
+      "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_female_thin.png"
+    },
+    "hair_4": {
+      "garment_key": "",
+      "h": null,
+      "k": null,
+      "morph_per_part": [
+        {
+          "figure": "Female/Ranger",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Buzzed",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "figure": "Female/Ranger",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_SimpleParted",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "figure": "Female/Ranger",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Buns",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "figure": "Female/Ranger",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            }
+          ]
+        }
+      ],
+      "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_hair_4.png"
+    },
+    "height_sweep": {
+      "garment_key": "",
+      "h": null,
+      "k": null,
+      "morph_per_part": [
+        {
+          "figure": "Female/Ranger",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "figure": "Female/Ranger",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            }
+          ]
+        },
+        {
+          "figure": "Female/Ranger",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            },
+            {
+              "heavy": null,
+              "meshes": 1,
+              "note": "无 morph 通道",
+              "part": "hair:Hair_Long",
+              "thin": null
+            }
+          ]
+        }
+      ],
+      "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_height_sweep.png"
+    },
+    "outfits_4": {
+      "garment_key": "",
+      "h": null,
+      "k": null,
+      "morph_per_part": [
+        {
+          "figure": "Female/Ranger",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Female_Ranger",
+              "thin": 0.0
+            }
+          ]
+        },
+        {
+          "figure": "Female/Peasant",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 8,
+              "note": "已驱动",
+              "part": "character:Female_Peasant",
+              "thin": 0.0
+            }
+          ]
+        },
+        {
+          "figure": "Male/Ranger",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 12,
+              "note": "已驱动",
+              "part": "character:Male_Ranger",
+              "thin": 0.0
+            }
+          ]
+        },
+        {
+          "figure": "Male/Peasant",
+          "parts": [
+            {
+              "heavy": 0.0,
+              "meshes": 8,
+              "note": "已驱动",
+              "part": "character:Male_Peasant",
+              "thin": 0.0
+            }
+          ]
+        }
+      ],
+      "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_outfits_4.png"
+    },
+    "ui_page": {
+      "garment_key": "Female_Peasant",
+      "h": null,
+      "k": null,
+      "morph_per_part": [
+        {
+          "heavy": 0.0,
+          "meshes": 8,
+          "note": "已驱动",
+          "part": "character:Female_Peasant",
+          "thin": 0.85
+        },
+        {
+          "heavy": null,
+          "meshes": 1,
+          "note": "无 morph 通道",
+          "part": "hair:Hair_Long",
+          "thin": null
+        }
+      ],
+      "png": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/previews/preview_ui_page.png"
+    }
+  }
+}

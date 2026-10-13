@@ -1,0 +1,1871 @@
+{
+  "generated_by": "verifier/v_rootcause.py",
+  "cases": [
+    {
+      "sex": "Female",
+      "outfit": "Outfit_Female_Ranger",
+      "inventory": [
+        {
+          "name": "Female_Ranger_Acc_Pauldrons",
+          "verts": 1092,
+          "faces": 1376,
+          "materials": {
+            "MI_Ranger": 1376
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Female_Ranger_Arms",
+          "verts": 2976,
+          "faces": 4872,
+          "materials": {
+            "MI_Ranger": 3000,
+            "MI_Regular_Female": 1872
+          },
+          "has_regular_mat": true
+        },
+        {
+          "name": "Female_Ranger_Arms_Bracer",
+          "verts": 4000,
+          "faces": 3636,
+          "materials": {
+            "MI_Ranger": 3636
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Female_Ranger_Body",
+          "verts": 2785,
+          "faces": 2962,
+          "materials": {
+            "MI_Ranger": 2962
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Female_Ranger_Body_Belt_1",
+          "verts": 928,
+          "faces": 804,
+          "materials": {
+            "MI_Ranger": 804
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Female_Ranger_Body_Belt_2",
+          "verts": 928,
+          "faces": 804,
+          "materials": {
+            "MI_Ranger": 804
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Female_Ranger_Feet",
+          "verts": 10174,
+          "faces": 9172,
+          "materials": {
+            "MI_Ranger": 9172
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Female_Ranger_Head_Hood",
+          "verts": 1240,
+          "faces": 2136,
+          "materials": {
+            "MI_Ranger": 2136
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Female_Ranger_Legs",
+          "verts": 685,
+          "faces": 1204,
+          "materials": {
+            "MI_Ranger": 1204
+          },
+          "has_regular_mat": false
+        }
+      ],
+      "pieces": [
+        {
+          "piece": "Female_Ranger_Acc_Pauldrons",
+          "n_verts": 1092,
+          "inside_frac_all": 0.0018315018315018315,
+          "median_cm_all": 3.565900295143365,
+          "p05_cm": 1.1598263847190537,
+          "p95_cm": 5.869781407436676,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 1092,
+              "inside_frac": 0.0018315018315018315,
+              "median_cm": 3.565900295143365,
+              "p05_cm": 1.1598263847190537,
+              "p95_cm": 5.869781407436676
+            }
+          },
+          "materials": {
+            "MI_Ranger": 1376
+          }
+        },
+        {
+          "piece": "Female_Ranger_Arms",
+          "n_verts": 2976,
+          "inside_frac_all": 0.5396505376344086,
+          "median_cm_all": -0.011256088339450798,
+          "p05_cm": -0.7372524907168554,
+          "p95_cm": 0.17702756292976574,
+          "by_material_group": {
+            "MI_Regular_* (判据内)": {
+              "n": 1202,
+              "inside_frac": 0.4459234608985025,
+              "median_cm": 0.006279731479708062,
+              "p05_cm": -0.22356932705406507,
+              "p95_cm": 0.10020303250655616
+            },
+            "其他材质 (判据外)": {
+              "n": 1774,
+              "inside_frac": 0.6031567080045096,
+              "median_cm": -0.06439747462536616,
+              "p05_cm": -1.0741774100461043,
+              "p95_cm": 0.194889826226472
+            }
+          },
+          "materials": {
+            "MI_Ranger": 3000,
+            "MI_Regular_Female": 1872
+          }
+        },
+        {
+          "piece": "Female_Ranger_Arms_Bracer",
+          "n_verts": 4000,
+          "inside_frac_all": 0.045,
+          "median_cm_all": 1.5000666326159262,
+          "p05_cm": 0.03379802075507144,
+          "p95_cm": 3.0149863625410944,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 4000,
+              "inside_frac": 0.045,
+              "median_cm": 1.5000666326159262,
+              "p05_cm": 0.03379802075507144,
+              "p95_cm": 3.0149863625410944
+            }
+          },
+          "materials": {
+            "MI_Ranger": 3636
+          }
+        },
+        {
+          "piece": "Female_Ranger_Body",
+          "n_verts": 2785,
+          "inside_frac_all": 0.08258527827648116,
+          "median_cm_all": 1.6735899675629025,
+          "p05_cm": -0.3176161932060495,
+          "p95_cm": 4.096794420729566,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 2785,
+              "inside_frac": 0.08258527827648116,
+              "median_cm": 1.6735899675629025,
+              "p05_cm": -0.3176161932060495,
+              "p95_cm": 4.096794420729566
+            }
+          },
+          "materials": {
+            "MI_Ranger": 2962
+          }
+        },
+        {
+          "piece": "Female_Ranger_Body_Belt_1",
+          "n_verts": 928,
+          "inside_frac_all": 0.08189655172413793,
+          "median_cm_all": 2.0648853678721935,
+          "p05_cm": -0.2623903116727888,
+          "p95_cm": 3.912722785025835,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 928,
+              "inside_frac": 0.08189655172413793,
+              "median_cm": 2.0648853678721935,
+              "p05_cm": -0.2623903116727888,
+              "p95_cm": 3.912722785025835
+            }
+          },
+          "materials": {
+            "MI_Ranger": 804
+          }
+        },
+        {
+          "piece": "Female_Ranger_Body_Belt_2",
+          "n_verts": 928,
+          "inside_frac_all": 0.03879310344827586,
+          "median_cm_all": 1.9137746887281537,
+          "p05_cm": 0.10601184621918947,
+          "p95_cm": 3.8341208797646686,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 928,
+              "inside_frac": 0.03879310344827586,
+              "median_cm": 1.9137746887281537,
+              "p05_cm": 0.10601184621918947,
+              "p95_cm": 3.8341208797646686
+            }
+          },
+          "materials": {
+            "MI_Ranger": 804
+          }
+        },
+        {
+          "piece": "Female_Ranger_Feet",
+          "n_verts": 10174,
+          "inside_frac_all": 0.059956752506388836,
+          "median_cm_all": 2.5966018074541353,
+          "p05_cm": -0.10129217262146994,
+          "p95_cm": 5.798419789064157,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 10174,
+              "inside_frac": 0.059956752506388836,
+              "median_cm": 2.5966018074541353,
+              "p05_cm": -0.10129217262146994,
+              "p95_cm": 5.798419789064157
+            }
+          },
+          "materials": {
+            "MI_Ranger": 9172
+          }
+        },
+        {
+          "piece": "Female_Ranger_Head_Hood",
+          "n_verts": 1240,
+          "inside_frac_all": 0.03870967741935484,
+          "median_cm_all": 4.41761224064976,
+          "p05_cm": 0.9215142725588522,
+          "p95_cm": 9.877779553662549,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 1240,
+              "inside_frac": 0.03870967741935484,
+              "median_cm": 4.41761224064976,
+              "p05_cm": 0.9215142725588522,
+              "p95_cm": 9.877779553662549
+            }
+          },
+          "materials": {
+            "MI_Ranger": 2136
+          }
+        },
+        {
+          "piece": "Female_Ranger_Legs",
+          "n_verts": 685,
+          "inside_frac_all": 0.2759124087591241,
+          "median_cm_all": 0.8515705674227547,
+          "p05_cm": -1.1696303792996332,
+          "p95_cm": 3.746807100251316,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 685,
+              "inside_frac": 0.2759124087591241,
+              "median_cm": 0.8515705674227547,
+              "p05_cm": -1.1696303792996332,
+              "p95_cm": 3.746807100251316
+            }
+          },
+          "materials": {
+            "MI_Ranger": 1204
+          }
+        }
+      ],
+      "rest_delta_by_bone": {
+        "n_bones": 65,
+        "n_over_0.01cm": 0,
+        "max_cm": 0.0,
+        "top10": [
+          {
+            "bone": "root",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "pelvis",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "spine_01",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "spine_02",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "spine_03",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "neck_01",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "Head",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "clavicle_l",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "upperarm_l",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "lowerarm_l",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          }
+        ],
+        "by_region": {
+          "躯干": {
+            "n": 6,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          },
+          "头": {
+            "n": 1,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          },
+          "臂": {
+            "n": 6,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          },
+          "手/指": {
+            "n": 42,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          },
+          "腿": {
+            "n": 10,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          }
+        }
+      },
+      "weight_groups": {
+        "Female_Ranger_Acc_Pauldrons": {
+          "n_weight_entries": 1092,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "upperarm_l",
+              1092
+            ]
+          ]
+        },
+        "Female_Ranger_Arms": {
+          "n_weight_entries": 6142,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "lowerarm_l",
+              327
+            ],
+            [
+              "lowerarm_r",
+              327
+            ],
+            [
+              "hand_l",
+              286
+            ],
+            [
+              "hand_r",
+              286
+            ],
+            [
+              "upperarm_l",
+              263
+            ],
+            [
+              "upperarm_r",
+              263
+            ]
+          ]
+        },
+        "Female_Ranger_Arms_Bracer": {
+          "n_weight_entries": 5248,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "lowerarm_l",
+              2000
+            ],
+            [
+              "lowerarm_r",
+              2000
+            ],
+            [
+              "thumb_01_l",
+              618
+            ],
+            [
+              "thumb_01_r",
+              618
+            ],
+            [
+              "hand_l",
+              6
+            ],
+            [
+              "hand_r",
+              6
+            ]
+          ]
+        },
+        "Female_Ranger_Body": {
+          "n_weight_entries": 10955,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "spine_03",
+              2224
+            ],
+            [
+              "spine_02",
+              2060
+            ],
+            [
+              "clavicle_l",
+              1729
+            ],
+            [
+              "clavicle_r",
+              1726
+            ],
+            [
+              "neck_01",
+              657
+            ],
+            [
+              "spine_01",
+              627
+            ]
+          ]
+        },
+        "Female_Ranger_Body_Belt_1": {
+          "n_weight_entries": 2784,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "spine_02",
+              928
+            ],
+            [
+              "pelvis",
+              928
+            ],
+            [
+              "spine_01",
+              928
+            ]
+          ]
+        },
+        "Female_Ranger_Body_Belt_2": {
+          "n_weight_entries": 2784,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "spine_02",
+              928
+            ],
+            [
+              "pelvis",
+              928
+            ],
+            [
+              "spine_01",
+              928
+            ]
+          ]
+        },
+        "Female_Ranger_Feet": {
+          "n_weight_entries": 16038,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "calf_l",
+              4838
+            ],
+            [
+              "calf_r",
+              4838
+            ],
+            [
+              "root",
+              2446
+            ],
+            [
+              "thigh_l",
+              620
+            ],
+            [
+              "thigh_r",
+              620
+            ],
+            [
+              "foot_l",
+              600
+            ]
+          ]
+        },
+        "Female_Ranger_Head_Hood": {
+          "n_weight_entries": 4738,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "spine_03",
+              1240
+            ],
+            [
+              "Head",
+              1202
+            ],
+            [
+              "clavicle_r",
+              815
+            ],
+            [
+              "clavicle_l",
+              801
+            ],
+            [
+              "neck_01",
+              680
+            ]
+          ]
+        },
+        "Female_Ranger_Legs": {
+          "n_weight_entries": 1497,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "thigh_l",
+              385
+            ],
+            [
+              "thigh_r",
+              377
+            ],
+            [
+              "pelvis",
+              250
+            ],
+            [
+              "calf_l",
+              194
+            ],
+            [
+              "calf_r",
+              177
+            ],
+            [
+              "spine_01",
+              90
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "sex": "Male",
+      "outfit": "Outfit_Male_Ranger",
+      "inventory": [
+        {
+          "name": "Male_Ranger_Acc_Pauldron",
+          "verts": 1092,
+          "faces": 1376,
+          "materials": {
+            "MI_Ranger": 1376
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Male_Ranger_Arms",
+          "verts": 3042,
+          "faces": 4928,
+          "materials": {
+            "MI_Ranger.001": 3048,
+            "MI_Regular_Male": 1880
+          },
+          "has_regular_mat": true
+        },
+        {
+          "name": "Male_Ranger_Arms_Bracer",
+          "verts": 4000,
+          "faces": 3636,
+          "materials": {
+            "MI_Ranger.001": 3636
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Male_Ranger_Body",
+          "verts": 2825,
+          "faces": 2998,
+          "materials": {
+            "MI_Ranger.001": 2998
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Male_Ranger_Body_Belt_1",
+          "verts": 928,
+          "faces": 804,
+          "materials": {
+            "MI_Ranger": 804
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Male_Ranger_Body_Belt_2",
+          "verts": 928,
+          "faces": 804,
+          "materials": {
+            "MI_Ranger": 804
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Male_Ranger_Feet_Boots",
+          "verts": 10174,
+          "faces": 9172,
+          "materials": {
+            "MI_Ranger.001": 9172
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Male_Ranger_Head_Hood",
+          "verts": 1240,
+          "faces": 2136,
+          "materials": {
+            "MI_Ranger.001": 2136
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Male_Ranger_Legs",
+          "verts": 644,
+          "faces": 1128,
+          "materials": {
+            "MI_Ranger.001": 1128
+          },
+          "has_regular_mat": false
+        }
+      ],
+      "pieces": [
+        {
+          "piece": "Male_Ranger_Acc_Pauldron",
+          "n_verts": 1092,
+          "inside_frac_all": 0.05036630036630037,
+          "median_cm_all": 2.0510331425612094,
+          "p05_cm": -0.0009659087848489616,
+          "p95_cm": 3.745470212888904,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 1092,
+              "inside_frac": 0.05036630036630037,
+              "median_cm": 2.0510331425612094,
+              "p05_cm": -0.0009659087848489616,
+              "p95_cm": 3.745470212888904
+            }
+          },
+          "materials": {
+            "MI_Ranger": 1376
+          }
+        },
+        {
+          "piece": "Male_Ranger_Arms",
+          "n_verts": 3042,
+          "inside_frac_all": 0.576594345825115,
+          "median_cm_all": -0.15599748649606227,
+          "p05_cm": -2.033804706297815,
+          "p95_cm": 1.4145476277917624,
+          "by_material_group": {
+            "MI_Regular_* (判据内)": {
+              "n": 1206,
+              "inside_frac": 0.4859038142620232,
+              "median_cm": 0.03819568669310991,
+              "p05_cm": -0.7213445467641577,
+              "p95_cm": 1.416344998870045
+            },
+            "其他材质 (判据外)": {
+              "n": 1836,
+              "inside_frac": 0.6361655773420479,
+              "median_cm": -0.361766317431389,
+              "p05_cm": -2.504987141583115,
+              "p95_cm": 1.3992385113169803
+            }
+          },
+          "materials": {
+            "MI_Ranger.001": 3048,
+            "MI_Regular_Male": 1880
+          }
+        },
+        {
+          "piece": "Male_Ranger_Arms_Bracer",
+          "n_verts": 4000,
+          "inside_frac_all": 0.2215,
+          "median_cm_all": 1.1392996312679315,
+          "p05_cm": -0.9393206699314757,
+          "p95_cm": 2.750660278252326,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 4000,
+              "inside_frac": 0.2215,
+              "median_cm": 1.1392996312679315,
+              "p05_cm": -0.9393206699314757,
+              "p95_cm": 2.750660278252326
+            }
+          },
+          "materials": {
+            "MI_Ranger.001": 3636
+          }
+        },
+        {
+          "piece": "Male_Ranger_Body",
+          "n_verts": 2825,
+          "inside_frac_all": 0.5040707964601769,
+          "median_cm_all": -0.019905498902517138,
+          "p05_cm": -2.2803745395503934,
+          "p95_cm": 2.7461719140410286,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 2825,
+              "inside_frac": 0.5040707964601769,
+              "median_cm": -0.019905498902517138,
+              "p05_cm": -2.2803745395503934,
+              "p95_cm": 2.7461719140410286
+            }
+          },
+          "materials": {
+            "MI_Ranger.001": 2998
+          }
+        },
+        {
+          "piece": "Male_Ranger_Body_Belt_1",
+          "n_verts": 928,
+          "inside_frac_all": 0.24461206896551724,
+          "median_cm_all": 0.8018696222279686,
+          "p05_cm": -1.0508617880987003,
+          "p95_cm": 2.390722334384918,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 928,
+              "inside_frac": 0.24461206896551724,
+              "median_cm": 0.8018696222279686,
+              "p05_cm": -1.0508617880987003,
+              "p95_cm": 2.390722334384918
+            }
+          },
+          "materials": {
+            "MI_Ranger": 804
+          }
+        },
+        {
+          "piece": "Male_Ranger_Body_Belt_2",
+          "n_verts": 928,
+          "inside_frac_all": 0.0668103448275862,
+          "median_cm_all": 1.4020940798218362,
+          "p05_cm": -0.14671426179120317,
+          "p95_cm": 3.12974343803944,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 928,
+              "inside_frac": 0.0668103448275862,
+              "median_cm": 1.4020940798218362,
+              "p05_cm": -0.14671426179120317,
+              "p95_cm": 3.12974343803944
+            }
+          },
+          "materials": {
+            "MI_Ranger": 804
+          }
+        },
+        {
+          "piece": "Male_Ranger_Feet_Boots",
+          "n_verts": 10174,
+          "inside_frac_all": 0.276980538627875,
+          "median_cm_all": 2.0943847281159833,
+          "p05_cm": -2.29206261865329,
+          "p95_cm": 6.833421493065551,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 10174,
+              "inside_frac": 0.276980538627875,
+              "median_cm": 2.0943847281159833,
+              "p05_cm": -2.29206261865329,
+              "p95_cm": 6.833421493065551
+            }
+          },
+          "materials": {
+            "MI_Ranger.001": 9172
+          }
+        },
+        {
+          "piece": "Male_Ranger_Head_Hood",
+          "n_verts": 1240,
+          "inside_frac_all": 0.07741935483870968,
+          "median_cm_all": 4.684528199140914,
+          "p05_cm": -1.5126815383636534,
+          "p95_cm": 8.23621295930934,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 1240,
+              "inside_frac": 0.07741935483870968,
+              "median_cm": 4.684528199140914,
+              "p05_cm": -1.5126815383636534,
+              "p95_cm": 8.23621295930934
+            }
+          },
+          "materials": {
+            "MI_Ranger.001": 2136
+          }
+        },
+        {
+          "piece": "Male_Ranger_Legs",
+          "n_verts": 644,
+          "inside_frac_all": 0.40993788819875776,
+          "median_cm_all": 0.544587500657906,
+          "p05_cm": -2.4473178455082234,
+          "p95_cm": 5.461155308803427,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 644,
+              "inside_frac": 0.40993788819875776,
+              "median_cm": 0.544587500657906,
+              "p05_cm": -2.4473178455082234,
+              "p95_cm": 5.461155308803427
+            }
+          },
+          "materials": {
+            "MI_Ranger.001": 1128
+          }
+        }
+      ],
+      "rest_delta_by_bone": {
+        "n_bones": 65,
+        "n_over_0.01cm": 56,
+        "max_cm": 3.409451961517334,
+        "top10": [
+          {
+            "bone": "thumb_02_r",
+            "head_delta_cm": 3.409451961517334,
+            "matrix_max_elem_delta": 0.2088237702846527
+          },
+          {
+            "bone": "thumb_02_l",
+            "head_delta_cm": 3.409428596496582,
+            "matrix_max_elem_delta": 0.20882391929626465
+          },
+          {
+            "bone": "thumb_04_leaf_r",
+            "head_delta_cm": 3.378693103790283,
+            "matrix_max_elem_delta": 0.11956220865249634
+          },
+          {
+            "bone": "thumb_04_leaf_l",
+            "head_delta_cm": 3.37868070602417,
+            "matrix_max_elem_delta": 0.11956286430358887
+          },
+          {
+            "bone": "thumb_01_l",
+            "head_delta_cm": 3.2986202239990234,
+            "matrix_max_elem_delta": 0.20979619026184082
+          },
+          {
+            "bone": "thumb_01_r",
+            "head_delta_cm": 3.298612594604492,
+            "matrix_max_elem_delta": 0.2097962349653244
+          },
+          {
+            "bone": "thumb_03_r",
+            "head_delta_cm": 3.2232720851898193,
+            "matrix_max_elem_delta": 0.2091316133737564
+          },
+          {
+            "bone": "thumb_03_l",
+            "head_delta_cm": 3.223229169845581,
+            "matrix_max_elem_delta": 0.20913119614124298
+          },
+          {
+            "bone": "pinky_04_leaf_l",
+            "head_delta_cm": 2.817704439163208,
+            "matrix_max_elem_delta": 0.038210831582546234
+          },
+          {
+            "bone": "pinky_04_leaf_r",
+            "head_delta_cm": 2.817688465118408,
+            "matrix_max_elem_delta": 0.03821095451712608
+          }
+        ],
+        "by_region": {
+          "手/指": {
+            "n": 42,
+            "n_over_0.01cm": 42,
+            "max_cm": 3.4095
+          },
+          "腿": {
+            "n": 10,
+            "n_over_0.01cm": 10,
+            "max_cm": 2.3705
+          },
+          "臂": {
+            "n": 6,
+            "n_over_0.01cm": 4,
+            "max_cm": 2.0112
+          },
+          "头": {
+            "n": 1,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          },
+          "躯干": {
+            "n": 6,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          }
+        }
+      },
+      "weight_groups": {
+        "Male_Ranger_Acc_Pauldron": {
+          "n_weight_entries": 1092,
+          "predicted_mean_refit_cm": 2.0112,
+          "top_groups": [
+            [
+              "upperarm_l",
+              1092
+            ]
+          ]
+        },
+        "Male_Ranger_Arms": {
+          "n_weight_entries": 6316,
+          "predicted_mean_refit_cm": 2.5006,
+          "top_groups": [
+            [
+              "hand_l",
+              360
+            ],
+            [
+              "hand_r",
+              360
+            ],
+            [
+              "lowerarm_l",
+              301
+            ],
+            [
+              "lowerarm_r",
+              301
+            ],
+            [
+              "upperarm_l",
+              244
+            ],
+            [
+              "upperarm_r",
+              244
+            ]
+          ]
+        },
+        "Male_Ranger_Arms_Bracer": {
+          "n_weight_entries": 6032,
+          "predicted_mean_refit_cm": 2.1213,
+          "top_groups": [
+            [
+              "lowerarm_l",
+              2000
+            ],
+            [
+              "lowerarm_r",
+              2000
+            ],
+            [
+              "hand_l",
+              1003
+            ],
+            [
+              "hand_r",
+              1003
+            ],
+            [
+              "thumb_01_l",
+              7
+            ],
+            [
+              "thumb_01_r",
+              7
+            ]
+          ]
+        },
+        "Male_Ranger_Body": {
+          "n_weight_entries": 9986,
+          "predicted_mean_refit_cm": 0.2213,
+          "top_groups": [
+            [
+              "spine_03",
+              1943
+            ],
+            [
+              "clavicle_l",
+              1722
+            ],
+            [
+              "clavicle_r",
+              1718
+            ],
+            [
+              "spine_02",
+              1570
+            ],
+            [
+              "spine_01",
+              794
+            ],
+            [
+              "neck_01",
+              671
+            ]
+          ]
+        },
+        "Male_Ranger_Body_Belt_1": {
+          "n_weight_entries": 3463,
+          "predicted_mean_refit_cm": 0.0232,
+          "top_groups": [
+            [
+              "spine_02",
+              928
+            ],
+            [
+              "spine_01",
+              928
+            ],
+            [
+              "spine_03",
+              928
+            ],
+            [
+              "pelvis",
+              408
+            ],
+            [
+              "clavicle_l",
+              187
+            ],
+            [
+              "clavicle_r",
+              44
+            ]
+          ]
+        },
+        "Male_Ranger_Body_Belt_2": {
+          "n_weight_entries": 3463,
+          "predicted_mean_refit_cm": 0.0232,
+          "top_groups": [
+            [
+              "spine_02",
+              928
+            ],
+            [
+              "spine_01",
+              928
+            ],
+            [
+              "spine_03",
+              928
+            ],
+            [
+              "pelvis",
+              408
+            ],
+            [
+              "clavicle_l",
+              187
+            ],
+            [
+              "clavicle_r",
+              44
+            ]
+          ]
+        },
+        "Male_Ranger_Feet_Boots": {
+          "n_weight_entries": 13744,
+          "predicted_mean_refit_cm": 2.3698,
+          "top_groups": [
+            [
+              "calf_l",
+              4761
+            ],
+            [
+              "calf_r",
+              4761
+            ],
+            [
+              "foot_l",
+              763
+            ],
+            [
+              "foot_r",
+              763
+            ],
+            [
+              "thigh_l",
+              620
+            ],
+            [
+              "thigh_r",
+              620
+            ]
+          ]
+        },
+        "Male_Ranger_Head_Hood": {
+          "n_weight_entries": 3212,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "Head",
+              1034
+            ],
+            [
+              "clavicle_r",
+              725
+            ],
+            [
+              "spine_03",
+              720
+            ],
+            [
+              "clavicle_l",
+              629
+            ],
+            [
+              "neck_01",
+              104
+            ]
+          ]
+        },
+        "Male_Ranger_Legs": {
+          "n_weight_entries": 1308,
+          "predicted_mean_refit_cm": 2.008,
+          "top_groups": [
+            [
+              "thigh_l",
+              376
+            ],
+            [
+              "thigh_r",
+              376
+            ],
+            [
+              "pelvis",
+              190
+            ],
+            [
+              "calf_l",
+              178
+            ],
+            [
+              "calf_r",
+              178
+            ],
+            [
+              "spine_01",
+              10
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "sex": "Female",
+      "outfit": "Outfit_Female_Peasant",
+      "inventory": [
+        {
+          "name": "Female_Peasant_Arms",
+          "verts": 5436,
+          "faces": 6848,
+          "materials": {
+            "MI_Peasant": 6848
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Female_Peasant_Body",
+          "verts": 1730,
+          "faces": 2188,
+          "materials": {
+            "MI_Peasant.001": 2188
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Female_Peasant_Feet",
+          "verts": 1892,
+          "faces": 2588,
+          "materials": {
+            "MI_Peasant.001": 2588
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Female_Peasant_Legs",
+          "verts": 1126,
+          "faces": 1944,
+          "materials": {
+            "MI_Peasant": 1944
+          },
+          "has_regular_mat": false
+        }
+      ],
+      "pieces": [
+        {
+          "piece": "Female_Peasant_Arms",
+          "n_verts": 5436,
+          "inside_frac_all": 0.2947019867549669,
+          "median_cm_all": 0.12479483223728494,
+          "p05_cm": -0.3036164305683542,
+          "p95_cm": 2.278530745752505,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 5436,
+              "inside_frac": 0.2947019867549669,
+              "median_cm": 0.12479483223728494,
+              "p05_cm": -0.3036164305683542,
+              "p95_cm": 2.278530745752505
+            }
+          },
+          "materials": {
+            "MI_Peasant": 6848
+          }
+        },
+        {
+          "piece": "Female_Peasant_Body",
+          "n_verts": 1730,
+          "inside_frac_all": 0.27167630057803466,
+          "median_cm_all": 0.6211747513589216,
+          "p05_cm": -0.7468538288958371,
+          "p95_cm": 2.3166243452578783,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 1730,
+              "inside_frac": 0.27167630057803466,
+              "median_cm": 0.6211747513589216,
+              "p05_cm": -0.7468538288958371,
+              "p95_cm": 2.3166243452578783
+            }
+          },
+          "materials": {
+            "MI_Peasant.001": 2188
+          }
+        },
+        {
+          "piece": "Female_Peasant_Feet",
+          "n_verts": 1892,
+          "inside_frac_all": 0.13847780126849896,
+          "median_cm_all": 1.6498235594042399,
+          "p05_cm": -0.8950585790444165,
+          "p95_cm": 4.076697204072843,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 1892,
+              "inside_frac": 0.13847780126849896,
+              "median_cm": 1.6498235594042399,
+              "p05_cm": -0.8950585790444165,
+              "p95_cm": 4.076697204072843
+            }
+          },
+          "materials": {
+            "MI_Peasant.001": 2588
+          }
+        },
+        {
+          "piece": "Female_Peasant_Legs",
+          "n_verts": 1126,
+          "inside_frac_all": 0.6376554174067496,
+          "median_cm_all": -0.22946257325315855,
+          "p05_cm": -1.6726468846172793,
+          "p95_cm": 1.3100628048988483,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 1126,
+              "inside_frac": 0.6376554174067496,
+              "median_cm": -0.22946257325315855,
+              "p05_cm": -1.6726468846172793,
+              "p95_cm": 1.3100628048988483
+            }
+          },
+          "materials": {
+            "MI_Peasant": 1944
+          }
+        }
+      ],
+      "rest_delta_by_bone": {
+        "n_bones": 65,
+        "n_over_0.01cm": 0,
+        "max_cm": 0.0,
+        "top10": [
+          {
+            "bone": "root",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "pelvis",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "spine_01",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "spine_02",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "spine_03",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "neck_01",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "Head",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "clavicle_l",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "upperarm_l",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          },
+          {
+            "bone": "lowerarm_l",
+            "head_delta_cm": 0.0,
+            "matrix_max_elem_delta": 0.0
+          }
+        ],
+        "by_region": {
+          "躯干": {
+            "n": 6,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          },
+          "头": {
+            "n": 1,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          },
+          "臂": {
+            "n": 6,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          },
+          "手/指": {
+            "n": 42,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          },
+          "腿": {
+            "n": 10,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          }
+        }
+      },
+      "weight_groups": {
+        "Female_Peasant_Arms": {
+          "n_weight_entries": 8379,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "lowerarm_l",
+              1724
+            ],
+            [
+              "lowerarm_r",
+              1724
+            ],
+            [
+              "upperarm_l",
+              313
+            ],
+            [
+              "upperarm_r",
+              313
+            ],
+            [
+              "hand_l",
+              309
+            ],
+            [
+              "hand_r",
+              309
+            ]
+          ]
+        },
+        "Female_Peasant_Body": {
+          "n_weight_entries": 6227,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "spine_03",
+              1268
+            ],
+            [
+              "spine_02",
+              1134
+            ],
+            [
+              "clavicle_l",
+              714
+            ],
+            [
+              "clavicle_r",
+              710
+            ],
+            [
+              "spine_01",
+              702
+            ],
+            [
+              "pelvis",
+              462
+            ]
+          ]
+        },
+        "Female_Peasant_Feet": {
+          "n_weight_entries": 3092,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "calf_l",
+              868
+            ],
+            [
+              "calf_r",
+              868
+            ],
+            [
+              "foot_l",
+              523
+            ],
+            [
+              "foot_r",
+              523
+            ],
+            [
+              "ball_l",
+              97
+            ],
+            [
+              "ball_r",
+              97
+            ]
+          ]
+        },
+        "Female_Peasant_Legs": {
+          "n_weight_entries": 2466,
+          "predicted_mean_refit_cm": 0.0,
+          "top_groups": [
+            [
+              "thigh_l",
+              629
+            ],
+            [
+              "thigh_r",
+              629
+            ],
+            [
+              "pelvis",
+              482
+            ],
+            [
+              "calf_l",
+              228
+            ],
+            [
+              "calf_r",
+              228
+            ],
+            [
+              "spine_01",
+              224
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "sex": "Male",
+      "outfit": "Outfit_Male_Peasant",
+      "inventory": [
+        {
+          "name": "Male_Peasant_Arms",
+          "verts": 3315,
+          "faces": 5338,
+          "materials": {
+            "MI_Peasant": 1408,
+            "MI_Regular_Male": 3930
+          },
+          "has_regular_mat": true
+        },
+        {
+          "name": "Male_Peasant_Body",
+          "verts": 3006,
+          "faces": 3856,
+          "materials": {
+            "MI_Peasant": 3856
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Male_Peasant_Feet",
+          "verts": 1878,
+          "faces": 2588,
+          "materials": {
+            "MI_Peasant": 2588
+          },
+          "has_regular_mat": false
+        },
+        {
+          "name": "Male_Peasant_Legs",
+          "verts": 656,
+          "faces": 1112,
+          "materials": {
+            "MI_Peasant": 1112
+          },
+          "has_regular_mat": false
+        }
+      ],
+      "pieces": [
+        {
+          "piece": "Male_Peasant_Arms",
+          "n_verts": 3315,
+          "inside_frac_all": 0.5366515837104072,
+          "median_cm_all": -0.07434393537550932,
+          "p05_cm": -1.7455726108892122,
+          "p95_cm": 1.4163356856442988,
+          "by_material_group": {
+            "MI_Regular_* (判据内)": {
+              "n": 2497,
+              "inside_frac": 0.5210252302763316,
+              "median_cm": -0.02947678207938509,
+              "p05_cm": -1.1958071787375955,
+              "p95_cm": 1.4163356856442988
+            },
+            "其他材质 (判据外)": {
+              "n": 818,
+              "inside_frac": 0.5843520782396088,
+              "median_cm": -0.3581929486244917,
+              "p05_cm": -2.8524759216816165,
+              "p95_cm": 1.40558477025479
+            }
+          },
+          "materials": {
+            "MI_Peasant": 1408,
+            "MI_Regular_Male": 3930
+          }
+        },
+        {
+          "piece": "Male_Peasant_Body",
+          "n_verts": 3006,
+          "inside_frac_all": 0.28077178975382566,
+          "median_cm_all": 0.6803502474042489,
+          "p05_cm": -1.6198018460272579,
+          "p95_cm": 3.6344615737107233,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 3006,
+              "inside_frac": 0.28077178975382566,
+              "median_cm": 0.6803502474042489,
+              "p05_cm": -1.6198018460272579,
+              "p95_cm": 3.6344615737107233
+            }
+          },
+          "materials": {
+            "MI_Peasant": 3856
+          }
+        },
+        {
+          "piece": "Male_Peasant_Feet",
+          "n_verts": 1878,
+          "inside_frac_all": 0.2066027689030884,
+          "median_cm_all": 2.967754186829552,
+          "p05_cm": -2.468281898800342,
+          "p95_cm": 5.3584631673400445,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 1878,
+              "inside_frac": 0.2066027689030884,
+              "median_cm": 2.967754186829552,
+              "p05_cm": -2.468281898800342,
+              "p95_cm": 5.3584631673400445
+            }
+          },
+          "materials": {
+            "MI_Peasant": 2588
+          }
+        },
+        {
+          "piece": "Male_Peasant_Legs",
+          "n_verts": 656,
+          "inside_frac_all": 0.39176829268292684,
+          "median_cm_all": 0.6135341201115807,
+          "p05_cm": -2.4007114552659914,
+          "p95_cm": 5.165319624939002,
+          "by_material_group": {
+            "其他材质 (判据外)": {
+              "n": 656,
+              "inside_frac": 0.39176829268292684,
+              "median_cm": 0.6135341201115807,
+              "p05_cm": -2.4007114552659914,
+              "p95_cm": 5.165319624939002
+            }
+          },
+          "materials": {
+            "MI_Peasant": 1112
+          }
+        }
+      ],
+      "rest_delta_by_bone": {
+        "n_bones": 65,
+        "n_over_0.01cm": 56,
+        "max_cm": 3.409451961517334,
+        "top10": [
+          {
+            "bone": "thumb_02_r",
+            "head_delta_cm": 3.409451961517334,
+            "matrix_max_elem_delta": 0.2088237702846527
+          },
+          {
+            "bone": "thumb_02_l",
+            "head_delta_cm": 3.409428596496582,
+            "matrix_max_elem_delta": 0.20882391929626465
+          },
+          {
+            "bone": "thumb_04_leaf_r",
+            "head_delta_cm": 3.378693103790283,
+            "matrix_max_elem_delta": 0.11956220865249634
+          },
+          {
+            "bone": "thumb_04_leaf_l",
+            "head_delta_cm": 3.37868070602417,
+            "matrix_max_elem_delta": 0.11956286430358887
+          },
+          {
+            "bone": "thumb_01_l",
+            "head_delta_cm": 3.2986202239990234,
+            "matrix_max_elem_delta": 0.20979619026184082
+          },
+          {
+            "bone": "thumb_01_r",
+            "head_delta_cm": 3.298612594604492,
+            "matrix_max_elem_delta": 0.2097962349653244
+          },
+          {
+            "bone": "thumb_03_r",
+            "head_delta_cm": 3.2232720851898193,
+            "matrix_max_elem_delta": 0.2091316133737564
+          },
+          {
+            "bone": "thumb_03_l",
+            "head_delta_cm": 3.223229169845581,
+            "matrix_max_elem_delta": 0.20913119614124298
+          },
+          {
+            "bone": "pinky_04_leaf_l",
+            "head_delta_cm": 2.817704439163208,
+            "matrix_max_elem_delta": 0.038210831582546234
+          },
+          {
+            "bone": "pinky_04_leaf_r",
+            "head_delta_cm": 2.817688465118408,
+            "matrix_max_elem_delta": 0.03821095451712608
+          }
+        ],
+        "by_region": {
+          "手/指": {
+            "n": 42,
+            "n_over_0.01cm": 42,
+            "max_cm": 3.4095
+          },
+          "腿": {
+            "n": 10,
+            "n_over_0.01cm": 10,
+            "max_cm": 2.3705
+          },
+          "臂": {
+            "n": 6,
+            "n_over_0.01cm": 4,
+            "max_cm": 2.0112
+          },
+          "头": {
+            "n": 1,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          },
+          "躯干": {
+            "n": 6,
+            "n_over_0.01cm": 0,
+            "max_cm": 0.0
+          }
+        }
+      },
+      "weight_groups": {
+        "Male_Peasant_Arms": {
+          "n_weight_entries": 6667,
+          "predicted_mean_refit_cm": 2.3999,
+          "top_groups": [
+            [
+              "lowerarm_r",
+              474
+            ],
+            [
+              "lowerarm_l",
+              451
+            ],
+            [
+              "upperarm_r",
+              414
+            ],
+            [
+              "upperarm_l",
+              396
+            ],
+            [
+              "hand_l",
+              342
+            ],
+            [
+              "hand_r",
+              342
+            ]
+          ]
+        },
+        "Male_Peasant_Body": {
+          "n_weight_entries": 9685,
+          "predicted_mean_refit_cm": 0.5702,
+          "top_groups": [
+            [
+              "spine_02",
+              2030
+            ],
+            [
+              "spine_01",
+              1961
+            ],
+            [
+              "pelvis",
+              1834
+            ],
+            [
+              "thigh_r",
+              887
+            ],
+            [
+              "thigh_l",
+              584
+            ],
+            [
+              "spine_03",
+              420
+            ]
+          ]
+        },
+        "Male_Peasant_Feet": {
+          "n_weight_entries": 2860,
+          "predicted_mean_refit_cm": 2.3672,
+          "top_groups": [
+            [
+              "calf_l",
+              780
+            ],
+            [
+              "calf_r",
+              780
+            ],
+            [
+              "foot_l",
+              527
+            ],
+            [
+              "foot_r",
+              527
+            ],
+            [
+              "ball_l",
+              121
+            ],
+            [
+              "ball_r",
+              121
+            ]
+          ]
+        },
+        "Male_Peasant_Legs": {
+          "n_weight_entries": 1171,
+          "predicted_mean_refit_cm": 1.6397,
+          "top_groups": [
+            [
+              "thigh_l",
+              220
+            ],
+            [
+              "thigh_r",
+              220
+            ],
+            [
+              "pelvis",
+              212
+            ],
+            [
+              "calf_l",
+              185
+            ],
+            [
+              "calf_r",
+              185
+            ],
+            [
+              "spine_01",
+              115
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "total_seconds": 0.7
+}

@@ -1,0 +1,5630 @@
+{
+  "schema": "garment-manifest",
+  "version": "2.0",
+  "generator": "tools/3d/garment/verify_fit.py",
+  "contract": "assets/3d/rig/SPEC.md v1.0 §3.3 / §4.0（B2 主路线）/ §5（验收指标）",
+  "route": {
+    "primary": "B2 —— 体形 morph 派生在**角色自身网格**上（SPEC §4.0 / F17）",
+    "primary_tool": "tools/3d/garment/derive_on_character.py",
+    "primary_why": [
+      "现有 tryon/ 角色 = 服装布料 + 服装自带皮肤 + 基础体捐的头，共用角色自己的 rig",
+      "最终角色里**没有独立的 Superhero 身体** → '标准体与服装体形基准不一致'这个矛盾不存在",
+      "布料/皮肤/头共用同一副 rig、同一组骨变换 → 体形一变三者同构地一起变 → **结构性无穿模**"
+    ],
+    "demoted_to_B1_tools": [
+      "strip_skin.py（剥离 MI_Regular_* 皮肤面）—— 仅 B1 需要",
+      "refit.py（骨空间重绑 / 几何贴合 / Shrinkwrap 语义实测）—— 仅 B1 需要",
+      "transfer_morph.py（重心坐标 + 三角面标架，SPEC §4.2）—— 仅 B1 需要",
+      "autofit.py（自动去穿模外推）—— **降级为可选实验**（SPEC F11 已撤回）",
+      "verify_fit_b1.py / assemble.py —— B1 的验收与装配"
+    ],
+    "b1_artifacts": "assets/3d/rig/garments/B1_superhero_standard",
+    "b2_boundary": "B2 不能做'裸露躯干'的服装（泳装/裸甲）：体形变化没有载体（SPEC §4.0）"
+  },
+  "metric_definitions": {
+    "penetration_pixel": "**权威**：角色自带皮肤面染红 / 布料染绿，alpha 剪影内数红像素占比。无网格拓扑假设、不按顶点密度加权（Lead FINDINGS §11）",
+    "penetration_vertex": "**仅作对照**：布料顶点落进皮肤面内部的比例。⚠ 已证实不可靠：标准体不是闭合曲面（边界边集中在手腕/足）且相对质心非星形（F15b；面绕向**实为一致**，0/18250 违例），且按顶点密度加权（*_Feet 一件占 43% 却基本没问题）→ 会低估真实视觉裸露",
+    "stretch_ratio": "边长拉伸比，**一律相对加载时的真·原始坐标**"
+  },
+  "premises": {
+    "P1": "像素法三坑已规避：view_transform='Standard'（AgX 把纯红压成鲑鱼粉）、film_transparent=True（alpha 即剪影）、双方纯自发光材质 + 收紧判据",
+    "P2": "顶点级穿模率在手腕/手/足区域不可靠（F15：破洞网格上射线奇偶准确率 99.8%→95.8%）",
+    "P3": "真·绝对噪声底 = 0.0000%（标准体整体平移开、bbox 确认不重叠 → 全部判为体外）",
+    "P4": "B2 下不存在独立身体 → '穿模'只可能是角色自身皮肤 vs 自身布料",
+    "P5": "像素法自身的 sanity 断言：画面里纯色（红/绿）占比必须 ≥0.5，否则报错 —— 本工具历史上因忘记换材质，量出过假的 0.00%"
+  },
+  "outfits": [
+    {
+      "outfit": "Female_Ranger",
+      "sex": "Female",
+      "file": "assets/3d/rig/garments/Female_Ranger.blend",
+      "route": "B2",
+      "armature": "RIG_TryOn_Female_Ranger",
+      "bones": 65,
+      "armature_count": 1,
+      "parts_count": 12,
+      "parts": [
+        {
+          "part": "Female_Ranger_Acc_Pauldrons",
+          "verts": 1092,
+          "faces": 1376,
+          "materials": [
+            "MI_Ranger"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Female_Ranger_Arms",
+          "verts": 2976,
+          "faces": 4872,
+          "materials": [
+            "MI_Ranger",
+            "MI_Regular_Female"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Female_Ranger_Arms_Bracer",
+          "verts": 4000,
+          "faces": 3636,
+          "materials": [
+            "MI_Ranger"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Female_Ranger_Body",
+          "verts": 2785,
+          "faces": 2962,
+          "materials": [
+            "MI_Ranger"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Female_Ranger_Body_Belt_1",
+          "verts": 928,
+          "faces": 804,
+          "materials": [
+            "MI_Ranger"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Female_Ranger_Body_Belt_2",
+          "verts": 928,
+          "faces": 804,
+          "materials": [
+            "MI_Ranger"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Female_Ranger_Feet",
+          "verts": 10174,
+          "faces": 9172,
+          "materials": [
+            "MI_Ranger"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Female_Ranger_Head_Hood",
+          "verts": 1240,
+          "faces": 2136,
+          "materials": [
+            "MI_Ranger"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Female_Ranger_Legs",
+          "verts": 685,
+          "faces": 1204,
+          "materials": [
+            "MI_Ranger"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Head_Eyebrows",
+          "verts": 912,
+          "faces": 1480,
+          "materials": [
+            "MI_Hair_2"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Head_Eyes",
+          "verts": 556,
+          "faces": 768,
+          "materials": [
+            "MI_Eyes"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Head_Superhero_Female",
+          "verts": 1644,
+          "faces": 3020,
+          "materials": [
+            "MI_Superhero_Female"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        }
+      ],
+      "M1_topology": {
+        "per_part": {
+          "Female_Ranger_Acc_Pauldrons": {
+            "BS_Thin": {
+              "verts": 1092,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1092,
+              "same_as_basis": true
+            }
+          },
+          "Female_Ranger_Arms": {
+            "BS_Thin": {
+              "verts": 2976,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 2976,
+              "same_as_basis": true
+            }
+          },
+          "Female_Ranger_Arms_Bracer": {
+            "BS_Thin": {
+              "verts": 4000,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 4000,
+              "same_as_basis": true
+            }
+          },
+          "Female_Ranger_Body": {
+            "BS_Thin": {
+              "verts": 2785,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 2785,
+              "same_as_basis": true
+            }
+          },
+          "Female_Ranger_Body_Belt_1": {
+            "BS_Thin": {
+              "verts": 928,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 928,
+              "same_as_basis": true
+            }
+          },
+          "Female_Ranger_Body_Belt_2": {
+            "BS_Thin": {
+              "verts": 928,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 928,
+              "same_as_basis": true
+            }
+          },
+          "Female_Ranger_Feet": {
+            "BS_Thin": {
+              "verts": 10174,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 10174,
+              "same_as_basis": true
+            }
+          },
+          "Female_Ranger_Head_Hood": {
+            "BS_Thin": {
+              "verts": 1240,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1240,
+              "same_as_basis": true
+            }
+          },
+          "Female_Ranger_Legs": {
+            "BS_Thin": {
+              "verts": 685,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 685,
+              "same_as_basis": true
+            }
+          },
+          "Head_Eyebrows": {
+            "BS_Thin": {
+              "verts": 912,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 912,
+              "same_as_basis": true
+            }
+          },
+          "Head_Eyes": {
+            "BS_Thin": {
+              "verts": 556,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 556,
+              "same_as_basis": true
+            }
+          },
+          "Head_Superhero_Female": {
+            "BS_Thin": {
+              "verts": 1644,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1644,
+              "same_as_basis": true
+            }
+          }
+        },
+        "ok": true
+      },
+      "M2_morph_alignment": {
+        "contract": [
+          "Basis",
+          "BS_Thin",
+          "BS_Heavy"
+        ],
+        "per_part": {
+          "Female_Ranger_Acc_Pauldrons": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Female_Ranger_Arms": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Female_Ranger_Arms_Bracer": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Female_Ranger_Body": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Female_Ranger_Body_Belt_1": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Female_Ranger_Body_Belt_2": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Female_Ranger_Feet": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Female_Ranger_Head_Hood": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Female_Ranger_Legs": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Head_Eyebrows": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Head_Eyes": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Head_Superhero_Female": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          }
+        },
+        "ok": true,
+        "body_keys": [
+          "Basis",
+          "BS_Thin",
+          "BS_Heavy"
+        ],
+        "match_body_verbatim": true
+      },
+      "B2a_height_ratio": {
+        "base_height_cm": 179.805,
+        "ratios": {
+          "BS_Thin": 0.998911,
+          "BS_Heavy": 1.001429
+        },
+        "threshold": 0.002,
+        "ok": true
+      },
+      "B2b_all_parts_have_morph": {
+        "parts_checked": 12,
+        "parts_ok": 12,
+        "ok": true
+      },
+      "B2_report_ref": {
+        "outfit": "Female_Ranger",
+        "sex": "Female",
+        "src": "assets/3d/blend/tryon/TryOn_Female_Ranger.blend",
+        "armature": "RIG_TryOn_Female_Ranger",
+        "bones": 65,
+        "junk_removed": [
+          [
+            "Camera",
+            "CAMERA"
+          ],
+          [
+            "Fill",
+            "LIGHT"
+          ],
+          [
+            "Icosphere",
+            "MESH"
+          ],
+          [
+            "Icosphere.001",
+            "MESH"
+          ],
+          [
+            "Sun",
+            "LIGHT"
+          ]
+        ],
+        "missing_shape_bones": [],
+        "inherit_none_bones": [
+          "calf_l",
+          "calf_r",
+          "clavicle_l",
+          "clavicle_r",
+          "foot_l",
+          "foot_r",
+          "hand_l",
+          "hand_r",
+          "lowerarm_l",
+          "lowerarm_r",
+          "neck_01",
+          "spine_01",
+          "spine_02",
+          "spine_03",
+          "thigh_l",
+          "thigh_r",
+          "upperarm_l",
+          "upperarm_r"
+        ],
+        "height_base_cm": 179.805,
+        "coefficient_source": {
+          "file": "assets/3d/rig/manifests/bodyshape_manifest.json",
+          "spec_sha256": "938071768e2212994ba718adc9ebe5b7b0caf78882806f1a354a136bb058acf0",
+          "manifest_sha256_16": "981c1e8762cb3909",
+          "manifest_mtime": "2026-10-13T18:57:38",
+          "target_coefficients": {
+            "BS_Thin": 0.84,
+            "BS_Heavy": 1.21
+          },
+          "delta_response": {
+            "pelvis": 1.0,
+            "spine_01": 1.0,
+            "spine_02": 1.0,
+            "spine_03": 1.0,
+            "thigh": 0.95,
+            "calf": 0.85,
+            "upperarm": 1.05,
+            "lowerarm": 0.95,
+            "clavicle": 0.8
+          },
+          "spec_version": "2.0",
+          "coefficients_fingerprint": "ca93ef919b15340df2123bd397fd4b43c8658d4ef539e4a678319c2f69821ba2",
+          "scales_source": "manifest.tiers[].bones_applied（实摆三轴向量）",
+          "girth_rule": "x=z=1+(coef−1)·delta_response；y=1+(coef−1)·along_axis_response（v2 只有 clavicle=0.5，改肩宽/臂展不改身高）",
+          "note": "尺度**直接取 manifest 的 bones_applied（实摆三轴）**，不自行推导；该 manifest 同时是标准体的来源 → 同名 morph 语义一致"
+        },
+        "tiers_source": "assets/3d/rig/manifests/bodyshape_manifest.json",
+        "tiers": {
+          "BS_Thin": {
+            "target_coefficient": 0.84,
+            "bones_applied": {
+              "pelvis": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_01": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_02": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_03": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "thigh_l": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "thigh_r": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "calf_l": [
+                0.864,
+                1.0,
+                0.864
+              ],
+              "calf_r": [
+                0.864,
+                1.0,
+                0.864
+              ],
+              "upperarm_l": [
+                0.832,
+                1.0,
+                0.832
+              ],
+              "upperarm_r": [
+                0.832,
+                1.0,
+                0.832
+              ],
+              "lowerarm_l": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "lowerarm_r": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "clavicle_l": [
+                0.872,
+                0.92,
+                0.872
+              ],
+              "clavicle_r": [
+                0.872,
+                0.92,
+                0.872
+              ]
+            },
+            "disp_mean_cm": 1.6503,
+            "disp_p95_cm": 2.85,
+            "disp_max_cm": 3.2075,
+            "moved_frac": 0.89531,
+            "morph_digest_16": "e5346f1cf12a6dbe"
+          },
+          "BS_Heavy": {
+            "target_coefficient": 1.21,
+            "bones_applied": {
+              "pelvis": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_01": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_02": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_03": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "thigh_l": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "thigh_r": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "calf_l": [
+                1.1785,
+                1.0,
+                1.1785
+              ],
+              "calf_r": [
+                1.1785,
+                1.0,
+                1.1785
+              ],
+              "upperarm_l": [
+                1.2205,
+                1.0,
+                1.2205
+              ],
+              "upperarm_r": [
+                1.2205,
+                1.0,
+                1.2205
+              ],
+              "lowerarm_l": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "lowerarm_r": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "clavicle_l": [
+                1.168,
+                1.105,
+                1.168
+              ],
+              "clavicle_r": [
+                1.168,
+                1.105,
+                1.168
+              ]
+            },
+            "disp_mean_cm": 2.166,
+            "disp_p95_cm": 3.7406,
+            "disp_max_cm": 4.2098,
+            "moved_frac": 0.99767,
+            "morph_digest_16": "6d87cac343fd772d"
+          }
+        },
+        "parts": [
+          {
+            "part": "Female_Ranger_Acc_Pauldrons",
+            "verts": 1092,
+            "faces": 1376,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 13104
+          },
+          {
+            "part": "Female_Ranger_Arms",
+            "verts": 2976,
+            "faces": 4872,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger",
+              "MI_Regular_Female"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 35712
+          },
+          {
+            "part": "Female_Ranger_Arms_Bracer",
+            "verts": 4000,
+            "faces": 3636,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 48000
+          },
+          {
+            "part": "Female_Ranger_Body",
+            "verts": 2785,
+            "faces": 2962,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 33420
+          },
+          {
+            "part": "Female_Ranger_Body_Belt_1",
+            "verts": 928,
+            "faces": 804,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 11136
+          },
+          {
+            "part": "Female_Ranger_Body_Belt_2",
+            "verts": 928,
+            "faces": 804,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 11136
+          },
+          {
+            "part": "Female_Ranger_Feet",
+            "verts": 10174,
+            "faces": 9172,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 122088
+          },
+          {
+            "part": "Female_Ranger_Head_Hood",
+            "verts": 1240,
+            "faces": 2136,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 14880
+          },
+          {
+            "part": "Female_Ranger_Legs",
+            "verts": 685,
+            "faces": 1204,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 8220
+          },
+          {
+            "part": "Head_Eyebrows",
+            "verts": 912,
+            "faces": 1480,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Hair_2"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 10944
+          },
+          {
+            "part": "Head_Eyes",
+            "verts": 556,
+            "faces": 768,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Eyes"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 6672
+          },
+          {
+            "part": "Head_Superhero_Female",
+            "verts": 1644,
+            "faces": 3020,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Superhero_Female"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 19728
+          }
+        ],
+        "height_ratio": {
+          "BS_Thin": 0.998911,
+          "BS_Heavy": 1.001429
+        },
+        "arm_span_change": {
+          "BS_Thin": -0.01735,
+          "BS_Heavy": 0.022771
+        },
+        "inherit_scale_conflict": {
+          "root_scale_1.08_dispersion_with_NONE": 0.032519,
+          "root_scale_1.08_dispersion_with_FULL": 2.2e-05,
+          "decision": "烘焙期间用 NONE（防体形骨缩放沿链外传）；烘完还原 FULL（否则身高缩放失真）",
+          "threshold": 0.01
+        },
+        "morph_bytes_total": 670080,
+        "total_verts": 27920,
+        "parts_count": 12,
+        "texture_missing": [],
+        "out": "assets/3d/rig/garments/Female_Ranger.blend",
+        "size_kb": 1896
+      },
+      "M4_morph_bytes": {
+        "per_part": {
+          "Female_Ranger_Acc_Pauldrons": {
+            "verts": 1092,
+            "bytes_per_key": {
+              "BS_Thin": 13104,
+              "BS_Heavy": 13104
+            },
+            "limit": 13104,
+            "ok": true
+          },
+          "Female_Ranger_Arms": {
+            "verts": 2976,
+            "bytes_per_key": {
+              "BS_Thin": 35712,
+              "BS_Heavy": 35712
+            },
+            "limit": 35712,
+            "ok": true
+          },
+          "Female_Ranger_Arms_Bracer": {
+            "verts": 4000,
+            "bytes_per_key": {
+              "BS_Thin": 48000,
+              "BS_Heavy": 48000
+            },
+            "limit": 48000,
+            "ok": true
+          },
+          "Female_Ranger_Body": {
+            "verts": 2785,
+            "bytes_per_key": {
+              "BS_Thin": 33420,
+              "BS_Heavy": 33420
+            },
+            "limit": 33420,
+            "ok": true
+          },
+          "Female_Ranger_Body_Belt_1": {
+            "verts": 928,
+            "bytes_per_key": {
+              "BS_Thin": 11136,
+              "BS_Heavy": 11136
+            },
+            "limit": 11136,
+            "ok": true
+          },
+          "Female_Ranger_Body_Belt_2": {
+            "verts": 928,
+            "bytes_per_key": {
+              "BS_Thin": 11136,
+              "BS_Heavy": 11136
+            },
+            "limit": 11136,
+            "ok": true
+          },
+          "Female_Ranger_Feet": {
+            "verts": 10174,
+            "bytes_per_key": {
+              "BS_Thin": 122088,
+              "BS_Heavy": 122088
+            },
+            "limit": 122088,
+            "ok": true
+          },
+          "Female_Ranger_Head_Hood": {
+            "verts": 1240,
+            "bytes_per_key": {
+              "BS_Thin": 14880,
+              "BS_Heavy": 14880
+            },
+            "limit": 14880,
+            "ok": true
+          },
+          "Female_Ranger_Legs": {
+            "verts": 685,
+            "bytes_per_key": {
+              "BS_Thin": 8220,
+              "BS_Heavy": 8220
+            },
+            "limit": 8220,
+            "ok": true
+          },
+          "Head_Eyebrows": {
+            "verts": 912,
+            "bytes_per_key": {
+              "BS_Thin": 10944,
+              "BS_Heavy": 10944
+            },
+            "limit": 10944,
+            "ok": true
+          },
+          "Head_Eyes": {
+            "verts": 556,
+            "bytes_per_key": {
+              "BS_Thin": 6672,
+              "BS_Heavy": 6672
+            },
+            "limit": 6672,
+            "ok": true
+          },
+          "Head_Superhero_Female": {
+            "verts": 1644,
+            "bytes_per_key": {
+              "BS_Thin": 19728,
+              "BS_Heavy": 19728
+            },
+            "limit": 19728,
+            "ok": true
+          }
+        },
+        "ok": true,
+        "total_bytes_per_tier": 335040
+      },
+      "M4b_morph_non_trivial": {
+        "note": "堵'空 morph 全绿'的假 PASS；按'体形骨权重 vs 实测位移必须同向'判定",
+        "tiers": {
+          "BS_Thin": {
+            "per_part": {
+              "Female_Ranger_Acc_Pauldrons": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.2626,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Arms": {
+                "shape_bone_weight_frac": 0.3374,
+                "max_disp_cm": 1.8035,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Arms_Bracer": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 1.9319,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Body": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.0961,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Body_Belt_1": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.5371,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Body_Belt_2": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.405,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Feet": {
+                "shape_bone_weight_frac": 0.9454,
+                "max_disp_cm": 3.1314,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Head_Hood": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 1.5507,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Legs": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.2075,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Head_Eyebrows": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 0.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyes": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 0.0,
+                "category": "static_by_design"
+              },
+              "Head_Superhero_Female": {
+                "shape_bone_weight_frac": 0.104,
+                "max_disp_cm": 0.4333,
+                "moved_frac": 0.115,
+                "category": "driven"
+              }
+            },
+            "driven_parts": 10,
+            "max_disp_cm": 3.2075,
+            "any_bug": false,
+            "ok": true
+          },
+          "BS_Heavy": {
+            "per_part": {
+              "Female_Ranger_Acc_Pauldrons": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.9696,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Arms": {
+                "shape_bone_weight_frac": 0.3374,
+                "max_disp_cm": 2.3671,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Arms_Bracer": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.5356,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Body": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 4.0637,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Body_Belt_1": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.33,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Body_Belt_2": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.1566,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Feet": {
+                "shape_bone_weight_frac": 0.9454,
+                "max_disp_cm": 4.1099,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Head_Hood": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.0353,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Ranger_Legs": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 4.2098,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Head_Eyebrows": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyes": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_Superhero_Female": {
+                "shape_bone_weight_frac": 0.104,
+                "max_disp_cm": 0.5688,
+                "moved_frac": 0.9605,
+                "category": "driven"
+              }
+            },
+            "driven_parts": 10,
+            "max_disp_cm": 4.2098,
+            "any_bug": false,
+            "ok": true
+          }
+        },
+        "ok": true,
+        "basis_digest_16": "3c93abca38a5d6db",
+        "morph_digest_16": {
+          "BS_Thin": "e5346f1cf12a6dbe",
+          "BS_Heavy": "6d87cac343fd772d"
+        },
+        "digest_differs_from_basis": true
+      },
+      "M4c_arm_span_calibrated": {
+        "judge": "臂展（max x − min x）相对 rest 的变化率",
+        "measured": {
+          "BS_Thin": -0.01735,
+          "BS_Heavy": 0.022771
+        },
+        "bands": {
+          "漏_NONE_隔离": "|变化| > 20%",
+          "漏_along_项": "|变化| < 1.0%",
+          "符号": "瘦必须为负、壮必须为正，且 壮 > 瘦"
+        },
+        "calibration": {
+          "正确(NONE+along)": [
+            -0.0173,
+            0.0228
+          ],
+          "漏along项": [
+            -0.0055,
+            0.0072
+          ],
+          "漏NONE隔离": [
+            -0.5453,
+            1.3886
+          ],
+          "source": "tmp/garment/calib_armspan.py（本工具独立标定，与 verifier 独立测量逐位相同）"
+        },
+        "reasons": [],
+        "ok": true
+      },
+      "skin_faces": {
+        "has_visible_skin": true,
+        "skin_verts": 1202,
+        "cloth_verts": 26718,
+        "skin_parts": [
+          "Female_Ranger_Arms"
+        ]
+      },
+      "M3_penetration_pixel": {
+        "authoritative": "pixel",
+        "note": "B2 下不存在独立身体 → 结构性为 0；此处量角色自身皮肤 vs 自身布料的自洽性",
+        "threshold": "**各档 ≤ rest 基线 + 2 个百分点**（SPEC §5 原文口径）；具体阈值在测出本套 rest 基线后填入",
+        "reading": "P_full = 角色自带 `MI_Regular_*` 皮肤面中**露在布料之外**的像素占比。无袖/敞怀设计（如男 Peasant 的大臂与手本来就裸露）它天然偏大，属美术设计；要卡的是**变形有没有让裸露变多**。",
+        "method": "按档从求值后的几何建 skin/cloth 代理网格；源网格 hide_render 隐藏；双方换纯自发光材质（红/绿）；view_transform='Standard'；alpha 即剪影",
+        "rest": {
+          "P_full": 0.007079,
+          "P_full_max": 0.008704,
+          "P_full_loose": 0.008356,
+          "sanity_ok": true,
+          "classified_frac": 0.9951,
+          "skin_proxy_verts": 2976,
+          "cloth_proxy_verts": 27920,
+          "silhouette_px": [
+            30473,
+            31365,
+            20837,
+            20850
+          ]
+        },
+        "BS_Thin": {
+          "P_full": 0.008275,
+          "P_full_max": 0.010276,
+          "P_full_loose": 0.009494,
+          "sanity_ok": true,
+          "classified_frac": 0.9951,
+          "skin_proxy_verts": 2976,
+          "cloth_proxy_verts": 27920,
+          "silhouette_px": [
+            26625,
+            27346,
+            18383,
+            18383
+          ]
+        },
+        "BS_Heavy": {
+          "P_full": 0.006357,
+          "P_full_max": 0.007938,
+          "P_full_loose": 0.007246,
+          "sanity_ok": true,
+          "classified_frac": 0.9961,
+          "skin_proxy_verts": 2976,
+          "cloth_proxy_verts": 27920,
+          "silhouette_px": [
+            35507,
+            36660,
+            24118,
+            24132
+          ]
+        },
+        "criterion": "各档 ≤ rest 基线 + 2%（SPEC §5 原文口径）",
+        "rest_baseline_P_full": 0.007079,
+        "ok": true,
+        "threshold_concrete": "本套 rest 基线 = 0.71% → 阈值 = 2.71%；三档实测 rest 0.71% / BS_Thin 0.83% / BS_Heavy 0.64%",
+        "interpretation": "P_full = 角色自带皮肤面中**露在布料之外**的像素占比。对**无袖/敞怀**设计（男 Peasant 的大臂与手本来就裸露）它天然偏大，属**美术设计**而非穿模；B2 的关键判据是'变形是否让裸露变多'（≤ rest+2%），而不是绝对值。"
+      },
+      "M3_penetration_vertex_reference": {
+        "note": "**仅作对照**；已知在手腕/手/足区域不可靠（F15），且按顶点密度加权。口径：布料顶点落在皮肤面内部的比例（最近点+法线定向）",
+        "rest": {
+          "ratio": 0.121203,
+          "inside": 3384,
+          "n": 27920
+        },
+        "BS_Thin": {
+          "ratio": 0.124928,
+          "inside": 3488,
+          "n": 27920
+        },
+        "BS_Heavy": {
+          "ratio": 0.12038,
+          "inside": 3361,
+          "n": 27920
+        }
+      },
+      "B2d_same_driver": {
+        "gate_cm": 2.0,
+        "jac_floor": 0.01,
+        "ratio_bound": 0.3,
+        "conformity_bound": 1.5,
+        "per_part": {
+          "Female_Ranger_Arms": {
+            "skin_verts": 1202,
+            "cloth_verts": 1774,
+            "tiers": {
+              "BS_Thin": {
+                "pairs_non_degenerate": 0,
+                "pairs_degenerate_rigid": 414,
+                "pairs_coincident": 106,
+                "max_diff_over_distance": 0.0,
+                "max_conformity_ratio": 0.0,
+                "jac_median": 0.0
+              },
+              "BS_Heavy": {
+                "pairs_non_degenerate": 0,
+                "pairs_degenerate_rigid": 414,
+                "pairs_coincident": 106,
+                "max_diff_over_distance": 0.0,
+                "max_conformity_ratio": 0.0,
+                "jac_median": 0.0
+              }
+            }
+          }
+        },
+        "pairs_total": 0,
+        "pairs_non_degenerate": 0,
+        "pairs_degenerate": 828,
+        "coincident_pairs": 212,
+        "coincident_max_diff_um": 0.0,
+        "max_diff_over_distance_same_bone": 0.0,
+        "max_conformity_ratio": 0.0,
+        "theory": "位移差 = A·(两点间距)；|A|≈|girth−1|（BS_Heavy 最大 0.16）。刚体区 |A|=0 → 位移差恒为 0，信息量为零",
+        "applicable": false,
+        "ok": true,
+        "verdict_note": "⚠ **不适用（空洞）**：所有配对都落在刚体区（|A| ≤ jac_floor），位移差恒为 0，**不构成任何证据**。按'不适用'记，不当作 PASS 依据。"
+      },
+      "M5_height_scaling": {
+        "authoritative_method": "骨架「对象」等比缩放 ×1.08（SPEC §3.4 现行 / F12）",
+        "threshold": 0.01,
+        "scale": 1.08,
+        "per_part": {
+          "Female_Ranger_Acc_Pauldrons": {
+            "edges": 2420,
+            "median_ratio": 1.08,
+            "dispersion": 1.67e-06,
+            "ok": true
+          },
+          "Female_Ranger_Arms": {
+            "edges": 7822,
+            "median_ratio": 1.08,
+            "dispersion": 4.2e-06,
+            "ok": true
+          },
+          "Female_Ranger_Arms_Bracer": {
+            "edges": 7304,
+            "median_ratio": 1.08,
+            "dispersion": 4.871e-05,
+            "ok": true
+          },
+          "Female_Ranger_Body": {
+            "edges": 5598,
+            "median_ratio": 1.08,
+            "dispersion": 6.38e-06,
+            "ok": true
+          },
+          "Female_Ranger_Body_Belt_1": {
+            "edges": 1663,
+            "median_ratio": 1.08,
+            "dispersion": 4.48e-06,
+            "ok": true
+          },
+          "Female_Ranger_Body_Belt_2": {
+            "edges": 1663,
+            "median_ratio": 1.08,
+            "dispersion": 1.049e-05,
+            "ok": true
+          },
+          "Female_Ranger_Feet": {
+            "edges": 18182,
+            "median_ratio": 1.08,
+            "dispersion": 1.05e-06,
+            "ok": true
+          },
+          "Female_Ranger_Head_Hood": {
+            "edges": 3370,
+            "median_ratio": 1.08,
+            "dispersion": 1.31e-06,
+            "ok": true
+          },
+          "Female_Ranger_Legs": {
+            "edges": 1891,
+            "median_ratio": 1.08,
+            "dispersion": 7.2e-07,
+            "ok": true
+          },
+          "Head_Eyebrows": {
+            "edges": 2384,
+            "median_ratio": 1.08,
+            "dispersion": 1.799e-05,
+            "ok": true
+          },
+          "Head_Eyes": {
+            "edges": 1310,
+            "median_ratio": 1.08,
+            "dispersion": 1.083e-05,
+            "ok": true
+          },
+          "Head_Superhero_Female": {
+            "edges": 4660,
+            "median_ratio": 1.08,
+            "dispersion": 9.79e-06,
+            "ok": true
+          }
+        },
+        "max_dispersion": 4.871e-05,
+        "height_change_pct": 8.0,
+        "reference_root_bone_method": {
+          "note": "⚠ `root` **骨**缩放已被 F12 废弃（走骨架层级、被 F6 的 NONE 在中层断开）；保留仅为历史证据，**不参与判定**",
+          "max_dispersion": 2.463e-05,
+          "per_part": {
+            "Female_Ranger_Acc_Pauldrons": {
+              "edges": 2420,
+              "median_ratio": 1.08,
+              "dispersion": 1.87e-06
+            },
+            "Female_Ranger_Arms": {
+              "edges": 7822,
+              "median_ratio": 1.08,
+              "dispersion": 5.3e-06
+            },
+            "Female_Ranger_Arms_Bracer": {
+              "edges": 7304,
+              "median_ratio": 1.08,
+              "dispersion": 2.463e-05
+            },
+            "Female_Ranger_Body": {
+              "edges": 5598,
+              "median_ratio": 1.08,
+              "dispersion": 6.32e-06
+            },
+            "Female_Ranger_Body_Belt_1": {
+              "edges": 1663,
+              "median_ratio": 1.08,
+              "dispersion": 1.038e-05
+            },
+            "Female_Ranger_Body_Belt_2": {
+              "edges": 1663,
+              "median_ratio": 1.08,
+              "dispersion": 1.004e-05
+            },
+            "Female_Ranger_Feet": {
+              "edges": 18182,
+              "median_ratio": 1.08,
+              "dispersion": 1.49e-06
+            },
+            "Female_Ranger_Head_Hood": {
+              "edges": 3370,
+              "median_ratio": 1.08,
+              "dispersion": 1.37e-06
+            },
+            "Female_Ranger_Legs": {
+              "edges": 1891,
+              "median_ratio": 1.08,
+              "dispersion": 1.13e-06
+            },
+            "Head_Eyebrows": {
+              "edges": 2384,
+              "median_ratio": 1.08,
+              "dispersion": 1.913e-05
+            },
+            "Head_Eyes": {
+              "edges": 1310,
+              "median_ratio": 1.08,
+              "dispersion": 7.62e-06
+            },
+            "Head_Superhero_Female": {
+              "edges": 4660,
+              "median_ratio": 1.08,
+              "dispersion": 7.41e-06
+            }
+          }
+        },
+        "ok": true
+      },
+      "B2c_inherit_scale": {
+        "bake_time_contract": "烘焙期间体形骨全部直接子骨必须为 'NONE'（SPEC §3.2 / F6，F18 定为**烘焙期**契约）",
+        "runtime_contract": "运行时身高 = **骨架「对象」等比缩放**（SPEC §3.4 现行 / F12）；`root` 骨那版已废弃。故本资产与 bodies/(NONE) 都满足契约、**互不冲突**",
+        "current_state": {
+          "NONE": [],
+          "FULL": [
+            "calf_l",
+            "calf_r",
+            "clavicle_l",
+            "clavicle_r",
+            "foot_l",
+            "foot_r",
+            "hand_l",
+            "hand_r",
+            "lowerarm_l",
+            "lowerarm_r",
+            "neck_01",
+            "spine_01",
+            "spine_02",
+            "spine_03",
+            "thigh_l",
+            "thigh_r",
+            "upperarm_l",
+            "upperarm_r"
+          ]
+        },
+        "measured_conflict": {
+          "root_scale_1.08_dispersion_with_NONE": 0.032519,
+          "root_scale_1.08_dispersion_with_FULL": 2.2e-05,
+          "decision": "烘焙期间用 NONE（防体形骨缩放沿链外传）；烘完还原 FULL（否则身高缩放失真）",
+          "threshold": 0.01
+        },
+        "judged_by": "M5（**对象级** ×1.08 拉伸离散度 ≤0.01）",
+        "ok": true
+      },
+      "M6_skip_list": [],
+      "M6_note": "B2 下无 skip 件：不存在外部身体，布料/皮肤/头共用同一副 rig、同一组骨变换 → 体形变化同构传播，结构性无穿模。",
+      "B1_route_pixel_comparison": {},
+      "B1_pixel_lead_reference": {
+        "source": "task/007-morph-pipeline/lead/FINDINGS.md §11.2（Lead 实测，像素法）",
+        "original": 0.6334,
+        "refit": 0.6334,
+        "refit_plus_autofit": 0.439,
+        "reading": "B1 路线即使做完 refit + 3 轮外推，裸露仍剩 44% → 不可用（F11 已撤回）"
+      },
+      "verdict": {
+        "M1_topology_100pct": true,
+        "M2_morph_alignment_100pct": true,
+        "M3_penetration_pixel_ok": true,
+        "M4_morph_bytes_within_limit": true,
+        "M4b_morph_non_trivial_and_consistent": true,
+        "M4c_arm_span_calibrated": true,
+        "M5_height_dispersion_le_0.01": true,
+        "M6_skip_list_documented": true,
+        "B2a_height_ratio_within_0.002": true,
+        "B2b_all_parts_have_morph": true,
+        "B2c_height_scaling_runtime_ok": true,
+        "B2d_affine_conformity_in_non_degenerate_region": true,
+        "single_armature": true,
+        "ALL_PASS": true
+      }
+    },
+    {
+      "outfit": "Female_Peasant",
+      "sex": "Female",
+      "file": "assets/3d/rig/garments/Female_Peasant.blend",
+      "route": "B2",
+      "armature": "RIG_TryOn_Female_Peasant",
+      "bones": 65,
+      "armature_count": 1,
+      "parts_count": 8,
+      "parts": [
+        {
+          "part": "Female_Peasant_Arms",
+          "verts": 5436,
+          "faces": 6848,
+          "materials": [
+            "MI_Peasant"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Female_Peasant_Body",
+          "verts": 1730,
+          "faces": 2188,
+          "materials": [
+            "MI_Peasant.001"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Female_Peasant_Feet",
+          "verts": 1892,
+          "faces": 2588,
+          "materials": [
+            "MI_Peasant.001"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Female_Peasant_Legs",
+          "verts": 1126,
+          "faces": 1944,
+          "materials": [
+            "MI_Peasant"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Hair_Long",
+          "verts": 3080,
+          "faces": 2906,
+          "materials": [
+            "MI_Hair_2.001"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Head_Eyebrows",
+          "verts": 912,
+          "faces": 1480,
+          "materials": [
+            "MI_Hair_2"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Head_Eyes",
+          "verts": 556,
+          "faces": 768,
+          "materials": [
+            "MI_Eyes"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Head_Superhero_Female",
+          "verts": 1644,
+          "faces": 3020,
+          "materials": [
+            "MI_Superhero_Female"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        }
+      ],
+      "M1_topology": {
+        "per_part": {
+          "Female_Peasant_Arms": {
+            "BS_Thin": {
+              "verts": 5436,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 5436,
+              "same_as_basis": true
+            }
+          },
+          "Female_Peasant_Body": {
+            "BS_Thin": {
+              "verts": 1730,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1730,
+              "same_as_basis": true
+            }
+          },
+          "Female_Peasant_Feet": {
+            "BS_Thin": {
+              "verts": 1892,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1892,
+              "same_as_basis": true
+            }
+          },
+          "Female_Peasant_Legs": {
+            "BS_Thin": {
+              "verts": 1126,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1126,
+              "same_as_basis": true
+            }
+          },
+          "Hair_Long": {
+            "BS_Thin": {
+              "verts": 3080,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 3080,
+              "same_as_basis": true
+            }
+          },
+          "Head_Eyebrows": {
+            "BS_Thin": {
+              "verts": 912,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 912,
+              "same_as_basis": true
+            }
+          },
+          "Head_Eyes": {
+            "BS_Thin": {
+              "verts": 556,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 556,
+              "same_as_basis": true
+            }
+          },
+          "Head_Superhero_Female": {
+            "BS_Thin": {
+              "verts": 1644,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1644,
+              "same_as_basis": true
+            }
+          }
+        },
+        "ok": true
+      },
+      "M2_morph_alignment": {
+        "contract": [
+          "Basis",
+          "BS_Thin",
+          "BS_Heavy"
+        ],
+        "per_part": {
+          "Female_Peasant_Arms": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Female_Peasant_Body": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Female_Peasant_Feet": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Female_Peasant_Legs": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Hair_Long": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Head_Eyebrows": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Head_Eyes": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Head_Superhero_Female": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          }
+        },
+        "ok": true,
+        "body_keys": [
+          "Basis",
+          "BS_Thin",
+          "BS_Heavy"
+        ],
+        "match_body_verbatim": true
+      },
+      "B2a_height_ratio": {
+        "base_height_cm": 178.397,
+        "ratios": {
+          "BS_Thin": 1.000193,
+          "BS_Heavy": 0.999747
+        },
+        "threshold": 0.002,
+        "ok": true
+      },
+      "B2b_all_parts_have_morph": {
+        "parts_checked": 8,
+        "parts_ok": 8,
+        "ok": true
+      },
+      "B2_report_ref": {
+        "outfit": "Female_Peasant",
+        "sex": "Female",
+        "src": "assets/3d/blend/tryon/TryOn_Female_Peasant.blend",
+        "armature": "RIG_TryOn_Female_Peasant",
+        "bones": 65,
+        "junk_removed": [
+          [
+            "Camera",
+            "CAMERA"
+          ],
+          [
+            "Fill",
+            "LIGHT"
+          ],
+          [
+            "Icosphere",
+            "MESH"
+          ],
+          [
+            "Icosphere.001",
+            "MESH"
+          ],
+          [
+            "Icosphere.002",
+            "MESH"
+          ],
+          [
+            "Sun",
+            "LIGHT"
+          ]
+        ],
+        "missing_shape_bones": [],
+        "inherit_none_bones": [
+          "calf_l",
+          "calf_r",
+          "clavicle_l",
+          "clavicle_r",
+          "foot_l",
+          "foot_r",
+          "hand_l",
+          "hand_r",
+          "lowerarm_l",
+          "lowerarm_r",
+          "neck_01",
+          "spine_01",
+          "spine_02",
+          "spine_03",
+          "thigh_l",
+          "thigh_r",
+          "upperarm_l",
+          "upperarm_r"
+        ],
+        "height_base_cm": 178.397,
+        "coefficient_source": {
+          "file": "assets/3d/rig/manifests/bodyshape_manifest.json",
+          "spec_sha256": "938071768e2212994ba718adc9ebe5b7b0caf78882806f1a354a136bb058acf0",
+          "manifest_sha256_16": "981c1e8762cb3909",
+          "manifest_mtime": "2026-10-13T18:57:38",
+          "target_coefficients": {
+            "BS_Thin": 0.84,
+            "BS_Heavy": 1.21
+          },
+          "delta_response": {
+            "pelvis": 1.0,
+            "spine_01": 1.0,
+            "spine_02": 1.0,
+            "spine_03": 1.0,
+            "thigh": 0.95,
+            "calf": 0.85,
+            "upperarm": 1.05,
+            "lowerarm": 0.95,
+            "clavicle": 0.8
+          },
+          "spec_version": "2.0",
+          "coefficients_fingerprint": "ca93ef919b15340df2123bd397fd4b43c8658d4ef539e4a678319c2f69821ba2",
+          "scales_source": "manifest.tiers[].bones_applied（实摆三轴向量）",
+          "girth_rule": "x=z=1+(coef−1)·delta_response；y=1+(coef−1)·along_axis_response（v2 只有 clavicle=0.5，改肩宽/臂展不改身高）",
+          "note": "尺度**直接取 manifest 的 bones_applied（实摆三轴）**，不自行推导；该 manifest 同时是标准体的来源 → 同名 morph 语义一致"
+        },
+        "tiers_source": "assets/3d/rig/manifests/bodyshape_manifest.json",
+        "tiers": {
+          "BS_Thin": {
+            "target_coefficient": 0.84,
+            "bones_applied": {
+              "pelvis": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_01": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_02": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_03": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "thigh_l": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "thigh_r": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "calf_l": [
+                0.864,
+                1.0,
+                0.864
+              ],
+              "calf_r": [
+                0.864,
+                1.0,
+                0.864
+              ],
+              "upperarm_l": [
+                0.832,
+                1.0,
+                0.832
+              ],
+              "upperarm_r": [
+                0.832,
+                1.0,
+                0.832
+              ],
+              "lowerarm_l": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "lowerarm_r": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "clavicle_l": [
+                0.872,
+                0.92,
+                0.872
+              ],
+              "clavicle_r": [
+                0.872,
+                0.92,
+                0.872
+              ]
+            },
+            "disp_mean_cm": 1.0462,
+            "disp_p95_cm": 2.3306,
+            "disp_max_cm": 3.136,
+            "moved_frac": 0.63343,
+            "morph_digest_16": "2f1e1a18e76f609f"
+          },
+          "BS_Heavy": {
+            "target_coefficient": 1.21,
+            "bones_applied": {
+              "pelvis": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_01": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_02": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_03": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "thigh_l": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "thigh_r": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "calf_l": [
+                1.1785,
+                1.0,
+                1.1785
+              ],
+              "calf_r": [
+                1.1785,
+                1.0,
+                1.1785
+              ],
+              "upperarm_l": [
+                1.2205,
+                1.0,
+                1.2205
+              ],
+              "upperarm_r": [
+                1.2205,
+                1.0,
+                1.2205
+              ],
+              "lowerarm_l": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "lowerarm_r": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "clavicle_l": [
+                1.168,
+                1.105,
+                1.168
+              ],
+              "clavicle_r": [
+                1.168,
+                1.105,
+                1.168
+              ]
+            },
+            "disp_mean_cm": 1.3732,
+            "disp_p95_cm": 3.0588,
+            "disp_max_cm": 4.1159,
+            "moved_frac": 0.99603,
+            "morph_digest_16": "33c7cfe143a2e33a"
+          }
+        },
+        "parts": [
+          {
+            "part": "Female_Peasant_Arms",
+            "verts": 5436,
+            "faces": 6848,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Peasant"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 65232
+          },
+          {
+            "part": "Female_Peasant_Body",
+            "verts": 1730,
+            "faces": 2188,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Peasant.001"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 20760
+          },
+          {
+            "part": "Female_Peasant_Feet",
+            "verts": 1892,
+            "faces": 2588,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Peasant.001"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 22704
+          },
+          {
+            "part": "Female_Peasant_Legs",
+            "verts": 1126,
+            "faces": 1944,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Peasant"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 13512
+          },
+          {
+            "part": "Hair_Long",
+            "verts": 3080,
+            "faces": 2906,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Hair_2.001"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 36960
+          },
+          {
+            "part": "Head_Eyebrows",
+            "verts": 912,
+            "faces": 1480,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Hair_2"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 10944
+          },
+          {
+            "part": "Head_Eyes",
+            "verts": 556,
+            "faces": 768,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Eyes"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 6672
+          },
+          {
+            "part": "Head_Superhero_Female",
+            "verts": 1644,
+            "faces": 3020,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Superhero_Female"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 19728
+          }
+        ],
+        "height_ratio": {
+          "BS_Thin": 1.000193,
+          "BS_Heavy": 0.999747
+        },
+        "arm_span_change": {
+          "BS_Thin": -0.01735,
+          "BS_Heavy": 0.022771
+        },
+        "inherit_scale_conflict": {
+          "root_scale_1.08_dispersion_with_NONE": 0.035309,
+          "root_scale_1.08_dispersion_with_FULL": 6.3e-05,
+          "decision": "烘焙期间用 NONE（防体形骨缩放沿链外传）；烘完还原 FULL（否则身高缩放失真）",
+          "threshold": 0.01
+        },
+        "morph_bytes_total": 393024,
+        "total_verts": 16376,
+        "parts_count": 8,
+        "texture_missing": [],
+        "out": "assets/3d/rig/garments/Female_Peasant.blend",
+        "size_kb": 1310
+      },
+      "M4_morph_bytes": {
+        "per_part": {
+          "Female_Peasant_Arms": {
+            "verts": 5436,
+            "bytes_per_key": {
+              "BS_Thin": 65232,
+              "BS_Heavy": 65232
+            },
+            "limit": 65232,
+            "ok": true
+          },
+          "Female_Peasant_Body": {
+            "verts": 1730,
+            "bytes_per_key": {
+              "BS_Thin": 20760,
+              "BS_Heavy": 20760
+            },
+            "limit": 20760,
+            "ok": true
+          },
+          "Female_Peasant_Feet": {
+            "verts": 1892,
+            "bytes_per_key": {
+              "BS_Thin": 22704,
+              "BS_Heavy": 22704
+            },
+            "limit": 22704,
+            "ok": true
+          },
+          "Female_Peasant_Legs": {
+            "verts": 1126,
+            "bytes_per_key": {
+              "BS_Thin": 13512,
+              "BS_Heavy": 13512
+            },
+            "limit": 13512,
+            "ok": true
+          },
+          "Hair_Long": {
+            "verts": 3080,
+            "bytes_per_key": {
+              "BS_Thin": 36960,
+              "BS_Heavy": 36960
+            },
+            "limit": 36960,
+            "ok": true
+          },
+          "Head_Eyebrows": {
+            "verts": 912,
+            "bytes_per_key": {
+              "BS_Thin": 10944,
+              "BS_Heavy": 10944
+            },
+            "limit": 10944,
+            "ok": true
+          },
+          "Head_Eyes": {
+            "verts": 556,
+            "bytes_per_key": {
+              "BS_Thin": 6672,
+              "BS_Heavy": 6672
+            },
+            "limit": 6672,
+            "ok": true
+          },
+          "Head_Superhero_Female": {
+            "verts": 1644,
+            "bytes_per_key": {
+              "BS_Thin": 19728,
+              "BS_Heavy": 19728
+            },
+            "limit": 19728,
+            "ok": true
+          }
+        },
+        "ok": true,
+        "total_bytes_per_tier": 196512
+      },
+      "M4b_morph_non_trivial": {
+        "note": "堵'空 morph 全绿'的假 PASS；按'体形骨权重 vs 实测位移必须同向'判定",
+        "tiers": {
+          "BS_Thin": {
+            "per_part": {
+              "Female_Peasant_Arms": {
+                "shape_bone_weight_frac": 0.6917,
+                "max_disp_cm": 1.8173,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Peasant_Body": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.8285,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Peasant_Feet": {
+                "shape_bone_weight_frac": 0.9091,
+                "max_disp_cm": 3.136,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Peasant_Legs": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.0359,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Hair_Long": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 0.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyebrows": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 0.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyes": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 0.0,
+                "category": "static_by_design"
+              },
+              "Head_Superhero_Female": {
+                "shape_bone_weight_frac": 0.104,
+                "max_disp_cm": 0.4333,
+                "moved_frac": 0.115,
+                "category": "driven"
+              }
+            },
+            "driven_parts": 5,
+            "max_disp_cm": 3.136,
+            "any_bug": false,
+            "ok": true
+          },
+          "BS_Heavy": {
+            "per_part": {
+              "Female_Peasant_Arms": {
+                "shape_bone_weight_frac": 0.6917,
+                "max_disp_cm": 2.3852,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Peasant_Body": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.7124,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Peasant_Feet": {
+                "shape_bone_weight_frac": 0.9091,
+                "max_disp_cm": 4.1159,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Female_Peasant_Legs": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.9847,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Hair_Long": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyebrows": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyes": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_Superhero_Female": {
+                "shape_bone_weight_frac": 0.104,
+                "max_disp_cm": 0.5688,
+                "moved_frac": 0.9605,
+                "category": "driven"
+              }
+            },
+            "driven_parts": 5,
+            "max_disp_cm": 4.1159,
+            "any_bug": false,
+            "ok": true
+          }
+        },
+        "ok": true,
+        "basis_digest_16": "609a22732a6ed13f",
+        "morph_digest_16": {
+          "BS_Thin": "2f1e1a18e76f609f",
+          "BS_Heavy": "33c7cfe143a2e33a"
+        },
+        "digest_differs_from_basis": true
+      },
+      "M4c_arm_span_calibrated": {
+        "judge": "臂展（max x − min x）相对 rest 的变化率",
+        "measured": {
+          "BS_Thin": -0.01735,
+          "BS_Heavy": 0.022771
+        },
+        "bands": {
+          "漏_NONE_隔离": "|变化| > 20%",
+          "漏_along_项": "|变化| < 1.0%",
+          "符号": "瘦必须为负、壮必须为正，且 壮 > 瘦"
+        },
+        "calibration": {
+          "正确(NONE+along)": [
+            -0.0173,
+            0.0228
+          ],
+          "漏along项": [
+            -0.0055,
+            0.0072
+          ],
+          "漏NONE隔离": [
+            -0.5453,
+            1.3886
+          ],
+          "source": "tmp/garment/calib_armspan.py（本工具独立标定，与 verifier 独立测量逐位相同）"
+        },
+        "reasons": [],
+        "ok": true
+      },
+      "skin_faces": {
+        "has_visible_skin": false,
+        "skin_verts": 0,
+        "cloth_verts": 16376,
+        "skin_parts": []
+      },
+      "M3_penetration_pixel": {
+        "authoritative": "pixel",
+        "note": "B2 下不存在独立身体 → 结构性为 0；此处量角色自身皮肤 vs 自身布料的自洽性",
+        "threshold": "**各档 ≤ rest 基线 + 2 个百分点**（SPEC §5 原文口径）；具体阈值在测出本套 rest 基线后填入",
+        "reading": "P_full = 角色自带 `MI_Regular_*` 皮肤面中**露在布料之外**的像素占比。无袖/敞怀设计（如男 Peasant 的大臂与手本来就裸露）它天然偏大，属美术设计；要卡的是**变形有没有让裸露变多**。",
+        "method": "按档从求值后的几何建 skin/cloth 代理网格；源网格 hide_render 隐藏；双方换纯自发光材质（红/绿）；view_transform='Standard'；alpha 即剪影",
+        "ok": true,
+        "skipped": "该套无 MI_Regular_* 皮肤面（服装全包裹）→ 无独立身体可言，B2 下穿模问题结构性不存在"
+      },
+      "M3_penetration_vertex_reference": {
+        "note": "**仅作对照**；已知在手腕/手/足区域不可靠（F15），且按顶点密度加权。口径：布料顶点落在皮肤面内部的比例（最近点+法线定向）"
+      },
+      "B2d_same_driver": {
+        "gate_cm": 2.0,
+        "jac_floor": 0.01,
+        "ratio_bound": 0.3,
+        "conformity_bound": 1.5,
+        "per_part": {},
+        "pairs_total": 0,
+        "pairs_non_degenerate": 0,
+        "pairs_degenerate": 0,
+        "coincident_pairs": 0,
+        "coincident_max_diff_um": 0.0,
+        "max_diff_over_distance_same_bone": 0.0,
+        "max_conformity_ratio": 0.0,
+        "theory": "位移差 = A·(两点间距)；|A|≈|girth−1|（BS_Heavy 最大 0.16）。刚体区 |A|=0 → 位移差恒为 0，信息量为零",
+        "applicable": false,
+        "ok": true,
+        "verdict_note": "⚠ **不适用（空洞）**：所有配对都落在刚体区（|A| ≤ jac_floor），位移差恒为 0，**不构成任何证据**。按'不适用'记，不当作 PASS 依据。"
+      },
+      "M5_height_scaling": {
+        "authoritative_method": "骨架「对象」等比缩放 ×1.08（SPEC §3.4 现行 / F12）",
+        "threshold": 0.01,
+        "scale": 1.08,
+        "per_part": {
+          "Female_Peasant_Arms": {
+            "edges": 12036,
+            "median_ratio": 1.08,
+            "dispersion": 7.088e-05,
+            "ok": true
+          },
+          "Female_Peasant_Body": {
+            "edges": 3868,
+            "median_ratio": 1.08,
+            "dispersion": 1.91e-06,
+            "ok": true
+          },
+          "Female_Peasant_Feet": {
+            "edges": 4436,
+            "median_ratio": 1.08,
+            "dispersion": 4.3e-07,
+            "ok": true
+          },
+          "Female_Peasant_Legs": {
+            "edges": 3066,
+            "median_ratio": 1.08,
+            "dispersion": 9.7e-07,
+            "ok": true
+          },
+          "Hair_Long": {
+            "edges": 5889,
+            "median_ratio": 1.08,
+            "dispersion": 3.25e-06,
+            "ok": true
+          },
+          "Head_Eyebrows": {
+            "edges": 2384,
+            "median_ratio": 1.08,
+            "dispersion": 1.799e-05,
+            "ok": true
+          },
+          "Head_Eyes": {
+            "edges": 1310,
+            "median_ratio": 1.08,
+            "dispersion": 1.083e-05,
+            "ok": true
+          },
+          "Head_Superhero_Female": {
+            "edges": 4660,
+            "median_ratio": 1.08,
+            "dispersion": 9.79e-06,
+            "ok": true
+          }
+        },
+        "max_dispersion": 7.088e-05,
+        "height_change_pct": 8.0,
+        "reference_root_bone_method": {
+          "note": "⚠ `root` **骨**缩放已被 F12 废弃（走骨架层级、被 F6 的 NONE 在中层断开）；保留仅为历史证据，**不参与判定**",
+          "max_dispersion": 6.26e-05,
+          "per_part": {
+            "Female_Peasant_Arms": {
+              "edges": 12036,
+              "median_ratio": 1.08,
+              "dispersion": 6.26e-05
+            },
+            "Female_Peasant_Body": {
+              "edges": 3868,
+              "median_ratio": 1.08,
+              "dispersion": 2.74e-06
+            },
+            "Female_Peasant_Feet": {
+              "edges": 4436,
+              "median_ratio": 1.08,
+              "dispersion": 5.6e-07
+            },
+            "Female_Peasant_Legs": {
+              "edges": 3066,
+              "median_ratio": 1.08,
+              "dispersion": 1.68e-06
+            },
+            "Hair_Long": {
+              "edges": 5889,
+              "median_ratio": 1.08,
+              "dispersion": 3.45e-06
+            },
+            "Head_Eyebrows": {
+              "edges": 2384,
+              "median_ratio": 1.08,
+              "dispersion": 1.913e-05
+            },
+            "Head_Eyes": {
+              "edges": 1310,
+              "median_ratio": 1.08,
+              "dispersion": 7.62e-06
+            },
+            "Head_Superhero_Female": {
+              "edges": 4660,
+              "median_ratio": 1.08,
+              "dispersion": 7.41e-06
+            }
+          }
+        },
+        "ok": true
+      },
+      "B2c_inherit_scale": {
+        "bake_time_contract": "烘焙期间体形骨全部直接子骨必须为 'NONE'（SPEC §3.2 / F6，F18 定为**烘焙期**契约）",
+        "runtime_contract": "运行时身高 = **骨架「对象」等比缩放**（SPEC §3.4 现行 / F12）；`root` 骨那版已废弃。故本资产与 bodies/(NONE) 都满足契约、**互不冲突**",
+        "current_state": {
+          "NONE": [],
+          "FULL": [
+            "calf_l",
+            "calf_r",
+            "clavicle_l",
+            "clavicle_r",
+            "foot_l",
+            "foot_r",
+            "hand_l",
+            "hand_r",
+            "lowerarm_l",
+            "lowerarm_r",
+            "neck_01",
+            "spine_01",
+            "spine_02",
+            "spine_03",
+            "thigh_l",
+            "thigh_r",
+            "upperarm_l",
+            "upperarm_r"
+          ]
+        },
+        "measured_conflict": {
+          "root_scale_1.08_dispersion_with_NONE": 0.035309,
+          "root_scale_1.08_dispersion_with_FULL": 6.3e-05,
+          "decision": "烘焙期间用 NONE（防体形骨缩放沿链外传）；烘完还原 FULL（否则身高缩放失真）",
+          "threshold": 0.01
+        },
+        "judged_by": "M5（**对象级** ×1.08 拉伸离散度 ≤0.01）",
+        "ok": true
+      },
+      "M6_skip_list": [],
+      "M6_note": "B2 下无 skip 件：不存在外部身体，布料/皮肤/头共用同一副 rig、同一组骨变换 → 体形变化同构传播，结构性无穿模。",
+      "verdict": {
+        "M1_topology_100pct": true,
+        "M2_morph_alignment_100pct": true,
+        "M3_penetration_pixel_ok": true,
+        "M4_morph_bytes_within_limit": true,
+        "M4b_morph_non_trivial_and_consistent": true,
+        "M4c_arm_span_calibrated": true,
+        "M5_height_dispersion_le_0.01": true,
+        "M6_skip_list_documented": true,
+        "B2a_height_ratio_within_0.002": true,
+        "B2b_all_parts_have_morph": true,
+        "B2c_height_scaling_runtime_ok": true,
+        "B2d_affine_conformity_in_non_degenerate_region": true,
+        "single_armature": true,
+        "ALL_PASS": true
+      }
+    },
+    {
+      "outfit": "Male_Ranger",
+      "sex": "Male",
+      "file": "assets/3d/rig/garments/Male_Ranger.blend",
+      "route": "B2",
+      "armature": "RIG_TryOn_Male_Ranger",
+      "bones": 65,
+      "armature_count": 1,
+      "parts_count": 12,
+      "parts": [
+        {
+          "part": "Head_Eyebrows",
+          "verts": 646,
+          "faces": 984,
+          "materials": [
+            "MI_Hair_1"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Head_Eyes",
+          "verts": 556,
+          "faces": 768,
+          "materials": [
+            "MI_Eyes"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Head_SuperHero_Male",
+          "verts": 1562,
+          "faces": 2844,
+          "materials": [
+            "MI_Superhero_Male"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Ranger_Acc_Pauldron",
+          "verts": 1092,
+          "faces": 1376,
+          "materials": [
+            "MI_Ranger"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Ranger_Arms",
+          "verts": 3042,
+          "faces": 4928,
+          "materials": [
+            "MI_Ranger.001",
+            "MI_Regular_Male"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Ranger_Arms_Bracer",
+          "verts": 4000,
+          "faces": 3636,
+          "materials": [
+            "MI_Ranger.001"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Ranger_Body",
+          "verts": 2825,
+          "faces": 2998,
+          "materials": [
+            "MI_Ranger.001"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Ranger_Body_Belt_1",
+          "verts": 928,
+          "faces": 804,
+          "materials": [
+            "MI_Ranger"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Ranger_Body_Belt_2",
+          "verts": 928,
+          "faces": 804,
+          "materials": [
+            "MI_Ranger"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Ranger_Feet_Boots",
+          "verts": 10174,
+          "faces": 9172,
+          "materials": [
+            "MI_Ranger.001"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Ranger_Head_Hood",
+          "verts": 1240,
+          "faces": 2136,
+          "materials": [
+            "MI_Ranger.001"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Ranger_Legs",
+          "verts": 644,
+          "faces": 1128,
+          "materials": [
+            "MI_Ranger.001"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        }
+      ],
+      "M1_topology": {
+        "per_part": {
+          "Head_Eyebrows": {
+            "BS_Thin": {
+              "verts": 646,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 646,
+              "same_as_basis": true
+            }
+          },
+          "Head_Eyes": {
+            "BS_Thin": {
+              "verts": 556,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 556,
+              "same_as_basis": true
+            }
+          },
+          "Head_SuperHero_Male": {
+            "BS_Thin": {
+              "verts": 1562,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1562,
+              "same_as_basis": true
+            }
+          },
+          "Male_Ranger_Acc_Pauldron": {
+            "BS_Thin": {
+              "verts": 1092,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1092,
+              "same_as_basis": true
+            }
+          },
+          "Male_Ranger_Arms": {
+            "BS_Thin": {
+              "verts": 3042,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 3042,
+              "same_as_basis": true
+            }
+          },
+          "Male_Ranger_Arms_Bracer": {
+            "BS_Thin": {
+              "verts": 4000,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 4000,
+              "same_as_basis": true
+            }
+          },
+          "Male_Ranger_Body": {
+            "BS_Thin": {
+              "verts": 2825,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 2825,
+              "same_as_basis": true
+            }
+          },
+          "Male_Ranger_Body_Belt_1": {
+            "BS_Thin": {
+              "verts": 928,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 928,
+              "same_as_basis": true
+            }
+          },
+          "Male_Ranger_Body_Belt_2": {
+            "BS_Thin": {
+              "verts": 928,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 928,
+              "same_as_basis": true
+            }
+          },
+          "Male_Ranger_Feet_Boots": {
+            "BS_Thin": {
+              "verts": 10174,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 10174,
+              "same_as_basis": true
+            }
+          },
+          "Male_Ranger_Head_Hood": {
+            "BS_Thin": {
+              "verts": 1240,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1240,
+              "same_as_basis": true
+            }
+          },
+          "Male_Ranger_Legs": {
+            "BS_Thin": {
+              "verts": 644,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 644,
+              "same_as_basis": true
+            }
+          }
+        },
+        "ok": true
+      },
+      "M2_morph_alignment": {
+        "contract": [
+          "Basis",
+          "BS_Thin",
+          "BS_Heavy"
+        ],
+        "per_part": {
+          "Head_Eyebrows": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Head_Eyes": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Head_SuperHero_Male": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Ranger_Acc_Pauldron": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Ranger_Arms": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Ranger_Arms_Bracer": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Ranger_Body": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Ranger_Body_Belt_1": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Ranger_Body_Belt_2": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Ranger_Feet_Boots": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Ranger_Head_Hood": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Ranger_Legs": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          }
+        },
+        "ok": true,
+        "body_keys": [
+          "Basis",
+          "BS_Thin",
+          "BS_Heavy"
+        ],
+        "match_body_verbatim": true
+      },
+      "B2a_height_ratio": {
+        "base_height_cm": 186.901,
+        "ratios": {
+          "BS_Thin": 0.999967,
+          "BS_Heavy": 1.000201
+        },
+        "threshold": 0.002,
+        "ok": true
+      },
+      "B2b_all_parts_have_morph": {
+        "parts_checked": 12,
+        "parts_ok": 12,
+        "ok": true
+      },
+      "B2_report_ref": {
+        "outfit": "Male_Ranger",
+        "sex": "Male",
+        "src": "assets/3d/blend/tryon/TryOn_Male_Ranger.blend",
+        "armature": "RIG_TryOn_Male_Ranger",
+        "bones": 65,
+        "junk_removed": [
+          [
+            "Camera",
+            "CAMERA"
+          ],
+          [
+            "Fill",
+            "LIGHT"
+          ],
+          [
+            "Icosphere",
+            "MESH"
+          ],
+          [
+            "Icosphere.001",
+            "MESH"
+          ],
+          [
+            "Sun",
+            "LIGHT"
+          ]
+        ],
+        "missing_shape_bones": [],
+        "inherit_none_bones": [
+          "calf_l",
+          "calf_r",
+          "clavicle_l",
+          "clavicle_r",
+          "foot_l",
+          "foot_r",
+          "hand_l",
+          "hand_r",
+          "lowerarm_l",
+          "lowerarm_r",
+          "neck_01",
+          "spine_01",
+          "spine_02",
+          "spine_03",
+          "thigh_l",
+          "thigh_r",
+          "upperarm_l",
+          "upperarm_r"
+        ],
+        "height_base_cm": 186.901,
+        "coefficient_source": {
+          "file": "assets/3d/rig/manifests/bodyshape_manifest.json",
+          "spec_sha256": "938071768e2212994ba718adc9ebe5b7b0caf78882806f1a354a136bb058acf0",
+          "manifest_sha256_16": "981c1e8762cb3909",
+          "manifest_mtime": "2026-10-13T18:57:38",
+          "target_coefficients": {
+            "BS_Thin": 0.84,
+            "BS_Heavy": 1.21
+          },
+          "delta_response": {
+            "pelvis": 1.0,
+            "spine_01": 1.0,
+            "spine_02": 1.0,
+            "spine_03": 1.0,
+            "thigh": 0.95,
+            "calf": 0.85,
+            "upperarm": 1.05,
+            "lowerarm": 0.95,
+            "clavicle": 0.8
+          },
+          "spec_version": "2.0",
+          "coefficients_fingerprint": "ca93ef919b15340df2123bd397fd4b43c8658d4ef539e4a678319c2f69821ba2",
+          "scales_source": "manifest.tiers[].bones_applied（实摆三轴向量）",
+          "girth_rule": "x=z=1+(coef−1)·delta_response；y=1+(coef−1)·along_axis_response（v2 只有 clavicle=0.5，改肩宽/臂展不改身高）",
+          "note": "尺度**直接取 manifest 的 bones_applied（实摆三轴）**，不自行推导；该 manifest 同时是标准体的来源 → 同名 morph 语义一致"
+        },
+        "tiers_source": "assets/3d/rig/manifests/bodyshape_manifest.json",
+        "tiers": {
+          "BS_Thin": {
+            "target_coefficient": 0.84,
+            "bones_applied": {
+              "pelvis": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_01": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_02": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_03": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "thigh_l": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "thigh_r": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "calf_l": [
+                0.864,
+                1.0,
+                0.864
+              ],
+              "calf_r": [
+                0.864,
+                1.0,
+                0.864
+              ],
+              "upperarm_l": [
+                0.832,
+                1.0,
+                0.832
+              ],
+              "upperarm_r": [
+                0.832,
+                1.0,
+                0.832
+              ],
+              "lowerarm_l": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "lowerarm_r": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "clavicle_l": [
+                0.872,
+                0.92,
+                0.872
+              ],
+              "clavicle_r": [
+                0.872,
+                0.92,
+                0.872
+              ]
+            },
+            "disp_mean_cm": 1.6259,
+            "disp_p95_cm": 2.4961,
+            "disp_max_cm": 2.9127,
+            "moved_frac": 0.99996,
+            "morph_digest_16": "ee34ee72fb0dd997"
+          },
+          "BS_Heavy": {
+            "target_coefficient": 1.21,
+            "bones_applied": {
+              "pelvis": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_01": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_02": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_03": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "thigh_l": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "thigh_r": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "calf_l": [
+                1.1785,
+                1.0,
+                1.1785
+              ],
+              "calf_r": [
+                1.1785,
+                1.0,
+                1.1785
+              ],
+              "upperarm_l": [
+                1.2205,
+                1.0,
+                1.2205
+              ],
+              "upperarm_r": [
+                1.2205,
+                1.0,
+                1.2205
+              ],
+              "lowerarm_l": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "lowerarm_r": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "clavicle_l": [
+                1.168,
+                1.105,
+                1.168
+              ],
+              "clavicle_r": [
+                1.168,
+                1.105,
+                1.168
+              ]
+            },
+            "disp_mean_cm": 2.134,
+            "disp_p95_cm": 3.2761,
+            "disp_max_cm": 3.823,
+            "moved_frac": 0.99996,
+            "morph_digest_16": "7864b3144db1538b"
+          }
+        },
+        "parts": [
+          {
+            "part": "Head_Eyebrows",
+            "verts": 646,
+            "faces": 984,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Hair_1"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 7752
+          },
+          {
+            "part": "Head_Eyes",
+            "verts": 556,
+            "faces": 768,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Eyes"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 6672
+          },
+          {
+            "part": "Head_SuperHero_Male",
+            "verts": 1562,
+            "faces": 2844,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Superhero_Male"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 18744
+          },
+          {
+            "part": "Male_Ranger_Acc_Pauldron",
+            "verts": 1092,
+            "faces": 1376,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 13104
+          },
+          {
+            "part": "Male_Ranger_Arms",
+            "verts": 3042,
+            "faces": 4928,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger.001",
+              "MI_Regular_Male"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 36504
+          },
+          {
+            "part": "Male_Ranger_Arms_Bracer",
+            "verts": 4000,
+            "faces": 3636,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger.001"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 48000
+          },
+          {
+            "part": "Male_Ranger_Body",
+            "verts": 2825,
+            "faces": 2998,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger.001"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 33900
+          },
+          {
+            "part": "Male_Ranger_Body_Belt_1",
+            "verts": 928,
+            "faces": 804,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 11136
+          },
+          {
+            "part": "Male_Ranger_Body_Belt_2",
+            "verts": 928,
+            "faces": 804,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 11136
+          },
+          {
+            "part": "Male_Ranger_Feet_Boots",
+            "verts": 10174,
+            "faces": 9172,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger.001"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 122088
+          },
+          {
+            "part": "Male_Ranger_Head_Hood",
+            "verts": 1240,
+            "faces": 2136,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger.001"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 14880
+          },
+          {
+            "part": "Male_Ranger_Legs",
+            "verts": 644,
+            "faces": 1128,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Ranger.001"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 7728
+          }
+        ],
+        "height_ratio": {
+          "BS_Thin": 0.999967,
+          "BS_Heavy": 1.000201
+        },
+        "arm_span_change": {
+          "BS_Thin": -0.019613,
+          "BS_Heavy": 0.025743
+        },
+        "inherit_scale_conflict": {
+          "root_scale_1.08_dispersion_with_NONE": 0.025685,
+          "root_scale_1.08_dispersion_with_FULL": 5.5e-05,
+          "decision": "烘焙期间用 NONE（防体形骨缩放沿链外传）；烘完还原 FULL（否则身高缩放失真）",
+          "threshold": 0.01
+        },
+        "morph_bytes_total": 663288,
+        "total_verts": 27637,
+        "parts_count": 12,
+        "texture_missing": [],
+        "out": "assets/3d/rig/garments/Male_Ranger.blend",
+        "size_kb": 1845
+      },
+      "M4_morph_bytes": {
+        "per_part": {
+          "Head_Eyebrows": {
+            "verts": 646,
+            "bytes_per_key": {
+              "BS_Thin": 7752,
+              "BS_Heavy": 7752
+            },
+            "limit": 7752,
+            "ok": true
+          },
+          "Head_Eyes": {
+            "verts": 556,
+            "bytes_per_key": {
+              "BS_Thin": 6672,
+              "BS_Heavy": 6672
+            },
+            "limit": 6672,
+            "ok": true
+          },
+          "Head_SuperHero_Male": {
+            "verts": 1562,
+            "bytes_per_key": {
+              "BS_Thin": 18744,
+              "BS_Heavy": 18744
+            },
+            "limit": 18744,
+            "ok": true
+          },
+          "Male_Ranger_Acc_Pauldron": {
+            "verts": 1092,
+            "bytes_per_key": {
+              "BS_Thin": 13104,
+              "BS_Heavy": 13104
+            },
+            "limit": 13104,
+            "ok": true
+          },
+          "Male_Ranger_Arms": {
+            "verts": 3042,
+            "bytes_per_key": {
+              "BS_Thin": 36504,
+              "BS_Heavy": 36504
+            },
+            "limit": 36504,
+            "ok": true
+          },
+          "Male_Ranger_Arms_Bracer": {
+            "verts": 4000,
+            "bytes_per_key": {
+              "BS_Thin": 48000,
+              "BS_Heavy": 48000
+            },
+            "limit": 48000,
+            "ok": true
+          },
+          "Male_Ranger_Body": {
+            "verts": 2825,
+            "bytes_per_key": {
+              "BS_Thin": 33900,
+              "BS_Heavy": 33900
+            },
+            "limit": 33900,
+            "ok": true
+          },
+          "Male_Ranger_Body_Belt_1": {
+            "verts": 928,
+            "bytes_per_key": {
+              "BS_Thin": 11136,
+              "BS_Heavy": 11136
+            },
+            "limit": 11136,
+            "ok": true
+          },
+          "Male_Ranger_Body_Belt_2": {
+            "verts": 928,
+            "bytes_per_key": {
+              "BS_Thin": 11136,
+              "BS_Heavy": 11136
+            },
+            "limit": 11136,
+            "ok": true
+          },
+          "Male_Ranger_Feet_Boots": {
+            "verts": 10174,
+            "bytes_per_key": {
+              "BS_Thin": 122088,
+              "BS_Heavy": 122088
+            },
+            "limit": 122088,
+            "ok": true
+          },
+          "Male_Ranger_Head_Hood": {
+            "verts": 1240,
+            "bytes_per_key": {
+              "BS_Thin": 14880,
+              "BS_Heavy": 14880
+            },
+            "limit": 14880,
+            "ok": true
+          },
+          "Male_Ranger_Legs": {
+            "verts": 644,
+            "bytes_per_key": {
+              "BS_Thin": 7728,
+              "BS_Heavy": 7728
+            },
+            "limit": 7728,
+            "ok": true
+          }
+        },
+        "ok": true,
+        "total_bytes_per_tier": 331644
+      },
+      "M4b_morph_non_trivial": {
+        "note": "堵'空 morph 全绿'的假 PASS；按'体形骨权重 vs 实测位移必须同向'判定",
+        "tiers": {
+          "BS_Thin": {
+            "per_part": {
+              "Head_Eyebrows": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyes": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_SuperHero_Male": {
+                "shape_bone_weight_frac": 0.1472,
+                "max_disp_cm": 0.6778,
+                "moved_frac": 0.9994,
+                "category": "driven"
+              },
+              "Male_Ranger_Acc_Pauldron": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.6912,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Arms": {
+                "shape_bone_weight_frac": 0.3044,
+                "max_disp_cm": 2.5416,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Arms_Bracer": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.2708,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Body": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.9127,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Body_Belt_1": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.4943,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Body_Belt_2": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.5577,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Feet_Boots": {
+                "shape_bone_weight_frac": 0.9304,
+                "max_disp_cm": 2.7469,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Head_Hood": {
+                "shape_bone_weight_frac": 0.5306,
+                "max_disp_cm": 2.1424,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Legs": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.862,
+                "moved_frac": 1.0,
+                "category": "driven"
+              }
+            },
+            "driven_parts": 10,
+            "max_disp_cm": 2.9127,
+            "any_bug": false,
+            "ok": true
+          },
+          "BS_Heavy": {
+            "per_part": {
+              "Head_Eyebrows": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyes": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_SuperHero_Male": {
+                "shape_bone_weight_frac": 0.1472,
+                "max_disp_cm": 0.8896,
+                "moved_frac": 0.9994,
+                "category": "driven"
+              },
+              "Male_Ranger_Acc_Pauldron": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.5321,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Arms": {
+                "shape_bone_weight_frac": 0.3044,
+                "max_disp_cm": 3.3358,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Arms_Bracer": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.9804,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Body": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.823,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Body_Belt_1": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.2737,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Body_Belt_2": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.357,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Feet_Boots": {
+                "shape_bone_weight_frac": 0.9304,
+                "max_disp_cm": 3.6053,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Head_Hood": {
+                "shape_bone_weight_frac": 0.5306,
+                "max_disp_cm": 2.8119,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Ranger_Legs": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.7564,
+                "moved_frac": 1.0,
+                "category": "driven"
+              }
+            },
+            "driven_parts": 10,
+            "max_disp_cm": 3.823,
+            "any_bug": false,
+            "ok": true
+          }
+        },
+        "ok": true,
+        "basis_digest_16": "90e9dd08179c15d0",
+        "morph_digest_16": {
+          "BS_Thin": "ee34ee72fb0dd997",
+          "BS_Heavy": "7864b3144db1538b"
+        },
+        "digest_differs_from_basis": true
+      },
+      "M4c_arm_span_calibrated": {
+        "judge": "臂展（max x − min x）相对 rest 的变化率",
+        "measured": {
+          "BS_Thin": -0.019613,
+          "BS_Heavy": 0.025743
+        },
+        "bands": {
+          "漏_NONE_隔离": "|变化| > 20%",
+          "漏_along_项": "|变化| < 1.0%",
+          "符号": "瘦必须为负、壮必须为正，且 壮 > 瘦"
+        },
+        "calibration": {
+          "正确(NONE+along)": [
+            -0.0173,
+            0.0228
+          ],
+          "漏along项": [
+            -0.0055,
+            0.0072
+          ],
+          "漏NONE隔离": [
+            -0.5453,
+            1.3886
+          ],
+          "source": "tmp/garment/calib_armspan.py（本工具独立标定，与 verifier 独立测量逐位相同）"
+        },
+        "reasons": [],
+        "ok": true
+      },
+      "skin_faces": {
+        "has_visible_skin": true,
+        "skin_verts": 1206,
+        "cloth_verts": 26424,
+        "skin_parts": [
+          "Male_Ranger_Arms"
+        ]
+      },
+      "M3_penetration_pixel": {
+        "authoritative": "pixel",
+        "note": "B2 下不存在独立身体 → 结构性为 0；此处量角色自身皮肤 vs 自身布料的自洽性",
+        "threshold": "**各档 ≤ rest 基线 + 2 个百分点**（SPEC §5 原文口径）；具体阈值在测出本套 rest 基线后填入",
+        "reading": "P_full = 角色自带 `MI_Regular_*` 皮肤面中**露在布料之外**的像素占比。无袖/敞怀设计（如男 Peasant 的大臂与手本来就裸露）它天然偏大，属美术设计；要卡的是**变形有没有让裸露变多**。",
+        "method": "按档从求值后的几何建 skin/cloth 代理网格；源网格 hide_render 隐藏；双方换纯自发光材质（红/绿）；view_transform='Standard'；alpha 即剪影",
+        "rest": {
+          "P_full": 0.007992,
+          "P_full_max": 0.00933,
+          "P_full_loose": 0.008944,
+          "sanity_ok": true,
+          "classified_frac": 0.9949,
+          "skin_proxy_verts": 3042,
+          "cloth_proxy_verts": 27637,
+          "silhouette_px": [
+            33075,
+            34084,
+            21498,
+            21514
+          ]
+        },
+        "BS_Thin": {
+          "P_full": 0.009028,
+          "P_full_max": 0.010669,
+          "P_full_loose": 0.010217,
+          "sanity_ok": true,
+          "classified_frac": 0.9944,
+          "skin_proxy_verts": 3042,
+          "cloth_proxy_verts": 27637,
+          "silhouette_px": [
+            28972,
+            29805,
+            19026,
+            19019
+          ]
+        },
+        "BS_Heavy": {
+          "P_full": 0.006925,
+          "P_full_max": 0.007868,
+          "P_full_loose": 0.007976,
+          "sanity_ok": true,
+          "classified_frac": 0.996,
+          "skin_proxy_verts": 3042,
+          "cloth_proxy_verts": 27637,
+          "silhouette_px": [
+            38522,
+            39653,
+            24727,
+            24790
+          ]
+        },
+        "criterion": "各档 ≤ rest 基线 + 2%（SPEC §5 原文口径）",
+        "rest_baseline_P_full": 0.007992,
+        "ok": true,
+        "threshold_concrete": "本套 rest 基线 = 0.80% → 阈值 = 2.80%；三档实测 rest 0.80% / BS_Thin 0.90% / BS_Heavy 0.69%",
+        "interpretation": "P_full = 角色自带皮肤面中**露在布料之外**的像素占比。对**无袖/敞怀**设计（男 Peasant 的大臂与手本来就裸露）它天然偏大，属**美术设计**而非穿模；B2 的关键判据是'变形是否让裸露变多'（≤ rest+2%），而不是绝对值。"
+      },
+      "M3_penetration_vertex_reference": {
+        "note": "**仅作对照**；已知在手腕/手/足区域不可靠（F15），且按顶点密度加权。口径：布料顶点落在皮肤面内部的比例（最近点+法线定向）",
+        "rest": {
+          "ratio": 0.063683,
+          "inside": 1760,
+          "n": 27637
+        },
+        "BS_Thin": {
+          "ratio": 0.0711,
+          "inside": 1965,
+          "n": 27637
+        },
+        "BS_Heavy": {
+          "ratio": 0.051344,
+          "inside": 1419,
+          "n": 27637
+        }
+      },
+      "B2d_same_driver": {
+        "gate_cm": 2.0,
+        "jac_floor": 0.01,
+        "ratio_bound": 0.3,
+        "conformity_bound": 1.5,
+        "per_part": {
+          "Male_Ranger_Arms": {
+            "skin_verts": 1206,
+            "cloth_verts": 1836,
+            "tiers": {
+              "BS_Thin": {
+                "pairs_non_degenerate": 0,
+                "pairs_degenerate_rigid": 344,
+                "pairs_coincident": 104,
+                "max_diff_over_distance": 0.0,
+                "max_conformity_ratio": 0.0,
+                "jac_median": 0.0
+              },
+              "BS_Heavy": {
+                "pairs_non_degenerate": 0,
+                "pairs_degenerate_rigid": 344,
+                "pairs_coincident": 104,
+                "max_diff_over_distance": 0.0,
+                "max_conformity_ratio": 0.0,
+                "jac_median": 0.0
+              }
+            }
+          }
+        },
+        "pairs_total": 0,
+        "pairs_non_degenerate": 0,
+        "pairs_degenerate": 688,
+        "coincident_pairs": 208,
+        "coincident_max_diff_um": 0.0,
+        "max_diff_over_distance_same_bone": 0.0,
+        "max_conformity_ratio": 0.0,
+        "theory": "位移差 = A·(两点间距)；|A|≈|girth−1|（BS_Heavy 最大 0.16）。刚体区 |A|=0 → 位移差恒为 0，信息量为零",
+        "applicable": false,
+        "ok": true,
+        "verdict_note": "⚠ **不适用（空洞）**：所有配对都落在刚体区（|A| ≤ jac_floor），位移差恒为 0，**不构成任何证据**。按'不适用'记，不当作 PASS 依据。"
+      },
+      "M5_height_scaling": {
+        "authoritative_method": "骨架「对象」等比缩放 ×1.08（SPEC §3.4 现行 / F12）",
+        "threshold": 0.01,
+        "scale": 1.08,
+        "per_part": {
+          "Head_Eyebrows": {
+            "edges": 1616,
+            "median_ratio": 1.08,
+            "dispersion": 1.486e-05,
+            "ok": true
+          },
+          "Head_Eyes": {
+            "edges": 1310,
+            "median_ratio": 1.08,
+            "dispersion": 7.82e-06,
+            "ok": true
+          },
+          "Head_SuperHero_Male": {
+            "edges": 4401,
+            "median_ratio": 1.08,
+            "dispersion": 1.505e-05,
+            "ok": true
+          },
+          "Male_Ranger_Acc_Pauldron": {
+            "edges": 2420,
+            "median_ratio": 1.08,
+            "dispersion": 1.68e-06,
+            "ok": true
+          },
+          "Male_Ranger_Arms": {
+            "edges": 7942,
+            "median_ratio": 1.08,
+            "dispersion": 4.32e-06,
+            "ok": true
+          },
+          "Male_Ranger_Arms_Bracer": {
+            "edges": 7304,
+            "median_ratio": 1.08,
+            "dispersion": 3.871e-05,
+            "ok": true
+          },
+          "Male_Ranger_Body": {
+            "edges": 5672,
+            "median_ratio": 1.08,
+            "dispersion": 6.62e-06,
+            "ok": true
+          },
+          "Male_Ranger_Body_Belt_1": {
+            "edges": 1663,
+            "median_ratio": 1.08,
+            "dispersion": 1.223e-05,
+            "ok": true
+          },
+          "Male_Ranger_Body_Belt_2": {
+            "edges": 1663,
+            "median_ratio": 1.08,
+            "dispersion": 1.262e-05,
+            "ok": true
+          },
+          "Male_Ranger_Feet_Boots": {
+            "edges": 18182,
+            "median_ratio": 1.08,
+            "dispersion": 1.13e-06,
+            "ok": true
+          },
+          "Male_Ranger_Head_Hood": {
+            "edges": 3370,
+            "median_ratio": 1.08,
+            "dispersion": 1.38e-06,
+            "ok": true
+          },
+          "Male_Ranger_Legs": {
+            "edges": 1774,
+            "median_ratio": 1.08,
+            "dispersion": 8.7e-07,
+            "ok": true
+          }
+        },
+        "max_dispersion": 3.871e-05,
+        "height_change_pct": 8.0,
+        "reference_root_bone_method": {
+          "note": "⚠ `root` **骨**缩放已被 F12 废弃（走骨架层级、被 F6 的 NONE 在中层断开）；保留仅为历史证据，**不参与判定**",
+          "max_dispersion": 5.521e-05,
+          "per_part": {
+            "Head_Eyebrows": {
+              "edges": 1616,
+              "median_ratio": 1.08,
+              "dispersion": 1.492e-05
+            },
+            "Head_Eyes": {
+              "edges": 1310,
+              "median_ratio": 1.08,
+              "dispersion": 1.113e-05
+            },
+            "Head_SuperHero_Male": {
+              "edges": 4401,
+              "median_ratio": 1.08,
+              "dispersion": 6.57e-06
+            },
+            "Male_Ranger_Acc_Pauldron": {
+              "edges": 2420,
+              "median_ratio": 1.08,
+              "dispersion": 1.58e-06
+            },
+            "Male_Ranger_Arms": {
+              "edges": 7942,
+              "median_ratio": 1.08,
+              "dispersion": 5.41e-06
+            },
+            "Male_Ranger_Arms_Bracer": {
+              "edges": 7304,
+              "median_ratio": 1.08,
+              "dispersion": 5.521e-05
+            },
+            "Male_Ranger_Body": {
+              "edges": 5672,
+              "median_ratio": 1.08,
+              "dispersion": 6.84e-06
+            },
+            "Male_Ranger_Body_Belt_1": {
+              "edges": 1663,
+              "median_ratio": 1.08,
+              "dispersion": 1.23e-05
+            },
+            "Male_Ranger_Body_Belt_2": {
+              "edges": 1663,
+              "median_ratio": 1.08,
+              "dispersion": 1.253e-05
+            },
+            "Male_Ranger_Feet_Boots": {
+              "edges": 18182,
+              "median_ratio": 1.08,
+              "dispersion": 1.37e-06
+            },
+            "Male_Ranger_Head_Hood": {
+              "edges": 3370,
+              "median_ratio": 1.08,
+              "dispersion": 1.51e-06
+            },
+            "Male_Ranger_Legs": {
+              "edges": 1774,
+              "median_ratio": 1.08,
+              "dispersion": 1.12e-06
+            }
+          }
+        },
+        "ok": true
+      },
+      "B2c_inherit_scale": {
+        "bake_time_contract": "烘焙期间体形骨全部直接子骨必须为 'NONE'（SPEC §3.2 / F6，F18 定为**烘焙期**契约）",
+        "runtime_contract": "运行时身高 = **骨架「对象」等比缩放**（SPEC §3.4 现行 / F12）；`root` 骨那版已废弃。故本资产与 bodies/(NONE) 都满足契约、**互不冲突**",
+        "current_state": {
+          "NONE": [],
+          "FULL": [
+            "calf_l",
+            "calf_r",
+            "clavicle_l",
+            "clavicle_r",
+            "foot_l",
+            "foot_r",
+            "hand_l",
+            "hand_r",
+            "lowerarm_l",
+            "lowerarm_r",
+            "neck_01",
+            "spine_01",
+            "spine_02",
+            "spine_03",
+            "thigh_l",
+            "thigh_r",
+            "upperarm_l",
+            "upperarm_r"
+          ]
+        },
+        "measured_conflict": {
+          "root_scale_1.08_dispersion_with_NONE": 0.025685,
+          "root_scale_1.08_dispersion_with_FULL": 5.5e-05,
+          "decision": "烘焙期间用 NONE（防体形骨缩放沿链外传）；烘完还原 FULL（否则身高缩放失真）",
+          "threshold": 0.01
+        },
+        "judged_by": "M5（**对象级** ×1.08 拉伸离散度 ≤0.01）",
+        "ok": true
+      },
+      "M6_skip_list": [],
+      "M6_note": "B2 下无 skip 件：不存在外部身体，布料/皮肤/头共用同一副 rig、同一组骨变换 → 体形变化同构传播，结构性无穿模。",
+      "B1_pixel_lead_reference": {
+        "source": "task/007-morph-pipeline/lead/FINDINGS.md §11.2（Lead 实测，像素法）",
+        "original": 0.7421,
+        "refit": 0.737,
+        "refit_plus_autofit": 0.4377,
+        "reading": "B1 路线即使做完 refit + 3 轮外推，裸露仍剩 44% → 不可用（F11 已撤回）"
+      },
+      "verdict": {
+        "M1_topology_100pct": true,
+        "M2_morph_alignment_100pct": true,
+        "M3_penetration_pixel_ok": true,
+        "M4_morph_bytes_within_limit": true,
+        "M4b_morph_non_trivial_and_consistent": true,
+        "M4c_arm_span_calibrated": true,
+        "M5_height_dispersion_le_0.01": true,
+        "M6_skip_list_documented": true,
+        "B2a_height_ratio_within_0.002": true,
+        "B2b_all_parts_have_morph": true,
+        "B2c_height_scaling_runtime_ok": true,
+        "B2d_affine_conformity_in_non_degenerate_region": true,
+        "single_armature": true,
+        "ALL_PASS": true
+      }
+    },
+    {
+      "outfit": "Male_Peasant",
+      "sex": "Male",
+      "file": "assets/3d/rig/garments/Male_Peasant.blend",
+      "route": "B2",
+      "armature": "RIG_TryOn_Male_Peasant",
+      "bones": 65,
+      "armature_count": 1,
+      "parts_count": 8,
+      "parts": [
+        {
+          "part": "Hair_SimpleParted",
+          "verts": 757,
+          "faces": 1301,
+          "materials": [
+            "MI_Hair_1.001"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Head_Eyebrows",
+          "verts": 646,
+          "faces": 984,
+          "materials": [
+            "MI_Hair_1"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Head_Eyes",
+          "verts": 556,
+          "faces": 768,
+          "materials": [
+            "MI_Eyes"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Head_SuperHero_Male",
+          "verts": 1562,
+          "faces": 2844,
+          "materials": [
+            "MI_Superhero_Male"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Peasant_Arms",
+          "verts": 3315,
+          "faces": 5338,
+          "materials": [
+            "MI_Peasant",
+            "MI_Regular_Male"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Peasant_Body",
+          "verts": 3006,
+          "faces": 3856,
+          "materials": [
+            "MI_Peasant"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Peasant_Feet",
+          "verts": 1878,
+          "faces": 2588,
+          "materials": [
+            "MI_Peasant"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        },
+        {
+          "part": "Male_Peasant_Legs",
+          "verts": 656,
+          "faces": 1112,
+          "materials": [
+            "MI_Peasant"
+          ],
+          "shape_keys": [
+            "Basis",
+            "BS_Thin",
+            "BS_Heavy"
+          ]
+        }
+      ],
+      "M1_topology": {
+        "per_part": {
+          "Hair_SimpleParted": {
+            "BS_Thin": {
+              "verts": 757,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 757,
+              "same_as_basis": true
+            }
+          },
+          "Head_Eyebrows": {
+            "BS_Thin": {
+              "verts": 646,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 646,
+              "same_as_basis": true
+            }
+          },
+          "Head_Eyes": {
+            "BS_Thin": {
+              "verts": 556,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 556,
+              "same_as_basis": true
+            }
+          },
+          "Head_SuperHero_Male": {
+            "BS_Thin": {
+              "verts": 1562,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1562,
+              "same_as_basis": true
+            }
+          },
+          "Male_Peasant_Arms": {
+            "BS_Thin": {
+              "verts": 3315,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 3315,
+              "same_as_basis": true
+            }
+          },
+          "Male_Peasant_Body": {
+            "BS_Thin": {
+              "verts": 3006,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 3006,
+              "same_as_basis": true
+            }
+          },
+          "Male_Peasant_Feet": {
+            "BS_Thin": {
+              "verts": 1878,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 1878,
+              "same_as_basis": true
+            }
+          },
+          "Male_Peasant_Legs": {
+            "BS_Thin": {
+              "verts": 656,
+              "same_as_basis": true
+            },
+            "BS_Heavy": {
+              "verts": 656,
+              "same_as_basis": true
+            }
+          }
+        },
+        "ok": true
+      },
+      "M2_morph_alignment": {
+        "contract": [
+          "Basis",
+          "BS_Thin",
+          "BS_Heavy"
+        ],
+        "per_part": {
+          "Hair_SimpleParted": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Head_Eyebrows": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Head_Eyes": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Head_SuperHero_Male": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Peasant_Arms": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Peasant_Body": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Peasant_Feet": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          },
+          "Male_Peasant_Legs": {
+            "keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "lengths_identical": true,
+            "match": true
+          }
+        },
+        "ok": true,
+        "body_keys": [
+          "Basis",
+          "BS_Thin",
+          "BS_Heavy"
+        ],
+        "match_body_verbatim": true
+      },
+      "B2a_height_ratio": {
+        "base_height_cm": 184.369,
+        "ratios": {
+          "BS_Thin": 0.999988,
+          "BS_Heavy": 1.000016
+        },
+        "threshold": 0.002,
+        "ok": true
+      },
+      "B2b_all_parts_have_morph": {
+        "parts_checked": 8,
+        "parts_ok": 8,
+        "ok": true
+      },
+      "B2_report_ref": {
+        "outfit": "Male_Peasant",
+        "sex": "Male",
+        "src": "assets/3d/blend/tryon/TryOn_Male_Peasant.blend",
+        "armature": "RIG_TryOn_Male_Peasant",
+        "bones": 65,
+        "junk_removed": [
+          [
+            "Camera",
+            "CAMERA"
+          ],
+          [
+            "Fill",
+            "LIGHT"
+          ],
+          [
+            "Icosphere",
+            "MESH"
+          ],
+          [
+            "Icosphere.001",
+            "MESH"
+          ],
+          [
+            "Icosphere.002",
+            "MESH"
+          ],
+          [
+            "Sun",
+            "LIGHT"
+          ]
+        ],
+        "missing_shape_bones": [],
+        "inherit_none_bones": [
+          "calf_l",
+          "calf_r",
+          "clavicle_l",
+          "clavicle_r",
+          "foot_l",
+          "foot_r",
+          "hand_l",
+          "hand_r",
+          "lowerarm_l",
+          "lowerarm_r",
+          "neck_01",
+          "spine_01",
+          "spine_02",
+          "spine_03",
+          "thigh_l",
+          "thigh_r",
+          "upperarm_l",
+          "upperarm_r"
+        ],
+        "height_base_cm": 184.369,
+        "coefficient_source": {
+          "file": "assets/3d/rig/manifests/bodyshape_manifest.json",
+          "spec_sha256": "938071768e2212994ba718adc9ebe5b7b0caf78882806f1a354a136bb058acf0",
+          "manifest_sha256_16": "981c1e8762cb3909",
+          "manifest_mtime": "2026-10-13T18:57:38",
+          "target_coefficients": {
+            "BS_Thin": 0.84,
+            "BS_Heavy": 1.21
+          },
+          "delta_response": {
+            "pelvis": 1.0,
+            "spine_01": 1.0,
+            "spine_02": 1.0,
+            "spine_03": 1.0,
+            "thigh": 0.95,
+            "calf": 0.85,
+            "upperarm": 1.05,
+            "lowerarm": 0.95,
+            "clavicle": 0.8
+          },
+          "spec_version": "2.0",
+          "coefficients_fingerprint": "ca93ef919b15340df2123bd397fd4b43c8658d4ef539e4a678319c2f69821ba2",
+          "scales_source": "manifest.tiers[].bones_applied（实摆三轴向量）",
+          "girth_rule": "x=z=1+(coef−1)·delta_response；y=1+(coef−1)·along_axis_response（v2 只有 clavicle=0.5，改肩宽/臂展不改身高）",
+          "note": "尺度**直接取 manifest 的 bones_applied（实摆三轴）**，不自行推导；该 manifest 同时是标准体的来源 → 同名 morph 语义一致"
+        },
+        "tiers_source": "assets/3d/rig/manifests/bodyshape_manifest.json",
+        "tiers": {
+          "BS_Thin": {
+            "target_coefficient": 0.84,
+            "bones_applied": {
+              "pelvis": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_01": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_02": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "spine_03": [
+                0.84,
+                1.0,
+                0.84
+              ],
+              "thigh_l": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "thigh_r": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "calf_l": [
+                0.864,
+                1.0,
+                0.864
+              ],
+              "calf_r": [
+                0.864,
+                1.0,
+                0.864
+              ],
+              "upperarm_l": [
+                0.832,
+                1.0,
+                0.832
+              ],
+              "upperarm_r": [
+                0.832,
+                1.0,
+                0.832
+              ],
+              "lowerarm_l": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "lowerarm_r": [
+                0.848,
+                1.0,
+                0.848
+              ],
+              "clavicle_l": [
+                0.872,
+                0.92,
+                0.872
+              ],
+              "clavicle_r": [
+                0.872,
+                0.92,
+                0.872
+              ]
+            },
+            "disp_mean_cm": 1.3579,
+            "disp_p95_cm": 2.4268,
+            "disp_max_cm": 3.1083,
+            "moved_frac": 0.99992,
+            "morph_digest_16": "4905a02aa50cbaa9"
+          },
+          "BS_Heavy": {
+            "target_coefficient": 1.21,
+            "bones_applied": {
+              "pelvis": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_01": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_02": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "spine_03": [
+                1.21,
+                1.0,
+                1.21
+              ],
+              "thigh_l": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "thigh_r": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "calf_l": [
+                1.1785,
+                1.0,
+                1.1785
+              ],
+              "calf_r": [
+                1.1785,
+                1.0,
+                1.1785
+              ],
+              "upperarm_l": [
+                1.2205,
+                1.0,
+                1.2205
+              ],
+              "upperarm_r": [
+                1.2205,
+                1.0,
+                1.2205
+              ],
+              "lowerarm_l": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "lowerarm_r": [
+                1.1995,
+                1.0,
+                1.1995
+              ],
+              "clavicle_l": [
+                1.168,
+                1.105,
+                1.168
+              ],
+              "clavicle_r": [
+                1.168,
+                1.105,
+                1.168
+              ]
+            },
+            "disp_mean_cm": 1.7822,
+            "disp_p95_cm": 3.1852,
+            "disp_max_cm": 4.0796,
+            "moved_frac": 0.99992,
+            "morph_digest_16": "7d011d19451e9d61"
+          }
+        },
+        "parts": [
+          {
+            "part": "Hair_SimpleParted",
+            "verts": 757,
+            "faces": 1301,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Hair_1.001"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 9084
+          },
+          {
+            "part": "Head_Eyebrows",
+            "verts": 646,
+            "faces": 984,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Hair_1"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 7752
+          },
+          {
+            "part": "Head_Eyes",
+            "verts": 556,
+            "faces": 768,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Eyes"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 6672
+          },
+          {
+            "part": "Head_SuperHero_Male",
+            "verts": 1562,
+            "faces": 2844,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Superhero_Male"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 18744
+          },
+          {
+            "part": "Male_Peasant_Arms",
+            "verts": 3315,
+            "faces": 5338,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Peasant",
+              "MI_Regular_Male"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 39780
+          },
+          {
+            "part": "Male_Peasant_Body",
+            "verts": 3006,
+            "faces": 3856,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Peasant"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 36072
+          },
+          {
+            "part": "Male_Peasant_Feet",
+            "verts": 1878,
+            "faces": 2588,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Peasant"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 22536
+          },
+          {
+            "part": "Male_Peasant_Legs",
+            "verts": 656,
+            "faces": 1112,
+            "shape_keys": [
+              "Basis",
+              "BS_Thin",
+              "BS_Heavy"
+            ],
+            "key_len_ok": true,
+            "materials": [
+              "MI_Peasant"
+            ],
+            "vertex_groups": 65,
+            "morph_bytes_per_key": 7872
+          }
+        ],
+        "height_ratio": {
+          "BS_Thin": 0.999988,
+          "BS_Heavy": 1.000016
+        },
+        "arm_span_change": {
+          "BS_Thin": -0.019613,
+          "BS_Heavy": 0.025743
+        },
+        "inherit_scale_conflict": {
+          "root_scale_1.08_dispersion_with_NONE": 0.076025,
+          "root_scale_1.08_dispersion_with_FULL": 1.5e-05,
+          "decision": "烘焙期间用 NONE（防体形骨缩放沿链外传）；烘完还原 FULL（否则身高缩放失真）",
+          "threshold": 0.01
+        },
+        "morph_bytes_total": 297024,
+        "total_verts": 12376,
+        "parts_count": 8,
+        "texture_missing": [],
+        "out": "assets/3d/rig/garments/Male_Peasant.blend",
+        "size_kb": 1193
+      },
+      "M4_morph_bytes": {
+        "per_part": {
+          "Hair_SimpleParted": {
+            "verts": 757,
+            "bytes_per_key": {
+              "BS_Thin": 9084,
+              "BS_Heavy": 9084
+            },
+            "limit": 9084,
+            "ok": true
+          },
+          "Head_Eyebrows": {
+            "verts": 646,
+            "bytes_per_key": {
+              "BS_Thin": 7752,
+              "BS_Heavy": 7752
+            },
+            "limit": 7752,
+            "ok": true
+          },
+          "Head_Eyes": {
+            "verts": 556,
+            "bytes_per_key": {
+              "BS_Thin": 6672,
+              "BS_Heavy": 6672
+            },
+            "limit": 6672,
+            "ok": true
+          },
+          "Head_SuperHero_Male": {
+            "verts": 1562,
+            "bytes_per_key": {
+              "BS_Thin": 18744,
+              "BS_Heavy": 18744
+            },
+            "limit": 18744,
+            "ok": true
+          },
+          "Male_Peasant_Arms": {
+            "verts": 3315,
+            "bytes_per_key": {
+              "BS_Thin": 39780,
+              "BS_Heavy": 39780
+            },
+            "limit": 39780,
+            "ok": true
+          },
+          "Male_Peasant_Body": {
+            "verts": 3006,
+            "bytes_per_key": {
+              "BS_Thin": 36072,
+              "BS_Heavy": 36072
+            },
+            "limit": 36072,
+            "ok": true
+          },
+          "Male_Peasant_Feet": {
+            "verts": 1878,
+            "bytes_per_key": {
+              "BS_Thin": 22536,
+              "BS_Heavy": 22536
+            },
+            "limit": 22536,
+            "ok": true
+          },
+          "Male_Peasant_Legs": {
+            "verts": 656,
+            "bytes_per_key": {
+              "BS_Thin": 7872,
+              "BS_Heavy": 7872
+            },
+            "limit": 7872,
+            "ok": true
+          }
+        },
+        "ok": true,
+        "total_bytes_per_tier": 148512
+      },
+      "M4b_morph_non_trivial": {
+        "note": "堵'空 morph 全绿'的假 PASS；按'体形骨权重 vs 实测位移必须同向'判定",
+        "tiers": {
+          "BS_Thin": {
+            "per_part": {
+              "Hair_SimpleParted": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyebrows": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyes": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_SuperHero_Male": {
+                "shape_bone_weight_frac": 0.1472,
+                "max_disp_cm": 0.6778,
+                "moved_frac": 0.9994,
+                "category": "driven"
+              },
+              "Male_Peasant_Arms": {
+                "shape_bone_weight_frac": 0.3858,
+                "max_disp_cm": 2.5416,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Peasant_Body": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 2.9511,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Peasant_Feet": {
+                "shape_bone_weight_frac": 0.8253,
+                "max_disp_cm": 2.6168,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Peasant_Legs": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.1083,
+                "moved_frac": 1.0,
+                "category": "driven"
+              }
+            },
+            "driven_parts": 5,
+            "max_disp_cm": 3.1083,
+            "any_bug": false,
+            "ok": true
+          },
+          "BS_Heavy": {
+            "per_part": {
+              "Hair_SimpleParted": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyebrows": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_Eyes": {
+                "shape_bone_weight_frac": 0.0,
+                "max_disp_cm": 0.0,
+                "moved_frac": 1.0,
+                "category": "static_by_design"
+              },
+              "Head_SuperHero_Male": {
+                "shape_bone_weight_frac": 0.1472,
+                "max_disp_cm": 0.8896,
+                "moved_frac": 0.9994,
+                "category": "driven"
+              },
+              "Male_Peasant_Arms": {
+                "shape_bone_weight_frac": 0.3858,
+                "max_disp_cm": 3.3358,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Peasant_Body": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 3.8733,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Peasant_Feet": {
+                "shape_bone_weight_frac": 0.8253,
+                "max_disp_cm": 3.4346,
+                "moved_frac": 1.0,
+                "category": "driven"
+              },
+              "Male_Peasant_Legs": {
+                "shape_bone_weight_frac": 1.0,
+                "max_disp_cm": 4.0796,
+                "moved_frac": 1.0,
+                "category": "driven"
+              }
+            },
+            "driven_parts": 5,
+            "max_disp_cm": 4.0796,
+            "any_bug": false,
+            "ok": true
+          }
+        },
+        "ok": true,
+        "basis_digest_16": "15bfb061fea7b85c",
+        "morph_digest_16": {
+          "BS_Thin": "4905a02aa50cbaa9",
+          "BS_Heavy": "7d011d19451e9d61"
+        },
+        "digest_differs_from_basis": true
+      },
+      "M4c_arm_span_calibrated": {
+        "judge": "臂展（max x − min x）相对 rest 的变化率",
+        "measured": {
+          "BS_Thin": -0.019613,
+          "BS_Heavy": 0.025743
+        },
+        "bands": {
+          "漏_NONE_隔离": "|变化| > 20%",
+          "漏_along_项": "|变化| < 1.0%",
+          "符号": "瘦必须为负、壮必须为正，且 壮 > 瘦"
+        },
+        "calibration": {
+          "正确(NONE+along)": [
+            -0.0173,
+            0.0228
+          ],
+          "漏along项": [
+            -0.0055,
+            0.0072
+          ],
+          "漏NONE隔离": [
+            -0.5453,
+            1.3886
+          ],
+          "source": "tmp/garment/calib_armspan.py（本工具独立标定，与 verifier 独立测量逐位相同）"
+        },
+        "reasons": [],
+        "ok": true
+      },
+      "skin_faces": {
+        "has_visible_skin": true,
+        "skin_verts": 2497,
+        "cloth_verts": 9872,
+        "skin_parts": [
+          "Male_Peasant_Arms"
+        ]
+      },
+      "M3_penetration_pixel": {
+        "authoritative": "pixel",
+        "note": "B2 下不存在独立身体 → 结构性为 0；此处量角色自身皮肤 vs 自身布料的自洽性",
+        "threshold": "**各档 ≤ rest 基线 + 2 个百分点**（SPEC §5 原文口径）；具体阈值在测出本套 rest 基线后填入",
+        "reading": "P_full = 角色自带 `MI_Regular_*` 皮肤面中**露在布料之外**的像素占比。无袖/敞怀设计（如男 Peasant 的大臂与手本来就裸露）它天然偏大，属美术设计；要卡的是**变形有没有让裸露变多**。",
+        "method": "按档从求值后的几何建 skin/cloth 代理网格；源网格 hide_render 隐藏；双方换纯自发光材质（红/绿）；view_transform='Standard'；alpha 即剪影",
+        "rest": {
+          "P_full": 0.053524,
+          "P_full_max": 0.065975,
+          "P_full_loose": 0.054891,
+          "sanity_ok": true,
+          "classified_frac": 0.9951,
+          "skin_proxy_verts": 3315,
+          "cloth_proxy_verts": 12376,
+          "silhouette_px": [
+            31891,
+            32806,
+            19023,
+            19101
+          ]
+        },
+        "BS_Thin": {
+          "P_full": 0.056091,
+          "P_full_max": 0.070827,
+          "P_full_loose": 0.057408,
+          "sanity_ok": true,
+          "classified_frac": 0.9945,
+          "skin_proxy_verts": 3315,
+          "cloth_proxy_verts": 12376,
+          "silhouette_px": [
+            27895,
+            28732,
+            16773,
+            16846
+          ]
+        },
+        "BS_Heavy": {
+          "P_full": 0.051591,
+          "P_full_max": 0.061928,
+          "P_full_loose": 0.052988,
+          "sanity_ok": true,
+          "classified_frac": 0.9953,
+          "skin_proxy_verts": 3315,
+          "cloth_proxy_verts": 12376,
+          "silhouette_px": [
+            37172,
+            38297,
+            22031,
+            22117
+          ]
+        },
+        "criterion": "各档 ≤ rest 基线 + 2%（SPEC §5 原文口径）",
+        "rest_baseline_P_full": 0.053524,
+        "ok": true,
+        "threshold_concrete": "本套 rest 基线 = 5.35% → 阈值 = 7.35%；三档实测 rest 5.35% / BS_Thin 5.61% / BS_Heavy 5.16%",
+        "interpretation": "P_full = 角色自带皮肤面中**露在布料之外**的像素占比。对**无袖/敞怀**设计（男 Peasant 的大臂与手本来就裸露）它天然偏大，属**美术设计**而非穿模；B2 的关键判据是'变形是否让裸露变多'（≤ rest+2%），而不是绝对值。"
+      },
+      "M3_penetration_vertex_reference": {
+        "note": "**仅作对照**；已知在手腕/手/足区域不可靠（F15），且按顶点密度加权。口径：布料顶点落在皮肤面内部的比例（最近点+法线定向）",
+        "rest": {
+          "ratio": 0.007111,
+          "inside": 88,
+          "n": 12376
+        },
+        "BS_Thin": {
+          "ratio": 0.008161,
+          "inside": 101,
+          "n": 12376
+        },
+        "BS_Heavy": {
+          "ratio": 0.007111,
+          "inside": 88,
+          "n": 12376
+        }
+      },
+      "B2d_same_driver": {
+        "gate_cm": 2.0,
+        "jac_floor": 0.01,
+        "ratio_bound": 0.3,
+        "conformity_bound": 1.5,
+        "per_part": {
+          "Male_Peasant_Arms": {
+            "skin_verts": 2497,
+            "cloth_verts": 818,
+            "tiers": {
+              "BS_Thin": {
+                "pairs_non_degenerate": 260,
+                "pairs_degenerate_rigid": 0,
+                "pairs_coincident": 0,
+                "max_diff_over_distance": 0.162235,
+                "max_conformity_ratio": 0.803577,
+                "jac_median": 0.215017
+              },
+              "BS_Heavy": {
+                "pairs_non_degenerate": 260,
+                "pairs_degenerate_rigid": 0,
+                "pairs_coincident": 0,
+                "max_diff_over_distance": 0.212938,
+                "max_conformity_ratio": 0.803504,
+                "jac_median": 0.282202
+              }
+            }
+          }
+        },
+        "pairs_total": 0,
+        "pairs_non_degenerate": 520,
+        "pairs_degenerate": 0,
+        "coincident_pairs": 0,
+        "coincident_max_diff_um": 0.0,
+        "max_diff_over_distance_same_bone": 0.212938,
+        "max_conformity_ratio": 0.803577,
+        "theory": "位移差 = A·(两点间距)；|A|≈|girth−1|（BS_Heavy 最大 0.16）。刚体区 |A|=0 → 位移差恒为 0，信息量为零",
+        "applicable": true,
+        "ok": true,
+        "verdict_note": "在**非退化区**（|A| > jac_floor）断言成立；退化(刚体)对已剔除，不参与判定"
+      },
+      "M5_height_scaling": {
+        "authoritative_method": "骨架「对象」等比缩放 ×1.08（SPEC §3.4 现行 / F12）",
+        "threshold": 0.01,
+        "scale": 1.08,
+        "per_part": {
+          "Hair_SimpleParted": {
+            "edges": 2055,
+            "median_ratio": 1.08,
+            "dispersion": 3.94e-06,
+            "ok": true
+          },
+          "Head_Eyebrows": {
+            "edges": 1616,
+            "median_ratio": 1.08,
+            "dispersion": 1.486e-05,
+            "ok": true
+          },
+          "Head_Eyes": {
+            "edges": 1310,
+            "median_ratio": 1.08,
+            "dispersion": 7.82e-06,
+            "ok": true
+          },
+          "Head_SuperHero_Male": {
+            "edges": 4401,
+            "median_ratio": 1.08,
+            "dispersion": 1.505e-05,
+            "ok": true
+          },
+          "Male_Peasant_Arms": {
+            "edges": 8655,
+            "median_ratio": 1.08,
+            "dispersion": 3.69e-06,
+            "ok": true
+          },
+          "Male_Peasant_Body": {
+            "edges": 6820,
+            "median_ratio": 1.08,
+            "dispersion": 2.32e-06,
+            "ok": true
+          },
+          "Male_Peasant_Feet": {
+            "edges": 4420,
+            "median_ratio": 1.08,
+            "dispersion": 3.5e-07,
+            "ok": true
+          },
+          "Male_Peasant_Legs": {
+            "edges": 1766,
+            "median_ratio": 1.08,
+            "dispersion": 7.6e-07,
+            "ok": true
+          }
+        },
+        "max_dispersion": 1.505e-05,
+        "height_change_pct": 8.0,
+        "reference_root_bone_method": {
+          "note": "⚠ `root` **骨**缩放已被 F12 废弃（走骨架层级、被 F6 的 NONE 在中层断开）；保留仅为历史证据，**不参与判定**",
+          "max_dispersion": 1.492e-05,
+          "per_part": {
+            "Hair_SimpleParted": {
+              "edges": 2055,
+              "median_ratio": 1.08,
+              "dispersion": 4.3e-06
+            },
+            "Head_Eyebrows": {
+              "edges": 1616,
+              "median_ratio": 1.08,
+              "dispersion": 1.492e-05
+            },
+            "Head_Eyes": {
+              "edges": 1310,
+              "median_ratio": 1.08,
+              "dispersion": 1.113e-05
+            },
+            "Head_SuperHero_Male": {
+              "edges": 4401,
+              "median_ratio": 1.08,
+              "dispersion": 6.57e-06
+            },
+            "Male_Peasant_Arms": {
+              "edges": 8655,
+              "median_ratio": 1.08,
+              "dispersion": 5.02e-06
+            },
+            "Male_Peasant_Body": {
+              "edges": 6820,
+              "median_ratio": 1.08,
+              "dispersion": 2.53e-06
+            },
+            "Male_Peasant_Feet": {
+              "edges": 4420,
+              "median_ratio": 1.08,
+              "dispersion": 4.3e-07
+            },
+            "Male_Peasant_Legs": {
+              "edges": 1766,
+              "median_ratio": 1.08,
+              "dispersion": 1.25e-06
+            }
+          }
+        },
+        "ok": true
+      },
+      "B2c_inherit_scale": {
+        "bake_time_contract": "烘焙期间体形骨全部直接子骨必须为 'NONE'（SPEC §3.2 / F6，F18 定为**烘焙期**契约）",
+        "runtime_contract": "运行时身高 = **骨架「对象」等比缩放**（SPEC §3.4 现行 / F12）；`root` 骨那版已废弃。故本资产与 bodies/(NONE) 都满足契约、**互不冲突**",
+        "current_state": {
+          "NONE": [],
+          "FULL": [
+            "calf_l",
+            "calf_r",
+            "clavicle_l",
+            "clavicle_r",
+            "foot_l",
+            "foot_r",
+            "hand_l",
+            "hand_r",
+            "lowerarm_l",
+            "lowerarm_r",
+            "neck_01",
+            "spine_01",
+            "spine_02",
+            "spine_03",
+            "thigh_l",
+            "thigh_r",
+            "upperarm_l",
+            "upperarm_r"
+          ]
+        },
+        "measured_conflict": {
+          "root_scale_1.08_dispersion_with_NONE": 0.076025,
+          "root_scale_1.08_dispersion_with_FULL": 1.5e-05,
+          "decision": "烘焙期间用 NONE（防体形骨缩放沿链外传）；烘完还原 FULL（否则身高缩放失真）",
+          "threshold": 0.01
+        },
+        "judged_by": "M5（**对象级** ×1.08 拉伸离散度 ≤0.01）",
+        "ok": true
+      },
+      "M6_skip_list": [],
+      "M6_note": "B2 下无 skip 件：不存在外部身体，布料/皮肤/头共用同一副 rig、同一组骨变换 → 体形变化同构传播，结构性无穿模。",
+      "verdict": {
+        "M1_topology_100pct": true,
+        "M2_morph_alignment_100pct": true,
+        "M3_penetration_pixel_ok": true,
+        "M4_morph_bytes_within_limit": true,
+        "M4b_morph_non_trivial_and_consistent": true,
+        "M4c_arm_span_calibrated": true,
+        "M5_height_dispersion_le_0.01": true,
+        "M6_skip_list_documented": true,
+        "B2a_height_ratio_within_0.002": true,
+        "B2b_all_parts_have_morph": true,
+        "B2c_height_scaling_runtime_ok": true,
+        "B2d_affine_conformity_in_non_degenerate_region": true,
+        "single_armature": true,
+        "ALL_PASS": true
+      }
+    }
+  ],
+  "summary": {
+    "outfits": 4,
+    "all_pass": true,
+    "parts_total": 40,
+    "verts_total": 84309,
+    "morph_bytes_per_tier_total": 1011708,
+    "height_ratio": {
+      "Female_Ranger": {
+        "BS_Thin": 0.998911,
+        "BS_Heavy": 1.001429
+      },
+      "Female_Peasant": {
+        "BS_Thin": 1.000193,
+        "BS_Heavy": 0.999747
+      },
+      "Male_Ranger": {
+        "BS_Thin": 0.999967,
+        "BS_Heavy": 1.000201
+      },
+      "Male_Peasant": {
+        "BS_Thin": 0.999988,
+        "BS_Heavy": 1.000016
+      }
+    },
+    "pixel_P_full_criterion": "各档 ≤ rest 基线 + 2%（SPEC §5）",
+    "pixel_P_full": {
+      "Female_Ranger": {
+        "rest": 0.007079,
+        "BS_Thin": 0.008275,
+        "BS_Heavy": 0.006357
+      },
+      "Female_Peasant": {
+        "rest": null,
+        "BS_Thin": null,
+        "BS_Heavy": null
+      },
+      "Male_Ranger": {
+        "rest": 0.007992,
+        "BS_Thin": 0.009028,
+        "BS_Heavy": 0.006925
+      },
+      "Male_Peasant": {
+        "rest": 0.053524,
+        "BS_Thin": 0.056091,
+        "BS_Heavy": 0.051591
+      }
+    },
+    "vertex_reference_ratio": {
+      "Female_Ranger": {
+        "rest": 0.121203,
+        "BS_Thin": 0.124928,
+        "BS_Heavy": 0.12038
+      },
+      "Female_Peasant": {
+        "rest": null,
+        "BS_Thin": null,
+        "BS_Heavy": null
+      },
+      "Male_Ranger": {
+        "rest": 0.063683,
+        "BS_Thin": 0.0711,
+        "BS_Heavy": 0.051344
+      },
+      "Male_Peasant": {
+        "rest": 0.007111,
+        "BS_Thin": 0.008161,
+        "BS_Heavy": 0.007111
+      }
+    },
+    "skip_parts": 0,
+    "arm_span": {
+      "Female_Ranger": {
+        "BS_Thin": -0.01735,
+        "BS_Heavy": 0.022771
+      },
+      "Female_Peasant": {
+        "BS_Thin": -0.01735,
+        "BS_Heavy": 0.022771
+      },
+      "Male_Ranger": {
+        "BS_Thin": -0.019613,
+        "BS_Heavy": 0.025743
+      },
+      "Male_Peasant": {
+        "BS_Thin": -0.019613,
+        "BS_Heavy": 0.025743
+      }
+    },
+    "arm_span_judge": {
+      "漏_NONE_隔离": "|变化|>20%",
+      "漏_along_项": "|变化|<1.0%",
+      "calibrated_on": [
+        "正确 −1.73/+2.28%",
+        "漏along −0.55/+0.72%",
+        "漏NONE隔离 −54.53/+138.86%"
+      ]
+    },
+    "morph_digest_16": {
+      "Female_Ranger": {
+        "BS_Thin": "e5346f1cf12a6dbe",
+        "BS_Heavy": "6d87cac343fd772d"
+      },
+      "Female_Peasant": {
+        "BS_Thin": "2f1e1a18e76f609f",
+        "BS_Heavy": "33c7cfe143a2e33a"
+      },
+      "Male_Ranger": {
+        "BS_Thin": "ee34ee72fb0dd997",
+        "BS_Heavy": "7864b3144db1538b"
+      },
+      "Male_Peasant": {
+        "BS_Thin": "4905a02aa50cbaa9",
+        "BS_Heavy": "7d011d19451e9d61"
+      }
+    },
+    "basis_digest_16": {
+      "Female_Ranger": "3c93abca38a5d6db",
+      "Female_Peasant": "609a22732a6ed13f",
+      "Male_Ranger": "90e9dd08179c15d0",
+      "Male_Peasant": "15bfb061fea7b85c"
+    },
+    "coefficient_source": {
+      "file": "assets/3d/rig/manifests/bodyshape_manifest.json",
+      "spec_sha256": "938071768e2212994ba718adc9ebe5b7b0caf78882806f1a354a136bb058acf0",
+      "manifest_sha256_16": "981c1e8762cb3909",
+      "manifest_mtime": "2026-10-13T18:57:38",
+      "spec_version": "2.0",
+      "coefficients_fingerprint": "ca93ef919b15340df2123bd397fd4b43c8658d4ef539e4a678319c2f69821ba2",
+      "scales_source": "manifest.tiers[].bones_applied（实摆三轴向量）",
+      "target_coefficients": {
+        "BS_Thin": 0.84,
+        "BS_Heavy": 1.21
+      },
+      "delta_response": {
+        "pelvis": 1.0,
+        "spine_01": 1.0,
+        "spine_02": 1.0,
+        "spine_03": 1.0,
+        "thigh": 0.95,
+        "calf": 0.85,
+        "upperarm": 1.05,
+        "lowerarm": 0.95,
+        "clavicle": 0.8
+      },
+      "note": "产物与标准体**由同一版 manifest 派生** → 同名 morph 语义一致（SPEC §3.3）。尺度取自 manifest 的 bones_applied（实摆三轴，含 v2 的 along_axis_response），不自行推导 —— 写死 (s,1,s) 会静默丢掉锁骨那一项。"
+    },
+    "B2d_same_driver": {
+      "Female_Ranger": {
+        "applicable": false,
+        "pairs_non_degenerate": 0,
+        "pairs_degenerate": 828,
+        "max_diff_over_distance_same_bone": 0.0,
+        "max_conformity_ratio": 0.0,
+        "coincident_max_diff_um": 0.0,
+        "verdict_note": "⚠ **不适用（空洞）**：所有配对都落在刚体区（|A| ≤ jac_floor），位移差恒为 0，**不构成任何证据**。按'不适用'记，不当作 PASS 依据。"
+      },
+      "Female_Peasant": {
+        "applicable": false,
+        "pairs_non_degenerate": 0,
+        "pairs_degenerate": 0,
+        "max_diff_over_distance_same_bone": 0.0,
+        "max_conformity_ratio": 0.0,
+        "coincident_max_diff_um": 0.0,
+        "verdict_note": "⚠ **不适用（空洞）**：所有配对都落在刚体区（|A| ≤ jac_floor），位移差恒为 0，**不构成任何证据**。按'不适用'记，不当作 PASS 依据。"
+      },
+      "Male_Ranger": {
+        "applicable": false,
+        "pairs_non_degenerate": 0,
+        "pairs_degenerate": 688,
+        "max_diff_over_distance_same_bone": 0.0,
+        "max_conformity_ratio": 0.0,
+        "coincident_max_diff_um": 0.0,
+        "verdict_note": "⚠ **不适用（空洞）**：所有配对都落在刚体区（|A| ≤ jac_floor），位移差恒为 0，**不构成任何证据**。按'不适用'记，不当作 PASS 依据。"
+      },
+      "Male_Peasant": {
+        "applicable": true,
+        "pairs_non_degenerate": 520,
+        "pairs_degenerate": 0,
+        "max_diff_over_distance_same_bone": 0.212938,
+        "max_conformity_ratio": 0.803577,
+        "coincident_max_diff_um": 0.0,
+        "verdict_note": "在**非退化区**（|A| > jac_floor）断言成立；退化(刚体)对已剔除，不参与判定"
+      }
+    },
+    "pixel_P_full_criterion_per_outfit": {
+      "Female_Ranger": "本套 rest 基线 = 0.71% → 阈值 = 2.71%；三档实测 rest 0.71% / BS_Thin 0.83% / BS_Heavy 0.64%",
+      "Female_Peasant": null,
+      "Male_Ranger": "本套 rest 基线 = 0.80% → 阈值 = 2.80%；三档实测 rest 0.80% / BS_Thin 0.90% / BS_Heavy 0.69%",
+      "Male_Peasant": "本套 rest 基线 = 5.35% → 阈值 = 7.35%；三档实测 rest 5.35% / BS_Thin 5.61% / BS_Heavy 5.16%"
+    }
+  }
+}

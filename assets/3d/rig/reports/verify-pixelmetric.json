@@ -1,0 +1,397 @@
+{
+  "generated_by": "verifier/v_pixelmetric.py",
+  "metric": "标准体染 Emission 纯红；像素法 = 红像素 / 剪影像素（alpha>0.5）",
+  "classifier": {
+    "r_min": 0.15,
+    "g_max": 0.06,
+    "b_max": 0.06
+  },
+  "autofit": {
+    "rounds": 3,
+    "clear_m": 0.008,
+    "gate_m": 0.05
+  },
+  "cases": [
+    {
+      "sex": "Female",
+      "outfit": "Outfit_Female_Ranger",
+      "states": {
+        "1_baseline_own_rig": {
+          "png": "px_Female_1_baseline_ortho.png",
+          "red_px": 25053,
+          "silhouette_px": 104501,
+          "red_frac_pct": 23.9739,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "ortho"
+        },
+        "2_reattached_no_refit": {
+          "png": "px_Female_2_reattach_ortho.png",
+          "red_px": 25055,
+          "silhouette_px": 104501,
+          "red_frac_pct": 23.9758,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "ortho"
+        },
+        "3_bone_space_refit": {
+          "png": "px_Female_3_refit_ortho.png",
+          "red_px": 25055,
+          "silhouette_px": 104501,
+          "red_frac_pct": 23.9758,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "ortho"
+        },
+        "4_autofit_3rounds": {
+          "png": "px_Female_4_autofit_ortho.png",
+          "red_px": 6196,
+          "silhouette_px": 107434,
+          "red_frac_pct": 5.7673,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "ortho"
+        }
+      },
+      "calibration": {
+        "body_only_expect_100pct": {
+          "png": "calib_bodyonly_Female.png",
+          "red_px": 86439,
+          "silhouette_px": 86439,
+          "red_frac_pct": 100.0,
+          "resolution": [
+            760,
+            1180
+          ]
+        },
+        "cloth_only_expect_0pct": {
+          "png": "calib_clothonly_Female.png",
+          "red_px": 0,
+          "silhouette_px": 101288,
+          "red_frac_pct": 0.0,
+          "resolution": [
+            760,
+            1180
+          ]
+        },
+        "passed": true
+      },
+      "framing_sensitivity": {
+        "lead": {
+          "png": "px_Female_4_autofit_lead.png",
+          "red_px": 4747,
+          "silhouette_px": 82446,
+          "red_frac_pct": 5.7577,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "lead"
+        },
+        "tight": {
+          "png": "px_Female_4_autofit_tight.png",
+          "red_px": 10551,
+          "silhouette_px": 202786,
+          "red_frac_pct": 5.203,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "tight"
+        }
+      },
+      "scene_bounds": [
+        [
+          -0.8344331383705139,
+          -0.16754113137722015,
+          -0.008407152257859707
+        ],
+        [
+          0.8344330191612244,
+          0.20962996780872345,
+          1.7940788269042969
+        ]
+      ],
+      "refit_seconds": 0.146,
+      "refit_stats": {
+        "Female_Ranger_Acc_Pauldrons": {
+          "max_cm": 1.817630256680635e-06,
+          "mean_cm": 1.8164064522909937e-06,
+          "p95_cm": 1.8174161133430791e-06,
+          "moved_frac": 0.0,
+          "moved_verts": 0,
+          "n_verts": 1092
+        },
+        "Female_Ranger_Arms": {
+          "max_cm": 2.654004642332965e-05,
+          "mean_cm": 7.98176833294779e-06,
+          "p95_cm": 1.4160097346080686e-05,
+          "moved_frac": 0.39346110484780156,
+          "moved_verts": 698,
+          "n_verts": 1774
+        },
+        "Female_Ranger_Arms_Bracer": {
+          "max_cm": 1.313846112038384e-05,
+          "mean_cm": 1.2197519261850263e-05,
+          "p95_cm": 1.3064685369928122e-05,
+          "moved_frac": 1.0,
+          "moved_verts": 4000,
+          "n_verts": 4000
+        },
+        "Female_Ranger_Body": {
+          "max_cm": 3.892403760514289e-06,
+          "mean_cm": 2.174391675355083e-06,
+          "p95_cm": 3.5512116056785247e-06,
+          "moved_frac": 0.0,
+          "moved_verts": 0,
+          "n_verts": 2785
+        },
+        "Female_Ranger_Body_Belt_1": {
+          "max_cm": 2.7064536238996776e-06,
+          "mean_cm": 2.705071222638298e-06,
+          "p95_cm": 2.7063179540033957e-06,
+          "moved_frac": 0.0,
+          "moved_verts": 0,
+          "n_verts": 928
+        },
+        "Female_Ranger_Body_Belt_2": {
+          "max_cm": 2.706079515052674e-06,
+          "mean_cm": 2.7047590590420986e-06,
+          "p95_cm": 2.7059482593487324e-06,
+          "moved_frac": 0.0,
+          "moved_verts": 0,
+          "n_verts": 928
+        },
+        "Female_Ranger_Feet": {
+          "max_cm": 3.5269116921243378e-06,
+          "mean_cm": 2.1051153283728458e-06,
+          "p95_cm": 3.030955850640481e-06,
+          "moved_frac": 0.0,
+          "moved_verts": 0,
+          "n_verts": 10174
+        },
+        "Female_Ranger_Head_Hood": {
+          "max_cm": 1.4024930284980067e-05,
+          "mean_cm": 8.95335966045805e-06,
+          "p95_cm": 1.3860197156912354e-05,
+          "moved_frac": 0.5556451612903226,
+          "moved_verts": 689,
+          "n_verts": 1240
+        },
+        "Female_Ranger_Legs": {
+          "max_cm": 3.468565054107229e-06,
+          "mean_cm": 2.0155723983114513e-06,
+          "p95_cm": 3.3360477933683127e-06,
+          "moved_frac": 0.0,
+          "moved_verts": 0,
+          "n_verts": 685
+        }
+      },
+      "autofit_seconds": 0.307,
+      "autofit_moved_per_round": [
+        6010,
+        3419,
+        2608
+      ]
+    },
+    {
+      "sex": "Male",
+      "outfit": "Outfit_Male_Ranger",
+      "states": {
+        "1_baseline_own_rig": {
+          "png": "px_Male_1_baseline_ortho.png",
+          "red_px": 40854,
+          "silhouette_px": 97240,
+          "red_frac_pct": 42.0136,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "ortho"
+        },
+        "2_reattached_no_refit": {
+          "png": "px_Male_2_reattach_ortho.png",
+          "red_px": 40854,
+          "silhouette_px": 97240,
+          "red_frac_pct": 42.0136,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "ortho"
+        },
+        "3_bone_space_refit": {
+          "png": "px_Male_3_refit_ortho.png",
+          "red_px": 37794,
+          "silhouette_px": 96079,
+          "red_frac_pct": 39.3364,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "ortho"
+        },
+        "4_autofit_3rounds": {
+          "png": "px_Male_4_autofit_ortho.png",
+          "red_px": 6201,
+          "silhouette_px": 98326,
+          "red_frac_pct": 6.3066,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "ortho"
+        }
+      },
+      "calibration": {
+        "body_only_expect_100pct": {
+          "png": "calib_bodyonly_Male.png",
+          "red_px": 81795,
+          "silhouette_px": 81795,
+          "red_frac_pct": 100.0,
+          "resolution": [
+            760,
+            1180
+          ]
+        },
+        "cloth_only_expect_0pct": {
+          "png": "calib_clothonly_Male.png",
+          "red_px": 0,
+          "silhouette_px": 88809,
+          "red_frac_pct": 0.0,
+          "resolution": [
+            760,
+            1180
+          ]
+        },
+        "passed": true
+      },
+      "framing_sensitivity": {
+        "lead": {
+          "png": "px_Male_4_autofit_lead.png",
+          "red_px": 5980,
+          "silhouette_px": 93483,
+          "red_frac_pct": 6.3969,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "lead"
+        },
+        "tight": {
+          "png": "px_Male_4_autofit_tight.png",
+          "red_px": 10905,
+          "silhouette_px": 184433,
+          "red_frac_pct": 5.9127,
+          "resolution": [
+            760,
+            1180
+          ],
+          "camera_mode": "tight"
+        }
+      },
+      "scene_bounds": [
+        [
+          -0.9294331073760986,
+          -0.1675412654876709,
+          -0.00950999278575182
+        ],
+        [
+          0.92943274974823,
+          0.20595389604568481,
+          1.8650400638580322
+        ]
+      ],
+      "refit_seconds": 0.137,
+      "refit_stats": {
+        "Male_Ranger_Acc_Pauldron": {
+          "max_cm": 2.0111680777250025,
+          "mean_cm": 2.011159402758569,
+          "p95_cm": 2.011166376213465,
+          "moved_frac": 1.0,
+          "moved_verts": 1092,
+          "n_verts": 1092
+        },
+        "Male_Ranger_Arms": {
+          "max_cm": 3.651405692526133,
+          "mean_cm": 2.354647776523248,
+          "p95_cm": 3.4175929937843046,
+          "moved_frac": 1.0,
+          "moved_verts": 1836,
+          "n_verts": 1836
+        },
+        "Male_Ranger_Arms_Bracer": {
+          "max_cm": 2.2983120962594827,
+          "mean_cm": 2.034315376494244,
+          "p95_cm": 2.257250515036543,
+          "moved_frac": 1.0,
+          "moved_verts": 4000,
+          "n_verts": 4000
+        },
+        "Male_Ranger_Body": {
+          "max_cm": 2.2910225209164548,
+          "mean_cm": 0.2878344597012023,
+          "p95_cm": 1.2446155386322195,
+          "moved_frac": 0.9231858407079646,
+          "moved_verts": 2608,
+          "n_verts": 2825
+        },
+        "Male_Ranger_Body_Belt_1": {
+          "max_cm": 0.02743353503779794,
+          "mean_cm": 0.0017800363056512984,
+          "p95_cm": 0.008710219494007262,
+          "moved_frac": 0.2920258620689655,
+          "moved_verts": 271,
+          "n_verts": 928
+        },
+        "Male_Ranger_Body_Belt_2": {
+          "max_cm": 0.027433570356890192,
+          "mean_cm": 0.0018179739025689565,
+          "p95_cm": 0.008999031718785995,
+          "moved_frac": 0.2920258620689655,
+          "moved_verts": 271,
+          "n_verts": 928
+        },
+        "Male_Ranger_Feet_Boots": {
+          "max_cm": 2.370523399446578,
+          "mean_cm": 2.370506531294282,
+          "p95_cm": 2.3705146386773888,
+          "moved_frac": 1.0,
+          "moved_verts": 10174,
+          "n_verts": 10174
+        },
+        "Male_Ranger_Head_Hood": {
+          "max_cm": 0.5484110702956088,
+          "mean_cm": 0.08367536420555108,
+          "p95_cm": 0.3957329161374036,
+          "moved_frac": 0.7096774193548387,
+          "moved_verts": 880,
+          "n_verts": 1240
+        },
+        "Male_Ranger_Legs": {
+          "max_cm": 2.370514334100013,
+          "mean_cm": 2.0171100392762042,
+          "p95_cm": 2.370514089373886,
+          "moved_frac": 0.9472049689440993,
+          "moved_verts": 610,
+          "n_verts": 644
+        }
+      },
+      "autofit_seconds": 0.29,
+      "autofit_moved_per_round": [
+        8715,
+        4909,
+        3632
+      ]
+    }
+  ],
+  "total_seconds": 5.73
+}

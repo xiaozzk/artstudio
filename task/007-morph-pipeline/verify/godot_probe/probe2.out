@@ -1,0 +1,17 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+=== 断言 #1：入树前 set_bone_pose_rotation 是否生效 ===
+bone upperarm_l idx=6
+  入树前 rest global basis euler = (-0.009204, 1.072845, -89.99999)
+  入树前 set 后 global basis euler = (-0.009204, 1.072845, -89.99999)
+  → 入树前是否生效 = false
+  pose_rotation 存下来了? = (0.707107, 0, 0, 0.707107)
+  入树后 global basis euler = (-0.009204, 1.072845, -89.99999)
+  → 入树后才生效 = false
+
+=== 断言 #2：pose_local = rest⁻¹·R·rest 共轭写法 ===
+  目标(骨架空间绕X 90° basis) euler = (90.0, 0.0, 0.0)
+  实测 global basis euler          = (-50.97185, 70.65931, -48.63456)
+  期望(rest*target) euler          = (61.83365, -90.08804, 179.911)
+  → 与期望的夹角偏差 = 165.858 度
+  对照 set_bone_global_pose_override 偏差 = 0.0 度

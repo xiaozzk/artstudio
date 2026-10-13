@@ -1,0 +1,1412 @@
+{
+  "schema": "bodyshape-strength",
+  "method": {
+    "girth": "切片(z 或沿骨轴 t) → 投影到垂直平面 → 2D 凸包周长。凸包等价于软尺量法（跨过凹处），且对破洞/面绕向免疫（标准体非闭合，SPEC F15）",
+    "region": "顶点的区域总权重 ≥ 0.5（躯干 = pelvis+spine_01..03；四肢 = 对应骨）",
+    "slab_m": 0.02,
+    "grid_m": 0.004,
+    "measurement": "全部走 depsgraph 求值（SPEC F9）"
+  },
+  "axis_profile": {
+    "name": "girth",
+    "pose_bone_scale_order": "Blender 的 pose_bone.scale 是骨骼局部轴 (x, y, z)，其中 Y 恒为沿骨轴（head→tail）",
+    "rule": "x = z = 1 + (coef-1)·delta_response[group]（改周长）；y = 1 + (coef-1)·along_axis_response[group]（改骨长）。along 默认 0。",
+    "why": "含沿骨轴缩放会让身高跟着变。实测（同系数 0.86/1.16）：含骨长口径身高比 0.8966/1.1140（±11%），girth 口径 1.0002/0.9998。SPEC §3.4/D3 要求身高是独立的正交滑块，故默认 girth；唯一例外是骨轴水平的 clavicle（改的是肩宽不是身高）。",
+    "legacy_profiles": {
+      "length_uniform": "demo 口径 pb.scale=(s,s,1)（含骨长）—— 仅用于对照复现 SPEC §1 F5 的 13–14 cm 数字，默认不用"
+    }
+  },
+  "delta_response": {
+    "_comment": "垂直轴（X/Z）响应：bone_scale = 1 + (coef-1)·delta_response[group]。1.0 = 完全跟随目标系数；<1 = 保守。v2 把 spine_02/spine_03 拉到 1.0，让胸腔与骨盆同步响应（v1 的胸只有臀的 72%，而衣服下胸腔比骨盆更显眼）；clavicle 0.5→0.8 让肩背厚度也跟上。",
+    "pelvis": 1.0,
+    "spine_01": 1.0,
+    "spine_02": 1.0,
+    "spine_03": 1.0,
+    "thigh": 0.95,
+    "calf": 0.85,
+    "upperarm": 1.05,
+    "lowerarm": 0.95,
+    "clavicle": 0.8
+  },
+  "blender_version": "5.2.2 LTS",
+  "generated_at": "2026-10-13T18:22:55+0800",
+  "swept_coefficients": [
+    0.58,
+    0.72,
+    0.78,
+    0.84,
+    0.92,
+    1.08,
+    1.16,
+    1.21,
+    1.25,
+    1.35
+  ],
+  "bodies": [
+    {
+      "sex": "Female",
+      "file": "assets/3d/rig/bodies/Body_Female_Standard.blend",
+      "vertex_count": 7376,
+      "triangle_count": 12812,
+      "station_windows_m": {
+        "bust": [
+          1.2906,
+          1.4318
+        ],
+        "waist": [
+          1.0546,
+          1.1642
+        ],
+        "hip": [
+          0.9241,
+          1.0507
+        ]
+      },
+      "region_vertex_counts": {
+        "torso": 952,
+        "thigh_l": 524,
+        "thigh_r": 524
+      },
+      "stations": [
+        {
+          "name": "bust",
+          "unit": "m",
+          "kind": "torso",
+          "pick": "max",
+          "window": [
+            "spine_02.tail",
+            "spine_03.tail"
+          ],
+          "note": "胸围：spine_02 尾 → spine_03 尾 区间的最大周长"
+        },
+        {
+          "name": "waist",
+          "unit": "m",
+          "kind": "torso",
+          "pick": "min",
+          "window": [
+            "spine_01.head",
+            "spine_02.head"
+          ],
+          "note": "腰围：spine_01 头 → spine_02 头 区间的最小周长（最细处）"
+        },
+        {
+          "name": "hip",
+          "unit": "m",
+          "kind": "torso",
+          "pick": "max",
+          "window": [
+            "thigh_l.head-0.02",
+            "pelvis.tail+0.01"
+          ],
+          "note": "臀围：大腿根下 2 cm → 骨盆尾 区间的最大周长"
+        },
+        {
+          "name": "upperarm_l",
+          "unit": "m",
+          "kind": "limb",
+          "bone": "upperarm_l",
+          "t": [
+            0.25,
+            0.8
+          ],
+          "pick": "max",
+          "note": "左上臂围：沿骨长 25%–80% 区间的最大周长"
+        },
+        {
+          "name": "thigh_l",
+          "unit": "m",
+          "kind": "limb",
+          "bone": "thigh_l",
+          "t": [
+            0.12,
+            0.55
+          ],
+          "pick": "max",
+          "note": "左大腿围：沿骨长 12%–55% 区间的最大周长"
+        },
+        {
+          "name": "calf_l",
+          "unit": "m",
+          "kind": "limb",
+          "bone": "calf_l",
+          "t": [
+            0.15,
+            0.6
+          ],
+          "pick": "max",
+          "note": "左小腿围：沿骨长 15%–60% 区间的最大周长"
+        }
+      ],
+      "basis_girths_m": {
+        "bust": 0.997515,
+        "waist": 0.640401,
+        "hip": 0.979444,
+        "upperarm_l": 0.305371,
+        "thigh_l": 0.653051,
+        "calf_l": 0.414388
+      },
+      "basis_at": {
+        "bust": {
+          "at_z_m": 1.3466
+        },
+        "waist": {
+          "at_z_m": 1.1426
+        },
+        "hip": {
+          "at_z_m": 0.9841
+        },
+        "upperarm_l": {
+          "at_t_frac": 0.2833
+        },
+        "thigh_l": {
+          "at_t_frac": 0.1493
+        },
+        "calf_l": {
+          "at_t_frac": 0.3817
+        }
+      },
+      "coefficient_sweep": [
+        {
+          "target_coefficient": 0.58,
+          "bone_scale_range": [
+            0.559,
+            0.664
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 0.617049,
+              "pct_vs_basis": -38.141
+            },
+            "waist": {
+              "perimeter_m": 0.366084,
+              "pct_vs_basis": -42.835
+            },
+            "hip": {
+              "perimeter_m": 0.573424,
+              "pct_vs_basis": -41.454
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.163051,
+              "pct_vs_basis": -46.606
+            },
+            "thigh_l": {
+              "perimeter_m": 0.392982,
+              "pct_vs_basis": -39.824
+            },
+            "calf_l": {
+              "perimeter_m": 0.266451,
+              "pct_vs_basis": -35.7
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.593088,
+            "arm_span_ratio_vs_basis": 0.954593,
+            "shoulder_joint_span_m": 0.227422,
+            "shoulder_joint_span_ratio_vs_basis": 0.750072,
+            "height_m": 1.775954,
+            "height_ratio_vs_basis": 1.000509
+          },
+          "max_displacement_cm": 8.6952,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 10,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.2715261376474384
+          },
+          "leg_gap": {
+            "min_gap_m": 0.006296214647591114,
+            "at_z_m": 0.8607724210619923
+          }
+        },
+        {
+          "target_coefficient": 0.72,
+          "bone_scale_range": [
+            0.706,
+            0.776
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 0.736568,
+              "pct_vs_basis": -26.16
+            },
+            "waist": {
+              "perimeter_m": 0.454076,
+              "pct_vs_basis": -29.095
+            },
+            "hip": {
+              "perimeter_m": 0.710732,
+              "pct_vs_basis": -27.435
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.208485,
+              "pct_vs_basis": -31.727
+            },
+            "thigh_l": {
+              "perimeter_m": 0.481269,
+              "pct_vs_basis": -26.305
+            },
+            "calf_l": {
+              "perimeter_m": 0.315763,
+              "pct_vs_basis": -23.8
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.618347,
+            "arm_span_ratio_vs_basis": 0.969729,
+            "shoulder_joint_span_m": 0.252681,
+            "shoulder_joint_span_ratio_vs_basis": 0.833381,
+            "height_m": 1.775653,
+            "height_ratio_vs_basis": 1.000339
+          },
+          "max_displacement_cm": 5.7968,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.47157968117479043
+          },
+          "leg_gap": {
+            "min_gap_m": 0.009611265733838081,
+            "at_z_m": 0.8612577109038826
+          }
+        },
+        {
+          "target_coefficient": 0.78,
+          "bone_scale_range": [
+            0.769,
+            0.824
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 0.794387,
+              "pct_vs_basis": -20.363
+            },
+            "waist": {
+              "perimeter_m": 0.500692,
+              "pct_vs_basis": -21.816
+            },
+            "hip": {
+              "perimeter_m": 0.77011,
+              "pct_vs_basis": -21.373
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.22778,
+              "pct_vs_basis": -25.409
+            },
+            "thigh_l": {
+              "perimeter_m": 0.518066,
+              "pct_vs_basis": -20.67
+            },
+            "calf_l": {
+              "perimeter_m": 0.336897,
+              "pct_vs_basis": -18.7
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.629172,
+            "arm_span_ratio_vs_basis": 0.976215,
+            "shoulder_joint_span_m": 0.263507,
+            "shoulder_joint_span_ratio_vs_basis": 0.869085,
+            "height_m": 1.775524,
+            "height_ratio_vs_basis": 1.000267
+          },
+          "max_displacement_cm": 4.5546,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.5581205309308928
+          },
+          "leg_gap": {
+            "min_gap_m": 0.01103198528289795,
+            "at_z_m": 0.8614657087624069
+          }
+        },
+        {
+          "target_coefficient": 0.84,
+          "bone_scale_range": [
+            0.832,
+            0.872
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 0.8552,
+              "pct_vs_basis": -14.267
+            },
+            "waist": {
+              "perimeter_m": 0.538794,
+              "pct_vs_basis": -15.866
+            },
+            "hip": {
+              "perimeter_m": 0.827188,
+              "pct_vs_basis": -15.545
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.254028,
+              "pct_vs_basis": -16.813
+            },
+            "thigh_l": {
+              "perimeter_m": 0.554872,
+              "pct_vs_basis": -15.034
+            },
+            "calf_l": {
+              "perimeter_m": 0.358031,
+              "pct_vs_basis": -13.6
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.639998,
+            "arm_span_ratio_vs_basis": 0.982702,
+            "shoulder_joint_span_m": 0.274332,
+            "shoulder_joint_span_ratio_vs_basis": 0.904789,
+            "height_m": 1.775395,
+            "height_ratio_vs_basis": 1.000194
+          },
+          "max_displacement_cm": 3.3125,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.6601896309763421
+          },
+          "leg_gap": {
+            "min_gap_m": 0.012452731374651194,
+            "at_z_m": 0.8616736693680282
+          }
+        },
+        {
+          "target_coefficient": 0.92,
+          "bone_scale_range": [
+            0.916,
+            0.936
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 0.92514,
+              "pct_vs_basis": -7.255
+            },
+            "waist": {
+              "perimeter_m": 0.589598,
+              "pct_vs_basis": -7.933
+            },
+            "hip": {
+              "perimeter_m": 0.903308,
+              "pct_vs_basis": -7.773
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.279738,
+              "pct_vs_basis": -8.394
+            },
+            "thigh_l": {
+              "perimeter_m": 0.603957,
+              "pct_vs_basis": -7.518
+            },
+            "calf_l": {
+              "perimeter_m": 0.386209,
+              "pct_vs_basis": -6.8
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.654432,
+            "arm_span_ratio_vs_basis": 0.991351,
+            "shoulder_joint_span_m": 0.288766,
+            "shoulder_joint_span_ratio_vs_basis": 0.952395,
+            "height_m": 1.775223,
+            "height_ratio_vs_basis": 1.000097
+          },
+          "max_displacement_cm": 1.6562,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.8095516987295484
+          },
+          "leg_gap": {
+            "min_gap_m": 0.014347031246870756,
+            "at_z_m": 0.861951058208942
+          }
+        },
+        {
+          "target_coefficient": 1.08,
+          "bone_scale_range": [
+            1.064,
+            1.084
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.068121,
+              "pct_vs_basis": 7.078
+            },
+            "waist": {
+              "perimeter_m": 0.691205,
+              "pct_vs_basis": 7.933
+            },
+            "hip": {
+              "perimeter_m": 1.055591,
+              "pct_vs_basis": 7.775
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.346015,
+              "pct_vs_basis": 13.31
+            },
+            "thigh_l": {
+              "perimeter_m": 0.702153,
+              "pct_vs_basis": 7.519
+            },
+            "calf_l": {
+              "perimeter_m": 0.442566,
+              "pct_vs_basis": 6.8
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.6833,
+            "arm_span_ratio_vs_basis": 1.008649,
+            "shoulder_joint_span_m": 0.317634,
+            "shoulder_joint_span_ratio_vs_basis": 1.047605,
+            "height_m": 1.774879,
+            "height_ratio_vs_basis": 0.999903
+          },
+          "max_displacement_cm": 1.6562,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.9574437136789491
+          },
+          "leg_gap": {
+            "min_gap_m": 0.01813566032797098,
+            "at_z_m": 0.8625057055056091
+          }
+        },
+        {
+          "target_coefficient": 1.16,
+          "bone_scale_range": [
+            1.128,
+            1.168
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.139874,
+              "pct_vs_basis": 14.271
+            },
+            "waist": {
+              "perimeter_m": 0.742009,
+              "pct_vs_basis": 15.866
+            },
+            "hip": {
+              "perimeter_m": 1.131748,
+              "pct_vs_basis": 15.55
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.372531,
+              "pct_vs_basis": 21.993
+            },
+            "thigh_l": {
+              "perimeter_m": 0.750384,
+              "pct_vs_basis": 14.904
+            },
+            "calf_l": {
+              "perimeter_m": 0.470744,
+              "pct_vs_basis": 13.6
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.697734,
+            "arm_span_ratio_vs_basis": 1.017298,
+            "shoulder_joint_span_m": 0.332068,
+            "shoulder_joint_span_ratio_vs_basis": 1.095211,
+            "height_m": 1.774707,
+            "height_ratio_vs_basis": 0.999806
+          },
+          "max_displacement_cm": 3.3124,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.9122516538032452
+          },
+          "leg_gap": {
+            "min_gap_m": 0.0200299471616745,
+            "at_z_m": 0.8627830012142654
+          }
+        },
+        {
+          "target_coefficient": 1.21,
+          "bone_scale_range": [
+            1.168,
+            1.2205
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.185354,
+              "pct_vs_basis": 18.831
+            },
+            "waist": {
+              "perimeter_m": 0.773762,
+              "pct_vs_basis": 20.825
+            },
+            "hip": {
+              "perimeter_m": 1.181609,
+              "pct_vs_basis": 20.641
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.389105,
+              "pct_vs_basis": 27.42
+            },
+            "thigh_l": {
+              "perimeter_m": 0.781038,
+              "pct_vs_basis": 19.598
+            },
+            "calf_l": {
+              "perimeter_m": 0.488356,
+              "pct_vs_basis": 17.85
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.706755,
+            "arm_span_ratio_vs_basis": 1.022704,
+            "shoulder_joint_span_m": 0.341089,
+            "shoulder_joint_span_ratio_vs_basis": 1.124964,
+            "height_m": 1.774599,
+            "height_ratio_vs_basis": 0.999746
+          },
+          "max_displacement_cm": 4.3476,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.8826717301445721
+          },
+          "leg_gap": {
+            "min_gap_m": 0.021213904954493046,
+            "at_z_m": 0.8629563054442402
+          }
+        },
+        {
+          "target_coefficient": 1.25,
+          "bone_scale_range": [
+            1.2,
+            1.2625
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.220942,
+              "pct_vs_basis": 22.398
+            },
+            "waist": {
+              "perimeter_m": 0.799164,
+              "pct_vs_basis": 24.791
+            },
+            "hip": {
+              "perimeter_m": 1.219608,
+              "pct_vs_basis": 24.52
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.402365,
+              "pct_vs_basis": 31.763
+            },
+            "thigh_l": {
+              "perimeter_m": 0.805563,
+              "pct_vs_basis": 23.354
+            },
+            "calf_l": {
+              "perimeter_m": 0.502445,
+              "pct_vs_basis": 21.25
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.713972,
+            "arm_span_ratio_vs_basis": 1.027028,
+            "shoulder_joint_span_m": 0.348306,
+            "shoulder_joint_span_ratio_vs_basis": 1.148767,
+            "height_m": 1.774513,
+            "height_ratio_vs_basis": 0.999697
+          },
+          "max_displacement_cm": 5.1757,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.8582639103383303
+          },
+          "leg_gap": {
+            "min_gap_m": 0.022161061875522137,
+            "at_z_m": 0.8630949644744392
+          }
+        },
+        {
+          "target_coefficient": 1.35,
+          "bone_scale_range": [
+            1.28,
+            1.3675
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.310377,
+              "pct_vs_basis": 31.364
+            },
+            "waist": {
+              "perimeter_m": 0.862669,
+              "pct_vs_basis": 34.708
+            },
+            "hip": {
+              "perimeter_m": 1.318922,
+              "pct_vs_basis": 34.66
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.443652,
+              "pct_vs_basis": 45.283
+            },
+            "thigh_l": {
+              "perimeter_m": 0.866879,
+              "pct_vs_basis": 32.743
+            },
+            "calf_l": {
+              "perimeter_m": 0.53755,
+              "pct_vs_basis": 29.722
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.732014,
+            "arm_span_ratio_vs_basis": 1.037839,
+            "shoulder_joint_span_m": 0.366349,
+            "shoulder_joint_span_ratio_vs_basis": 1.208273,
+            "height_m": 1.774298,
+            "height_ratio_vs_basis": 0.999576
+          },
+          "max_displacement_cm": 7.246,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.7943590295409645
+          },
+          "leg_gap": {
+            "min_gap_m": 0.024528944864869118,
+            "at_z_m": 0.8534416250884529
+          }
+        }
+      ],
+      "interpolation_check": {
+        "note": "morph 线性混合 vs 等价 pose 缩放；LBS 对每骨缩放仿射线性 ⇒ 理论差应为 0",
+        "samples": [
+          {
+            "w": 0.0,
+            "max_diff_mm": 0.000409,
+            "mean_diff_mm": 0.00011,
+            "equivalent_coefficient": 0.84
+          },
+          {
+            "w": 0.25,
+            "max_diff_mm": 0.000478,
+            "mean_diff_mm": 0.000102,
+            "equivalent_coefficient": 0.9325
+          },
+          {
+            "w": 0.5,
+            "max_diff_mm": 0.000408,
+            "mean_diff_mm": 0.000115,
+            "equivalent_coefficient": 1.025
+          },
+          {
+            "w": 0.75,
+            "max_diff_mm": 0.000492,
+            "mean_diff_mm": 0.00013,
+            "equivalent_coefficient": 1.1175
+          },
+          {
+            "w": 1.0,
+            "max_diff_mm": 0.000448,
+            "mean_diff_mm": 0.000114,
+            "equivalent_coefficient": 1.21
+          }
+        ],
+        "max_diff_mm": 0.000492
+      }
+    },
+    {
+      "sex": "Male",
+      "file": "assets/3d/rig/bodies/Body_Male_Standard.blend",
+      "vertex_count": 7281,
+      "triangle_count": 12566,
+      "station_windows_m": {
+        "bust": [
+          1.3109,
+          1.495
+        ],
+        "waist": [
+          1.072,
+          1.1778
+        ],
+        "hip": [
+          0.9512,
+          1.071
+        ]
+      },
+      "region_vertex_counts": {
+        "torso": 784,
+        "thigh_l": 512,
+        "thigh_r": 512
+      },
+      "stations": [
+        {
+          "name": "bust",
+          "unit": "m",
+          "kind": "torso",
+          "pick": "max",
+          "window": [
+            "spine_02.tail",
+            "spine_03.tail"
+          ],
+          "note": "胸围：spine_02 尾 → spine_03 尾 区间的最大周长"
+        },
+        {
+          "name": "waist",
+          "unit": "m",
+          "kind": "torso",
+          "pick": "min",
+          "window": [
+            "spine_01.head",
+            "spine_02.head"
+          ],
+          "note": "腰围：spine_01 头 → spine_02 头 区间的最小周长（最细处）"
+        },
+        {
+          "name": "hip",
+          "unit": "m",
+          "kind": "torso",
+          "pick": "max",
+          "window": [
+            "thigh_l.head-0.02",
+            "pelvis.tail+0.01"
+          ],
+          "note": "臀围：大腿根下 2 cm → 骨盆尾 区间的最大周长"
+        },
+        {
+          "name": "upperarm_l",
+          "unit": "m",
+          "kind": "limb",
+          "bone": "upperarm_l",
+          "t": [
+            0.25,
+            0.8
+          ],
+          "pick": "max",
+          "note": "左上臂围：沿骨长 25%–80% 区间的最大周长"
+        },
+        {
+          "name": "thigh_l",
+          "unit": "m",
+          "kind": "limb",
+          "bone": "thigh_l",
+          "t": [
+            0.12,
+            0.55
+          ],
+          "pick": "max",
+          "note": "左大腿围：沿骨长 12%–55% 区间的最大周长"
+        },
+        {
+          "name": "calf_l",
+          "unit": "m",
+          "kind": "limb",
+          "bone": "calf_l",
+          "t": [
+            0.15,
+            0.6
+          ],
+          "pick": "max",
+          "note": "左小腿围：沿骨长 15%–60% 区间的最大周长"
+        }
+      ],
+      "basis_girths_m": {
+        "bust": 1.178325,
+        "waist": 0.758136,
+        "hip": 0.920483,
+        "upperarm_l": 0.474018,
+        "thigh_l": 0.623704,
+        "calf_l": 0.437257
+      },
+      "basis_at": {
+        "bust": {
+          "at_z_m": 1.3829
+        },
+        "waist": {
+          "at_z_m": 1.156
+        },
+        "hip": {
+          "at_z_m": 1.0032
+        },
+        "upperarm_l": {
+          "at_t_frac": 0.2978
+        },
+        "thigh_l": {
+          "at_t_frac": 0.3625
+        },
+        "calf_l": {
+          "at_t_frac": 0.3331
+        }
+      },
+      "coefficient_sweep": [
+        {
+          "target_coefficient": 0.58,
+          "bone_scale_range": [
+            0.559,
+            0.664
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 0.753073,
+              "pct_vs_basis": -36.09
+            },
+            "waist": {
+              "perimeter_m": 0.440903,
+              "pct_vs_basis": -41.844
+            },
+            "hip": {
+              "perimeter_m": 0.543167,
+              "pct_vs_basis": -40.991
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.242461,
+              "pct_vs_basis": -48.85
+            },
+            "thigh_l": {
+              "perimeter_m": 0.372955,
+              "pct_vs_basis": -40.203
+            },
+            "calf_l": {
+              "perimeter_m": 0.280802,
+              "pct_vs_basis": -35.781
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.757654,
+            "arm_span_ratio_vs_basis": 0.945552,
+            "shoulder_joint_span_m": 0.322811,
+            "shoulder_joint_span_ratio_vs_basis": 0.761305,
+            "height_m": 1.819529,
+            "height_ratio_vs_basis": 0.999968
+          },
+          "max_displacement_cm": 9.376,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.32183865176202614
+          },
+          "leg_gap": {
+            "min_gap_m": 0.008354723453521729,
+            "at_z_m": 0.8025357383489605
+          }
+        },
+        {
+          "target_coefficient": 0.72,
+          "bone_scale_range": [
+            0.706,
+            0.776
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 0.892766,
+              "pct_vs_basis": -24.234
+            },
+            "waist": {
+              "perimeter_m": 0.546637,
+              "pct_vs_basis": -27.897
+            },
+            "hip": {
+              "perimeter_m": 0.667648,
+              "pct_vs_basis": -27.468
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.31822,
+              "pct_vs_basis": -32.868
+            },
+            "thigh_l": {
+              "perimeter_m": 0.456535,
+              "pct_vs_basis": -26.803
+            },
+            "calf_l": {
+              "perimeter_m": 0.332953,
+              "pct_vs_basis": -23.854
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.791392,
+            "arm_span_ratio_vs_basis": 0.963701,
+            "shoulder_joint_span_m": 0.356548,
+            "shoulder_joint_span_ratio_vs_basis": 0.84087,
+            "height_m": 1.819548,
+            "height_ratio_vs_basis": 0.999979
+          },
+          "max_displacement_cm": 6.2506,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.5135550789359873
+          },
+          "leg_gap": {
+            "min_gap_m": 0.012022426351904869,
+            "at_z_m": 0.8726193413138386
+          }
+        },
+        {
+          "target_coefficient": 0.78,
+          "bone_scale_range": [
+            0.769,
+            0.824
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 0.952798,
+              "pct_vs_basis": -19.14
+            },
+            "waist": {
+              "perimeter_m": 0.591956,
+              "pct_vs_basis": -21.92
+            },
+            "hip": {
+              "perimeter_m": 0.721214,
+              "pct_vs_basis": -21.648
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.347332,
+              "pct_vs_basis": -26.726
+            },
+            "thigh_l": {
+              "perimeter_m": 0.492356,
+              "pct_vs_basis": -21.059
+            },
+            "calf_l": {
+              "perimeter_m": 0.355303,
+              "pct_vs_basis": -18.743
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.805851,
+            "arm_span_ratio_vs_basis": 0.971479,
+            "shoulder_joint_span_m": 0.371007,
+            "shoulder_joint_span_ratio_vs_basis": 0.874969,
+            "height_m": 1.819557,
+            "height_ratio_vs_basis": 0.999983
+          },
+          "max_displacement_cm": 4.9112,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.603836044274908
+          },
+          "leg_gap": {
+            "min_gap_m": 0.013411074876785278,
+            "at_z_m": 0.8726552307605739
+          }
+        },
+        {
+          "target_coefficient": 0.84,
+          "bone_scale_range": [
+            0.832,
+            0.872
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.014977,
+              "pct_vs_basis": -13.863
+            },
+            "waist": {
+              "perimeter_m": 0.637276,
+              "pct_vs_basis": -15.942
+            },
+            "hip": {
+              "perimeter_m": 0.774056,
+              "pct_vs_basis": -15.908
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.375753,
+              "pct_vs_basis": -20.73
+            },
+            "thigh_l": {
+              "perimeter_m": 0.528178,
+              "pct_vs_basis": -15.316
+            },
+            "calf_l": {
+              "perimeter_m": 0.377654,
+              "pct_vs_basis": -13.631
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.820309,
+            "arm_span_ratio_vs_basis": 0.979258,
+            "shoulder_joint_span_m": 0.385466,
+            "shoulder_joint_span_ratio_vs_basis": 0.909069,
+            "height_m": 1.819565,
+            "height_ratio_vs_basis": 0.999988
+          },
+          "max_displacement_cm": 3.5718,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.7017182939516325
+          },
+          "leg_gap": {
+            "min_gap_m": 0.01479972992092371,
+            "at_z_m": 0.8726911127567287
+          }
+        },
+        {
+          "target_coefficient": 0.92,
+          "bone_scale_range": [
+            0.916,
+            0.936
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.096269,
+              "pct_vs_basis": -6.964
+            },
+            "waist": {
+              "perimeter_m": 0.697705,
+              "pct_vs_basis": -7.971
+            },
+            "hip": {
+              "perimeter_m": 0.849537,
+              "pct_vs_basis": -7.707
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.434412,
+              "pct_vs_basis": -8.355
+            },
+            "thigh_l": {
+              "perimeter_m": 0.575941,
+              "pct_vs_basis": -7.658
+            },
+            "calf_l": {
+              "perimeter_m": 0.407455,
+              "pct_vs_basis": -6.816
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.839588,
+            "arm_span_ratio_vs_basis": 0.989629,
+            "shoulder_joint_span_m": 0.404745,
+            "shoulder_joint_span_ratio_vs_basis": 0.954534,
+            "height_m": 1.819576,
+            "height_ratio_vs_basis": 0.999994
+          },
+          "max_displacement_cm": 1.7859,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.8440788472133837
+          },
+          "leg_gap": {
+            "min_gap_m": 0.01665126532316208,
+            "at_z_m": 0.8727389529347416
+          }
+        },
+        {
+          "target_coefficient": 1.08,
+          "bone_scale_range": [
+            1.064,
+            1.084
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.262026,
+              "pct_vs_basis": 7.103
+            },
+            "waist": {
+              "perimeter_m": 0.818569,
+              "pct_vs_basis": 7.971
+            },
+            "hip": {
+              "perimeter_m": 0.991465,
+              "pct_vs_basis": 7.711
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.513531,
+              "pct_vs_basis": 8.336
+            },
+            "thigh_l": {
+              "perimeter_m": 0.671468,
+              "pct_vs_basis": 7.658
+            },
+            "calf_l": {
+              "perimeter_m": 0.467059,
+              "pct_vs_basis": 6.816
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.878145,
+            "arm_span_ratio_vs_basis": 1.010371,
+            "shoulder_joint_span_m": 0.443302,
+            "shoulder_joint_span_ratio_vs_basis": 1.045466,
+            "height_m": 1.819598,
+            "height_ratio_vs_basis": 1.000006
+          },
+          "max_displacement_cm": 1.7859,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.9231160525845779
+          },
+          "leg_gap": {
+            "min_gap_m": 0.020354341715574265,
+            "at_z_m": 0.8728345215320583
+          }
+        },
+        {
+          "target_coefficient": 1.16,
+          "bone_scale_range": [
+            1.128,
+            1.168
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.347802,
+              "pct_vs_basis": 14.383
+            },
+            "waist": {
+              "perimeter_m": 0.879002,
+              "pct_vs_basis": 15.943
+            },
+            "hip": {
+              "perimeter_m": 1.062069,
+              "pct_vs_basis": 15.382
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.572944,
+              "pct_vs_basis": 20.87
+            },
+            "thigh_l": {
+              "perimeter_m": 0.719232,
+              "pct_vs_basis": 15.316
+            },
+            "calf_l": {
+              "perimeter_m": 0.49686,
+              "pct_vs_basis": 13.631
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.897424,
+            "arm_span_ratio_vs_basis": 1.020742,
+            "shoulder_joint_span_m": 0.46258,
+            "shoulder_joint_span_ratio_vs_basis": 1.090932,
+            "height_m": 1.819609,
+            "height_ratio_vs_basis": 1.000012
+          },
+          "max_displacement_cm": 3.5718,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.8338031550492395
+          },
+          "leg_gap": {
+            "min_gap_m": 0.02220587618649006,
+            "at_z_m": 0.8728823766112324
+          }
+        },
+        {
+          "target_coefficient": 1.21,
+          "bone_scale_range": [
+            1.168,
+            1.2205
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.40255,
+              "pct_vs_basis": 19.029
+            },
+            "waist": {
+              "perimeter_m": 0.916774,
+              "pct_vs_basis": 20.925
+            },
+            "hip": {
+              "perimeter_m": 1.10868,
+              "pct_vs_basis": 20.446
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.59939,
+              "pct_vs_basis": 26.449
+            },
+            "thigh_l": {
+              "perimeter_m": 0.749085,
+              "pct_vs_basis": 20.103
+            },
+            "calf_l": {
+              "perimeter_m": 0.515487,
+              "pct_vs_basis": 17.891
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.909473,
+            "arm_span_ratio_vs_basis": 1.027224,
+            "shoulder_joint_span_m": 0.474629,
+            "shoulder_joint_span_ratio_vs_basis": 1.119348,
+            "height_m": 1.819616,
+            "height_ratio_vs_basis": 1.000016
+          },
+          "max_displacement_cm": 4.688,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.7724837383935352
+          },
+          "leg_gap": {
+            "min_gap_m": 0.02336309663951397,
+            "at_z_m": 0.872912216186523
+          }
+        },
+        {
+          "target_coefficient": 1.25,
+          "bone_scale_range": [
+            1.2,
+            1.2625
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.446492,
+              "pct_vs_basis": 22.758
+            },
+            "waist": {
+              "perimeter_m": 0.946991,
+              "pct_vs_basis": 24.91
+            },
+            "hip": {
+              "perimeter_m": 1.144145,
+              "pct_vs_basis": 24.298
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.620175,
+              "pct_vs_basis": 30.834
+            },
+            "thigh_l": {
+              "perimeter_m": 0.772968,
+              "pct_vs_basis": 23.932
+            },
+            "calf_l": {
+              "perimeter_m": 0.530387,
+              "pct_vs_basis": 21.299
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.919112,
+            "arm_span_ratio_vs_basis": 1.03241,
+            "shoulder_joint_span_m": 0.484269,
+            "shoulder_joint_span_ratio_vs_basis": 1.142081,
+            "height_m": 1.819621,
+            "height_ratio_vs_basis": 1.000019
+          },
+          "max_displacement_cm": 5.5809,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.7209785970151927
+          },
+          "leg_gap": {
+            "min_gap_m": 0.024288851767778397,
+            "at_z_m": 0.8729361400008198
+          }
+        },
+        {
+          "target_coefficient": 1.35,
+          "bone_scale_range": [
+            1.28,
+            1.3675
+          ],
+          "girths": {
+            "bust": {
+              "perimeter_m": 1.556183,
+              "pct_vs_basis": 32.067
+            },
+            "waist": {
+              "perimeter_m": 1.022535,
+              "pct_vs_basis": 34.875
+            },
+            "hip": {
+              "perimeter_m": 1.232469,
+              "pct_vs_basis": 33.894
+            },
+            "upperarm_l": {
+              "perimeter_m": 0.670559,
+              "pct_vs_basis": 41.463
+            },
+            "thigh_l": {
+              "perimeter_m": 0.832674,
+              "pct_vs_basis": 33.505
+            },
+            "calf_l": {
+              "perimeter_m": 0.56764,
+              "pct_vs_basis": 29.818
+            }
+          },
+          "linears": {
+            "arm_span_m": 1.94321,
+            "arm_span_ratio_vs_basis": 1.045374,
+            "shoulder_joint_span_m": 0.508367,
+            "shoulder_joint_span_ratio_vs_basis": 1.198913,
+            "height_m": 1.819635,
+            "height_ratio_vs_basis": 1.000026
+          },
+          "max_displacement_cm": 7.8133,
+          "mesh_health": {
+            "faces_flipped": 0,
+            "faces_with_dot_lt_0_5": 0,
+            "faces_area_collapsed_90pct": 0,
+            "min_face_area_ratio": 0.5874678813404209
+          },
+          "leg_gap": {
+            "min_gap_m": 0.02660326659679413,
+            "at_z_m": 0.8629959532618519
+          }
+        }
+      ],
+      "interpolation_check": {
+        "note": "morph 线性混合 vs 等价 pose 缩放；LBS 对每骨缩放仿射线性 ⇒ 理论差应为 0",
+        "samples": [
+          {
+            "w": 0.0,
+            "max_diff_mm": 0.000365,
+            "mean_diff_mm": 0.000116,
+            "equivalent_coefficient": 0.84
+          },
+          {
+            "w": 0.25,
+            "max_diff_mm": 0.000438,
+            "mean_diff_mm": 0.000128,
+            "equivalent_coefficient": 0.9325
+          },
+          {
+            "w": 0.5,
+            "max_diff_mm": 0.000435,
+            "mean_diff_mm": 0.000131,
+            "equivalent_coefficient": 1.025
+          },
+          {
+            "w": 0.75,
+            "max_diff_mm": 0.000482,
+            "mean_diff_mm": 0.000139,
+            "equivalent_coefficient": 1.1175
+          },
+          {
+            "w": 1.0,
+            "max_diff_mm": 0.000426,
+            "mean_diff_mm": 0.000121,
+            "equivalent_coefficient": 1.21
+          }
+        ],
+        "max_diff_mm": 0.000482
+      }
+    }
+  ],
+  "elapsed_sec": 2.2
+}

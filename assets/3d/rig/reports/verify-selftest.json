@@ -1,0 +1,291 @@
+{
+  "generated_by": "verifier/v_selftest.py",
+  "blender": "5.2.2 LTS",
+  "purpose": "在解析真值网格上标定 verifier 自己的 inside/outside 判定误差，再拿同一套代码去量 body/garment。",
+  "min_votes_default": 4,
+  "tol_default": 0.0001,
+  "cases": [
+    {
+      "case": "closed_icosphere_r1",
+      "note": "凸闭合；真值 = |p|<1",
+      "n_points": 3000,
+      "n_faces": 1280,
+      "closed_assumed": true,
+      "ray_accuracy": 0.9983333333333333,
+      "normal_accuracy": 0.9983333333333333,
+      "two_method_agreement": 1.0,
+      "ambiguous_frac": 0.0,
+      "combined_accuracy": 0.9983333333333333,
+      "by_distance": [
+        {
+          "dist_range": [
+            0.0001,
+            0.001
+          ],
+          "n": 4,
+          "ray_acc": 0.5,
+          "normal_acc": 0.5,
+          "agree": 1.0
+        },
+        {
+          "dist_range": [
+            0.001,
+            0.01
+          ],
+          "n": 38,
+          "ray_acc": 0.9210526315789473,
+          "normal_acc": 0.9210526315789473,
+          "agree": 1.0
+        },
+        {
+          "dist_range": [
+            0.01,
+            0.1
+          ],
+          "n": 476,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0
+        },
+        {
+          "dist_range": [
+            0.1,
+            1000000000.0
+          ],
+          "n": 2482,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0
+        }
+      ]
+    },
+    {
+      "case": "closed_torus_R1_r0.4",
+      "note": "凹闭合；解析真值 (√(x²+y²)−R)²+z² < r²",
+      "n_points": 2000,
+      "n_faces": 9216,
+      "closed_assumed": true,
+      "ray_accuracy": 0.998,
+      "normal_accuracy": 0.9975,
+      "two_method_agreement": 0.9995,
+      "ambiguous_frac": 0.0005,
+      "combined_accuracy": 0.9975,
+      "by_distance": [
+        {
+          "dist_range": [
+            0,
+            0.0001
+          ],
+          "n": 1,
+          "ray_acc": 1.0,
+          "normal_acc": 0.0,
+          "agree": 0.0
+        },
+        {
+          "dist_range": [
+            0.0001,
+            0.001
+          ],
+          "n": 7,
+          "ray_acc": 0.42857142857142855,
+          "normal_acc": 0.42857142857142855,
+          "agree": 1.0
+        },
+        {
+          "dist_range": [
+            0.001,
+            0.01
+          ],
+          "n": 34,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0
+        },
+        {
+          "dist_range": [
+            0.01,
+            0.1
+          ],
+          "n": 405,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0
+        },
+        {
+          "dist_range": [
+            0.1,
+            1000000000.0
+          ],
+          "n": 1553,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0
+        }
+      ]
+    },
+    {
+      "case": "open_icosphere_missing_cap",
+      "note": "球缺一块 cap（z<-0.3 的面删掉）→ 有边界洞；真值仍是 |p|<1。这里量的是**我的方法在非封闭网格上的坏法**",
+      "n_points": 3000,
+      "n_faces": 800,
+      "closed_assumed": true,
+      "ray_accuracy": 0.9583333333333334,
+      "normal_accuracy": 0.9413333333333334,
+      "two_method_agreement": 0.901,
+      "ambiguous_frac": 0.099,
+      "combined_accuracy": 0.9003333333333333,
+      "by_distance": [
+        {
+          "dist_range": [
+            0.0001,
+            0.001
+          ],
+          "n": 4,
+          "ray_acc": 0.75,
+          "normal_acc": 0.5,
+          "agree": 0.75
+        },
+        {
+          "dist_range": [
+            0.001,
+            0.01
+          ],
+          "n": 44,
+          "ray_acc": 0.9090909090909091,
+          "normal_acc": 0.6818181818181818,
+          "agree": 0.6363636363636364
+        },
+        {
+          "dist_range": [
+            0.01,
+            0.1
+          ],
+          "n": 454,
+          "ray_acc": 0.9537444933920705,
+          "normal_acc": 0.8854625550660793,
+          "agree": 0.8392070484581498
+        },
+        {
+          "dist_range": [
+            0.1,
+            1000000000.0
+          ],
+          "n": 2498,
+          "ray_acc": 0.9603682946357086,
+          "normal_acc": 0.9567654123298639,
+          "agree": 0.9171337069655725
+        }
+      ]
+    },
+    {
+      "case": "on_surface_points",
+      "note": "点直接取球面原顶点 → 真值应为'表面'，这里把 truth 记为 False（不内部）来量两法在退化点的行为",
+      "n_points": 500,
+      "n_faces": 1280,
+      "closed_assumed": true,
+      "ray_accuracy": 0.544,
+      "normal_accuracy": 1.0,
+      "two_method_agreement": 0.544,
+      "ambiguous_frac": 1.0,
+      "combined_accuracy": 0.0,
+      "by_distance": [
+        {
+          "dist_range": [
+            0,
+            0.0001
+          ],
+          "n": 500,
+          "ray_acc": 0.544,
+          "normal_acc": 1.0,
+          "agree": 0.544
+        }
+      ]
+    },
+    {
+      "case": "sphere_radius_sweep",
+      "sweep": [
+        {
+          "radius": 0.3,
+          "truth": true,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0,
+          "signed_mean": -0.6964689032634991
+        },
+        {
+          "radius": 0.5,
+          "truth": true,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0,
+          "signed_mean": -0.49662071164937366
+        },
+        {
+          "radius": 0.7,
+          "truth": true,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0,
+          "signed_mean": -0.2968246511643603
+        },
+        {
+          "radius": 0.85,
+          "truth": true,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0,
+          "signed_mean": -0.14695438366022104
+        },
+        {
+          "radius": 0.95,
+          "truth": true,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0,
+          "signed_mean": -0.047075990283211994
+        },
+        {
+          "radius": 0.99,
+          "truth": true,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0,
+          "signed_mean": -0.007088441921064147
+        },
+        {
+          "radius": 1.01,
+          "truth": false,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0,
+          "signed_mean": 0.012864884954954489
+        },
+        {
+          "radius": 1.05,
+          "truth": false,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0,
+          "signed_mean": 0.05272611284902623
+        },
+        {
+          "radius": 1.15,
+          "truth": false,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0,
+          "signed_mean": 0.15273218310499104
+        },
+        {
+          "radius": 1.3,
+          "truth": false,
+          "ray_acc": 1.0,
+          "normal_acc": 1.0,
+          "agree": 1.0,
+          "signed_mean": 0.3024257672518403
+        }
+      ],
+      "note": "离表面越远越可靠；越近越容易翻边"
+    }
+  ]
+}

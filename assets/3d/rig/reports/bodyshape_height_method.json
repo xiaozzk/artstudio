@@ -1,0 +1,250 @@
+{
+  "schema": "bodyshape-height-method",
+  "question": "bodies/ 标准体保留 F6 的 inherit_scale='NONE'（18 根），会不会让标准体的身高缩放失真？",
+  "metric": "dispersion_rel = (P99(r) − P01(r)) / median(r)，r = 世界空间边长比（与 verifier/vlib.py 同口径）",
+  "threshold": 0.01,
+  "h": 1.08,
+  "blender_version": "5.2.2 LTS",
+  "generated_at": "2026-10-13T18:37:32+0800",
+  "targets": [
+    {
+      "target": "Body_Female_Standard",
+      "file": "assets/3d/rig/bodies/Body_Female_Standard.blend",
+      "rig": "RIG_Body_Female_Standard",
+      "mesh_count": 3,
+      "vertex_count": 8844,
+      "inherit_scale_non_full_count": 18,
+      "inherit_scale_non_full_bones": [
+        "calf_l",
+        "calf_r",
+        "clavicle_l",
+        "clavicle_r",
+        "foot_l",
+        "foot_r",
+        "hand_l",
+        "hand_r",
+        "lowerarm_l",
+        "lowerarm_r",
+        "neck_01",
+        "spine_01",
+        "spine_02",
+        "spine_03",
+        "thigh_l",
+        "thigh_r",
+        "upperarm_l",
+        "upperarm_r"
+      ],
+      "meshes_parented_to_armature": 3,
+      "base_height_m": 1.775051,
+      "h": 1.08,
+      "methods": {
+        "K_root_bone_scale": {
+          "note": "pose.bones['root'].scale —— 走骨架层级，受 inherit_scale 影响",
+          "height_m": 1.783891,
+          "height_ratio": 1.00498024,
+          "height_delta_pct": 0.498,
+          "stretch_dispersion_rel": 0.07860425,
+          "stretch_std": 0.02705371,
+          "stretch_mean": 1.00304538,
+          "n_edges": 23880,
+          "max_vertex_disp_m": 0.085357,
+          "passes_threshold_0.01": false
+        },
+        "O_armature_object_scale": {
+          "note": "armature_object.scale —— 对象级仿射，与骨架层级无关",
+          "height_m": 1.917055,
+          "height_ratio": 1.08000005,
+          "height_delta_pct": 8.0,
+          "stretch_dispersion_rel": 3.849e-05,
+          "stretch_std": 8.52e-06,
+          "stretch_mean": 1.08000015,
+          "n_edges": 23880,
+          "max_vertex_disp_m": 0.141335,
+          "passes_threshold_0.01": true
+        },
+        "M_mesh_objects_scale": {
+          "note": "mesh_object.scale —— 同样绕开骨架层级",
+          "height_m": 1.917055,
+          "height_ratio": 1.08000005,
+          "height_delta_pct": 8.0,
+          "stretch_dispersion_rel": 9.483e-05,
+          "stretch_std": 2.128e-05,
+          "stretch_mean": 1.08000038,
+          "n_edges": 23880,
+          "max_vertex_disp_m": 0.141335,
+          "passes_threshold_0.01": true
+        }
+      }
+    },
+    {
+      "target": "Body_Male_Standard",
+      "file": "assets/3d/rig/bodies/Body_Male_Standard.blend",
+      "rig": "RIG_Body_Male_Standard",
+      "mesh_count": 3,
+      "vertex_count": 8483,
+      "inherit_scale_non_full_count": 18,
+      "inherit_scale_non_full_bones": [
+        "calf_l",
+        "calf_r",
+        "clavicle_l",
+        "clavicle_r",
+        "foot_l",
+        "foot_r",
+        "hand_l",
+        "hand_r",
+        "lowerarm_l",
+        "lowerarm_r",
+        "neck_01",
+        "spine_01",
+        "spine_02",
+        "spine_03",
+        "thigh_l",
+        "thigh_r",
+        "upperarm_l",
+        "upperarm_r"
+      ],
+      "meshes_parented_to_armature": 3,
+      "base_height_m": 1.819587,
+      "h": 1.08,
+      "methods": {
+        "K_root_bone_scale": {
+          "note": "pose.bones['root'].scale —— 走骨架层级，受 inherit_scale 影响",
+          "height_m": 1.827651,
+          "height_ratio": 1.00443186,
+          "height_delta_pct": 0.4432,
+          "stretch_dispersion_rel": 0.07987115,
+          "stretch_std": 0.0142348,
+          "stretch_mean": 1.00263247,
+          "n_edges": 22769,
+          "max_vertex_disp_m": 0.087551,
+          "passes_threshold_0.01": false
+        },
+        "O_armature_object_scale": {
+          "note": "armature_object.scale —— 对象级仿射，与骨架层级无关",
+          "height_m": 1.965154,
+          "height_ratio": 1.08000007,
+          "height_delta_pct": 8.0,
+          "stretch_dispersion_rel": 3.197e-05,
+          "stretch_std": 8.94e-06,
+          "stretch_mean": 1.0800001,
+          "n_edges": 22769,
+          "max_vertex_disp_m": 0.144806,
+          "passes_threshold_0.01": true
+        },
+        "M_mesh_objects_scale": {
+          "note": "mesh_object.scale —— 同样绕开骨架层级",
+          "height_m": 1.965154,
+          "height_ratio": 1.08000014,
+          "height_delta_pct": 8.0,
+          "stretch_dispersion_rel": 8.363e-05,
+          "stretch_std": 2.178e-05,
+          "stretch_mean": 1.08000014,
+          "n_edges": 22769,
+          "max_vertex_disp_m": 0.144807,
+          "passes_threshold_0.01": true
+        }
+      }
+    },
+    {
+      "target": "TryOn_Female_Ranger",
+      "file": "assets/3d/blend/tryon/TryOn_Female_Ranger.blend",
+      "rig": "RIG_TryOn_Female_Ranger",
+      "mesh_count": 12,
+      "vertex_count": 27920,
+      "inherit_scale_non_full_count": 0,
+      "inherit_scale_non_full_bones": [],
+      "meshes_parented_to_armature": 12,
+      "base_height_m": 1.798046,
+      "h": 1.08,
+      "methods": {
+        "K_root_bone_scale": {
+          "note": "pose.bones['root'].scale —— 走骨架层级，受 inherit_scale 影响",
+          "height_m": 1.94189,
+          "height_ratio": 1.08000007,
+          "height_delta_pct": 8.0,
+          "stretch_dispersion_rel": 3.198e-05,
+          "stretch_std": 1.139e-05,
+          "stretch_mean": 1.08000001,
+          "n_edges": 58267,
+          "max_vertex_disp_m": 0.143547,
+          "passes_threshold_0.01": true
+        },
+        "O_armature_object_scale": {
+          "note": "armature_object.scale —— 对象级仿射，与骨架层级无关",
+          "height_m": 1.94189,
+          "height_ratio": 1.08000007,
+          "height_delta_pct": 8.0,
+          "stretch_dispersion_rel": 2.808e-05,
+          "stretch_std": 1.967e-05,
+          "stretch_mean": 1.08,
+          "n_edges": 58267,
+          "max_vertex_disp_m": 0.143547,
+          "passes_threshold_0.01": true
+        },
+        "M_mesh_objects_scale": {
+          "note": "mesh_object.scale —— 同样绕开骨架层级",
+          "height_m": 1.94189,
+          "height_ratio": 1.08000014,
+          "height_delta_pct": 8.0,
+          "stretch_dispersion_rel": 7.107e-05,
+          "stretch_std": 1.847e-05,
+          "stretch_mean": 1.08000011,
+          "n_edges": 58267,
+          "max_vertex_disp_m": 0.143547,
+          "passes_threshold_0.01": true
+        }
+      }
+    },
+    {
+      "target": "TryOn_Male_Ranger",
+      "file": "assets/3d/blend/tryon/TryOn_Male_Ranger.blend",
+      "rig": "RIG_TryOn_Male_Ranger",
+      "mesh_count": 12,
+      "vertex_count": 27637,
+      "inherit_scale_non_full_count": 0,
+      "inherit_scale_non_full_bones": [],
+      "meshes_parented_to_armature": 12,
+      "base_height_m": 1.869008,
+      "h": 1.08,
+      "methods": {
+        "K_root_bone_scale": {
+          "note": "pose.bones['root'].scale —— 走骨架层级，受 inherit_scale 影响",
+          "height_m": 2.018529,
+          "height_ratio": 1.08,
+          "height_delta_pct": 8.0,
+          "stretch_dispersion_rel": 2.714e-05,
+          "stretch_std": 2.212e-05,
+          "stretch_mean": 1.07999999,
+          "n_edges": 57317,
+          "max_vertex_disp_m": 0.149265,
+          "passes_threshold_0.01": true
+        },
+        "O_armature_object_scale": {
+          "note": "armature_object.scale —— 对象级仿射，与骨架层级无关",
+          "height_m": 2.018529,
+          "height_ratio": 1.08000004,
+          "height_delta_pct": 8.0,
+          "stretch_dispersion_rel": 2.457e-05,
+          "stretch_std": 1.647e-05,
+          "stretch_mean": 1.08000012,
+          "n_edges": 57317,
+          "max_vertex_disp_m": 0.149265,
+          "passes_threshold_0.01": true
+        },
+        "M_mesh_objects_scale": {
+          "note": "mesh_object.scale —— 同样绕开骨架层级",
+          "height_m": 2.018529,
+          "height_ratio": 1.08000004,
+          "height_delta_pct": 8.0,
+          "stretch_dispersion_rel": 6.12e-05,
+          "stretch_std": 2.577e-05,
+          "stretch_mean": 1.08000015,
+          "n_edges": 57317,
+          "max_vertex_disp_m": 0.149265,
+          "passes_threshold_0.01": true
+        }
+      }
+    }
+  ],
+  "elapsed_sec": 0.6
+}

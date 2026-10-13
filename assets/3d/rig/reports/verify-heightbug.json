@@ -1,0 +1,179 @@
+{
+  "generated_by": "verifier/v_heightbug.py",
+  "question": "SPEC §3.4 的身高缩放，在 §3.2 的 inherit_scale 规则生效时还成立吗？",
+  "cases": [
+    {
+      "sex": "Female",
+      "base_height_m": 1.7750507956370711,
+      "inherit_none_actual": [
+        "calf_l",
+        "calf_r",
+        "clavicle_l",
+        "clavicle_r",
+        "foot_l",
+        "foot_r",
+        "hand_l",
+        "hand_r",
+        "lowerarm_l",
+        "lowerarm_r",
+        "neck_01",
+        "spine_01",
+        "spine_02",
+        "spine_03",
+        "thigh_l",
+        "thigh_r",
+        "upperarm_l",
+        "upperarm_r"
+      ],
+      "configs": {
+        "C1_spec_both_rules_asis": {
+          "height_m": 1.7838907837867737,
+          "height_ratio": 1.004980132496169,
+          "height_delta_pct": 0.498013249616891,
+          "max_disp_cm": 8.535756051516973,
+          "mean_disp_cm": 8.218733865891616,
+          "moved_gt_1mm_frac": 1.0,
+          "stretch_dispersion_rel": 0.08408238654585543,
+          "stretch_std": 0.029391055751506814,
+          "per_region_mean_disp_cm": {
+            "头颈 (z>1.55)": 8.4377,
+            "躯干 (0.95-1.55)": 8.4263,
+            "腿 (z<0.95)": 7.6004
+          },
+          "per_region_max_disp_cm": {
+            "头颈 (z>1.55)": 8.4377,
+            "躯干 (0.95-1.55)": 8.5358,
+            "腿 (z<0.95)": 7.7106
+          }
+        },
+        "C2_all_inherit_FULL": {
+          "height_m": 1.9170545833185315,
+          "height_ratio": 1.0799998445286716,
+          "height_delta_pct": 7.999984452867159,
+          "max_disp_cm": 14.133513181747562,
+          "mean_disp_cm": 9.856830291736394,
+          "moved_gt_1mm_frac": 1.0,
+          "stretch_dispersion_rel": 2.954438434116805e-05,
+          "stretch_std": 5.70235348338358e-06,
+          "per_region_mean_disp_cm": {
+            "头颈 (z>1.55)": 13.089,
+            "躯干 (0.95-1.55)": 11.8258,
+            "腿 (z<0.95)": 3.0978
+          },
+          "per_region_max_disp_cm": {
+            "头颈 (z>1.55)": 14.1335,
+            "躯干 (0.95-1.55)": 13.1877,
+            "腿 (z<0.95)": 7.7283
+          }
+        },
+        "C3_shape_bones_themselves_NONE": {
+          "height_m": 1.775050774216652,
+          "height_ratio": 0.9999999879325036,
+          "height_delta_pct": -1.2067496446555026e-06,
+          "max_disp_cm": 7.463391089377691,
+          "mean_disp_cm": 7.4633796195536535,
+          "moved_gt_1mm_frac": 1.0,
+          "stretch_dispersion_rel": 6.89371340889533e-06,
+          "stretch_std": 1.5895175832235275e-06,
+          "per_region_mean_disp_cm": {
+            "头颈 (z>1.55)": 7.4634,
+            "躯干 (0.95-1.55)": 7.4634,
+            "腿 (z<0.95)": 7.4634
+          },
+          "per_region_max_disp_cm": {
+            "头颈 (z>1.55)": 7.4634,
+            "躯干 (0.95-1.55)": 7.4634,
+            "腿 (z<0.95)": 7.4634
+          }
+        }
+      }
+    },
+    {
+      "sex": "Male",
+      "base_height_m": 1.8195864679291844,
+      "inherit_none_actual": [
+        "calf_l",
+        "calf_r",
+        "clavicle_l",
+        "clavicle_r",
+        "foot_l",
+        "foot_r",
+        "hand_l",
+        "hand_r",
+        "lowerarm_l",
+        "lowerarm_r",
+        "neck_01",
+        "spine_01",
+        "spine_02",
+        "spine_03",
+        "thigh_l",
+        "thigh_r",
+        "upperarm_l",
+        "upperarm_r"
+      ],
+      "configs": {
+        "C1_spec_both_rules_asis": {
+          "height_m": 1.8276506140828133,
+          "height_ratio": 1.0044318565211174,
+          "height_delta_pct": 0.4431856521117439,
+          "max_disp_cm": 8.755123078737558,
+          "mean_disp_cm": 8.372072067993932,
+          "moved_gt_1mm_frac": 1.0,
+          "stretch_dispersion_rel": 0.08333247305418168,
+          "stretch_std": 0.015209746685191376,
+          "per_region_mean_disp_cm": {
+            "头颈 (z>1.55)": 8.5762,
+            "躯干 (0.95-1.55)": 8.5619,
+            "腿 (z<0.95)": 7.8101
+          },
+          "per_region_max_disp_cm": {
+            "头颈 (z>1.55)": 8.5762,
+            "躯干 (0.95-1.55)": 8.7551,
+            "腿 (z<0.95)": 7.8285
+          }
+        },
+        "C2_all_inherit_FULL": {
+          "height_m": 1.9651537360623479,
+          "height_ratio": 1.0800001927354566,
+          "height_delta_pct": 8.000019273545655,
+          "max_disp_cm": 14.480656237441746,
+          "mean_disp_cm": 10.157412170623989,
+          "moved_gt_1mm_frac": 1.0,
+          "stretch_dispersion_rel": 3.1801774261960904e-05,
+          "stretch_std": 5.962809684073955e-06,
+          "per_region_mean_disp_cm": {
+            "头颈 (z>1.55)": 13.3428,
+            "躯干 (0.95-1.55)": 12.2999,
+            "腿 (z<0.95)": 3.0887
+          },
+          "per_region_max_disp_cm": {
+            "头颈 (z>1.55)": 14.4807,
+            "躯干 (0.95-1.55)": 13.8081,
+            "腿 (z<0.95)": 7.7123
+          }
+        },
+        "C3_shape_bones_themselves_NONE": {
+          "height_m": 1.8195863515138626,
+          "height_ratio": 0.9999999360210005,
+          "height_delta_pct": -6.397899954269093e-06,
+          "max_disp_cm": 7.6006008531745275,
+          "mean_disp_cm": 7.600588799547583,
+          "moved_gt_1mm_frac": 1.0,
+          "stretch_dispersion_rel": 1.6055252469504566e-05,
+          "stretch_std": 2.2617083705630723e-06,
+          "per_region_mean_disp_cm": {
+            "头颈 (z>1.55)": 7.6006,
+            "躯干 (0.95-1.55)": 7.6006,
+            "腿 (z<0.95)": 7.6006
+          },
+          "per_region_max_disp_cm": {
+            "头颈 (z>1.55)": 7.6006,
+            "躯干 (0.95-1.55)": 7.6006,
+            "腿 (z<0.95)": 7.6006
+          }
+        }
+      }
+    }
+  ],
+  "total_seconds": 0.1
+}

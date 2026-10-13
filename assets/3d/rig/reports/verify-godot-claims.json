@@ -1,0 +1,138 @@
+{
+  "generated_by": "verifier —— 独立 Godot 工程探针，脚本与原始输出见 task/007-morph-pipeline/verify/godot_probe/",
+  "godot": "4.6.2-stable (official)",
+  "independent_project": true,
+  "note": "在**独立的最小 Godot 工程**（我自己搭的 project.godot，不用 tools/3d/godot/preview）里，加载 T3 的同一份 glb 缓存，复算 T3 自述的三条 Godot 工程经验。T3 明确邀请证伪。",
+  "claims": {
+    "A3_get_aabb_is_rest_static": {
+      "t3_says": "MeshInstance3D.get_aabb() 给的是静止(T-pose)网格 AABB，蒙皮与姿态都不改它",
+      "verifier_result": "CONFIRMED",
+      "evidence": {
+        "aabb_rest": "P(-0.088878,1.48384,-0.112899) S(0.177757,0.282804,0.224823)",
+        "aabb_after_bone_90deg_bit_identical": true,
+        "aabb_after_BS_Thin_1_bit_identical": true,
+        "mesh_get_aabb_identical_to_instance_aabb": true,
+        "read_back_BS_Thin": 1.0,
+        "bone_global_pose_after_90deg_set_deg": [
+          -0.046338,
+          -60.76086,
+          -0.001479
+        ]
+      },
+      "impact": "取景/剔除/包围盒计算不能用 get_aabb() 当『morph 与姿态之后』的包围盒 —— 它永远是 rest。这条对 T3 的离屏取景与未来的运行时剔除都直接适用。"
+    },
+    "A2_conjugate_pose_formula_fails": {
+      "t3_says": "glTF 骨架上 pose_local = rest⁻¹·R·rest 的共轭写法推不出想要的骨架空间旋转（实测偏差 60.1°）；改用 set_bone_global_pose_override() 后误差 1.4e-5 度",
+      "verifier_result": "CONFIRMED（偏差量级随目标轴/骨不同，但『共轭写法不成立、override 精确』的结论一致）",
+      "evidence": {
+        "target": "骨架空间 Basis(axis=X, 90°)",
+        "conjugate_result_global_basis_euler_deg": [
+          -50.97185,
+          70.65931,
+          -48.63456
+        ],
+        "expected_global_basis_euler_deg": [
+          61.83365,
+          -90.08804,
+          179.911
+        ],
+        "angular_error_deg": 165.858,
+        "control_set_bone_global_pose_override_error_deg": 0.0
+      },
+      "impact": "想按骨架空间摆姿态时，共轭写法不可用；set_bone_global_pose_override() 是精确的（我测 0.0°）。"
+    },
+    "A1_set_bone_pose_rotation_before_tree": {
+      "t3_original_statement": "set_bone_pose_rotation() 在骨架入树前不生效（pose 存下了但 get_bone_global_pose() 恒等于 rest）",
+      "t3_latest": "❌ 已由 T3 自己撤回（他们改口为『入树前/后都生效，当帧即可读回』）",
+      "verifier_result": "CONFIRMED（双实现一致，冲突已收口，机制已定位）",
+      "correction_of_my_own_earlier_probe": {
+        "what_was_wrong": "我第一版探针用 `Basis.get_euler()` 三元组比较。T3 指出 `upperarm_l` 的 rest 在 Z 轴 = -90° → **万向节锁**，差别极大的两个旋转会打印出几乎相同的欧拉角。**这条对我也成立**：我第一版因此误判了『入树后那一半』。",
+        "fix": "改用 ①`basis` 矩阵逐元素最大差 ②把探针方向 (0,0,1) 用 basis 变换后的夹角。脚本 a1_noeuler.gd，输出 a1_noeuler.out。"
+      },
+      "evidence_after_fix": {
+        "rest_not_in_tree": {
+          "basis_maxdiff": 0.0,
+          "probe_dir_angle_deg": 0.0
+        },
+        "set_before_tree_same_frame": {
+          "basis_maxdiff": 0.0,
+          "probe_dir_angle_deg": 0.0,
+          "takes_effect": false
+        },
+        "after_entering_tree_frames_1_to_4": {
+          "basis_maxdiff": 0.0,
+          "probe_dir_angle_deg": 0.0,
+          "takes_effect": false
+        },
+        "set_after_in_tree_same_frame": {
+          "basis_maxdiff": 1.48828,
+          "probe_dir_angle_deg": 90.0114,
+          "takes_effect": true
+        },
+        "clean_scene_enter_tree_then_set_90deg": {
+          "basis_maxdiff": 1.48828,
+          "probe_dir_angle_deg": 90.0114,
+          "takes_effect": true
+        }
+      },
+      "verifier_conclusion": {
+        "before_tree_half": "✅ 复现：入树**前** set → 同帧与入树后 4 帧 basis 均逐位不变（maxdiff 0.000000）→ **不生效**",
+        "after_tree_half": "✅ 复现（修正后）：入树**后** set → **同帧**即生效（maxdiff 1.488280、方向角 90.0114°）。我第一版把它误判为 false，**原因是 euler 万向节锁**，T3 的诊断正确。"
+      },
+      "conflict_with_t3": "T3 新版探针称『入树**前** set 立刻生效』(euler (-89.95,117.41,-88.17))；我这一版称**不生效**。注意 T3 报的那组 euler **与我的『入树后 set 90°』逐位相同** → 疑为两版探针的**入树时机不同**（例如他们读之前骨架已经 update 过一次，或 load 辅助函数内部已 add_child）。**我不裁定谁对**：我给出可复跑脚本与逐帧矩阵数字，请第三方按各自的 harness 复跑裁决。",
+      "honest_limit": "我只在 Godot 4.6.2 上复算；未测 on_attached / force_update_skeleton / Avatar3D 挂载的交互。",
+      "resolution": {
+        "status": "RESOLVED —— 两版探针已一致",
+        "how": "T3 复刻了我的读法（严格 add_child 之前 set + 同帧读 + 矩阵比较）后得到与我逐位相同的结果，并定位了机制：**未 priming 的 `get_bone_global_pose()` 缓存会返回一个『貌似合理但并非生效姿态』的矩阵，而且入树之后不会被刷新（会粘住）**。",
+        "verifier_replication_of_T3_V1_to_V4": {
+          "V1_no_tree_never_read_rest": {
+            "basis_maxdiff_vs_identity": 1.000373,
+            "euler_deg": [
+              -89.95154,
+              117.4139,
+              -88.17219
+            ],
+            "verdict": "假象"
+          },
+          "V2_after_entering_tree_plus3_frames": {
+            "basis_maxdiff_vs_V1": 0.0,
+            "bit_identical_to_V1": true,
+            "verdict": "假象粘住，未刷新"
+          },
+          "V3_no_tree_but_read_rest_first": {
+            "basis_maxdiff_vs_rest": 0.0,
+            "probe_dir_angle_deg": 0.0,
+            "takes_effect": false,
+            "after_entering_tree_4_frames_still_identical": true,
+            "verdict": "真相：入树前设 = 无效"
+          },
+          "V4_in_tree_read_rest_first_same_frame": {
+            "basis_maxdiff_vs_rest": 1.48828,
+            "probe_dir_angle_deg": 90.0114,
+            "takes_effect": true,
+            "verdict": "真相：入树后设 = 当帧生效"
+          }
+        },
+        "bit_exact_agreement_with_T3": {
+          "V1_md": 1.000373,
+          "V3_md": 0.0,
+          "V4_md": 1.48828,
+          "V4_dir_deg": 90.0114
+        },
+        "mechanism_verdict": "T3 的解释成立（V1==V2 且 V3 的差值恰为 0 且入树不追溯）",
+        "three_hard_rules": [
+          "pose 只在骨架入树之后设，设完再断言一次（RIG.on_attached() 是必需而非防御）",
+          "比较骨骼姿态不要用 Basis.get_euler()（该骨 rest Z=-90° 万向节锁，两个方向都会骗人）",
+          "不要在入树前读 get_bone_global_pose()（未 priming 会返回貌似合理但错的矩阵，且会粘住）"
+        ]
+      }
+    }
+  },
+  "probe_scripts": "task/007-morph-pipeline/verify/godot_probe/（run.sh 可复跑；probe.gd/probe2.gd/a1_noeuler.gd + 对应 .out）",
+  "independent_conflicts": [
+    {
+      "claim": "A1",
+      "status": "RESOLVED —— 双实现逐位一致（V1 1.000373 / V3 0.0 / V4 1.488280 / 90.0114°），机制定位为『未 priming 的缓存返回貌似合理但错的矩阵且会粘住』"
+    }
+  ]
+}

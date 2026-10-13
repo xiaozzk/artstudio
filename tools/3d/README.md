@@ -18,7 +18,62 @@
 | `run_check.py` | 上面那个的**驱动**：收集 → 调 Blender → 汇总 `check-report.json` + 每分片联系表（PIL 拼图） | `python3 tools/3d/run_check.py` |
 | `fix_blend_readme.py` | 只改 `.blend` 内文本块，并用「几何+骨骼 rest+贴图尺寸 sha256」自证**几何未变** | `Blender -b --factory-startup --python tools/3d/fix_blend_readme.py -- check`（或 `fix`） |
 | `dedupe_textures.py` | **贴图去重**：把各份 `.blend` 里各自 pack 的贴图收敛成共享 `assets/3d/textures/`（按内容 sha256 去重），`.blend` 只留网格/骨骼并用相对路径引用 —— **2147.6 MB → 43.9 MB（2.0%）**，几何指纹逐份一致 | `Blender -b --factory-startup --python tools/3d/dedupe_textures.py -- scan\|apply\|verify` |
-| `godot/` | Godot 4.6 侧 harness：运行时 `GLTFDocument` **零拷贝**换装、`.blend` 直读（self-contained 配置）、`SubViewport` 离屏渲染验收。口径见 [`godot/README.md`](godot/README.md) | `tmp/3d-godot` 工程内 `Godot --path . -s res://render_hair.gd` |
+| `godot/` | Godot 4.6 侧 harness：运行时 `GLTFDocument` **零拷贝**换装、`.blend` 直读（self-contained 配置）、`SubViewport` 离屏渲染验收。口径见 [`godot/README.md`](godot/README.md)（v2 的交互预览页在 [`godot/preview/`](godot/preview/README.md)，一条命令：`tools/3d/godot/preview/run.sh`） | 见 [`godot/README.md`](godot/README.md) |
+
+## v2 管线：体形 morph（2026-10 起）—— **先读这里**
+
+> **v2 与上面那套（`blend/` 里的 103 份）是并存关系**：旧资产是 v2 的**输入与回归基线**（`run_check.py` 103/103），**只读不改**。
+> v2 的产出全部在 **`assets/3d/rig/`**，契约是 **[`assets/3d/rig/SPEC.md`](../../assets/3d/rig/SPEC.md)**（**唯一权威**）。
+
+**做什么**：给角色做**可调的体形（瘦/标准/壮）+ 身高**，并让**服装跟着一起变** —— 用引擎原生 **morph（blend shape）**，运行时不需要任何变形代码。
+
+```
+体形差异 = morph（逐顶点偏移表，每档 = 顶点数 × 12 字节）
+身高差异 = 角色根节点 / 骨架对象的世界等比缩放（不是 morph、也不是 root 骨缩放）
+```
+
+**主路线 = B2：体形 morph 派生在「角色自身网格」上** —— 不做剥离、不做贴合、不做跨网格传递。
+原因：现有试穿角色的**最终形态里根本没有那具独立标准体**（它只捐一个头），所以"身体与服装体形基准不一致"这个问题**不存在**。
+复杂度结论（独立验收）：A **高** / B1 **中** / **B2 低** —— 见 [`task/007-morph-pipeline/verify/COMPLEXITY.md`](../../task/007-morph-pipeline/verify/COMPLEXITY.md)。
+
+| 脚本 | 作用 | 典型用法 |
+|------|------|----------|
+| `make_standard_body.py` | **规范化标准体**：骨架改名 + 体形骨子骨设 `inherit_scale='NONE'` + 建 morph 占位通道 | `Blender -b --factory-startup --python tools/3d/make_standard_body.py` |
+| `bodyshape/derive.py` | **体形派生**：按 spec 摆体形骨 → 烘 `BS_Thin`/`BS_Heavy` → 回写标准体 + manifest + 三档预览。**纯 python3，不需要 Blender** | `python3 tools/3d/bodyshape/derive.py --sex both` |
+| `bodyshape/verify_bodyshape.py` | **38 项断言**（含 **spec ↔ 已烘 morph 的几何闭环**，误差 0.000000 mm） | `python3 tools/3d/bodyshape/verify_bodyshape.py` |
+| `bodyshape/measure_girth.py` | **关键围度**（切片 → 2D 凸包周长 = 软尺量法，对破洞/面绕向免疫） | `python3 tools/3d/bodyshape/measure_girth.py --help` |
+| `bodyshape/silhouette_metric.py` | **剪影 XOR + 等效身高换算**（标尺曲线是凹的，必须分段插值） | `python3 tools/3d/bodyshape/silhouette_metric.py --help` |
+| `garment/derive_on_character.py` | ★ **B2 主实现**：在角色自己的 rig 上摆体形骨 → 逐件烘同名 shape key | `Blender -b --factory-startup --python tools/3d/garment/derive_on_character.py -- --only Female_Ranger` |
+| `garment/build_all.py` | 4 套一次跑完（~3 分钟，含偏斜守卫） | `python3 tools/3d/garment/build_all.py` |
+| `garment/verify_fit.py` | 验收 + 出清单（**13 项判据**，含 M4b 非平凡 / M4c 臂展双信号） | 见 [`garment/README.md`](garment/README.md) |
+| `garment/checks/` | **门禁对照件**：证明"判据会变红"（零 morph 假 PASS / 漏 along / 漏 NONE / 偏斜守卫） | 见 [`garment/checks/README.md`](garment/checks/README.md) |
+| `garment/` 的 B1 工具 | `strip_skin` / `refit` / `transfer_morph` / `autofit` —— **已被否决（A 路线）**，保留给 Tripo 阶段参考 | 同上 |
+| `godot/preview/` | **Godot 4 交互预览页面**：体形/身高双滑块 + 换装 + 换发型 + 逐件 morph 读数 + 实时穿模曲线（含双向标定） | `tools/3d/godot/preview/run.sh`（`--interactive` 开页面） |
+| `godot/preview/probes/` | **Godot 骨骼陷阱探针**（A1 入树时机 / A2 pose 空间 / A3 `get_aabb()` 是静止 AABB） | 见 [`godot/preview/probes/README.md`](godot/preview/probes/README.md) |
+
+### ⚠ v2 的七条硬约束（都是踩出来的，别重新论证）
+
+1. **`inherit_scale='NONE'` 有"生命周期"之分**：`rig/bodies/`（**烘焙期**工件）**必须 NONE**；`rig/garments/`（**交付期**运行时资产）**应还原 FULL**。**别拿"资产里是否 NONE"当判据。**
+2. **身高不能用 `root` 骨缩放** —— 与上一条冲突（实测身高只 +0.50%、拉伸离散度超标 8.4×）→ 用**角色根节点/骨架对象的世界等比缩放**（+8.00%、离散度 0.00003）。**对象级缩放与 `inherit_scale` 正交**，所以 `bodies/` 留 NONE 无妨。
+3. **shape key 不修改 `mesh.vertices`**，且**写完 shape key 数据后求值缓存会失效** → 必须重新 `depsgraph_get()` / `view_layer.update()` 再取值。
+4. **取骨一律 `find_bone("Head")` 按名字** —— 跨路线索引会变（`.blend` 路线 Head=54、glTF 路线 Head=6）。
+5. **造"必然在体外"的合成壳不能用顶点法线外推** —— 标准体相对质心**非星形**（仅 67.2% 面满足），凹处会把点推进邻肢。
+6. **像素法是穿模的权威判据，但必须带双向标定**（只渲身体 → 100.00%、只渲服装 → 0.00%，不过就报错）——实测**不带标定在"无身体"图上误报 37.3%**。且材质须 Emission 纯色 + `view_transform='Standard'`。
+7. **跑 Blender 一律加 `--python-exit-code 1`** —— `blender -b --python X.py` **在脚本抛异常时仍返回 exit 0**（门禁会静默说谎）。
+
+### 经验与验收纪律（**改 v2 之前请先读**）
+
+| 文档 | 内容 |
+|---|---|
+| [`assets/3d/rig/SPEC.md`](../../assets/3d/rig/SPEC.md) | **35 条实测事实**，每条标**证据等级**（含"已撤回""机制已定位"） |
+| [`assets/3d/rig/README.md`](../../assets/3d/rig/README.md) | pipeline 指南：目录 / 三路线 / 复现命令 / 验收判据 / 坑速查 |
+| [`task/007-morph-pipeline/lead/ACCEPTANCE.md`](../../task/007-morph-pipeline/lead/ACCEPTANCE.md) | **验收台账 + §七 方法论 10 条** |
+| [`task/007-morph-pipeline/verify/COMPLEXITY.md`](../../task/007-morph-pipeline/verify/COMPLEXITY.md) | 复杂度报告（独立验收，1377 行） |
+
+> **一条总纲**（本任务共 16 次自我纠正或相互证伪后的归纳）：
+> **凡是"看起来通过"的地方，都要问一句"它在什么条件下会变红"；
+> 凡是"两个独立实现不一致"的地方，都要停下来查机制。**
+> 尤其当心**静默的错** —— 不报错、不崩溃，只是安静地给你一个错的数。
 
 ## 口径与硬约束
 

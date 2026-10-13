@@ -1,0 +1,220 @@
+{
+  "generated_by": "verifier/v_t3_integration.py",
+  "question": "T3 预览腿上橙色斑块 —— 是 B2 资产的问题，还是 T3 多装了一具身体？",
+  "assemblies": {
+    "P1_b2_character_only": {
+      "parts": [
+        "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/garments/Female_Ranger.blend"
+      ],
+      "objects": [
+        "Female_Ranger_Acc_Pauldrons",
+        "Female_Ranger_Arms",
+        "Female_Ranger_Arms_Bracer",
+        "Female_Ranger_Body",
+        "Female_Ranger_Body_Belt_1",
+        "Female_Ranger_Body_Belt_2",
+        "Female_Ranger_Feet",
+        "Female_Ranger_Head_Hood",
+        "Female_Ranger_Legs",
+        "Head_Eyebrows",
+        "Head_Eyes",
+        "Head_Superhero_Female"
+      ],
+      "n_objects": 12,
+      "total_verts": 27920,
+      "tiers": {
+        "Basis": {
+          "n_sil": 102671,
+          "n_skin": 43241,
+          "skin_pct": 42.1161,
+          "png": "t3int_P1_b2_character_only_Basis.png"
+        },
+        "BS_Thin": {
+          "n_sil": 92839,
+          "n_skin": 39237,
+          "skin_pct": 42.2635,
+          "png": "t3int_P1_b2_character_only_BS_Thin.png"
+        },
+        "BS_Heavy": {
+          "n_sil": 114686,
+          "n_skin": 48142,
+          "skin_pct": 41.9772,
+          "png": "t3int_P1_b2_character_only_BS_Heavy.png"
+        }
+      },
+      "deltas": {
+        "Basis": 0.0,
+        "BS_Thin": 0.1474,
+        "BS_Heavy": -0.1389
+      }
+    },
+    "P2_standard_body_only": {
+      "parts": [
+        "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/bodies/Body_Female_Standard.blend"
+      ],
+      "objects": [
+        "Body_Female",
+        "Eyebrows",
+        "Eyes"
+      ],
+      "n_objects": 3,
+      "total_verts": 8844,
+      "tiers": {
+        "Basis": {
+          "n_sil": 86490,
+          "n_skin": 19074,
+          "skin_pct": 22.0534,
+          "png": "t3int_P2_standard_body_only_Basis.png"
+        },
+        "BS_Thin": {
+          "n_sil": 77859,
+          "n_skin": 16673,
+          "skin_pct": 21.4144,
+          "png": "t3int_P2_standard_body_only_BS_Thin.png"
+        },
+        "BS_Heavy": {
+          "n_sil": 96852,
+          "n_skin": 22956,
+          "skin_pct": 23.7021,
+          "png": "t3int_P2_standard_body_only_BS_Heavy.png"
+        }
+      },
+      "deltas": {
+        "Basis": 0.0,
+        "BS_Thin": -0.639,
+        "BS_Heavy": 1.6487
+      }
+    },
+    "P3_b2_plus_standard_body": {
+      "parts": [
+        "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/garments/Female_Ranger.blend",
+        "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/bodies/Body_Female_Standard.blend"
+      ],
+      "objects": [
+        "Body_Female",
+        "Eyebrows",
+        "Eyes",
+        "Female_Ranger_Acc_Pauldrons",
+        "Female_Ranger_Arms",
+        "Female_Ranger_Arms_Bracer",
+        "Female_Ranger_Body",
+        "Female_Ranger_Body_Belt_1",
+        "Female_Ranger_Body_Belt_2",
+        "Female_Ranger_Feet",
+        "Female_Ranger_Head_Hood",
+        "Female_Ranger_Legs",
+        "Head_Eyebrows",
+        "Head_Eyes",
+        "Head_Superhero_Female"
+      ],
+      "n_objects": 15,
+      "total_verts": 36764,
+      "tiers": {
+        "Basis": {
+          "n_sil": 104530,
+          "n_skin": 47068,
+          "skin_pct": 45.0282,
+          "png": "t3int_P3_b2_plus_standard_body_Basis.png"
+        },
+        "BS_Thin": {
+          "n_sil": 94515,
+          "n_skin": 42336,
+          "skin_pct": 44.7929,
+          "png": "t3int_P3_b2_plus_standard_body_BS_Thin.png"
+        },
+        "BS_Heavy": {
+          "n_sil": 116726,
+          "n_skin": 53303,
+          "skin_pct": 45.6651,
+          "png": "t3int_P3_b2_plus_standard_body_BS_Heavy.png"
+        }
+      },
+      "deltas": {
+        "Basis": 0.0,
+        "BS_Thin": -0.2353,
+        "BS_Heavy": 0.6369
+      }
+    },
+    "P4_b1_garment_plus_standard_body": {
+      "parts": [
+        "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/garments/B1_superhero_standard/Female_Ranger.blend",
+        "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/bodies/Body_Female_Standard.blend"
+      ],
+      "objects": [
+        "Body_Female",
+        "Eyebrows",
+        "Eyes",
+        "Female_Ranger_Acc_Pauldrons",
+        "Female_Ranger_Arms",
+        "Female_Ranger_Arms_Bracer",
+        "Female_Ranger_Body",
+        "Female_Ranger_Body_Belt_1",
+        "Female_Ranger_Body_Belt_2",
+        "Female_Ranger_Feet",
+        "Female_Ranger_Head_Hood",
+        "Female_Ranger_Legs"
+      ],
+      "n_objects": 12,
+      "total_verts": 32450,
+      "tiers": {
+        "Basis": {
+          "n_sil": 106223,
+          "n_skin": 5444,
+          "skin_pct": 5.1251,
+          "png": "t3int_P4_b1_garment_plus_standard_body_Basis.png"
+        },
+        "BS_Thin": {
+          "n_sil": 100739,
+          "n_skin": 4290,
+          "skin_pct": 4.2585,
+          "png": "t3int_P4_b1_garment_plus_standard_body_BS_Thin.png"
+        },
+        "BS_Heavy": {
+          "n_sil": 112679,
+          "n_skin": 8397,
+          "skin_pct": 7.4521,
+          "png": "t3int_P4_b1_garment_plus_standard_body_BS_Heavy.png"
+        }
+      },
+      "deltas": {
+        "Basis": 0.0,
+        "BS_Thin": -0.8666,
+        "BS_Heavy": 2.327
+      }
+    }
+  },
+  "P1_vs_P3_pixel_diff": {
+    "Basis": {
+      "n_sil_P3": 104530,
+      "n_pixels_changed": 54475,
+      "changed_pct_of_P3_silhouette": 52.1142
+    },
+    "BS_Thin": {
+      "n_sil_P3": 94515,
+      "n_pixels_changed": 48969,
+      "changed_pct_of_P3_silhouette": 51.8108
+    },
+    "BS_Heavy": {
+      "n_sil_P3": 116726,
+      "n_pixels_changed": 61389,
+      "changed_pct_of_P3_silhouette": 52.5924
+    }
+  },
+  "thigh_band_P1_vs_P3": {
+    "Basis": {
+      "n_sil_in_band_P3": 35033,
+      "n_changed": 21041,
+      "changed_pct_in_band": 60.0605
+    },
+    "BS_Thin": {
+      "n_sil_in_band_P3": 30194,
+      "n_changed": 18326,
+      "changed_pct_in_band": 60.6942
+    },
+    "BS_Heavy": {
+      "n_sil_in_band_P3": 41091,
+      "n_changed": 24522,
+      "changed_pct_in_band": 59.6773
+    }
+  }
+}

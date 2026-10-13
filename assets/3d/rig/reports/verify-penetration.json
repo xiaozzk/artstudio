@@ -1,0 +1,2105 @@
+{
+  "generated_by": "verifier/v_penetration.py",
+  "blender": "5.2.2 LTS",
+  "method": {
+    "ray": "7 方向（3 轴 + 4 对角）射线奇偶，>=4 判内；起点 p+1e-6·d",
+    "normal": "BVHTree.find_nearest 的有符号距离，符号由顶点质心自动标定",
+    "ambiguous": "两法不一致 或 |signed|<1e-4 m → 不计入任何一侧"
+  },
+  "cases": [
+    {
+      "sex": "Female",
+      "outfit": "Outfit_Female_Ranger",
+      "outfit_path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/blend/outfits-gltf-per-asset/outfits/Outfit_Female_Ranger.blend",
+      "body_path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/bodies/Body_Female_Standard.blend",
+      "phases": {
+        "open_outfit_s": 0.022,
+        "strip_skin_s": 0.004,
+        "eval_state1_s": 0.045,
+        "load_body_and_bvh_s": 0.049,
+        "noise_floor_s": 0.674,
+        "eval_state2_s": 0.005,
+        "bone_space_refit_s": 0.138,
+        "measure_3_states_s": 5.721,
+        "per_piece_s": 0.0,
+        "total_s": 6.659
+      },
+      "states": {
+        "1_baseline_own_rig": {
+          "n_points": 23606,
+          "penetration_ray_pct": 10.340591375074133,
+          "penetration_normal_pct": 10.056765229179023,
+          "ambiguous_pct": 0.6184868253833772,
+          "two_method_agreement": 0.9971617385410488,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.038124204278574325,
+            "centroid_dist": 0.042035218328237534,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 10.340591375074133,
+              "seconds": 0.382
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 10.340591375074133,
+              "seconds": 0.349
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 10.340591375074133,
+              "seconds": 0.757
+            }
+          },
+          "measure_seconds": 1.912,
+          "penetration_band_pct": [
+            10.0568,
+            10.3406
+          ],
+          "penetration_consensus_pct": 10.056765229179023,
+          "penetration_either_pct": 10.340591375074133
+        },
+        "2_reattached_standard_rig_no_refit": {
+          "n_points": 23606,
+          "penetration_ray_pct": 10.340591375074133,
+          "penetration_normal_pct": 10.056765229179023,
+          "ambiguous_pct": 0.6184868253833772,
+          "two_method_agreement": 0.9971617385410488,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.038124204278574325,
+            "centroid_dist": 0.042035218328237534,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 10.340591375074133,
+              "seconds": 0.38
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 10.340591375074133,
+              "seconds": 0.346
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 10.340591375074133,
+              "seconds": 0.757
+            }
+          },
+          "measure_seconds": 1.916,
+          "penetration_band_pct": [
+            10.0568,
+            10.3406
+          ],
+          "penetration_consensus_pct": 10.056765229179023,
+          "penetration_either_pct": 10.340591375074133
+        },
+        "3_bone_space_refit": {
+          "n_points": 23606,
+          "penetration_ray_pct": 10.340591375074133,
+          "penetration_normal_pct": 10.056765229179023,
+          "ambiguous_pct": 0.6184868253833772,
+          "two_method_agreement": 0.9971617385410488,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.038124204278574325,
+            "centroid_dist": 0.042035218328237534,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 10.340591375074133,
+              "seconds": 0.372
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 10.340591375074133,
+              "seconds": 0.352
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 10.340591375074133,
+              "seconds": 0.739
+            }
+          },
+          "measure_seconds": 1.893,
+          "penetration_band_pct": [
+            10.0568,
+            10.3406
+          ],
+          "penetration_consensus_pct": 10.056765229179023,
+          "penetration_either_pct": 10.340591375074133
+        }
+      },
+      "per_piece": {
+        "Female_Ranger_Acc_Pauldrons": {
+          "n_verts": 1092,
+          "penetration_ray_pct_state1": 0.18315018315018314,
+          "penetration_ray_pct_state3": 0.18315018315018314,
+          "penetration_normal_pct_state1": 0.18315018315018314,
+          "penetration_normal_pct_state3": 0.18315018315018314,
+          "ambiguous_pct_state3": 0.0,
+          "max_refit_disp_cm": 1.2644054553268208e-05,
+          "z_range_m": [
+            1.3989821672439575,
+            1.5228018760681152
+          ]
+        },
+        "Female_Ranger_Arms": {
+          "n_verts": 1774,
+          "penetration_ray_pct_state1": 60.31567080045096,
+          "penetration_ray_pct_state3": 60.31567080045096,
+          "penetration_normal_pct_state1": 58.680947012401354,
+          "penetration_normal_pct_state3": 58.680947012401354,
+          "ambiguous_pct_state3": 4.791431792559188,
+          "max_refit_disp_cm": 2.7942781474598426e-05,
+          "z_range_m": [
+            1.3462013006210327,
+            1.4815278053283691
+          ]
+        },
+        "Female_Ranger_Arms_Bracer": {
+          "n_verts": 4000,
+          "penetration_ray_pct_state1": 4.5,
+          "penetration_ray_pct_state3": 4.5,
+          "penetration_normal_pct_state1": 4.2,
+          "penetration_normal_pct_state3": 4.2,
+          "ambiguous_pct_state3": 0.5499999999999999,
+          "max_refit_disp_cm": 2.5288109106536417e-05,
+          "z_range_m": [
+            1.354115605354309,
+            1.4738924503326416
+          ]
+        },
+        "Female_Ranger_Body": {
+          "n_verts": 2785,
+          "penetration_ray_pct_state1": 8.258527827648116,
+          "penetration_ray_pct_state3": 8.258527827648116,
+          "penetration_normal_pct_state1": 8.114901256732496,
+          "penetration_normal_pct_state3": 8.114901256732496,
+          "ambiguous_pct_state3": 0.21543985637342908,
+          "max_refit_disp_cm": 2.425751175757136e-05,
+          "z_range_m": [
+            0.9188351631164551,
+            1.541261076927185
+          ]
+        },
+        "Female_Ranger_Body_Belt_1": {
+          "n_verts": 928,
+          "penetration_ray_pct_state1": 8.189655172413794,
+          "penetration_ray_pct_state3": 8.189655172413794,
+          "penetration_normal_pct_state1": 7.974137931034483,
+          "penetration_normal_pct_state3": 7.974137931034483,
+          "ambiguous_pct_state3": 0.21551724137931033,
+          "max_refit_disp_cm": 1.4901161193847656e-06,
+          "z_range_m": [
+            1.1571890115737915,
+            1.2027897834777832
+          ]
+        },
+        "Female_Ranger_Body_Belt_2": {
+          "n_verts": 928,
+          "penetration_ray_pct_state1": 3.8793103448275863,
+          "penetration_ray_pct_state3": 3.8793103448275863,
+          "penetration_normal_pct_state1": 3.4482758620689653,
+          "penetration_normal_pct_state3": 3.4482758620689653,
+          "ambiguous_pct_state3": 0.646551724137931,
+          "max_refit_disp_cm": 1.4901161193847656e-06,
+          "z_range_m": [
+            1.104406476020813,
+            1.1635560989379883
+          ]
+        },
+        "Female_Ranger_Feet": {
+          "n_verts": 10174,
+          "penetration_ray_pct_state1": 5.995675250638883,
+          "penetration_ray_pct_state3": 5.995675250638883,
+          "penetration_normal_pct_state1": 5.877727540790249,
+          "penetration_normal_pct_state3": 5.877727540790249,
+          "ambiguous_pct_state3": 0.19657951641438962,
+          "max_refit_disp_cm": 7.037502538209961e-05,
+          "z_range_m": [
+            -0.003967314958572388,
+            0.556414783000946
+          ]
+        },
+        "Female_Ranger_Head_Hood": {
+          "n_verts": 1240,
+          "penetration_ray_pct_state1": 3.870967741935484,
+          "penetration_ray_pct_state3": 3.870967741935484,
+          "penetration_normal_pct_state1": 3.870967741935484,
+          "penetration_normal_pct_state3": 3.870967741935484,
+          "ambiguous_pct_state3": 0.0,
+          "max_refit_disp_cm": 2.497901250614326e-05,
+          "z_range_m": [
+            1.4736731052398682,
+            1.7940788269042969
+          ]
+        },
+        "Female_Ranger_Legs": {
+          "n_verts": 685,
+          "penetration_ray_pct_state1": 27.59124087591241,
+          "penetration_ray_pct_state3": 27.59124087591241,
+          "penetration_normal_pct_state1": 27.00729927007299,
+          "penetration_normal_pct_state3": 27.00729927007299,
+          "ambiguous_pct_state3": 0.7299270072992701,
+          "max_refit_disp_cm": 4.6295632073003004e-05,
+          "z_range_m": [
+            0.4113798439502716,
+            1.061721682548523
+          ]
+        }
+      },
+      "strip": {
+        "Female_Ranger_Acc_Pauldrons": {
+          "stripped": false,
+          "faces_before": 1376,
+          "faces_after": 1376,
+          "faces_removed": 0,
+          "verts_before": 1092,
+          "verts_after": 1092
+        },
+        "Female_Ranger_Arms": {
+          "stripped": true,
+          "faces_before": 4872,
+          "faces_after": 3000,
+          "faces_removed": 1872,
+          "face_removal_frac": 0.3842364532019704,
+          "verts_before": 2976,
+          "verts_after": 1774,
+          "kill_materials": [
+            "MI_Regular_Female"
+          ]
+        },
+        "Female_Ranger_Arms_Bracer": {
+          "stripped": false,
+          "faces_before": 3636,
+          "faces_after": 3636,
+          "faces_removed": 0,
+          "verts_before": 4000,
+          "verts_after": 4000
+        },
+        "Female_Ranger_Body": {
+          "stripped": false,
+          "faces_before": 2962,
+          "faces_after": 2962,
+          "faces_removed": 0,
+          "verts_before": 2785,
+          "verts_after": 2785
+        },
+        "Female_Ranger_Body_Belt_1": {
+          "stripped": false,
+          "faces_before": 804,
+          "faces_after": 804,
+          "faces_removed": 0,
+          "verts_before": 928,
+          "verts_after": 928
+        },
+        "Female_Ranger_Body_Belt_2": {
+          "stripped": false,
+          "faces_before": 804,
+          "faces_after": 804,
+          "faces_removed": 0,
+          "verts_before": 928,
+          "verts_after": 928
+        },
+        "Female_Ranger_Feet": {
+          "stripped": false,
+          "faces_before": 9172,
+          "faces_after": 9172,
+          "faces_removed": 0,
+          "verts_before": 10174,
+          "verts_after": 10174
+        },
+        "Female_Ranger_Head_Hood": {
+          "stripped": false,
+          "faces_before": 2136,
+          "faces_after": 2136,
+          "faces_removed": 0,
+          "verts_before": 1240,
+          "verts_after": 1240
+        },
+        "Female_Ranger_Legs": {
+          "stripped": false,
+          "faces_before": 1204,
+          "faces_after": 1204,
+          "faces_removed": 0,
+          "verts_before": 685,
+          "verts_after": 685
+        }
+      },
+      "check_3_1_equals_2": {
+        "max_vertex_delta_cm_state1_vs_state2": 6.854534149169922e-05,
+        "bit_identical": false,
+        "rig_matrix_world_max_elem_delta": 0.0,
+        "pose_matrix_basis_max_elem_delta": 0.0,
+        "mesh_float32_eps_cm": 9.999999999999999e-06,
+        "verdict": "①与②在**几何/拓扑/权重意义上必须同值**：静止态下把 Armature 修改器从自带 rig 改挂标准体 rig 不改变顶点。实测亚微米差 6.85e-05 cm 来自 to_mesh() 的 float32 往返，不是位移（rig matrix/pose 差见上两行）。所以『不贴合 vs 基线』的区别只在**动画时**才体现 —— 静止测不出差别，容易被误读为『改挂骨架没用』。"
+      },
+      "rig_A": {
+        "name": "RIG_Female_Ranger",
+        "n_bones": 65,
+        "n_armatures_in_file": 1
+      },
+      "meshes_in_file": [
+        {
+          "name": "Female_Ranger_Acc_Pauldrons",
+          "verts": 1092,
+          "faces": 1376,
+          "materials": [
+            "MI_Ranger"
+          ]
+        },
+        {
+          "name": "Female_Ranger_Arms",
+          "verts": 2976,
+          "faces": 4872,
+          "materials": [
+            "MI_Ranger",
+            "MI_Regular_Female"
+          ]
+        },
+        {
+          "name": "Female_Ranger_Arms_Bracer",
+          "verts": 4000,
+          "faces": 3636,
+          "materials": [
+            "MI_Ranger"
+          ]
+        },
+        {
+          "name": "Female_Ranger_Body",
+          "verts": 2785,
+          "faces": 2962,
+          "materials": [
+            "MI_Ranger"
+          ]
+        },
+        {
+          "name": "Female_Ranger_Body_Belt_1",
+          "verts": 928,
+          "faces": 804,
+          "materials": [
+            "MI_Ranger"
+          ]
+        },
+        {
+          "name": "Female_Ranger_Body_Belt_2",
+          "verts": 928,
+          "faces": 804,
+          "materials": [
+            "MI_Ranger"
+          ]
+        },
+        {
+          "name": "Female_Ranger_Feet",
+          "verts": 10174,
+          "faces": 9172,
+          "materials": [
+            "MI_Ranger"
+          ]
+        },
+        {
+          "name": "Female_Ranger_Head_Hood",
+          "verts": 1240,
+          "faces": 2136,
+          "materials": [
+            "MI_Ranger"
+          ]
+        },
+        {
+          "name": "Female_Ranger_Legs",
+          "verts": 685,
+          "faces": 1204,
+          "materials": [
+            "MI_Ranger"
+          ]
+        }
+      ],
+      "rig_B": {
+        "name": "RIG_Body_Female_Standard",
+        "n_bones": 65
+      },
+      "body_obj": "Body_Female",
+      "noise_floor": {
+        "farfield_body_shifted_z+5m": {
+          "n": 7376,
+          "ray_inside_frac": 0.0,
+          "norm_inside_frac": 0.0,
+          "ambiguous_frac": 0.0,
+          "agree": 1.0,
+          "bbox_overlap": false,
+          "expected_inside_frac": 0.0,
+          "note": "绝对噪声底：位移 5 m 的点不可能在体内，任何 >0 都是度量误差。bbox_overlap 必须为 False 才算有效实验。"
+        },
+        "farfield_body_shifted_x+5m": {
+          "n": 7376,
+          "ray_inside_frac": 0.0,
+          "norm_inside_frac": 0.0,
+          "ambiguous_frac": 0.0,
+          "agree": 1.0,
+          "bbox_overlap": false,
+          "expected_inside_frac": 0.0,
+          "note": "绝对噪声底：位移 5 m 的点不可能在体内，任何 >0 都是度量误差。bbox_overlap 必须为 False 才算有效实验。"
+        },
+        "lead_style_normal_shell_sweep": {
+          "n_torso_verts": 4132,
+          "sweeps": [
+            {
+              "offset_cm": 0.5,
+              "ray_inside_frac": 0.015972894482090997,
+              "norm_inside_frac": 0.01452081316553727,
+              "ambiguous_frac": 0.002420135527589545,
+              "agree": 0.9985479186834463,
+              "median_abs_signed_cm": 0.484794401563704
+            },
+            {
+              "offset_cm": 1.0,
+              "ray_inside_frac": 0.05033881897386254,
+              "norm_inside_frac": 0.047918683446272994,
+              "ambiguous_frac": 0.003388189738625363,
+              "agree": 0.9975798644724104,
+              "median_abs_signed_cm": 0.9688400933100638
+            },
+            {
+              "offset_cm": 1.5,
+              "ray_inside_frac": 0.04888673765730881,
+              "norm_inside_frac": 0.0484027105517909,
+              "ambiguous_frac": 0.000484027105517909,
+              "agree": 0.9995159728944821,
+              "median_abs_signed_cm": 1.4502734263487582
+            },
+            {
+              "offset_cm": 3.0,
+              "ray_inside_frac": 0.024685382381413358,
+              "norm_inside_frac": 0.024685382381413358,
+              "ambiguous_frac": 0.000968054211035818,
+              "agree": 1.0,
+              "median_abs_signed_cm": 2.8807796305045485
+            },
+            {
+              "offset_cm": 6.0,
+              "ray_inside_frac": 0.015004840271055178,
+              "norm_inside_frac": 0.015004840271055178,
+              "ambiguous_frac": 0.000484027105517909,
+              "agree": 1.0,
+              "median_abs_signed_cm": 5.693382956087589
+            },
+            {
+              "offset_cm": 10.0,
+              "ray_inside_frac": 0.013310745401742497,
+              "norm_inside_frac": 0.013310745401742497,
+              "ambiguous_frac": 0.0,
+              "agree": 1.0,
+              "median_abs_signed_cm": 9.291948633472202
+            }
+          ],
+          "note": "Lead 报 1.5 cm 壳误判 3.62%/4.52%。本扫描看的是：该数字随外推距离怎么变。若 δ 变大到 6-10 cm 后趋近 0，则 1.5 cm 时的数字主要是**壳构造伪影**（凹面处沿法线外推反而推进体内），不是度量本身的噪声底。"
+        }
+      },
+      "rest_matrix_compare": {
+        "n_bones": 65,
+        "n_bones_differing": 0,
+        "max_elem_delta": 0.0,
+        "worst": []
+      },
+      "refit_displacement_cm": {
+        "per_piece_max": {
+          "Female_Ranger_Acc_Pauldrons": 1.2644054553268208e-05,
+          "Female_Ranger_Arms": 2.7942781474598426e-05,
+          "Female_Ranger_Arms_Bracer": 2.5288109106536417e-05,
+          "Female_Ranger_Body": 2.425751175757136e-05,
+          "Female_Ranger_Body_Belt_1": 1.4901161193847656e-06,
+          "Female_Ranger_Body_Belt_2": 1.4901161193847656e-06,
+          "Female_Ranger_Feet": 7.037502538209961e-05,
+          "Female_Ranger_Head_Hood": 2.497901250614326e-05,
+          "Female_Ranger_Legs": 4.6295632073003004e-05
+        },
+        "overall_max_cm": 7.037502538209961e-05,
+        "stats": {
+          "Female_Ranger_Acc_Pauldrons": {
+            "max_cm": 1.817630256680635e-06,
+            "mean_cm": 1.8164064522909937e-06,
+            "p95_cm": 1.8174161133430791e-06,
+            "moved_frac": 0.0,
+            "moved_verts": 0,
+            "n_verts": 1092
+          },
+          "Female_Ranger_Arms": {
+            "max_cm": 2.654004642332965e-05,
+            "mean_cm": 7.98176833294779e-06,
+            "p95_cm": 1.4160097346080686e-05,
+            "moved_frac": 0.39346110484780156,
+            "moved_verts": 698,
+            "n_verts": 1774
+          },
+          "Female_Ranger_Arms_Bracer": {
+            "max_cm": 1.313846112038384e-05,
+            "mean_cm": 1.2197519261850263e-05,
+            "p95_cm": 1.3064685369928122e-05,
+            "moved_frac": 1.0,
+            "moved_verts": 4000,
+            "n_verts": 4000
+          },
+          "Female_Ranger_Body": {
+            "max_cm": 3.892403760514289e-06,
+            "mean_cm": 2.174391675355083e-06,
+            "p95_cm": 3.5512116056785247e-06,
+            "moved_frac": 0.0,
+            "moved_verts": 0,
+            "n_verts": 2785
+          },
+          "Female_Ranger_Body_Belt_1": {
+            "max_cm": 2.7064536238996776e-06,
+            "mean_cm": 2.705071222638298e-06,
+            "p95_cm": 2.7063179540033957e-06,
+            "moved_frac": 0.0,
+            "moved_verts": 0,
+            "n_verts": 928
+          },
+          "Female_Ranger_Body_Belt_2": {
+            "max_cm": 2.706079515052674e-06,
+            "mean_cm": 2.7047590590420986e-06,
+            "p95_cm": 2.7059482593487324e-06,
+            "moved_frac": 0.0,
+            "moved_verts": 0,
+            "n_verts": 928
+          },
+          "Female_Ranger_Feet": {
+            "max_cm": 3.5269116921243378e-06,
+            "mean_cm": 2.1051153283728458e-06,
+            "p95_cm": 3.030955850640481e-06,
+            "moved_frac": 0.0,
+            "moved_verts": 0,
+            "n_verts": 10174
+          },
+          "Female_Ranger_Head_Hood": {
+            "max_cm": 1.4024930284980067e-05,
+            "mean_cm": 8.95335966045805e-06,
+            "p95_cm": 1.3860197156912354e-05,
+            "moved_frac": 0.5556451612903226,
+            "moved_verts": 689,
+            "n_verts": 1240
+          },
+          "Female_Ranger_Legs": {
+            "max_cm": 3.468565054107229e-06,
+            "mean_cm": 2.0155723983114513e-06,
+            "p95_cm": 3.3360477933683127e-06,
+            "moved_frac": 0.0,
+            "moved_verts": 0,
+            "n_verts": 685
+          }
+        },
+        "transform_is_exact_identity": true,
+        "noop_within_float32_eps": true,
+        "note": "refit 位移的**下界**受 mesh 顶点 float32 存储限制：即使变换严格是恒等，写入-读回也会产生 ~1e-5 cm 量级的往返噪声。判定 no-op 的阈值取 1e-4 cm。"
+      }
+    },
+    {
+      "sex": "Male",
+      "outfit": "Outfit_Male_Ranger",
+      "outfit_path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/blend/outfits-gltf-per-asset/outfits/Outfit_Male_Ranger.blend",
+      "body_path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/bodies/Body_Male_Standard.blend",
+      "phases": {
+        "open_outfit_s": 0.024,
+        "strip_skin_s": 0.003,
+        "eval_state1_s": 0.052,
+        "load_body_and_bvh_s": 0.048,
+        "noise_floor_s": 0.61,
+        "eval_state2_s": 0.005,
+        "bone_space_refit_s": 0.13,
+        "measure_3_states_s": 6.0,
+        "per_piece_s": 0.0,
+        "total_s": 6.873
+      },
+      "states": {
+        "1_baseline_own_rig": {
+          "n_points": 23667,
+          "penetration_ray_pct": 29.572822917987068,
+          "penetration_normal_pct": 29.424937676934128,
+          "ambiguous_pct": 0.2915451895043732,
+          "two_method_agreement": 0.9985211475894705,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.03857360198162496,
+            "centroid_dist": 0.04320671781897545,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 29.572822917987068,
+              "seconds": 0.398
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 29.577048210588586,
+              "seconds": 0.376
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 29.577048210588586,
+              "seconds": 0.788
+            }
+          },
+          "measure_seconds": 2.008,
+          "penetration_band_pct": [
+            29.4249,
+            29.577
+          ],
+          "penetration_consensus_pct": 29.424937676934128,
+          "penetration_either_pct": 29.572822917987068
+        },
+        "2_reattached_standard_rig_no_refit": {
+          "n_points": 23667,
+          "penetration_ray_pct": 29.572822917987068,
+          "penetration_normal_pct": 29.424937676934128,
+          "ambiguous_pct": 0.2915451895043732,
+          "two_method_agreement": 0.9985211475894705,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.03857360198162496,
+            "centroid_dist": 0.04320671781897545,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 29.572822917987068,
+              "seconds": 0.398
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 29.577048210588586,
+              "seconds": 0.37
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 29.577048210588586,
+              "seconds": 0.786
+            }
+          },
+          "measure_seconds": 2.0,
+          "penetration_band_pct": [
+            29.4249,
+            29.577
+          ],
+          "penetration_consensus_pct": 29.424937676934128,
+          "penetration_either_pct": 29.572822917987068
+        },
+        "3_bone_space_refit": {
+          "n_points": 23667,
+          "penetration_ray_pct": 19.491274770777878,
+          "penetration_normal_pct": 19.229306629484093,
+          "ambiguous_pct": 0.5112604047830313,
+          "two_method_agreement": 0.9973803185870621,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.03857360198162496,
+            "centroid_dist": 0.04320671781897545,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 19.491274770777878,
+              "seconds": 0.396
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 19.491274770777878,
+              "seconds": 0.366
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 19.491274770777878,
+              "seconds": 0.778
+            }
+          },
+          "measure_seconds": 1.991,
+          "penetration_band_pct": [
+            19.2293,
+            19.4913
+          ],
+          "penetration_consensus_pct": 19.229306629484093,
+          "penetration_either_pct": 19.491274770777878
+        }
+      },
+      "per_piece": {
+        "Male_Ranger_Acc_Pauldron": {
+          "n_verts": 1092,
+          "penetration_ray_pct_state1": 5.0366300366300365,
+          "penetration_ray_pct_state3": 4.212454212454213,
+          "penetration_normal_pct_state1": 5.0366300366300365,
+          "penetration_normal_pct_state3": 4.212454212454213,
+          "ambiguous_pct_state3": 0.09157509157509157,
+          "max_refit_disp_cm": 2.0111620431852852,
+          "z_range_m": [
+            1.4373434782028198,
+            1.574507236480713
+          ]
+        },
+        "Male_Ranger_Arms": {
+          "n_verts": 1836,
+          "penetration_ray_pct_state1": 63.61655773420479,
+          "penetration_ray_pct_state3": 53.15904139433552,
+          "penetration_normal_pct_state1": 63.0718954248366,
+          "penetration_normal_pct_state3": 52.8322440087146,
+          "ambiguous_pct_state3": 1.1982570806100217,
+          "max_refit_disp_cm": 3.6513729582702332,
+          "z_range_m": [
+            1.3801190853118896,
+            1.5304901599884033
+          ]
+        },
+        "Male_Ranger_Arms_Bracer": {
+          "n_verts": 4000,
+          "penetration_ray_pct_state1": 22.15,
+          "penetration_ray_pct_state3": 14.549999999999999,
+          "penetration_normal_pct_state1": 21.85,
+          "penetration_normal_pct_state3": 14.2,
+          "ambiguous_pct_state3": 0.44999999999999996,
+          "max_refit_disp_cm": 2.298301757186099,
+          "z_range_m": [
+            1.382509708404541,
+            1.5158065557479858
+          ]
+        },
+        "Male_Ranger_Body": {
+          "n_verts": 2825,
+          "penetration_ray_pct_state1": 50.40707964601769,
+          "penetration_ray_pct_state3": 48.07079646017699,
+          "penetration_normal_pct_state1": 50.26548672566372,
+          "penetration_normal_pct_state3": 47.85840707964602,
+          "ambiguous_pct_state3": 0.7787610619469026,
+          "max_refit_disp_cm": 2.291020750999481,
+          "z_range_m": [
+            0.9085434675216675,
+            1.599743127822876
+          ]
+        },
+        "Male_Ranger_Body_Belt_1": {
+          "n_verts": 928,
+          "penetration_ray_pct_state1": 24.461206896551722,
+          "penetration_ray_pct_state3": 24.461206896551722,
+          "penetration_normal_pct_state1": 23.814655172413794,
+          "penetration_normal_pct_state3": 23.814655172413794,
+          "ambiguous_pct_state3": 0.8620689655172413,
+          "max_refit_disp_cm": 0.027433782826050523,
+          "z_range_m": [
+            1.183634877204895,
+            1.2357826232910156
+          ]
+        },
+        "Male_Ranger_Body_Belt_2": {
+          "n_verts": 928,
+          "penetration_ray_pct_state1": 6.68103448275862,
+          "penetration_ray_pct_state3": 6.68103448275862,
+          "penetration_normal_pct_state1": 6.68103448275862,
+          "penetration_normal_pct_state3": 6.68103448275862,
+          "ambiguous_pct_state3": 0.43103448275862066,
+          "max_refit_disp_cm": 0.027433782826050523,
+          "z_range_m": [
+            1.1253091096878052,
+            1.1791837215423584
+          ]
+        },
+        "Male_Ranger_Feet_Boots": {
+          "n_verts": 10174,
+          "penetration_ray_pct_state1": 27.698053862787496,
+          "penetration_ray_pct_state3": 10.438372321604088,
+          "penetration_normal_pct_state1": 27.698053862787496,
+          "penetration_normal_pct_state3": 10.143503046982506,
+          "ambiguous_pct_state3": 0.45213288775309607,
+          "max_refit_disp_cm": 2.3705232889448125,
+          "z_range_m": [
+            -0.003967586904764175,
+            0.5564146041870117
+          ]
+        },
+        "Male_Ranger_Head_Hood": {
+          "n_verts": 1240,
+          "penetration_ray_pct_state1": 7.741935483870968,
+          "penetration_ray_pct_state3": 7.419354838709677,
+          "penetration_normal_pct_state1": 7.741935483870968,
+          "penetration_normal_pct_state3": 7.419354838709677,
+          "ambiguous_pct_state3": 0.0,
+          "max_refit_disp_cm": 0.548410367513458,
+          "z_range_m": [
+            1.5253198146820068,
+            1.8650400638580322
+          ]
+        },
+        "Male_Ranger_Legs": {
+          "n_verts": 644,
+          "penetration_ray_pct_state1": 40.838509316770185,
+          "penetration_ray_pct_state3": 32.298136645962735,
+          "penetration_normal_pct_state1": 40.37267080745342,
+          "penetration_normal_pct_state3": 32.298136645962735,
+          "ambiguous_pct_state3": 0.0,
+          "max_refit_disp_cm": 2.370516210863764,
+          "z_range_m": [
+            0.4226156771183014,
+            1.0514363050460815
+          ]
+        }
+      },
+      "strip": {
+        "Male_Ranger_Acc_Pauldron": {
+          "stripped": false,
+          "faces_before": 1376,
+          "faces_after": 1376,
+          "faces_removed": 0,
+          "verts_before": 1092,
+          "verts_after": 1092
+        },
+        "Male_Ranger_Arms": {
+          "stripped": true,
+          "faces_before": 4928,
+          "faces_after": 3048,
+          "faces_removed": 1880,
+          "face_removal_frac": 0.3814935064935065,
+          "verts_before": 3042,
+          "verts_after": 1836,
+          "kill_materials": [
+            "MI_Regular_Male"
+          ]
+        },
+        "Male_Ranger_Arms_Bracer": {
+          "stripped": false,
+          "faces_before": 3636,
+          "faces_after": 3636,
+          "faces_removed": 0,
+          "verts_before": 4000,
+          "verts_after": 4000
+        },
+        "Male_Ranger_Body": {
+          "stripped": false,
+          "faces_before": 2998,
+          "faces_after": 2998,
+          "faces_removed": 0,
+          "verts_before": 2825,
+          "verts_after": 2825
+        },
+        "Male_Ranger_Body_Belt_1": {
+          "stripped": false,
+          "faces_before": 804,
+          "faces_after": 804,
+          "faces_removed": 0,
+          "verts_before": 928,
+          "verts_after": 928
+        },
+        "Male_Ranger_Body_Belt_2": {
+          "stripped": false,
+          "faces_before": 804,
+          "faces_after": 804,
+          "faces_removed": 0,
+          "verts_before": 928,
+          "verts_after": 928
+        },
+        "Male_Ranger_Feet_Boots": {
+          "stripped": false,
+          "faces_before": 9172,
+          "faces_after": 9172,
+          "faces_removed": 0,
+          "verts_before": 10174,
+          "verts_after": 10174
+        },
+        "Male_Ranger_Head_Hood": {
+          "stripped": false,
+          "faces_before": 2136,
+          "faces_after": 2136,
+          "faces_removed": 0,
+          "verts_before": 1240,
+          "verts_after": 1240
+        },
+        "Male_Ranger_Legs": {
+          "stripped": false,
+          "faces_before": 1128,
+          "faces_after": 1128,
+          "faces_removed": 0,
+          "verts_before": 644,
+          "verts_after": 644
+        }
+      },
+      "check_3_1_equals_2": {
+        "max_vertex_delta_cm_state1_vs_state2": 0.00011920928955078125,
+        "bit_identical": false,
+        "rig_matrix_world_max_elem_delta": 0.0,
+        "pose_matrix_basis_max_elem_delta": 5.364418029785156e-07,
+        "mesh_float32_eps_cm": 9.999999999999999e-06,
+        "verdict": "①与②在**几何/拓扑/权重意义上必须同值**：静止态下把 Armature 修改器从自带 rig 改挂标准体 rig 不改变顶点。实测亚微米差 1.19e-04 cm 来自 to_mesh() 的 float32 往返，不是位移（rig matrix/pose 差见上两行）。所以『不贴合 vs 基线』的区别只在**动画时**才体现 —— 静止测不出差别，容易被误读为『改挂骨架没用』。"
+      },
+      "rig_A": {
+        "name": "RIG_Male_Ranger",
+        "n_bones": 65,
+        "n_armatures_in_file": 1
+      },
+      "meshes_in_file": [
+        {
+          "name": "Male_Ranger_Acc_Pauldron",
+          "verts": 1092,
+          "faces": 1376,
+          "materials": [
+            "MI_Ranger"
+          ]
+        },
+        {
+          "name": "Male_Ranger_Arms",
+          "verts": 3042,
+          "faces": 4928,
+          "materials": [
+            "MI_Ranger.001",
+            "MI_Regular_Male"
+          ]
+        },
+        {
+          "name": "Male_Ranger_Arms_Bracer",
+          "verts": 4000,
+          "faces": 3636,
+          "materials": [
+            "MI_Ranger.001"
+          ]
+        },
+        {
+          "name": "Male_Ranger_Body",
+          "verts": 2825,
+          "faces": 2998,
+          "materials": [
+            "MI_Ranger.001"
+          ]
+        },
+        {
+          "name": "Male_Ranger_Body_Belt_1",
+          "verts": 928,
+          "faces": 804,
+          "materials": [
+            "MI_Ranger"
+          ]
+        },
+        {
+          "name": "Male_Ranger_Body_Belt_2",
+          "verts": 928,
+          "faces": 804,
+          "materials": [
+            "MI_Ranger"
+          ]
+        },
+        {
+          "name": "Male_Ranger_Feet_Boots",
+          "verts": 10174,
+          "faces": 9172,
+          "materials": [
+            "MI_Ranger.001"
+          ]
+        },
+        {
+          "name": "Male_Ranger_Head_Hood",
+          "verts": 1240,
+          "faces": 2136,
+          "materials": [
+            "MI_Ranger.001"
+          ]
+        },
+        {
+          "name": "Male_Ranger_Legs",
+          "verts": 644,
+          "faces": 1128,
+          "materials": [
+            "MI_Ranger.001"
+          ]
+        }
+      ],
+      "rig_B": {
+        "name": "RIG_Body_Male_Standard",
+        "n_bones": 65
+      },
+      "body_obj": "Body_Male",
+      "noise_floor": {
+        "farfield_body_shifted_z+5m": {
+          "n": 7281,
+          "ray_inside_frac": 0.0,
+          "norm_inside_frac": 0.0,
+          "ambiguous_frac": 0.0,
+          "agree": 1.0,
+          "bbox_overlap": false,
+          "expected_inside_frac": 0.0,
+          "note": "绝对噪声底：位移 5 m 的点不可能在体内，任何 >0 都是度量误差。bbox_overlap 必须为 False 才算有效实验。"
+        },
+        "farfield_body_shifted_x+5m": {
+          "n": 7281,
+          "ray_inside_frac": 0.0,
+          "norm_inside_frac": 0.0,
+          "ambiguous_frac": 0.0,
+          "agree": 1.0,
+          "bbox_overlap": false,
+          "expected_inside_frac": 0.0,
+          "note": "绝对噪声底：位移 5 m 的点不可能在体内，任何 >0 都是度量误差。bbox_overlap 必须为 False 才算有效实验。"
+        },
+        "lead_style_normal_shell_sweep": {
+          "n_torso_verts": 3894,
+          "sweeps": [
+            {
+              "offset_cm": 0.5,
+              "ray_inside_frac": 0.028762198253723677,
+              "norm_inside_frac": 0.026194144838212634,
+              "ambiguous_frac": 0.0025680534155110425,
+              "agree": 0.997431946584489,
+              "median_abs_signed_cm": 0.4816433387645702
+            },
+            {
+              "offset_cm": 1.0,
+              "ray_inside_frac": 0.05290190035952748,
+              "norm_inside_frac": 0.05187467899332306,
+              "ambiguous_frac": 0.001027221366204417,
+              "agree": 0.9989727786337956,
+              "median_abs_signed_cm": 0.9594499817467295
+            },
+            {
+              "offset_cm": 1.5,
+              "ray_inside_frac": 0.05238828967642527,
+              "norm_inside_frac": 0.05059065228556754,
+              "ambiguous_frac": 0.0023112480739599386,
+              "agree": 0.9982023626091423,
+              "median_abs_signed_cm": 1.4358659274876118
+            },
+            {
+              "offset_cm": 3.0,
+              "ray_inside_frac": 0.016435541859270673,
+              "norm_inside_frac": 0.015921931176168466,
+              "ambiguous_frac": 0.001027221366204417,
+              "agree": 0.9994863893168978,
+              "median_abs_signed_cm": 2.8513543511508033
+            },
+            {
+              "offset_cm": 6.0,
+              "ray_inside_frac": 0.019517205957883924,
+              "norm_inside_frac": 0.019517205957883924,
+              "ambiguous_frac": 0.0005136106831022085,
+              "agree": 1.0,
+              "median_abs_signed_cm": 5.625060301827034
+            },
+            {
+              "offset_cm": 10.0,
+              "ray_inside_frac": 0.019517205957883924,
+              "norm_inside_frac": 0.019517205957883924,
+              "ambiguous_frac": 0.0,
+              "agree": 1.0,
+              "median_abs_signed_cm": 9.178431681357324
+            }
+          ],
+          "note": "Lead 报 1.5 cm 壳误判 3.62%/4.52%。本扫描看的是：该数字随外推距离怎么变。若 δ 变大到 6-10 cm 后趋近 0，则 1.5 cm 时的数字主要是**壳构造伪影**（凹面处沿法线外推反而推进体内），不是度量本身的噪声底。"
+        }
+      },
+      "rest_matrix_compare": {
+        "n_bones": 65,
+        "n_bones_differing": 64,
+        "max_elem_delta": 0.2097962349653244,
+        "worst": [
+          {
+            "bone": "thumb_01_r",
+            "max_elem_delta": 0.2097962349653244
+          },
+          {
+            "bone": "thumb_01_l",
+            "max_elem_delta": 0.20979619026184082
+          },
+          {
+            "bone": "thumb_03_r",
+            "max_elem_delta": 0.2091316133737564
+          },
+          {
+            "bone": "thumb_03_l",
+            "max_elem_delta": 0.20913119614124298
+          },
+          {
+            "bone": "thumb_02_l",
+            "max_elem_delta": 0.20882391929626465
+          },
+          {
+            "bone": "thumb_02_r",
+            "max_elem_delta": 0.2088237702846527
+          },
+          {
+            "bone": "thumb_04_leaf_l",
+            "max_elem_delta": 0.11956286430358887
+          },
+          {
+            "bone": "thumb_04_leaf_r",
+            "max_elem_delta": 0.11956220865249634
+          }
+        ]
+      },
+      "refit_displacement_cm": {
+        "per_piece_max": {
+          "Male_Ranger_Acc_Pauldron": 2.0111620431852852,
+          "Male_Ranger_Arms": 3.6513729582702332,
+          "Male_Ranger_Arms_Bracer": 2.298301757186099,
+          "Male_Ranger_Body": 2.291020750999481,
+          "Male_Ranger_Body_Belt_1": 0.027433782826050523,
+          "Male_Ranger_Body_Belt_2": 0.027433782826050523,
+          "Male_Ranger_Feet_Boots": 2.3705232889448125,
+          "Male_Ranger_Head_Hood": 0.548410367513458,
+          "Male_Ranger_Legs": 2.370516210863764
+        },
+        "overall_max_cm": 3.6513729582702332,
+        "stats": {
+          "Male_Ranger_Acc_Pauldron": {
+            "max_cm": 2.0111680777250025,
+            "mean_cm": 2.011159402758569,
+            "p95_cm": 2.011166376213465,
+            "moved_frac": 1.0,
+            "moved_verts": 1092,
+            "n_verts": 1092
+          },
+          "Male_Ranger_Arms": {
+            "max_cm": 3.651405692526133,
+            "mean_cm": 2.354647776523248,
+            "p95_cm": 3.4175929937843046,
+            "moved_frac": 1.0,
+            "moved_verts": 1836,
+            "n_verts": 1836
+          },
+          "Male_Ranger_Arms_Bracer": {
+            "max_cm": 2.2983120962594827,
+            "mean_cm": 2.034315376494244,
+            "p95_cm": 2.257250515036543,
+            "moved_frac": 1.0,
+            "moved_verts": 4000,
+            "n_verts": 4000
+          },
+          "Male_Ranger_Body": {
+            "max_cm": 2.2910225209164548,
+            "mean_cm": 0.2878344597012023,
+            "p95_cm": 1.2446155386322195,
+            "moved_frac": 0.9231858407079646,
+            "moved_verts": 2608,
+            "n_verts": 2825
+          },
+          "Male_Ranger_Body_Belt_1": {
+            "max_cm": 0.02743353503779794,
+            "mean_cm": 0.0017800363056512984,
+            "p95_cm": 0.008710219494007262,
+            "moved_frac": 0.2920258620689655,
+            "moved_verts": 271,
+            "n_verts": 928
+          },
+          "Male_Ranger_Body_Belt_2": {
+            "max_cm": 0.027433570356890192,
+            "mean_cm": 0.0018179739025689565,
+            "p95_cm": 0.008999031718785995,
+            "moved_frac": 0.2920258620689655,
+            "moved_verts": 271,
+            "n_verts": 928
+          },
+          "Male_Ranger_Feet_Boots": {
+            "max_cm": 2.370523399446578,
+            "mean_cm": 2.370506531294282,
+            "p95_cm": 2.3705146386773888,
+            "moved_frac": 1.0,
+            "moved_verts": 10174,
+            "n_verts": 10174
+          },
+          "Male_Ranger_Head_Hood": {
+            "max_cm": 0.5484110702956088,
+            "mean_cm": 0.08367536420555108,
+            "p95_cm": 0.3957329161374036,
+            "moved_frac": 0.7096774193548387,
+            "moved_verts": 880,
+            "n_verts": 1240
+          },
+          "Male_Ranger_Legs": {
+            "max_cm": 2.370514334100013,
+            "mean_cm": 2.0171100392762042,
+            "p95_cm": 2.370514089373886,
+            "moved_frac": 0.9472049689440993,
+            "moved_verts": 610,
+            "n_verts": 644
+          }
+        },
+        "transform_is_exact_identity": false,
+        "noop_within_float32_eps": false,
+        "note": "refit 位移的**下界**受 mesh 顶点 float32 存储限制：即使变换严格是恒等，写入-读回也会产生 ~1e-5 cm 量级的往返噪声。判定 no-op 的阈值取 1e-4 cm。"
+      }
+    },
+    {
+      "sex": "Female",
+      "outfit": "Outfit_Female_Peasant",
+      "outfit_path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/blend/outfits-gltf-per-asset/outfits/Outfit_Female_Peasant.blend",
+      "body_path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/bodies/Body_Female_Standard.blend",
+      "phases": {
+        "open_outfit_s": 0.016,
+        "strip_skin_s": 0.0,
+        "eval_state1_s": 0.018,
+        "load_body_and_bvh_s": 0.047,
+        "noise_floor_s": 0.622,
+        "eval_state2_s": 0.003,
+        "bone_space_refit_s": 0.057,
+        "measure_3_states_s": 2.939,
+        "per_piece_s": 0.0,
+        "total_s": 3.703
+      },
+      "states": {
+        "1_baseline_own_rig": {
+          "n_points": 10184,
+          "penetration_ray_pct": 29.968578161822467,
+          "penetration_normal_pct": 28.73134328358209,
+          "ambiguous_pct": 2.7592301649646505,
+          "two_method_agreement": 0.9876276512175962,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.038124204278574325,
+            "centroid_dist": 0.042035218328237534,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 29.968578161822467,
+              "seconds": 0.199
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 29.968578161822467,
+              "seconds": 0.189
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 29.968578161822467,
+              "seconds": 0.382
+            }
+          },
+          "measure_seconds": 0.984,
+          "penetration_band_pct": [
+            28.7313,
+            29.9686
+          ],
+          "penetration_consensus_pct": 28.73134328358209,
+          "penetration_either_pct": 29.968578161822467
+        },
+        "2_reattached_standard_rig_no_refit": {
+          "n_points": 10184,
+          "penetration_ray_pct": 29.968578161822467,
+          "penetration_normal_pct": 28.73134328358209,
+          "ambiguous_pct": 2.7690494893951296,
+          "two_method_agreement": 0.9876276512175962,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.038124204278574325,
+            "centroid_dist": 0.042035218328237534,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 29.968578161822467,
+              "seconds": 0.198
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 29.968578161822467,
+              "seconds": 0.186
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 29.968578161822467,
+              "seconds": 0.38
+            }
+          },
+          "measure_seconds": 0.98,
+          "penetration_band_pct": [
+            28.7313,
+            29.9686
+          ],
+          "penetration_consensus_pct": 28.73134328358209,
+          "penetration_either_pct": 29.968578161822467
+        },
+        "3_bone_space_refit": {
+          "n_points": 10184,
+          "penetration_ray_pct": 29.968578161822467,
+          "penetration_normal_pct": 28.73134328358209,
+          "ambiguous_pct": 2.7592301649646505,
+          "two_method_agreement": 0.9876276512175962,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.038124204278574325,
+            "centroid_dist": 0.042035218328237534,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 29.968578161822467,
+              "seconds": 0.192
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 29.968578161822467,
+              "seconds": 0.187
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 29.968578161822467,
+              "seconds": 0.381
+            }
+          },
+          "measure_seconds": 0.975,
+          "penetration_band_pct": [
+            28.7313,
+            29.9686
+          ],
+          "penetration_consensus_pct": 28.73134328358209,
+          "penetration_either_pct": 29.968578161822467
+        }
+      },
+      "per_piece": {
+        "Female_Peasant_Arms": {
+          "n_verts": 5436,
+          "penetration_ray_pct_state1": 29.47019867549669,
+          "penetration_ray_pct_state3": 29.47019867549669,
+          "penetration_normal_pct_state1": 27.66740250183959,
+          "penetration_normal_pct_state3": 27.66740250183959,
+          "ambiguous_pct_state3": 4.359823399558499,
+          "max_refit_disp_cm": 4.3445574225009896e-05,
+          "z_range_m": [
+            1.3521956205368042,
+            1.4746149778366089
+          ]
+        },
+        "Female_Peasant_Body": {
+          "n_verts": 1730,
+          "penetration_ray_pct_state1": 27.167630057803464,
+          "penetration_ray_pct_state3": 27.167630057803464,
+          "penetration_normal_pct_state1": 26.589595375722542,
+          "penetration_normal_pct_state3": 26.589595375722542,
+          "ambiguous_pct_state3": 1.0404624277456647,
+          "max_refit_disp_cm": 2.413401653877723e-05,
+          "z_range_m": [
+            0.9879092574119568,
+            1.518432855606079
+          ]
+        },
+        "Female_Peasant_Feet": {
+          "n_verts": 1892,
+          "penetration_ray_pct_state1": 13.847780126849896,
+          "penetration_ray_pct_state3": 13.847780126849896,
+          "penetration_normal_pct_state1": 13.424947145877377,
+          "penetration_normal_pct_state3": 13.424947145877377,
+          "ambiguous_pct_state3": 0.5285412262156448,
+          "max_refit_disp_cm": 7.037502538209961e-05,
+          "z_range_m": [
+            -0.006743669044226408,
+            0.45869648456573486
+          ]
+        },
+        "Female_Peasant_Legs": {
+          "n_verts": 1126,
+          "penetration_ray_pct_state1": 63.765541740674955,
+          "penetration_ray_pct_state3": 63.765541740674955,
+          "penetration_normal_pct_state1": 62.87744227353463,
+          "penetration_normal_pct_state3": 62.87744227353463,
+          "ambiguous_pct_state3": 1.4209591474245116,
+          "max_refit_disp_cm": 4.3322419405301304e-05,
+          "z_range_m": [
+            0.43562081456184387,
+            1.0906068086624146
+          ]
+        }
+      },
+      "strip": {
+        "Female_Peasant_Arms": {
+          "stripped": false,
+          "faces_before": 6848,
+          "faces_after": 6848,
+          "faces_removed": 0,
+          "verts_before": 5436,
+          "verts_after": 5436
+        },
+        "Female_Peasant_Body": {
+          "stripped": false,
+          "faces_before": 2188,
+          "faces_after": 2188,
+          "faces_removed": 0,
+          "verts_before": 1730,
+          "verts_after": 1730
+        },
+        "Female_Peasant_Feet": {
+          "stripped": false,
+          "faces_before": 2588,
+          "faces_after": 2588,
+          "faces_removed": 0,
+          "verts_before": 1892,
+          "verts_after": 1892
+        },
+        "Female_Peasant_Legs": {
+          "stripped": false,
+          "faces_before": 1944,
+          "faces_after": 1944,
+          "faces_removed": 0,
+          "verts_before": 1126,
+          "verts_after": 1126
+        }
+      },
+      "check_3_1_equals_2": {
+        "max_vertex_delta_cm_state1_vs_state2": 6.854534149169922e-05,
+        "bit_identical": false,
+        "rig_matrix_world_max_elem_delta": 0.0,
+        "pose_matrix_basis_max_elem_delta": 0.0,
+        "mesh_float32_eps_cm": 9.999999999999999e-06,
+        "verdict": "①与②在**几何/拓扑/权重意义上必须同值**：静止态下把 Armature 修改器从自带 rig 改挂标准体 rig 不改变顶点。实测亚微米差 6.85e-05 cm 来自 to_mesh() 的 float32 往返，不是位移（rig matrix/pose 差见上两行）。所以『不贴合 vs 基线』的区别只在**动画时**才体现 —— 静止测不出差别，容易被误读为『改挂骨架没用』。"
+      },
+      "rig_A": {
+        "name": "RIG_Female_Peasant",
+        "n_bones": 65,
+        "n_armatures_in_file": 1
+      },
+      "meshes_in_file": [
+        {
+          "name": "Female_Peasant_Arms",
+          "verts": 5436,
+          "faces": 6848,
+          "materials": [
+            "MI_Peasant"
+          ]
+        },
+        {
+          "name": "Female_Peasant_Body",
+          "verts": 1730,
+          "faces": 2188,
+          "materials": [
+            "MI_Peasant.001"
+          ]
+        },
+        {
+          "name": "Female_Peasant_Feet",
+          "verts": 1892,
+          "faces": 2588,
+          "materials": [
+            "MI_Peasant.001"
+          ]
+        },
+        {
+          "name": "Female_Peasant_Legs",
+          "verts": 1126,
+          "faces": 1944,
+          "materials": [
+            "MI_Peasant"
+          ]
+        }
+      ],
+      "rig_B": {
+        "name": "RIG_Body_Female_Standard",
+        "n_bones": 65
+      },
+      "body_obj": "Body_Female",
+      "noise_floor": {
+        "farfield_body_shifted_z+5m": {
+          "n": 7376,
+          "ray_inside_frac": 0.0,
+          "norm_inside_frac": 0.0,
+          "ambiguous_frac": 0.0,
+          "agree": 1.0,
+          "bbox_overlap": false,
+          "expected_inside_frac": 0.0,
+          "note": "绝对噪声底：位移 5 m 的点不可能在体内，任何 >0 都是度量误差。bbox_overlap 必须为 False 才算有效实验。"
+        },
+        "farfield_body_shifted_x+5m": {
+          "n": 7376,
+          "ray_inside_frac": 0.0,
+          "norm_inside_frac": 0.0,
+          "ambiguous_frac": 0.0,
+          "agree": 1.0,
+          "bbox_overlap": false,
+          "expected_inside_frac": 0.0,
+          "note": "绝对噪声底：位移 5 m 的点不可能在体内，任何 >0 都是度量误差。bbox_overlap 必须为 False 才算有效实验。"
+        },
+        "lead_style_normal_shell_sweep": {
+          "n_torso_verts": 4132,
+          "sweeps": [
+            {
+              "offset_cm": 0.5,
+              "ray_inside_frac": 0.015972894482090997,
+              "norm_inside_frac": 0.01452081316553727,
+              "ambiguous_frac": 0.002420135527589545,
+              "agree": 0.9985479186834463,
+              "median_abs_signed_cm": 0.484794401563704
+            },
+            {
+              "offset_cm": 1.0,
+              "ray_inside_frac": 0.05033881897386254,
+              "norm_inside_frac": 0.047918683446272994,
+              "ambiguous_frac": 0.003388189738625363,
+              "agree": 0.9975798644724104,
+              "median_abs_signed_cm": 0.9688400933100638
+            },
+            {
+              "offset_cm": 1.5,
+              "ray_inside_frac": 0.04888673765730881,
+              "norm_inside_frac": 0.0484027105517909,
+              "ambiguous_frac": 0.000484027105517909,
+              "agree": 0.9995159728944821,
+              "median_abs_signed_cm": 1.4502734263487582
+            },
+            {
+              "offset_cm": 3.0,
+              "ray_inside_frac": 0.024685382381413358,
+              "norm_inside_frac": 0.024685382381413358,
+              "ambiguous_frac": 0.000968054211035818,
+              "agree": 1.0,
+              "median_abs_signed_cm": 2.8807796305045485
+            },
+            {
+              "offset_cm": 6.0,
+              "ray_inside_frac": 0.015004840271055178,
+              "norm_inside_frac": 0.015004840271055178,
+              "ambiguous_frac": 0.000484027105517909,
+              "agree": 1.0,
+              "median_abs_signed_cm": 5.693382956087589
+            },
+            {
+              "offset_cm": 10.0,
+              "ray_inside_frac": 0.013310745401742497,
+              "norm_inside_frac": 0.013310745401742497,
+              "ambiguous_frac": 0.0,
+              "agree": 1.0,
+              "median_abs_signed_cm": 9.291948633472202
+            }
+          ],
+          "note": "Lead 报 1.5 cm 壳误判 3.62%/4.52%。本扫描看的是：该数字随外推距离怎么变。若 δ 变大到 6-10 cm 后趋近 0，则 1.5 cm 时的数字主要是**壳构造伪影**（凹面处沿法线外推反而推进体内），不是度量本身的噪声底。"
+        }
+      },
+      "rest_matrix_compare": {
+        "n_bones": 65,
+        "n_bones_differing": 0,
+        "max_elem_delta": 0.0,
+        "worst": []
+      },
+      "refit_displacement_cm": {
+        "per_piece_max": {
+          "Female_Peasant_Arms": 4.3445574225009896e-05,
+          "Female_Peasant_Body": 2.413401653877723e-05,
+          "Female_Peasant_Feet": 7.037502538209961e-05,
+          "Female_Peasant_Legs": 4.3322419405301304e-05
+        },
+        "overall_max_cm": 7.037502538209961e-05,
+        "stats": {
+          "Female_Peasant_Arms": {
+            "max_cm": 2.6540057075300534e-05,
+            "mean_cm": 1.058760990985114e-05,
+            "p95_cm": 1.4467041741335566e-05,
+            "moved_frac": 0.7211184694628403,
+            "moved_verts": 3920,
+            "n_verts": 5436
+          },
+          "Female_Peasant_Body": {
+            "max_cm": 4.0122608685698495e-06,
+            "mean_cm": 2.2603470165102718e-06,
+            "p95_cm": 3.910750640066216e-06,
+            "moved_frac": 0.0,
+            "moved_verts": 0,
+            "n_verts": 1730
+          },
+          "Female_Peasant_Feet": {
+            "max_cm": 3.550077093324042e-06,
+            "mean_cm": 2.0877174386570726e-06,
+            "p95_cm": 3.480482837114664e-06,
+            "moved_frac": 0.0,
+            "moved_verts": 0,
+            "n_verts": 1892
+          },
+          "Female_Peasant_Legs": {
+            "max_cm": 3.6615941680914468e-06,
+            "mean_cm": 1.8938097387923707e-06,
+            "p95_cm": 3.47596700510228e-06,
+            "moved_frac": 0.0,
+            "moved_verts": 0,
+            "n_verts": 1126
+          }
+        },
+        "transform_is_exact_identity": true,
+        "noop_within_float32_eps": true,
+        "note": "refit 位移的**下界**受 mesh 顶点 float32 存储限制：即使变换严格是恒等，写入-读回也会产生 ~1e-5 cm 量级的往返噪声。判定 no-op 的阈值取 1e-4 cm。"
+      }
+    },
+    {
+      "sex": "Male",
+      "outfit": "Outfit_Male_Peasant",
+      "outfit_path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/blend/outfits-gltf-per-asset/outfits/Outfit_Male_Peasant.blend",
+      "body_path": "/Users/zhenkunzhu/Desktop/project/artstudio/assets/3d/rig/bodies/Body_Male_Standard.blend",
+      "phases": {
+        "open_outfit_s": 0.015,
+        "strip_skin_s": 0.003,
+        "eval_state1_s": 0.014,
+        "load_body_and_bvh_s": 0.052,
+        "noise_floor_s": 0.613,
+        "eval_state2_s": 0.002,
+        "bone_space_refit_s": 0.041,
+        "measure_3_states_s": 1.792,
+        "per_piece_s": 0.0,
+        "total_s": 2.532
+      },
+      "states": {
+        "1_baseline_own_rig": {
+          "n_points": 6358,
+          "penetration_ray_pct": 30.921673482227114,
+          "penetration_normal_pct": 30.654293803082734,
+          "ambiguous_pct": 0.3932054105064486,
+          "two_method_agreement": 0.9973262032085561,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.03857360198162496,
+            "centroid_dist": 0.04320671781897545,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 30.921673482227114,
+              "seconds": 0.119
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 30.93740169864737,
+              "seconds": 0.11
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 30.93740169864737,
+              "seconds": 0.236
+            }
+          },
+          "measure_seconds": 0.598,
+          "penetration_band_pct": [
+            30.6543,
+            30.9374
+          ],
+          "penetration_consensus_pct": 30.654293803082734,
+          "penetration_either_pct": 30.921673482227114
+        },
+        "2_reattached_standard_rig_no_refit": {
+          "n_points": 6358,
+          "penetration_ray_pct": 30.921673482227114,
+          "penetration_normal_pct": 30.717206668763765,
+          "ambiguous_pct": 0.31456432840515886,
+          "two_method_agreement": 0.9979553318653664,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.03857360198162496,
+            "centroid_dist": 0.04320671781897545,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 30.921673482227114,
+              "seconds": 0.119
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 30.921673482227114,
+              "seconds": 0.11
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 30.93740169864737,
+              "seconds": 0.234
+            }
+          },
+          "measure_seconds": 0.598,
+          "penetration_band_pct": [
+            30.7172,
+            30.9374
+          ],
+          "penetration_consensus_pct": 30.717206668763765,
+          "penetration_either_pct": 30.921673482227114
+        },
+        "3_bone_space_refit": {
+          "n_points": 6358,
+          "penetration_ray_pct": 27.618748033972945,
+          "penetration_normal_pct": 27.44573765335011,
+          "ambiguous_pct": 0.3932054105064486,
+          "two_method_agreement": 0.9982698961937716,
+          "calib": {
+            "calibrated": true,
+            "centroid_signed": -0.03857360198162496,
+            "centroid_dist": 0.04320671781897545,
+            "sign_inside": -1.0
+          },
+          "ray_direction_variants": {
+            "ray7_default": {
+              "n_dirs": 7,
+              "min_votes": 4,
+              "penetration_pct": 27.618748033972945,
+              "seconds": 0.119
+            },
+            "ray6_axis_lead_style": {
+              "n_dirs": 6,
+              "min_votes": 4,
+              "penetration_pct": 27.618748033972945,
+              "seconds": 0.11
+            },
+            "ray13_axis+diag": {
+              "n_dirs": 14,
+              "min_votes": 7,
+              "penetration_pct": 27.618748033972945,
+              "seconds": 0.234
+            }
+          },
+          "measure_seconds": 0.596,
+          "penetration_band_pct": [
+            27.4457,
+            27.6187
+          ],
+          "penetration_consensus_pct": 27.44573765335011,
+          "penetration_either_pct": 27.618748033972945
+        }
+      },
+      "per_piece": {
+        "Male_Peasant_Arms": {
+          "n_verts": 818,
+          "penetration_ray_pct_state1": 58.43520782396088,
+          "penetration_ray_pct_state3": 52.32273838630807,
+          "penetration_normal_pct_state1": 58.19070904645477,
+          "penetration_normal_pct_state3": 52.07823960880196,
+          "ambiguous_pct_state3": 0.24449877750611246,
+          "max_refit_disp_cm": 2.0135206738907203,
+          "z_range_m": [
+            1.3801192045211792,
+            1.5304901599884033
+          ]
+        },
+        "Male_Peasant_Body": {
+          "n_verts": 3006,
+          "penetration_ray_pct_state1": 28.043912175648707,
+          "penetration_ray_pct_state3": 26.214238190286093,
+          "penetration_normal_pct_state1": 27.877578176979373,
+          "penetration_normal_pct_state3": 26.047904191616766,
+          "ambiguous_pct_state3": 0.4324683965402528,
+          "max_refit_disp_cm": 2.064144611372089,
+          "z_range_m": [
+            0.9214093685150146,
+            1.5586544275283813
+          ]
+        },
+        "Male_Peasant_Feet": {
+          "n_verts": 1878,
+          "penetration_ray_pct_state1": 20.66027689030884,
+          "penetration_ray_pct_state3": 17.89137380191693,
+          "penetration_normal_pct_state1": 20.23429179978701,
+          "penetration_normal_pct_state3": 17.784877529286476,
+          "ambiguous_pct_state3": 0.10649627263045794,
+          "max_refit_disp_cm": 2.370525151598689,
+          "z_range_m": [
+            -0.003967586904764175,
+            0.4482633173465729
+          ]
+        },
+        "Male_Peasant_Legs": {
+          "n_verts": 656,
+          "penetration_ray_pct_state1": 39.176829268292686,
+          "penetration_ray_pct_state3": 31.097560975609756,
+          "penetration_normal_pct_state1": 38.8719512195122,
+          "penetration_normal_pct_state3": 30.79268292682927,
+          "ambiguous_pct_state3": 1.2195121951219512,
+          "max_refit_disp_cm": 2.370516210914346,
+          "z_range_m": [
+            0.4030441343784332,
+            1.0536991357803345
+          ]
+        }
+      },
+      "strip": {
+        "Male_Peasant_Arms": {
+          "stripped": true,
+          "faces_before": 5338,
+          "faces_after": 1408,
+          "faces_removed": 3930,
+          "face_removal_frac": 0.7362307980517048,
+          "verts_before": 3315,
+          "verts_after": 818,
+          "kill_materials": [
+            "MI_Regular_Male"
+          ]
+        },
+        "Male_Peasant_Body": {
+          "stripped": false,
+          "faces_before": 3856,
+          "faces_after": 3856,
+          "faces_removed": 0,
+          "verts_before": 3006,
+          "verts_after": 3006
+        },
+        "Male_Peasant_Feet": {
+          "stripped": false,
+          "faces_before": 2588,
+          "faces_after": 2588,
+          "faces_removed": 0,
+          "verts_before": 1878,
+          "verts_after": 1878
+        },
+        "Male_Peasant_Legs": {
+          "stripped": false,
+          "faces_before": 1112,
+          "faces_after": 1112,
+          "faces_removed": 0,
+          "verts_before": 656,
+          "verts_after": 656
+        }
+      },
+      "check_3_1_equals_2": {
+        "max_vertex_delta_cm_state1_vs_state2": 7.152557373046875e-05,
+        "bit_identical": false,
+        "rig_matrix_world_max_elem_delta": 0.0,
+        "pose_matrix_basis_max_elem_delta": 5.364418029785156e-07,
+        "mesh_float32_eps_cm": 9.999999999999999e-06,
+        "verdict": "①与②在**几何/拓扑/权重意义上必须同值**：静止态下把 Armature 修改器从自带 rig 改挂标准体 rig 不改变顶点。实测亚微米差 7.15e-05 cm 来自 to_mesh() 的 float32 往返，不是位移（rig matrix/pose 差见上两行）。所以『不贴合 vs 基线』的区别只在**动画时**才体现 —— 静止测不出差别，容易被误读为『改挂骨架没用』。"
+      },
+      "rig_A": {
+        "name": "RIG_Male_Peasant",
+        "n_bones": 65,
+        "n_armatures_in_file": 1
+      },
+      "meshes_in_file": [
+        {
+          "name": "Male_Peasant_Arms",
+          "verts": 3315,
+          "faces": 5338,
+          "materials": [
+            "MI_Peasant",
+            "MI_Regular_Male"
+          ]
+        },
+        {
+          "name": "Male_Peasant_Body",
+          "verts": 3006,
+          "faces": 3856,
+          "materials": [
+            "MI_Peasant"
+          ]
+        },
+        {
+          "name": "Male_Peasant_Feet",
+          "verts": 1878,
+          "faces": 2588,
+          "materials": [
+            "MI_Peasant"
+          ]
+        },
+        {
+          "name": "Male_Peasant_Legs",
+          "verts": 656,
+          "faces": 1112,
+          "materials": [
+            "MI_Peasant"
+          ]
+        }
+      ],
+      "rig_B": {
+        "name": "RIG_Body_Male_Standard",
+        "n_bones": 65
+      },
+      "body_obj": "Body_Male",
+      "noise_floor": {
+        "farfield_body_shifted_z+5m": {
+          "n": 7281,
+          "ray_inside_frac": 0.0,
+          "norm_inside_frac": 0.0,
+          "ambiguous_frac": 0.0,
+          "agree": 1.0,
+          "bbox_overlap": false,
+          "expected_inside_frac": 0.0,
+          "note": "绝对噪声底：位移 5 m 的点不可能在体内，任何 >0 都是度量误差。bbox_overlap 必须为 False 才算有效实验。"
+        },
+        "farfield_body_shifted_x+5m": {
+          "n": 7281,
+          "ray_inside_frac": 0.0,
+          "norm_inside_frac": 0.0,
+          "ambiguous_frac": 0.0,
+          "agree": 1.0,
+          "bbox_overlap": false,
+          "expected_inside_frac": 0.0,
+          "note": "绝对噪声底：位移 5 m 的点不可能在体内，任何 >0 都是度量误差。bbox_overlap 必须为 False 才算有效实验。"
+        },
+        "lead_style_normal_shell_sweep": {
+          "n_torso_verts": 3894,
+          "sweeps": [
+            {
+              "offset_cm": 0.5,
+              "ray_inside_frac": 0.028762198253723677,
+              "norm_inside_frac": 0.026194144838212634,
+              "ambiguous_frac": 0.0025680534155110425,
+              "agree": 0.997431946584489,
+              "median_abs_signed_cm": 0.4816433387645702
+            },
+            {
+              "offset_cm": 1.0,
+              "ray_inside_frac": 0.05290190035952748,
+              "norm_inside_frac": 0.05187467899332306,
+              "ambiguous_frac": 0.001027221366204417,
+              "agree": 0.9989727786337956,
+              "median_abs_signed_cm": 0.9594499817467295
+            },
+            {
+              "offset_cm": 1.5,
+              "ray_inside_frac": 0.05238828967642527,
+              "norm_inside_frac": 0.05059065228556754,
+              "ambiguous_frac": 0.0023112480739599386,
+              "agree": 0.9982023626091423,
+              "median_abs_signed_cm": 1.4358659274876118
+            },
+            {
+              "offset_cm": 3.0,
+              "ray_inside_frac": 0.016435541859270673,
+              "norm_inside_frac": 0.015921931176168466,
+              "ambiguous_frac": 0.001027221366204417,
+              "agree": 0.9994863893168978,
+              "median_abs_signed_cm": 2.8513543511508033
+            },
+            {
+              "offset_cm": 6.0,
+              "ray_inside_frac": 0.019517205957883924,
+              "norm_inside_frac": 0.019517205957883924,
+              "ambiguous_frac": 0.0005136106831022085,
+              "agree": 1.0,
+              "median_abs_signed_cm": 5.625060301827034
+            },
+            {
+              "offset_cm": 10.0,
+              "ray_inside_frac": 0.019517205957883924,
+              "norm_inside_frac": 0.019517205957883924,
+              "ambiguous_frac": 0.0,
+              "agree": 1.0,
+              "median_abs_signed_cm": 9.178431681357324
+            }
+          ],
+          "note": "Lead 报 1.5 cm 壳误判 3.62%/4.52%。本扫描看的是：该数字随外推距离怎么变。若 δ 变大到 6-10 cm 后趋近 0，则 1.5 cm 时的数字主要是**壳构造伪影**（凹面处沿法线外推反而推进体内），不是度量本身的噪声底。"
+        }
+      },
+      "rest_matrix_compare": {
+        "n_bones": 65,
+        "n_bones_differing": 64,
+        "max_elem_delta": 0.2097962349653244,
+        "worst": [
+          {
+            "bone": "thumb_01_r",
+            "max_elem_delta": 0.2097962349653244
+          },
+          {
+            "bone": "thumb_01_l",
+            "max_elem_delta": 0.20979619026184082
+          },
+          {
+            "bone": "thumb_03_r",
+            "max_elem_delta": 0.2091316133737564
+          },
+          {
+            "bone": "thumb_03_l",
+            "max_elem_delta": 0.20913119614124298
+          },
+          {
+            "bone": "thumb_02_l",
+            "max_elem_delta": 0.20882391929626465
+          },
+          {
+            "bone": "thumb_02_r",
+            "max_elem_delta": 0.2088237702846527
+          },
+          {
+            "bone": "thumb_04_leaf_l",
+            "max_elem_delta": 0.11956286430358887
+          },
+          {
+            "bone": "thumb_04_leaf_r",
+            "max_elem_delta": 0.11956220865249634
+          }
+        ]
+      },
+      "refit_displacement_cm": {
+        "per_piece_max": {
+          "Male_Peasant_Arms": 2.0135206738907203,
+          "Male_Peasant_Body": 2.064144611372089,
+          "Male_Peasant_Feet": 2.370525151598689,
+          "Male_Peasant_Legs": 2.370516210914346
+        },
+        "overall_max_cm": 2.370525151598689,
+        "stats": {
+          "Male_Peasant_Arms": {
+            "max_cm": 2.0135372151263193,
+            "mean_cm": 1.7960669695570672,
+            "p95_cm": 2.012903886241095,
+            "moved_frac": 1.0,
+            "moved_verts": 818,
+            "n_verts": 818
+          },
+          "Male_Peasant_Body": {
+            "max_cm": 2.064144220085724,
+            "mean_cm": 0.5644208960864137,
+            "p95_cm": 2.011164792770092,
+            "moved_frac": 0.8542914171656687,
+            "moved_verts": 2568,
+            "n_verts": 3006
+          },
+          "Male_Peasant_Feet": {
+            "max_cm": 2.3705251802632157,
+            "mean_cm": 2.3705064112828493,
+            "p95_cm": 2.370516003778152,
+            "moved_frac": 1.0,
+            "moved_verts": 1878,
+            "n_verts": 1878
+          },
+          "Male_Peasant_Legs": {
+            "max_cm": 2.3705142739947336,
+            "mean_cm": 2.0255330503452647,
+            "p95_cm": 2.370514030946344,
+            "moved_frac": 0.9573170731707317,
+            "moved_verts": 628,
+            "n_verts": 656
+          }
+        },
+        "transform_is_exact_identity": false,
+        "noop_within_float32_eps": false,
+        "note": "refit 位移的**下界**受 mesh 顶点 float32 存储限制：即使变换严格是恒等，写入-读回也会产生 ~1e-5 cm 量级的往返噪声。判定 no-op 的阈值取 1e-4 cm。"
+      }
+    }
+  ],
+  "total_seconds": 19.77
+}

@@ -1,0 +1,664 @@
+{
+  "generated_by": "verifier/v_pixel_forensics.py",
+  "question": "我的像素法 23.97% vs Lead 的 63.34% —— 差异出在哪？",
+  "judges": {
+    "V_verifier": "r>0.15 且 g<0.06 且 b<0.06",
+    "L_lead": "r>0.25 且 (r-max(g,b))>0.10"
+  },
+  "groups": {
+    "A_cloth_only_FALSE_POSITIVE_TEST": {
+      "Female_readback_noncolor": {
+        "path": "task/007-morph-pipeline/verify/renders/calib_clothonly_Female.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 101288,
+          "red_px": 0,
+          "red_frac_pct": 0.0
+        },
+        "judge_L_lead": {
+          "sil_px": 101288,
+          "red_px": 37772,
+          "red_frac_pct": 37.2917
+        },
+        "judge_L_only_pixels": {
+          "n": 37772,
+          "mean_rgb_noncol": [
+            0.8644,
+            0.661,
+            0.5232
+          ],
+          "p50_rgb_noncol": [
+            0.9255,
+            0.6902,
+            0.549
+          ],
+          "mean_rgb_linear": [
+            0.8644,
+            0.661,
+            0.5232
+          ]
+        }
+      },
+      "Female_readback_linear": {
+        "path": "task/007-morph-pipeline/verify/renders/calib_clothonly_Female.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "默认(sRGB→linear)",
+        "judge_V_verifier": {
+          "sil_px": 101288,
+          "red_px": 0,
+          "red_frac_pct": 0.0
+        },
+        "judge_L_lead": {
+          "sil_px": 101288,
+          "red_px": 37772,
+          "red_frac_pct": 37.2917
+        },
+        "judge_L_only_pixels": {
+          "n": 37772,
+          "mean_rgb_noncol": [
+            0.8644,
+            0.661,
+            0.5232
+          ],
+          "p50_rgb_noncol": [
+            0.9255,
+            0.6902,
+            0.549
+          ],
+          "mean_rgb_linear": [
+            0.8644,
+            0.661,
+            0.5232
+          ]
+        }
+      },
+      "Male_readback_noncolor": {
+        "path": "task/007-morph-pipeline/verify/renders/calib_clothonly_Male.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 88809,
+          "red_px": 0,
+          "red_frac_pct": 0.0
+        },
+        "judge_L_lead": {
+          "sil_px": 88809,
+          "red_px": 33165,
+          "red_frac_pct": 37.3442
+        },
+        "judge_L_only_pixels": {
+          "n": 33165,
+          "mean_rgb_noncol": [
+            0.8598,
+            0.659,
+            0.5224
+          ],
+          "p50_rgb_noncol": [
+            0.9255,
+            0.6941,
+            0.5529
+          ],
+          "mean_rgb_linear": [
+            0.8598,
+            0.659,
+            0.5224
+          ]
+        }
+      },
+      "Male_readback_linear": {
+        "path": "task/007-morph-pipeline/verify/renders/calib_clothonly_Male.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "默认(sRGB→linear)",
+        "judge_V_verifier": {
+          "sil_px": 88809,
+          "red_px": 0,
+          "red_frac_pct": 0.0
+        },
+        "judge_L_lead": {
+          "sil_px": 88809,
+          "red_px": 33165,
+          "red_frac_pct": 37.3442
+        },
+        "judge_L_only_pixels": {
+          "n": 33165,
+          "mean_rgb_noncol": [
+            0.8598,
+            0.659,
+            0.5224
+          ],
+          "p50_rgb_noncol": [
+            0.9255,
+            0.6941,
+            0.5529
+          ],
+          "mean_rgb_linear": [
+            0.8598,
+            0.659,
+            0.5224
+          ]
+        }
+      }
+    },
+    "B_my_render": {
+      "Female_1_baseline": {
+        "path": "task/007-morph-pipeline/verify/renders/px_Female_1_baseline_ortho.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 104501,
+          "red_px": 25053,
+          "red_frac_pct": 23.9739
+        },
+        "judge_L_lead": {
+          "sil_px": 104501,
+          "red_px": 63857,
+          "red_frac_pct": 61.1066
+        },
+        "judge_L_only_pixels": {
+          "n": 38809,
+          "mean_rgb_noncol": [
+            0.8658,
+            0.6377,
+            0.5036
+          ],
+          "p50_rgb_noncol": [
+            0.9294,
+            0.6784,
+            0.5373
+          ],
+          "mean_rgb_linear": [
+            0.8658,
+            0.6377,
+            0.5036
+          ]
+        }
+      },
+      "Female_2_reattach": {
+        "path": "task/007-morph-pipeline/verify/renders/px_Female_2_reattach_ortho.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 104501,
+          "red_px": 25055,
+          "red_frac_pct": 23.9758
+        },
+        "judge_L_lead": {
+          "sil_px": 104501,
+          "red_px": 63859,
+          "red_frac_pct": 61.1085
+        },
+        "judge_L_only_pixels": {
+          "n": 38809,
+          "mean_rgb_noncol": [
+            0.8658,
+            0.6378,
+            0.5036
+          ],
+          "p50_rgb_noncol": [
+            0.9294,
+            0.6784,
+            0.5373
+          ],
+          "mean_rgb_linear": [
+            0.8658,
+            0.6378,
+            0.5036
+          ]
+        }
+      },
+      "Female_3_refit": {
+        "path": "task/007-morph-pipeline/verify/renders/px_Female_3_refit_ortho.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 104501,
+          "red_px": 25055,
+          "red_frac_pct": 23.9758
+        },
+        "judge_L_lead": {
+          "sil_px": 104501,
+          "red_px": 63859,
+          "red_frac_pct": 61.1085
+        },
+        "judge_L_only_pixels": {
+          "n": 38809,
+          "mean_rgb_noncol": [
+            0.8658,
+            0.6378,
+            0.5036
+          ],
+          "p50_rgb_noncol": [
+            0.9294,
+            0.6784,
+            0.5373
+          ],
+          "mean_rgb_linear": [
+            0.8658,
+            0.6378,
+            0.5036
+          ]
+        }
+      },
+      "Female_4_autofit": {
+        "path": "task/007-morph-pipeline/verify/renders/px_Female_4_autofit_ortho.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 107434,
+          "red_px": 6196,
+          "red_frac_pct": 5.7673
+        },
+        "judge_L_lead": {
+          "sil_px": 107434,
+          "red_px": 45042,
+          "red_frac_pct": 41.9253
+        },
+        "judge_L_only_pixels": {
+          "n": 38846,
+          "mean_rgb_noncol": [
+            0.8614,
+            0.6478,
+            0.5118
+          ],
+          "p50_rgb_noncol": [
+            0.9255,
+            0.6824,
+            0.5412
+          ],
+          "mean_rgb_linear": [
+            0.8614,
+            0.6478,
+            0.5118
+          ]
+        }
+      },
+      "Male_1_baseline": {
+        "path": "task/007-morph-pipeline/verify/renders/px_Male_1_baseline_ortho.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 97240,
+          "red_px": 40854,
+          "red_frac_pct": 42.0136
+        },
+        "judge_L_lead": {
+          "sil_px": 97240,
+          "red_px": 70832,
+          "red_frac_pct": 72.8425
+        },
+        "judge_L_only_pixels": {
+          "n": 29984,
+          "mean_rgb_noncol": [
+            0.8714,
+            0.617,
+            0.4838
+          ],
+          "p50_rgb_noncol": [
+            0.9529,
+            0.6706,
+            0.5294
+          ],
+          "mean_rgb_linear": [
+            0.8714,
+            0.617,
+            0.4838
+          ]
+        }
+      },
+      "Male_2_reattach": {
+        "path": "task/007-morph-pipeline/verify/renders/px_Male_2_reattach_ortho.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 97240,
+          "red_px": 40854,
+          "red_frac_pct": 42.0136
+        },
+        "judge_L_lead": {
+          "sil_px": 97240,
+          "red_px": 70835,
+          "red_frac_pct": 72.8455
+        },
+        "judge_L_only_pixels": {
+          "n": 29987,
+          "mean_rgb_noncol": [
+            0.8714,
+            0.617,
+            0.4838
+          ],
+          "p50_rgb_noncol": [
+            0.9529,
+            0.6706,
+            0.5294
+          ],
+          "mean_rgb_linear": [
+            0.8714,
+            0.617,
+            0.4838
+          ]
+        }
+      },
+      "Male_3_refit": {
+        "path": "task/007-morph-pipeline/verify/renders/px_Male_3_refit_ortho.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 96079,
+          "red_px": 37794,
+          "red_frac_pct": 39.3364
+        },
+        "judge_L_lead": {
+          "sil_px": 96079,
+          "red_px": 69134,
+          "red_frac_pct": 71.9554
+        },
+        "judge_L_only_pixels": {
+          "n": 31352,
+          "mean_rgb_noncol": [
+            0.8716,
+            0.622,
+            0.4884
+          ],
+          "p50_rgb_noncol": [
+            0.949,
+            0.6745,
+            0.5333
+          ],
+          "mean_rgb_linear": [
+            0.8716,
+            0.622,
+            0.4884
+          ]
+        }
+      },
+      "Male_4_autofit": {
+        "path": "task/007-morph-pipeline/verify/renders/px_Male_4_autofit_ortho.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 98326,
+          "red_px": 6201,
+          "red_frac_pct": 6.3066
+        },
+        "judge_L_lead": {
+          "sil_px": 98326,
+          "red_px": 41397,
+          "red_frac_pct": 42.1018
+        },
+        "judge_L_only_pixels": {
+          "n": 35206,
+          "mean_rgb_noncol": [
+            0.8495,
+            0.635,
+            0.502
+          ],
+          "p50_rgb_noncol": [
+            0.9098,
+            0.6745,
+            0.5412
+          ],
+          "mean_rgb_linear": [
+            0.8495,
+            0.635,
+            0.502
+          ]
+        }
+      }
+    },
+    "C_lead_render": {
+      "Female_1_baseline": {
+        "path": "task/007-morph-pipeline/lead/px_Female_1_baseline.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 80440,
+          "red_px": 0,
+          "red_frac_pct": 0.0
+        },
+        "judge_L_lead": {
+          "sil_px": 80440,
+          "red_px": 50948,
+          "red_frac_pct": 63.3366
+        },
+        "judge_L_only_pixels": {
+          "n": 50948,
+          "mean_rgb_noncol": [
+            0.8993,
+            0.5712,
+            0.493
+          ],
+          "p50_rgb_noncol": [
+            1.0,
+            0.5765,
+            0.5059
+          ],
+          "mean_rgb_linear": [
+            0.8993,
+            0.5712,
+            0.493
+          ]
+        }
+      },
+      "Female_2_refit": {
+        "path": "task/007-morph-pipeline/lead/px_Female_2_refit.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 80440,
+          "red_px": 0,
+          "red_frac_pct": 0.0
+        },
+        "judge_L_lead": {
+          "sil_px": 80440,
+          "red_px": 50948,
+          "red_frac_pct": 63.3366
+        },
+        "judge_L_only_pixels": {
+          "n": 50948,
+          "mean_rgb_noncol": [
+            0.8993,
+            0.5712,
+            0.493
+          ],
+          "p50_rgb_noncol": [
+            1.0,
+            0.5765,
+            0.5059
+          ],
+          "mean_rgb_linear": [
+            0.8993,
+            0.5712,
+            0.493
+          ]
+        }
+      },
+      "Female_3_autofit": {
+        "path": "task/007-morph-pipeline/lead/px_Female_3_autofit.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 82467,
+          "red_px": 0,
+          "red_frac_pct": 0.0
+        },
+        "judge_L_lead": {
+          "sil_px": 82467,
+          "red_px": 36200,
+          "red_frac_pct": 43.8963
+        },
+        "judge_L_only_pixels": {
+          "n": 36200,
+          "mean_rgb_noncol": [
+            0.8566,
+            0.6024,
+            0.4892
+          ],
+          "p50_rgb_noncol": [
+            0.9176,
+            0.6275,
+            0.5059
+          ],
+          "mean_rgb_linear": [
+            0.8566,
+            0.6024,
+            0.4892
+          ]
+        }
+      },
+      "Male_1_baseline": {
+        "path": "task/007-morph-pipeline/lead/px_Male_1_baseline.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 92524,
+          "red_px": 0,
+          "red_frac_pct": 0.0
+        },
+        "judge_L_lead": {
+          "sil_px": 92524,
+          "red_px": 68665,
+          "red_frac_pct": 74.2132
+        },
+        "judge_L_only_pixels": {
+          "n": 68665,
+          "mean_rgb_noncol": [
+            0.9265,
+            0.5415,
+            0.4874
+          ],
+          "p50_rgb_noncol": [
+            1.0,
+            0.549,
+            0.5059
+          ],
+          "mean_rgb_linear": [
+            0.9265,
+            0.5415,
+            0.4874
+          ]
+        }
+      },
+      "Male_2_refit": {
+        "path": "task/007-morph-pipeline/lead/px_Male_2_refit.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 91536,
+          "red_px": 0,
+          "red_frac_pct": 0.0
+        },
+        "judge_L_lead": {
+          "sil_px": 91536,
+          "red_px": 67466,
+          "red_frac_pct": 73.7043
+        },
+        "judge_L_only_pixels": {
+          "n": 67466,
+          "mean_rgb_noncol": [
+            0.9222,
+            0.5444,
+            0.487
+          ],
+          "p50_rgb_noncol": [
+            1.0,
+            0.549,
+            0.5059
+          ],
+          "mean_rgb_linear": [
+            0.9222,
+            0.5444,
+            0.487
+          ]
+        }
+      },
+      "Male_3_autofit": {
+        "path": "task/007-morph-pipeline/lead/px_Male_3_autofit.png",
+        "resolution": [
+          760,
+          1180
+        ],
+        "readback": "Non-Color(原始sRGB)",
+        "judge_V_verifier": {
+          "sil_px": 93512,
+          "red_px": 0,
+          "red_frac_pct": 0.0
+        },
+        "judge_L_lead": {
+          "sil_px": 93512,
+          "red_px": 40932,
+          "red_frac_pct": 43.7719
+        },
+        "judge_L_only_pixels": {
+          "n": 40932,
+          "mean_rgb_noncol": [
+            0.8465,
+            0.5887,
+            0.4797
+          ],
+          "p50_rgb_noncol": [
+            0.9059,
+            0.6157,
+            0.502
+          ],
+          "mean_rgb_linear": [
+            0.8465,
+            0.5887,
+            0.4797
+          ]
+        }
+      }
+    }
+  }
+}

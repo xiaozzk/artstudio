@@ -1,0 +1,58 @@
+[
+ {
+  "file": "Female_Peasant",
+  "arms": 1,
+  "meshes": 8,
+  "verts": 16376,
+  "morph_kb": 383.8,
+  "h_thin": 1.00019,
+  "h_heavy": 0.99975,
+  "no_keys": [],
+  "bad_order": [],
+  "bad_topo": [],
+  "dangling": [],
+  "pass": true
+ },
+ {
+  "file": "Female_Ranger",
+  "arms": 1,
+  "meshes": 12,
+  "verts": 27920,
+  "morph_kb": 654.4,
+  "h_thin": 0.99891,
+  "h_heavy": 1.00143,
+  "no_keys": [],
+  "bad_order": [],
+  "bad_topo": [],
+  "dangling": [],
+  "pass": true
+ },
+ {
+  "file": "Male_Peasant",
+  "arms": 1,
+  "meshes": 8,
+  "verts": 12376,
+  "morph_kb": 290.1,
+  "h_thin": 0.99999,
+  "h_heavy": 1.00002,
+  "no_keys": [],
+  "bad_order": [],
+  "bad_topo": [],
+  "dangling": [],
+  "pass": true
+ },
+ {
+  "file": "Male_Ranger",
+  "arms": 1,
+  "meshes": 12,
+  "verts": 27637,
+  "morph_kb": 647.7,
+  "h_thin": 0.99997,
+  "h_heavy": 1.0002,
+  "no_keys": [],
+  "bad_order": [],
+  "bad_topo": [],
+  "dangling": [],
+  "pass": true
+ }
+]

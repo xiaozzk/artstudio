@@ -1,0 +1,998 @@
+{
+  "schema": "bodyshape-manifest",
+  "version": "2.1",
+  "spec_version": "2.0",
+  "revision_note": "2.1: (a) derive.py 改为**自设** inherit_scale='NONE'（幂等，不再硬失败，为 Tripo 新身体铺路），manifest 新增 inherit_scale_normalization 行；(b) 修 spec 自相矛盾：tiers[].bones 由『规范形 (s,1,s)』改为**实摆三轴**（与 axis_profile.rule 及本 manifest 的 bones_applied 一致），规范形改名存 tiers[].bones_canonical_girth。**均为台账/字段语义修订，系数与 morph 数值未变**（coefficients_fingerprint 与四位 morph digest 保持不变）。",
+  "spec": "assets/3d/rig/bodyshape_spec.json",
+  "spec_sha256": "938071768e2212994ba718adc9ebe5b7b0caf78882806f1a354a136bb058acf0",
+  "coefficients": {
+    "thin": 0.84,
+    "heavy": 1.21
+  },
+  "delta_response_values": {
+    "pelvis": 1.0,
+    "spine_01": 1.0,
+    "spine_02": 1.0,
+    "spine_03": 1.0,
+    "thigh": 0.95,
+    "calf": 0.85,
+    "upperarm": 1.05,
+    "lowerarm": 0.95,
+    "clavicle": 0.8
+  },
+  "along_axis_response_values": {
+    "clavicle": 0.5
+  },
+  "coefficients_fingerprint": "ca93ef919b15340df2123bd397fd4b43c8658d4ef539e4a678319c2f69821ba2",
+  "generator": "tools/3d/bodyshape/derive.py",
+  "generator_sha256": "2c0889365940d936a975a7787b651657d721c250f4ecf1d35049c4106ead5e4c",
+  "contract": "assets/3d/rig/SPEC.md v1.0 §3.2 / §3.3 / §3.4",
+  "axis_profile": {
+    "name": "girth",
+    "bone_scale_rule": "scale = (1+d·delta_response, 1+d·along_axis_response, 1+d·delta_response)，d = target_coefficient - 1；Y 为沿骨轴",
+    "along_axis_response": {
+      "_comment": "沿骨轴（Y）响应：bone_scale.y = 1 + (coef-1)·along_axis_response[group]。默认 0（不改骨长）。**只对骨轴近乎水平的骨开** —— 那时改骨长改的是『宽度』而不是『身高』。锁骨的 head/tail 的 z 完全相同（精确水平），所以它是唯一安全的候选：沿它缩放 = 改肩宽/臂展，身高代价 0（实测身高比仍是 1.0002/0.9998）。pelvis/spine_01..03/thigh/calf/upperarm/lowerarm 的骨轴是竖直或纵向的，开它等于改身高或臂长 —— 必须保持 0。",
+      "clavicle": 0.5
+    },
+    "available": [
+      "girth",
+      "length",
+      "uniform"
+    ],
+    "rule": "x = z = 1 + (coef-1)·delta_response[group]（改周长）；y = 1 + (coef-1)·along_axis_response[group]（改骨长）。along 默认 0。",
+    "note": "v2.1 起 spec 的 tiers[].bones 存**实摆三轴**（= 本 manifest 的 bones_applied），可直接摆到 pose bone；规范形 (s,1,s) 另存 tiers[].bones_canonical_girth，仅供参照。换口径只改 --axis-profile，spec 不用动。`along_axis_response` 只对骨轴近乎水平的骨（clavicle）开 —— 改的是肩宽/臂展，不改身高。"
+  },
+  "blender_version": "5.2.2 LTS",
+  "generated_at": "2026-10-13T18:57:38+0800",
+  "sex_filter": "both",
+  "delta_response": {
+    "_comment": "垂直轴（X/Z）响应：bone_scale = 1 + (coef-1)·delta_response[group]。1.0 = 完全跟随目标系数；<1 = 保守。v2 把 spine_02/spine_03 拉到 1.0，让胸腔与骨盆同步响应（v1 的胸只有臀的 72%，而衣服下胸腔比骨盆更显眼）；clavicle 0.5→0.8 让肩背厚度也跟上。",
+    "pelvis": 1.0,
+    "spine_01": 1.0,
+    "spine_02": 1.0,
+    "spine_03": 1.0,
+    "thigh": 0.95,
+    "calf": 0.85,
+    "upperarm": 1.05,
+    "lowerarm": 0.95,
+    "clavicle": 0.8
+  },
+  "shape_bones": [
+    "pelvis",
+    "spine_01",
+    "spine_02",
+    "spine_03",
+    "thigh_l",
+    "thigh_r",
+    "calf_l",
+    "calf_r",
+    "upperarm_l",
+    "upperarm_r",
+    "lowerarm_l",
+    "lowerarm_r",
+    "clavicle_l",
+    "clavicle_r"
+  ],
+  "morph_channels": [
+    {
+      "name": "Basis",
+      "morph_target_index": null,
+      "key_block_index": 0
+    },
+    {
+      "name": "BS_Thin",
+      "morph_target_index": 0,
+      "key_block_index": 1,
+      "tier": "thin"
+    },
+    {
+      "name": "BS_Heavy",
+      "morph_target_index": 1,
+      "key_block_index": 2,
+      "tier": "heavy"
+    }
+  ],
+  "tiers": [
+    {
+      "name": "thin",
+      "shape_key": "BS_Thin",
+      "morph_target_index": 0,
+      "target_coefficient": 0.84,
+      "bones_applied": {
+        "pelvis": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_01": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_02": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_03": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "thigh_l": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "thigh_r": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "calf_l": [
+          0.864,
+          1.0,
+          0.864
+        ],
+        "calf_r": [
+          0.864,
+          1.0,
+          0.864
+        ],
+        "upperarm_l": [
+          0.832,
+          1.0,
+          0.832
+        ],
+        "upperarm_r": [
+          0.832,
+          1.0,
+          0.832
+        ],
+        "lowerarm_l": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "lowerarm_r": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "clavicle_l": [
+          0.872,
+          0.92,
+          0.872
+        ],
+        "clavicle_r": [
+          0.872,
+          0.92,
+          0.872
+        ]
+      },
+      "bones_canonical_girth": {
+        "pelvis": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_01": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_02": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_03": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "thigh_l": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "thigh_r": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "calf_l": [
+          0.864,
+          1.0,
+          0.864
+        ],
+        "calf_r": [
+          0.864,
+          1.0,
+          0.864
+        ],
+        "upperarm_l": [
+          0.832,
+          1.0,
+          0.832
+        ],
+        "upperarm_r": [
+          0.832,
+          1.0,
+          0.832
+        ],
+        "lowerarm_l": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "lowerarm_r": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "clavicle_l": [
+          0.872,
+          1.0,
+          0.872
+        ],
+        "clavicle_r": [
+          0.872,
+          1.0,
+          0.872
+        ]
+      }
+    },
+    {
+      "name": "heavy",
+      "shape_key": "BS_Heavy",
+      "morph_target_index": 1,
+      "target_coefficient": 1.21,
+      "bones_applied": {
+        "pelvis": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_01": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_02": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_03": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "thigh_l": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "thigh_r": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "calf_l": [
+          1.1785,
+          1.0,
+          1.1785
+        ],
+        "calf_r": [
+          1.1785,
+          1.0,
+          1.1785
+        ],
+        "upperarm_l": [
+          1.2205,
+          1.0,
+          1.2205
+        ],
+        "upperarm_r": [
+          1.2205,
+          1.0,
+          1.2205
+        ],
+        "lowerarm_l": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "lowerarm_r": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "clavicle_l": [
+          1.168,
+          1.105,
+          1.168
+        ],
+        "clavicle_r": [
+          1.168,
+          1.105,
+          1.168
+        ]
+      },
+      "bones_canonical_girth": {
+        "pelvis": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_01": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_02": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_03": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "thigh_l": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "thigh_r": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "calf_l": [
+          1.1785,
+          1.0,
+          1.1785
+        ],
+        "calf_r": [
+          1.1785,
+          1.0,
+          1.1785
+        ],
+        "upperarm_l": [
+          1.2205,
+          1.0,
+          1.2205
+        ],
+        "upperarm_r": [
+          1.2205,
+          1.0,
+          1.2205
+        ],
+        "lowerarm_l": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "lowerarm_r": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "clavicle_l": [
+          1.168,
+          1.0,
+          1.168
+        ],
+        "clavicle_r": [
+          1.168,
+          1.0,
+          1.168
+        ]
+      }
+    }
+  ],
+  "bodies": [
+    {
+      "sex": "Female",
+      "file": "assets/3d/rig/bodies/Body_Female_Standard.blend",
+      "object": "Body_Female",
+      "armature": "RIG_Body_Female_Standard",
+      "armature_bone_count": 65,
+      "material": "MI_Superhero_Female",
+      "vertex_count": 7376,
+      "polygon_count": 12812,
+      "basis_height_m": 1.775051,
+      "shape_keys": [
+        {
+          "name": "Basis",
+          "key_block_index": 0,
+          "morph_target_index": null
+        },
+        {
+          "name": "BS_Thin",
+          "key_block_index": 1,
+          "morph_target_index": 0
+        },
+        {
+          "name": "BS_Heavy",
+          "key_block_index": 2,
+          "morph_target_index": 1
+        }
+      ],
+      "key_order_ok": true,
+      "inherit_scale_violations": [],
+      "inherit_scale_normalization": {
+        "rule": "体形骨的全部直接子骨必须 inherit_scale='NONE'",
+        "direct_children_count": 18,
+        "input_non_none_count": 0,
+        "input_already_normalized": true,
+        "set_to_none_this_run": [],
+        "n_set_this_run": 0,
+        "post_set_violations": [],
+        "delivered_state": "保持 NONE —— SPEC F18：bodies/ 的 NONE 是**烘焙期工件**，不是交付形状"
+      },
+      "dangling_textures": [],
+      "blend_sha256": "c420817b98a89bf8b030b53658cca52a22cd1d90593ffc9c5669cb4bdcbd8302",
+      "tiers": [
+        {
+          "name": "thin",
+          "label_zh": "瘦",
+          "shape_key": "BS_Thin",
+          "morph_target_index": 0,
+          "key_block_index": 1,
+          "target_coefficient": 0.84,
+          "vertex_count": 7376,
+          "topology_identical_to_basis": true,
+          "polygon_count": 12812,
+          "max_displacement_m": 0.033125,
+          "mean_displacement_m": 0.012852,
+          "rms_displacement_m": 0.015012,
+          "displaced_over_1mm_count": 5818,
+          "height_m": 1.775395,
+          "height_ratio_vs_basis": 1.000194,
+          "rigid_region_vertex_count": 1636,
+          "rigid_region_max_displacement_m": 0.00416806,
+          "bones_pose_changed": 62,
+          "bones_pose_frozen": 3,
+          "pose_invariant_vertex_count": 1473,
+          "pose_invariant_max_displacement_m": 1.222e-07,
+          "max_displacement_vertex": {
+            "index": 5740,
+            "basis_position": [
+              0.205418,
+              -0.014941,
+              0.846534
+            ],
+            "tier_position": [
+              0.173299,
+              -0.006879,
+              0.845765
+            ]
+          },
+          "data_bytes_per_tier": 88512,
+          "data_bytes_formula": "vertices * 3 * 4",
+          "shape_key_data_sha256": "6a0f0b08170ed6943cdfa9f582fb61a13e3173f3dafb94599c88fb867e0dba9c",
+          "bones": {
+            "pelvis": [
+              0.84,
+              1.0,
+              0.84
+            ],
+            "spine_01": [
+              0.84,
+              1.0,
+              0.84
+            ],
+            "spine_02": [
+              0.84,
+              1.0,
+              0.84
+            ],
+            "spine_03": [
+              0.84,
+              1.0,
+              0.84
+            ],
+            "thigh_l": [
+              0.848,
+              1.0,
+              0.848
+            ],
+            "thigh_r": [
+              0.848,
+              1.0,
+              0.848
+            ],
+            "calf_l": [
+              0.864,
+              1.0,
+              0.864
+            ],
+            "calf_r": [
+              0.864,
+              1.0,
+              0.864
+            ],
+            "upperarm_l": [
+              0.832,
+              1.0,
+              0.832
+            ],
+            "upperarm_r": [
+              0.832,
+              1.0,
+              0.832
+            ],
+            "lowerarm_l": [
+              0.848,
+              1.0,
+              0.848
+            ],
+            "lowerarm_r": [
+              0.848,
+              1.0,
+              0.848
+            ],
+            "clavicle_l": [
+              0.872,
+              0.92,
+              0.872
+            ],
+            "clavicle_r": [
+              0.872,
+              0.92,
+              0.872
+            ]
+          }
+        },
+        {
+          "name": "heavy",
+          "label_zh": "壮",
+          "shape_key": "BS_Heavy",
+          "morph_target_index": 1,
+          "key_block_index": 2,
+          "target_coefficient": 1.21,
+          "vertex_count": 7376,
+          "topology_identical_to_basis": true,
+          "polygon_count": 12812,
+          "max_displacement_m": 0.043476,
+          "mean_displacement_m": 0.016868,
+          "rms_displacement_m": 0.019704,
+          "displaced_over_1mm_count": 5834,
+          "height_m": 1.774599,
+          "height_ratio_vs_basis": 0.999746,
+          "rigid_region_vertex_count": 1636,
+          "rigid_region_max_displacement_m": 0.00547057,
+          "bones_pose_changed": 62,
+          "bones_pose_frozen": 3,
+          "pose_invariant_vertex_count": 1473,
+          "pose_invariant_max_displacement_m": 1.204e-07,
+          "max_displacement_vertex": {
+            "index": 5740,
+            "basis_position": [
+              0.205418,
+              -0.014941,
+              0.846534
+            ],
+            "tier_position": [
+              0.247574,
+              -0.025522,
+              0.847544
+            ]
+          },
+          "data_bytes_per_tier": 88512,
+          "data_bytes_formula": "vertices * 3 * 4",
+          "shape_key_data_sha256": "9a75f5cb3666e7d9d46c0400401da92b91fc39f859f01da480c3e5a3d571a71f",
+          "bones": {
+            "pelvis": [
+              1.21,
+              1.0,
+              1.21
+            ],
+            "spine_01": [
+              1.21,
+              1.0,
+              1.21
+            ],
+            "spine_02": [
+              1.21,
+              1.0,
+              1.21
+            ],
+            "spine_03": [
+              1.21,
+              1.0,
+              1.21
+            ],
+            "thigh_l": [
+              1.1995,
+              1.0,
+              1.1995
+            ],
+            "thigh_r": [
+              1.1995,
+              1.0,
+              1.1995
+            ],
+            "calf_l": [
+              1.1785,
+              1.0,
+              1.1785
+            ],
+            "calf_r": [
+              1.1785,
+              1.0,
+              1.1785
+            ],
+            "upperarm_l": [
+              1.2205,
+              1.0,
+              1.2205
+            ],
+            "upperarm_r": [
+              1.2205,
+              1.0,
+              1.2205
+            ],
+            "lowerarm_l": [
+              1.1995,
+              1.0,
+              1.1995
+            ],
+            "lowerarm_r": [
+              1.1995,
+              1.0,
+              1.1995
+            ],
+            "clavicle_l": [
+              1.168,
+              1.105,
+              1.168
+            ],
+            "clavicle_r": [
+              1.168,
+              1.105,
+              1.168
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sex": "Male",
+      "file": "assets/3d/rig/bodies/Body_Male_Standard.blend",
+      "object": "Body_Male",
+      "armature": "RIG_Body_Male_Standard",
+      "armature_bone_count": 65,
+      "material": "MI_Superhero_Male",
+      "vertex_count": 7281,
+      "polygon_count": 12566,
+      "basis_height_m": 1.819587,
+      "shape_keys": [
+        {
+          "name": "Basis",
+          "key_block_index": 0,
+          "morph_target_index": null
+        },
+        {
+          "name": "BS_Thin",
+          "key_block_index": 1,
+          "morph_target_index": 0
+        },
+        {
+          "name": "BS_Heavy",
+          "key_block_index": 2,
+          "morph_target_index": 1
+        }
+      ],
+      "key_order_ok": true,
+      "inherit_scale_violations": [],
+      "inherit_scale_normalization": {
+        "rule": "体形骨的全部直接子骨必须 inherit_scale='NONE'",
+        "direct_children_count": 18,
+        "input_non_none_count": 0,
+        "input_already_normalized": true,
+        "set_to_none_this_run": [],
+        "n_set_this_run": 0,
+        "post_set_violations": [],
+        "delivered_state": "保持 NONE —— SPEC F18：bodies/ 的 NONE 是**烘焙期工件**，不是交付形状"
+      },
+      "dangling_textures": [],
+      "blend_sha256": "b1a502a4396b56098f10db6f084ab75cc611a91a63579cd5a1f97ceffa0a4ec9",
+      "tiers": [
+        {
+          "name": "thin",
+          "label_zh": "瘦",
+          "shape_key": "BS_Thin",
+          "morph_target_index": 0,
+          "key_block_index": 1,
+          "target_coefficient": 0.84,
+          "vertex_count": 7281,
+          "topology_identical_to_basis": true,
+          "polygon_count": 12566,
+          "max_displacement_m": 0.035718,
+          "mean_displacement_m": 0.015646,
+          "rms_displacement_m": 0.017953,
+          "displaced_over_1mm_count": 5878,
+          "height_m": 1.819565,
+          "height_ratio_vs_basis": 0.999988,
+          "rigid_region_vertex_count": 1538,
+          "rigid_region_max_displacement_m": 0.00555023,
+          "bones_pose_changed": 62,
+          "bones_pose_frozen": 3,
+          "pose_invariant_vertex_count": 1314,
+          "pose_invariant_max_displacement_m": 1.229e-07,
+          "max_displacement_vertex": {
+            "index": 2001,
+            "basis_position": [
+              -0.182039,
+              0.140765,
+              1.346871
+            ],
+            "tier_position": [
+              -0.153605,
+              0.119507,
+              1.350797
+            ]
+          },
+          "data_bytes_per_tier": 87372,
+          "data_bytes_formula": "vertices * 3 * 4",
+          "shape_key_data_sha256": "a4447f7f249d0a7526504b8e40dc033018f46cadfa3ed9760cca536b08aba79b",
+          "bones": {
+            "pelvis": [
+              0.84,
+              1.0,
+              0.84
+            ],
+            "spine_01": [
+              0.84,
+              1.0,
+              0.84
+            ],
+            "spine_02": [
+              0.84,
+              1.0,
+              0.84
+            ],
+            "spine_03": [
+              0.84,
+              1.0,
+              0.84
+            ],
+            "thigh_l": [
+              0.848,
+              1.0,
+              0.848
+            ],
+            "thigh_r": [
+              0.848,
+              1.0,
+              0.848
+            ],
+            "calf_l": [
+              0.864,
+              1.0,
+              0.864
+            ],
+            "calf_r": [
+              0.864,
+              1.0,
+              0.864
+            ],
+            "upperarm_l": [
+              0.832,
+              1.0,
+              0.832
+            ],
+            "upperarm_r": [
+              0.832,
+              1.0,
+              0.832
+            ],
+            "lowerarm_l": [
+              0.848,
+              1.0,
+              0.848
+            ],
+            "lowerarm_r": [
+              0.848,
+              1.0,
+              0.848
+            ],
+            "clavicle_l": [
+              0.872,
+              0.92,
+              0.872
+            ],
+            "clavicle_r": [
+              0.872,
+              0.92,
+              0.872
+            ]
+          }
+        },
+        {
+          "name": "heavy",
+          "label_zh": "壮",
+          "shape_key": "BS_Heavy",
+          "morph_target_index": 1,
+          "key_block_index": 2,
+          "target_coefficient": 1.21,
+          "vertex_count": 7281,
+          "topology_identical_to_basis": true,
+          "polygon_count": 12566,
+          "max_displacement_m": 0.04688,
+          "mean_displacement_m": 0.020535,
+          "rms_displacement_m": 0.023563,
+          "displaced_over_1mm_count": 5890,
+          "height_m": 1.819615,
+          "height_ratio_vs_basis": 1.000016,
+          "rigid_region_vertex_count": 1538,
+          "rigid_region_max_displacement_m": 0.00728469,
+          "bones_pose_changed": 62,
+          "bones_pose_frozen": 3,
+          "pose_invariant_vertex_count": 1314,
+          "pose_invariant_max_displacement_m": 1.368e-07,
+          "max_displacement_vertex": {
+            "index": 2001,
+            "basis_position": [
+              -0.182039,
+              0.140765,
+              1.346871
+            ],
+            "tier_position": [
+              -0.219359,
+              0.168665,
+              1.341719
+            ]
+          },
+          "data_bytes_per_tier": 87372,
+          "data_bytes_formula": "vertices * 3 * 4",
+          "shape_key_data_sha256": "61338fadb9064c5e353f51d7468e6a6beb14c9c1a7ada84b98bd04032eb2ed8c",
+          "bones": {
+            "pelvis": [
+              1.21,
+              1.0,
+              1.21
+            ],
+            "spine_01": [
+              1.21,
+              1.0,
+              1.21
+            ],
+            "spine_02": [
+              1.21,
+              1.0,
+              1.21
+            ],
+            "spine_03": [
+              1.21,
+              1.0,
+              1.21
+            ],
+            "thigh_l": [
+              1.1995,
+              1.0,
+              1.1995
+            ],
+            "thigh_r": [
+              1.1995,
+              1.0,
+              1.1995
+            ],
+            "calf_l": [
+              1.1785,
+              1.0,
+              1.1785
+            ],
+            "calf_r": [
+              1.1785,
+              1.0,
+              1.1785
+            ],
+            "upperarm_l": [
+              1.2205,
+              1.0,
+              1.2205
+            ],
+            "upperarm_r": [
+              1.2205,
+              1.0,
+              1.2205
+            ],
+            "lowerarm_l": [
+              1.1995,
+              1.0,
+              1.1995
+            ],
+            "lowerarm_r": [
+              1.1995,
+              1.0,
+              1.1995
+            ],
+            "clavicle_l": [
+              1.168,
+              1.105,
+              1.168
+            ],
+            "clavicle_r": [
+              1.168,
+              1.105,
+              1.168
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "previews": [
+    {
+      "sex": "Female",
+      "path": "assets/3d/rig/previews/bodyshape_Female.png",
+      "engine": "BLENDER_EEVEE",
+      "resolution": [
+        2800,
+        1000
+      ],
+      "exists": true,
+      "labels": [
+        "瘦/THIN",
+        "标准/STANDARD",
+        "壮/HEAVY"
+      ],
+      "sha256": "288e3c813b5904092d6c6688aa21ddbcb68b31f5914eafcb886f81631431a747"
+    },
+    {
+      "sex": "Male",
+      "path": "assets/3d/rig/previews/bodyshape_Male.png",
+      "engine": "BLENDER_EEVEE",
+      "resolution": [
+        2800,
+        1000
+      ],
+      "exists": true,
+      "labels": [
+        "瘦/THIN",
+        "标准/STANDARD",
+        "壮/HEAVY"
+      ],
+      "sha256": "61529701142cfd6ed9b2170983a29d43ee4d46d73d0ba4a7ad0921399c5d1003"
+    }
+  ],
+  "reference_f5_demo_profile": {
+    "_comment": "SPEC §1 F5 的『最大位移 14.00 / 13.42 cm』是**含沿骨轴缩放**的口径 pb.scale=(s,s,1) 测出来的：那实质是【腿长变化】，代价是身高一起变 ±11%，与 SPEC §3.4『身高交给骨架等比缩放』的正交设计冲突。复现命令（不改盘）：derive.py --axis-profile length --dry-run。下面是为了对账而实测的同一具身体在两种口径下的数字。",
+    "pose_scale_rule": "(s, s, 1) —— 含骨长",
+    "measured_on": "assets/3d/rig/bodies/Body_Female_Standard.blend / Body_Female",
+    "posed_by": "derive.py --sex Female --axis-profile length --dry-run",
+    "thin": {
+      "max_displacement_m": 0.1135,
+      "height_ratio_vs_basis": 0.89849,
+      "head_neck_max_displacement_m": 0.073,
+      "bones_pose_changed": 64
+    },
+    "heavy": {
+      "max_displacement_m": 0.1297,
+      "height_ratio_vs_basis": 1.11601,
+      "head_neck_max_displacement_m": 0.0834,
+      "bones_pose_changed": 64
+    },
+    "girth_same_body": {
+      "thin": {
+        "max_displacement_m": 0.029,
+        "height_ratio_vs_basis": 1.00017,
+        "head_neck_max_displacement_m": 0.00294,
+        "bones_pose_changed": 62
+      },
+      "heavy": {
+        "max_displacement_m": 0.0331,
+        "height_ratio_vs_basis": 0.99981,
+        "head_neck_max_displacement_m": 0.00336,
+        "bones_pose_changed": 62
+      }
+    }
+  },
+  "elapsed_sec": 3.8
+}

@@ -1,0 +1,478 @@
+{
+  "schema": "bodyshape-spec",
+  "version": "2.0",
+  "owner": "bodyshape",
+  "contract": "assets/3d/rig/SPEC.md v1.0 §3.2 / §3.3 / §3.4",
+  "generator": "tools/3d/bodyshape/derive.py",
+  "released": "2026-10-13",
+  "changelog": [
+    {
+      "version": "2.1（字段语义修订，非系数契约）",
+      "what": [
+        "修复 spec **自相矛盾**：`tiers[].bones` 从『规范形 (s,1,s)』改为**实摆三轴**（y 也带 along_axis_response），与 `axis_profile.rule` 一致；",
+        "规范形另存 `tiers[].bones_canonical_girth`，明示『参考用、别拿来摆骨』"
+      ],
+      "why": "verifier 独立推导发现 `tiers[].bones[clavicle_l]` 与 spec 自己的 rule 不符（4 处）。消费方最自然会读 tiers[].bones 去摆骨 → 照 spec 读反而**静默丢掉肩宽/臂展项**（garment 实际踩到）。**一个会误导消费方的字段等于一个 bug**，即使代码路径全对。",
+      "not_changed": "系数 / delta_response / along_axis_response / morph 数值一律未动 —— `coefficients_fingerprint` 与四位 morph digest 保持不变。"
+    },
+    {
+      "version": "2.0",
+      "from": "v1: thin 0.86 / heavy 1.16，纯 girth，delta_response 旧值",
+      "what": [
+        "target_coefficient: thin 0.86 → 0.84，heavy 1.16 → 1.21",
+        "delta_response: spine_02 0.92 → 1.0，spine_03 0.85 → 1.0，clavicle 0.5 → 0.8",
+        "新增 along_axis_response.clavicle = 0.5（沿锁骨骨轴缩放 = 改肩宽/臂展，不改身高）"
+      ],
+      "why": "见 rationale。核心：v1 上身响应被压低（胸 −9.8% vs 臀 −13.6%），且臂展/肩宽几乎不动（±0.46%）——而臂展是正视图剪影里最宽的维度，于是轮廓看起来没变。",
+      "measured": "assets/3d/rig/reports/bodyshape_strength.json 与 bodyshape_silhouette.json"
+    }
+  ],
+  "rationale": {
+    "question": "0.86/1.16 对应多少围度变化？视觉上够不够？",
+    "answer": "围度变化本来就大（臀/腰 ≈ ±14%，上臂 −14.7%/+20.8%），真正的短板是**轮廓最宽的维度（臂展/肩宽）几乎不动**。",
+    "criteria": [
+      "① 关键围度（胸/腰/臀/上臂/大腿/小腿）三档间变化 % —— 可复算，见 measure_girth.py",
+      "② 剪影 XOR 差异率 + 换算成『等效身高变化』（身高滑块是项目内已被认可看得出来的对照物），见 silhouette_metric.py"
+    ],
+    "v1_verdict": "剪影 XOR 27.0%（女 B2 角色）≈ 等效身高变化 5.4%；面积 −10.4%/+11.8%；但臂展/最大行宽仅 ±0.46%。",
+    "v2_verdict": "剪影 XOR 33.6%（女 B2）≈ 等效身高变化 6.7%；面积 −12.8%/+16.8%；臂展 −1.85%/+2.08%。",
+    "why_along_clavicle": "锁骨的骨轴精确水平（head/tail 的 z 相同）→ 沿骨轴缩放改的是肩宽/臂展，身高代价为 0（实测身高比仍是 1.0002/0.9998）。pelvis/spine/thigh/calf 的骨轴竖直，沿骨轴缩放等于改身高 → 必须保持 0。0.5 把肩关节间距推到 ±9.5%/±12.5%（≈2–2.5 SD；真实双肩宽 SD/均值 ≈ 3.5–5%），属于极端瘦↔极端壮的合理范围。",
+    "why_not_stronger": "压到 0.72/1.35 实测几何仍健康（0 个翻转面、左右腿间隙仍为正），所以限制不是几何而是人的合理性：臀围 ±14% 已是约 ±2 SD 的人群范围。剩余的主观『看起来弱』来自出图表现（三档并排时手臂被画幅裁掉且互相压住），不是系数不够；bodyshape_* 预览图的间距/画幅已同步修正。",
+    "mesh_safe_envelope": {
+      "measured": "翻转面 0 个：0.58 ≤ coef ≤ 1.45（女）；0.58 ≤ coef ≤ 1.25（男；1.35 时出现 4 个翻转面）",
+      "leg_gap": "0.58 时左右腿最小水平间隙仍 +0.63 cm（女）/+0.84 cm（男）> 0",
+      "note": "该包络是几何上限，不是推荐范围；推荐值取人类合理性上限而非几何上限"
+    }
+  },
+  "axis_profile": {
+    "name": "girth",
+    "pose_bone_scale_order": "Blender 的 pose_bone.scale 是骨骼局部轴 (x, y, z)，其中 Y 恒为沿骨轴（head→tail）",
+    "rule": "x = z = 1 + (coef-1)·delta_response[group]（改周长）；y = 1 + (coef-1)·along_axis_response[group]（改骨长）。along 默认 0。",
+    "why": "含沿骨轴缩放会让身高跟着变。实测（同系数 0.86/1.16）：含骨长口径身高比 0.8966/1.1140（±11%），girth 口径 1.0002/0.9998。SPEC §3.4/D3 要求身高是独立的正交滑块，故默认 girth；唯一例外是骨轴水平的 clavicle（改的是肩宽不是身高）。",
+    "legacy_profiles": {
+      "length_uniform": "demo 口径 pb.scale=(s,s,1)（含骨长）—— 仅用于对照复现 SPEC §1 F5 的 13–14 cm 数字，默认不用"
+    },
+    "consumer_guidance": "消费方读哪一份：**`tiers[].bones`（= manifest 的 `tiers[].bones_applied`）**，它就是 `rule` 说的实摆三轴，可直接摆到 pose bone / 用于烘焙。`tiers[].bones_canonical_girth` 只是不含 along 的参照形，**不要拿来摆骨**。两处数值由 derive.py 每次对账，不一致会直接报错退出。"
+  },
+  "shape_bones": [
+    "pelvis",
+    "spine_01",
+    "spine_02",
+    "spine_03",
+    "thigh_l",
+    "thigh_r",
+    "calf_l",
+    "calf_r",
+    "upperarm_l",
+    "upperarm_r",
+    "lowerarm_l",
+    "lowerarm_r",
+    "clavicle_l",
+    "clavicle_r"
+  ],
+  "morph_channels": [
+    {
+      "name": "Basis",
+      "morph_target_index": null,
+      "key_block_index": 0
+    },
+    {
+      "name": "BS_Thin",
+      "morph_target_index": 0,
+      "key_block_index": 1,
+      "tier": "thin"
+    },
+    {
+      "name": "BS_Heavy",
+      "morph_target_index": 1,
+      "key_block_index": 2,
+      "tier": "heavy"
+    }
+  ],
+  "groups": {
+    "pelvis": [
+      "pelvis"
+    ],
+    "spine_01": [
+      "spine_01"
+    ],
+    "spine_02": [
+      "spine_02"
+    ],
+    "spine_03": [
+      "spine_03"
+    ],
+    "thigh": [
+      "thigh_l",
+      "thigh_r"
+    ],
+    "calf": [
+      "calf_l",
+      "calf_r"
+    ],
+    "upperarm": [
+      "upperarm_l",
+      "upperarm_r"
+    ],
+    "lowerarm": [
+      "lowerarm_l",
+      "lowerarm_r"
+    ],
+    "clavicle": [
+      "clavicle_l",
+      "clavicle_r"
+    ]
+  },
+  "delta_response": {
+    "_comment": "垂直轴（X/Z）响应：bone_scale = 1 + (coef-1)·delta_response[group]。1.0 = 完全跟随目标系数；<1 = 保守。v2 把 spine_02/spine_03 拉到 1.0，让胸腔与骨盆同步响应（v1 的胸只有臀的 72%，而衣服下胸腔比骨盆更显眼）；clavicle 0.5→0.8 让肩背厚度也跟上。",
+    "pelvis": 1.0,
+    "spine_01": 1.0,
+    "spine_02": 1.0,
+    "spine_03": 1.0,
+    "thigh": 0.95,
+    "calf": 0.85,
+    "upperarm": 1.05,
+    "lowerarm": 0.95,
+    "clavicle": 0.8
+  },
+  "along_axis_response": {
+    "_comment": "沿骨轴（Y）响应：bone_scale.y = 1 + (coef-1)·along_axis_response[group]。默认 0（不改骨长）。**只对骨轴近乎水平的骨开** —— 那时改骨长改的是『宽度』而不是『身高』。锁骨的 head/tail 的 z 完全相同（精确水平），所以它是唯一安全的候选：沿它缩放 = 改肩宽/臂展，身高代价 0（实测身高比仍是 1.0002/0.9998）。pelvis/spine_01..03/thigh/calf/upperarm/lowerarm 的骨轴是竖直或纵向的，开它等于改身高或臂长 —— 必须保持 0。",
+    "clavicle": 0.5
+  },
+  "tiers": [
+    {
+      "name": "thin",
+      "shape_key": "BS_Thin",
+      "morph_target_index": 0,
+      "key_block_index": 1,
+      "label_zh": "瘦",
+      "running_weight": 0.0,
+      "target_coefficient": 0.84,
+      "bones": {
+        "pelvis": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_01": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_02": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_03": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "thigh_l": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "thigh_r": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "calf_l": [
+          0.864,
+          1.0,
+          0.864
+        ],
+        "calf_r": [
+          0.864,
+          1.0,
+          0.864
+        ],
+        "upperarm_l": [
+          0.832,
+          1.0,
+          0.832
+        ],
+        "upperarm_r": [
+          0.832,
+          1.0,
+          0.832
+        ],
+        "lowerarm_l": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "lowerarm_r": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "clavicle_l": [
+          0.872,
+          0.92,
+          0.872
+        ],
+        "clavicle_r": [
+          0.872,
+          0.92,
+          0.872
+        ]
+      },
+      "bones_canonical_girth": {
+        "pelvis": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_01": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_02": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "spine_03": [
+          0.84,
+          1.0,
+          0.84
+        ],
+        "thigh_l": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "thigh_r": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "calf_l": [
+          0.864,
+          1.0,
+          0.864
+        ],
+        "calf_r": [
+          0.864,
+          1.0,
+          0.864
+        ],
+        "upperarm_l": [
+          0.832,
+          1.0,
+          0.832
+        ],
+        "upperarm_r": [
+          0.832,
+          1.0,
+          0.832
+        ],
+        "lowerarm_l": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "lowerarm_r": [
+          0.848,
+          1.0,
+          0.848
+        ],
+        "clavicle_l": [
+          0.872,
+          1.0,
+          0.872
+        ],
+        "clavicle_r": [
+          0.872,
+          1.0,
+          0.872
+        ]
+      },
+      "_comment_bones": "实摆三轴向量 = x/z 由 delta_response、y 由 along_axis_response 调制，就是 axis_profile.rule 说的那一份；可直接摆到 pose bone 上。规范形（不含 along）另存于 bones_canonical_girth，仅供参考，不要拿来摆骨。"
+    },
+    {
+      "name": "heavy",
+      "shape_key": "BS_Heavy",
+      "morph_target_index": 1,
+      "key_block_index": 2,
+      "label_zh": "壮",
+      "running_weight": 0.0,
+      "target_coefficient": 1.21,
+      "bones": {
+        "pelvis": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_01": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_02": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_03": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "thigh_l": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "thigh_r": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "calf_l": [
+          1.1785,
+          1.0,
+          1.1785
+        ],
+        "calf_r": [
+          1.1785,
+          1.0,
+          1.1785
+        ],
+        "upperarm_l": [
+          1.2205,
+          1.0,
+          1.2205
+        ],
+        "upperarm_r": [
+          1.2205,
+          1.0,
+          1.2205
+        ],
+        "lowerarm_l": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "lowerarm_r": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "clavicle_l": [
+          1.168,
+          1.105,
+          1.168
+        ],
+        "clavicle_r": [
+          1.168,
+          1.105,
+          1.168
+        ]
+      },
+      "bones_canonical_girth": {
+        "pelvis": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_01": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_02": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "spine_03": [
+          1.21,
+          1.0,
+          1.21
+        ],
+        "thigh_l": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "thigh_r": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "calf_l": [
+          1.1785,
+          1.0,
+          1.1785
+        ],
+        "calf_r": [
+          1.1785,
+          1.0,
+          1.1785
+        ],
+        "upperarm_l": [
+          1.2205,
+          1.0,
+          1.2205
+        ],
+        "upperarm_r": [
+          1.2205,
+          1.0,
+          1.2205
+        ],
+        "lowerarm_l": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "lowerarm_r": [
+          1.1995,
+          1.0,
+          1.1995
+        ],
+        "clavicle_l": [
+          1.168,
+          1.0,
+          1.168
+        ],
+        "clavicle_r": [
+          1.168,
+          1.0,
+          1.168
+        ]
+      },
+      "_comment_bones": "实摆三轴向量 = x/z 由 delta_response、y 由 along_axis_response 调制，就是 axis_profile.rule 说的那一份；可直接摆到 pose bone 上。规范形（不含 along）另存于 bones_canonical_girth，仅供参考，不要拿来摆骨。"
+    }
+  ],
+  "bodies": [
+    {
+      "sex": "Female",
+      "file": "assets/3d/rig/bodies/Body_Female_Standard.blend",
+      "object": "Body_Female",
+      "armature": "RIG_Body_Female_Standard",
+      "expected_vertex_count": 7376
+    },
+    {
+      "sex": "Male",
+      "file": "assets/3d/rig/bodies/Body_Male_Standard.blend",
+      "object": "Body_Male",
+      "armature": "RIG_Body_Male_Standard",
+      "expected_vertex_count": 7281
+    }
+  ],
+  "runtime": {
+    "weight_range": [
+      0.0,
+      1.0
+    ],
+    "default_weight": 0.0,
+    "note": "运行时由【一个数值】同步驱动 body 与所有 garment 的同名同序 morph；身高另给骨架 root 等比缩放 h ∈ [0.92, 1.08]"
+  },
+  "bones_field_revision": "2.1",
+  "bones_field_revision_note": "tiers[].bones 的**语义**在 2.1 修订里从『规范形 (s,1,s)』改为『实摆三轴』（y 也带 along_axis_response）。这是**字段语义/文档**修订，**不是**系数契约变更 —— 所以 spec.version 仍为 2.0，coefficients_fingerprint 保持不变（它只由系数/响应/体形骨决定）。"
+}

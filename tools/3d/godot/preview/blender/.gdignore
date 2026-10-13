@@ -1,0 +1,1 @@
+# 让 Godot 完全忽略这个目录（里面是 Blender headless 脚本，不是 Godot 资源）。

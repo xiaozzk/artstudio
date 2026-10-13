@@ -1,0 +1,241 @@
+{
+  "generated_by": "verifier/v_shelltest.py",
+  "question": "Lead 的『噪声底合成壳』是否真的『必然在体外』？",
+  "cases": [
+    {
+      "sex": "Female",
+      "body": "Body_Female",
+      "n_verts": 7376,
+      "n_tris": 12812,
+      "edge_winding_check": {
+        "n_edges": 20186,
+        "n_shared_by_2": 18250,
+        "n_boundary_edges": 1936,
+        "n_nonmanifold_edges": 0,
+        "n_winding_violations": 0,
+        "winding_violation_frac": 0.0,
+        "is_watertight": false,
+        "verdict": "绕向一致"
+      },
+      "winding_diagnosis": {
+        "face_centroid_centroid": [
+          -0.0,
+          0.0191,
+          1.1557
+        ],
+        "frac_faces_pointing_outward_by_raw_winding": 0.6716,
+        "frac_faces_pointing_inward_by_raw_winding": 0.3284,
+        "mean_abs_dot_normalised": 0.4084,
+        "verdict": "若两向都不接近 0/1，说明面绕向**不一致** → 由绕向算的顶点法线不可靠"
+      },
+      "normals_available": {
+        "N1_raw_cross": true,
+        "N3_winding_fixed": true,
+        "N2_blender": true,
+        "N2_error": null
+      },
+      "faces_flipped_by_winding_fix": 0.3284,
+      "normal_agreement": {
+        "N1_vs_N3": 0.6236,
+        "N1_vs_N2": 0.9474,
+        "N2_vs_N3": 0.5858
+      },
+      "n_torso_verts": 4132,
+      "shell_sweep": [
+        {
+          "offset_cm": 0.5,
+          "N1_raw_cross": {
+            "ray_inside_frac": 0.01597,
+            "norm_inside_frac": 0.01452
+          },
+          "N2_blender": {
+            "ray_inside_frac": 0.02081,
+            "norm_inside_frac": 0.01839
+          },
+          "N3_winding_fixed": {
+            "ray_inside_frac": 0.2863,
+            "norm_inside_frac": 0.28388
+          }
+        },
+        {
+          "offset_cm": 1.0,
+          "N1_raw_cross": {
+            "ray_inside_frac": 0.05034,
+            "norm_inside_frac": 0.04792
+          },
+          "N2_blender": {
+            "ray_inside_frac": 0.05712,
+            "norm_inside_frac": 0.05712
+          },
+          "N3_winding_fixed": {
+            "ray_inside_frac": 0.3047,
+            "norm_inside_frac": 0.30324
+          }
+        },
+        {
+          "offset_cm": 1.5,
+          "N1_raw_cross": {
+            "ray_inside_frac": 0.04889,
+            "norm_inside_frac": 0.0484
+          },
+          "N2_blender": {
+            "ray_inside_frac": 0.05615,
+            "norm_inside_frac": 0.05518
+          },
+          "N3_winding_fixed": {
+            "ray_inside_frac": 0.30227,
+            "norm_inside_frac": 0.30179
+          }
+        },
+        {
+          "offset_cm": 3.0,
+          "N1_raw_cross": {
+            "ray_inside_frac": 0.02469,
+            "norm_inside_frac": 0.02469
+          },
+          "N2_blender": {
+            "ray_inside_frac": 0.01742,
+            "norm_inside_frac": 0.01742
+          },
+          "N3_winding_fixed": {
+            "ray_inside_frac": 0.17352,
+            "norm_inside_frac": 0.17256
+          }
+        },
+        {
+          "offset_cm": 6.0,
+          "N1_raw_cross": {
+            "ray_inside_frac": 0.015,
+            "norm_inside_frac": 0.015
+          },
+          "N2_blender": {
+            "ray_inside_frac": 0.02469,
+            "norm_inside_frac": 0.02469
+          },
+          "N3_winding_fixed": {
+            "ray_inside_frac": 0.10528,
+            "norm_inside_frac": 0.10431
+          }
+        }
+      ]
+    },
+    {
+      "sex": "Male",
+      "body": "Body_Male",
+      "n_verts": 7281,
+      "n_tris": 12566,
+      "edge_winding_check": {
+        "n_edges": 19843,
+        "n_shared_by_2": 17855,
+        "n_boundary_edges": 1988,
+        "n_nonmanifold_edges": 0,
+        "n_winding_violations": 0,
+        "winding_violation_frac": 0.0,
+        "is_watertight": false,
+        "verdict": "绕向一致"
+      },
+      "winding_diagnosis": {
+        "face_centroid_centroid": [
+          -0.0,
+          0.0288,
+          1.1739
+        ],
+        "frac_faces_pointing_outward_by_raw_winding": 0.6935,
+        "frac_faces_pointing_inward_by_raw_winding": 0.3065,
+        "mean_abs_dot_normalised": 0.4062,
+        "verdict": "若两向都不接近 0/1，说明面绕向**不一致** → 由绕向算的顶点法线不可靠"
+      },
+      "normals_available": {
+        "N1_raw_cross": true,
+        "N3_winding_fixed": true,
+        "N2_blender": true,
+        "N2_error": null
+      },
+      "faces_flipped_by_winding_fix": 0.3065,
+      "normal_agreement": {
+        "N1_vs_N3": 0.6425,
+        "N1_vs_N2": 0.9376,
+        "N2_vs_N3": 0.6032
+      },
+      "n_torso_verts": 3894,
+      "shell_sweep": [
+        {
+          "offset_cm": 0.5,
+          "N1_raw_cross": {
+            "ray_inside_frac": 0.02876,
+            "norm_inside_frac": 0.02619
+          },
+          "N2_blender": {
+            "ray_inside_frac": 0.02773,
+            "norm_inside_frac": 0.02773
+          },
+          "N3_winding_fixed": {
+            "ray_inside_frac": 0.29738,
+            "norm_inside_frac": 0.29481
+          }
+        },
+        {
+          "offset_cm": 1.0,
+          "N1_raw_cross": {
+            "ray_inside_frac": 0.0529,
+            "norm_inside_frac": 0.05187
+          },
+          "N2_blender": {
+            "ray_inside_frac": 0.06831,
+            "norm_inside_frac": 0.06831
+          },
+          "N3_winding_fixed": {
+            "ray_inside_frac": 0.31536,
+            "norm_inside_frac": 0.31484
+          }
+        },
+        {
+          "offset_cm": 1.5,
+          "N1_raw_cross": {
+            "ray_inside_frac": 0.05239,
+            "norm_inside_frac": 0.05059
+          },
+          "N2_blender": {
+            "ray_inside_frac": 0.07036,
+            "norm_inside_frac": 0.06985
+          },
+          "N3_winding_fixed": {
+            "ray_inside_frac": 0.31022,
+            "norm_inside_frac": 0.30842
+          }
+        },
+        {
+          "offset_cm": 3.0,
+          "N1_raw_cross": {
+            "ray_inside_frac": 0.01644,
+            "norm_inside_frac": 0.01592
+          },
+          "N2_blender": {
+            "ray_inside_frac": 0.02311,
+            "norm_inside_frac": 0.02311
+          },
+          "N3_winding_fixed": {
+            "ray_inside_frac": 0.15819,
+            "norm_inside_frac": 0.15665
+          }
+        },
+        {
+          "offset_cm": 6.0,
+          "N1_raw_cross": {
+            "ray_inside_frac": 0.01952,
+            "norm_inside_frac": 0.01952
+          },
+          "N2_blender": {
+            "ray_inside_frac": 0.02825,
+            "norm_inside_frac": 0.02825
+          },
+          "N3_winding_fixed": {
+            "ray_inside_frac": 0.10067,
+            "norm_inside_frac": 0.10067
+          }
+        }
+      ]
+    }
+  ],
+  "total_seconds": 2.88
+}

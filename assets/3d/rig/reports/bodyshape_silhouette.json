@@ -1,0 +1,770 @@
+{
+  "schema": "bodyshape-silhouette",
+  "label": "v2-final",
+  "method": {
+    "render": "正交前视 + film_transparent；剪影 = alpha>0.5（F16 的教训：不用颜色阈值）",
+    "diff": "XOR 差异率 = |A⊕B| / |A∪B|",
+    "anchor": "身高滑块（对象级等比缩放 1.00–1.08，SPEC §3.4）—— 项目里已被认可'看得出来'的对照物；用它把体形档位差换算成等效身高变化",
+    "caveat": "身高与围度的差异分布不同（纵向 vs 横向），等效身高是**量级标尺**，不是严格的心理物理等价"
+  },
+  "coefficients": {
+    "thin": 0.84,
+    "heavy": 1.21
+  },
+  "delta_response": {
+    "_comment": "垂直轴（X/Z）响应：bone_scale = 1 + (coef-1)·delta_response[group]。1.0 = 完全跟随目标系数；<1 = 保守。v2 把 spine_02/spine_03 拉到 1.0，让胸腔与骨盆同步响应（v1 的胸只有臀的 72%，而衣服下胸腔比骨盆更显眼）；clavicle 0.5→0.8 让肩背厚度也跟上。",
+    "pelvis": 1.0,
+    "spine_01": 1.0,
+    "spine_02": 1.0,
+    "spine_03": 1.0,
+    "thigh": 0.95,
+    "calf": 0.85,
+    "upperarm": 1.05,
+    "lowerarm": 0.95,
+    "clavicle": 0.8
+  },
+  "along_axis_response": {
+    "_comment": "沿骨轴（Y）响应：bone_scale.y = 1 + (coef-1)·along_axis_response[group]。默认 0（不改骨长）。**只对骨轴近乎水平的骨开** —— 那时改骨长改的是『宽度』而不是『身高』。锁骨的 head/tail 的 z 完全相同（精确水平），所以它是唯一安全的候选：沿它缩放 = 改肩宽/臂展，身高代价 0（实测身高比仍是 1.0002/0.9998）。pelvis/spine_01..03/thigh/calf/upperarm/lowerarm 的骨轴是竖直或纵向的，开它等于改身高或臂长 —— 必须保持 0。",
+    "clavicle": 0.5
+  },
+  "height_scale_ladder": [
+    1.0,
+    1.02,
+    1.04,
+    1.06,
+    1.08
+  ],
+  "blender_version": "5.2.2 LTS",
+  "generated_at": "2026-10-13T18:25:28+0800",
+  "targets": [
+    {
+      "sex": "Female",
+      "target": "body",
+      "file": "assets/3d/rig/bodies/Body_Female_Standard.blend",
+      "mesh_count": 3,
+      "vertex_count": 8844,
+      "rig": "RIG_Body_Female_Standard",
+      "inherit_scale_none_set_in_memory": 0,
+      "resolution": [
+        900,
+        1100
+      ],
+      "states": {
+        "basis": {
+          "coefficient": 1.0,
+          "png": "tmp/bs_sil_v2/Female_body_basis.png",
+          "area_px": 140665,
+          "bbox_w_px": 866,
+          "bbox_h_px": 920,
+          "max_row_width_px": 866,
+          "widths_at_frac": {
+            "0.0": 162,
+            "0.2": 188,
+            "0.4": 200,
+            "0.6": 156,
+            "0.8": 862,
+            "1.0": 18
+          }
+        },
+        "thin": {
+          "coefficient": 0.84,
+          "png": "tmp/bs_sil_v2/Female_body_thin.png",
+          "area_px": 122286,
+          "bbox_w_px": 850,
+          "bbox_h_px": 920,
+          "max_row_width_px": 850,
+          "widths_at_frac": {
+            "0.0": 146,
+            "0.2": 160,
+            "0.4": 170,
+            "0.6": 132,
+            "0.8": 846,
+            "1.0": 18
+          }
+        },
+        "heavy": {
+          "coefficient": 1.21,
+          "png": "tmp/bs_sil_v2/Female_body_heavy.png",
+          "area_px": 164696,
+          "bbox_w_px": 884,
+          "bbox_h_px": 920,
+          "max_row_width_px": 884,
+          "widths_at_frac": {
+            "0.0": 178,
+            "0.2": 224,
+            "0.4": 242,
+            "0.6": 188,
+            "0.8": 882,
+            "1.0": 18
+          }
+        },
+        "h1.00": {
+          "object_scale": 1.0,
+          "png": "tmp/bs_sil_v2/Female_body_h1.00.png",
+          "area_px": 140665,
+          "bbox_w_px": 866,
+          "bbox_h_px": 920,
+          "max_row_width_px": 866,
+          "widths_at_frac": {
+            "0.0": 162,
+            "0.2": 188,
+            "0.4": 200,
+            "0.6": 156,
+            "0.8": 862,
+            "1.0": 18
+          }
+        },
+        "h1.02": {
+          "object_scale": 1.02,
+          "png": "tmp/bs_sil_v2/Female_body_h1.02.png",
+          "area_px": 146356,
+          "bbox_w_px": 882,
+          "bbox_h_px": 939,
+          "max_row_width_px": 882,
+          "widths_at_frac": {
+            "0.0": 166,
+            "0.2": 192,
+            "0.4": 204,
+            "0.6": 158,
+            "0.8": 880,
+            "1.0": 10
+          }
+        },
+        "h1.04": {
+          "object_scale": 1.04,
+          "png": "tmp/bs_sil_v2/Female_body_h1.04.png",
+          "area_px": 152215,
+          "bbox_w_px": 900,
+          "bbox_h_px": 957,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 170,
+            "0.2": 194,
+            "0.4": 208,
+            "0.6": 160,
+            "0.8": 898,
+            "1.0": 14
+          }
+        },
+        "h1.06": {
+          "object_scale": 1.06,
+          "png": "tmp/bs_sil_v2/Female_body_h1.06.png",
+          "area_px": 157912,
+          "bbox_w_px": 900,
+          "bbox_h_px": 975,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 174,
+            "0.2": 198,
+            "0.4": 212,
+            "0.6": 164,
+            "0.8": 900,
+            "1.0": 19
+          }
+        },
+        "h1.08": {
+          "object_scale": 1.08,
+          "png": "tmp/bs_sil_v2/Female_body_h1.08.png",
+          "area_px": 163733,
+          "bbox_w_px": 900,
+          "bbox_h_px": 994,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 178,
+            "0.2": 202,
+            "0.4": 216,
+            "0.6": 166,
+            "0.8": 900,
+            "1.0": 10
+          }
+        }
+      },
+      "xor_pct": {
+        "thin_vs_heavy": 37.043,
+        "basis_vs_thin": 19.491,
+        "basis_vs_heavy": 21.6422,
+        "basis_vs_h1.04": 30.7062,
+        "basis_vs_h1.08": 43.4489
+      },
+      "height_calibration": [
+        {
+          "height_pct": 0.0,
+          "xor_vs_basis_pct": 0.0
+        },
+        {
+          "height_pct": 2.0,
+          "xor_vs_basis_pct": 18.5364
+        },
+        {
+          "height_pct": 4.0,
+          "xor_vs_basis_pct": 30.7062
+        },
+        {
+          "height_pct": 6.0,
+          "xor_vs_basis_pct": 39.4324
+        },
+        {
+          "height_pct": 8.0,
+          "xor_vs_basis_pct": 43.4489
+        }
+      ],
+      "thin_vs_heavy_equivalent_height_pct": 5.452,
+      "equivalent_height_method": "piecewise_linear_on_measured_ladder",
+      "area_pct": {
+        "thin_vs_basis": -13.066,
+        "heavy_vs_basis": 17.084
+      },
+      "max_row_width_pct": {
+        "thin_vs_basis": -1.848,
+        "heavy_vs_basis": 2.079
+      }
+    },
+    {
+      "sex": "Female",
+      "target": "tryon",
+      "file": "assets/3d/blend/tryon/TryOn_Female_Ranger.blend",
+      "mesh_count": 12,
+      "vertex_count": 27920,
+      "rig": "RIG_TryOn_Female_Ranger",
+      "inherit_scale_none_set_in_memory": 18,
+      "resolution": [
+        900,
+        1100
+      ],
+      "states": {
+        "basis": {
+          "coefficient": 1.0,
+          "png": "tmp/bs_sil_v2/Female_tryon_basis.png",
+          "area_px": 167091,
+          "bbox_w_px": 866,
+          "bbox_h_px": 935,
+          "max_row_width_px": 866,
+          "widths_at_frac": {
+            "0.0": 186,
+            "0.2": 200,
+            "0.4": 198,
+            "0.6": 156,
+            "0.8": 748,
+            "1.0": 16
+          }
+        },
+        "thin": {
+          "coefficient": 0.84,
+          "png": "tmp/bs_sil_v2/Female_tryon_thin.png",
+          "area_px": 145764,
+          "bbox_w_px": 850,
+          "bbox_h_px": 934,
+          "max_row_width_px": 850,
+          "widths_at_frac": {
+            "0.0": 174,
+            "0.2": 170,
+            "0.4": 168,
+            "0.6": 132,
+            "0.8": 740,
+            "1.0": 14
+          }
+        },
+        "heavy": {
+          "coefficient": 1.21,
+          "png": "tmp/bs_sil_v2/Female_tryon_heavy.png",
+          "area_px": 195136,
+          "bbox_w_px": 884,
+          "bbox_h_px": 937,
+          "max_row_width_px": 884,
+          "widths_at_frac": {
+            "0.0": 188,
+            "0.2": 238,
+            "0.4": 240,
+            "0.6": 186,
+            "0.8": 748,
+            "1.0": 12
+          }
+        },
+        "h1.00": {
+          "object_scale": 1.0,
+          "png": "tmp/bs_sil_v2/Female_tryon_h1.00.png",
+          "area_px": 167091,
+          "bbox_w_px": 866,
+          "bbox_h_px": 935,
+          "max_row_width_px": 866,
+          "widths_at_frac": {
+            "0.0": 186,
+            "0.2": 200,
+            "0.4": 198,
+            "0.6": 156,
+            "0.8": 748,
+            "1.0": 16
+          }
+        },
+        "h1.02": {
+          "object_scale": 1.02,
+          "png": "tmp/bs_sil_v2/Female_tryon_h1.02.png",
+          "area_px": 173802,
+          "bbox_w_px": 882,
+          "bbox_h_px": 954,
+          "max_row_width_px": 882,
+          "widths_at_frac": {
+            "0.0": 192,
+            "0.2": 204,
+            "0.4": 202,
+            "0.6": 158,
+            "0.8": 763,
+            "1.0": 13
+          }
+        },
+        "h1.04": {
+          "object_scale": 1.04,
+          "png": "tmp/bs_sil_v2/Female_tryon_h1.04.png",
+          "area_px": 180682,
+          "bbox_w_px": 900,
+          "bbox_h_px": 972,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 198,
+            "0.2": 206,
+            "0.4": 206,
+            "0.6": 162,
+            "0.8": 778,
+            "1.0": 19
+          }
+        },
+        "h1.06": {
+          "object_scale": 1.06,
+          "png": "tmp/bs_sil_v2/Female_tryon_h1.06.png",
+          "area_px": 187574,
+          "bbox_w_px": 900,
+          "bbox_h_px": 991,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 202,
+            "0.2": 210,
+            "0.4": 210,
+            "0.6": 166,
+            "0.8": 792,
+            "1.0": 16
+          }
+        },
+        "h1.08": {
+          "object_scale": 1.08,
+          "png": "tmp/bs_sil_v2/Female_tryon_h1.08.png",
+          "area_px": 194545,
+          "bbox_w_px": 900,
+          "bbox_h_px": 1010,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 207,
+            "0.2": 216,
+            "0.4": 214,
+            "0.6": 168,
+            "0.8": 806,
+            "1.0": 14
+          }
+        }
+      },
+      "xor_pct": {
+        "thin_vs_heavy": 33.5709,
+        "basis_vs_thin": 17.5783,
+        "basis_vs_heavy": 19.7678,
+        "basis_vs_h1.04": 27.0646,
+        "basis_vs_h1.08": 40.0492
+      },
+      "height_calibration": [
+        {
+          "height_pct": 0.0,
+          "xor_vs_basis_pct": 0.0
+        },
+        {
+          "height_pct": 2.0,
+          "xor_vs_basis_pct": 16.2342
+        },
+        {
+          "height_pct": 4.0,
+          "xor_vs_basis_pct": 27.0646
+        },
+        {
+          "height_pct": 6.0,
+          "xor_vs_basis_pct": 35.4658
+        },
+        {
+          "height_pct": 8.0,
+          "xor_vs_basis_pct": 40.0492
+        }
+      ],
+      "thin_vs_heavy_equivalent_height_pct": 5.549,
+      "equivalent_height_method": "piecewise_linear_on_measured_ladder",
+      "area_pct": {
+        "thin_vs_basis": -12.764,
+        "heavy_vs_basis": 16.784
+      },
+      "max_row_width_pct": {
+        "thin_vs_basis": -1.848,
+        "heavy_vs_basis": 2.079
+      }
+    },
+    {
+      "sex": "Male",
+      "target": "body",
+      "file": "assets/3d/rig/bodies/Body_Male_Standard.blend",
+      "mesh_count": 3,
+      "vertex_count": 8483,
+      "rig": "RIG_Body_Male_Standard",
+      "inherit_scale_none_set_in_memory": 0,
+      "resolution": [
+        900,
+        1100
+      ],
+      "states": {
+        "basis": {
+          "coefficient": 1.0,
+          "png": "tmp/bs_sil_v2/Male_body_basis.png",
+          "area_px": 133041,
+          "bbox_w_px": 864,
+          "bbox_h_px": 847,
+          "max_row_width_px": 864,
+          "widths_at_frac": {
+            "0.0": 138,
+            "0.2": 176,
+            "0.4": 180,
+            "0.6": 140,
+            "0.8": 864,
+            "1.0": 12
+          }
+        },
+        "thin": {
+          "coefficient": 0.84,
+          "png": "tmp/bs_sil_v2/Male_body_thin.png",
+          "area_px": 115576,
+          "bbox_w_px": 848,
+          "bbox_h_px": 847,
+          "max_row_width_px": 848,
+          "widths_at_frac": {
+            "0.0": 120,
+            "0.2": 148,
+            "0.4": 152,
+            "0.6": 118,
+            "0.8": 844,
+            "1.0": 12
+          }
+        },
+        "heavy": {
+          "coefficient": 1.21,
+          "png": "tmp/bs_sil_v2/Male_body_heavy.png",
+          "area_px": 155856,
+          "bbox_w_px": 888,
+          "bbox_h_px": 847,
+          "max_row_width_px": 888,
+          "widths_at_frac": {
+            "0.0": 160,
+            "0.2": 210,
+            "0.4": 218,
+            "0.6": 170,
+            "0.8": 888,
+            "1.0": 12
+          }
+        },
+        "h1.00": {
+          "object_scale": 1.0,
+          "png": "tmp/bs_sil_v2/Male_body_h1.00.png",
+          "area_px": 133041,
+          "bbox_w_px": 864,
+          "bbox_h_px": 847,
+          "max_row_width_px": 864,
+          "widths_at_frac": {
+            "0.0": 138,
+            "0.2": 176,
+            "0.4": 180,
+            "0.6": 140,
+            "0.8": 864,
+            "1.0": 12
+          }
+        },
+        "h1.02": {
+          "object_scale": 1.02,
+          "png": "tmp/bs_sil_v2/Male_body_h1.02.png",
+          "area_px": 138370,
+          "bbox_w_px": 882,
+          "bbox_h_px": 863,
+          "max_row_width_px": 882,
+          "widths_at_frac": {
+            "0.0": 142,
+            "0.2": 178,
+            "0.4": 184,
+            "0.6": 144,
+            "0.8": 880,
+            "1.0": 23
+          }
+        },
+        "h1.04": {
+          "object_scale": 1.04,
+          "png": "tmp/bs_sil_v2/Male_body_h1.04.png",
+          "area_px": 143771,
+          "bbox_w_px": 900,
+          "bbox_h_px": 881,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 98,
+            "0.2": 182,
+            "0.4": 188,
+            "0.6": 146,
+            "0.8": 896,
+            "1.0": 22
+          }
+        },
+        "h1.06": {
+          "object_scale": 1.06,
+          "png": "tmp/bs_sil_v2/Male_body_h1.06.png",
+          "area_px": 149306,
+          "bbox_w_px": 900,
+          "bbox_h_px": 898,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 102,
+            "0.2": 186,
+            "0.4": 192,
+            "0.6": 150,
+            "0.8": 900,
+            "1.0": 20
+          }
+        },
+        "h1.08": {
+          "object_scale": 1.08,
+          "png": "tmp/bs_sil_v2/Male_body_h1.08.png",
+          "area_px": 154845,
+          "bbox_w_px": 900,
+          "bbox_h_px": 915,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 106,
+            "0.2": 190,
+            "0.4": 196,
+            "0.6": 152,
+            "0.8": 900,
+            "1.0": 18
+          }
+        }
+      },
+      "xor_pct": {
+        "thin_vs_heavy": 36.9885,
+        "basis_vs_thin": 19.5328,
+        "basis_vs_heavy": 21.7213,
+        "basis_vs_h1.04": 29.6164,
+        "basis_vs_h1.08": 45.7459
+      },
+      "height_calibration": [
+        {
+          "height_pct": 0.0,
+          "xor_vs_basis_pct": 0.0
+        },
+        {
+          "height_pct": 2.0,
+          "xor_vs_basis_pct": 17.7361
+        },
+        {
+          "height_pct": 4.0,
+          "xor_vs_basis_pct": 29.6164
+        },
+        {
+          "height_pct": 6.0,
+          "xor_vs_basis_pct": 38.7832
+        },
+        {
+          "height_pct": 8.0,
+          "xor_vs_basis_pct": 45.7459
+        }
+      ],
+      "thin_vs_heavy_equivalent_height_pct": 5.608,
+      "equivalent_height_method": "piecewise_linear_on_measured_ladder",
+      "area_pct": {
+        "thin_vs_basis": -13.128,
+        "heavy_vs_basis": 17.149
+      },
+      "max_row_width_pct": {
+        "thin_vs_basis": -1.852,
+        "heavy_vs_basis": 2.778
+      }
+    },
+    {
+      "sex": "Male",
+      "target": "tryon",
+      "file": "assets/3d/blend/tryon/TryOn_Male_Ranger.blend",
+      "mesh_count": 12,
+      "vertex_count": 27637,
+      "rig": "RIG_TryOn_Male_Ranger",
+      "inherit_scale_none_set_in_memory": 18,
+      "resolution": [
+        900,
+        1100
+      ],
+      "states": {
+        "basis": {
+          "coefficient": 1.0,
+          "png": "tmp/bs_sil_v2/Male_tryon_basis.png",
+          "area_px": 155304,
+          "bbox_w_px": 864,
+          "bbox_h_px": 900,
+          "max_row_width_px": 864,
+          "widths_at_frac": {
+            "0.0": 104,
+            "0.2": 162,
+            "0.4": 175,
+            "0.6": 145,
+            "0.8": 722,
+            "1.0": 1
+          }
+        },
+        "thin": {
+          "coefficient": 0.84,
+          "png": "tmp/bs_sil_v2/Male_tryon_thin.png",
+          "area_px": 135824,
+          "bbox_w_px": 848,
+          "bbox_h_px": 899,
+          "max_row_width_px": 848,
+          "widths_at_frac": {
+            "0.0": 90,
+            "0.2": 138,
+            "0.4": 148,
+            "0.6": 121,
+            "0.8": 708,
+            "1.0": 19
+          }
+        },
+        "heavy": {
+          "coefficient": 1.21,
+          "png": "tmp/bs_sil_v2/Male_tryon_heavy.png",
+          "area_px": 181078,
+          "bbox_w_px": 888,
+          "bbox_h_px": 900,
+          "max_row_width_px": 888,
+          "widths_at_frac": {
+            "0.0": 124,
+            "0.2": 192,
+            "0.4": 210,
+            "0.6": 175,
+            "0.8": 744,
+            "1.0": 11
+          }
+        },
+        "h1.00": {
+          "object_scale": 1.0,
+          "png": "tmp/bs_sil_v2/Male_tryon_h1.00.png",
+          "area_px": 155304,
+          "bbox_w_px": 864,
+          "bbox_h_px": 900,
+          "max_row_width_px": 864,
+          "widths_at_frac": {
+            "0.0": 104,
+            "0.2": 162,
+            "0.4": 175,
+            "0.6": 145,
+            "0.8": 722,
+            "1.0": 1
+          }
+        },
+        "h1.02": {
+          "object_scale": 1.02,
+          "png": "tmp/bs_sil_v2/Male_tryon_h1.02.png",
+          "area_px": 161575,
+          "bbox_w_px": 882,
+          "bbox_h_px": 917,
+          "max_row_width_px": 882,
+          "widths_at_frac": {
+            "0.0": 110,
+            "0.2": 164,
+            "0.4": 178,
+            "0.6": 147,
+            "0.8": 738,
+            "1.0": 20
+          }
+        },
+        "h1.04": {
+          "object_scale": 1.04,
+          "png": "tmp/bs_sil_v2/Male_tryon_h1.04.png",
+          "area_px": 168017,
+          "bbox_w_px": 900,
+          "bbox_h_px": 935,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 116,
+            "0.2": 168,
+            "0.4": 182,
+            "0.6": 151,
+            "0.8": 752,
+            "1.0": 20
+          }
+        },
+        "h1.06": {
+          "object_scale": 1.06,
+          "png": "tmp/bs_sil_v2/Male_tryon_h1.06.png",
+          "area_px": 174457,
+          "bbox_w_px": 900,
+          "bbox_h_px": 953,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 120,
+            "0.2": 170,
+            "0.4": 186,
+            "0.6": 153,
+            "0.8": 766,
+            "1.0": 20
+          }
+        },
+        "h1.08": {
+          "object_scale": 1.08,
+          "png": "tmp/bs_sil_v2/Male_tryon_h1.08.png",
+          "area_px": 180884,
+          "bbox_w_px": 900,
+          "bbox_h_px": 971,
+          "max_row_width_px": 900,
+          "widths_at_frac": {
+            "0.0": 126,
+            "0.2": 174,
+            "0.4": 188,
+            "0.6": 157,
+            "0.8": 782,
+            "1.0": 20
+          }
+        }
+      },
+      "xor_pct": {
+        "thin_vs_heavy": 30.7383,
+        "basis_vs_thin": 16.0375,
+        "basis_vs_heavy": 18.044,
+        "basis_vs_h1.04": 26.3983,
+        "basis_vs_h1.08": 40.9564
+      },
+      "height_calibration": [
+        {
+          "height_pct": 0.0,
+          "xor_vs_basis_pct": 0.0
+        },
+        {
+          "height_pct": 2.0,
+          "xor_vs_basis_pct": 15.7659
+        },
+        {
+          "height_pct": 4.0,
+          "xor_vs_basis_pct": 26.3983
+        },
+        {
+          "height_pct": 6.0,
+          "xor_vs_basis_pct": 35.652
+        },
+        {
+          "height_pct": 8.0,
+          "xor_vs_basis_pct": 40.9564
+        }
+      ],
+      "thin_vs_heavy_equivalent_height_pct": 4.938,
+      "equivalent_height_method": "piecewise_linear_on_measured_ladder",
+      "area_pct": {
+        "thin_vs_basis": -12.543,
+        "heavy_vs_basis": 16.596
+      },
+      "max_row_width_pct": {
+        "thin_vs_basis": -1.852,
+        "heavy_vs_basis": 2.778
+      }
+    }
+  ],
+  "elapsed_sec": 39.7
+}

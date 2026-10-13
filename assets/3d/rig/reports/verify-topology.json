@@ -1,0 +1,840 @@
+{
+  "generated_by": "verifier/v_topology_audit.py",
+  "objects": [
+    {
+      "object": "Body_Female",
+      "n_verts": 7376,
+      "n_tris": 12812,
+      "n_edges": 20186,
+      "n_boundary_edges": 1936,
+      "n_nonmanifold_edges": 0,
+      "is_watertight": false,
+      "n_connected_components": 26,
+      "largest_components_verts": [
+        903,
+        776,
+        598,
+        598,
+        587,
+        587,
+        362,
+        362,
+        350,
+        350
+      ],
+      "n_boundary_loops": 48,
+      "boundary_loops_top8": [
+        {
+          "n_edges": 163,
+          "n_verts": 163,
+          "z_range_m": [
+            1.351,
+            1.438
+          ],
+          "centroid": [
+            0.74,
+            0.046,
+            1.406
+          ]
+        },
+        {
+          "n_edges": 163,
+          "n_verts": 163,
+          "z_range_m": [
+            1.351,
+            1.438
+          ],
+          "centroid": [
+            -0.74,
+            0.046,
+            1.406
+          ]
+        },
+        {
+          "n_edges": 153,
+          "n_verts": 153,
+          "z_range_m": [
+            1.351,
+            1.415
+          ],
+          "centroid": [
+            0.748,
+            0.046,
+            1.405
+          ]
+        },
+        {
+          "n_edges": 153,
+          "n_verts": 153,
+          "z_range_m": [
+            1.351,
+            1.415
+          ],
+          "centroid": [
+            -0.748,
+            0.046,
+            1.405
+          ]
+        },
+        {
+          "n_edges": 132,
+          "n_verts": 132,
+          "z_range_m": [
+            1.042,
+            1.469
+          ],
+          "centroid": [
+            0.0,
+            0.018,
+            1.23
+          ]
+        },
+        {
+          "n_edges": 106,
+          "n_verts": 106,
+          "z_range_m": [
+            0.088,
+            1.05
+          ],
+          "centroid": [
+            0.055,
+            0.037,
+            0.618
+          ]
+        },
+        {
+          "n_edges": 106,
+          "n_verts": 106,
+          "z_range_m": [
+            0.088,
+            1.05
+          ],
+          "centroid": [
+            -0.055,
+            0.037,
+            0.618
+          ]
+        },
+        {
+          "n_edges": 84,
+          "n_verts": 84,
+          "z_range_m": [
+            1.467,
+            1.594
+          ],
+          "centroid": [
+            -0.0,
+            0.043,
+            1.533
+          ]
+        }
+      ],
+      "boundary_edges_z_hist": {
+        "-0.01-0.14m": 288,
+        "0.14-0.29m": 12,
+        "0.29-0.44m": 16,
+        "0.44-0.58m": 20,
+        "0.58-0.73m": 16,
+        "0.73-0.88m": 44,
+        "0.88-1.03m": 24,
+        "1.03-1.17m": 88,
+        "1.17-1.32m": 28,
+        "1.32-1.47m": 1116,
+        "1.47-1.62m": 206,
+        "1.62-1.77m": 78
+      }
+    },
+    {
+      "object": "Eyes",
+      "n_verts": 556,
+      "n_tris": 768,
+      "n_edges": 1310,
+      "n_boundary_edges": 316,
+      "n_nonmanifold_edges": 0,
+      "is_watertight": false,
+      "n_connected_components": 14,
+      "largest_components_verts": [
+        94,
+        94,
+        51,
+        51,
+        33,
+        33,
+        25,
+        25,
+        25,
+        25
+      ],
+      "n_boundary_loops": 14,
+      "boundary_loops_top8": [
+        {
+          "n_edges": 42,
+          "n_verts": 42,
+          "z_range_m": [
+            1.64,
+            1.673
+          ],
+          "centroid": [
+            0.035,
+            -0.055,
+            1.656
+          ]
+        },
+        {
+          "n_edges": 42,
+          "n_verts": 42,
+          "z_range_m": [
+            1.64,
+            1.673
+          ],
+          "centroid": [
+            -0.035,
+            -0.055,
+            1.656
+          ]
+        },
+        {
+          "n_edges": 36,
+          "n_verts": 36,
+          "z_range_m": [
+            1.646,
+            1.667
+          ],
+          "centroid": [
+            0.035,
+            -0.073,
+            1.655
+          ]
+        },
+        {
+          "n_edges": 36,
+          "n_verts": 36,
+          "z_range_m": [
+            1.646,
+            1.667
+          ],
+          "centroid": [
+            -0.035,
+            -0.073,
+            1.655
+          ]
+        },
+        {
+          "n_edges": 16,
+          "n_verts": 16,
+          "z_range_m": [
+            1.656,
+            1.673
+          ],
+          "centroid": [
+            0.042,
+            -0.065,
+            1.664
+          ]
+        },
+        {
+          "n_edges": 16,
+          "n_verts": 16,
+          "z_range_m": [
+            1.651,
+            1.661
+          ],
+          "centroid": [
+            0.035,
+            -0.074,
+            1.656
+          ]
+        },
+        {
+          "n_edges": 16,
+          "n_verts": 16,
+          "z_range_m": [
+            1.64,
+            1.656
+          ],
+          "centroid": [
+            0.042,
+            -0.065,
+            1.648
+          ]
+        },
+        {
+          "n_edges": 16,
+          "n_verts": 16,
+          "z_range_m": [
+            1.64,
+            1.656
+          ],
+          "centroid": [
+            0.027,
+            -0.065,
+            1.648
+          ]
+        }
+      ],
+      "boundary_edges_z_hist": {
+        "1.64-1.64m": 28,
+        "1.64-1.65m": 16,
+        "1.65-1.65m": 32,
+        "1.65-1.66m": 72,
+        "1.66-1.66m": 8,
+        "1.66-1.67m": 24,
+        "1.67-1.67m": 28
+      }
+    },
+    {
+      "object": "Eyebrows",
+      "n_verts": 912,
+      "n_tris": 1480,
+      "n_edges": 2384,
+      "n_boundary_edges": 328,
+      "n_nonmanifold_edges": 0,
+      "is_watertight": false,
+      "n_connected_components": 8,
+      "largest_components_verts": [
+        156,
+        156,
+        106,
+        106,
+        97,
+        97,
+        97,
+        97
+      ],
+      "n_boundary_loops": 8,
+      "boundary_loops_top8": [
+        {
+          "n_edges": 50,
+          "n_verts": 50,
+          "z_range_m": [
+            1.649,
+            1.663
+          ],
+          "centroid": [
+            0.039,
+            -0.07,
+            1.657
+          ]
+        },
+        {
+          "n_edges": 50,
+          "n_verts": 50,
+          "z_range_m": [
+            1.649,
+            1.663
+          ],
+          "centroid": [
+            0.039,
+            -0.07,
+            1.657
+          ]
+        },
+        {
+          "n_edges": 50,
+          "n_verts": 50,
+          "z_range_m": [
+            1.649,
+            1.663
+          ],
+          "centroid": [
+            -0.039,
+            -0.07,
+            1.657
+          ]
+        },
+        {
+          "n_edges": 50,
+          "n_verts": 50,
+          "z_range_m": [
+            1.649,
+            1.663
+          ],
+          "centroid": [
+            -0.039,
+            -0.07,
+            1.657
+          ]
+        },
+        {
+          "n_edges": 32,
+          "n_verts": 32,
+          "z_range_m": [
+            1.669,
+            1.687
+          ],
+          "centroid": [
+            0.039,
+            -0.073,
+            1.676
+          ]
+        },
+        {
+          "n_edges": 32,
+          "n_verts": 32,
+          "z_range_m": [
+            1.669,
+            1.687
+          ],
+          "centroid": [
+            0.039,
+            -0.073,
+            1.676
+          ]
+        },
+        {
+          "n_edges": 32,
+          "n_verts": 32,
+          "z_range_m": [
+            1.669,
+            1.687
+          ],
+          "centroid": [
+            -0.039,
+            -0.073,
+            1.676
+          ]
+        },
+        {
+          "n_edges": 32,
+          "n_verts": 32,
+          "z_range_m": [
+            1.669,
+            1.687
+          ],
+          "centroid": [
+            -0.039,
+            -0.073,
+            1.676
+          ]
+        }
+      ],
+      "boundary_edges_z_hist": {
+        "1.65-1.65m": 24,
+        "1.65-1.66m": 36,
+        "1.66-1.66m": 20,
+        "1.67-1.67m": 36,
+        "1.67-1.68m": 36,
+        "1.68-1.68m": 8,
+        "1.68-1.69m": 16
+      }
+    },
+    {
+      "object": "Body_Male",
+      "n_verts": 7281,
+      "n_tris": 12566,
+      "n_edges": 19843,
+      "n_boundary_edges": 1988,
+      "n_nonmanifold_edges": 0,
+      "is_watertight": false,
+      "n_connected_components": 24,
+      "largest_components_verts": [
+        771,
+        752,
+        641,
+        641,
+        632,
+        632,
+        388,
+        388,
+        354,
+        354
+      ],
+      "n_boundary_loops": 42,
+      "boundary_loops_top8": [
+        {
+          "n_edges": 175,
+          "n_verts": 175,
+          "z_range_m": [
+            1.367,
+            1.474
+          ],
+          "centroid": [
+            0.836,
+            0.053,
+            1.437
+          ]
+        },
+        {
+          "n_edges": 175,
+          "n_verts": 175,
+          "z_range_m": [
+            1.367,
+            1.474
+          ],
+          "centroid": [
+            -0.836,
+            0.053,
+            1.437
+          ]
+        },
+        {
+          "n_edges": 170,
+          "n_verts": 169,
+          "z_range_m": [
+            1.367,
+            1.452
+          ],
+          "centroid": [
+            0.844,
+            0.053,
+            1.435
+          ]
+        },
+        {
+          "n_edges": 170,
+          "n_verts": 169,
+          "z_range_m": [
+            1.367,
+            1.452
+          ],
+          "centroid": [
+            -0.844,
+            0.053,
+            1.435
+          ]
+        },
+        {
+          "n_edges": 132,
+          "n_verts": 132,
+          "z_range_m": [
+            1.053,
+            1.533
+          ],
+          "centroid": [
+            -0.0,
+            0.033,
+            1.255
+          ]
+        },
+        {
+          "n_edges": 108,
+          "n_verts": 108,
+          "z_range_m": [
+            0.073,
+            1.068
+          ],
+          "centroid": [
+            0.066,
+            0.028,
+            0.609
+          ]
+        },
+        {
+          "n_edges": 108,
+          "n_verts": 108,
+          "z_range_m": [
+            0.073,
+            1.068
+          ],
+          "centroid": [
+            -0.066,
+            0.028,
+            0.609
+          ]
+        },
+        {
+          "n_edges": 82,
+          "n_verts": 82,
+          "z_range_m": [
+            1.518,
+            1.638
+          ],
+          "centroid": [
+            0.0,
+            0.045,
+            1.584
+          ]
+        }
+      ],
+      "boundary_edges_z_hist": {
+        "-0.01-0.14m": 292,
+        "0.14-0.29m": 16,
+        "0.29-0.45m": 16,
+        "0.45-0.60m": 20,
+        "0.60-0.75m": 12,
+        "0.75-0.90m": 30,
+        "0.90-1.05m": 38,
+        "1.05-1.20m": 94,
+        "1.20-1.36m": 28,
+        "1.36-1.51m": 1140,
+        "1.51-1.66m": 224,
+        "1.66-1.81m": 78
+      }
+    },
+    {
+      "object": "Eyes",
+      "n_verts": 556,
+      "n_tris": 768,
+      "n_edges": 1310,
+      "n_boundary_edges": 316,
+      "n_nonmanifold_edges": 0,
+      "is_watertight": false,
+      "n_connected_components": 14,
+      "largest_components_verts": [
+        94,
+        94,
+        51,
+        51,
+        33,
+        33,
+        25,
+        25,
+        25,
+        25
+      ],
+      "n_boundary_loops": 14,
+      "boundary_loops_top8": [
+        {
+          "n_edges": 42,
+          "n_verts": 42,
+          "z_range_m": [
+            1.684,
+            1.714
+          ],
+          "centroid": [
+            0.034,
+            -0.062,
+            1.698
+          ]
+        },
+        {
+          "n_edges": 42,
+          "n_verts": 42,
+          "z_range_m": [
+            1.684,
+            1.714
+          ],
+          "centroid": [
+            -0.034,
+            -0.062,
+            1.698
+          ]
+        },
+        {
+          "n_edges": 36,
+          "n_verts": 36,
+          "z_range_m": [
+            1.689,
+            1.708
+          ],
+          "centroid": [
+            0.034,
+            -0.079,
+            1.698
+          ]
+        },
+        {
+          "n_edges": 36,
+          "n_verts": 36,
+          "z_range_m": [
+            1.689,
+            1.708
+          ],
+          "centroid": [
+            -0.034,
+            -0.079,
+            1.698
+          ]
+        },
+        {
+          "n_edges": 16,
+          "n_verts": 16,
+          "z_range_m": [
+            1.699,
+            1.714
+          ],
+          "centroid": [
+            0.041,
+            -0.072,
+            1.706
+          ]
+        },
+        {
+          "n_edges": 16,
+          "n_verts": 16,
+          "z_range_m": [
+            1.694,
+            1.703
+          ],
+          "centroid": [
+            0.034,
+            -0.08,
+            1.699
+          ]
+        },
+        {
+          "n_edges": 16,
+          "n_verts": 16,
+          "z_range_m": [
+            1.684,
+            1.699
+          ],
+          "centroid": [
+            0.041,
+            -0.072,
+            1.691
+          ]
+        },
+        {
+          "n_edges": 16,
+          "n_verts": 16,
+          "z_range_m": [
+            1.684,
+            1.699
+          ],
+          "centroid": [
+            0.027,
+            -0.072,
+            1.691
+          ]
+        }
+      ],
+      "boundary_edges_z_hist": {
+        "1.68-1.69m": 28,
+        "1.69-1.69m": 16,
+        "1.69-1.70m": 32,
+        "1.70-1.70m": 32,
+        "1.70-1.71m": 8,
+        "1.71-1.71m": 28
+      }
+    },
+    {
+      "object": "Eyebrows",
+      "n_verts": 646,
+      "n_tris": 984,
+      "n_edges": 1616,
+      "n_boundary_edges": 280,
+      "n_nonmanifold_edges": 0,
+      "is_watertight": false,
+      "n_connected_components": 14,
+      "largest_components_verts": [
+        243,
+        243,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18
+      ],
+      "n_boundary_loops": 14,
+      "boundary_loops_top8": [
+        {
+          "n_edges": 60,
+          "n_verts": 60,
+          "z_range_m": [
+            1.705,
+            1.725
+          ],
+          "centroid": [
+            0.037,
+            -0.077,
+            1.714
+          ]
+        },
+        {
+          "n_edges": 60,
+          "n_verts": 60,
+          "z_range_m": [
+            1.705,
+            1.725
+          ],
+          "centroid": [
+            -0.037,
+            -0.077,
+            1.714
+          ]
+        },
+        {
+          "n_edges": 18,
+          "n_verts": 18,
+          "z_range_m": [
+            1.695,
+            1.705
+          ],
+          "centroid": [
+            0.037,
+            -0.078,
+            1.701
+          ]
+        },
+        {
+          "n_edges": 18,
+          "n_verts": 18,
+          "z_range_m": [
+            1.695,
+            1.705
+          ],
+          "centroid": [
+            0.037,
+            -0.079,
+            1.702
+          ]
+        },
+        {
+          "n_edges": 18,
+          "n_verts": 18,
+          "z_range_m": [
+            1.695,
+            1.702
+          ],
+          "centroid": [
+            0.037,
+            -0.079,
+            1.7
+          ]
+        },
+        {
+          "n_edges": 18,
+          "n_verts": 18,
+          "z_range_m": [
+            1.695,
+            1.704
+          ],
+          "centroid": [
+            0.037,
+            -0.08,
+            1.7
+          ]
+        },
+        {
+          "n_edges": 18,
+          "n_verts": 18,
+          "z_range_m": [
+            1.695,
+            1.705
+          ],
+          "centroid": [
+            -0.037,
+            -0.078,
+            1.701
+          ]
+        },
+        {
+          "n_edges": 18,
+          "n_verts": 18,
+          "z_range_m": [
+            1.695,
+            1.705
+          ],
+          "centroid": [
+            -0.037,
+            -0.079,
+            1.702
+          ]
+        }
+      ],
+      "boundary_edges_z_hist": {
+        "1.69-1.70m": 28,
+        "1.70-1.70m": 68,
+        "1.70-1.71m": 36,
+        "1.71-1.71m": 16,
+        "1.71-1.72m": 6,
+        "1.72-1.72m": 16,
+        "1.72-1.73m": 14
+      }
+    }
+  ]
+}

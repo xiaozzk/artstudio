@@ -1,0 +1,14 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+=== V1–V4 复算（verifier 独立工程）===
+[V1] 不入树/未读rest → basis vs 单位阵 md=1.000373  euler=(-89.95154, 117.4139, -88.17219)
+[V2] V1 后入树+3帧 → md(V2,V1)=0.000000  逐位相同=true
+[V3] 不入树/先读rest → md(vs rest)=0.000000  方向夹角=0.0000°  → 生效? false
+[V3] 再入树+4帧 → md(vs rest)=0.000000  逐位不变=true
+[V4] 入树/先读rest/同帧 → md(vs rest)=1.488280  方向夹角=90.0114°  → 生效? true
+
+=== 判读 ===
+V1/V2 是同一个矩阵且 ≠ 任何真实姿态? V1==V2 =true
+V3 的'不生效'= md==0 =true 且入树后仍不变 =true
+V4 的'生效'  = md≈1.488 =1.48828 方向90.0114°
+→ T3 的机制解释（未 priming 的缓存给假象、且会粘住）成立 =true

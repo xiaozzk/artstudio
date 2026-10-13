@@ -1,0 +1,16 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+=== A1 修正探针（不比较 euler）===
+bone=6 父链存在=5
+  rest（未入树）                    basis_maxdiff=0.000000  probe_dir_angle=0.0000°  euler=(-0.009204, 1.072845, -89.99999)
+  入树前 set 后（同帧）                basis_maxdiff=0.000000  probe_dir_angle=0.0000°  euler=(-0.009204, 1.072845, -89.99999)
+   → 入树前生效? basis_maxdiff>1e-5 =false
+  入树后 +1 帧                     basis_maxdiff=0.000000  probe_dir_angle=0.0000°  euler=(-0.009204, 1.072845, -89.99999)
+  入树后 +2 帧                     basis_maxdiff=0.000000  probe_dir_angle=0.0000°  euler=(-0.009204, 1.072845, -89.99999)
+  入树后 +3 帧                     basis_maxdiff=0.000000  probe_dir_angle=0.0000°  euler=(-0.009204, 1.072845, -89.99999)
+  入树后 +4 帧                     basis_maxdiff=0.000000  probe_dir_angle=0.0000°  euler=(-0.009204, 1.072845, -89.99999)
+  入树后 set 0°（同帧）               basis_maxdiff=1.000197  probe_dir_angle=90.0114°  euler=(-89.95154, 117.4139, -178.1722)
+  入树后 set 90°（同帧）              basis_maxdiff=1.488280  probe_dir_angle=90.0114°  euler=(-89.95154, 117.4139, -88.17219)
+--- 干净场景（先入树再 set）---
+  rest（已入树）                    basis_maxdiff=0.000000  probe_dir_angle=0.0000°  euler=(-0.009204, 1.072845, -89.99999)
+  入树后 set 90°（同帧）              basis_maxdiff=1.488280  probe_dir_angle=90.0114°  euler=(-89.95154, 117.4139, -88.17219)

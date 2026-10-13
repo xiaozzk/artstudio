@@ -1,0 +1,750 @@
+{
+  "generated_by": "verifier/v_rigfacts_analyze.py",
+  "source": "assets/3d/rig/reports/verify-rigfacts-raw.json",
+  "n_files": 103,
+  "rest_tolerance_cm": 0.01,
+  "F1a_bone_sequence": {
+    "n_armatures_probed": 130,
+    "distinct_bone_sequences": 1,
+    "dominant_sequence_bone_count": 65,
+    "dominant_sequence_armatures": 130,
+    "dominant_sequence_share": 1.0,
+    "deviating": []
+  },
+  "F1a_bone_count_histogram": {
+    "65": 130
+  },
+  "F1b_rest_pose_delta": {
+    "female_body_vs_female_ranger": {
+      "A": "assets/3d/blend/base-characters/BaseCharacter_Superhero_Female.blend",
+      "B": "assets/3d/blend/outfits-gltf/Outfit_Female_Ranger.blend",
+      "n_bones_compared": 65,
+      "n_bones_over_tol": 0,
+      "max_cm": 0.0,
+      "mean_cm": 0.0,
+      "worst5": []
+    },
+    "female_body_vs_female_peasant": {
+      "A": "assets/3d/blend/base-characters/BaseCharacter_Superhero_Female.blend",
+      "B": "assets/3d/blend/outfits-gltf/Outfit_Female_Peasant.blend",
+      "n_bones_compared": 65,
+      "n_bones_over_tol": 0,
+      "max_cm": 0.0,
+      "mean_cm": 0.0,
+      "worst5": []
+    },
+    "male_body_vs_male_ranger": {
+      "A": "assets/3d/blend/base-characters/BaseCharacter_Superhero_Male.blend",
+      "B": "assets/3d/blend/outfits-gltf/Outfit_Male_Ranger.blend",
+      "n_bones_compared": 65,
+      "n_bones_over_tol": 56,
+      "max_cm": 3.4095,
+      "mean_cm": 2.3323,
+      "worst5": [
+        {
+          "bone": "thumb_02_r",
+          "delta_cm": 3.4095
+        },
+        {
+          "bone": "thumb_02_l",
+          "delta_cm": 3.4094
+        },
+        {
+          "bone": "thumb_04_leaf_l",
+          "delta_cm": 3.3787
+        },
+        {
+          "bone": "thumb_04_leaf_r",
+          "delta_cm": 3.3787
+        },
+        {
+          "bone": "thumb_01_l",
+          "delta_cm": 3.2986
+        }
+      ]
+    },
+    "male_body_vs_male_peasant": {
+      "A": "assets/3d/blend/base-characters/BaseCharacter_Superhero_Male.blend",
+      "B": "assets/3d/blend/outfits-gltf/Outfit_Male_Peasant.blend",
+      "n_bones_compared": 65,
+      "n_bones_over_tol": 56,
+      "max_cm": 3.4095,
+      "mean_cm": 2.3323,
+      "worst5": [
+        {
+          "bone": "thumb_02_r",
+          "delta_cm": 3.4095
+        },
+        {
+          "bone": "thumb_02_l",
+          "delta_cm": 3.4094
+        },
+        {
+          "bone": "thumb_04_leaf_l",
+          "delta_cm": 3.3787
+        },
+        {
+          "bone": "thumb_04_leaf_r",
+          "delta_cm": 3.3787
+        },
+        {
+          "bone": "thumb_01_l",
+          "delta_cm": 3.2986
+        }
+      ]
+    },
+    "female_body_vs_male_body": {
+      "A": "assets/3d/blend/base-characters/BaseCharacter_Superhero_Female.blend",
+      "B": "assets/3d/blend/base-characters/BaseCharacter_Superhero_Male.blend",
+      "n_bones_compared": 65,
+      "n_bones_over_tol": 64,
+      "max_cm": 10.7296,
+      "mean_cm": 7.6851,
+      "worst5": [
+        {
+          "bone": "thumb_04_leaf_l",
+          "delta_cm": 10.7296
+        },
+        {
+          "bone": "thumb_04_leaf_r",
+          "delta_cm": 10.7296
+        },
+        {
+          "bone": "thumb_02_l",
+          "delta_cm": 10.5757
+        },
+        {
+          "bone": "thumb_02_r",
+          "delta_cm": 10.5757
+        },
+        {
+          "bone": "thumb_03_l",
+          "delta_cm": 10.5288
+        }
+      ]
+    }
+  },
+  "F1b_tolerance_sweep": {
+    "female_body_vs_female_ranger": {
+      "0.0": 0,
+      "1e-06": 0,
+      "0.0001": 0,
+      "0.001": 0,
+      "0.01": 0,
+      "0.05": 0,
+      "0.1": 0,
+      "0.5": 0,
+      "1.0": 0,
+      "_n": 65,
+      "_sorted_deltas_cm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "male_body_vs_male_ranger": {
+      "0.0": 58,
+      "1e-06": 58,
+      "0.0001": 56,
+      "0.001": 56,
+      "0.01": 56,
+      "0.05": 56,
+      "0.1": 56,
+      "0.5": 56,
+      "1.0": 56,
+      "_n": 65,
+      "_sorted_deltas_cm": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1e-05,
+        1e-05,
+        2.01116,
+        2.01116,
+        2.01117,
+        2.01118,
+        2.32874,
+        2.32875,
+        2.37051,
+        2.37051,
+        2.37051,
+        2.37051,
+        2.37051,
+        2.37051,
+        2.37051,
+        2.37051,
+        2.37051,
+        2.37051,
+        2.70426,
+        2.70426,
+        2.70897,
+        2.70899,
+        2.71813,
+        2.71815,
+        2.7298,
+        2.72982,
+        2.7455,
+        2.74551,
+        2.75135,
+        2.75136,
+        2.76194,
+        2.76195,
+        2.7782,
+        2.77821,
+        2.77954,
+        2.77955,
+        2.78225,
+        2.78227,
+        2.7896,
+        2.78961,
+        2.8023,
+        2.80231,
+        2.80238,
+        2.8024,
+        2.80381,
+        2.80382,
+        2.80987,
+        2.80989,
+        2.81769,
+        2.81771,
+        3.22324,
+        3.22328,
+        3.29862,
+        3.29863,
+        3.37869,
+        3.3787,
+        3.40943,
+        3.40946
+      ]
+    }
+  },
+  "F2_cloth_vs_skin_area": {
+    "Female_Ranger_Arms": {
+      "file": "assets/3d/blend/outfits-gltf-per-asset/parts/Female_Ranger_Arms.blend",
+      "meshes": [
+        {
+          "mesh": "Female_Ranger_Arms",
+          "n_verts": 2976,
+          "shape_keys": [],
+          "materials": {
+            "MI_Ranger": {
+              "area_m2": 0.29965018823349965,
+              "faces": 3000,
+              "area_m2_frac": 0.8829718798011944,
+              "faces_frac": 0.6157635467980296
+            },
+            "MI_Regular_Female": {
+              "area_m2": 0.03971530583066851,
+              "faces": 1872,
+              "area_m2_frac": 0.11702812019880558,
+              "faces_frac": 0.3842364532019704
+            }
+          }
+        },
+        {
+          "mesh": "Female_Ranger_Arms_Bracer",
+          "n_verts": 4000,
+          "shape_keys": [],
+          "materials": {
+            "MI_Ranger": {
+              "area_m2": 0.2979542077731523,
+              "faces": 3636,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "Icosphere",
+          "n_verts": 42,
+          "shape_keys": [],
+          "materials": {}
+        }
+      ],
+      "material_names": [
+        "MI_Ranger",
+        "MI_Regular_Female"
+      ],
+      "skin_area_m2_frac": 0.0623,
+      "cloth_area_m2_frac": 0.9377,
+      "skin_faces_frac": 0.22,
+      "cloth_faces_frac": 0.78,
+      "skin_loops_frac": 0.22,
+      "cloth_loops_frac": 0.78,
+      "skin_verts_frac": 0.1723,
+      "cloth_verts_frac": 0.8277
+    },
+    "Male_Peasant_Arms": {
+      "file": "assets/3d/blend/outfits-gltf-per-asset/parts/Male_Peasant_Arms.blend",
+      "meshes": [
+        {
+          "mesh": "Male_Peasant_Arms",
+          "n_verts": 3315,
+          "shape_keys": [],
+          "materials": {
+            "MI_Peasant": {
+              "area_m2": 0.2991675846678845,
+              "faces": 1408,
+              "area_m2_frac": 0.5493582556544072,
+              "faces_frac": 0.26376920194829523
+            },
+            "MI_Regular_Male": {
+              "area_m2": 0.24540889450327086,
+              "faces": 3930,
+              "area_m2_frac": 0.45064174434559284,
+              "faces_frac": 0.7362307980517048
+            }
+          }
+        },
+        {
+          "mesh": "Icosphere",
+          "n_verts": 42,
+          "shape_keys": [],
+          "materials": {}
+        }
+      ],
+      "material_names": [
+        "MI_Peasant",
+        "MI_Regular_Male"
+      ],
+      "skin_area_m2_frac": 0.4506,
+      "cloth_area_m2_frac": 0.5494,
+      "skin_faces_frac": 0.7362,
+      "cloth_faces_frac": 0.2638,
+      "skin_loops_frac": 0.7362,
+      "cloth_loops_frac": 0.2638,
+      "skin_verts_frac": 0.7532,
+      "cloth_verts_frac": 0.2468
+    },
+    "Male_Ranger_Arms": {
+      "file": "assets/3d/blend/outfits-gltf-per-asset/parts/Male_Ranger_Arms.blend",
+      "meshes": [
+        {
+          "mesh": "Male_Ranger_Arms",
+          "n_verts": 3042,
+          "shape_keys": [],
+          "materials": {
+            "MI_Ranger": {
+              "area_m2": 0.41605884606769905,
+              "faces": 3048,
+              "area_m2_frac": 0.9136039210023487,
+              "faces_frac": 0.6185064935064936
+            },
+            "MI_Regular_Male": {
+              "area_m2": 0.03934511674719943,
+              "faces": 1880,
+              "area_m2_frac": 0.08639607899765131,
+              "faces_frac": 0.3814935064935065
+            }
+          }
+        },
+        {
+          "mesh": "Icosphere",
+          "n_verts": 42,
+          "shape_keys": [],
+          "materials": {}
+        }
+      ],
+      "material_names": [
+        "MI_Ranger",
+        "MI_Regular_Male"
+      ],
+      "skin_area_m2_frac": 0.0864,
+      "cloth_area_m2_frac": 0.9136,
+      "skin_faces_frac": 0.3815,
+      "cloth_faces_frac": 0.6185,
+      "skin_loops_frac": 0.3815,
+      "cloth_loops_frac": 0.6185,
+      "skin_verts_frac": 0.3964,
+      "cloth_verts_frac": 0.6036
+    },
+    "Female_Peasant_Arms": {
+      "file": "assets/3d/blend/outfits-gltf-per-asset/parts/Female_Peasant_Arms.blend",
+      "meshes": [
+        {
+          "mesh": "Female_Peasant_Arms",
+          "n_verts": 5436,
+          "shape_keys": [],
+          "materials": {
+            "MI_Peasant": {
+              "area_m2": 0.4255688865025711,
+              "faces": 6848,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "Icosphere",
+          "n_verts": 42,
+          "shape_keys": [],
+          "materials": {}
+        }
+      ],
+      "material_names": [
+        "MI_Peasant"
+      ],
+      "skin_area_m2_frac": 0.0,
+      "cloth_area_m2_frac": 1.0,
+      "skin_faces_frac": 0.0,
+      "cloth_faces_frac": 1.0,
+      "skin_loops_frac": 0.0,
+      "cloth_loops_frac": 1.0,
+      "skin_verts_frac": 0.0,
+      "cloth_verts_frac": 1.0
+    },
+    "Female_Ranger_Body": {
+      "file": "assets/3d/blend/outfits-gltf-per-asset/parts/Female_Ranger_Body.blend",
+      "meshes": [
+        {
+          "mesh": "Female_Ranger_Body",
+          "n_verts": 2785,
+          "shape_keys": [],
+          "materials": {
+            "MI_Ranger": {
+              "area_m2": 0.6023688039705739,
+              "faces": 2962,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "Female_Ranger_Body_Belt_1",
+          "n_verts": 928,
+          "shape_keys": [],
+          "materials": {
+            "MI_Ranger": {
+              "area_m2": 0.07447399482708761,
+              "faces": 804,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "Female_Ranger_Body_Belt_2",
+          "n_verts": 928,
+          "shape_keys": [],
+          "materials": {
+            "MI_Ranger": {
+              "area_m2": 0.07224968224220873,
+              "faces": 804,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "Icosphere",
+          "n_verts": 42,
+          "shape_keys": [],
+          "materials": {}
+        }
+      ],
+      "material_names": [
+        "MI_Ranger"
+      ],
+      "skin_area_m2_frac": 0.0,
+      "cloth_area_m2_frac": 1.0,
+      "skin_faces_frac": 0.0,
+      "cloth_faces_frac": 1.0,
+      "skin_loops_frac": 0.0,
+      "cloth_loops_frac": 1.0,
+      "skin_verts_frac": 0.0,
+      "cloth_verts_frac": 1.0
+    },
+    "Male_Peasant_Body": {
+      "file": "assets/3d/blend/outfits-gltf-per-asset/parts/Male_Peasant_Body.blend",
+      "meshes": [
+        {
+          "mesh": "Male_Peasant_Body",
+          "n_verts": 3006,
+          "shape_keys": [],
+          "materials": {
+            "MI_Peasant": {
+              "area_m2": 0.9132136638290831,
+              "faces": 3856,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "Icosphere",
+          "n_verts": 42,
+          "shape_keys": [],
+          "materials": {}
+        }
+      ],
+      "material_names": [
+        "MI_Peasant"
+      ],
+      "skin_area_m2_frac": 0.0,
+      "cloth_area_m2_frac": 1.0,
+      "skin_faces_frac": 0.0,
+      "cloth_faces_frac": 1.0,
+      "skin_loops_frac": 0.0,
+      "cloth_loops_frac": 1.0,
+      "skin_verts_frac": 0.0,
+      "cloth_verts_frac": 1.0
+    },
+    "BaseCharacter_Superhero_Female": {
+      "file": "assets/3d/blend/base-characters/BaseCharacter_Superhero_Female.blend",
+      "meshes": [
+        {
+          "mesh": "Eyebrows",
+          "n_verts": 912,
+          "shape_keys": [],
+          "materials": {
+            "MI_Hair_2": {
+              "area_m2": 0.004484136332962407,
+              "faces": 1480,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "Eyes",
+          "n_verts": 556,
+          "shape_keys": [],
+          "materials": {
+            "MI_Eyes": {
+              "area_m2": 0.00664016889450636,
+              "faces": 768,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "Superhero_Female",
+          "n_verts": 7376,
+          "shape_keys": [],
+          "materials": {
+            "MI_Superhero_Female": {
+              "area_m2": 1.8472980615726158,
+              "faces": 12812,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "Icosphere",
+          "n_verts": 42,
+          "shape_keys": [],
+          "materials": {}
+        }
+      ],
+      "material_names": [
+        "MI_Eyes",
+        "MI_Hair_2",
+        "MI_Superhero_Female"
+      ],
+      "skin_area_m2_frac": 0.0,
+      "cloth_area_m2_frac": 1.0,
+      "skin_faces_frac": 0.0,
+      "cloth_faces_frac": 1.0,
+      "skin_loops_frac": 0.0,
+      "cloth_loops_frac": 1.0,
+      "skin_verts_frac": 0.0,
+      "cloth_verts_frac": 1.0
+    },
+    "BaseCharacter_Superhero_Male": {
+      "file": "assets/3d/blend/base-characters/BaseCharacter_Superhero_Male.blend",
+      "meshes": [
+        {
+          "mesh": "Eyebrows",
+          "n_verts": 646,
+          "shape_keys": [],
+          "materials": {
+            "MI_Hair_1": {
+              "area_m2": 0.00342848256661199,
+              "faces": 984,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "Eyes",
+          "n_verts": 556,
+          "shape_keys": [],
+          "materials": {
+            "MI_Eyes": {
+              "area_m2": 0.005462607126460739,
+              "faces": 768,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "SuperHero_Male",
+          "n_verts": 7281,
+          "shape_keys": [],
+          "materials": {
+            "MI_Superhero_Male": {
+              "area_m2": 2.160194813960281,
+              "faces": 12566,
+              "area_m2_frac": 1.0,
+              "faces_frac": 1.0
+            }
+          }
+        },
+        {
+          "mesh": "Icosphere",
+          "n_verts": 42,
+          "shape_keys": [],
+          "materials": {}
+        }
+      ],
+      "material_names": [
+        "MI_Eyes",
+        "MI_Hair_1",
+        "MI_Superhero_Male"
+      ],
+      "skin_area_m2_frac": 0.0,
+      "cloth_area_m2_frac": 1.0,
+      "skin_faces_frac": 0.0,
+      "cloth_faces_frac": 1.0,
+      "skin_loops_frac": 0.0,
+      "cloth_loops_frac": 1.0,
+      "skin_verts_frac": 0.0,
+      "cloth_verts_frac": 1.0
+    }
+  },
+  "all_material_names": {
+    "MI_Ranger": 91,
+    "MI_Peasant": 47,
+    "MI_Hair_1": 31,
+    "MI_Ranger.001": 28,
+    "MI_Hair_2": 21,
+    "MI_Regular_Male": 14,
+    "MI_Ranger.002": 12,
+    "MI_Eyes": 11,
+    "MI_Peasant.001": 9,
+    "MI_Regular_Female": 8,
+    "MI_Superhero_Female": 5,
+    "MI_Superhero_Male": 5,
+    "MI_Ranger.005": 4,
+    "MI_Peasant.002": 3,
+    "MI_Ranger.004": 3,
+    "MI_Ranger.009": 3,
+    "MI_Ranger.012": 3,
+    "MI_Hair_2.001": 2,
+    "MI_Hair_1.001": 2,
+    "MI_Regular_Male.001": 2,
+    "MI_Peasant.003": 2,
+    "MI_Peasant.004": 2,
+    "MI_Peasant.005": 2,
+    "MI_Peasant.006": 2,
+    "MI_Ranger.003": 2,
+    "MI_Ranger.006": 2,
+    "MI_Ranger.007": 2,
+    "MI_Ranger.008": 2,
+    "MI_Peasant.007": 2,
+    "MI_Ranger.010": 2,
+    "MI_Ranger.011": 2,
+    "MI_Eyes.001": 1,
+    "MI_Hair_1.002": 1,
+    "MI_Hair_2.002": 1,
+    "MI_Hair_1.003": 1,
+    "MI_Hair_1.004": 1,
+    "MI_Hair_2.003": 1,
+    "MI_Hair_1.005": 1,
+    "MI_Hair_2.004": 1,
+    "MI_Hair_1.006": 1,
+    "MI_Hair_1.007": 1,
+    "MI_Hair_2.005": 1,
+    "MI_Hair_1.008": 1,
+    "MI_Hair_1.009": 1,
+    "MI_Hair_2.006": 1,
+    "MI_Hair_1.010": 1,
+    "MI_Regular_Female.001": 1,
+    "MI_Regular_Male.002": 1,
+    "MI_Peasant.008": 1,
+    "MI_Peasant.009": 1,
+    "MI_Peasant.010": 1,
+    "MI_Regular_Male.003": 1,
+    "MI_Ranger.013": 1,
+    "MI_Ranger.014": 1,
+    "MI_Ranger.015": 1
+  },
+  "regular_prefixed_materials": [
+    "MI_Regular_Female",
+    "MI_Regular_Female.001",
+    "MI_Regular_Male",
+    "MI_Regular_Male.001",
+    "MI_Regular_Male.002",
+    "MI_Regular_Male.003"
+  ]
+}

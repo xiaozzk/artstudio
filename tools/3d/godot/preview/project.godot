@@ -1,0 +1,12 @@
+; artstudio 3D 角色管线 v2 —— Godot 4.6 交互预览页面（task-3）
+; 素材零拷贝：全部用绝对路径在运行时经 GLTFDocument 加载（.blend 由 Blender headless 预导出到 tmp/ 缓存）。
+config_version=5
+
+[application]
+
+config/name="rig-morph-preview"
+config/features=PackedStringArray("4.6", "Forward Plus")
+
+[rendering]
+
+renderer/rendering_method="forward_plus"

@@ -1,0 +1,13 @@
+Godot Engine v4.6.2.stable.official.71f334935 - https://godotengine.org
+
+=== verifier Godot 探针 ===
+godot 4.6.2-stable (official)
+load err=0
+root=TryOn_Female_Ranger
+mi=Head_Superhero_Female sk=Skeleton3D blendshapes=2 names=BS_Thin
+[A3] aabb@rest      = [P: (-0.088878, 1.48384, -0.112899), S: (0.177757, 0.282804, 0.224823)]
+[A3] aabb@bone90    = [P: (-0.088878, 1.48384, -0.112899), S: (0.177757, 0.282804, 0.224823)]  逐位相同=true
+[A3] bone_global_pose=(0.1516, 1.4181, -0.0543) basis_euler=(-0.046338, -60.76086, -0.001479)
+[A3] aabb@BS_Thin=1 = [P: (-0.088878, 1.48384, -0.112899), S: (0.177757, 0.282804, 0.224823)]  逐位相同=true
+[A3] read_back      = 1.0
+[A3] mesh.get_aabb()=[P: (-0.088878, 1.48384, -0.112899), S: (0.177757, 0.282804, 0.224823)] surface_count=1
