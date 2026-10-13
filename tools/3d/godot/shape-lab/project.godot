@@ -1,0 +1,23 @@
+; artstudio shape-lab —— Godot 4.6 精简身形&服装预览工程（task-2）
+; 零素材副本：工程内不放任何 .glb/.png；一切资产在运行时用 GLTFDocument 从
+; tmp/shape-lab 缓存的**绝对路径**读入（缓存由 bake.py 生成）。
+; 用法见 README.md；Windows 入口 run.cmd。
+config_version=5
+
+[application]
+
+config/name="artstudio-shape-lab"
+config/description="身形 & 服装快预览：k 体形滑块 / h 身高滑块 / 换装 / 逐件显隐 / 逐件 morph 读数"
+config/features=PackedStringArray("4.6", "Forward Plus")
+run/main_scene="res://main.tscn"
+config/icon=""
+
+[display]
+
+window/size/viewport_width=1500
+window/size/viewport_height=900
+window/stretch/mode="canvas_items"
+
+[rendering]
+
+renderer/rendering_method="forward_plus"

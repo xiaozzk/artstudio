@@ -1,0 +1,4671 @@
+{
+ "schema": "shape-lab-verify/app",
+ "version": 1,
+ "generated_at": "2026-10-14T02:53:43+08:00",
+ "generator": "tmp/shape-lab-verify/verify_app.py（verifier 自写；探针 tmp/shape-lab-verify/probe/）",
+ "probe_report": "D:\\artstudio\\tmp\\shape-lab-verify\\renders\\probe-report.json",
+ "shots_dir": "D:\\artstudio\\tmp\\shape-lab\\shots",
+ "independence": {
+  "reads_app_readout_panel": false,
+  "imports_app_modules": false,
+  "engine_evidence": [
+   "surface_get_blend_shape_arrays",
+   "bake_mesh_from_current_blend_shape_mix",
+   "SubViewport alpha silhouette + 自写像素取证"
+  ]
+ },
+ "summary": {
+  "total": 33,
+  "PASS": 33,
+  "FAIL": 0,
+  "UNVERIFIED": 0,
+  "N/A": 0,
+  "by_group": {
+   "probe": {
+    "PASS": 2
+   },
+   "bones": {
+    "PASS": 5
+   },
+   "api": {
+    "PASS": 3
+   },
+   "engine": {
+    "PASS": 3
+   },
+   "analytic": {
+    "PASS": 3
+   },
+   "render": {
+    "PASS": 1
+   },
+   "app": {
+    "PASS": 12
+   },
+   "preset": {
+    "PASS": 4
+   }
+  },
+  "verdict": "PASS"
+ },
+ "checks": [
+  {
+   "id": "P-00",
+   "group": "probe",
+   "subject": "probe-report.json",
+   "criterion": "探针跑完 6 个角色且每角色 ok",
+   "measured": "chars=6 ok=6",
+   "expected": "6/6",
+   "verdict": "PASS",
+   "fail_condition": "有角色加载失败或探针中途崩 → 该角色结论不可得",
+   "evidence": "godot=4.6.2-stable (official)"
+  },
+  {
+   "id": "P-00b",
+   "group": "probe",
+   "subject": "probe-report.json",
+   "criterion": "逐角色关键字段齐全（防『GDScript 中途崩但退出码 0』的静默失败）",
+   "measured": "缺字段 0 条",
+   "expected": "0 条",
+   "verdict": "PASS",
+   "fail_condition": "任一角色的 parts/skeletons/per_k/geom_dump/camera/height_check 缺失 → 报告会以『通过』呈现实际未测的项（这是我自己的探针犯过的错，故设为硬门禁）",
+   "evidence": "6/6 字段齐全"
+  },
+  {
+   "id": "P-01",
+   "group": "bones",
+   "subject": "6 角色 × Skeleton3D",
+   "criterion": "逐角色量 get_bone_count / find_bone('Head') / find_bone('root')",
+   "measured": "骨数集合=[65]；Head 索引集合=[54]；root 索引集合=[0]",
+   "expected": "骨数=65；Head/root 索引逐角色报出",
+   "verdict": "PASS",
+   "fail_condition": "骨数不是 65 或骨架数不是 6 → 65 骨契约被破",
+   "evidence": "Female_Ranger: bones=65 Head=54 root=0; Male_Ranger: bones=65 Head=54 root=0; Female_Peasant: bones=65 Head=54 root=0; Male_Peasant: bones=65 Head=54 root=0; Body_Female_Standard: bones=65 Head=54 root=0; Body_Male_Standard: bones=65 Head=54 root=0"
+  },
+  {
+   "id": "P-02",
+   "group": "bones",
+   "subject": "Head 索引跨资产一致性",
+   "criterion": "Head 的骨索引是否 6/6 一致",
+   "measured": "Head ∈ [54]（6/6 相同）",
+   "expected": "记录（非判据，但决定『索引可否跨资产复用』这句话的强弱）",
+   "verdict": "PASS",
+   "fail_condition": "本条不会红（记录用）。若索引互不相同 → 『索引不可跨资产复用』比既有口径更强；若全部相同 → 只能说『本批资产恰好相同』，仍不能硬编码",
+   "evidence": "本工作区既有口径：取骨一律 find_bone(name)"
+  },
+  {
+   "id": "P-03",
+   "group": "bones",
+   "subject": "6 个真 glb",
+   "criterion": "Godot 骨顺序 == 层级 DFS 顺序？== skin.joints 顺序？== nodes 数组顺序？",
+   "measured": "6/6：godot==层级DFS=True；godot==skin.joints=True；godot==nodes数组=False；skin.joints==层级DFS=True",
+   "expected": "godot == 层级 DFS（65/65 逐位）",
+   "verdict": "PASS",
+   "fail_condition": "若 Godot 骨顺序既不是层级 DFS 也不是 joints 顺序 → 机制解释错，必须重查。⚠ 真 glb 上 skin.joints 顺序与层级 DFS 顺序**恰好相同**，光看它们**分不出机制**，所以下面用『把 joints 数组倒序』的决定性实验",
+   "evidence": "层级 DFS 的口径：从『在 skin.joints 里且其父节点不在 joints 里』的根开始，按 nodes[].children 顺序深度优先；见 check_boneorder_mechanism.py"
+  },
+  {
+   "id": "P-04",
+   "group": "bones",
+   "subject": "真 glb 副本（joints 数组倒序）",
+   "criterion": "决定性实验：把 skin.joints **倒序**（nodes 数组/层级完全不动），Godot 的骨顺序变不变？",
+   "measured": "asis: Head 在 joints 里 idx=54、Godot 里 idx=54；revjoints: Head 在 joints 里 idx=10、Godot 里 idx=54；原样与倒序后 Godot 骨序相同=True（⇒ Godot **不读** skin.joints 数组顺序）",
+   "expected": "倒序后 Godot 骨序**不变**（说明它按层级建骨，不按 joints 数组）",
+   "verdict": "PASS",
+   "fail_condition": "若倒序后 Godot 骨序跟着变成 joints 数组的顺序 → 机制是『按 skin.joints 建骨』，我的解释要改；若连层级 DFS 都不符 → 三个假设全错，机制未明（不许含糊放过）",
+   "evidence": "实验文件：D:\\artstudio\\tmp\\shape-lab-verify\\boneorder_real（asis.glb / revjoints.glb，均由真 glb 复制 + mutate_glb 改 JSON 写出）；Godot 实得 asis[0:6]=['root', 'pelvis', 'spine_01', 'spine_02', 'spine_03', 'clavicle_l'] rev[0:6]=['root', 'pelvis', 'spine_01', 'spine_02', 'spine_03', 'clavicle_l']"
+  },
+  {
+   "id": "P-04b",
+   "group": "bones",
+   "subject": "结论句",
+   "criterion": "写清『这批 glb 上 Head 的索引是多少、与上游 glTF 口径的差异来源是什么』",
+   "measured": "6 角色 Head 索引=[54]；root 索引=[0]",
+   "expected": "一句可核对的话（见 evidence）",
+   "verdict": "PASS",
+   "fail_condition": "本条不会红（记录用）",
+   "evidence": "**这批 glb 上 Head 的索引是 [54]（6/6 一致），与工作区既有『glTF 路线 Head=6』的差异来源是：Godot 按【骨层级 DFS】建 Skeleton3D（不读 skin.joints 数组顺序，也不读 nodes 数组顺序）—— 本工程的 glb 由 Blender 5.2 re-export，骨层级 == .blend 骨序（Head 落 54）；而那条『6』是在**上游 Quaternius 原始 glTF** 上量的，其骨层级顺序不同。两者并不矛盾（不同的文件），但『glTF 路线 = 6』这个写法容易让人以为与文件无关。⚠ 我**无法**在本机复测上游那个 6：`download/` 里已无任何 .gltf/.glb（我对全仓库搜过 *.gltf,*.glb，只剩 tools/3d/legacy/morph-demo/ 的两个无骨架演示件）"
+  },
+  {
+   "id": "P-05",
+   "group": "api",
+   "subject": "BoxMesh",
+   "criterion": "独立复核：get_blend_shape_count 只在 ArrayMesh 上是实体（BoxMesh 上会报错并中断调用函数）",
+   "measured": "BoxMesh.has_method('get_blend_shape_count')=False；真调=调用被中断(aborted_at_call=True)；Mesh 方法表含 _get_blend_shape_count=True / 含 public get=False；ArrayMesh 方法表含 public get=True",
+   "expected": "BoxMesh 无该方法；Mesh 基类只有虚函数 _get_blend_shape_count；ArrayMesh 才有 public get",
+   "verdict": "PASS",
+   "fail_condition": "若 BoxMesh 上该方法可用 → app 那条注释是错的；若 Mesh 基类连虚函数都没有 → 说法要改。⚠ 另一个静默坑：`ClassDB.class_has_method('Mesh','_get_blend_shape_count')` 返回 **False**，而 `ClassDB.class_get_method_list('Mesh')` 里**有** `_get_blend_shape_count` —— has_method 看不见 GDVIRTUAL。所以我的判据改用方法表（更权威），并把 has_method 的这个结果一并记下来（别拿 has_method 当『方法不存在』的证据）",
+   "evidence": "实测注意：错误会**中断当前函数**（不是只打个 warning）—— 调用方继续执行，所以『崩了一半但退出码 0』是真实风险，我为此加了 P-00b 字段齐全门禁"
+  },
+  {
+   "id": "P-06",
+   "group": "api",
+   "subject": "6 角色 × 全部件",
+   "criterion": "三 API 一致：get_blend_shape_count()==2 ↔ name(0)==BS_Thin & name(1)==BS_Heavy ↔ find_blend_shape_by_name 命中 0/1",
+   "measured": "blend_shape_count 分布={2: 42, 0: 4}；不一致 0 条",
+   "expected": "不一致 0 条",
+   "verdict": "PASS",
+   "fail_condition": "任一件三 API 互相矛盾 → 面板按名字取、引擎按索引取，两边会读到不同的通道",
+   "evidence": "全部一致"
+  },
+  {
+   "id": "P-07",
+   "group": "api",
+   "subject": "has_morph=false 的件",
+   "criterion": "无 morph 的件在三 API 上的表现（不得被误当契约违规）",
+   "measured": "4 件：blend_shape_count=0 且 find_by_name=-1 ↔ ['Body_Female_Standard/Eyebrows', 'Body_Female_Standard/Eyes', 'Body_Male_Standard/Eyebrows', 'Body_Male_Standard/Eyes']",
+   "expected": "count=0 / find=-1，且不参与 targets==2 判据",
+   "verdict": "PASS",
+   "fail_condition": "无 morph 件若被要求 2 个通道 → 假 FAIL（我 task-3 已按件分档处理）",
+   "evidence": "对应资产的源 .blend 里 Eyebrows/Eyes 确实没有 shape key（我的 blender 审计已确认）"
+  },
+  {
+   "id": "P-08",
+   "group": "engine",
+   "subject": "全部件×3 档",
+   "criterion": "morph read-back：设定值 vs get_blend_shape_value() 逐件一致（容差 1e-5）",
+   "measured": "不符 0 条",
+   "expected": "0 条",
+   "verdict": "PASS",
+   "fail_condition": "读回值与设定值不符 → 面板显示与引擎实际不符（最典型的静默错）",
+   "evidence": "全部一致"
+  },
+  {
+   "id": "P-09",
+   "group": "engine",
+   "subject": "全部 6 角色 × 3 档",
+   "criterion": "MeshInstance3D.get_aabb() **不随 k 变化**（静止 AABB）——给出 k=-1/0/+1 的原始读数",
+   "measured": "6 角色全部不变=True",
+   "expected": "全部不变（3 次读数逐位相同）",
+   "verdict": "PASS",
+   "fail_condition": "get_aabb 随 k 变了 → 说明引擎把 morph 烘进了 mesh AABB，那么 app 的注释（与 SPEC F30/A3）就错了",
+   "evidence": "原始值样例（Female_Ranger 前 3 件）：k=-1 ['Female_Ranger_Acc_Pauldrons|0.101680,1.394538,-0.185693|0.243882,0.151122,0.231110', 'Female_Ranger_Arms|-0.850886,1.334193,-0.115464|1.701771,0.158042,0.140806', 'Female_Ranger_Arms_Bracer|-0.708149,1.341122,-0.123049|1.416299,0.143672,0.159970'] ｜ k=0 ['Female_Ranger_Acc_Pauldrons|0.101680,1.394538,-0.185693|0.243882,0.151122,0.231110', 'Female_Ranger_Arms|-0.850886,1.334193,-0.115464|1.701771,0.158042,0.140806', 'Female_Ranger_Arms_Bracer|-0.708149,1.341122,-0.123049|1.416299,0.143672,0.159970'] ｜ k=+1 ['Female_Ranger_Acc_Pauldrons|0.101680,1.394538,-0.185693|0.243882,0.151122,0.231110', 'Female_Ranger_Arms|-0.850886,1.334193,-0.115464|1.701771,0.158042,0.140806', 'Female_Ranger_Arms_Bracer|-0.708149,1.341122,-0.123049|1.416299,0.143672,0.159970']"
+  },
+  {
+   "id": "P-10",
+   "group": "engine",
+   "subject": "全部 6 角色",
+   "criterion": "身高走『场景根节点 world scale』时**骨 pose 一个都没碰**，且骨架世界缩放 == h",
+   "measured": "违例 0 条",
+   "expected": "0 条",
+   "verdict": "PASS",
+   "fail_condition": "骨 pose 随 h 变了 → 身高把骨头也缩了（= 破坏 rest pose，与 SPEC §3.4『绝不碰骨 pose』冲突）",
+   "evidence": "6/6 角色的 pose_position/rotation/scale 在 h=0.92/1.00/1.08 下逐值相同"
+  },
+  {
+   "id": "P-11",
+   "group": "analytic",
+   "subject": "6 角色",
+   "criterion": "解析式复算 v(k)=basis+max(-k,0)·d0+max(k,0)·d1：k=-1/0/+1 的围度代用指标与 X/Z span 严格单调递增",
+   "measured": "违例 0 条",
+   "expected": "0 条",
+   "verdict": "PASS",
+   "fail_condition": "非严格单调 → 滑块方向错或 morph 通道错（例如名字/索引反了）；身高随体形变 → morph 里混进了沿轴缩放（SPEC F5 那类）",
+   "evidence": "样例 Female_Ranger 围度代用（XZ mean-width 周长）: thin 6.859275 → standard 6.978695 → heavy 7.152479 m；X span: 1.635015 → 1.663882 → 1.701771 m；height: 1.796089 → 1.798046 → 1.800615 m（体形不改身高）"
+  },
+  {
+   "id": "P-12",
+   "group": "analytic",
+   "subject": "6 角色 × 3 档 × 全部件",
+   "criterion": "引擎自己烘的混合网格（bake_mesh_from_current_blend_shape_mix）== 我的解析式复算（逐顶点 ≤1e-5 m）",
+   "measured": "最大 |Δ| = 0.000e+00 m（）",
+   "expected": "≤ 1e-5 m",
+   "verdict": "PASS",
+   "fail_condition": "两者不一致 → 要么我的公式错、要么引擎的 morph 应用不是『basis+Σw·delta』。这是**唯一**能证明『滑块真的驱动了顶点』的引擎侧证据（不经过任何 UI 读数）",
+   "evidence": "engine 侧来自 MeshInstance3D.bake_mesh_from_current_blend_shape_mix()"
+  },
+  {
+   "id": "P-13",
+   "group": "analytic",
+   "subject": "4 套服装全部件",
+   "criterion": "Godot 侧量的 BS_Thin max 位移 vs garment_manifest M4b 的 max_disp_cm（同量级）",
+   "measured": "比对 40 件；最大 |Δ| = 0.0000 cm（4.958e-07 m）",
+   "expected": "全部 |Δ| ≤ 0.05 cm",
+   "verdict": "PASS",
+   "fail_condition": "Godot 读到的 morph 位移与 Blender 侧台账不符 → glTF 里的 morph 通道被改过",
+   "evidence": "口径：Godot 侧取 surface_get_blend_shape_arrays 的 ARRAY_VERTEX，**位移 = shape_abs − basis**（Godot 对 glTF 用 absolute 模式），取模长最大值；与 max 无关的重数问题不影响 max。blend_shape_mode 实测=[0]"
+  },
+  {
+   "id": "P-14",
+   "group": "render",
+   "subject": "6 角色 × 3 档（我自己的探针渲图）",
+   "criterion": "像素级：剪影『中段最大宽度』随 k 严格单调递增（thin < standard < heavy）",
+   "measured": "达标 6/6；违例 0 条",
+   "expected": "6/6",
+   "verdict": "PASS",
+   "fail_condition": "剪影宽度非单调 → 渲染出来的形状与解析式不一致（视口/材质/相机或 morph 未生效）",
+   "evidence": "方法：transparent_bg 的 alpha>0.5 → 每行宽度 → 取躯干带（y 从 25 到 75 分位）最大值；正交相机 size=2.0138 px=720，3 档同机位；Female_Ranger: 中段宽 [114, 136, 164] px；整体宽 [584, 594, 608] px；剪影占比 13.21/15.14/17.70% ｜ Male_Ranger: 中段宽 [135, 244, 455] px；整体宽 [606, 618, 634] px；剪影占比 13.31/15.23/17.76% ｜ Female_Peasant: 中段宽 [110, 132, 158] px；整体宽 [588, 600, 612] px；剪影占比 12.00/13.71/15.98% ｜ Male_Peasant: 中段宽 [132, 216, 327] px；整体宽 [614, 626, 642] px；剪影占比 13.14/15.06/17.59% ｜ Body_Female_Standard: 中段宽 [124, 147, 178] px；整体宽 [594, 604, 618] px；剪影占比 11.42/13.16/15.43% ｜ Body_Male_Standard: 中段宽 [120, 142, 280] px；整体宽 [642, 656, 674] px；剪影占比 12.76/14.69/17.23%"
+  },
+  {
+   "id": "A-01",
+   "group": "app",
+   "subject": "run.cmd --shots",
+   "criterion": "退出码 0、SHOTS_TOTAL ≥ 19、failed_chars=0、无 ERROR 行",
+   "measured": "SHOTS_TOTAL=25 failed_chars=0 Godot exit=0 ERROR 行=0",
+   "expected": "TOTAL≥19 / failed=0 / exit=0 / ERROR=0",
+   "verdict": "PASS",
+   "fail_condition": "退出码非 0 / 出图少于 19 张 / 有角色失败 / 有 ERROR → 截图流水线不达标",
+   "evidence": "另：本机 --shots 是**真窗口**（Godot 的 headless 是 dummy 渲染器，ViewportTexture.get_image() 返回 null 出不了图）—— 这说明它开窗是**必需**，不是缺陷"
+  },
+  {
+   "id": "A-02",
+   "group": "app",
+   "subject": "tmp/shape-lab/shots",
+   "criterion": "PNG 落在 shots 目录（**不在** res:// 工程目录内）",
+   "measured": "shots/*.png = 26 张；工程目录内 PNG = 0 张",
+   "expected": "工程内 0 张",
+   "verdict": "PASS",
+   "fail_condition": "任何 PNG 落进工程目录 → 『零素材副本』变假，且会被 git 提交",
+   "evidence": "工程目录=D:\\artstudio\\tools\\3d\\godot\\shape-lab"
+  },
+  {
+   "id": "A-03",
+   "group": "app",
+   "subject": "tools/3d/godot/shape-lab",
+   "criterion": "零素材副本审计：无 .png/.glb/.gltf/.blend/.pyc",
+   "measured": "命中 0 个",
+   "expected": "0 个",
+   "verdict": "PASS",
+   "fail_condition": "工程里出现素材副本 → 零拷贝这句话变假",
+   "evidence": "等价命令：Get-ChildItem -Recurse tools/3d/godot/shape-lab -Include *.png,*.glb,*.gltf,*.blend,*.pyc"
+  },
+  {
+   "id": "A-04",
+   "group": "app",
+   "subject": "tools/3d/godot/shape-lab/*.gd",
+   "criterion": "取骨一律按名字：无硬编码骨索引（get_bone_pose* 传数字字面量 / bones[i] / joints[i]）",
+   "measured": "硬编码 0 处；按名字取骨 1 处",
+   "expected": "硬编码 0 处",
+   "verdict": "PASS",
+   "fail_condition": "任何硬编码骨索引 → 跨路线（.blend/glTF/上游源）索引一变就静默取错骨",
+   "evidence": "按名字处：main.gd:253 sk.get_bone_count(), sk.find_bone(\"Head\"), sk.find_bone(\"root\")])"
+  },
+  {
+   "id": "A-05",
+   "group": "app",
+   "subject": "我自己的 18 张透明剪影（6 角色 × 3 档）",
+   "criterion": "**不裁切**的硬证据：角色剪影（transparent_bg，只有角色、无地面/天空）四边留白全部 > 0",
+   "measured": "违例 0/18；留白范围 l=23–68 t=38–40 r=23–68 b=39–39",
+   "expected": "全部 > 0",
+   "verdict": "PASS",
+   "fail_condition": "任一角色的剪影贴到画幅边缘 → 内容被裁切（取景公式反了，本工作区历史上踩过）",
+   "evidence": "违例=[]"
+  },
+  {
+   "id": "A-05b",
+   "group": "app",
+   "subject": "app 的 shots（25 张）",
+   "criterion": "口径说明：为什么不能拿『非背景 bbox 四边留白 > 0』去判 app 的图",
+   "measured": "样例：shape_Body_Female_Standard_heavy.png: corner基线 non_bg=56.90% bbox={'x0': 0, 'y0': 48, 'x1': 959, 'y1': 899}；双基线(天空+地面) non_bg=31.33% bbox={'x0': 0, 'y0': 48, 'x1': 959, 'y1': 899} ｜ shape_Body_Female_Standard_sheet_3tiers.png: corner基线 non_bg=56.22% bbox={'x0': 0, 'y0': 0, 'x1': 1931, 'y1': 599}；双基线(天空+地面) non_bg=30.49% bbox={'x0': 0, 'y0': 0, 'x1': 1931, 'y1': 599}",
+   "expected": "记录（非判据）",
+   "verdict": "PASS",
+   "fail_condition": "本条不会红（记录用）。原因：舞台含**灰色棋盘地面**，它有意铺到画幅下/左/右边缘，且天空是**渐变**色 → 任何单一背景色基线都会把地面或天空之一判成『内容』，bbox 必然贴边（实测 25/25 张 l=r=b=0，与是否裁切无关）。所以『不裁切』只在**纯角色剪影**上可判（见 A-05a）",
+   "evidence": "我也因此修掉了自己 img_forensics 里两个 bug：mode 的 key 有碰撞、bbox 的 y1 误用了 xs.max()"
+  },
+  {
+   "id": "A-05c",
+   "group": "app",
+   "subject": "app 自报的 margin_px（18 条 SHOT 行）",
+   "criterion": "app 自己算的『角色投影 bbox 到画幅四边的留白』全部 > 0（交叉核对，注明来源是 app）",
+   "measured": "最小留白 = 34.3 px；样例 [{\"b\": 44.1, \"l\": 91.1, \"r\": 91.1, \"t\": 36.6}, {\"b\": 43.8, \"l\": 84.7, \"r\": 84.7, \"t\": 36.9}, {\"b\": 42.4, \"l\": 76.0, \"r\": 76.0, \"t\": 38.0}]",
+   "expected": "全部 > 0",
+   "verdict": "PASS",
+   "fail_condition": "app 自报留白 ≤ 0 → 与它自己的取景公式矛盾（注意：这是**它的**数字，我只用它交叉核对，不作为我的独立证据）",
+   "evidence": "来源：run.cmd --shots 的 SHOT 行；我的独立证据是 A-05（透明剪影）"
+  },
+  {
+   "id": "A-06",
+   "group": "app",
+   "subject": "25 张角色图（全部）",
+   "criterion": "不是全灰白：非背景像素平均饱和度 ≥ 0.02（纯灰白≈0）",
+   "measured": "违例 0 张；饱和度范围 0.0858–0.1368",
+   "expected": "全部 ≥ 0.02",
+   "verdict": "PASS",
+   "fail_condition": "饱和度≈0 → 贴图/材质全丢（图能出但没内容）",
+   "evidence": "全部达标"
+  },
+  {
+   "id": "A-10",
+   "group": "preset",
+   "subject": "6 角色（真按 Button，读 MeshInstance3D.visible）",
+   "criterion": "「清凉」隐藏的 part 集合 == 按 v1.1 role 规则算出的 role==accessory 集合",
+   "measured": "不符 0 个角色",
+   "expected": "0 个",
+   "verdict": "PASS",
+   "fail_condition": "集合不符 → 预设摘错件或漏摘（用户点『清凉』看到的不是清凉）。判据的判别力：见 evidence 里两个『看似合理但错』的规则对照",
+   "evidence": "6/6 相符 ｜ Female_Ranger: 隐藏 5 件 [Female_Ranger_Acc_Pauldrons,Female_Ranger_Arms_Bracer,Female_Ranger_Body_Belt_1,Female_Ranger_Body_Belt_2,Female_Ranger_Head_Hood]；错规则①『只含 Acc_』会给 ['Female_Ranger_Acc_Pauldrons']（**不同**）；错规则②『非 cloth』会给 ['Female_Ranger_Acc_Pauldrons', 'Female_Ranger_Arms', 'Female_Ranger_Arms_Bracer', 'Female_Ranger_Body_Belt_1', 'Female_Ranger_Body_Belt_2', 'Female_Ranger_Feet', 'Female_Ranger_Head_Hood', 'Head_Eyebrows', 'Head_Eyes', 'Head_Superhero_Female']（**不同**） ｜ Male_Ranger: 隐藏 5 件 [Male_Ranger_Acc_Pauldron,Male_Ranger_Arms_Bracer,Male_Ranger_Body_Belt_1,Male_Ranger_Body_Belt_2,Male_Ranger_Head_Hood]；错规则①『只含 Acc_』会给 ['Male_Ranger_Acc_Pauldron']（**不同**）；错规则②『非 cloth』会给 ['Head_Eyebrows', 'Head_Eyes', 'Head_SuperHero_Male', 'Male_Ranger_Acc_Pauldron', 'Male_Ranger_Arms', 'Male_Ranger_Arms_Bracer', 'Male_Ranger_Body_Belt_1', 'Male_Ranger_Body_Belt_2', 'Male_Ranger_Feet_Boots', 'Male_Ranger_Head_Hood']（**不同**） ｜ Female_Peasant: 隐藏 0 件 []；错规则①『只含 Acc_』会给 []（同）；错规则②『非 cloth』会给 ['Female_Peasant_Feet', 'Hair_Long', 'Head_Eyebrows', 'Head_Eyes', 'Head_Superhero_Female']（**不同**）"
+  },
+  {
+   "id": "A-11",
+   "group": "preset",
+   "subject": "6 角色",
+   "criterion": "「仅皮肤&头」可见集合 == role ∈ {skin, head}",
+   "measured": "不符 0 个角色",
+   "expected": "0 个",
+   "verdict": "PASS",
+   "fail_condition": "可见集合不符 → 该预设的语义与命名不一致（裸模上尤其明显：v1.0 的 role 会把 Eyebrows/Eyes/Body_* 全判成 cloth，于是『仅皮肤&头』一件不剩）",
+   "evidence": "6/6 相符"
+  },
+  {
+   "id": "A-12",
+   "group": "preset",
+   "subject": "6 角色",
+   "criterion": "「全套」→ 全部件可见",
+   "measured": "不符 0 个角色",
+   "expected": "0 个",
+   "verdict": "PASS",
+   "fail_condition": "有件在『全套』下仍不可见 → 显隐状态没被正确重置（先点清凉再点全套会残留）",
+   "evidence": "6/6 全部可见"
+  },
+  {
+   "id": "A-13",
+   "group": "preset",
+   "subject": "appcopy 的 UI",
+   "criterion": "面板上确实有 3 个预设 Button（且按下去真的会改可见性）",
+   "measured": "buttons=['女 · Ranger 游侠（全套）', '重置 (k=0, h=1)', '全套', '清凉', '仅皮肤&头', 'Head_Eyebrows', 'Head_Eyes', 'Head_Superhero_Female', 'Female_Ranger_Arms', 'Female_Ranger_Body', 'Female_Ranger_Legs', 'Female_Ranger_Acc_Pauldrons', 'Female_Ranger_Arms_Bracer', 'Female_Ranger_Body_Belt_1', 'Female_Ranger_Body_Belt_2', 'Female_Ranger_Head_Hood', 'Female_Ranger_Feet', '保存截图（PNG，绝对路径）']",
+   "expected": "含 '全套' / '清凉' / '仅皮肤&头'",
+   "verdict": "PASS",
+   "fail_condition": "按钮缺失 → 该功能不可达（哪怕 apply_preset 函数是对的）",
+   "evidence": "探针走的是 Button.pressed → ui.preset_pressed → main.apply_preset 的**真实**信号链路"
+  },
+  {
+   "id": "A-14",
+   "group": "app",
+   "subject": "6 角色加载（我的探针）",
+   "criterion": "逐角色：网格数 == manifest.parts 数；骨架数 == 1；带 morph 的件数 == manifest 里 has_morph 的件数",
+   "measured": "不符 0 个角色",
+   "expected": "0 个",
+   "verdict": "PASS",
+   "fail_condition": "计数不符 → 加载漏件/多件，或 morph 通道没被识别（面板逐件读数会与实际不符）",
+   "evidence": "Female_Ranger: mesh=12/12 skeleton=1/1 morph_mesh=12/12; Male_Ranger: mesh=12/12 skeleton=1/1 morph_mesh=12/12; Female_Peasant: mesh=8/8 skeleton=1/1 morph_mesh=8/8; Male_Peasant: mesh=8/8 skeleton=1/1 morph_mesh=8/8; Body_Female_Standard: mesh=3/3 skeleton=1/1 morph_mesh=1/1; Body_Male_Standard: mesh=3/3 skeleton=1/1 morph_mesh=1/1"
+  },
+  {
+   "id": "A-07",
+   "group": "app",
+   "subject": "shape_lab_ui_page.png + 空白对照",
+   "criterion": "空白守卫：真图必须绿、真空白必须红（用我自己造的空白对照证明判据非空洞）",
+   "measured": "真图被判红 0 个：[]；空白对照被判红 4 个：['ui_page(0.0001%)', 'fixture_page(0.0001%)', 'fixture_tier(0.0001%)', 'body_standard(0.0001%)']",
+   "expected": "真图 0 个红；空白对照全部红",
+   "verdict": "PASS",
+   "fail_condition": "真图被误判为空白（假红，会把好页判成失败）或空白对照不被判红（判据空洞、静默放过）",
+   "evidence": "ui_page: 真图 non_bg=66.38%（阈值 3.0%→绿），我的空白对照=0.0001%（→红）；colors_fine 真图=1768 / 对照=2；右上角口径 right_non_bg=95.25% ｜ fixture_page: 真图 non_bg=67.55%（阈值 3.0%→绿），我的空白对照=0.0001%（→红）；colors_fine 真图=362 / 对照=2；右上角口径 right_non_bg=94.79% ｜ fixture_tier: 真图 non_bg=50.63%（阈值 1.0%→绿），我的空白对照=0.0001%（→红）；colors_fine 真图=146 / 对照=2；右上角口径 right_non_bg=39.78% ｜ body_standard: 真图 non_bg=55.74%（阈值 1.0%→绿），我的空白对照=0.0001%（→红）；colors_fine 真图=874 / 对照=2；右上角口径 right_non_bg=50.44%"
+  },
+  {
+   "id": "A-08",
+   "group": "app",
+   "subject": "同上",
+   "criterion": "若改用『颜色数 > 500』当门槛，会不会把非空白页误判为空白",
+   "measured": "真图 colors_fine = [1768, 362, 146, 874]（最小 146）",
+   "expected": "记录（评估 app 改用非背景占比的理由是否成立）",
+   "verdict": "PASS",
+   "fail_condition": "本条不会红（记录用）",
+   "evidence": "实测最小 146 < 500 → 说明 app 把颜色数门槛换掉是有事实依据的（不是随手改的）"
+  },
+  {
+   "id": "A-09",
+   "group": "app",
+   "subject": "shape_lab_ui_page.png",
+   "criterion": "app 自报的 UI_PAGE_STATS vs 我独立算的像素统计（口径对照）",
+   "measured": "app: non_bg=72.00% right=100.00% colors_fine=1374；我: non_bg=66.38%（边框中位数基线）right=8.57% colors_fine=1768",
+   "expected": "两者应同量级（口径细节不同：app 用左上角像素当基线）",
+   "verdict": "PASS",
+   "fail_condition": "两边差 >15 个百分点 → 至少一方的背景基线选得不对（左上角像素当基线就是这个风险）。⚠ 口径差说明：整页图上 app 的 right_non_bg=100% 而我的『border_median』基线只有 8.57% —— 原因是**这两个数字的背景定义不同**：该图边缘同时含天空(暗)、棋盘地面(灰)、右侧面板(灰)，我的『边框中位数』落在灰上 → 面板被判成背景；app 用左上角天空当基线 → 面板算内容。在**这张图**上 app 的基线更合理（面板背景色与天空不同），我的 border_median 在这类『边缘多模态』图上不可靠 —— 这正是我另设 A-05b 说明『不能用单一背景色判这些图』的原因。本条只判整页 non_bg 是否同量级（差 5.62 pp），不做逐区域硬判。",
+   "evidence": "app 的 bg_corner=[0.106, 0.11, 0.125]；我的三个基线：corner=[27, 28, 32] border_median=[45, 45, 45] mode=[45, 45, 45]"
+  }
+ ],
+ "notes": [
+  "**陷阱 1（我自己踩的，代价是 analytic 全错）**：`Mesh.surface_get_blend_shape_arrays(s)` 返回的是**「该面上每个 blend shape 的 arrays」**，**Basis 不在里面** —— Basis 要从 `surface_get_arrays(s)` 取。而且 Godot 4.6 对 glTF 导入的 morph 用 **absolute 模式**：`shapes[i]` 里是**绝对坐标**，位移 = `shapes[i] − basis`。我第一版把 `shapes[0]` 当 Basis、把 `shapes[1]` 当 thin 位移 → 症状是『k=-1 的 bbox ≈ 2 倍、k=+1 完全不变』（thin 13.99 m / standard 6.86 m / heavy 6.86 m）——**不报错、不崩，只是数全错**。靠 P-12（引擎烘的网格 vs 我的复算）才暴露。app 的 `blend_mode_of()` 正是为这件事写的经验判据（它实测也报 absolute）。",
+  "**陷阱 2**：`ClassDB.class_has_method('Mesh','_get_blend_shape_count')` 返回 **False**，而 `ClassDB.class_get_method_list('Mesh')` 里**确实有** `_get_blend_shape_count` —— has_method 看不见 GDVIRTUAL。所以『has_method 为假』**不能**作为『方法不存在』的证据；我的判据改用方法表（更权威）。实测方法表：Mesh = [_get_blend_shape_count, _get_blend_shape_name, _set_blend_shape_name, _surface_get_blend_shape_arrays, surface_get_blend_shape_arrays]；ArrayMesh 才有 public get/set_blend_shape_count/name/mode；MeshInstance3D = [bake_mesh_from_current_blend_shape_mix, find_blend_shape_by_name, get/set_blend_shape_value]。",
+  "**陷阱 3（GDScript 的 invalid call 会中断函数但进程仍退 0）**：`BoxMesh.get_blend_shape_count()` 报 `Nonexistent function ... in base 'BoxMesh'`，**当前函数被中断**、调用方继续执行。我在自己的探针上真实踩了两次（一次 `Mesh` 是 Resource 没有 `.name`、一次写盘写在墓碑变量之前），两次都是『退出码 0 + 报告缺字段』。为此加了硬门禁 P-00b：逐角色断言 parts/skeletons/per_k/geom_dump/camera/height_check 齐全。",
+  "**骨索引结论（领导点名要查的『两个实现互相矛盾』）**：这批 glb 上 `find_bone(\"Head\")` = **54**（6/6 一致）、`find_bone(\"root\")` = **0**。机制不是『glTF 路线按 skin.joints 数组』：我把真 glb 的 `skin.joints` **倒序**（nodes 数组与层级完全不动），Godot 的骨顺序**一位都没变**（Head 仍是 54，而 joints 数组里 Head 的索引变成 10）⇒ Godot **不读** `skin.joints` 数组顺序，**也不读** nodes 数组顺序（两例都不符）。真正相符的是**骨层级 DFS**（从 joints 里的根节点按 `children` 顺序深度优先）—— 65/65 逐位相同，原样与倒序两份文件都成立。所以工作区既有的『.blend 路线 54 / glTF 路线 6』**不是矛盾，而是两个不同的文件**：『6』量的是**上游 Quaternius 原始 glTF**（其骨层级顺序不同），本工程的 glb 由 Blender 5.2 re-export，骨层级 == .blend 骨序 → 落回 54。⚠ **我无法在本机复测那个 6**：全仓库搜 `*.gltf,*.glb` 只剩 `tools/3d/legacy/morph-demo/` 两个无骨架演示件，`download/` 里已无上游 glTF。建议把文档口径改成『索引取决于**文件里的骨层级顺序**，跨文件不可复用』——比『某路线 = 某索引』更强也更准。",
+  "**硬编码骨索引：无**。grep 全部 *.gd（跳过注释行）：无 `get_bone_pose*(<数字>)`、无 `bones[i]`/`joints[i]`，取骨只有 `find_bone(\"Head\")` / `find_bone(\"root\")`（main.gd:253）与 `find_bone` 按名字的用法。口径合规。",
+  "**空白守卫的独立判断（含真空白阴性对照）**：我自己造了 4 张『纯背景 + 1 个白像素』的空白图（分别模仿整页图/裸模图/fixture 图），用 app 的阈值（单图 1%、整页 3%）跑：真图 **0 个被判红**（non_bg 50.63%–67.55%），空白对照 **4/4 被判红**（non_bg 0.0001%）⇒ 判据**非空洞**、且阈值有 17–22 倍的余量，不会把非空白页误判成空白。另外实测 `colors_fine`：整页真图 1768、fixture 整页 **362**、fixture 单图 **146** —— 都 < 500，**证实 app 把『颜色数 > 500』换成非背景占比是有事实依据的**（旧门槛会把 fixture 页误杀）。",
+  "**为什么不能用『非背景 bbox 四边留白 > 0』判 app 的图**：舞台含**灰色棋盘地面**（有意铺到画幅下/左/右边缘）且天空是**渐变**色 → 任何单一背景色基线都会把地面或天空之一算成『内容』，bbox 必然贴边（实测 25/25 张 l=r=b=0，与『是否裁切』无关）。所以『不裁切』这条我只在**纯角色透明剪影**上判（我自己的 18 张 sil_*.png，四边留白全部 > 0），并用 app 自报的 margin_px 做交叉核对（4 边最小 36.6 px）。我也因此在自写的 img_forensics 里修掉两个 bug：众数色的 key 有碰撞、bbox 的 y1 误用了 xs.max()。",
+  "**fixture 的三档图逐位相同 —— 预期行为，不是缺陷**：`_fixture_cache/shots/` 里 thin/standard/heavy 三张 SHA256 完全相同（5502D996…），男女也相同。原因写在 app 源码里：fixture 是 3 个 `BoxMesh` 且 `has_morph: false`（GDScript 无法给 ArrayMesh 塞 blend shape）。所以它是**阴性对照**（无 morph → 无视觉变化），恰好用来验证空白守卫；它**不能**用来证明 morph 管线可用（那要靠 6 个真角色，实测三档 SHA256 各不相同）。",
+  "**截图流水线可复现**：我独立跑 `run.cmd --shots` 一次（退出码 0、SHOTS_TOTAL=25、failed_chars=0、无 ERROR 行），产出的 26 张 PNG 与 app 之前那次的 **SHA256 逐位相同（26/26）**。⚠ 说明：这次运行会**重写** `tmp/shape-lab/shots/`（那是 app 自己的输出目录，我的卡要求我跑它）；内容逐位相同，故无实质改动。",
+  "**未能证实（诚实声明）**：① 工作区文档里『glTF 路线 Head=6』**无法在本机复测**（上游 glTF 已不在盘上），我只能给机制与结论、不能给那 6 的实测。② 我自造的合成 glb（`glb_fixture.py`）能被**我的标准库解析器**读通，但 **Godot 拒绝解析**（`_parse_meshes: size == 0`），且其中手写 PNG 我『嗅 magic』通过、Godot 真解码报 `ERR_FILE_CORRUPT`（我后来修了 PNG 写入）。教训：**嗅 magic 比真解码弱得多**；因此骨顺序的决定性实验我改用了**真 glb 的副本**而不是自造 fixture。③ 我的探针渲染是**白色无光照 override** 的剪影，不用来评价观感（观感看 app 的 3 档图）。"
+ ],
+ "analytic_per_character": {
+  "Female_Ranger": {
+   "per_tier": {
+    "-1.0": {
+     "bbox_min": [
+      -0.817507266998291,
+      -0.004311397206038237,
+      -0.19690406322479248
+     ],
+     "bbox_max": [
+      0.8175072073936462,
+      1.791777491569519,
+      0.16892105340957642
+     ],
+     "height_m": 1.7960889339447021,
+     "x_span_m": 1.635014533996582,
+     "z_span_m": 0.3658251166343689,
+     "xz_mean_width_perimeter_proxy_m": 6.859275382119759,
+     "n_vertices": 29789
+    },
+    "0.0": {
+     "bbox_min": [
+      -0.8319412469863892,
+      -0.003967382479459047,
+      -0.20963004231452942
+     ],
+     "bbox_max": [
+      0.8319412469863892,
+      1.7940789461135864,
+      0.16754087805747986
+     ],
+     "height_m": 1.798046350479126,
+     "x_span_m": 1.6638824939727783,
+     "z_span_m": 0.3771709203720093,
+     "xz_mean_width_perimeter_proxy_m": 6.978694582212722,
+     "n_vertices": 29789
+    },
+    "1.0": {
+     "bbox_min": [
+      -0.850885808467865,
+      -0.003515790682286024,
+      -0.22676697373390198
+     ],
+     "bbox_max": [
+      0.8508857488632202,
+      1.7970995903015137,
+      0.197226420044899
+     ],
+     "height_m": 1.8006154298782349,
+     "x_span_m": 1.7017714977264404,
+     "z_span_m": 0.42399340867996216,
+     "xz_mean_width_perimeter_proxy_m": 7.152478632320648,
+     "n_vertices": 29789
+    }
+   },
+   "engine_vs_analytic": {
+    "-1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 12
+    },
+    "0.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 12
+    },
+    "1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 12
+    }
+   },
+   "geom_parts": [
+    "Female_Ranger_Acc_Pauldrons",
+    "Female_Ranger_Arms",
+    "Female_Ranger_Arms_Bracer",
+    "Female_Ranger_Body",
+    "Female_Ranger_Body_Belt_1",
+    "Female_Ranger_Body_Belt_2",
+    "Female_Ranger_Feet",
+    "Female_Ranger_Head_Hood",
+    "Female_Ranger_Legs",
+    "Head_Eyebrows",
+    "Head_Eyes",
+    "Head_Superhero_Female"
+   ]
+  },
+  "Male_Ranger": {
+   "per_tier": {
+    "-1.0": {
+     "bbox_min": [
+      -0.8817743062973022,
+      -0.003945453558117151,
+      -0.1865319311618805
+     ],
+     "bbox_max": [
+      0.8817744255065918,
+      1.8650014400482178,
+      0.16746588051319122
+     ],
+     "height_m": 1.86894690990448,
+     "x_span_m": 1.763548731803894,
+     "z_span_m": 0.3539978265762329,
+     "xz_mean_width_perimeter_proxy_m": 7.389891073462014,
+     "n_vertices": 29782
+    },
+    "0.0": {
+     "bbox_min": [
+      -0.8994147777557373,
+      -0.00396758783608675,
+      -0.20595386624336243
+     ],
+     "bbox_max": [
+      0.8994147777557373,
+      1.8650404214859009,
+      0.16754083335399628
+     ],
+     "height_m": 1.8690080642700195,
+     "x_span_m": 1.7988295555114746,
+     "z_span_m": 0.3734946846961975,
+     "xz_mean_width_perimeter_proxy_m": 7.537136529097329,
+     "n_vertices": 29782
+    },
+    "1.0": {
+     "bbox_min": [
+      -0.922568142414093,
+      -0.003996348939836025,
+      -0.23953285813331604
+     ],
+     "bbox_max": [
+      0.9225682020187378,
+      1.865386962890625,
+      0.16763906180858612
+     ],
+     "height_m": 1.8693833351135254,
+     "x_span_m": 1.8451364040374756,
+     "z_span_m": 0.40717190504074097,
+     "xz_mean_width_perimeter_proxy_m": 7.737529279168675,
+     "n_vertices": 29782
+    }
+   },
+   "engine_vs_analytic": {
+    "-1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 12
+    },
+    "0.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 12
+    },
+    "1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 12
+    }
+   },
+   "geom_parts": [
+    "Head_Eyebrows",
+    "Head_Eyes",
+    "Head_SuperHero_Male",
+    "Male_Ranger_Acc_Pauldron",
+    "Male_Ranger_Arms",
+    "Male_Ranger_Arms_Bracer",
+    "Male_Ranger_Body",
+    "Male_Ranger_Body_Belt_1",
+    "Male_Ranger_Body_Belt_2",
+    "Male_Ranger_Feet_Boots",
+    "Male_Ranger_Head_Hood",
+    "Male_Ranger_Legs"
+   ]
+  },
+  "Female_Peasant": {
+   "per_tier": {
+    "-1.0": {
+     "bbox_min": [
+      -0.817507266998291,
+      -0.0070877522230148315,
+      -0.16158924996852875
+     ],
+     "bbox_max": [
+      0.8175072073936462,
+      1.7772289514541626,
+      0.16892105340957642
+     ],
+     "height_m": 1.7843166589736938,
+     "x_span_m": 1.635014533996582,
+     "z_span_m": 0.33051031827926636,
+     "xz_mean_width_perimeter_proxy_m": 6.84420599701551,
+     "n_vertices": 16788
+    },
+    "0.0": {
+     "bbox_min": [
+      -0.8319412469863892,
+      -0.006743737030774355,
+      -0.16725493967533112
+     ],
+     "bbox_max": [
+      0.8319412469863892,
+      1.7772289514541626,
+      0.16754087805747986
+     ],
+     "height_m": 1.7839727401733398,
+     "x_span_m": 1.6638824939727783,
+     "z_span_m": 0.33479583263397217,
+     "xz_mean_width_perimeter_proxy_m": 6.961128240534023,
+     "n_vertices": 16788
+    },
+    "1.0": {
+     "bbox_min": [
+      -0.850885808467865,
+      -0.006292145699262619,
+      -0.1905553936958313
+     ],
+     "bbox_max": [
+      0.8508857488632202,
+      1.777228832244873,
+      0.16572825610637665
+     ],
+     "height_m": 1.7835209369659424,
+     "x_span_m": 1.7017714977264404,
+     "z_span_m": 0.35628366470336914,
+     "xz_mean_width_perimeter_proxy_m": 7.122418905996259,
+     "n_vertices": 16788
+    }
+   },
+   "engine_vs_analytic": {
+    "-1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 8
+    },
+    "0.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 8
+    },
+    "1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 8
+    }
+   },
+   "geom_parts": [
+    "Female_Peasant_Arms",
+    "Female_Peasant_Body",
+    "Female_Peasant_Feet",
+    "Female_Peasant_Legs",
+    "Hair_Long",
+    "Head_Eyebrows",
+    "Head_Eyes",
+    "Head_Superhero_Female"
+   ]
+  },
+  "Male_Peasant": {
+   "per_tier": {
+    "-1.0": {
+     "bbox_min": [
+      -0.8817741870880127,
+      -0.003945452161133289,
+      -0.1625334918498993
+     ],
+     "bbox_max": [
+      0.8817744255065918,
+      1.8397216796875,
+      0.16746586561203003
+     ],
+     "height_m": 1.8436671495437622,
+     "x_span_m": 1.7635486125946045,
+     "z_span_m": 0.3299993574619293,
+     "xz_mean_width_perimeter_proxy_m": 7.382828051789473,
+     "n_vertices": 12388
+    },
+    "0.0": {
+     "bbox_min": [
+      -0.8994146585464478,
+      -0.00396758783608675,
+      -0.18447721004486084
+     ],
+     "bbox_max": [
+      0.8994147777557373,
+      1.8397217988967896,
+      0.16754083335399628
+     ],
+     "height_m": 1.8436894416809082,
+     "x_span_m": 1.798829436302185,
+     "z_span_m": 0.3520180583000183,
+     "xz_mean_width_perimeter_proxy_m": 7.528705932647261,
+     "n_vertices": 12388
+    },
+    "1.0": {
+     "bbox_min": [
+      -0.9225680232048035,
+      -0.003996347542852163,
+      -0.21327829360961914
+     ],
+     "bbox_max": [
+      0.9225682020187378,
+      1.8397216796875,
+      0.16763904690742493
+     ],
+     "height_m": 1.8437180519104004,
+     "x_span_m": 1.8451361656188965,
+     "z_span_m": 0.38091734051704407,
+     "xz_mean_width_perimeter_proxy_m": 7.722936078374059,
+     "n_vertices": 12388
+    }
+   },
+   "engine_vs_analytic": {
+    "-1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 8
+    },
+    "0.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 8
+    },
+    "1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 8
+    }
+   },
+   "geom_parts": [
+    "Hair_SimpleParted",
+    "Head_Eyebrows",
+    "Head_Eyes",
+    "Head_SuperHero_Male",
+    "Male_Peasant_Arms",
+    "Male_Peasant_Body",
+    "Male_Peasant_Feet",
+    "Male_Peasant_Legs"
+   ]
+  },
+  "Body_Female_Standard": {
+   "per_tier": {
+    "-1.0": {
+     "bbox_min": [
+      -0.8199990391731262,
+      -0.008751336485147476,
+      -0.14479286968708038
+     ],
+     "bbox_max": [
+      0.8199989199638367,
+      1.7666435241699219,
+      0.1316365897655487
+     ],
+     "height_m": 1.7753949165344238,
+     "x_span_m": 1.639997959136963,
+     "z_span_m": 0.2764294743537903,
+     "xz_mean_width_perimeter_proxy_m": 6.827055792287703,
+     "n_vertices": 8848
+    },
+    "0.0": {
+     "bbox_min": [
+      -0.8344330787658691,
+      -0.008407306857407093,
+      -0.16246943175792694
+     ],
+     "bbox_max": [
+      0.8344329595565796,
+      1.7666435241699219,
+      0.14022760093212128
+     ],
+     "height_m": 1.7750508785247803,
+     "x_span_m": 1.6688660383224487,
+     "z_span_m": 0.3026970326900482,
+     "xz_mean_width_perimeter_proxy_m": 6.953461454963581,
+     "n_vertices": 8848
+    },
+    "1.0": {
+     "bbox_min": [
+      -0.8533775806427002,
+      -0.007955729961395264,
+      -0.1862436830997467
+     ],
+     "bbox_max": [
+      0.8533774614334106,
+      1.7666434049606323,
+      0.16989222168922424
+     ],
+     "height_m": 1.7745990753173828,
+     "x_span_m": 1.7067550420761108,
+     "z_span_m": 0.35613590478897095,
+     "xz_mean_width_perimeter_proxy_m": 7.139309488330891,
+     "n_vertices": 8848
+    }
+   },
+   "engine_vs_analytic": {
+    "-1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 3
+    },
+    "0.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 3
+    },
+    "1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 3
+    }
+   },
+   "geom_parts": [
+    "Body_Female",
+    "Eyebrows",
+    "Eyes"
+   ]
+  },
+  "Body_Male_Standard": {
+   "per_tier": {
+    "-1.0": {
+     "bbox_min": [
+      -0.9101548194885254,
+      -0.009487939067184925,
+      -0.14626328647136688
+     ],
+     "bbox_max": [
+      0.9101545810699463,
+      1.8100767135620117,
+      0.12796202301979065
+     ],
+     "height_m": 1.819564700126648,
+     "x_span_m": 1.8203094005584717,
+     "z_span_m": 0.27422529458999634,
+     "xz_mean_width_perimeter_proxy_m": 7.573119702910564,
+     "n_vertices": 8485
+    },
+    "0.0": {
+     "bbox_min": [
+      -0.9294330477714539,
+      -0.009510005824267864,
+      -0.16345082223415375
+     ],
+     "bbox_max": [
+      0.9294331073760986,
+      1.8100768327713013,
+      0.12803706526756287
+     ],
+     "height_m": 1.8195868730545044,
+     "x_span_m": 1.8588662147521973,
+     "z_span_m": 0.2914878726005554,
+     "xz_mean_width_perimeter_proxy_m": 7.731109507772189,
+     "n_vertices": 8485
+    },
+    "1.0": {
+     "bbox_min": [
+      -0.9547364115715027,
+      -0.00953883957117796,
+      -0.19136148691177368
+     ],
+     "bbox_max": [
+      0.9547362327575684,
+      1.8100767135620117,
+      0.14948275685310364
+     ],
+     "height_m": 1.8196156024932861,
+     "x_span_m": 1.9094727039337158,
+     "z_span_m": 0.3408442437648773,
+     "xz_mean_width_perimeter_proxy_m": 7.952229268339345,
+     "n_vertices": 8485
+    }
+   },
+   "engine_vs_analytic": {
+    "-1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 3
+    },
+    "0.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 3
+    },
+    "1.0": {
+     "per_part_max_abs_err_m": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "max_abs_err_m": 0.0,
+     "parts_compared": 3
+    }
+   },
+   "geom_parts": [
+    "Body_Male",
+    "Eyebrows",
+    "Eyes"
+   ]
+  }
+ },
+ "get_aabb_by_char": [
+  {
+   "char": "Female_Ranger",
+   "invariant": true,
+   "raw_k_minus1": [
+    "Female_Ranger_Acc_Pauldrons|0.101680,1.394538,-0.185693|0.243882,0.151122,0.231110",
+    "Female_Ranger_Arms|-0.850886,1.334193,-0.115464|1.701771,0.158042,0.140806",
+    "Female_Ranger_Arms_Bracer|-0.708149,1.341122,-0.123049|1.416299,0.143672,0.159970"
+   ],
+   "raw_k_0": [
+    "Female_Ranger_Acc_Pauldrons|0.101680,1.394538,-0.185693|0.243882,0.151122,0.231110",
+    "Female_Ranger_Arms|-0.850886,1.334193,-0.115464|1.701771,0.158042,0.140806",
+    "Female_Ranger_Arms_Bracer|-0.708149,1.341122,-0.123049|1.416299,0.143672,0.159970"
+   ],
+   "raw_k_plus1": [
+    "Female_Ranger_Acc_Pauldrons|0.101680,1.394538,-0.185693|0.243882,0.151122,0.231110",
+    "Female_Ranger_Arms|-0.850886,1.334193,-0.115464|1.701771,0.158042,0.140806",
+    "Female_Ranger_Arms_Bracer|-0.708149,1.341122,-0.123049|1.416299,0.143672,0.159970"
+   ]
+  },
+  {
+   "char": "Male_Ranger",
+   "invariant": true,
+   "raw_k_minus1": [
+    "Head_Eyebrows|-0.062341,1.694860,0.056922|0.124681,0.030608,0.037556",
+    "Head_Eyes|-0.048749,1.683599,0.051234|0.097498,0.029946,0.029404",
+    "Head_SuperHero_Male|-0.098234,1.531999,-0.128271|0.196468,0.278078,0.243440"
+   ],
+   "raw_k_0": [
+    "Head_Eyebrows|-0.062341,1.694860,0.056922|0.124681,0.030608,0.037556",
+    "Head_Eyes|-0.048749,1.683599,0.051234|0.097498,0.029946,0.029404",
+    "Head_SuperHero_Male|-0.098234,1.531999,-0.128271|0.196468,0.278078,0.243440"
+   ],
+   "raw_k_plus1": [
+    "Head_Eyebrows|-0.062341,1.694860,0.056922|0.124681,0.030608,0.037556",
+    "Head_Eyes|-0.048749,1.683599,0.051234|0.097498,0.029946,0.029404",
+    "Head_SuperHero_Male|-0.098234,1.531999,-0.128271|0.196468,0.278078,0.243440"
+   ]
+  },
+  {
+   "char": "Female_Peasant",
+   "invariant": true,
+   "raw_k_minus1": [
+    "Female_Peasant_Arms|-0.850886,1.338819,-0.115531|1.701771,0.146380,0.140873",
+    "Female_Peasant_Body|-0.208068,0.982275,-0.167058|0.416135,0.543277,0.330358",
+    "Female_Peasant_Feet|-0.241027,-0.007088,-0.190555|0.482053,0.467671,0.359476"
+   ],
+   "raw_k_0": [
+    "Female_Peasant_Arms|-0.850886,1.338819,-0.115531|1.701771,0.146380,0.140873",
+    "Female_Peasant_Body|-0.208068,0.982275,-0.167058|0.416135,0.543277,0.330358",
+    "Female_Peasant_Feet|-0.241027,-0.007088,-0.190555|0.482053,0.467671,0.359476"
+   ],
+   "raw_k_plus1": [
+    "Female_Peasant_Arms|-0.850886,1.338819,-0.115531|1.701771,0.146380,0.140873",
+    "Female_Peasant_Body|-0.208068,0.982275,-0.167058|0.416135,0.543277,0.330358",
+    "Female_Peasant_Feet|-0.241027,-0.007088,-0.190555|0.482053,0.467671,0.359476"
+   ]
+  },
+  {
+   "char": "Male_Peasant",
+   "invariant": true,
+   "raw_k_minus1": [
+    "Hair_SimpleParted|-0.085425,1.660560,-0.108153|0.175421,0.179162,0.186950",
+    "Head_Eyebrows|-0.062341,1.694860,0.056922|0.124681,0.030608,0.037556",
+    "Head_Eyes|-0.048749,1.683599,0.051234|0.097498,0.029946,0.029404"
+   ],
+   "raw_k_0": [
+    "Hair_SimpleParted|-0.085425,1.660560,-0.108153|0.175421,0.179162,0.186950",
+    "Head_Eyebrows|-0.062341,1.694860,0.056922|0.124681,0.030608,0.037556",
+    "Head_Eyes|-0.048749,1.683599,0.051234|0.097498,0.029946,0.029404"
+   ],
+   "raw_k_plus1": [
+    "Hair_SimpleParted|-0.085425,1.660560,-0.108153|0.175421,0.179162,0.186950",
+    "Head_Eyebrows|-0.062341,1.694860,0.056922|0.124681,0.030608,0.037556",
+    "Head_Eyes|-0.048749,1.683599,0.051234|0.097498,0.029946,0.029404"
+   ]
+  },
+  {
+   "char": "Body_Female_Standard",
+   "invariant": true,
+   "raw_k_minus1": [
+    "Body_Female|-0.853378,-0.008751,-0.186244|1.706755,1.775395,0.356136",
+    "Eyebrows|-0.062999,1.649289,0.051285|0.125998,0.037612,0.040286",
+    "Eyes|-0.051054,1.639537,0.042915|0.102108,0.033016,0.032419"
+   ],
+   "raw_k_0": [
+    "Body_Female|-0.853378,-0.008751,-0.186244|1.706755,1.775395,0.356136",
+    "Eyebrows|-0.062999,1.649289,0.051285|0.125998,0.037612,0.040286",
+    "Eyes|-0.051054,1.639537,0.042915|0.102108,0.033016,0.032419"
+   ],
+   "raw_k_plus1": [
+    "Body_Female|-0.853378,-0.008751,-0.186244|1.706755,1.775395,0.356136",
+    "Eyebrows|-0.062999,1.649289,0.051285|0.125998,0.037612,0.040286",
+    "Eyes|-0.051054,1.639537,0.042915|0.102108,0.033016,0.032419"
+   ]
+  },
+  {
+   "char": "Body_Male_Standard",
+   "invariant": true,
+   "raw_k_minus1": [
+    "Body_Male|-0.954736,-0.009539,-0.191361|1.909473,1.819616,0.340844",
+    "Eyebrows|-0.062341,1.694860,0.056922|0.124681,0.030608,0.037556",
+    "Eyes|-0.048749,1.683599,0.051234|0.097498,0.029945,0.029404"
+   ],
+   "raw_k_0": [
+    "Body_Male|-0.954736,-0.009539,-0.191361|1.909473,1.819616,0.340844",
+    "Eyebrows|-0.062341,1.694860,0.056922|0.124681,0.030608,0.037556",
+    "Eyes|-0.048749,1.683599,0.051234|0.097498,0.029945,0.029404"
+   ],
+   "raw_k_plus1": [
+    "Body_Male|-0.954736,-0.009539,-0.191361|1.909473,1.819616,0.340844",
+    "Eyebrows|-0.062341,1.694860,0.056922|0.124681,0.030608,0.037556",
+    "Eyes|-0.048749,1.683599,0.051234|0.097498,0.029945,0.029404"
+   ]
+  }
+ ],
+ "height_scale_by_char": [
+  {
+   "char": "Female_Ranger",
+   "h": 1.0,
+   "root_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "skeleton_world_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pose_position": [
+    -8.48539988274055e-15,
+    0.071191132068634,
+    3.44589352607727e-08
+   ],
+   "pose_rotation": [
+    -0.204674497246742,
+    -2.25164171752112e-08,
+    -1.72801648545828e-08,
+    0.978830099105835
+   ],
+   "global_pose_origin": [
+    -1.56177674959235e-12,
+    1.54959988594055,
+    -0.0108998194336891
+   ],
+   "basis_height_x_h": 1.79407894611359
+  },
+  {
+   "char": "Female_Ranger",
+   "h": 0.92,
+   "root_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "skeleton_world_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "pose_position": [
+    -8.48539988274055e-15,
+    0.071191132068634,
+    3.44589352607727e-08
+   ],
+   "pose_rotation": [
+    -0.204674497246742,
+    -2.25164171752112e-08,
+    -1.72801648545828e-08,
+    0.978830099105835
+   ],
+   "global_pose_origin": [
+    -1.56177674959235e-12,
+    1.54959988594055,
+    -0.0108998194336891
+   ],
+   "basis_height_x_h": 1.6505526304245
+  },
+  {
+   "char": "Female_Ranger",
+   "h": 1.08,
+   "root_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "skeleton_world_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "pose_position": [
+    -8.48539988274055e-15,
+    0.071191132068634,
+    3.44589352607727e-08
+   ],
+   "pose_rotation": [
+    -0.204674497246742,
+    -2.25164171752112e-08,
+    -1.72801648545828e-08,
+    0.978830099105835
+   ],
+   "global_pose_origin": [
+    -1.56177674959235e-12,
+    1.54959988594055,
+    -0.0108998194336891
+   ],
+   "basis_height_x_h": 1.93760526180267
+  },
+  {
+   "char": "Male_Ranger",
+   "h": 1.0,
+   "root_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "skeleton_world_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pose_position": [
+    2.31660969975209e-16,
+    0.082852341234684,
+    5.58793544769287e-09
+   ],
+   "pose_rotation": [
+    -0.132070034742355,
+    -2.28733227913835e-08,
+    -5.75357184118275e-09,
+    0.991240382194519
+   ],
+   "global_pose_origin": [
+    1.07811166678157e-14,
+    1.5997998714447,
+    -0.017400024458766
+   ],
+   "basis_height_x_h": 1.8650404214859
+  },
+  {
+   "char": "Male_Ranger",
+   "h": 0.92,
+   "root_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "skeleton_world_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "pose_position": [
+    2.31660969975209e-16,
+    0.082852341234684,
+    5.58793544769287e-09
+   ],
+   "pose_rotation": [
+    -0.132070034742355,
+    -2.28733227913835e-08,
+    -5.75357184118275e-09,
+    0.991240382194519
+   ],
+   "global_pose_origin": [
+    1.07811166678157e-14,
+    1.5997998714447,
+    -0.017400024458766
+   ],
+   "basis_height_x_h": 1.71583718776703
+  },
+  {
+   "char": "Male_Ranger",
+   "h": 1.08,
+   "root_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "skeleton_world_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "pose_position": [
+    2.31660969975209e-16,
+    0.082852341234684,
+    5.58793544769287e-09
+   ],
+   "pose_rotation": [
+    -0.132070034742355,
+    -2.28733227913835e-08,
+    -5.75357184118275e-09,
+    0.991240382194519
+   ],
+   "global_pose_origin": [
+    1.07811166678157e-14,
+    1.5997998714447,
+    -0.017400024458766
+   ],
+   "basis_height_x_h": 2.01424365520477
+  },
+  {
+   "char": "Female_Peasant",
+   "h": 1.0,
+   "root_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "skeleton_world_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pose_position": [
+    -8.48539988274055e-15,
+    0.071191132068634,
+    3.44589352607727e-08
+   ],
+   "pose_rotation": [
+    -0.204674497246742,
+    -2.25164171752112e-08,
+    -1.72801648545828e-08,
+    0.978830099105835
+   ],
+   "global_pose_origin": [
+    -1.56177674959235e-12,
+    1.54959988594055,
+    -0.0108998194336891
+   ],
+   "basis_height_x_h": 1.77722895145416
+  },
+  {
+   "char": "Female_Peasant",
+   "h": 0.92,
+   "root_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "skeleton_world_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "pose_position": [
+    -8.48539988274055e-15,
+    0.071191132068634,
+    3.44589352607727e-08
+   ],
+   "pose_rotation": [
+    -0.204674497246742,
+    -2.25164171752112e-08,
+    -1.72801648545828e-08,
+    0.978830099105835
+   ],
+   "global_pose_origin": [
+    -1.56177674959235e-12,
+    1.54959988594055,
+    -0.0108998194336891
+   ],
+   "basis_height_x_h": 1.63505063533783
+  },
+  {
+   "char": "Female_Peasant",
+   "h": 1.08,
+   "root_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "skeleton_world_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "pose_position": [
+    -8.48539988274055e-15,
+    0.071191132068634,
+    3.44589352607727e-08
+   ],
+   "pose_rotation": [
+    -0.204674497246742,
+    -2.25164171752112e-08,
+    -1.72801648545828e-08,
+    0.978830099105835
+   ],
+   "global_pose_origin": [
+    -1.56177674959235e-12,
+    1.54959988594055,
+    -0.0108998194336891
+   ],
+   "basis_height_x_h": 1.9194072675705
+  },
+  {
+   "char": "Male_Peasant",
+   "h": 1.0,
+   "root_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "skeleton_world_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pose_position": [
+    2.31660969975209e-16,
+    0.082852341234684,
+    5.58793544769287e-09
+   ],
+   "pose_rotation": [
+    -0.132070034742355,
+    -2.28733227913835e-08,
+    -5.75357184118275e-09,
+    0.991240382194519
+   ],
+   "global_pose_origin": [
+    1.07811166678157e-14,
+    1.5997998714447,
+    -0.017400024458766
+   ],
+   "basis_height_x_h": 1.83972179889679
+  },
+  {
+   "char": "Male_Peasant",
+   "h": 0.92,
+   "root_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "skeleton_world_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "pose_position": [
+    2.31660969975209e-16,
+    0.082852341234684,
+    5.58793544769287e-09
+   ],
+   "pose_rotation": [
+    -0.132070034742355,
+    -2.28733227913835e-08,
+    -5.75357184118275e-09,
+    0.991240382194519
+   ],
+   "global_pose_origin": [
+    1.07811166678157e-14,
+    1.5997998714447,
+    -0.017400024458766
+   ],
+   "basis_height_x_h": 1.69254405498505
+  },
+  {
+   "char": "Male_Peasant",
+   "h": 1.08,
+   "root_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "skeleton_world_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "pose_position": [
+    2.31660969975209e-16,
+    0.082852341234684,
+    5.58793544769287e-09
+   ],
+   "pose_rotation": [
+    -0.132070034742355,
+    -2.28733227913835e-08,
+    -5.75357184118275e-09,
+    0.991240382194519
+   ],
+   "global_pose_origin": [
+    1.07811166678157e-14,
+    1.5997998714447,
+    -0.017400024458766
+   ],
+   "basis_height_x_h": 1.98689954280853
+  },
+  {
+   "char": "Body_Female_Standard",
+   "h": 1.0,
+   "root_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "skeleton_world_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pose_position": [
+    -8.48539988274055e-15,
+    0.071191132068634,
+    3.44589352607727e-08
+   ],
+   "pose_rotation": [
+    -0.204674497246742,
+    -2.25164171752112e-08,
+    -1.72801648545828e-08,
+    0.978830099105835
+   ],
+   "global_pose_origin": [
+    -1.56177674959235e-12,
+    1.54959988594055,
+    -0.0108998194336891
+   ],
+   "basis_height_x_h": 1.76664352416992
+  },
+  {
+   "char": "Body_Female_Standard",
+   "h": 0.92,
+   "root_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "skeleton_world_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "pose_position": [
+    -8.48539988274055e-15,
+    0.071191132068634,
+    3.44589352607727e-08
+   ],
+   "pose_rotation": [
+    -0.204674497246742,
+    -2.25164171752112e-08,
+    -1.72801648545828e-08,
+    0.978830099105835
+   ],
+   "global_pose_origin": [
+    -1.56177674959235e-12,
+    1.54959988594055,
+    -0.0108998194336891
+   ],
+   "basis_height_x_h": 1.62531204223633
+  },
+  {
+   "char": "Body_Female_Standard",
+   "h": 1.08,
+   "root_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "skeleton_world_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "pose_position": [
+    -8.48539988274055e-15,
+    0.071191132068634,
+    3.44589352607727e-08
+   ],
+   "pose_rotation": [
+    -0.204674497246742,
+    -2.25164171752112e-08,
+    -1.72801648545828e-08,
+    0.978830099105835
+   ],
+   "global_pose_origin": [
+    -1.56177674959235e-12,
+    1.54959988594055,
+    -0.0108998194336891
+   ],
+   "basis_height_x_h": 1.90797500610352
+  },
+  {
+   "char": "Body_Male_Standard",
+   "h": 1.0,
+   "root_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "skeleton_world_scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "pose_position": [
+    -2.66404779163923e-16,
+    0.0828523486852646,
+    -3.72529029846191e-09
+   ],
+   "pose_rotation": [
+    -0.132070034742355,
+    -2.28733227913835e-08,
+    -5.75356917664749e-09,
+    0.991240382194519
+   ],
+   "global_pose_origin": [
+    4.46525996584371e-15,
+    1.59980010986328,
+    -0.0174001045525074
+   ],
+   "basis_height_x_h": 1.8100768327713
+  },
+  {
+   "char": "Body_Male_Standard",
+   "h": 0.92,
+   "root_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "skeleton_world_scale": [
+    0.920000016689301,
+    0.920000016689301,
+    0.920000016689301
+   ],
+   "pose_position": [
+    -2.66404779163923e-16,
+    0.0828523486852646,
+    -3.72529029846191e-09
+   ],
+   "pose_rotation": [
+    -0.132070034742355,
+    -2.28733227913835e-08,
+    -5.75356917664749e-09,
+    0.991240382194519
+   ],
+   "global_pose_origin": [
+    4.46525996584371e-15,
+    1.59980010986328,
+    -0.0174001045525074
+   ],
+   "basis_height_x_h": 1.6652706861496
+  },
+  {
+   "char": "Body_Male_Standard",
+   "h": 1.08,
+   "root_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "skeleton_world_scale": [
+    1.08000004291534,
+    1.08000004291534,
+    1.08000004291534
+   ],
+   "pose_position": [
+    -2.66404779163923e-16,
+    0.0828523486852646,
+    -3.72529029846191e-09
+   ],
+   "pose_rotation": [
+    -0.132070034742355,
+    -2.28733227913835e-08,
+    -5.75356917664749e-09,
+    0.991240382194519
+   ],
+   "global_pose_origin": [
+    4.46525996584371e-15,
+    1.59980010986328,
+    -0.0174001045525074
+   ],
+   "basis_height_x_h": 1.95488297939301
+  }
+ ],
+ "silhouette_series": {
+  "Female_Ranger": {
+   "thin": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Female_Ranger_kthin.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 13.509066358024691,
+    "mask_pct_alpha": 13.20679012345679,
+    "mask_pct_lum": 13.509066358024691,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 68,
+     "y0": 40,
+     "x1": 651,
+     "y1": 680
+    },
+    "margins": {
+     "left": 68,
+     "top": 40,
+     "right": 68,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 584,
+    "height_px": 641,
+    "row_width_max": 584,
+    "row_width_p95": 185.0,
+    "mid_band_max_width_px": 114,
+    "mid_band_mean_width_px": 96.096875
+   },
+   "standard": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Female_Ranger_kstandard.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 15.461805555555555,
+    "mask_pct_alpha": 15.13888888888889,
+    "mask_pct_lum": 15.461805555555555,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 63,
+     "y0": 39,
+     "x1": 656,
+     "y1": 680
+    },
+    "margins": {
+     "left": 63,
+     "top": 39,
+     "right": 63,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 594,
+    "height_px": 642,
+    "row_width_max": 594,
+    "row_width_p95": 241.0499999999987,
+    "mid_band_max_width_px": 136,
+    "mid_band_mean_width_px": 113.5375
+   },
+   "heavy": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Female_Ranger_kheavy.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 18.02372685185185,
+    "mask_pct_alpha": 17.702353395061728,
+    "mask_pct_lum": 18.02372685185185,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 56,
+     "y0": 38,
+     "x1": 663,
+     "y1": 680
+    },
+    "margins": {
+     "left": 56,
+     "top": 38,
+     "right": 56,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 608,
+    "height_px": 643,
+    "row_width_max": 608,
+    "row_width_p95": 365.6999999999997,
+    "mid_band_max_width_px": 164,
+    "mid_band_mean_width_px": 136.46728971962617
+   }
+  },
+  "Male_Ranger": {
+   "thin": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Male_Ranger_kthin.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 13.619598765432098,
+    "mask_pct_alpha": 13.30516975308642,
+    "mask_pct_lum": 13.619598765432098,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 57,
+     "y0": 39,
+     "x1": 662,
+     "y1": 680
+    },
+    "margins": {
+     "left": 57,
+     "top": 39,
+     "right": 57,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 606,
+    "height_px": 642,
+    "row_width_max": 606,
+    "row_width_p95": 231.8499999999998,
+    "mid_band_max_width_px": 135,
+    "mid_band_mean_width_px": 94.19375
+   },
+   "standard": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Male_Ranger_kstandard.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 15.550347222222221,
+    "mask_pct_alpha": 15.230324074074074,
+    "mask_pct_lum": 15.550347222222221,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 51,
+     "y0": 39,
+     "x1": 668,
+     "y1": 680
+    },
+    "margins": {
+     "left": 51,
+     "top": 39,
+     "right": 51,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 618,
+    "height_px": 642,
+    "row_width_max": 618,
+    "row_width_p95": 318.4999999999993,
+    "mid_band_max_width_px": 244,
+    "mid_band_mean_width_px": 112.021875
+   },
+   "heavy": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Male_Ranger_kheavy.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 18.106288580246915,
+    "mask_pct_alpha": 17.761766975308642,
+    "mask_pct_lum": 18.106288580246915,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 43,
+     "y0": 39,
+     "x1": 676,
+     "y1": 680
+    },
+    "margins": {
+     "left": 43,
+     "top": 39,
+     "right": 43,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 634,
+    "height_px": 642,
+    "row_width_max": 634,
+    "row_width_p95": 467.3499999999991,
+    "mid_band_max_width_px": 455,
+    "mid_band_mean_width_px": 137.390625
+   }
+  },
+  "Female_Peasant": {
+   "thin": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Female_Peasant_kthin.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 12.31346450617284,
+    "mask_pct_alpha": 12.00096450617284,
+    "mask_pct_lum": 12.31346450617284,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 66,
+     "y0": 39,
+     "x1": 653,
+     "y1": 680
+    },
+    "margins": {
+     "left": 66,
+     "top": 39,
+     "right": 66,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 588,
+    "height_px": 642,
+    "row_width_max": 588,
+    "row_width_p95": 134.64999999999952,
+    "mid_band_max_width_px": 110,
+    "mid_band_mean_width_px": 86.575
+   },
+   "standard": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Female_Peasant_kstandard.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 14.027199074074074,
+    "mask_pct_alpha": 13.711998456790123,
+    "mask_pct_lum": 14.027199074074074,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 60,
+     "y0": 39,
+     "x1": 659,
+     "y1": 680
+    },
+    "margins": {
+     "left": 60,
+     "top": 39,
+     "right": 60,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 600,
+    "height_px": 642,
+    "row_width_max": 600,
+    "row_width_p95": 213.39999999999918,
+    "mid_band_max_width_px": 132,
+    "mid_band_mean_width_px": 102.359375
+   },
+   "heavy": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Female_Peasant_kheavy.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 16.274112654320987,
+    "mask_pct_alpha": 15.979166666666666,
+    "mask_pct_lum": 16.274112654320987,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 54,
+     "y0": 39,
+     "x1": 665,
+     "y1": 680
+    },
+    "margins": {
+     "left": 54,
+     "top": 39,
+     "right": 54,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 612,
+    "height_px": 642,
+    "row_width_max": 612,
+    "row_width_p95": 390.8499999999957,
+    "mid_band_max_width_px": 158,
+    "mid_band_mean_width_px": 123.16875
+   }
+  },
+  "Male_Peasant": {
+   "thin": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Male_Peasant_kthin.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 13.484182098765432,
+    "mask_pct_alpha": 13.141782407407407,
+    "mask_pct_lum": 13.484182098765432,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 53,
+     "y0": 39,
+     "x1": 666,
+     "y1": 680
+    },
+    "margins": {
+     "left": 53,
+     "top": 39,
+     "right": 53,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 614,
+    "height_px": 642,
+    "row_width_max": 614,
+    "row_width_p95": 301.5499999999994,
+    "mid_band_max_width_px": 132,
+    "mid_band_mean_width_px": 95.534375
+   },
+   "standard": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Male_Peasant_kstandard.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 15.412422839506172,
+    "mask_pct_alpha": 15.06423611111111,
+    "mask_pct_lum": 15.412422839506172,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 47,
+     "y0": 39,
+     "x1": 672,
+     "y1": 680
+    },
+    "margins": {
+     "left": 47,
+     "top": 39,
+     "right": 47,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 626,
+    "height_px": 642,
+    "row_width_max": 626,
+    "row_width_p95": 350.74999999999966,
+    "mid_band_max_width_px": 216,
+    "mid_band_mean_width_px": 113.40625
+   },
+   "heavy": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Male_Peasant_kheavy.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 17.92283950617284,
+    "mask_pct_alpha": 17.59182098765432,
+    "mask_pct_lum": 17.92283950617284,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 39,
+     "y0": 39,
+     "x1": 680,
+     "y1": 680
+    },
+    "margins": {
+     "left": 39,
+     "top": 39,
+     "right": 39,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 642,
+    "height_px": 642,
+    "row_width_max": 642,
+    "row_width_p95": 423.249999999999,
+    "mid_band_max_width_px": 327,
+    "mid_band_mean_width_px": 138.7375
+   }
+  },
+  "Body_Female_Standard": {
+   "thin": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Body_Female_Standard_kthin.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 11.721836419753087,
+    "mask_pct_alpha": 11.421682098765432,
+    "mask_pct_lum": 11.721836419753087,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 63,
+     "y0": 39,
+     "x1": 656,
+     "y1": 680
+    },
+    "margins": {
+     "left": 63,
+     "top": 39,
+     "right": 63,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 594,
+    "height_px": 642,
+    "row_width_max": 594,
+    "row_width_p95": 141.59999999999945,
+    "mid_band_max_width_px": 124,
+    "mid_band_mean_width_px": 91.01875
+   },
+   "standard": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Body_Female_Standard_kstandard.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 13.455054012345679,
+    "mask_pct_alpha": 13.15625,
+    "mask_pct_lum": 13.455054012345679,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 58,
+     "y0": 39,
+     "x1": 661,
+     "y1": 680
+    },
+    "margins": {
+     "left": 58,
+     "top": 39,
+     "right": 58,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 604,
+    "height_px": 642,
+    "row_width_max": 604,
+    "row_width_p95": 229.5499999999994,
+    "mid_band_max_width_px": 147,
+    "mid_band_mean_width_px": 107.621875
+   },
+   "heavy": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Body_Female_Standard_kheavy.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 15.722608024691358,
+    "mask_pct_alpha": 15.42650462962963,
+    "mask_pct_lum": 15.722608024691358,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 51,
+     "y0": 39,
+     "x1": 668,
+     "y1": 680
+    },
+    "margins": {
+     "left": 51,
+     "top": 39,
+     "right": 51,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 618,
+    "height_px": 642,
+    "row_width_max": 618,
+    "row_width_p95": 346.49999999999795,
+    "mid_band_max_width_px": 178,
+    "mid_band_mean_width_px": 129.428125
+   }
+  },
+  "Body_Male_Standard": {
+   "thin": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Body_Male_Standard_kthin.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 13.070023148148149,
+    "mask_pct_alpha": 12.762538580246913,
+    "mask_pct_lum": 13.070023148148149,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 39,
+     "y0": 39,
+     "x1": 680,
+     "y1": 680
+    },
+    "margins": {
+     "left": 39,
+     "top": 39,
+     "right": 39,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 642,
+    "height_px": 642,
+    "row_width_max": 642,
+    "row_width_p95": 330.7999999999997,
+    "mid_band_max_width_px": 120,
+    "mid_band_mean_width_px": 91.878125
+   },
+   "standard": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Body_Male_Standard_kstandard.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 15.00733024691358,
+    "mask_pct_alpha": 14.690972222222221,
+    "mask_pct_lum": 15.00733024691358,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 32,
+     "y0": 39,
+     "x1": 687,
+     "y1": 680
+    },
+    "margins": {
+     "left": 32,
+     "top": 39,
+     "right": 32,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 656,
+    "height_px": 642,
+    "row_width_max": 656,
+    "row_width_p95": 441.59999999999945,
+    "mid_band_max_width_px": 142,
+    "mid_band_mean_width_px": 108.7875
+   },
+   "heavy": {
+    "path": "D:\\artstudio\\tmp\\shape-lab-verify\\renders/sil_Body_Male_Standard_kheavy.png",
+    "size": [
+     720,
+     720
+    ],
+    "has_alpha": true,
+    "alpha_nonzero_pct": 17.541666666666668,
+    "mask_pct_alpha": 17.234567901234566,
+    "mask_pct_lum": 17.541666666666668,
+    "mask_source": "alpha",
+    "bbox": {
+     "x0": 23,
+     "y0": 39,
+     "x1": 696,
+     "y1": 680
+    },
+    "margins": {
+     "left": 23,
+     "top": 39,
+     "right": 23,
+     "bottom": 39,
+     "w": 720,
+     "h": 720
+    },
+    "width_px": 674,
+    "height_px": 642,
+    "row_width_max": 674,
+    "row_width_p95": 484.59999999999945,
+    "mid_band_max_width_px": 280,
+    "mid_band_mean_width_px": 132.2875
+   }
+  }
+ },
+ "silhouette_detail": [
+  "Female_Ranger: 中段宽 [114, 136, 164] px；整体宽 [584, 594, 608] px；剪影占比 13.21/15.14/17.70%",
+  "Male_Ranger: 中段宽 [135, 244, 455] px；整体宽 [606, 618, 634] px；剪影占比 13.31/15.23/17.76%",
+  "Female_Peasant: 中段宽 [110, 132, 158] px；整体宽 [588, 600, 612] px；剪影占比 12.00/13.71/15.98%",
+  "Male_Peasant: 中段宽 [132, 216, 327] px；整体宽 [614, 626, 642] px；剪影占比 13.14/15.06/17.59%",
+  "Body_Female_Standard: 中段宽 [124, 147, 178] px；整体宽 [594, 604, 618] px；剪影占比 11.42/13.16/15.43%",
+  "Body_Male_Standard: 中段宽 [120, 142, 280] px；整体宽 [642, 656, 674] px；剪影占比 12.76/14.69/17.23%"
+ ],
+ "shot_images": [
+  {
+   "file": "shape_Body_Female_Standard_heavy.png",
+   "non_bg_pct": 56.89502314814815,
+   "multi_bg_non_bg_pct": 31.330671296296295,
+   "mean_sat": 0.11505396664142609,
+   "colors_fine": 891,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 42.94594907407407
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.474421296296295
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.720601851851852
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 7.1038194444444445
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.126273148148148
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.957175925925926
+    }
+   ]
+  },
+  {
+   "file": "shape_Body_Female_Standard_sheet_3tiers.png",
+   "non_bg_pct": 56.22420634920635,
+   "multi_bg_non_bg_pct": 30.493788819875775,
+   "mean_sat": 0.10724609345197678,
+   "colors_fine": 1035,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 43.194185645272604
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.391131815044858
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.676242236024844
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.998015873015873
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.136128364389234
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.126984126984127
+    }
+   ]
+  },
+  {
+   "file": "shape_Body_Female_Standard_standard.png",
+   "non_bg_pct": 55.73599537037037,
+   "multi_bg_non_bg_pct": 29.865856481481483,
+   "mean_sat": 0.10379956662654877,
+   "colors_fine": 874,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 44.09872685185185
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.547337962962963
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.938078703703704
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 7.073148148148148
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.177546296296296
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.139351851851852
+    }
+   ]
+  },
+  {
+   "file": "shape_Body_Female_Standard_thin.png",
+   "non_bg_pct": 54.79490740740741,
+   "multi_bg_non_bg_pct": 28.48923611111111,
+   "mean_sat": 0.0937613919377327,
+   "colors_fine": 882,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 45.04386574074074
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.720717592592592
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 10.014467592592593
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 7.038888888888889
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.330208333333333
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.2310185185185185
+    }
+   ]
+  },
+  {
+   "file": "shape_Body_Male_Standard_heavy.png",
+   "non_bg_pct": 58.045717592592595,
+   "multi_bg_non_bg_pct": 32.567824074074075,
+   "mean_sat": 0.11651473492383957,
+   "colors_fine": 880,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 41.78483796296296
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.47349537037037
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.732407407407408
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 7.770023148148148
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.141087962962963
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.9616898148148145
+    }
+   ]
+  },
+  {
+   "file": "shape_Body_Male_Standard_sheet_3tiers.png",
+   "non_bg_pct": 57.38052104899931,
+   "multi_bg_non_bg_pct": 31.798395445134574,
+   "mean_sat": 0.11073587834835052,
+   "colors_fine": 1034,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 41.98645617667357
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.371894409937887
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.739216701173223
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 7.48404071773637
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.15260524499655
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.027864044168392
+    }
+   ]
+  },
+  {
+   "file": "shape_Body_Male_Standard_standard.png",
+   "non_bg_pct": 57.07962962962963,
+   "multi_bg_non_bg_pct": 31.369560185185186,
+   "mean_sat": 0.10888078808784485,
+   "colors_fine": 902,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 42.82395833333333
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.502546296296297
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.917939814814815
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 7.491550925925926
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.188541666666667
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.076736111111111
+    }
+   ]
+  },
+  {
+   "file": "shape_Body_Male_Standard_thin.png",
+   "non_bg_pct": 55.88368055555556,
+   "multi_bg_non_bg_pct": 29.8,
+   "mean_sat": 0.09823707491159439,
+   "colors_fine": 880,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 43.944212962962965
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.599189814814816
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 10.07511574074074
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 7.436921296296297
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.254513888888889
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.22824074074074
+    }
+   ]
+  },
+  {
+   "file": "shape_Female_Peasant_heavy.png",
+   "non_bg_pct": 56.603356481481484,
+   "multi_bg_non_bg_pct": 31.44560185185185,
+   "mean_sat": 0.11444960534572601,
+   "colors_fine": 1289,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 42.94965277777778
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.174305555555556
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.279050925925926
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.659953703703704
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.098495370370371
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.987268518518518
+    }
+   ]
+  },
+  {
+   "file": "shape_Female_Peasant_sheet_3tiers.png",
+   "non_bg_pct": 55.858609385783296,
+   "multi_bg_non_bg_pct": 30.42080745341615,
+   "mean_sat": 0.10450951009988785,
+   "colors_fine": 1416,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 43.35904071773637
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.17305037957212
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.351794340924776
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.693150448585231
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.155710835058661
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.101190476190476
+    }
+   ]
+  },
+  {
+   "file": "shape_Female_Peasant_standard.png",
+   "non_bg_pct": 55.41064814814815,
+   "multi_bg_non_bg_pct": 29.722453703703703,
+   "mean_sat": 0.10066086798906326,
+   "colors_fine": 1274,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 44.20335648148148
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.350925925925926
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.525694444444444
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.703125
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.1975694444444445
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.187962962962963
+    }
+   ]
+  },
+  {
+   "file": "shape_Female_Peasant_thin.png",
+   "non_bg_pct": 54.50023148148148,
+   "multi_bg_non_bg_pct": 28.382638888888888,
+   "mean_sat": 0.09014669060707092,
+   "colors_fine": 1255,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 45.13854166666667
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.498148148148148
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.733217592592593
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.741550925925926
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.360185185185185
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.193171296296296
+    }
+   ]
+  },
+  {
+   "file": "shape_Female_Ranger_heavy.png",
+   "non_bg_pct": 56.946296296296296,
+   "multi_bg_non_bg_pct": 32.209837962962965,
+   "mean_sat": 0.13248172402381897,
+   "colors_fine": 1656,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 42.481828703703705
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 13.996180555555556
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.046875
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.625462962962963
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.002662037037037
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.787847222222222
+    }
+   ]
+  },
+  {
+   "file": "shape_Female_Ranger_sheet_3tiers.png",
+   "non_bg_pct": 56.25146652864044,
+   "multi_bg_non_bg_pct": 31.18391994478951,
+   "mean_sat": 0.12232859432697296,
+   "colors_fine": 1808,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 42.89544513457557
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 13.993530020703934
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.159247757073844
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.61395790200138
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.092132505175983
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.893374741200828
+    }
+   ]
+  },
+  {
+   "file": "shape_Female_Ranger_standard.png",
+   "non_bg_pct": 55.82962962962963,
+   "multi_bg_non_bg_pct": 30.571064814814815,
+   "mean_sat": 0.11944987624883652,
+   "colors_fine": 1639,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 43.6712962962963
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.154745370370371
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.330208333333333
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.632638888888889
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.094907407407407
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.993171296296296
+    }
+   ]
+  },
+  {
+   "file": "shape_Female_Ranger_thin.png",
+   "non_bg_pct": 54.920833333333334,
+   "multi_bg_non_bg_pct": 29.204050925925927,
+   "mean_sat": 0.10743733495473862,
+   "colors_fine": 1573,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 44.60381944444445
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.33576388888889
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.542013888888889
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.709953703703704
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.201967592592593
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.149421296296296
+    }
+   ]
+  },
+  {
+   "file": "shape_lab_ui_page.png",
+   "non_bg_pct": 66.37533333333333,
+   "multi_bg_non_bg_pct": 38.58014814814815,
+   "mean_sat": 0.1328173279762268,
+   "colors_fine": 1768,
+   "dominant_colors": [
+    {
+     "rgb": [
+      45,
+      45,
+      45
+     ],
+     "share_pct": 30.75311111111111
+    },
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 27.485333333333333
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 9.057481481481481
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 5.935851851851852
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 4.3222962962962965
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 3.3137777777777777
+    }
+   ]
+  },
+  {
+   "file": "shape_Male_Peasant_heavy.png",
+   "non_bg_pct": 57.522453703703704,
+   "multi_bg_non_bg_pct": 32.837037037037035,
+   "mean_sat": 0.10581700503826141,
+   "colors_fine": 1288,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 42.171527777777776
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.004513888888889
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.096064814814815
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.562731481481482
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.137037037037037
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.721180555555556
+    }
+   ]
+  },
+  {
+   "file": "shape_Male_Peasant_sheet_3tiers.png",
+   "non_bg_pct": 56.59799861973775,
+   "multi_bg_non_bg_pct": 31.576173222912352,
+   "mean_sat": 0.0981789380311966,
+   "colors_fine": 1421,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 42.74439268461008
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 13.991977225672878
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.177104899930987
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.559092477570738
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.2022946859903385
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.885869565217392
+    }
+   ]
+  },
+  {
+   "file": "shape_Male_Peasant_standard.png",
+   "non_bg_pct": 56.0775462962963,
+   "multi_bg_non_bg_pct": 30.820138888888888,
+   "mean_sat": 0.09460720419883728,
+   "colors_fine": 1270,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 43.64513888888889
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.20150462962963
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.355787037037038
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.602662037037037
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.192245370370371
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.958217592592592
+    }
+   ]
+  },
+  {
+   "file": "shape_Male_Peasant_thin.png",
+   "non_bg_pct": 55.06840277777778,
+   "multi_bg_non_bg_pct": 29.369444444444444,
+   "mean_sat": 0.08579080551862717,
+   "colors_fine": 1265,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 44.74490740740741
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.285069444444444
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.550578703703703
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.633796296296296
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.34988425925926
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.080787037037037
+    }
+   ]
+  },
+  {
+   "file": "shape_Male_Ranger_heavy.png",
+   "non_bg_pct": 57.07939814814815,
+   "multi_bg_non_bg_pct": 32.429282407407406,
+   "mean_sat": 0.1367659568786621,
+   "colors_fine": 1656,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 42.42905092592593
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 13.859837962962963
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.084837962962963
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.475925925925926
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.178125
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.651504629629629
+    }
+   ]
+  },
+  {
+   "file": "shape_Male_Ranger_sheet_3tiers.png",
+   "non_bg_pct": 56.18883712905452,
+   "multi_bg_non_bg_pct": 31.233091787439612,
+   "mean_sat": 0.12511959671974182,
+   "colors_fine": 1809,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 42.96411318150449
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 13.919858523119393
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.173740510697032
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.4773982056590755
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.1934092477570735
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.829710144927536
+    }
+   ]
+  },
+  {
+   "file": "shape_Male_Ranger_standard.png",
+   "non_bg_pct": 55.727546296296296,
+   "multi_bg_non_bg_pct": 30.533101851851853,
+   "mean_sat": 0.12148867547512054,
+   "colors_fine": 1640,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 43.84664351851852
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.102546296296296
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.344328703703704
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.5278935185185185
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.204745370370371
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.92337962962963
+    }
+   ]
+  },
+  {
+   "file": "shape_Male_Ranger_thin.png",
+   "non_bg_pct": 54.75868055555556,
+   "multi_bg_non_bg_pct": 29.141666666666666,
+   "mean_sat": 0.10934782773256302,
+   "colors_fine": 1611,
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 44.905208333333334
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.217824074074073
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.572106481481482
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.581828703703704
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.290972222222222
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.060416666666667
+    }
+   ]
+  }
+ ],
+ "mutants": [
+  {
+   "mutant": "preset_rule_cloth",
+   "why": "把「清凉」的规则从 role != \"accessory\" 改成 role != \"cloth\"（只改了 app 副本）",
+   "expected_red": "A-10",
+   "red_checks": [
+    "A-10"
+   ],
+   "ok": true,
+   "detail": "A-10: 不符 4 个角色"
+  },
+  {
+   "mutant": "swap_deltas_glb",
+   "why": "把 BS_Thin/BS_Heavy 的位移向量整段对调（task-3 的 swap_deltas.glb），名字/顺序/顶点数全对、只有数值反",
+   "expected_red": [
+    "P-13",
+    "P-14"
+   ],
+   "red_checks": [
+    "P-00",
+    "P-13",
+    "P-14"
+   ],
+   "ok": true,
+   "p12_still_green": true,
+   "detail": "P-00: chars=1 ok=1; P-13: 比对 12 件；最大 |Δ| = 0.7070 cm（7.070e-03 m）; P-14: 达标 1/6；违例 0 条"
+  }
+ ],
+ "sampled_shots": [
+  {
+   "path": "D:\\artstudio\\tmp\\shape-lab\\shots\\shape_Female_Ranger_standard.png",
+   "size": [
+    960,
+    900
+   ],
+   "bg_candidates": {
+    "corner": [
+     27,
+     28,
+     32
+    ],
+    "border_median": [
+     27,
+     28,
+     32
+    ],
+    "mode": [
+     27,
+     28,
+     32
+    ],
+    "mode_share_pct": 43.6712962962963,
+    "dominant": [
+     {
+      "rgb": [
+       27,
+       28,
+       32
+      ],
+      "share_pct": 43.6712962962963
+     },
+     {
+      "rgb": [
+       99,
+       99,
+       99
+      ],
+      "share_pct": 14.154745370370371
+     },
+     {
+      "rgb": [
+       83,
+       83,
+       83
+      ],
+      "share_pct": 9.330208333333333
+     },
+     {
+      "rgb": [
+       77,
+       77,
+       77
+      ],
+      "share_pct": 6.632638888888889
+     },
+     {
+      "rgb": [
+       91,
+       91,
+       91
+      ],
+      "share_pct": 5.094907407407407
+     },
+     {
+      "rgb": [
+       106,
+       106,
+       106
+      ],
+      "share_pct": 4.993171296296296
+     }
+    ]
+   },
+   "primary_bg": "border_median",
+   "non_bg_pct": 55.82962962962963,
+   "bbox": {
+    "x0": 0,
+    "y0": 49,
+    "x1": 959,
+    "y1": 899
+   },
+   "margins": {
+    "left": 0,
+    "top": 49,
+    "right": 0,
+    "bottom": 0,
+    "w": 960,
+    "h": 900
+   },
+   "colors_fine": 1639,
+   "colors_fine_64": 5930,
+   "by_bg": {
+    "corner": {
+     "non_bg_pct": 55.82962962962963,
+     "bbox": {
+      "x0": 0,
+      "y0": 49,
+      "x1": 959,
+      "y1": 899
+     },
+     "margins": {
+      "left": 0,
+      "top": 49,
+      "right": 0,
+      "bottom": 0,
+      "w": 960,
+      "h": 900
+     },
+     "colors_fine": 1639,
+     "left_non_bg_pct": 58.690889942074776,
+     "right_non_bg_pct": 50.29085966700646
+    },
+    "border_median": {
+     "non_bg_pct": 55.82962962962963,
+     "bbox": {
+      "x0": 0,
+      "y0": 49,
+      "x1": 959,
+      "y1": 899
+     },
+     "margins": {
+      "left": 0,
+      "top": 49,
+      "right": 0,
+      "bottom": 0,
+      "w": 960,
+      "h": 900
+     },
+     "colors_fine": 1639,
+     "left_non_bg_pct": 58.690889942074776,
+     "right_non_bg_pct": 50.29085966700646
+    },
+    "mode": {
+     "non_bg_pct": 55.82962962962963,
+     "bbox": {
+      "x0": 0,
+      "y0": 49,
+      "x1": 959,
+      "y1": 899
+     },
+     "margins": {
+      "left": 0,
+      "top": 49,
+      "right": 0,
+      "bottom": 0,
+      "w": 960,
+      "h": 900
+     },
+     "colors_fine": 1639,
+     "left_non_bg_pct": 58.690889942074776,
+     "right_non_bg_pct": 50.29085966700646
+    }
+   },
+   "sat": {
+    "n": 482368,
+    "mean_sat": 0.11944987624883652,
+    "median_sat": 0.0,
+    "p95_sat": 0.5625,
+    "mean_lum": 0.3501788079738617
+   },
+   "multi_bg_non_bg_pct": 30.571064814814815,
+   "multi_bg_margins": {
+    "left": 0,
+    "top": 49,
+    "right": 0,
+    "bottom": 0,
+    "w": 960,
+    "h": 900
+   },
+   "multi_bg_bbox": {
+    "x0": 0,
+    "y0": 49,
+    "x1": 959,
+    "y1": 899
+   },
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 43.6712962962963
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.154745370370371
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.330208333333333
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.632638888888889
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.094907407407407
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.993171296296296
+    }
+   ],
+   "corner": {
+    "non_bg_pct": 55.82962962962963,
+    "bbox": {
+     "x0": 0,
+     "y0": 49,
+     "x1": 959,
+     "y1": 899
+    },
+    "margins": {
+     "left": 0,
+     "top": 49,
+     "right": 0,
+     "bottom": 0,
+     "w": 960,
+     "h": 900
+    },
+    "colors_fine": 1639,
+    "left_non_bg_pct": 58.690889942074776,
+    "right_non_bg_pct": 50.29085966700646
+   },
+   "border_median": {
+    "non_bg_pct": 55.82962962962963,
+    "bbox": {
+     "x0": 0,
+     "y0": 49,
+     "x1": 959,
+     "y1": 899
+    },
+    "margins": {
+     "left": 0,
+     "top": 49,
+     "right": 0,
+     "bottom": 0,
+     "w": 960,
+     "h": 900
+    },
+    "colors_fine": 1639,
+    "left_non_bg_pct": 58.690889942074776,
+    "right_non_bg_pct": 50.29085966700646
+   },
+   "mode": {
+    "non_bg_pct": 55.82962962962963,
+    "bbox": {
+     "x0": 0,
+     "y0": 49,
+     "x1": 959,
+     "y1": 899
+    },
+    "margins": {
+     "left": 0,
+     "top": 49,
+     "right": 0,
+     "bottom": 0,
+     "w": 960,
+     "h": 900
+    },
+    "colors_fine": 1639,
+    "left_non_bg_pct": 58.690889942074776,
+    "right_non_bg_pct": 50.29085966700646
+   },
+   "mode_share_pct": 43.6712962962963
+  },
+  {
+   "path": "D:\\artstudio\\tmp\\shape-lab\\shots\\shape_Body_Female_Standard_standard.png",
+   "size": [
+    960,
+    900
+   ],
+   "bg_candidates": {
+    "corner": [
+     27,
+     28,
+     32
+    ],
+    "border_median": [
+     27,
+     28,
+     32
+    ],
+    "mode": [
+     27,
+     28,
+     32
+    ],
+    "mode_share_pct": 44.09872685185185,
+    "dominant": [
+     {
+      "rgb": [
+       27,
+       28,
+       32
+      ],
+      "share_pct": 44.09872685185185
+     },
+     {
+      "rgb": [
+       99,
+       99,
+       99
+      ],
+      "share_pct": 14.547337962962963
+     },
+     {
+      "rgb": [
+       83,
+       83,
+       83
+      ],
+      "share_pct": 9.938078703703704
+     },
+     {
+      "rgb": [
+       77,
+       77,
+       77
+      ],
+      "share_pct": 7.073148148148148
+     },
+     {
+      "rgb": [
+       106,
+       106,
+       106
+      ],
+      "share_pct": 5.177546296296296
+     },
+     {
+      "rgb": [
+       91,
+       91,
+       91
+      ],
+      "share_pct": 5.139351851851852
+     }
+    ]
+   },
+   "primary_bg": "border_median",
+   "non_bg_pct": 55.73599537037037,
+   "bbox": {
+    "x0": 0,
+    "y0": 45,
+    "x1": 959,
+    "y1": 899
+   },
+   "margins": {
+    "left": 0,
+    "top": 45,
+    "right": 0,
+    "bottom": 0,
+    "w": 960,
+    "h": 900
+   },
+   "colors_fine": 874,
+   "colors_fine_64": 2915,
+   "by_bg": {
+    "corner": {
+     "non_bg_pct": 55.73599537037037,
+     "bbox": {
+      "x0": 0,
+      "y0": 45,
+      "x1": 959,
+      "y1": 899
+     },
+     "margins": {
+      "left": 0,
+      "top": 45,
+      "right": 0,
+      "bottom": 0,
+      "w": 960,
+      "h": 900
+     },
+     "colors_fine": 874,
+     "left_non_bg_pct": 58.47217833947692,
+     "right_non_bg_pct": 50.43934760448522
+    },
+    "border_median": {
+     "non_bg_pct": 55.73599537037037,
+     "bbox": {
+      "x0": 0,
+      "y0": 45,
+      "x1": 959,
+      "y1": 899
+     },
+     "margins": {
+      "left": 0,
+      "top": 45,
+      "right": 0,
+      "bottom": 0,
+      "w": 960,
+      "h": 900
+     },
+     "colors_fine": 874,
+     "left_non_bg_pct": 58.47217833947692,
+     "right_non_bg_pct": 50.43934760448522
+    },
+    "mode": {
+     "non_bg_pct": 55.73599537037037,
+     "bbox": {
+      "x0": 0,
+      "y0": 45,
+      "x1": 959,
+      "y1": 899
+     },
+     "margins": {
+      "left": 0,
+      "top": 45,
+      "right": 0,
+      "bottom": 0,
+      "w": 960,
+      "h": 900
+     },
+     "colors_fine": 874,
+     "left_non_bg_pct": 58.47217833947692,
+     "right_non_bg_pct": 50.43934760448522
+    }
+   },
+   "sat": {
+    "n": 481559,
+    "mean_sat": 0.10379956662654877,
+    "median_sat": 0.0,
+    "p95_sat": 0.5093167424201965,
+    "mean_lum": 0.4126123785972595
+   },
+   "multi_bg_non_bg_pct": 29.865856481481483,
+   "multi_bg_margins": {
+    "left": 0,
+    "top": 45,
+    "right": 0,
+    "bottom": 0,
+    "w": 960,
+    "h": 900
+   },
+   "multi_bg_bbox": {
+    "x0": 0,
+    "y0": 45,
+    "x1": 959,
+    "y1": 899
+   },
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 44.09872685185185
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.547337962962963
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.938078703703704
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 7.073148148148148
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 5.177546296296296
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.139351851851852
+    }
+   ],
+   "corner": {
+    "non_bg_pct": 55.73599537037037,
+    "bbox": {
+     "x0": 0,
+     "y0": 45,
+     "x1": 959,
+     "y1": 899
+    },
+    "margins": {
+     "left": 0,
+     "top": 45,
+     "right": 0,
+     "bottom": 0,
+     "w": 960,
+     "h": 900
+    },
+    "colors_fine": 874,
+    "left_non_bg_pct": 58.47217833947692,
+    "right_non_bg_pct": 50.43934760448522
+   },
+   "border_median": {
+    "non_bg_pct": 55.73599537037037,
+    "bbox": {
+     "x0": 0,
+     "y0": 45,
+     "x1": 959,
+     "y1": 899
+    },
+    "margins": {
+     "left": 0,
+     "top": 45,
+     "right": 0,
+     "bottom": 0,
+     "w": 960,
+     "h": 900
+    },
+    "colors_fine": 874,
+    "left_non_bg_pct": 58.47217833947692,
+    "right_non_bg_pct": 50.43934760448522
+   },
+   "mode": {
+    "non_bg_pct": 55.73599537037037,
+    "bbox": {
+     "x0": 0,
+     "y0": 45,
+     "x1": 959,
+     "y1": 899
+    },
+    "margins": {
+     "left": 0,
+     "top": 45,
+     "right": 0,
+     "bottom": 0,
+     "w": 960,
+     "h": 900
+    },
+    "colors_fine": 874,
+    "left_non_bg_pct": 58.47217833947692,
+    "right_non_bg_pct": 50.43934760448522
+   },
+   "mode_share_pct": 44.09872685185185
+  },
+  {
+   "path": "D:\\artstudio\\tmp\\shape-lab\\shots\\shape_Male_Peasant_heavy.png",
+   "size": [
+    960,
+    900
+   ],
+   "bg_candidates": {
+    "corner": [
+     27,
+     28,
+     32
+    ],
+    "border_median": [
+     27,
+     28,
+     32
+    ],
+    "mode": [
+     27,
+     28,
+     32
+    ],
+    "mode_share_pct": 42.171527777777776,
+    "dominant": [
+     {
+      "rgb": [
+       27,
+       28,
+       32
+      ],
+      "share_pct": 42.171527777777776
+     },
+     {
+      "rgb": [
+       99,
+       99,
+       99
+      ],
+      "share_pct": 14.004513888888889
+     },
+     {
+      "rgb": [
+       83,
+       83,
+       83
+      ],
+      "share_pct": 9.096064814814815
+     },
+     {
+      "rgb": [
+       77,
+       77,
+       77
+      ],
+      "share_pct": 6.562731481481482
+     },
+     {
+      "rgb": [
+       91,
+       91,
+       91
+      ],
+      "share_pct": 5.137037037037037
+     },
+     {
+      "rgb": [
+       106,
+       106,
+       106
+      ],
+      "share_pct": 4.721180555555556
+     }
+    ]
+   },
+   "primary_bg": "border_median",
+   "non_bg_pct": 57.522453703703704,
+   "bbox": {
+    "x0": 0,
+    "y0": 45,
+    "x1": 959,
+    "y1": 899
+   },
+   "margins": {
+    "left": 0,
+    "top": 45,
+    "right": 0,
+    "bottom": 0,
+    "w": 960,
+    "h": 900
+   },
+   "colors_fine": 1288,
+   "colors_fine_64": 4575,
+   "by_bg": {
+    "corner": {
+     "non_bg_pct": 57.522453703703704,
+     "bbox": {
+      "x0": 0,
+      "y0": 45,
+      "x1": 959,
+      "y1": 899
+     },
+     "margins": {
+      "left": 0,
+      "top": 45,
+      "right": 0,
+      "bottom": 0,
+      "w": 960,
+      "h": 900
+     },
+     "colors_fine": 1288,
+     "left_non_bg_pct": 60.96155871511322,
+     "right_non_bg_pct": 50.86510363574584
+    },
+    "border_median": {
+     "non_bg_pct": 57.522453703703704,
+     "bbox": {
+      "x0": 0,
+      "y0": 45,
+      "x1": 959,
+      "y1": 899
+     },
+     "margins": {
+      "left": 0,
+      "top": 45,
+      "right": 0,
+      "bottom": 0,
+      "w": 960,
+      "h": 900
+     },
+     "colors_fine": 1288,
+     "left_non_bg_pct": 60.96155871511322,
+     "right_non_bg_pct": 50.86510363574584
+    },
+    "mode": {
+     "non_bg_pct": 57.522453703703704,
+     "bbox": {
+      "x0": 0,
+      "y0": 45,
+      "x1": 959,
+      "y1": 899
+     },
+     "margins": {
+      "left": 0,
+      "top": 45,
+      "right": 0,
+      "bottom": 0,
+      "w": 960,
+      "h": 900
+     },
+     "colors_fine": 1288,
+     "left_non_bg_pct": 60.96155871511322,
+     "right_non_bg_pct": 50.86510363574584
+    }
+   },
+   "sat": {
+    "n": 496994,
+    "mean_sat": 0.10581700503826141,
+    "median_sat": 0.0,
+    "p95_sat": 0.5102040767669678,
+    "mean_lum": 0.3744312822818756
+   },
+   "multi_bg_non_bg_pct": 32.837037037037035,
+   "multi_bg_margins": {
+    "left": 0,
+    "top": 45,
+    "right": 0,
+    "bottom": 0,
+    "w": 960,
+    "h": 900
+   },
+   "multi_bg_bbox": {
+    "x0": 0,
+    "y0": 45,
+    "x1": 959,
+    "y1": 899
+   },
+   "dominant_colors": [
+    {
+     "rgb": [
+      27,
+      28,
+      32
+     ],
+     "share_pct": 42.171527777777776
+    },
+    {
+     "rgb": [
+      99,
+      99,
+      99
+     ],
+     "share_pct": 14.004513888888889
+    },
+    {
+     "rgb": [
+      83,
+      83,
+      83
+     ],
+     "share_pct": 9.096064814814815
+    },
+    {
+     "rgb": [
+      77,
+      77,
+      77
+     ],
+     "share_pct": 6.562731481481482
+    },
+    {
+     "rgb": [
+      91,
+      91,
+      91
+     ],
+     "share_pct": 5.137037037037037
+    },
+    {
+     "rgb": [
+      106,
+      106,
+      106
+     ],
+     "share_pct": 4.721180555555556
+    }
+   ],
+   "corner": {
+    "non_bg_pct": 57.522453703703704,
+    "bbox": {
+     "x0": 0,
+     "y0": 45,
+     "x1": 959,
+     "y1": 899
+    },
+    "margins": {
+     "left": 0,
+     "top": 45,
+     "right": 0,
+     "bottom": 0,
+     "w": 960,
+     "h": 900
+    },
+    "colors_fine": 1288,
+    "left_non_bg_pct": 60.96155871511322,
+    "right_non_bg_pct": 50.86510363574584
+   },
+   "border_median": {
+    "non_bg_pct": 57.522453703703704,
+    "bbox": {
+     "x0": 0,
+     "y0": 45,
+     "x1": 959,
+     "y1": 899
+    },
+    "margins": {
+     "left": 0,
+     "top": 45,
+     "right": 0,
+     "bottom": 0,
+     "w": 960,
+     "h": 900
+    },
+    "colors_fine": 1288,
+    "left_non_bg_pct": 60.96155871511322,
+    "right_non_bg_pct": 50.86510363574584
+   },
+   "mode": {
+    "non_bg_pct": 57.522453703703704,
+    "bbox": {
+     "x0": 0,
+     "y0": 45,
+     "x1": 959,
+     "y1": 899
+    },
+    "margins": {
+     "left": 0,
+     "top": 45,
+     "right": 0,
+     "bottom": 0,
+     "w": 960,
+     "h": 900
+    },
+    "colors_fine": 1288,
+    "left_non_bg_pct": 60.96155871511322,
+    "right_non_bg_pct": 50.86510363574584
+   },
+   "mode_share_pct": 42.171527777777776
+  }
+ ]
+}

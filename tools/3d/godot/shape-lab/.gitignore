@@ -1,0 +1,20 @@
+# shape-lab 工程内 .gitignore
+# 仓库根 .gitignore **没有** 忽略 .godot/（现有 preview/ 也没加）→ 本工程自己兜住。
+.godot/
+
+# bake.py（T1）的 Python 副产物
+__pycache__/
+*.py[cod]
+
+# 零素材副本：本工程**不允许**出现任何资产副本，资产一律在 tmp/shape-lab/ 缓存里按绝对路径读。
+# 下面几类若出现在本目录，就是违反零拷贝口径的误拷 —— 直接挡住。
+*.glb
+*.gltf
+*.bin
+*.blend
+*.png
+*.jpg
+*.jpeg
+*.tga
+*.exr
+*.hdr
