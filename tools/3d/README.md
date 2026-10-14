@@ -68,6 +68,7 @@
 | 文档 | 内容 |
 |---|---|
 | [`assets/3d/rig/SPEC.md`](../../assets/3d/rig/SPEC.md) | **35 条实测事实**，每条标**证据等级**（含"已撤回""机制已定位"） |
+| [`assets/3d/rig/SKELETON.md`](../../assets/3d/rig/SKELETON.md) | **65 骨完整层级 + 组成**；与 UE / Mixamo / Unity / VRM 的命名对照；**"是不是通用标准"的三层结论**；腿骨是 `calf_*` 不是 `shin_*` |
 | ⭐ [`assets/3d/rig/GENERATION-GUIDE.md`](../../assets/3d/rig/GENERATION-GUIDE.md) | **要自己生成素材（含 AI 生成）先读这份**：morph 经验 15 条 + 生成指南（三条铁律/流程/自检清单）+ `bodyshape` 该用什么格式 |
 | [`assets/3d/rig/README.md`](../../assets/3d/rig/README.md) | pipeline 指南：目录 / 三路线 / 复现命令 / 验收判据 / 坑速查 |
 | [`task/007-morph-pipeline/lead/ACCEPTANCE.md`](../../task/007-morph-pipeline/lead/ACCEPTANCE.md) | **验收台账 + §七 方法论 10 条** |
