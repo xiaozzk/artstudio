@@ -56,7 +56,8 @@
 1. **`inherit_scale='NONE'` 有"生命周期"之分**：`rig/bodies/`（**烘焙期**工件）**必须 NONE**；`rig/garments/`（**交付期**运行时资产）**应还原 FULL**。**别拿"资产里是否 NONE"当判据。**
 2. **身高不能用 `root` 骨缩放** —— 与上一条冲突（实测身高只 +0.50%、拉伸离散度超标 8.4×）→ 用**角色根节点/骨架对象的世界等比缩放**（+8.00%、离散度 0.00003）。**对象级缩放与 `inherit_scale` 正交**，所以 `bodies/` 留 NONE 无妨。
 3. **shape key 不修改 `mesh.vertices`**，且**写完 shape key 数据后求值缓存会失效** → 必须重新 `depsgraph_get()` / `view_layer.update()` 再取值。
-4. **取骨一律 `find_bone("Head")` 按名字** —— 跨路线索引会变（`.blend` 路线 Head=54、glTF 路线 Head=6）。
+4. **取骨一律 `find_bone("Head")` 按名字** —— **索引不是"路线"决定的，而是该文件里骨的实际排列顺序决定的**（glTF 由 `skin.joints` 数组先后决定，**可被任意重排**；008 做过"重排 `skin.joints` 即改索引"的决定性实验）。
+   实测（本仓库当前资产）：**Blender 打开 `.blend` → `Head = 6`**（v1/v2 采样一致）；**本项目导出的 glb 在 Godot 里 → `Head = 54`** —— 同一个骨架 **6 vs 54**。
 5. **造"必然在体外"的合成壳不能用顶点法线外推** —— 标准体相对质心**非星形**（仅 67.2% 面满足），凹处会把点推进邻肢。
 6. **像素法是穿模的权威判据，但必须带双向标定**（只渲身体 → 100.00%、只渲服装 → 0.00%，不过就报错）——实测**不带标定在"无身体"图上误报 37.3%**。且材质须 Emission 纯色 + `view_transform='Standard'`。
 7. **跑 Blender 一律加 `--python-exit-code 1`** —— `blender -b --python X.py` **在脚本抛异常时仍返回 exit 0**（门禁会静默说谎）。
@@ -82,7 +83,10 @@
 - **服装只配头部**：上游 Readme 明确「用全身会穿模」→ `build_tryon.py` 按顶点组 `Head`/`neck_01` 权重和 > 0.5 裁掉躯干四肢（实测保留 21~22% 顶点）。
 - **`Origin at 0` 发型是静态件**：源 glTF `skins=0`、FBX 无 ARMATURE —— 换装请用 `Rigged to Head Bone` 变体；断言时这 8 个按 B 类（静态）判，不要伪造 rig。
 - **发型贴图是灰度**：`T_Hair_*_BaseColor` 是给运行时染色的中性底色（平均 `max-min ≈ 5`），颜色靠材质 `albedo_color` 乘上去；`check_blends.py` 只校验贴图存在，不判颜色。
-- **跨路线骨骼索引会变**：同一素材 `Head` 在 `.blend` 路线是 index 54、glTF 路线是 index 6 → 取骨一律 `find_bone("Head")`，**别硬编码 index**。
+- **骨骼索引不可硬编码**：索引取决于**该文件里骨的实际排列顺序**（glTF 由 `skin.joints` 数组先后决定，**可被任意重排**），**不是由"路线"决定**。
+  实测：**Blender 打开 `.blend` → `Head = 6`**；**本项目导出的 glb 在 Godot 里 → `Head = 54`**。
+  ⚠ **一处已知分歧**：`assets/3d/reports/godot-report.md` 早期记的是**另一对**（`.blend` 54 / glTF 6），与实测相反 —— 那些数字随**导入路径 / 导出器 / 文件**而变，**这个分歧本身就是"别硬编码"的最强论据**。
+  → 一律 `Skeleton3D.find_bone("Head")` / `arm.data.bones.find("Head")`。
 - **两条路线朝向相反**：glTF 路线与 FBX 路线同名资产 50 对里 33 对 Y 轴镜像（源就如此）→ 别在同一工程混用。
 - `*.bin` **不在 Git LFS 白名单**（只有 `.blend/.glb/.gltf/.fbx/.obj` 等是）→ 解压树不要入库，入库只放 zip 与 `.blend`。
 

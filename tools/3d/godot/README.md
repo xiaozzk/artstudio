@@ -134,9 +134,13 @@
 
 完整表格见 `report.json` 的 `crosscheck_godot_vs_blender.table`（24 行）。
 
-**⚠ 跨路线取骨的坑**：两条路线的**骨骼索引顺序不同** —— 同一素材 `Head` 骨在 `.blend` 路线是 **index 54**、
-glTF 路线是 **index 6**；而 65 个**骨名集合完全一致**。所以**不要硬编码 bone index**，一律用
-`Skeleton3D.find_bone("Head")`。
+**⚠ 取骨不要硬编码索引**：索引**不是由"路线"决定的**，而是由**该文件里骨的实际排列顺序**决定
+（glTF 由 `skin.joints` 数组先后决定，**可被任意重排**）。而 65 个**骨名集合是完全一致的**。
+实测（本仓库当前资产）：**Blender 打开 `.blend` → `Head = 6`**；**本项目导出的 glb 在 Godot 里 → `Head = 54`**。
+
+> ⚠ **本文件早期版本写的是"`.blend` 路线是 index 54、glTF 路线是 index 6"，与实测相反**，已订正。
+> 那个数字随**导入路径 / 导出器版本 / 文件**而变 —— **这个分歧本身就是"别硬编码"的最强论据**。
+> 一律用 `Skeleton3D.find_bone("Head")`。
 
 ---
 
