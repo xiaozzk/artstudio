@@ -134,12 +134,11 @@
 
 完整表格见 `report.json` 的 `crosscheck_godot_vs_blender.table`（24 行）。
 
-**⚠ 取骨不要硬编码索引**：索引**不是由"路线"决定的**，而是由**该文件里骨的实际排列顺序**决定
-（glTF 由 `skin.joints` 数组先后决定，**可被任意重排**）。而 65 个**骨名集合是完全一致的**。
-实测（本仓库当前资产）：**Blender 打开 `.blend` → `Head = 6`**；**本项目导出的 glb 在 Godot 里 → `Head = 54`**。
+**⚠ 取骨不要硬编码索引**：索引取决于**「该文件里的骨层级 DFS 顺序」**，**跨文件不可复用**。
+008 的决定性实验：把真 glb 的 `skin.joints` **整段倒序**（nodes 与层级不动）→ Godot 骨顺序**一位没变**（`Head` 仍 54）⇒ **它既不读 `skin.joints` 数组、也不读 `nodes` 数组顺序，只读骨层级**。而 65 个**骨名集合完全一致**。
+实测：**Blender 打开 `.blend` → `Head = 6`**；**本项目的 glb 在 Godot 里 → `Head = 54`**。
 
-> ⚠ **本报告早期版本写的是"`.blend` 路线是 index 54、glTF 路线是 index 6"，与实测相反**，已订正
->（同一订正也在 `tools/3d/README.md` 与 `tools/3d/godot/README.md`）。一律用 `Skeleton3D.find_bone("Head")`。
+> ⚠ **本报告早期版本写的是"`.blend` 路线是 index 54、glTF 路线是 index 6"** —— 那句量的是**上游 Quaternius 原始 glTF**（另一份文件，现已不在盘上），**不是矛盾，是两个不同文件**；旧措辞容易被读成"路线决定索引"，已订正（同一订正也在 `tools/3d/README.md` 与 `tools/3d/godot/README.md`）。一律用 `Skeleton3D.find_bone("Head")`。
 
 ---
 

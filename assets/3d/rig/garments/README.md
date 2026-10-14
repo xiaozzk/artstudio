@@ -24,8 +24,8 @@
    多叠一具身体会**立刻出橙斑**（`verifier` 的四装配对照有图：干净的 [`t3int_P1_b2_character_only_Basis.png`](../../../../task/007-morph-pipeline/verify/renders/t3int_P1_b2_character_only_Basis.png)
    vs 出橙斑的 [`t3int_P3_b2_plus_standard_body_Basis.png`](../../../../task/007-morph-pipeline/verify/renders/t3int_P3_b2_plus_standard_body_Basis.png)）。
 2. **身高走"角色根节点/骨架对象的世界等比缩放"**，**不是** `root` 骨缩放（后者与本套件的 `inherit_scale` 规则冲突）。
-3. **取骨一律 `find_bone("Head")` 按名字** —— **索引不是"路线"决定的，而是该文件里骨的实际排列顺序决定的**（glTF 由 `skin.joints` 数组先后决定，**可被任意重排**）。
-   实测（本仓库当前资产）：**Blender 打开 `.blend` → `Head = 6`**（v1 与 v2 采样一致）；**本项目导出的 glb 在 Godot 里 → `Head = 54`**。**同一个骨架 6 vs 54** —— 这就是不能硬编码的理由。
+3. **取骨一律 `find_bone("Head")` 按名字** —— **索引取决于「该文件里的骨层级 DFS 顺序」，跨文件不可复用**（008 做过决定性实验：把真 glb 的 `skin.joints` **整段倒序**、nodes 与层级不动 → Godot 的骨顺序**一位没变**（`Head` 仍 54）⇒ **Godot 既不读 `skin.joints` 数组、也不读 `nodes` 数组顺序，只读骨层级**）。
+   实测：**Blender 打开 `.blend` → `Head = 6`**；**本项目的 glb 在 Godot 里 → `Head = 54`**（6/6 一致）。
 4. **预览/加载请走工具**：[`tools/3d/godot/preview/`](../../../../tools/3d/godot/preview/README.md) 的 `run.sh`（工程内零素材副本）。
 
 ## 复现
