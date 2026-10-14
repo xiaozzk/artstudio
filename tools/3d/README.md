@@ -39,6 +39,7 @@
 | 脚本 | 作用 | 典型用法 |
 |------|------|----------|
 | `make_standard_body.py` | **规范化标准体**：骨架改名 + 体形骨子骨设 `inherit_scale='NONE'` + 建 morph 占位通道 | `Blender -b --factory-startup --python tools/3d/make_standard_body.py` |
+| `skeleton/make_mapping.py` | **65 骨 → VRM 角色词表映射**（规则生成，不手写）→ `assets/3d/rig/skeleton_mapping.json`。**自检三关**：孤儿骨／角色重复／**规模与构成**（`65 = 52 映射 + 13 额外`）；`--check` 复校已入库产物 | `python3 tools/3d/skeleton/make_mapping.py`（`--check` 只校验） |
 | `bodyshape/derive.py` | **体形派生**：按 spec 摆体形骨 → 烘 `BS_Thin`/`BS_Heavy` → 回写标准体 + manifest + 三档预览。**纯 python3，不需要 Blender** | `python3 tools/3d/bodyshape/derive.py --sex both` |
 | `bodyshape/verify_bodyshape.py` | **38 项断言**（含 **spec ↔ 已烘 morph 的几何闭环**，误差 0.000000 mm） | `python3 tools/3d/bodyshape/verify_bodyshape.py` |
 | `bodyshape/measure_girth.py` | **关键围度**（切片 → 2D 凸包周长 = 软尺量法，对破洞/面绕向免疫） | `python3 tools/3d/bodyshape/measure_girth.py --help` |
@@ -51,7 +52,7 @@
 | `godot/preview/` | **Godot 4 交互预览页面**：体形/身高双滑块 + 换装 + 换发型 + 逐件 morph 读数 + 实时穿模曲线（含双向标定） | `tools/3d/godot/preview/run.sh`（`--interactive` 开页面） |
 | `godot/preview/probes/` | **Godot 骨骼陷阱探针**（A1 入树时机 / A2 pose 空间 / A3 `get_aabb()` 是静止 AABB） | 见 [`godot/preview/probes/README.md`](godot/preview/probes/README.md) |
 
-### ⚠ v2 的七条硬约束（都是踩出来的，别重新论证）
+### ⚠ v2 的八条硬约束（都是踩出来的，别重新论证）
 
 1. **`inherit_scale='NONE'` 有"生命周期"之分**：`rig/bodies/`（**烘焙期**工件）**必须 NONE**；`rig/garments/`（**交付期**运行时资产）**应还原 FULL**。**别拿"资产里是否 NONE"当判据。**
 2. **身高不能用 `root` 骨缩放** —— 与上一条冲突（实测身高只 +0.50%、拉伸离散度超标 8.4×）→ 用**角色根节点/骨架对象的世界等比缩放**（+8.00%、离散度 0.00003）。**对象级缩放与 `inherit_scale` 正交**，所以 `bodies/` 留 NONE 无妨。
@@ -62,6 +63,8 @@
 5. **造"必然在体外"的合成壳不能用顶点法线外推** —— 标准体相对质心**非星形**（仅 67.2% 面满足），凹处会把点推进邻肢。
 6. **像素法是穿模的权威判据，但必须带双向标定**（只渲身体 → 100.00%、只渲服装 → 0.00%，不过就报错）——实测**不带标定在"无身体"图上误报 37.3%**。且材质须 Emission 纯色 + `view_transform='Standard'`。
 7. **跑 Blender 一律加 `--python-exit-code 1`** —— `blender -b --python X.py` **在脚本抛异常时仍返回 exit 0**（门禁会静默说谎）。
+8. ⚠ **烘 morph 前必须清掉 IK / 全部约束** —— pose 与 shape key 是**两套独立形变来源、会叠加**（实测读到过 **33 mm 假差**）；在「IK 影响下的姿态」里读顶点会**把姿态错误烘进 morph**。
+   配套结论：**资产里不带 IK 骨**（源 glTF `ik_` 计数 = 0，这是对的）；脚部贴地 / 手部持物**在 Godot 运行时**加 `TwoBoneIK3D`。⚠ Blender 5.x 把 IK 约束的**类名**改成了 `KinematicConstraint`（枚举仍是 `'IK'`），`Armature.ik_solver` 已移除。详见 [`assets/3d/rig/SPEC.md`](../../assets/3d/rig/SPEC.md) **F33**。
 
 ### 经验与验收纪律（**改 v2 之前请先读**）
 

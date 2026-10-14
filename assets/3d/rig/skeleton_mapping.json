@@ -1,0 +1,406 @@
+{
+ "schema": "skeleton-mapping",
+ "version": "1.0",
+ "skeleton": "humanoid_biped_65",
+ "total_bones": 65,
+ "vrm_spec": "VRMC_vrm-1.0/humanoid.md（VRM 1.0）",
+ "basis": "VRM 角色词表定为**语义层标准**；本仓库**骨名保持现状**（UE Mannequin 风格），不改名 —— 理由见 assets/3d/rig/SKELETON.md §5。",
+ "consumer_note": "Godot 4.6 的 `SkeletonProfileHumanoid` 用的是**同一套角色词表**（56 骨，骨名即 VRM 角色名），故本表可同时喂给：Godot `RetargetModifier3D` / VRM `humanBones` / Unity Humanoid 映射 / Mixamo 对照。",
+ "counts": {
+  "mapped_to_vrm_role": 52,
+  "extra": 13,
+  "vrm_roles_total_in_spec": 56
+ },
+ "bones": [
+  {
+   "bone": "root",
+   "vrm_role": null,
+   "kind": "root",
+   "vrm_required": null
+  },
+  {
+   "bone": "pelvis",
+   "vrm_role": "hips",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "spine_01",
+   "vrm_role": "spine",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "spine_02",
+   "vrm_role": "chest",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "spine_03",
+   "vrm_role": "upperChest",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "neck_01",
+   "vrm_role": "neck",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "Head",
+   "vrm_role": "head",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "clavicle_l",
+   "vrm_role": "leftShoulder",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "upperarm_l",
+   "vrm_role": "leftUpperArm",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "lowerarm_l",
+   "vrm_role": "leftLowerArm",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "hand_l",
+   "vrm_role": "leftHand",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "index_01_l",
+   "vrm_role": "leftIndexProximal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "index_02_l",
+   "vrm_role": "leftIndexIntermediate",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "index_03_l",
+   "vrm_role": "leftIndexDistal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "index_04_leaf_l",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  },
+  {
+   "bone": "middle_01_l",
+   "vrm_role": "leftMiddleProximal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "middle_02_l",
+   "vrm_role": "leftMiddleIntermediate",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "middle_03_l",
+   "vrm_role": "leftMiddleDistal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "middle_04_leaf_l",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  },
+  {
+   "bone": "pinky_01_l",
+   "vrm_role": "leftLittleProximal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "pinky_02_l",
+   "vrm_role": "leftLittleIntermediate",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "pinky_03_l",
+   "vrm_role": "leftLittleDistal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "pinky_04_leaf_l",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  },
+  {
+   "bone": "ring_01_l",
+   "vrm_role": "leftRingProximal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "ring_02_l",
+   "vrm_role": "leftRingIntermediate",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "ring_03_l",
+   "vrm_role": "leftRingDistal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "ring_04_leaf_l",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  },
+  {
+   "bone": "thumb_01_l",
+   "vrm_role": "leftThumbMetacarpal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "thumb_02_l",
+   "vrm_role": "leftThumbProximal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "thumb_03_l",
+   "vrm_role": "leftThumbDistal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "thumb_04_leaf_l",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  },
+  {
+   "bone": "clavicle_r",
+   "vrm_role": "rightShoulder",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "upperarm_r",
+   "vrm_role": "rightUpperArm",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "lowerarm_r",
+   "vrm_role": "rightLowerArm",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "hand_r",
+   "vrm_role": "rightHand",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "index_01_r",
+   "vrm_role": "rightIndexProximal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "index_02_r",
+   "vrm_role": "rightIndexIntermediate",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "index_03_r",
+   "vrm_role": "rightIndexDistal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "index_04_leaf_r",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  },
+  {
+   "bone": "middle_01_r",
+   "vrm_role": "rightMiddleProximal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "middle_02_r",
+   "vrm_role": "rightMiddleIntermediate",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "middle_03_r",
+   "vrm_role": "rightMiddleDistal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "middle_04_leaf_r",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  },
+  {
+   "bone": "pinky_01_r",
+   "vrm_role": "rightLittleProximal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "pinky_02_r",
+   "vrm_role": "rightLittleIntermediate",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "pinky_03_r",
+   "vrm_role": "rightLittleDistal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "pinky_04_leaf_r",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  },
+  {
+   "bone": "ring_01_r",
+   "vrm_role": "rightRingProximal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "ring_02_r",
+   "vrm_role": "rightRingIntermediate",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "ring_03_r",
+   "vrm_role": "rightRingDistal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "ring_04_leaf_r",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  },
+  {
+   "bone": "thumb_01_r",
+   "vrm_role": "rightThumbMetacarpal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "thumb_02_r",
+   "vrm_role": "rightThumbProximal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "thumb_03_r",
+   "vrm_role": "rightThumbDistal",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "thumb_04_leaf_r",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  },
+  {
+   "bone": "thigh_l",
+   "vrm_role": "leftUpperLeg",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "calf_l",
+   "vrm_role": "leftLowerLeg",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "foot_l",
+   "vrm_role": "leftFoot",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "ball_l",
+   "vrm_role": "leftToes",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "ball_leaf_l",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  },
+  {
+   "bone": "thigh_r",
+   "vrm_role": "rightUpperLeg",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "calf_r",
+   "vrm_role": "rightLowerLeg",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "foot_r",
+   "vrm_role": "rightFoot",
+   "kind": null,
+   "vrm_required": true
+  },
+  {
+   "bone": "ball_r",
+   "vrm_role": "rightToes",
+   "kind": null,
+   "vrm_required": false
+  },
+  {
+   "bone": "ball_leaf_r",
+   "vrm_role": null,
+   "kind": "leaf_marker",
+   "vrm_required": null
+  }
+ ]
+}
