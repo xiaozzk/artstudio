@@ -3,10 +3,11 @@
 > **这套目录是干什么的**：给 3D 角色做**可调的体形**（瘦 / 标准 / 壮）+ **身高**，
 > 并让**服装跟着一起变**，用的是引擎原生的 **morph（blend shape）**，不需要任何运行时变形代码。
 >
-> **唯一权威契约**：[`SPEC.md`](SPEC.md)（含 F1–F17 全部实测事实）。改契约要通知全员。
-> **任务档案**：[`task/007-morph-pipeline/TASK.md`](../../task/007-morph-pipeline/TASK.md)
-> **复杂度与验收结论**：[`task/007-morph-pipeline/verify/COMPLEXITY.md`](../../task/007-morph-pipeline/verify/COMPLEXITY.md)（独立验收方出品）
-> **决策全过程与教训**：[`task/007-morph-pipeline/lead/FINDINGS.md`](../../task/007-morph-pipeline/lead/FINDINGS.md)
+> **唯一权威契约**：[`SPEC.md`](SPEC.md)（含 F1–F32 全部实测事实）。改契约要通知全员。
+> ⭐ **要自己生成素材（含 AI 生成）？先读 [`GENERATION-GUIDE.md`](GENERATION-GUIDE.md)** —— 怎么生成才能保证"服装 × 体型"最大灵活性 + `bodyshape` 该用什么格式。
+> **任务档案**：[`task/007-morph-pipeline/TASK.md`](../../../task/007-morph-pipeline/TASK.md)
+> **复杂度与验收结论**：[`task/007-morph-pipeline/verify/COMPLEXITY.md`](../../../task/007-morph-pipeline/verify/COMPLEXITY.md)（独立验收方出品）
+> **决策全过程与教训**：[`task/007-morph-pipeline/lead/FINDINGS.md`](../../../task/007-morph-pipeline/lead/FINDINGS.md)
 
 ---
 

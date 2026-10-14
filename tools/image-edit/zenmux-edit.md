@@ -310,7 +310,7 @@ mask 在 vertex 协议下照常用（`--mask` / `--mask-mode` 全套），语义
 
 ## 相关文档
 
-- [`docs/zenmux-cli.md`](../docs/zenmux-cli.md) —— **本工作区的操作要点速查**（场景、常用命令、成本控制、硬规则）；本文是它的完整口径
+- [`docs/zenmux-cli.md`](../../docs/zenmux-cli.md) —— **本工作区的操作要点速查**（场景、常用命令、成本控制、硬规则）；本文是它的完整口径
 - [Generate Images（Vertex AI 协议，ZenMux）](https://zenmux.ai/docs/api/vertexai/generate-images.html) —— `:predict` 端点、`instances+parameters`、透传参数表
 - [Image Generation Guide（ZenMux）](https://zenmux.ai/docs/guide/advanced/image-generation.html) —— `edit_image` / MaskReferenceImage 示例、OpenAI 参数 → Vertex 映射表
 - [Get PAYG Balance（ZenMux 平台 API）](https://zenmux.ai/docs/api/platform/payg-balance.html) —— 余额 / 成本控制
