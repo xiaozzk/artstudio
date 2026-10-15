@@ -40,6 +40,7 @@
 |------|------|----------|
 | `make_standard_body.py` | **规范化标准体**：骨架改名 + 体形骨子骨设 `inherit_scale='NONE'` + 建 morph 占位通道 | `Blender -b --factory-startup --python tools/3d/make_standard_body.py` |
 | `skeleton/make_mapping.py` | **65 骨 → VRM 角色词表映射**（规则生成，不手写）→ `assets/3d/rig/skeleton_mapping.json`。**自检三关**：孤儿骨／角色重复／**规模与构成**（`65 = 52 映射 + 13 额外`）；`--check` 复校已入库产物 | `python3 tools/3d/skeleton/make_mapping.py`（`--check` 只校验） |
+| `skeleton/check_proportions.py` | **按种族契约校验身体比例**（Blender 内执行）：头身比（用「**眼在头高中点**」测，不依赖找下颌）+ 7 个★骨位标志点，容差 ±1.5%H。**已实证会变红**（头身比目标改 7、肩位目标改 90% 均 exit≠0） | `Blender -b --factory-startup --python-exit-code 1 --python tools/3d/skeleton/check_proportions.py -- --race assets/3d/rig/races/humanoid/race.json --body assets/3d/rig/bodies/Body_Female_Standard.blend` |
 | `bodyshape/derive.py` | **体形派生**：按 spec 摆体形骨 → 烘 `BS_Thin`/`BS_Heavy` → 回写标准体 + manifest + 三档预览。**纯 python3，不需要 Blender** | `python3 tools/3d/bodyshape/derive.py --sex both` |
 | `bodyshape/verify_bodyshape.py` | **38 项断言**（含 **spec ↔ 已烘 morph 的几何闭环**，误差 0.000000 mm） | `python3 tools/3d/bodyshape/verify_bodyshape.py` |
 | `bodyshape/measure_girth.py` | **关键围度**（切片 → 2D 凸包周长 = 软尺量法，对破洞/面绕向免疫） | `python3 tools/3d/bodyshape/measure_girth.py --help` |
