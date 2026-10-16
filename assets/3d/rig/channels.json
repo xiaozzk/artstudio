@@ -1,0 +1,122 @@
+{
+ "schema": "morph-channels",
+ "version": "2.0",
+ "owner": "Lead",
+ "applies_to": "profiles/humanoid_biped_7spine.json 的新族资产",
+ "contract": "assets/3d/rig/SPEC.md + races/humanoid/race.json",
+
+ "why_v2": "借 Bodiez 的『多通道体型』（表达力远强于单轴胖瘦），但**改掉它的区间带硬切换**。",
+
+ "⚠_naming_trap": {
+  "problem": "v1 的 `BS_Thin` 语义是『**从标准体型偏移的方向**』（配对 `BS_Heavy`，一个有符号值驱动）；v2 的『瘦』是『**绝对预设**』之一。**同名不同义** → 任何按名读通道的工具会静默混用两套语义。",
+  "fix": "**v2 不复用 v1 的任何通道名**。预设通道一律带 `Preset` 前缀 → 两套契约的名字集合**不相交**，冲突不可能发生。",
+  "rule": "**禁止复用已发布通道的名字去表达新语义**；换语义就换名字。"
+ },
+
+ "namespaces": {
+  "body_shape": "BS_*",
+  "expression": "EX_*",
+  "rules": [
+   "两套命名空间**不得交叉**。",
+   "**体型**：跨件同步驱动（角色 + 每一件服装都持同名同序通道；运行时一个数值驱动全部）。",
+   "**表情**：只作用在**头/脸网格**上，**不跨件同步**，独立通道与独立图集。"
+  ]
+ },
+
+ "legacy": {
+  "version": "1.0",
+  "status": "**冻结** —— 仅供 007 的 4 套旧资产使用，不得用于新族",
+  "channels": [
+   {"name": "BS_Thin", "morph_target_index": 0, "key_block_index": 1, "semantics": "从标准体型向『瘦』的有符号偏移"},
+   {"name": "BS_Heavy", "morph_target_index": 1, "key_block_index": 2, "semantics": "从标准体型向『壮』的有符号偏移"}
+  ],
+  "why_keep": "它是**已验证的回归基线**（38 项断言 / 13 项判据 / 逐位 digest 都跑在它上面）。删掉就等于把验证链拆了 —— 所以**保留为 legacy，与新族并存**。"
+ },
+
+ "body_shape": {
+  "driver": "一个 float `t ∈ [0,1]` 驱动**预设轴**；另有独立的**有符号连续轴**叠加",
+  "presets": [
+   {"name": "BS_Preset_Thin", "morph_target_index": 0, "key_block_index": 1, "position": 0.0, "label_zh": "瘦"},
+   {"name": "BS_Preset_Regular", "morph_target_index": 1, "key_block_index": 2, "position": 0.34, "label_zh": "标准"},
+   {"name": "BS_Preset_Muscular", "morph_target_index": 2, "key_block_index": 3, "position": 0.67, "label_zh": "壮"},
+   {"name": "BS_Preset_Fat", "morph_target_index": 3, "key_block_index": 4, "position": 1.0, "label_zh": "胖"}
+  ],
+  "interpolation": {
+   "method": "tent（线性帐篷）",
+   "formula": "w_i = max(0, 1 - |t - position_i| / half_span_i)，再归一化使 Σw = 1",
+   "why": "★ **这是对 Bodiez 的明确改进**：它用区间带 `1 if (a <= t < b) else 0` → **拖动时体型跳变**，且永远停在预设上、不能停在中间。tent 插值让拖动**连续过渡**，可以停在『半瘦半壮』。",
+   "overflow": "t < 0 或 t > 1 时夹到端点预设（不外推）"
+  },
+  "continuous": [
+   {"name": "BS_Hip_Wide", "morph_target_index": 4, "key_block_index": 5, "range": [-1, 1], "label_zh": "臀宽", "semantics": "有符号：正=更宽"},
+   {"name": "BS_Breast", "morph_target_index": 5, "key_block_index": 6, "range": [-1, 1], "label_zh": "胸", "sex": "female", "semantics": "有符号：正=更大。⚠ **一个通道**，不是两个同值通道"}
+  ],
+  "no_extra_strength_axis": "不需要额外的『强度轴』 —— 预设轴的 tent 插值**已经**给出连续落点，再加一条强度轴会与它语义重叠。",
+  "channel_count": {"female": 6, "male": 5, "note": "男性无 `BS_Breast`"},
+
+  "index_rules": [
+   "★ **新通道一律追加在末尾**：glTF 的 morph target **按下标引用** → 追加不动既有下标，已发布的服装**全部继续有效**。",
+   "★ **重排下标 = 所有下游静默变形**（不报错）→ 视为契约级破坏性变更。",
+   "通道的**名字与下标都是硬契约**；取通道时**名字优先，名字对不上才回落下标**（沿用 008 的已验证口径）。"
+  ],
+  "data_budget": {
+   "formula": "morph 数据量 = 通道数 × 顶点数 × 12 字节",
+   "table": [
+    {"verts": 5000,  "per_channel": "60 KB",  "channels_6": "360 KB", "verdict": "✅ 舒适"},
+    {"verts": 27000, "per_channel": "324 KB", "channels_6": "1.9 MB", "verdict": "⚠ 可接受"},
+    {"verts": 84000, "per_channel": "1.0 MB", "channels_6": "6.0 MB", "verdict": "❌ 太大"}
+   ],
+   "rule": "**通道数 × 顶点数 ≤ 预算**。通道变多就必须把顶点数压下来 —— 这是『滑块数量』与『网格密度』之间的硬取舍。"
+  }
+ },
+
+ "height": {
+  "mechanism": "缩放**角色根节点**的 world scale（等比）",
+  "not_a_channel": true,
+  "never": "❌ 不缩 `root` 骨（SPEC F12：只 +0.50%、离散度超标 8.4×）｜❌ 不做 morph｜❌ 不碰任何骨 pose",
+  "semantics": "族内**个体差异**（成年人之间）。儿童是独立种族，不靠此滑块达成。"
+ },
+
+ "proportion": {
+  "mechanism": "**骨缩放（沿骨轴）+ 身高归一化**",
+  "not_a_channel": true,
+  "why_not_morph": "morph 走『通道数 × 顶点数 × 12B』；比例轴若也用 morph，6~9 个滑块会直接把数据量推爆。而**比例的本质就是骨长** → 用骨缩放表达最自然，且 **glTF 的 node scale 原生支持**、**零 morph 数据**。",
+  "why_not_constraints": "⚠ **glTF 规范里没有约束** —— Bodiez 用 `ACTION` 约束做比例，导出时**会全部消失**，交付前必须烘焙。既然都要烘，不如直接用骨缩放（不需要烘）。",
+  "orthogonality": "比例改骨长会让身高变 → **用根节点缩放把它归一化回目标身高** ⇒ 两条轴**由构造保证正交**。",
+  "pipeline": [
+   "① 读比例滑块 → 沿骨轴缩放目标骨",
+   "② 测当前身高（逐骨段世界长度比，沿用 F31 的口径）",
+   "③ 算归一化系数 = 目标身高 / 当前身高",
+   "④ 写【根节点】缩放 ← 不是骨缩放"
+  ],
+  "implementation_caveats": [
+   "⚠ **Godot 的 `Skeleton3D` 骨缩放一律沿层级继承**（没有 `inherit_scale` 标志，SPEC F30）→ 缩 `thigh_l` 会**连带**缩 `calf_l` → 想只改大腿，必须在 `calf_l` 上做**反向补偿**。",
+   "⚠ **VRM 禁止人类骨出现 0 或负缩放**（spec: 'scale components MUST have positive values (zero is not permitted)'）→ 归一化后要断言**没有任何骨为 0**。",
+   "⚠ 烘 morph 之前必须清掉所有约束（SPEC F33）。"
+  ],
+  "verification": [
+   "比例滑块动 → 目标骨长按预期变，且**身高不变**（±0.1%）",
+   "身高滑块动 → 所有骨段等比变，且**比例不变**",
+   "两条轴同时动 → 与分别动再合成**逐位一致**"
+  ]
+ },
+
+ "expression": {
+  "namespace": "EX_*",
+  "semantic_layer": "**VRM 表情词表**（与骨架同样的做法：词表做语义层，本地名不改）",
+  "vrm_presets": ["happy", "angry", "sad", "relaxed", "surprised", "neutral",
+                  "aa", "ih", "ou", "ee", "oh",
+                  "blink", "blinkLeft", "blinkRight",
+                  "lookUp", "lookDown", "lookLeft", "lookRight"],
+  "custom": "custom.*（VRM 1.0 的自定义通道）",
+  "mechanism": "**贴图图集 + UV 偏移**（首选）／少量 blendshape（升级项）",
+  "detail": "见 assets/3d/rig/RENDER.md"
+ },
+
+ "source_attribution": {
+  "borrowed_from": "Bodiez（第三方人体定制件，仅作**结构与做法**参考，**不引进其资产**）",
+  "borrowed": ["滑块骨 UI 思路", "多通道体型（预设 + 连续）", "7 节脊柱的结构优点", "每指掌骨的结构优点"],
+  "changed": ["区间带硬切换 → **tent 连续插值**", "同值驱动两个胸通道 → **单个有符号通道**", "`ACTION` 约束做比例 → **骨缩放 + 归一化**", "不对称行程（每滑块两条动作）→ **以 0 为中心对称行程**"],
+  "not_borrowed": ["它的资产（许可不明）", "它的骨架与命名（男女分叉 / Rigify 风格）", "`ACTION` 约束机制（glTF 不保留）"]
+ }
+}

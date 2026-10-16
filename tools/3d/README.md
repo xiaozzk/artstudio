@@ -39,7 +39,8 @@
 | 脚本 | 作用 | 典型用法 |
 |------|------|----------|
 | `make_standard_body.py` | **规范化标准体**：骨架改名 + 体形骨子骨设 `inherit_scale='NONE'` + 建 morph 占位通道 | `Blender -b --factory-startup --python tools/3d/make_standard_body.py` |
-| `skeleton/make_mapping.py` | **65 骨 → VRM 角色词表映射**（规则生成，不手写）→ `assets/3d/rig/skeleton_mapping.json`。**自检三关**：孤儿骨／角色重复／**规模与构成**（`65 = 52 映射 + 13 额外`）；`--check` 复校已入库产物 | `python3 tools/3d/skeleton/make_mapping.py`（`--check` 只校验） |
+| `skeleton/make_profile.py` | **生成骨架契约**（**77 骨**：脊柱 7 节 + 每指掌骨，左右镜像完全对称）→ `assets/3d/rig/profiles/humanoid_biped_7spine.json`。骨名/层级/顺序是**硬契约**，手写必错 → 用生成器保证；`--check` 复校 | `python3 tools/3d/skeleton/make_profile.py`（`--check` 只校验） |
+| `skeleton/make_mapping.py` | **骨架 → VRM 角色词表映射**（规则生成，不手写；骨表读自 profile，**不依赖第三方件**）→ `assets/3d/rig/skeleton_mapping.json`。**自检三关**：孤儿骨／角色重复／**规模与构成**（`77 = 52 映射 + 25 额外`）；`--check` 复校已入库产物 | `python3 tools/3d/skeleton/make_mapping.py`（`--check` 只校验） |
 | `skeleton/check_proportions.py` | **按种族契约校验身体比例**（Blender 内执行）：头身比（用「**眼在头高中点**」测，不依赖找下颌）+ 7 个★骨位标志点，容差 ±1.5%H。**已实证会变红**（头身比目标改 7、肩位目标改 90% 均 exit≠0） | `Blender -b --factory-startup --python-exit-code 1 --python tools/3d/skeleton/check_proportions.py -- --race assets/3d/rig/races/humanoid/race.json --body assets/3d/rig/bodies/Body_Female_Standard.blend` |
 | `bodyshape/derive.py` | **体形派生**：按 spec 摆体形骨 → 烘 `BS_Thin`/`BS_Heavy` → 回写标准体 + manifest + 三档预览。**纯 python3，不需要 Blender** | `python3 tools/3d/bodyshape/derive.py --sex both` |
 | `bodyshape/verify_bodyshape.py` | **38 项断言**（含 **spec ↔ 已烘 morph 的几何闭环**，误差 0.000000 mm） | `python3 tools/3d/bodyshape/verify_bodyshape.py` |
@@ -71,8 +72,11 @@
 
 | 文档 | 内容 |
 |---|---|
-| [`assets/3d/rig/SPEC.md`](../../assets/3d/rig/SPEC.md) | **35 条实测事实**，每条标**证据等级**（含"已撤回""机制已定位"） |
-| [`assets/3d/rig/SKELETON.md`](../../assets/3d/rig/SKELETON.md) | **65 骨完整层级 + 组成**；与 UE / Mixamo / Unity / VRM 的命名对照；**"是不是通用标准"的三层结论**；腿骨是 `calf_*` 不是 `shin_*` |
+| [`assets/3d/rig/SPEC.md`](../../assets/3d/rig/SPEC.md) | **36 条实测事实**，每条标**证据等级**（含「已撤回」「机制已定位」）。F33 IK/约束/导出、F34 8 头身实测、**F35 截断≠不存在**、**F36 glTF 不保留约束** |
+| [`assets/3d/rig/SKELETON.md`](../../assets/3d/rig/SKELETON.md) | **骨层级 + 组成**；与 UE / Mixamo / Unity / VRM 的命名对照；**「是不是通用标准」的三层结论**；腿骨是 `calf_*` 不是 `shin_*`；§6 VRM 语义层决策、§7 IK 与 morph |
+| ⭐ [`assets/3d/rig/RENDER.md`](../../assets/3d/rig/RENDER.md) | **NPR 渲染 / UV / 贴图契约**：简化阶梯 L0–L4、推荐组合、**Godot 实测枚举值**（零 shader 可做卡渲+描边）、UV 与贴图的**自动配方**、表情契约、**10 条实测坑**、明确「不做」的决定 |
+| [`assets/3d/rig/channels.json`](../../assets/3d/rig/channels.json) | **morph 通道契约 v2.0**：体型预设轴（tent 连续插值）／连续轴／比例轴（骨缩放+归一化）／表情命名空间／数据量预算；⚠ v1 冻结为 legacy |
+| [`assets/3d/rig/reference/BODIEZ-ANALYSIS.md`](../../assets/3d/rig/reference/BODIEZ-ANALYSIS.md) | **第三方参考件分析**（骨架布局 / 两层变形机制 / 借什么改什么 / **Lead 两处自我更正** / 许可提醒） |
 | ⭐ [`assets/3d/rig/GENERATION-GUIDE.md`](../../assets/3d/rig/GENERATION-GUIDE.md) | **要自己生成素材（含 AI 生成）先读这份**：morph 经验 15 条 + 生成指南（三条铁律/流程/自检清单）+ `bodyshape` 该用什么格式 |
 | [`assets/3d/rig/README.md`](../../assets/3d/rig/README.md) | pipeline 指南：目录 / 三路线 / 复现命令 / 验收判据 / 坑速查 |
 | [`task/007-morph-pipeline/lead/ACCEPTANCE.md`](../../task/007-morph-pipeline/lead/ACCEPTANCE.md) | **验收台账 + §七 方法论 10 条** |

@@ -3,10 +3,14 @@
 > **这套目录是干什么的**：给 3D 角色做**可调的体形**（瘦 / 标准 / 壮）+ **身高**，
 > 并让**服装跟着一起变**，用的是引擎原生的 **morph（blend shape）**，不需要任何运行时变形代码。
 >
-> **唯一权威契约**：[`SPEC.md`](SPEC.md)（含 F1–F34 全部实测事实）。改契约要通知全员。
-> **骨架清单**：[`SKELETON.md`](SKELETON.md) —— 65 骨完整层级 + 组成 + 与 UE / Mixamo / Unity / VRM 的对照（含"是不是通用标准"的结论）。
-> **种族契约（一等公民）**：[`races/humanoid/race.json`](races/humanoid/race.json) —— rest 骨架 / 身高范围 / **8 头身**比例与标志点表 / 层×部位 / morph 通道。任务与路线见 [`task/009-modular-races/TASK.md`](../../../task/009-modular-races/TASK.md)。
-> ⭐ **要自己生成素材（含 AI 生成）？先读 [`GENERATION-GUIDE.md`](GENERATION-GUIDE.md)** —— 怎么生成才能保证"服装 × 体型"最大灵活性 + `bodyshape` 该用什么格式。
+> **唯一权威契约**：[`SPEC.md`](SPEC.md)（含 F1–**F36** 全部实测事实）。改契约要通知全员。
+> **骨架清单**：[`SKELETON.md`](SKELETON.md) —— 骨层级 + 组成 + 与 UE / Mixamo / Unity / VRM 的对照（含「是不是通用标准」的结论）。
+> ⭐ **骨架契约 v2（77 骨）**：[`profiles/humanoid_biped_7spine.json`](profiles/humanoid_biped_7spine.json) + 映射 [`skeleton_mapping.json`](skeleton_mapping.json)（52 映射 + 25 额外）
+> **morph 通道契约 v2.0**：[`channels.json`](channels.json) —— 体型预设轴（tent 插值）/ 连续轴 / 比例轴 / 表情命名空间 / 数据量预算
+> **渲染 · UV · 贴图契约**：[`RENDER.md`](RENDER.md) —— NPR 简化阶梯 L0–L4、Godot 实测枚举值、UV 与贴图的自动配方、表情契约、10 条实测坑
+> **第三方参考件分析**：[`reference/BODIEZ-ANALYSIS.md`](reference/BODIEZ-ANALYSIS.md)（含两处自我更正与两条方法论）
+> **种族契约（一等公民）**：[`races/humanoid/race.json`](races/humanoid/race.json) —— rest 骨架 / 身高范围 / **8 头身**比例与标志点表 / 层×部位 / 比例轴 / 滑块骨 / 头接缝。任务与路线见 [`task/009-modular-races/TASK.md`](../../../task/009-modular-races/TASK.md)。
+> ⭐ **要自己生成素材（含 AI 生成）？先读 [`GENERATION-GUIDE.md`](GENERATION-GUIDE.md)** —— 怎么生成才能保证「服装 × 体型」最大灵活性 + `bodyshape` 该用什么格式。
 > **任务档案**：[`task/007-morph-pipeline/TASK.md`](../../../task/007-morph-pipeline/TASK.md)
 > **复杂度与验收结论**：[`task/007-morph-pipeline/verify/COMPLEXITY.md`](../../../task/007-morph-pipeline/verify/COMPLEXITY.md)（独立验收方出品）
 > **决策全过程与教训**：[`task/007-morph-pipeline/lead/FINDINGS.md`](../../../task/007-morph-pipeline/lead/FINDINGS.md)

@@ -1,0 +1,560 @@
+{
+ "schema": "skeleton-profile",
+ "version": "2.0",
+ "name": "humanoid_biped_7spine",
+ "label_zh": "人形·双足·7 节脊柱",
+ "supersedes": "humanoid_biped_65（v1：3 节脊柱、每指无掌骨）",
+ "why_v2": "借 Bodiez（第三方人体定制件）的结构优点：① **7 节脊柱** → 躯干比例与弯曲更细腻；② **每指掌骨** → 抓握/张开更自然。⚠ 拇指不加掌骨，直接挂 `hand_*`，与 VRM 的 `leftThumbMetacarpal`（父为 `leftHand`）一致。",
+ "naming_convention": "**UE Mannequin 风格**（`spine_01` / `clavicle_l` / `calf_l` / `ball_l`）；**不改用 Rigify 风格**（`spine.001` / `shin.L`）—— 理由见 SKELETON.md §6.3。",
+ "rest_pose": "T-pose",
+ "deform_bones": 77,
+ "leaf_markers": 12,
+ "total_bones": 77,
+ "bones": [
+  {
+   "i": 0,
+   "name": "root",
+   "parent": null,
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 1,
+   "name": "pelvis",
+   "parent": "root",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 2,
+   "name": "spine_01",
+   "parent": "pelvis",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 3,
+   "name": "spine_02",
+   "parent": "spine_01",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 4,
+   "name": "spine_03",
+   "parent": "spine_02",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 5,
+   "name": "spine_04",
+   "parent": "spine_03",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 6,
+   "name": "spine_05",
+   "parent": "spine_04",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 7,
+   "name": "spine_06",
+   "parent": "spine_05",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 8,
+   "name": "spine_07",
+   "parent": "spine_06",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 9,
+   "name": "neck_01",
+   "parent": "spine_07",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 10,
+   "name": "Head",
+   "parent": "neck_01",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 11,
+   "name": "clavicle_l",
+   "parent": "spine_07",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 12,
+   "name": "upperarm_l",
+   "parent": "clavicle_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 13,
+   "name": "lowerarm_l",
+   "parent": "upperarm_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 14,
+   "name": "hand_l",
+   "parent": "lowerarm_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 15,
+   "name": "palm_index_l",
+   "parent": "hand_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 16,
+   "name": "index_01_l",
+   "parent": "palm_index_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 17,
+   "name": "index_02_l",
+   "parent": "index_01_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 18,
+   "name": "index_03_l",
+   "parent": "index_02_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 19,
+   "name": "index_04_leaf_l",
+   "parent": "index_03_l",
+   "deform": true,
+   "leaf": true
+  },
+  {
+   "i": 20,
+   "name": "palm_middle_l",
+   "parent": "hand_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 21,
+   "name": "middle_01_l",
+   "parent": "palm_middle_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 22,
+   "name": "middle_02_l",
+   "parent": "middle_01_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 23,
+   "name": "middle_03_l",
+   "parent": "middle_02_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 24,
+   "name": "middle_04_leaf_l",
+   "parent": "middle_03_l",
+   "deform": true,
+   "leaf": true
+  },
+  {
+   "i": 25,
+   "name": "palm_ring_l",
+   "parent": "hand_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 26,
+   "name": "ring_01_l",
+   "parent": "palm_ring_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 27,
+   "name": "ring_02_l",
+   "parent": "ring_01_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 28,
+   "name": "ring_03_l",
+   "parent": "ring_02_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 29,
+   "name": "ring_04_leaf_l",
+   "parent": "ring_03_l",
+   "deform": true,
+   "leaf": true
+  },
+  {
+   "i": 30,
+   "name": "palm_pinky_l",
+   "parent": "hand_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 31,
+   "name": "pinky_01_l",
+   "parent": "palm_pinky_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 32,
+   "name": "pinky_02_l",
+   "parent": "pinky_01_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 33,
+   "name": "pinky_03_l",
+   "parent": "pinky_02_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 34,
+   "name": "pinky_04_leaf_l",
+   "parent": "pinky_03_l",
+   "deform": true,
+   "leaf": true
+  },
+  {
+   "i": 35,
+   "name": "thumb_01_l",
+   "parent": "hand_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 36,
+   "name": "thumb_02_l",
+   "parent": "thumb_01_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 37,
+   "name": "thumb_03_l",
+   "parent": "thumb_02_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 38,
+   "name": "thumb_04_leaf_l",
+   "parent": "thumb_03_l",
+   "deform": true,
+   "leaf": true
+  },
+  {
+   "i": 39,
+   "name": "clavicle_r",
+   "parent": "spine_07",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 40,
+   "name": "upperarm_r",
+   "parent": "clavicle_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 41,
+   "name": "lowerarm_r",
+   "parent": "upperarm_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 42,
+   "name": "hand_r",
+   "parent": "lowerarm_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 43,
+   "name": "palm_index_r",
+   "parent": "hand_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 44,
+   "name": "index_01_r",
+   "parent": "palm_index_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 45,
+   "name": "index_02_r",
+   "parent": "index_01_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 46,
+   "name": "index_03_r",
+   "parent": "index_02_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 47,
+   "name": "index_04_leaf_r",
+   "parent": "index_03_r",
+   "deform": true,
+   "leaf": true
+  },
+  {
+   "i": 48,
+   "name": "palm_middle_r",
+   "parent": "hand_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 49,
+   "name": "middle_01_r",
+   "parent": "palm_middle_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 50,
+   "name": "middle_02_r",
+   "parent": "middle_01_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 51,
+   "name": "middle_03_r",
+   "parent": "middle_02_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 52,
+   "name": "middle_04_leaf_r",
+   "parent": "middle_03_r",
+   "deform": true,
+   "leaf": true
+  },
+  {
+   "i": 53,
+   "name": "palm_ring_r",
+   "parent": "hand_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 54,
+   "name": "ring_01_r",
+   "parent": "palm_ring_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 55,
+   "name": "ring_02_r",
+   "parent": "ring_01_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 56,
+   "name": "ring_03_r",
+   "parent": "ring_02_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 57,
+   "name": "ring_04_leaf_r",
+   "parent": "ring_03_r",
+   "deform": true,
+   "leaf": true
+  },
+  {
+   "i": 58,
+   "name": "palm_pinky_r",
+   "parent": "hand_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 59,
+   "name": "pinky_01_r",
+   "parent": "palm_pinky_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 60,
+   "name": "pinky_02_r",
+   "parent": "pinky_01_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 61,
+   "name": "pinky_03_r",
+   "parent": "pinky_02_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 62,
+   "name": "pinky_04_leaf_r",
+   "parent": "pinky_03_r",
+   "deform": true,
+   "leaf": true
+  },
+  {
+   "i": 63,
+   "name": "thumb_01_r",
+   "parent": "hand_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 64,
+   "name": "thumb_02_r",
+   "parent": "thumb_01_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 65,
+   "name": "thumb_03_r",
+   "parent": "thumb_02_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 66,
+   "name": "thumb_04_leaf_r",
+   "parent": "thumb_03_r",
+   "deform": true,
+   "leaf": true
+  },
+  {
+   "i": 67,
+   "name": "thigh_l",
+   "parent": "pelvis",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 68,
+   "name": "calf_l",
+   "parent": "thigh_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 69,
+   "name": "foot_l",
+   "parent": "calf_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 70,
+   "name": "ball_l",
+   "parent": "foot_l",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 71,
+   "name": "ball_leaf_l",
+   "parent": "ball_l",
+   "deform": true,
+   "leaf": true
+  },
+  {
+   "i": 72,
+   "name": "thigh_r",
+   "parent": "pelvis",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 73,
+   "name": "calf_r",
+   "parent": "thigh_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 74,
+   "name": "foot_r",
+   "parent": "calf_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 75,
+   "name": "ball_r",
+   "parent": "foot_r",
+   "deform": true,
+   "leaf": false
+  },
+  {
+   "i": 76,
+   "name": "ball_leaf_r",
+   "parent": "ball_r",
+   "deform": true,
+   "leaf": true
+  }
+ ],
+ "design_notes": [
+  "⚠ 腿骨是 `calf_*`，**没有** `shin_*`（实际踩过）。",
+  "`*_leaf` 是**终端标记**，不承载形变（只为骨链收尾）；`ball_leaf_*` 同理。",
+  "脊柱 7 节中**只有 3 节能映射到 VRM 角色**（`spine` / `chest` / `upperChest`）；其余登记为 `extra`（VRM 允许人类骨之间夹非人类骨，spec: 'It is permissible to have non-humanoid bone nodes between humanoid bones'）。",
+  "掌骨同理：VRM 除拇指外**没有 metacarpal 角色** → `palm_*` 全部登记为 `extra`。"
+ ]
+}
