@@ -80,7 +80,7 @@
 |---|---|
 | [`assets/3d/rig/SPEC.md`](../../assets/3d/rig/SPEC.md) | **36 条实测事实**，每条标**证据等级**（含「已撤回」「机制已定位」）。F33 IK/约束/导出、F34 8 头身实测、**F35 截断≠不存在**、**F36 glTF 不保留约束** |
 | [`assets/3d/rig/SKELETON.md`](../../assets/3d/rig/SKELETON.md) | **骨层级 + 组成**；与 UE / Mixamo / Unity / VRM 的命名对照；**「是不是通用标准」的三层结论**；腿骨是 `calf_*` 不是 `shin_*`；§6 VRM 语义层决策、§7 IK 与 morph |
-| ⭐ [`assets/3d/rig/RENDER.md`](../../assets/3d/rig/RENDER.md) | **NPR 渲染 / UV / 贴图契约**：简化阶梯 L0–L4、推荐组合、**Godot 实测枚举值**（零 shader 可做卡渲+描边）、UV 与贴图的**自动配方**、表情契约、**10 条实测坑**、明确「不做」的决定 |
+| ⭐ [`assets/3d/rig/RENDER.md`](../../assets/3d/rig/RENDER.md) | **NPR 渲染 / UV / 贴图契约**：**§0 为什么选 NPR（含与 PBR 的取舍、AI 适配性）**、简化阶梯 L0–L4、推荐组合、**Godot 实测枚举值**（零 shader 可做卡渲+描边）、UV 与贴图的**自动配方**、**三层结构（肤色/叠加/明暗）**、**Tripo 贴图处置**、表情契约、**13 条实测坑**、明确「不做」的决定 |
 | [`assets/3d/rig/channels.json`](../../assets/3d/rig/channels.json) | **morph 通道契约 v2.0**：体型预设轴（tent 连续插值）／连续轴／比例轴（骨缩放+归一化）／表情命名空间／数据量预算；⚠ v1 冻结为 legacy |
 | [`assets/3d/rig/reference/BODIEZ-ANALYSIS.md`](../../assets/3d/rig/reference/BODIEZ-ANALYSIS.md) | **第三方参考件分析**（骨架布局 / 两层变形机制 / 借什么改什么 / **Lead 两处自我更正** / 许可提醒） |
 | ⭐ [`assets/3d/rig/GENERATION-GUIDE.md`](../../assets/3d/rig/GENERATION-GUIDE.md) | **要自己生成素材（含 AI 生成）先读这份**：morph 经验 15 条 + 生成指南（三条铁律/流程/自检清单）+ `bodyshape` 该用什么格式 |

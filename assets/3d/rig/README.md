@@ -7,7 +7,7 @@
 > **骨架清单**：[`SKELETON.md`](SKELETON.md) —— 骨层级 + 组成 + 与 UE / Mixamo / Unity / VRM 的对照（含「是不是通用标准」的结论）。
 > ⭐ **骨架契约 v2（77 骨）**：[`profiles/humanoid_biped_7spine.json`](profiles/humanoid_biped_7spine.json) + 映射 [`skeleton_mapping.json`](skeleton_mapping.json)（52 映射 + 25 额外）
 > **morph 通道契约 v2.0**：[`channels.json`](channels.json) —— 体型预设轴（tent 插值）/ 连续轴 / 比例轴 / 表情命名空间 / 数据量预算
-> **渲染 · UV · 贴图契约**：[`RENDER.md`](RENDER.md) —— NPR 简化阶梯 L0–L4、Godot 实测枚举值、UV 与贴图的自动配方、表情契约、10 条实测坑
+> **渲染 · UV · 贴图契约**：[`RENDER.md`](RENDER.md) —— **§0 为什么选 NPR（含 PBR 取舍，D20）**、简化阶梯 L0–L4、Godot 实测枚举值、UV 与贴图的自动配方、**三层结构（肤色/叠加/明暗）+ skin_tint**、**Tripo 贴图处置**、表情契约、13 条实测坑
 > **第三方参考件分析**：[`reference/BODIEZ-ANALYSIS.md`](reference/BODIEZ-ANALYSIS.md)（含两处自我更正与两条方法论）
 > **种族契约（一等公民）**：[`races/humanoid/race.json`](races/humanoid/race.json) —— rest 骨架 / 身高范围 / **8 头身**比例与标志点表 / 层×部位 / 比例轴 / 滑块骨 / 头接缝。任务与路线见 [`task/009-slider-body/TASK.md`](../../../task/009-slider-body/TASK.md)。
 > ⭐ **要自己生成素材（含 AI 生成）？先读 [`GENERATION-GUIDE.md`](GENERATION-GUIDE.md)** —— 怎么生成才能保证「服装 × 体型」最大灵活性 + `bodyshape` 该用什么格式。
