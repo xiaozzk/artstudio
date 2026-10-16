@@ -68,6 +68,7 @@ def tpose(arm) -> list:
     from mathutils import Vector, Matrix
     pat = re.compile(r"upper[_.]?arm", re.I)
     rep = []
+    heads = {b.name: b.head.copy() for b in arm.pose.bones if pat.search(b.name)}
     for n in [b.name for b in arm.pose.bones if pat.search(b.name)]:
         pb = arm.pose.bones[n]
         d = (pb.tail - pb.head).normalized()
@@ -75,12 +76,23 @@ def tpose(arm) -> list:
         t = Vector((1.0 if d.x > 0 else -1.0, 0.0, 0.0))
         axis = d.cross(t)
         if axis.length > 1e-6:
-            pb.matrix = Matrix.Rotation(d.angle(t), 4, axis.normalized()) @ pb.matrix
+            # ⚠⚠ **必须绕骨头的 head 旋转**：`Matrix.Rotation` 是绕**世界原点**转的，
+            #   直接 `R @ pb.matrix` 会把骨头【连带位移一起】绕原点转走 —— 手臂会被拽到腰高，
+            #   外观像"蒙皮撕裂"，且**不报任何错**。实测踩过（曾据此写出错误的结论）。
+            h = pb.head.copy()
+            pb.matrix = (Matrix.Translation(h) @ Matrix.Rotation(d.angle(t), 4, axis.normalized())
+                         @ Matrix.Translation(-h) @ pb.matrix)
     bpy.context.view_layer.update()
     for n in [b.name for b in arm.pose.bones if pat.search(b.name)]:
         pb = arm.pose.bones[n]
         d = (pb.tail - pb.head).normalized()
         rep.append(f"{n} 新俯角 {math.degrees(math.asin(-d.z)):+.1f}°")
+        # ⭐ **回读门禁**：绕原点旋转的 bug 会把骨头【连带位移】转走而不报错。
+        #    所以必须确认 head 只在原地转（|Δhead| ≈ 0）。见 SPEC F38。
+        h0 = heads.get(n)
+        if h0 is not None and (pb.head - h0).length > 1e-4:
+            raise RuntimeError(f"❌ {n} 的 head 被平移了 {(pb.head - h0).length*1000:.2f} mm "
+                               f"—— 旋转不是绕骨头 head 做的（见 SPEC F38）")
     return rep
 
 
