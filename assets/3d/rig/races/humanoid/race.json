@@ -11,7 +11,6 @@
   "1.0": "初版：65 骨 profile、8 头身、5 层 × 6 部位。"
  },
  "why_this_file": "「种族」是一等公民 → 每个种族一份权威定义。它决定 rest 骨架 / 身高范围 / 体形通道 / 比例轴 / 头身比 / 层与部位 / 件清单。**跨族拼接在校验阶段就被拒绝**。",
-
  "skeleton": {
   "profile": "humanoid_biped_7spine",
   "profile_file": "profiles/humanoid_biped_7spine.json",
@@ -31,7 +30,6 @@
   "inherit_scale_note": "生命周期之分，见 SPEC F18：`bodies/`（烘焙期）必须 NONE；交付期运行时资产应还原 FULL。**别拿「资产里是不是 NONE」当判据。**",
   "naming": "**UE Mannequin 风格**（`spine_01`/`clavicle_l`/`calf_l`/`ball_l`）；**不采用 Rigify 风格**（`spine.001`/`shin.L`）—— 见 SKELETON.md §6.3。⚠ 腿骨是 `calf_*`，**没有** `shin_*`。"
  },
-
  "proportions": {
   "head_count": 8.0,
   "head_count_tolerance": 0.25,
@@ -58,26 +56,52 @@
   "canon_crosscheck": "8 头 canon：下颌 87.5% / 乳线 75% / 脐 62.5% / 裆 50% / 膝 27.5% / 踝 5%。实测（女/男）：下颌 87.1/87.2、肩 80.6/82.2、髋 52.5/52.2、膝 30.1/29.8、踝 4.0/4.8 —— 同族，髋与膝略偏高（游戏角色常见）。",
   "measured_existing_assets": {
    "_comment": "**已有库的实测值**（不是目标值）—— 用于判断新身体与旧库的兼容性。见 SPEC F34。",
-   "female_standard_body": {"height_m": 1.7751, "head_height_cm": 22.12, "head_count": 8.02},
-   "male_standard_body": {"height_m": 1.8196, "head_height_cm": 22.30, "head_count": 8.16}
+   "female_standard_body": {
+    "height_m": 1.7751,
+    "head_height_cm": 22.12,
+    "head_count": 8.02
+   },
+   "male_standard_body": {
+    "height_m": 1.8196,
+    "head_height_cm": 22.3,
+    "head_count": 8.16
+   }
+  },
+  "arm_span_over_height": {
+   "target": 1.0,
+   "tolerance": 0.04,
+   "why": "正典：**T-pose 臂展 ≈ 身高**。⭐ 它不只是比例，还是 **D3「男女共用一副 rest」的硬前提** —— 两具网格的腕位必须落在同一副骨的 `hand_l/r` 上，否则腕/手权重会明显变差。",
+   "how_to_measure": "**T-pose 下网格包围盒的 X 跨度 / 身高**（用 `tools/3d/skeleton/make_body_reference.py` 已实现；⚠ 必须先确认姿态是 T-pose —— 见 SPEC F37）",
+   "measured_reference": "第三方件 Bodiez：**男 0.9878 ✅** ／ **女 0.9153 ❌**（偏短 7~8%）→ 它男女是两套各自独立的件，不满足共用 rest 的前提。**我们自研时必须两性都做到 ≈1.0**。",
+   "note": "⚠ 生成件的手指若为**连指手套形**（未分指），有效臂展会偏短 —— Bodiez 女性即有此问题。"
   }
  },
-
  "sexes": [
-  {"id": "male", "label_zh": "男", "mesh_height_m": 1.75, "deviation_from_rest_pct": 0.0},
-  {"id": "female", "label_zh": "女", "mesh_height_m": 1.70, "deviation_from_rest_pct": -2.857}
+  {
+   "id": "male",
+   "label_zh": "男",
+   "mesh_height_m": 1.75,
+   "deviation_from_rest_pct": 0.0
+  },
+  {
+   "id": "female",
+   "label_zh": "女",
+   "mesh_height_m": 1.7,
+   "deviation_from_rest_pct": -2.857
+  }
  ],
  "sexes_note": "男女**共用同一副 rest 骨架** → **动画零重定向互通**。差异全部由**网格**承担（含肩宽/髋宽/胸廓等真实二态性）。⚠ **不继承**现有库的男女骨架 —— 实测那两套 rest 骨长比离散度 **0.157**、最大 **1.89×**（远超真实二态性），是两套各自独立做的骨架。",
-
  "height_slider": {
-  "range": [0.92, 1.08],
+  "range": [
+   0.92,
+   1.08
+  ],
   "mechanism": "缩放**角色根节点**的 world scale（等比）",
   "role": "⭐ 它同时是**比例轴的归一化目标** —— 比例滑块改骨长后，用它把身高拉回目标值（见 `proportion_axis`）",
   "never": "❌ 不缩 `root` 骨（SPEC F12：只 +0.50%、离散度超标 8.4×）｜❌ 不做 morph｜❌ 不碰任何骨 pose",
   "semantics": "族内**个体差异**（成年人之间）。儿童是**独立种族**，不靠此滑块达成。",
   "side_effect": "等比会**连带放大头**（±8%）。真实头围 SD 只有 ~2.6%（比身高小），所以头被略微过放大 —— 实践上看不出来，**为它加机制不值得**。"
  },
-
  "proportion_axis": {
   "_comment": "★ v2 新增。比例（腿长/臂长/头大小/肩宽…）**不走 morph**，走骨缩放 + 身高归一化。",
   "mechanism": "**沿骨轴缩放目标骨** → 测当前身高 → 算归一化系数 → 写**根节点**缩放",
@@ -85,12 +109,54 @@
   "why_not_constraints": "⚠ **glTF 里没有约束** —— 第三方件 Bodiez 用 `ACTION` 约束做比例，**导出时会全部消失**，交付前必须烘焙。既然都要烘，不如直接用骨缩放（不需要烘）。",
   "orthogonality": "比例改骨长会让身高变 → **用根节点归一化拉回目标身高** ⇒ 两条轴**由构造保证正交**。",
   "sliders": [
-   {"key": "Tall_Short", "label_zh": "高矮", "range": [-1, 1]},
-   {"key": "Body_Size", "label_zh": "整体大小", "range": [-1, 1]},
-   {"key": "Leg_Size", "label_zh": "腿长", "range": [-1, 1]},
-   {"key": "Arm_Size", "label_zh": "臂长", "range": [-1, 1]},
-   {"key": "Head_Size", "label_zh": "头大小", "range": [-1, 1]},
-   {"key": "Shoulder_Type", "label_zh": "肩型", "range": [-1, 1]}
+   {
+    "key": "Tall_Short",
+    "label_zh": "高矮",
+    "range": [
+     -1,
+     1
+    ]
+   },
+   {
+    "key": "Body_Size",
+    "label_zh": "整体大小",
+    "range": [
+     -1,
+     1
+    ]
+   },
+   {
+    "key": "Leg_Size",
+    "label_zh": "腿长",
+    "range": [
+     -1,
+     1
+    ]
+   },
+   {
+    "key": "Arm_Size",
+    "label_zh": "臂长",
+    "range": [
+     -1,
+     1
+    ]
+   },
+   {
+    "key": "Head_Size",
+    "label_zh": "头大小",
+    "range": [
+     -1,
+     1
+    ]
+   },
+   {
+    "key": "Shoulder_Type",
+    "label_zh": "肩型",
+    "range": [
+     -1,
+     1
+    ]
+   }
   ],
   "implementation_caveats": [
    "⚠ **Godot 的 `Skeleton3D` 骨缩放一律沿层级继承**（没有 `inherit_scale` 标志，SPEC F30）→ 缩 `thigh_l` 会**连带**缩 `calf_l` → 想只改大腿必须在 `calf_l` 上做**反向补偿**。",
@@ -103,14 +169,22 @@
    "两条轴同时动 → 与分别动再合成**逐位一致**"
   ]
  },
-
  "slider_bones": {
   "_comment": "★ v2 新增。**编辑期**的滑块 UI 契约 —— 借第三方件 Bodiez 的做法：滑块 = 参数骨 + 自定义形状，**不用写插件面板**。",
   "mechanism": "在骨架里加一组**非形变骨**：`UI_Panel` 下挂每根滑块骨，各自 `custom_shape` 指向一个滑条网格，并用 `LIMIT_LOCATION` 限定行程。滑块值 = `pose.location.x`。",
   "layout": {
    "UI_Panel": "滑块组的父骨，非形变",
-   "children": ["Body_Type", "Hip_Wide", "Breast_Size",
-                "Tall_Short", "Body_Size", "Leg_Size", "Arm_Size", "Head_Size", "Shoulder_Type"]
+   "children": [
+    "Body_Type",
+    "Hip_Wide",
+    "Breast_Size",
+    "Tall_Short",
+    "Body_Size",
+    "Leg_Size",
+    "Arm_Size",
+    "Head_Size",
+    "Shoulder_Type"
+   ]
   },
   "improvement_over_bodiez": [
    "★ **以 0 为中心、对称行程** `[-1, +1]` —— Bodiez 用绝对值 + 不对称行程（`Tall` 用 `[0,+0.2]`、`Short` 用 `[0,−0.2]`）→ **一个滑块要两条动作**（女 63 条约束大半因此而来）。中心对称 → **一个滑块一条**。",
@@ -119,7 +193,6 @@
   ],
   "lifecycle": "**只存在于编辑期**。烘焙完成后滑块骨可保留（便于返修），但**必须不参与交付**（不进 glTF 的 joints，或导出时作为非形变骨剔除）。"
  },
-
  "head": {
   "separate_asset": true,
   "includes_neck": false,
@@ -137,16 +210,44 @@
   "face_morph": "捏脸用 blendshape，走 **`EX_*` 独立命名空间**（与体型 morph 不得交叉，见 channels.json）；头的 morph 只作用在头网格上，**不需要跨件同步**。",
   "reuse_note": "⚠ 头资产**必须按族打标签** —— **头身比决定头高**（1.75 m 下 8 头 = 21.9 cm，6 头 = 29.2 cm，**差 7.3 cm**），跨族混用会明显比例错。"
  },
-
  "layers": [
-  {"id": 0, "key": "body",      "label_zh": "身体本体", "ship_in_phase1": true,  "note": "永远加载；同时是**骨架的载体**"},
-  {"id": 1, "key": "base",      "label_zh": "基础层",   "ship_in_phase1": true,  "note": "内衣 / 默认最低可展示态"},
-  {"id": 2, "key": "inner",     "label_zh": "内层",     "ship_in_phase1": true,  "note": "衬衫 / 裤 / 靴 / 手套"},
-  {"id": 3, "key": "outer",     "label_zh": "外层",     "ship_in_phase1": false, "note": "外套 / 斗篷 / 兜帽 —— ⚠ 引入叠穿会带来**描边互相穿插**（见 RENDER.md），故 P1 不做"},
-  {"id": 4, "key": "accessory", "label_zh": "配件",     "ship_in_phase1": true,  "note": "肩甲 / 腰带 / 护腕（可近似刚体）"}
+  {
+   "id": 0,
+   "key": "body",
+   "label_zh": "身体本体",
+   "ship_in_phase1": true,
+   "note": "永远加载；同时是**骨架的载体**"
+  },
+  {
+   "id": 1,
+   "key": "base",
+   "label_zh": "基础层",
+   "ship_in_phase1": true,
+   "note": "内衣 / 默认最低可展示态"
+  },
+  {
+   "id": 2,
+   "key": "inner",
+   "label_zh": "内层",
+   "ship_in_phase1": true,
+   "note": "衬衫 / 裤 / 靴 / 手套"
+  },
+  {
+   "id": 3,
+   "key": "outer",
+   "label_zh": "外层",
+   "ship_in_phase1": false,
+   "note": "外套 / 斗篷 / 兜帽 —— ⚠ 引入叠穿会带来**描边互相穿插**（见 RENDER.md），故 P1 不做"
+  },
+  {
+   "id": 4,
+   "key": "accessory",
+   "label_zh": "配件",
+   "ship_in_phase1": true,
+   "note": "肩甲 / 腰带 / 护腕（可近似刚体）"
+  }
  ],
  "layers_note": "⚠ **源包只有「部位」轴，没有「层」轴** → 它表达不了叠穿。层轴是本次新增。**5 层是完整定义，P1 只交付 3 层**（body / inner / accessory + base）—— 因为『叠穿』会触发描边冲突，留到 P2。**层序是数据，不是硬编码。**",
-
  "regions": {
   "_what_is_it": "**「部位」表 = 这件衣物盖住身体的哪一块**。它是**衣橱的槽位（slot）**，不是形变概念。",
   "why_it_exists": [
@@ -160,37 +261,74 @@
    "❌ 它**不要求互斥** —— 同 region 可以同时有多个件（例如 body 部位同时有衬衫与背心），是否互斥由预设/装配规则决定，不由 region 强制"
   ],
   "list": [
-   {"key": "body",      "label_zh": "躯干", "covers": "胸/腹/背",              "example": "衬衫、上衣、外套、腰带"},
-   {"key": "arms",      "label_zh": "手臂", "covers": "上臂/前臂（含露出的皮肤）", "example": "袖子、护腕、臂甲"},
-   {"key": "legs",      "label_zh": "腿",   "covers": "大腿/小腿",              "example": "裤、绑腿"},
-   {"key": "feet",      "label_zh": "足",   "covers": "脚/踝",                  "example": "靴、鞋"},
-   {"key": "head",      "label_zh": "头",   "covers": "颅顶以上/面部",           "example": "兜帽、头盔、头发（⚠ 头是独立资产，见 head 节）"},
-   {"key": "accessory", "label_zh": "配件", "covers": "跨部位的挂件",            "example": "肩甲、腰带、护腕、披风"}
+   {
+    "key": "body",
+    "label_zh": "躯干",
+    "covers": "胸/腹/背",
+    "example": "衬衫、上衣、外套、腰带"
+   },
+   {
+    "key": "arms",
+    "label_zh": "手臂",
+    "covers": "上臂/前臂（含露出的皮肤）",
+    "example": "袖子、护腕、臂甲"
+   },
+   {
+    "key": "legs",
+    "label_zh": "腿",
+    "covers": "大腿/小腿",
+    "example": "裤、绑腿"
+   },
+   {
+    "key": "feet",
+    "label_zh": "足",
+    "covers": "脚/踝",
+    "example": "靴、鞋"
+   },
+   {
+    "key": "head",
+    "label_zh": "头",
+    "covers": "颅顶以上/面部",
+    "example": "兜帽、头盔、头发（⚠ 头是独立资产，见 head 节）"
+   },
+   {
+    "key": "accessory",
+    "label_zh": "配件",
+    "covers": "跨部位的挂件",
+    "example": "肩甲、腰带、护腕、披风"
+   }
   ],
   "derived_from": "源包 `Modular Character Outfits - Fantasy` 的 `Modular Parts/` 分类（`Arms`/`Body`/`Legs`/`Feet`/`Head_Hood`/`Acc_Pauldrons`）—— 它是**已验证可用**的分类，我们沿用。",
   "race_level_note": "⚠ **本表只对人形系有效**，是**种族级**属性、不是全局常量：`centaur` 会逼出「不能硬编码 Legs」（它是**四足**，前肢/后肢不是 arms/legs）→ 那是 P3 的压力测试点。"
  },
-
  "body_shape": {
   "channels_contract": "channels.json（**v2.0**）",
-  "channel_count": {"female": 6, "male": 5},
-  "presets": ["BS_Preset_Thin", "BS_Preset_Regular", "BS_Preset_Muscular", "BS_Preset_Fat"],
-  "continuous": ["BS_Hip_Wide", "BS_Breast"],
+  "channel_count": {
+   "female": 6,
+   "male": 5
+  },
+  "presets": [
+   "BS_Preset_Thin",
+   "BS_Preset_Regular",
+   "BS_Preset_Muscular",
+   "BS_Preset_Fat"
+  ],
+  "continuous": [
+   "BS_Hip_Wide",
+   "BS_Breast"
+  ],
   "note": "⚠ **v2 不复用 v1 的任何通道名**（v1 的 `BS_Thin`/`BS_Heavy` 是『有符号偏移』，v2 的预设是『绝对档』—— 同名不同义会静默混用）。v1 冻结为 legacy，只服务 007 的 4 套旧资产（它们是**已验证的回归基线**，不能删）。⚠ **9 个 `delta_response` 系数必须按族重调**（若仍走派生路线）。"
  },
-
  "render": {
   "style": "npr_cel_lite",
   "doc": "RENDER.md",
   "summary": "卡渲（半兰伯特 + ramp）+ 反壳描边；**面部不做 SDF**（明暗画进贴图）；眉毛画进脸贴图；**身体不画死明暗**（因为它随体型变），**脸可以**（因为它 100% 静态）"
  },
-
  "asset_naming": {
   "pattern": "{Race}_{Sex}_{Style}_{Region}_{Layer}",
   "example": "Humanoid_Female_Ranger_Body_L2",
   "why": "**首段即种族** → 跨族拼接在名字上就露馅，校验可直接字符串比对。"
  },
-
  "verification": {
   "proportion_checker": "tools/3d/skeleton/check_proportions.py",
   "skeleton_gates": [
@@ -204,7 +342,6 @@
    "rest pose == T-pose"
   ]
  },
-
  "open_items": [
   "等权威身体落盘后回填实测并复核 tolerance",
   "`region` 表待 `centaur` 阶段压力测试",
